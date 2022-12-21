@@ -54,3 +54,15 @@ Steve Abreu is interested in interdisciplinary research in and around computer s
 His Ph.D. is on non-digital computing theory in the [MINDS](https://www.ai.rug.nl/minds/) research group and the CogniGron research center, funded by the [European Post-Digital](http://postdigital.astonphotonics.uk/) research network. He is developing concepts and methods for programming and interfacing with unconventional computers. He is working with analog neuromorphic hardware (spikes!), photonic computing systems, and other physical systems that can compute and/or learn.
 
 In his free time, he is a hobby photographer, likes to read, travel, and go to music and art events. You can find more information on his [website](https://stevenabreu.com/).
+
+## Alexander Henkes - Member
+
+{{< image src="/img/team/alexander-henkes.jpg" alt="alexander-henkes" >}}
+
+Alexander Henkes received the B.Sc. (Mechanical engineering) and M.Sc. (Mechanical engineering) degrees from University of Paderborn, Germany, in 2015 and 2018, respectively. In 2022 he received his Ph.D with honors from the Technical University of Braunschweig (TUBS), Germany, for his thesis "Artificial Neural Networks in Continuum Micromechanics".
+
+He is currently a Post-Doctoral Research Fellow at the Institute for Computational Modeling in Civil Engineering at TUBS. In 2022, he was elected as a junior member of the German Association of Applied Mathematics and Mechanics (GAMM) for his outstanding research in the field of artificial intelligence in continuum micromechanics.
+
+His current research focuses on spiking neural networks (SNN). Recently he published a preprint on nonlinear history-dependent regression using SNN. This enables SNN to be used in the context of applied mathematics and computational engineering.
+
+He is a contributor of [snnTorch](https://github.com/jeshraghian/snntorch).
