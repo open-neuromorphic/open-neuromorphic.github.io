@@ -42,7 +42,12 @@ paginate = 5
         url = "/opportunities"
 		weight = 3
       [[languages.en.menu.main]]
+        identifier = "events"
+        name = "Events"
+        url = "/events"
+		weight = 4
+      [[languages.en.menu.main]]
         identifier = "about"
         name = "About"
         url = "/about"
-		weight = 4
+		weight = 5
