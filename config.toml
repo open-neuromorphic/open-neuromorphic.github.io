@@ -14,7 +14,7 @@ paginate = 5
 [languages]
   [languages.en]
     title = "Open Neuromorphic"
-    subtitle = "A simple, retro theme for Hugo"
+    subtitle = "Organization that aims at providing one place to reference all relevant open-source project in the neuromorphic research domain."
     keywords = ""
     copyright = ""
     menuMore = "Show more"
