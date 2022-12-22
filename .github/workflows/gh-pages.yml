@@ -3,7 +3,7 @@ name: github pages
 on:
   push:
     branches:
-      - fabrizio-website  # Set a branch that will trigger a deployment
+      - main  # Set a branch that will trigger a deployment
   pull_request:
 
 jobs:
@@ -26,7 +26,7 @@ jobs:
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-        if: github.ref == 'refs/heads/fabrizio-website'
+        if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
