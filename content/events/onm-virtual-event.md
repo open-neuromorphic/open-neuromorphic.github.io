@@ -16,5 +16,6 @@ On the 13th of December 2022, the first edition of Open Neuromorphic took place!
 Due to technical issues we were not able to record this talk, but have asked speakers to provide links to their slides.
 
 * [Gregor Lenz](https://slides.com/gregorlenz/open-neuromorphic).
+* [Charlotte Frenkel](/onm-events/event-22-12-13/slides/charlotte-frenkel.pdf).
 * [Jens E. Pedersen](https://jepedersen.dk/slides/2212_ONM/index.html).
 * [Fabrizio Ottati](/onm-events/event-22-12-13/slides/open-neuromorphic-intro.pdf).
