@@ -1,10 +1,10 @@
-+++
-title = "Open Neuromorphic"
-date = "2022-12-21"
-author = "Fabrizio"
-cover = "img/ONM.png"
-description = "Organization that aims at providing one place to reference all relevant open-source project in the neuromorphic research domain."
-+++
+---
+title: "Open Neuromorphic"
+date: "2022-12-21"
+author: "Fabrizio"
+cover: "img/ONM.png"
+description: "Organization that aims at providing one place to reference all relevant open-source project in the neuromorphic research domain."
+---
 
 This organisation is created by a loose collective of **open source** collaborators across academia, industry and individual contributors. What connects us is the love for building tools that can be used in the neuromorphic community and we want to share ownership of this vision. 
 

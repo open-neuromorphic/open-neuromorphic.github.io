@@ -11,7 +11,13 @@ The [UCSC Neuromorphic Computing Group](https://ncg.ucsc.edu/) is led by profess
 
 We develop algorithms that can learn, and low-power architectures and circuits that harness exotic device technologies. Our work sits at the intersection of neuroscience, deep learning, and VLSI design. Check out our [opportunities page](https://ncg.ucsc.edu/join-us/).
 
-**Contact:** jeshragh@ucsc.edu..
+**Contact:** jeshragh@ucsc.edu.
+
+# Charlotte Frenkel's Laboratory - Technology University of Delft
+
+[Charlotte Frenkel](https://chfrenkel.github.io)'s [laboratory](http://microelectronics.tudelft.nl/People/bio.php?id=822) research aims at bridging the bottom-up (bio-inspired) and top-down (engineering-driven) design approaches toward neuromorphic intelligence, with a focus on digital spiking neural network processor design, embedded machine learning, and on-chip training algorithms. Direct applications cover adaptive internet of things (IoT) devices, autonomous robotic agents, and biosignal processing.
+
+**Contact:** c.frenkel@tudelft.nl.
 
 # High Level Synthesis Laboratory - Politecnico di Torino
 
