@@ -11,6 +11,8 @@ Here's a list of articles and theses related to digital hardware designs for neu
 
 If you are new to neuromorphic computing, I strongly suggest to get a grasp of how an SNN works from [this paper](https://arxiv.org/abs/2109.12894) and, then, to read Charlotte Frenkel's Ph.D. thesis, which is listed below. Otherwise, it will be pretty difficult to understand the content of the papers listed here.
 
+## [*SpiNNaker: A 1-W 18-Core System-on-Chip for Massively-Parallel Neural Network Simulation*](https://ieeexplore.ieee.org/document/6515159), Eustace Painkras et al., 2013.
+
 ## [*TrueNorth: Design and Tool Flow of a 65 mW 1 Million Neuron Programmable Neurosynaptic Chip*](https://redwood.berkeley.edu/wp-content/uploads/2021/08/Akopyan2015.pdf), Filipp Akopyan et al., 2015 
 
 This a fully digital chip, embedding **4096** cores with **1M** neurons and **256M** synapses! 
@@ -56,6 +58,8 @@ This is [Charlotte Frenkel](https://chfrenkel.github.io)'s Ph.D. thesis. In this
 This is an **asynchronous digital architecture**, with no online-learning capabilities provided. It is an inference-only chip.
 
 The bit precision and network topology is chosen at **synthesis** time, while the neurons parameters and synapses weights can be programmed on chip. The neuron model employed is the **Integrate and Fire (IF)** one, with no leakage; the leakage can be added using an additional inhibitory input neuron to model it. A **local clock** is generated a neuron level when a spike arrives, so that the circuit consumes only static power when not operating. No time multiplexing is employed, the architecture is organised in a **layer-by-layer** fashion where all the neurons operate in parallel (i.e. each core corresponds to a neuron). 
+
+## [*The SpiNNaker 2 Processing Element Architecture for Hybrid Digital Neuromorphic Computing*](https://arxiv.org/abs/2103.08392), Sebastian Höppner et al., 2022.
 
 ## [*Spiking Neural Network Integrated Circuits: A Review of Trends and Future Directions*](https://arxiv.org/abs/2203.07006), Arindam Basu et al., 2022
 
