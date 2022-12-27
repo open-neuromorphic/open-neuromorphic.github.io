@@ -26,12 +26,17 @@ paginate = 5
       logoHomeLink = "/"
 
     [languages.en.menu]
-      [[languages.en.menu.main]]
+  [[languages.en.menu.main]]
         identifier = "resources"
         name = "Resources"
         url = "/resources"
 		weight = 1
-      [[languages.en.menu.main]]
+[[languages.en.menu.main]]
+        identifier = "reading"
+        name = "Reading"
+        url = "/reading"
+		weight = 4
+   [[languages.en.menu.main]]
         identifier = "team"
         name = "Team"
         url = "/team"
