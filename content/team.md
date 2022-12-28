@@ -62,11 +62,11 @@ He is the maintainer of [norse](https://github.com/norse/norse) and [AEStream](h
 
 {{< image src="/img/team/steven-abreu.jpg" alt="steven-abreu" >}}
 
-Steve Abreu is interested in interdisciplinary research in and around computer science and artificial intelligence: nature-inspired computing, understanding human cognition, and advancing artificial intelligence.
+Steve is doing his PhD on neuromorphic computing theory in the [MINDS](https://www.ai.rug.nl/minds/) research group at the new [CogniGron](https://www.rug.nl/research/fse/cognitive-systems-and-materials/about/) center for cognitive systems and materials in Groningen. He is funded by the European [Post-Digital](http://postdigital.astonphotonics.uk/) research network.
 
-His Ph.D. is on non-digital computing theory in the [MINDS](https://www.ai.rug.nl/minds/) research group and the CogniGron research center, funded by the [European Post-Digital](http://postdigital.astonphotonics.uk/) research network. He is developing concepts and methods for programming and interfacing with unconventional computers. He is working with analog neuromorphic hardware (spikes!), photonic computing systems, and other physical systems that can compute and/or learn.
+In his PhD, he works with different neuromorphic systems ([Loihi 2](https://www.intel.com/content/www/us/en/research/neuromorphic-computing.html), [DynapSE2](https://www.synsense.ai/products/dynap-se2/), and [photonic reservoirs](https://photonics.intec.ugent.be/research/topics.asp?ID=112)) to develop programming methods for devices that explore a richer set of physical dynamics than the synchronous bi-stable switching that (most of) computer science relies on. Steve's background is in computer science and machine learning, with a touch of physics.
 
-In his free time, he is a hobby photographer, likes to read, travel, and go to music and art events. You can find more information on his [website](https://stevenabreu.com/).
+You can find more information on his [website](https://stevenabreu.com/).
 
 ## Alexander Henkes - Member
 
