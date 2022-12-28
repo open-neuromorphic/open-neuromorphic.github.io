@@ -33,6 +33,19 @@ His research focuses on brain-inspired circuit design to accelerate AI algorithm
 
 He is the maintainer of [snnTorch](https://github.com/jeshraghian/snntorch).
 
+## Charlotte Frenkel - Founder
+
+{{< image src="/img/team/charlotte-frenkel.jpg" alt="charlotte-frenkel" >}}
+
+Charlotte Frenkel is a digital IC designer whose curiosity got trapped into the realms of neuromorphic engineering. She is working on aspects ranging from circuit design techniques (both digital and mixed-signal with emerging devices) to computer architecture, learning algorithms, and neuroscience. Her research goals are:
+
+- to demonstrate a competitive advantage for neuromorphic computing devices compared to conventional neural network accelerators,
+- to uncover a framework toward on-chip neuromorphic intelligence for adaptive edge computing.
+
+To achieve these goals, she is investigating both the bottom-up and the top-down design approaches, as well as their synergies.
+
+She is currently an [Assistant Professor](http://microelectronics.tudelft.nl/People/bio.php?id=822) in the Microelectronics department of TU Delft. You can find more information on her [personal website](https://chfrenkel.github.io).
+
 ## Jens Egholm Pedersen - Member
 
 {{< image src="/img/team/jens-egholm.png" alt="jens-egholm" >}}
