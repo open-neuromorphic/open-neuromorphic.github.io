@@ -85,3 +85,15 @@ He is a contributor of [snnTorch](https://github.com/jeshraghian/snntorch).
 Alexander is currently a Research Fellow with the Advanced Concepts Team at the European Space Agency. His research efforts are focused on retinomorphic vision as well as the interplay between homeostasis, adaptation, axon guidance and structural plasticity in spiking neural networks. 
 
 No single branch of AI can claim the crown of true intelligence on its own. Rather, developing AI worthy of the 'I' would require a concerted effort to combine virtually all the branches - from perception through learning and cognition to reasoning and interaction. The most enticing aspect of neuromorphic computing is its potential to bring about this unification.
+
+## Peng Zhou - Member
+
+{{< image src="/img/team/peng-zhou.jpeg" alt="peng-zhou" >}}
+
+Peng Zhou received the Ph.D. degree from The University of California, Santa Cruz, under the supervision of Prof. Sung-Mo “Steve” Kang and Prof. [Jason Eshraghian](https://jasoneshraghian.com), and focused on neuromorphic computing, spiking neural networks, and their hardware implementation using memristors.
+
+She was awarded “Best New Neuromorph” at the 2022 Telluride Workshop on Neuromorphic Cognition Engineering. She also obtained working experience from [Synsense](https://synsense.ai), a neuromorphic startup that spun out of the Institute of Neuroinformatics at the University of Zurich and ETH Zurich, and [Tetramem](https://www.tetramem.com/), a computing-in-memory startup whose RRAM technologies are based on Yang research group at USC, Nanodevices and Integrated Systems Laboratory at UMass Amherst, and HP labs.
+
+She is a contributor of the open-source SNN frameworks [snnTorch](https://snntorch.readthedocs.io) and [Rockpool](https://synsense.gitlab.io/rockpool/). She also designs open-source SNN chips.
+
+You can find more information on her [website](https://pengzhouzp.github.io/).
