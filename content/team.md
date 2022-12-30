@@ -97,3 +97,13 @@ She was awarded “Best New Neuromorph” at the 2022 Telluride Workshop on Neur
 She is a contributor of the open-source SNN frameworks [snnTorch](https://snntorch.readthedocs.io) and [Rockpool](https://synsense.gitlab.io/rockpool/). She also designs open-source SNN chips.
 
 You can find more information on her [website](https://pengzhouzp.github.io/).
+
+## Shyam Narayan - Member
+
+{{< image src="/img/team/shyam-narayanan.jpeg" alt="shyam-narayanan" >}}
+
+Shyam is a Ph.D. student in the Neuromorphic Cognitive Systems (NCS) group at the Institute of Neuroinformatics, University of Zurich, and ETH Zurich with Prof. Giacomo Indiveri. 
+
+After working as a chip designer in the industry for over a decade, he decided to pursue a Ph.D. in Bio-Inspired Wide Band Circuits and Systems for Edge Neuromorphic Computing. His research interests lie at the intersection of analog/mixed-signal IC design, Neuroscience, and Robotics.
+
+He believes that Neuromorphic Engineering has its own merits and a coordinated effort from the community on device, circuits, and algorithm levels are needed to push the envelope.
