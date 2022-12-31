@@ -1,7 +1,7 @@
 +++
 title = "Open Neuromorphic"
 date = "2022-12-21"
-author = "Fabrizio"
+author = "Gregor Lenz"
 cover = "img/ONM.png"
 description = "Organization that aims at providing one place to reference all relevant open-source project in the neuromorphic research domain."
 +++
