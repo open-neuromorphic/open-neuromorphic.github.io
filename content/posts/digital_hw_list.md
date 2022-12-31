@@ -69,6 +69,6 @@ In this work, an **only-inference digital** chip is presented. The design is tun
 
 The novelty of this design is that, even if it is a **synchronous one**, the number of operations performed is proportional to the **number of events** recorded by the camera, which allows very efficient inference when dealing with **sparse inputs** (e.g. low activity scenarios). 
 
-The design is validated on the **IBM DVSGesture** dataset, obtaining **80μJ per inference** when classifying samples, with a recognition accuracy of **92.80%** at most. This design is also integrated in the [PULP](https://pulp-platform.org/) platform; the SoC that embeds it is described in [*Kraken: A Direct Event/Frame-Based Multi-sensor Fusion SoC for Ultra-Efficient Visual Processing in Nano-UAVs*](https://arxiv.org/abs/2209.01065). 
+The design is validated on the **IBM DVSGesture** dataset, obtaining **80μJ per inference** when classifying samples, with a recognition accuracy of **92.80%** at most. This design is also integrated in the [PULP](https://pulp-platform.org/) platform; the SoC that embeds it is described in [*Kraken: A Direct Event/Frame-Based Multi-sensor Fusion SoC for Ultra-Efficient Visual Processing in Nano-UAVs*](https://arxiv.org/abs/2209.01065), Alfio Di Mauro et al., 2022. 
 
 The SystemVerilog code is [open source](https://github.com/pulp-platform/sne)!
