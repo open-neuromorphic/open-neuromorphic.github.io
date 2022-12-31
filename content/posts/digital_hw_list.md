@@ -1,7 +1,7 @@
 ---
 title: "Digital neuromophic hardware read list"
 description: "List of articles and theses related to digital hardware for neuromorphic applications."
-date: 2022-12-27
+date: 2022-12-31
 draft: false
 author: "Fabrizio Ottati"
 cover: "img/resources/odin-frenkel.png"
@@ -9,7 +9,7 @@ cover: "img/resources/odin-frenkel.png"
 
 Here's a list of articles and theses related to digital hardware designs for neuomorphic applications. I plan to update it regularly. To be redirected directly to the sources, click on the titles! 
 
-If you are new to neuromorphic computing, I strongly suggest to get a grasp of how an SNN works from [this paper](https://arxiv.org/abs/2109.12894) and, then, to read Charlotte Frenkel's Ph.D. thesis, which is listed below. Otherwise, it will be pretty difficult to understand the content of the papers listed here.
+If you are new to neuromorphic computing, I strongly suggest to get a grasp of how an SNN works from [this paper](https://arxiv.org/abs/2109.12894). Otherwise, it will be pretty difficult to understand the content of the papers listed here.
 
 ## [*SpiNNaker: A 1-W 18-Core System-on-Chip for Massively-Parallel Neural Network Simulation*](https://ieeexplore.ieee.org/document/6515159), Eustace Painkras et al., 2013.
 
@@ -48,10 +48,6 @@ In this work, a **quad-core neuromorphic processor** is presented.
 The neuron model employed is the **LIF** one. Synapses are quantized down to **1 bit** resolution, and online learning is allowed using a **stochastic version of the SDSP rule**. The chip is produced in **65nm CMOS**, embedding **2k LIF neurons** and **2M synapses**, reaching a density of **738k synapses per squared millimeters**. 
 
 The neurons interconnection is arranged in a hierarchical routing solution: **mesh-based** interconnectivity for **out-of-chip** communications; **star-based** connectivity for **inter-core** communications; **crossbar-based** interconnectivity for **intra-core** communications. 27 bits per neuron are allocated, allowing for a 1k neurons fan-in for each neuron, and 2k neurons fan-out for each neuron.
-
-## [*Bottom-Up and Top-Down Neuromorphic Processor Design: Unveiling Roads to Embedded Cognition*](https://dial.uclouvain.be/pr/boreal/object/boreal%3A226494/datastream/PDF_01/view), Charlotte Frenkel, 2020
-
-This is [Charlotte Frenkel](https://chfrenkel.github.io)'s Ph.D. thesis. In this, her learning process is accurately documented, with more details on ODIN and MorphIC and other projects.
 
 ## [*μBrain: An Event-Driven and Fully Synthesizable Architecture for Spiking Neural Networks*](https://www.frontiersin.org/articles/10.3389/fnins.2021.664208/full), Jan Stuijt et al., 2021
 
