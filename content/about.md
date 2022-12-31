@@ -19,3 +19,9 @@ Projects that we list here can fall into this non-exclusive list of categories:
 * **Event-based sensors** data handling.
 * **Digital hardware** designs for neuromorphic applications.
 * **Mixed-signal** hardware designs for neuromorphic applications.
+
+# Contacts 
+
+- [GitHub](https://github.com/open-neuromorphic).
+- [LinkedIn](https://www.linkedin.com/groups/9267873).
+- [Discord](https://discord.gg/C9bzWgNmqk).
