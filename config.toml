@@ -31,11 +31,11 @@ paginate = 5
         name = "Resources"
         url = "/resources"
 		weight = 1
-[[languages.en.menu.main]]
-        identifier = "reading"
-        name = "Reading"
-        url = "/reading"
-		weight = 4
+# [[languages.en.menu.main]]
+#         identifier = "reading"
+#         name = "Reading"
+#         url = "/reading"
+# 		weight = 4
    [[languages.en.menu.main]]
         identifier = "team"
         name = "Team"
