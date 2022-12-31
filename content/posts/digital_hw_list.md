@@ -72,3 +72,11 @@ The novelty of this design is that, even if it is a **synchronous one**, the num
 The design is validated on the **IBM DVSGesture** dataset, obtaining **80μJ per inference** when classifying samples, with a recognition accuracy of **92.80%** at most. This design is also integrated in the [PULP](https://pulp-platform.org/) platform; the SoC that embeds it is described in [*Kraken: A Direct Event/Frame-Based Multi-sensor Fusion SoC for Ultra-Efficient Visual Processing in Nano-UAVs*](https://arxiv.org/abs/2209.01065), Alfio Di Mauro et al., 2022. 
 
 The SystemVerilog code is [open source](https://github.com/pulp-platform/sne)!
+
+# [*Sparse Compressed Spiking Neural Network Accelerator for Object Detection*](https://arxiv.org/abs/2205.00778), Hong-Han Lien and Tian-Shehuan Chang, 2022.
+
+The neuron model employed in this work is a **LIF** one, with a delta-shaped synaptic kernel. The architecture topology is a **feed-forward** one, in which the neuron cores are arranged either is a cascade-fashion or in a configurable Processing Element (PE) array. The focus of this chip is to deal **efficiently** with the sparse nature of the activation maps in an SNN, by compressing the model with **sparse data structures** coupled with **model pruning** and **8 bits fixed point** parallelism to reduce the on-chip memory requirement. The SNN architecture is **mixed with an ANN one**. 
+
+The final implementation, validated on an **object detection** task, achieves **29FPS** when dealing with **1024x576 input frames**; the throughput efficiency is **35.88TOPS/W** and **1.05mJ/frame**, running at **500MHz** and being taped out on the **TSMC 28nm CMOS** process. 
+
+The object detection network is trained offline as ANN and then **converted** to an SNN, using the **IVS 3 classes** dataset and achieving **71.5% maP** with on-chip inference.
