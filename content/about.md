@@ -6,7 +6,7 @@ cover = "img/ONM.png"
 description = "Organization that aims at providing one place to reference all relevant open-source project in the neuromorphic research domain."
 +++
 
-This [organisation](https://github.com/open-neuromorphic) is created by a loose collective of **open source** collaborators across academia, industry and individual contributors. What connects us is the love for building tools that can be used in the neuromorphic community and we want to share ownership of this vision. 
+This [organisation](https://github.com/open-neuromorphic) is created by a loose collective of **open source** collaborators across academia, industry and individual contributors. What connects us is the love for building tools that can be used in the neuromorphic community and we want to share ownership of this vision.
 
 **Open Neuromorphic** (ONM) provides two things:
 
@@ -15,13 +15,7 @@ This [organisation](https://github.com/open-neuromorphic) is created by a loose 
 
 Projects that we list here can fall into this non-exclusive list of categories:
 
-* **Spiking Neural Networks** (SNNs) training and/or inference, for both ML and neuroscience application.
-* **Event-based sensors** data handling.
-* **Digital hardware** designs for neuromorphic applications.
-* **Mixed-signal** hardware designs for neuromorphic applications.
-
-# Contacts 
-
-- [GitHub](https://github.com/open-neuromorphic).
-- [LinkedIn](https://www.linkedin.com/groups/9267873).
-- [Discord](https://discord.gg/C9bzWgNmqk).
+- **Spiking Neural Networks** (SNNs) training and/or inference, for both ML and neuroscience application.
+- **Event-based sensors** data handling.
+- **Digital hardware** designs for neuromorphic applications.
+- **Mixed-signal** hardware designs for neuromorphic applications.
