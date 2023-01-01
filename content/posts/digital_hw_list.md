@@ -54,8 +54,6 @@ The neurons interconnection is arranged in a hierarchical routing solution: **me
 
 # 2020
 
-## [*Spiking Neural Networks Hardware Implementations and Challenges: a Survey*](https://arxiv.org/abs/2005.01467), Maxence Bouvier et al.
-
 ## [*Always-On, Sub-300-nW, Event-Driven Spiking Neural Network based on Spike-Driven Clock-Generation and Clock- and Power-Gating for an Ultra-Low-Power Intelligent Device*](https://arxiv.org/abs/2006.12314), Dewei Wang et al., 2020
 
 # 2021
@@ -69,6 +67,8 @@ The bit precision and network topology is chosen at **synthesis** time, while th
 ## [*Spiking Neural Network Integrated Circuits: A Review of Trends and Future Directions*](https://arxiv.org/abs/2203.07006), Arindam Basu et al., 2022
 
 Nice **survey** paper that compares different ICs, both digital and mixed-signal ones. 
+
+# 2022 
 
 ## [*ReckOn: A 28nm Sub-mm2 Task-Agnostic Spiking Recurrent Neural Network Processor Enabling On-Chip Learning over Second-Long Timescales*](https://arxiv.org/abs/2208.09759), Charlotte Frenkel and Giacomo Indiveri, 2022
 
