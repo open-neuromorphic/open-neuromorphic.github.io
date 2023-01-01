@@ -40,3 +40,9 @@ Our main expertise areas are:
 - asynchronous digital circuits design.
 
 **Contact:** fabrizio.ottati@polito.it.
+
+### Strukov Research Group - University of California Santa Barbara
+
+Our group's broad goal is to develop novel, useful ways to perform computations. We pursue highly interdisciplinary research, which spans material science, electrical engineering, and computer science. It involves both theoretical and experimental work, including developing new functional materials, modeling and prototyping novel electronic devices and circuit architectures, and designing relevant algorithms. The current focus is on mixed-signal circuit implementations with emerging memory devices for applications in machine learning, artificial intelligence, combinatorial optimization, and hardware security. Check our [website](https://sites.google.com/site/strukov/home) for more information.
+
+**Contact:** strukov@ece.ucsb.edu.
