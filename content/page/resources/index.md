@@ -1,7 +1,7 @@
 ---
 title: Resources
 links:
-  - title: GitHub
+  - title: Open Neuromorphic GitHub repository
     description: Repository listing the resources.
     website: https://github.com/open-neuromorphic/open-neuromorphic
     image: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png

@@ -34,9 +34,9 @@ The HLS Laboratory is led by professor [Luciano Lavagno](https://scholar.google.
 
 Our main expertise areas are:
 - digital hardware architectures for Deep Learning and Neuromorphic Computing.
+- digital IC design.
 - indoor pervasive human tracking and monitoring.
-- hardware-software codesign.
-- high level synthesis of digital circuits.
+- high level synthesis of digital circuits with a focus on FPGAs.
 - asynchronous digital circuits design.
 
 **Contact:** fabrizio.ottati@polito.it.
