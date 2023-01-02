@@ -5,6 +5,7 @@ date: 2022-12-31
 draft: false
 author: "Fabrizio Ottati"
 image: "frenkel-thesis.png"
+draft: true
 ---
 
 Here's a list of articles and theses related to digital hardware designs for neuomorphic applications. I plan to update it regularly. To be redirected directly to the sources, click on the titles! 
