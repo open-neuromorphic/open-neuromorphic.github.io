@@ -2,7 +2,6 @@
 title: "Digital neuromophic hardware read list"
 description: "List of articles and theses related to digital hardware for neuromorphic applications."
 date: 2022-12-31
-draft: false
 author: "Fabrizio Ottati"
 image: "frenkel-thesis.png"
 draft: true
