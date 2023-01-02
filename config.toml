@@ -4,55 +4,70 @@ theme = "terminal"
 paginate = 5
 
 [params]
-  contentTypeName = "posts"
-  themeColor = "pink"
-  showMenuItems = 5
-  fullWidthTheme = true
-  centerTheme = true
-  favicon = "img/ONM-logo.png"
+    contentTypeName = "posts"
+    themeColor = "pink"
+    showMenuItems = 5
+    fullWidthTheme = true
+    centerTheme = true
+    favicon = "img/ONM-logo.png"
 
 [languages]
-  [languages.en]
-    title = "Open Neuromorphic"
-    subtitle = "Organization that aims at providing one place to reference all relevant open-source project in the neuromorphic research domain."
-    keywords = ""
-    copyright = ""
-    menuMore = "Show more"
-    readMore = "Read more"
-    readOtherPosts = "Read other posts"
+    [languages.en]
+        title = "Open Neuromorphic"
+        subtitle = "Organization that aims at providing one place to reference all relevant open-source project in the neuromorphic research domain."
+        keywords = ""
+        copyright = ""
+        menuMore = "Show more"
+        readMore = "Read more"
+        readOtherPosts = "Read other posts"
 
     [languages.en.params.logo]
-      logoText = "Open Neuromorphic"
-      logoHomeLink = "/"
+        logoText = "Open Neuromorphic"
+        logoHomeLink = "/"
 
     [languages.en.menu]
-  [[languages.en.menu.main]]
-        identifier = "resources"
-        name = "Resources"
-        url = "/resources"
-		weight = 1
+        [[languages.en.menu.main]]
+            identifier = "resources"
+            name = "Resources"
+            url = "/resources"
+            weight = 1
 # [[languages.en.menu.main]]
 #         identifier = "reading"
 #         name = "Reading"
 #         url = "/reading"
 # 		weight = 4
-   [[languages.en.menu.main]]
-        identifier = "team"
-        name = "Team"
-        url = "/team"
-		weight = 2
-      [[languages.en.menu.main]]
-        identifier = "opportunities"
-        name = "Opportunities"
-        url = "/opportunities"
-		weight = 3
-      [[languages.en.menu.main]]
-        identifier = "events"
-        name = "Events"
-        url = "/events"
-		weight = 4
-      [[languages.en.menu.main]]
-        identifier = "about"
-        name = "About"
-        url = "/about"
-		weight = 5
+        [[languages.en.menu.main]]
+            identifier = "team"
+            name = "Team"
+            url = "/team"
+            weight = 2
+        [[languages.en.menu.main]]
+            identifier = "opportunities"
+            name = "Opportunities"
+            url = "/opportunities"
+            weight = 3
+        [[languages.en.menu.main]]
+            identifier = "events"
+            name = "Events"
+            url = "/events"
+            weight = 4
+        [[languages.en.menu.main]]
+            identifier = "about"
+            name = "About"
+            url = "/about"
+            weight = 5
+        [[languages.en.menu.main]]
+            identifier = "github"
+            name = "GitHub"
+            url = "https://github.com/open-neuromorphic/"
+            weight = 10
+        [[languages.en.menu.main]]
+            identifier = "linkedin"
+            name = "LinkedIn"
+            url = "https://www.linkedin.com/groups/9267873"
+            weight = 10
+        [[languages.en.menu.main]]
+            identifier = "discord"
+            name = "Discord"
+            url = "https://discord.gg/C9bzWgNmqk"
+            weight = 10
