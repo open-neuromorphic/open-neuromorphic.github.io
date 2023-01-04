@@ -51,12 +51,12 @@ The group focuses mainly on event-driven (spiking) frame-free vision systems, de
 
 Specific areas:
 - Artificial bioinspired asynchronous event driven vision sensors.
-- Asynchronous event driven convolution processors
-- Modularly assembled event-based sensing and procsessing systems
-- Learning with Spike-Timing-Dependent Plasticity
-- Use of emerging nanodevices as adaptable learning synaptic devices
-- Analog design of low power and/or low current circuits and blocks for neuromorphic systems
-- Calibration techniques for analog computing circuits
+- Asynchronous event driven convolution processors.
+- Modularly assembled event-based sensing and procsessing systems.
+- Learning with Spike-Timing-Dependent Plasticity.
+- Use of emerging nanodevices as adaptable learning synaptic devices.
+- Analog design of low power and/or low current circuits and blocks for neuromorphic systems.
+- Calibration techniques for analog computing circuits.
 
 Check out our [opportunities page](http://imse-cnm.csic.es/en/career-imse.php).
 
