@@ -41,3 +41,21 @@ Our main expertise areas are:
 
 **Contact:** fabrizio.ottati@polito.it.
 
+### IMSE Neuromorphic Group - Instituto de Microelectronica de Sevilla
+
+![IMSE Neuromorphic Group](imse-sevilla.png)
+
+[IMSE Neuromorphic group](http://www2.imse-cnm.csic.es/neuromorphs/) develops sensory and processing microchips that mimic sensing and processing in biological beings. It also develops multi-chip and hybrid chip-FPGA systems, algorithms and sensory processing for spiking information sensing, coding and processing. The group uses mixed or digital CMOS technologies, as well as application projections exploiting emergent nanoscale technologies or new devices like memristors.
+
+The group focuses mainly on event-driven (spiking) frame-free vision systems, developing sensing retinas for spatial or temporal contrast (such as DVS – Dynamic Vision Sensors), as well as event-driven convolution processors, which allow to assemble for example large scale spiking “Convolutional Neural Networks” for high speed object recognition using AER (Address Event Representation) communication techniques.
+
+Specific areas:
+- Artificial bioinspired asynchronous event driven vision sensors.
+- Asynchronous event driven convolution processors
+- Modularly assembled event-based sensing and procsessing systems
+- Learning with Spike-Timing-Dependent Plasticity
+- Use of emerging nanodevices as adaptable learning synaptic devices
+- Analog design of low power and/or low current circuits and blocks for neuromorphic systems
+- Calibration techniques for analog computing circuits
+
+Check out our [opportunities page](http://imse-cnm.csic.es/en/career-imse.php).
