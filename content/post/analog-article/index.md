@@ -20,8 +20,7 @@ For didactic purposes, we will walk through a very simple mixed-signal implement
 However, before we dive into the spiking fun, we need to meet the star of mixed-signal neuromorphics: the sub-treshold CMOS transistor. It is the basis for all circuits we will use in this article, so we will do well by studying it first.
 
 ## prelude: sub-threshold CMOS
-
-**<u>*TODO*</u>**
+"The fact that we can build devices that implement the same basic operations as those the nervous system uses leads to the inevitable conclusion that we should be able to build entire systems based on the organizing principles used by the nervous system. I will refer to these systems generically as neurormorphic systems." [C. Mead, 1990] This historical paper from Carver Mead captures the true essence of the field and lays the foundation for Neuromophic Engineering. Back in 80s-90s Carver Mead and colleagues hypothesised that in order to do a simple math operation with a digital computer one needs far more transistors (in the order of 10s of thousands). They also found out that majority of the energy is used up in charging up wiring interconnects connecting these 1000s of device, which led them to the conclusion that it costs about a million times more energy to do an operation in digital machine as compared to operate a single transistors. Both in  biological neurons and silicon,  ions are in thermal equilibrium with their surroundings and hence their energies are Boltzmann distributed. In the presence of energy barriers, the boltzmann distribution of ions computes a current that is an exponential function of the barrier energy. By applying a voltage to modulate the barrier energy, the resulting flow of charges or in other words the current, will be an exponential function of that voltage. This basic principle is used to create active computational elementes (those that produce gain or amplification at signal level), both in the nervous system and in electronics. In addition to providing gain, an individual transistor computes a complex nonlinear function of its control and channel voltages. That function is not directly comparable to the functions that synapses evaluate using their presynaptic and postsynaptic potentials, but a few transistors can be connected strategically to compute remarkably competent synaptic functions. This makes the back-bone of subthreshold analog neuromorphic VLSI.
 
 ## synapse circuit
 
@@ -71,3 +70,4 @@ Our neuron $i$ will receive spike events from each of its pre-synaptic neurons $
 - Boahen, 2017. A Neuromorph’s Prospectus.
 - Chicca et al., 2014. Neuromorphic electronic circuits for building autonomous cognitive systems.
 - Sarpeshkar, 1998. Analog Versus Digital: Extrapolating from Electronics to Neurobiology.
+- C. Mead, 1990. Neuromorphic electronic systems.
