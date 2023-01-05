@@ -7,7 +7,7 @@ menu:
             icon: events
 ---
 
-## Open Neuromorphic: First Edition
+## 2022-12-13: First Edition of ONM
 
 On the 13th of December 2022, the first edition of Open Neuromorphic took place! The invited speakers were:
 - [Charlotte Frenkel](https://chfrenkel.github.io) ([slides](/onm-events/event-22-12-13/slides/charlotte-frenkel.pdf)).
