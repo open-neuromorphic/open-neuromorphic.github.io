@@ -9,8 +9,6 @@ menu:
 comments: false
 ---
 
-## Maintainers
-
 ### Fabrizio Ottati
 
 ![Fabrizio Ottati](fabrizio-ottati.jpg)
@@ -52,8 +50,6 @@ Charlotte Frenkel is an Assistant Professor at the Microelectronics department o
 To achieve these goals, she is investigating both the bottom-up and the top-down design approaches, as well as their synergies (see [personal website](https://chfrenkel.github.io)).
 
 She is the designer of the [ODIN](https://github.com/ChFrenkel/ODIN) and [ReckOn](https://github.com/ChFrenkel/ReckOn) open-source online-learning digital neuromorphic processors.
-
-## Members
 
 ### Jens Egholm Pedersen
 
