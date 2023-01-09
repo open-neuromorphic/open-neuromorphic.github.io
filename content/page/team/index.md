@@ -9,7 +9,7 @@ menu:
 comments: false
 ---
 
-## Founders
+## Maintainers
 
 ### Fabrizio Ottati
 
