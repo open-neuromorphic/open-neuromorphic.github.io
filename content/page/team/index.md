@@ -57,7 +57,7 @@ She is the designer of the [ODIN](https://github.com/ChFrenkel/ODIN) and [ReckOn
 
 ### Jens Egholm Pedersen
 
-[Jens Egholm Pedersen](jens-egholm.png)
+![Jens Egholm Pedersen](jens-egholm.png)
 
 Jens Egholm Pedersen is a doctoral student at the [Royal Institute of Technology (KTH)](https://www.kth.se/profile/jeped/) working to model and construct [neuromorphic](https://en.wikipedia.org/wiki/Neuromorphic_engineering) control systems.
 
