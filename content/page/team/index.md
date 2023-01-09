@@ -9,7 +9,7 @@ menu:
 comments: false
 ---
 
-# Fabrizio Ottati
+## Fabrizio Ottati
 
 ![Fabrizio Ottati](fabrizio-ottati.jpg)
 
@@ -17,7 +17,7 @@ Fabrizio Ottati is a Ph.D. student in the Department of Electronics and Communic
 
 His main interests are event-based cameras, digital IC design, spiking neural networks and piedmontese red wine. He is the maintainer of two open source projects in the field of neuromorphic computing, [Tonic](https://tonic.readthedocs.io) and [Expelliarmus](https://expelliarmus.readthedocs.io). You can find more information on his [website](https://fabrizio-ottati.github.io).
 
-# Gregor Lenz
+## Gregor Lenz
 
 ![Gregor Lenz](gregor-lenz.jpeg)
 
@@ -28,7 +28,7 @@ His main interests are event cameras that are inspired by the human retina and s
 
 He is the maintainer of two open source projects in the field of neuromorphic computing, [Tonic](https://github.com/neuromorphs/tonic) and [expelliarmus](https://github.com/open-neuromorphic/expelliarmus). 
 
-# Jason Eshraghian
+## Jason Eshraghian
 
 ![Jason Eshraghian](jason-eshraghian.webp)
 
@@ -38,7 +38,7 @@ His research focuses on brain-inspired circuit design to accelerate AI algorithm
 
 He is the maintainer of [snnTorch](https://github.com/jeshraghian/snntorch).
 
-# Charlotte Frenkel
+## Charlotte Frenkel
 
 ![Charlotte Frenkel](charlotte-frenkel.jpg)
 
@@ -51,7 +51,7 @@ To achieve these goals, she is investigating both the bottom-up and the top-down
 
 She is the designer of the [ODIN](https://github.com/ChFrenkel/ODIN) and [ReckOn](https://github.com/ChFrenkel/ReckOn) open-source online-learning digital neuromorphic processors.
 
-# Jens Egholm Pedersen
+## Jens Egholm Pedersen
 
 ![Jens Egholm Pedersen](jens-egholm.png)
 
@@ -63,7 +63,7 @@ By simulating and carefully scrutinizing and understanding neural circuits, incl
 
 He is the maintainer of [norse](https://github.com/norse/norse) and [AEStream](https:github.com/norse/aestream).
 
-# Steven Abreu
+## Steven Abreu
 
 ![Steven Abreu](steven-abreu.jpg)
 
@@ -73,7 +73,7 @@ In his PhD, he works with different neuromorphic systems ([Loihi 2](https://www.
 
 You can find more information on his [website](https://stevenabreu.com/).
 
-# Alexander Henkes
+## Alexander Henkes
 
 ![Alexander Henkes](alexander-henkes.jpg)
 
@@ -85,7 +85,7 @@ His current research focuses on spiking neural networks (SNN). Recently he publi
 
 He is a contributor of [snnTorch](https://github.com/jeshraghian/snntorch).
 
-# Alexander Hadjiivanov
+## Alexander Hadjiivanov
 
 ![Alexander Hadjiivanov](alexander-hadjiivanov.jpeg)
 
@@ -93,7 +93,7 @@ Alexander is currently a Research Fellow with the Advanced Concepts Team at the 
 
 No single branch of AI can claim the crown of true intelligence on its own. Rather, developing AI worthy of the 'I' would require a concerted effort to combine virtually all the branches - from perception through learning and cognition to reasoning and interaction. The most enticing aspect of neuromorphic computing is its potential to bring about this unification.
 
-# Peng Zhou
+## Peng Zhou
 
 ![Peng Zhou](peng-zhou.jpeg)
 
@@ -105,7 +105,7 @@ She is a contributor of the open-source SNN frameworks [snnTorch](https://snntor
 
 You can find more information on her [website](https://pengzhouzp.github.io/).
 
-# Shyam Narayan
+## Shyam Narayan
 
 ![Shyam Narayan](shyam-narayanan.jpeg)
 
