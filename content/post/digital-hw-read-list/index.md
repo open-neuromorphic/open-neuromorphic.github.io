@@ -106,6 +106,10 @@ The object detection network is trained offline as ANN and then **converted** to
 
 I would like to thank [Charlotte Frenkel](https://ch.frenkel.github.io) for the valuable comments and suggestions.
 
+## Credits
+
+The cover image is taken from [Charlotte Frenkel](https://ch.frenkel.github.io)'s thesis.
+
 ## Authors
 
 - [Fabrizio Ottati](https://fabrizio-ottati.dev) is a Ph.D. student in the HLS Laboratory of the Department of Electronics and Communications, Politecnico di Torino. His main interests are event-based cameras, digital IC design and neuromorphic computing. He is one of the maintainers of two open source projects in the field of neuromorphic computing, [Tonic](https://tonic.readthedocs.io) and [Expelliarmus](https://expelliarmus.readthedocs.io), and one of the founders of [Open Neuromorphic](https://open-neuromorphic.org).
