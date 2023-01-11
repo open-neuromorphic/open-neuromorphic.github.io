@@ -28,16 +28,15 @@ We develop algorithms that can learn, and low-power architectures and circuits t
 
 ### High Level Synthesis Laboratory - Politecnico di Torino
 
-![HLS Lab PoliTo](hlspolito-logo.png)
-
 The HLS Laboratory is led by professor [Luciano Lavagno](https://scholar.google.com/citations?user=tRCNWC4AAAAJ&hl=en&oi=ao).
 
 Our main expertise areas are:
-- digital hardware architectures for Deep Learning and Neuromorphic Computing.
+- digital hardware architectures for Deep Learning, with an emphasis on FPGA-based inference.
 - digital IC design.
 - indoor pervasive human tracking and monitoring.
-- high level synthesis of digital circuits with a focus on FPGAs.
+- high level synthesis of digital circuits, with a focus on FPGAs.
 - asynchronous digital circuits design.
+- digital hardware design for Neuromorphic Computing.
 
 **Contact:** fabrizio.ottati@polito.it.
 
