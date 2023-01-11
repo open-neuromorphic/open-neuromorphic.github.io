@@ -1,5 +1,5 @@
 # Change baseurl before deploy
-baseurl = "https://open-neuromorphic.github.io"
+baseurl = "https://open-neuromorphic.org"
 languageCode = "en-us"
 paginate = 5
 title = "Open Neuromorphic"
