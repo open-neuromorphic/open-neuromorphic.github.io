@@ -1,10 +1,11 @@
 ---
 title: "Digital neuromophic hardware read list"
 description: "List of articles and theses related to digital hardware for neuromorphic applications."
-date: 2022-12-31
+date: 2023-01-11
 author: "Fabrizio Ottati"
 image: "frenkel-thesis.png"
-draft: true
+draft: false
+tags: ["research", "hardware", "digital", "neuromorphic", "snn", "AI"]
 ---
 
 Here's a list of articles and theses related to digital hardware designs for neuomorphic applications. I plan to update it regularly. To be redirected directly to the sources, click on the titles! 
@@ -56,6 +57,13 @@ The neurons interconnection is arranged in a hierarchical routing solution: **me
 
 ### [*Always-On, Sub-300-nW, Event-Driven Spiking Neural Network based on Spike-Driven Clock-Generation and Clock- and Power-Gating for an Ultra-Low-Power Intelligent Device*](https://arxiv.org/abs/2006.12314), Dewei Wang et al., 2020
 
+In this work, a **synchronous** architecture is proposed. The logic operates at **Near Threshold Voltage** (NTV), and **clock gating** and **power gating** are heavily used to minimize power consumption during idle operation, which results to be **300nW**. The chip is targeted at **always-on applications**, like keyword spotting (KWS); and it is prototyped on a **65nm CMOS** process. The design is an **only-inference** one, with no online-learning capabilities.
+
+The architecture belongs to the **feed-forward** category: **5 cores** are used to implement fully connected spiking layers of **Integrate and Fire** (IF) neurons. To minimize power consumption, **asynchronous wake-up circuits** are employed to activate the layers only when there are **incoming spikes**.
+
+On the **GCSC** and **HeySnips** datasets, the recognition accuracies are **91.8%** and **95.8%**, respectively. The total power consumption ranges between **75nW** and **220nW**. 
+
+
 ## 2021
 
 ### [*μBrain: An Event-Driven and Fully Synthesizable Architecture for Spiking Neural Networks*](https://www.frontiersin.org/articles/10.3389/fnins.2021.664208/full), Jan Stuijt et al., 2021
@@ -94,3 +102,10 @@ The final implementation, validated on an **object detection** task, achieves **
 
 The object detection network is trained offline as ANN and then **converted** to an SNN, using the **IVS 3 classes** dataset and achieving **71.5% maP** with on-chip inference.
 
+## Acknowledgements 
+
+I would like to thank [Charlotte Frenkel](https://ch.frenkel.github.io) for the valuable comments and suggestions.
+
+## Authors
+
+- [Fabrizio Ottati](https://fabrizio-ottati.dev) is a Ph.D. student in the HLS Laboratory of the Department of Electronics and Communications, Politecnico di Torino. His main interests are event-based cameras, digital IC design and neuromorphic computing. He is one of the maintainers of two open source projects in the field of neuromorphic computing, [Tonic](https://tonic.readthedocs.io) and [Expelliarmus](https://expelliarmus.readthedocs.io), and one of the founders of [Open Neuromorphic](https://open-neuromorphic.org).

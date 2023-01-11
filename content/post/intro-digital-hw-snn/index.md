@@ -5,6 +5,7 @@ description: "In this article, we will try to model a Leaky Spiking Neuron (LIF)
 math: true
 draft: false
 image: loihi.png
+tags: ["hardware", "digital", "spiking", "snn", "rtl", "verilog", "AI", "machine learning"]
 ---
 
 ## Spiking neurons
@@ -158,7 +159,7 @@ The cover image is the Loihi die, taken from [WikiChip](https://en.wikichip.org/
 
 ## Authors
 
-- [Fabrizio Ottati](https://fabrizio-ottati.dev) is a Ph.D. student in the HLS Laboratory of the Department of Electronics and Communications, Politecnico di Torino. His main interests are event-based cameras, digital IC design and neuromorphic computing. He is one of the maintainers of two open source projects in the field of neuromorphic computing, [Tonic](https://tonic.readthedocs.io) and [Expelliarmus](https://expelliarmus.readthedocs.io), and one of the founders of [Open Neuromorphic](https://open-neuromorphic.github.io).
+- [Fabrizio Ottati](https://fabrizio-ottati.dev) is a Ph.D. student in the HLS Laboratory of the Department of Electronics and Communications, Politecnico di Torino. His main interests are event-based cameras, digital IC design and neuromorphic computing. He is one of the maintainers of two open source projects in the field of neuromorphic computing, [Tonic](https://tonic.readthedocs.io) and [Expelliarmus](https://expelliarmus.readthedocs.io), and one of the founders of [Open Neuromorphic](https://open-neuromorphic.org).
 
 
 ## Bibliography
