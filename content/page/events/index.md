@@ -18,19 +18,6 @@ On the 13th of December 2022, the first edition of Open Neuromorphic took place!
 
 Host: [Fabrizio Ottati](https://fabrizio-ottati.github.io) ([slides](/onm-events/event-22-12-13/slides/fabrizio-ottati.pdf)).
 
-## 2023-02-14: Giorgia Dellaferrera
-
-![Giorgia Dellaferrera](giorgia-dellaferrera.jpeg)
-
-**Time**: 6PM CET.
-
-**Duration:** 90 minutes.
-
-**Title:**
-
-**Bio:**
-
-
 ## 2023-03-01: Jason Eshraghian
 
 ![Jason Eshraghian](jason-eshraghian.webp)
@@ -57,32 +44,4 @@ Professor Eshraghian was awarded the 2019 IEEE VLSI Best Paper Award, the Best P
 **Title:** Evolutionary Optimization for Neuromorphic Systems.
 
 **Bio:** Catherine (Katie) Schuman is an Assistant Professor in the Department of Electrical Engineering and Computer Science at the University of Tennessee (UT). She received her Ph.D. in Computer Science from UT in 2015, where she completed her dissertation on the use of evolutionary algorithms to train spiking neural networks for neuromorphic systems. Katie previously served as a research scientist at Oak Ridge National Laboratory, where her research focused on algorithms and applications of neuromorphic systems.  Katie co-leads the TENNLab Neuromorphic Computing Research Group at UT.  She has over 100 publications as well as seven patents in the field of neuromorphic computing. She received the Department of Energy Early Career Award in 2019.
- 
-
-## 2023-04-??: Gregor Lenz
-
-![Gregor Lenz](gregor-lenz.jpeg)
-
-**Time**: 6PM CET.
-
-**Duration:** 90 minutes.
-
-**Title:** Hands-on session with Speck and Sinabs.
-
-**Bio:** Gregor Lenz currently works as a neuromorphic machine learning engineer at SynSense in Switzerland, where he focuses on low-power computer vision applications on spiking hardware. Before joining SynSense, he completed a doctoral degree in neuromorphic engineering at Sorbonne University in Paris, France, where his research focused on event-based algorithms on mobile devices and spiking neural networks on asynchronous hardware. For a year he worked as a research assistant at the Biomedical Image Analysis group at Imperial College London, UK and he holds a Master's degree in biomedical engineering from UAS Technikum Vienna, Austria. Gregor has authored several open-source software packages revolving around machine learning for spiking neural networks and is lucky to have won fellowships which allowed him to take part in neuromorphic workshops such as Telluride and Capocaccia.
-
- 
-
-## 2023-04-??: Dylan Muir
-
-![Dylan Muir](dylan-muir.png)
-
-**Time**: 6PM CET.
-
-**Duration:** 90 minutes.
-
-**Title:** Hands-on session with Xylo and Rockpool.
-
-**Bio:** Gregor Lenz currently works as a neuromorphic machine learning engineer at SynSense in Switzerland, where he focuses on low-power computer vision applications on spiking hardware. Before joining SynSense, he completed a doctoral degree in neuromorphic engineering at Sorbonne University in Paris, France, where his research focused on event-based algorithms on mobile devices and spiking neural networks on asynchronous hardware. For a year he worked as a research assistant at the Biomedical Image Analysis group at Imperial College London, UK and he holds a Master's degree in biomedical engineering from UAS Technikum Vienna, Austria. Gregor has authored several open-source software packages revolving around machine learning for spiking neural networks and is lucky to have won fellowships which allowed him to take part in neuromorphic workshops such as Telluride and Capocaccia.
-
  
