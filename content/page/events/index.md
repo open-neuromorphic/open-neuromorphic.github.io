@@ -22,11 +22,9 @@ Host: [Fabrizio Ottati](https://fabrizio-ottati.github.io) ([slides](/onm-events
 
 ![Jason Eshraghian](jason-eshraghian.webp)
 
-**Time**: 6PM CET.
-
-**Duration:** 90 minutes.
-
 **Title:** Hands-on session with snnTorch.
+
+**Time**: 6PM-7:30PM CET.
 
 **Bio:** Jason K. Eshraghian is an Assistant Professor at the Department of Electrical and Computer Engineering at UC Santa Cruz, CA, USA. Prior to that, he was a Post-Doctoral Researcher at the Department of Electrical Engineering and Computer Science, University of Michigan in Ann Arbor. He received the Bachelor of Engineering (Electrical and Electronic) and the Bachelor of Laws degrees from The University of Western Australia, WA, Australia in 2016, where he also completed his Ph.D. Degree. 
 
@@ -37,11 +35,9 @@ Professor Eshraghian was awarded the 2019 IEEE VLSI Best Paper Award, the Best P
 
 ![Catherine Schuman](catherine-schuman.webp)
 
-**Time:** 6PM CET.
-
-**Duration:** 90 minutes.
-
 **Title:** Evolutionary Optimization for Neuromorphic Systems.
+
+**Time:** 6PM-7:30PM CET.
 
 **Bio:** Catherine (Katie) Schuman is an Assistant Professor in the Department of Electrical Engineering and Computer Science at the University of Tennessee (UT). She received her Ph.D. in Computer Science from UT in 2015, where she completed her dissertation on the use of evolutionary algorithms to train spiking neural networks for neuromorphic systems. Katie previously served as a research scientist at Oak Ridge National Laboratory, where her research focused on algorithms and applications of neuromorphic systems.  Katie co-leads the TENNLab Neuromorphic Computing Research Group at UT.  She has over 100 publications as well as seven patents in the field of neuromorphic computing. She received the Department of Energy Early Career Award in 2019.
  
