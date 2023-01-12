@@ -9,3 +9,8 @@ vendor/
 *.tgz
 *.zip
 resources
+
+*.hdf5
+*.npy
+*.raw
+*.dat
