@@ -8,3 +8,9 @@ vendor/
 *.swp
 *.tgz
 *.zip
+resources
+
+*.hdf5
+*.npy
+*.raw
+*.dat

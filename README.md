@@ -21,5 +21,5 @@ If you wish to contribute, check the open issues or get in touch with us on [Dis
 
 ## Credits
 
-- Theme by [panr](https://github.com/panr/hugo-theme-terminal).
+- Theme by [Jimmy Cai](https://stack.jimmycai.com/).
 - Logos by [Gregor Lenz](https://lenzgregor.com).
