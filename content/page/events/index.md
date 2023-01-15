@@ -5,6 +5,7 @@ menu:
         weight: 4
         params:
             icon: events
+image: /img/ONM.png
 ---
 
 ## 2022-12-13: First Edition of ONM
