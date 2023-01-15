@@ -6,6 +6,7 @@ menu:
         params:
             icon: events
 image: /img/ONM.png
+description: "Events organised by ONM: talks, hands-on sessions and so on."
 ---
 
 ## 2022-12-13: First Edition of ONM
