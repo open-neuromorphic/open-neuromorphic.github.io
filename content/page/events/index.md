@@ -32,7 +32,7 @@ Host: [Fabrizio Ottati](https://fabrizio-ottati.github.io) ([slides](/onm-events
 
 Trevor is also passionate about reproducible science, particularly when complex software pipelines are involved. In 2013, he started a development effort to reimplement the Nengo neural simulator from scratch in Python, which has now grown to a project with over 20 contributors around the world.
 
-## 2023-03-01: Jason Eshraghian
+## 2023-03-02: Jason Eshraghian
 
 ![Jason Eshraghian](jason-eshraghian.webp)
 
