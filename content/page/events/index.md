@@ -18,6 +18,18 @@ On the 13th of December 2022, the first edition of Open Neuromorphic took place!
 
 Host: [Fabrizio Ottati](https://fabrizio-ottati.github.io) ([slides](/onm-events/event-22-12-13/slides/fabrizio-ottati.pdf)).
 
+## 2023-01-26: Applied Brain Research
+
+![Trevor Bekolay](trevor-bekolay.jpeg)
+
+**Title:** Nengo - Applied Brain Research.
+
+**Time**: 6PM-7:30PM CET.
+
+**Speaker's bio:** Trevor Bekolay’s primary research interest is in learning and memory. In his Master’s degree, he explored how to do supervised, unsupervised, and reinforcement learning in networks of biologically plausible spiking neurons. In his PhD, he applied this knowledge to the domain of speech to explore how sounds coming into the ear become high-level linguistic representations, and how those representations become sequences of vocal tract movements that produce speech.
+
+Trevor is also passionate about reproducible science, particularly when complex software pipelines are involved. In 2013, he started a development effort to reimplement the Nengo neural simulator from scratch in Python, which has now grown to a project with over 20 contributors around the world.
+
 ## 2023-03-01: Jason Eshraghian
 
 ![Jason Eshraghian](jason-eshraghian.webp)
@@ -26,7 +38,7 @@ Host: [Fabrizio Ottati](https://fabrizio-ottati.github.io) ([slides](/onm-events
 
 **Time**: 6PM-7:30PM CET.
 
-**Bio:** Jason K. Eshraghian is an Assistant Professor at the Department of Electrical and Computer Engineering at UC Santa Cruz, CA, USA. Prior to that, he was a Post-Doctoral Researcher at the Department of Electrical Engineering and Computer Science, University of Michigan in Ann Arbor. He received the Bachelor of Engineering (Electrical and Electronic) and the Bachelor of Laws degrees from The University of Western Australia, WA, Australia in 2016, where he also completed his Ph.D. Degree. 
+**Speaker's bio:** Jason K. Eshraghian is an Assistant Professor at the Department of Electrical and Computer Engineering at UC Santa Cruz, CA, USA. Prior to that, he was a Post-Doctoral Researcher at the Department of Electrical Engineering and Computer Science, University of Michigan in Ann Arbor. He received the Bachelor of Engineering (Electrical and Electronic) and the Bachelor of Laws degrees from The University of Western Australia, WA, Australia in 2016, where he also completed his Ph.D. Degree. 
 
 Professor Eshraghian was awarded the 2019 IEEE VLSI Best Paper Award, the Best Paper Award at 2019 IEEE Artificial Intelligence CAS Conference, and the Best Live Demonstration Award at 2020 IEEE ICECS for his work on neuromorphic vision and in-memory computing using RRAM. He currently serves as the secretary-elect of the IEEE Neural Systems and Applications Committee, and was a recipient of the Fulbright Future Fellowship (Australian-America Fulbright Commission), the Forrest Research Fellowship (Forrest Research Foundation), and the Endeavour Fellowship (Australian Government).
 
@@ -39,5 +51,5 @@ Professor Eshraghian was awarded the 2019 IEEE VLSI Best Paper Award, the Best P
 
 **Time:** 6PM-7:30PM CET.
 
-**Bio:** Catherine (Katie) Schuman is an Assistant Professor in the Department of Electrical Engineering and Computer Science at the University of Tennessee (UT). She received her Ph.D. in Computer Science from UT in 2015, where she completed her dissertation on the use of evolutionary algorithms to train spiking neural networks for neuromorphic systems. Katie previously served as a research scientist at Oak Ridge National Laboratory, where her research focused on algorithms and applications of neuromorphic systems.  Katie co-leads the TENNLab Neuromorphic Computing Research Group at UT.  She has over 100 publications as well as seven patents in the field of neuromorphic computing. She received the Department of Energy Early Career Award in 2019.
+**Speaker's bio:** Catherine (Katie) Schuman is an Assistant Professor in the Department of Electrical Engineering and Computer Science at the University of Tennessee (UT). She received her Ph.D. in Computer Science from UT in 2015, where she completed her dissertation on the use of evolutionary algorithms to train spiking neural networks for neuromorphic systems. Katie previously served as a research scientist at Oak Ridge National Laboratory, where her research focused on algorithms and applications of neuromorphic systems.  Katie co-leads the TENNLab Neuromorphic Computing Research Group at UT.  She has over 100 publications as well as seven patents in the field of neuromorphic computing. She received the Department of Energy Early Career Award in 2019.
  
