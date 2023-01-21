@@ -60,7 +60,6 @@ void decode_event(
     ) {
     const uint64_t mask_32b = 0xFFFFFFFF; 
     const uint32_t mask_14b = 0x3FFF; 
-    const uint32_t mask_4b = 0xF; 
 
     const uint32_t upper_32b = (buff >> 32); // Upper 32 bits.
     const uint32_t lower_32b = (buff & mask_32b); // Lower 32 bits.
@@ -68,7 +67,7 @@ void decode_event(
     ts = lower_32b; // Timestamp.
     x = upper & mask_14b; // X address.
     y = (upper >> 14) & mask_14b; // Y address
-    p = (upper >> 28) & mask_4b; // Polarity.
+    p = upper >> 28; // Polarity.
 
     return; 
 }
@@ -129,19 +128,17 @@ void decode_event(
     const uint32_t mask_28b = 0xFFFFFFF; 
     const uint32_t mask_11b = 0x7FF; 
     const uint32_t mask_6b = 0x3F; 
-    const uint32_t mask_4b = 0xF; 
 
     static uint64_t ts_high = 0; // Static so that ts_high value is 
                                  // remembered the next time the 
                                  // function is called.
     
-    uint8_t evt_type = (buff >> 28) & mask_4b; 
+    uint8_t evt_type = buff >> 28; 
 
     switch (evt_type) {
         case 0x0: // CD_OFF
-            p = 0; 
         case 0x1: // CD_ON
-            p = 1; 
+            p = evt_type; 
             ts = (ts_high << 28) | ((buff >> 22) & mask_6b); 
             x = (buff >> 11) & mask_11b; 
             y = buff & mask_11b; 
