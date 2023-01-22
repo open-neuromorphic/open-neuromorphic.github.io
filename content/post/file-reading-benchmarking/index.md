@@ -93,7 +93,7 @@ A CD event is structured in the following way:
 
 Hence, the **lower 6 bits** are passed during a `CD_*` event, while the **upper 28 bits** are passed during a `TIME HIGH` event, which is structured in the following way: 
 
-```c
+```
        4 bits                    28 bits
   --------------------------------------------------------
  | Time high code |             Timestamp                 |
@@ -330,7 +330,7 @@ bool decode_event(
         case 0x4: // VECT_12.
             numVectEvts = 12; 
         case 0x5: // VECT_8; 
-            if (numVectEvts == 0)
+            if (numVectEvts != 12)
                 numVectEvts =  8;
             int16_t mask = buff & mask_12b; 
             for (i=0; i<numVectEvts; i++) {
