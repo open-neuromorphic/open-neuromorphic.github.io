@@ -137,7 +137,7 @@ bool decode_event(
         case 0x0: // CD_OFF
         case 0x1: // CD_ON
             p = evt_type; 
-            ts = (ts_high << 28) | ((buff >> 22) & mask_6b); 
+            ts = (ts_high << 6) | ((buff >> 22) & mask_6b); 
             x = (buff >> 11) & mask_11b; 
             y = buff & mask_11b; 
             isEvent = true;
