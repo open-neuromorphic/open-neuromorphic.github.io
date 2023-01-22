@@ -79,13 +79,11 @@ Here things get interesting. For [EVT2](https://docs.prophesee.ai/stable/data/en
 
 A CD event is structured in the following way: 
 
-```c
-/* 
- *          4 bits          6 bits      11 bits     11 bits
- *  ---------------------------------------------------------
- * | Event type (on/off) | Timestamp | X address | Y address |
- *  ---------------------------------------------------------
- */
+```
+          4 bits          6 bits      11 bits     11 bits
+  ---------------------------------------------------------
+ | Event type (on/off) | Timestamp | X address | Y address |
+  ---------------------------------------------------------
 ```
 
 * the first 4 bits are the event type. One might see this as the value of the polarity bit.
@@ -96,20 +94,17 @@ A CD event is structured in the following way:
 Hence, the **lower 6 bits** are passed during a `CD_*` event, while the **upper 28 bits** are passed during a `TIME HIGH` event, which is structured in the following way: 
 
 ```c
-/* 
- *       4 bits                    28 bits
- *  --------------------------------------------------------
- * | Time high code |             Timestamp                 |
- *  --------------------------------------------------------
- */
-
+       4 bits                    28 bits
+  --------------------------------------------------------
+ | Time high code |             Timestamp                 |
+  --------------------------------------------------------
 ```
 
 Since the lower 6 bits change **more frequently** than the upper one, many events can be encoded in `CD_*` ones before sending out a new `TIME_HIGH` reference. 
 
 Probably the reader would like to see some code, and here it comes:
 
-```c
+```cpp
 /* Function that decodes an EVT2 event to a (ts, x, y, p) tuple.
  *
  * @param[in]   buff    32 bits buffer read from the DAT file.
@@ -117,8 +112,10 @@ Probably the reader would like to see some code, and here it comes:
  * @param[out]  x       16 bits x address.
  * @param[out]  y       16 bits y address.
  * @param[out]  p       8 bit polarity.
+ *
+ * @return      isEvent True when an event has been decoded.
  */
-void decode_event(
+bool decode_event(
     const uint32_t buff, 
     int64_t& ts, 
     int16_t& x, 
@@ -132,6 +129,7 @@ void decode_event(
     static uint64_t ts_high = 0; // Static so that ts_high value is 
                                  // remembered the next time the 
                                  // function is called.
+    bool isEvent = false; 
     
     uint8_t evt_type = buff >> 28; 
 
@@ -142,13 +140,14 @@ void decode_event(
             ts = (ts_high << 28) | ((buff >> 22) & mask_6b); 
             x = (buff >> 11) & mask_11b; 
             y = buff & mask_11b; 
+            isEvent = true;
             break; 
 
         case 0x8: // TIME_HIGH
             ts_high = buff & mask_28b; 
     }
 
-    return; 
+    return isEvent; 
 }
 ```
 
@@ -156,4 +155,171 @@ The version that actually works is available [here](https://github.com/open-neur
 
 ### EVT3
 
-With EVT3, compression is even higher: events are encoded to **16 bits** words. 
+With EVT3, compression is even higher: events are encoded to **16 bits** words, but we have much more event types.
+
+![EVT3 event types](evt3-event-types.png)
+
+The logic behind EVT3 is the following:  a new event is registered when the **`x` address** changes. From this principle, one has to register an event when one of the three events happen:
+* `EVT_ADDR_X`: single event with the `x` coordinate encoded to it, together with polarity. The timestamp and `y` address have been passed in previous events. This event is structured as follows:
+
+```
+       4 bits         1 bit             11 bits
+  --------------------------------------------------------
+ | EVT_ADDR_X code | Polarity |        X address          |
+  --------------------------------------------------------
+```
+
+* `VECTOR_12`: 12 events vectorized in a single data buffer. In particular, starting forom a **base `x` address**, called `baseX`, all the events in this buffer are placed in the next 12 pixels strarting from `baseX`:
+
+```
+        4 bits         1 bit             11 bits
+  --------------------------------------------------------
+ | VECT_BASE_X code | Polarity |      Base X address      |
+  --------------------------------------------------------
+```
+
+The mask vector is encoded in the following way: 
+
+```
+       4 bits                     12 bits
+  --------------------------------------------------------
+ | VECTOR_12 code |            Validity mask              |
+  --------------------------------------------------------
+```
+
+Not all the events in the vector are valid! For this reason, a validity mask made up of 12 bits is provided: if we see the validity mask as a vector of 12 integers, the code to interpret it is the following:
+
+```cpp
+for (int i=0; i<12; i++) {
+    if (mask[i] == 1) {
+        isEvent = true; 
+        x_addr = base_x + i; 
+        write_event(x_addr); 
+    } else {
+        isEvent = false; 
+    }
+}
+```
+
+Since we are dealing with a 12 bit buffer, the code is actually the following: 
+
+```cpp 
+for (int i=0; i<12; i++) {
+    if (mask & 1) { // Reading the LSB.
+        isEvent = true; 
+        x_addr = base_x + i; 
+        write_event(x_addr); 
+    } else {
+        isEvent = false; 
+    }
+    mask = mask >> 1; // Moving on to the next bit.
+}
+```
+
+* `VECTOR_8`: same as `VECTOR_12` but with 8 events.
+
+What about time stamps? Well, now the timestamp is encoded in a 24 bit data buffer, separated in two events: `TIME_LOW` for the lower 12 bits, `TIME_HIGH` for the upper 12 bits. Each of these events is encoded as follows:
+
+```
+         4 bits                     12 bits
+  --------------------------------------------------------
+ | TIME HIGH/LOW code |            Timestamp              |
+  --------------------------------------------------------
+```
+
+Hence, we need to glue together these values to get the full timestamp.
+
+![EVT3 time high and low parts of the timestamp](evt3-time-high-time-low.png)
+
+
+```cpp
+/* Function that decodes an EVT3 event to a (ts, x, y, p) tuple.
+ *
+ * @param[in]   buff    16 bits buffer read from the DAT file.
+ * @param[out]  ts      64 bits timestamp.
+ * @param[out]  x       16 bits x address.
+ * @param[out]  y       16 bits y address.
+ * @param[out]  p       8 bit polarity.
+ *
+ * @return      isEvent True when an event has been decoded.
+ */
+bool decode_event(
+    const uint16_t buff, 
+    int64_t ts[12], 
+    int16_t x[12], 
+    int16_t y[12], 
+    uint8_t p[12]
+    ) {
+    const uint16_t mask_12b = 0xFFF; 
+    const uint16_t mask_11b = 0x7FF; 
+
+    static uint64_t tsHigh, tsLow = 0;
+    static int16_t yLoc = 0; // To remember the y value across events.
+    static int8_t pLoc = 0; // To remember the p value across events.
+    static int16_t baseX = 0; // Base x address for vectorized events.
+    static int16_t numVectEvts = 0; 
+
+    bool isEvent = false; 
+
+    /** Resetting the polarity array. Our policy is that polarity can be 
+     *  either 0 or 1; by setting the elemnts in the polarity vector to 
+     *  a number larger than 1, we tell the user that those are non valid 
+     *  events.
+     */
+    int16_t i=0; 
+    for (i=0; i<12; i++)
+        p[i] = 99; 
+    
+    uint8_t evt_type = buff >> 12; 
+
+    switch (evt_type) {
+        case 0x0: // EVT_ADDR_Y.
+            yLoc = buff & mask_11b;  
+            break; 
+        
+        case 0x2: // EVT_ADDR_X.
+            ts[0] = (tsHigh << 12) | tsLow; 
+            x[0] = buff & mask_11b; 
+            y[0] = yLoc; 
+            p[0] = (buff >> 11) & 1; 
+            isEvent = true; 
+            break; 
+
+        case 0x3: // EVT_BASE_X.
+            baseX = buff & mask_11b; 
+            pLoc = (buff >> 11) & 1; 
+            break; 
+
+        case 0x4: // VECT_12.
+            numVectEvts = 12; 
+        case 0x5: // VECT_8; 
+            if (numVectEvts == 0)
+                numVectEvts =  8;
+            int16_t mask = buff & mask_12b; 
+            for (i=0; i<numVectEvts; i++) {
+                if (mask & 1){
+                    ts[i] = (tsHigh << 28) | tsLow; 
+                    x[i] = baseX + i; 
+                    y[i] = yLoc; 
+                    p[i] = pLoc; 
+                    isEvent = true; 
+                }
+            }
+            numVectEvts = 0; 
+            break; 
+
+        case 0x6: // TIME_LOW.
+            tsLow = buff & mask_12b; 
+            break; 
+        
+        case 0x8: // TIME_HIGH.
+            tsHigh = buff & mask_12b; 
+            break; 
+    }
+
+    return isEvent; 
+}
+```
+
+This code is just for demonstration purposes, it won't actually work, since we need to take care of other things such as timestamp overflows. A working version of this code is provided [here](https://github.com/open-neuromorphic/expelliarmus/blob/cc9fbf1f53bfccd75c920e37d4ed94aa5aec3b1b/expelliarmus/src/evt3.c#L256).
+
