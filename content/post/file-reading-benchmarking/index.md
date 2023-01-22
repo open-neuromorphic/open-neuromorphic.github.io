@@ -4,7 +4,7 @@ date: 2023-01-11
 description: "Reduce loading times and disk footprint drastically. "
 draft: true
 image: file_read_benchmark.png
-tags: ["file encoding", "events"]
+tags: ["file encoding", "events", "event camera", "C programming",]
 ---
 
 ## Data formats for event-based data
@@ -33,7 +33,7 @@ Prophesee used three main encodings for their data: DAT, EVT2 and EV3.
 ![DAT format](dat-format.png)
 
 The [DAT](https://docs.prophesee.ai/stable/data/file_formats/dat.html) format encodes an event to a 64 bits word, divided in the following way (following Little Endian (LE) ordering):
-* bits 31-0 (**32** bits) are dedicated to the **timestamp**. Hence, each DAT recording can store at most **1h12m** long.
+* bits 31-0 (**32** bits) are dedicated to the **timestamp**. Hence, each DAT recording can store at most **1 hour and 12 minutes** long.
 * bits 45-32 (**14** bits) are allocated for the **x address** of the event.
 * bits 59-46 (**14** bits) are allocated for the **y address** of the event.
 * bits 63-60 (**4** bits) are dedicated to the **polarity** of the event.
@@ -42,14 +42,14 @@ It is evident that the data is not compressed but simply stored in a binary form
 
 The C++ code needed to decode such an event is the following:
 
-```c
-/* Function that decodes a DAT event to a (ts, x, y, p) tuple.
+```cpp
+/** Function that decodes a DAT event to a (ts, x, y, p) tuple.
  *
- * @param[in]   buff    64 bits buffer read from the DAT file.
- * @param[out]  ts      64 bits timestamp.
- * @param[out]  x       16 bits x address.
- * @param[out]  y       16 bits y address.
- * @param[out]  p       8 bit polarity.
+ *  @param[in]   buff    64 bits buffer read from the DAT file.
+ *  @param[out]  ts      64 bits timestamp.
+ *  @param[out]  x       16 bits x address.
+ *  @param[out]  y       16 bits y address.
+ *  @param[out]  p       8 bit polarity.
  */
 void decode_event(
     const uint64_t buff, 
@@ -105,15 +105,15 @@ Since the lower 6 bits change **more frequently** than the upper one, many event
 Probably the reader would like to see some code, and here it comes:
 
 ```cpp
-/* Function that decodes an EVT2 event to a (ts, x, y, p) tuple.
+/** Function that decodes an EVT2 event to a (ts, x, y, p) tuple.
  *
- * @param[in]   buff    32 bits buffer read from the DAT file.
- * @param[out]  ts      64 bits timestamp.
- * @param[out]  x       16 bits x address.
- * @param[out]  y       16 bits y address.
- * @param[out]  p       8 bit polarity.
+ *  @param[in]   buff    32 bits buffer read from the DAT file.
+ *  @param[out]  ts      64 bits timestamp.
+ *  @param[out]  x       16 bits x address.
+ *  @param[out]  y       16 bits y address.
+ *  @param[out]  p       8 bit polarity.
  *
- * @return      isEvent True when an event has been decoded.
+ *  @return      isEvent True when an event has been decoded.
  */
 bool decode_event(
     const uint32_t buff, 
@@ -159,7 +159,7 @@ With EVT3, compression is even higher: events are encoded to **16 bits** words, 
 
 ![EVT3 event types](evt3-event-types.png)
 
-The logic behind EVT3 is the following:  a new event is registered when the **`x` address** changes. From this principle, one has to register an event when one of the three events happen:
+The logic behind EVT3 is the following:  a new event is registered when the **`x` address** changes. From this principle, one has to register an event when one of the following three events appear in the stream:
 * `EVT_ADDR_X`: single event with the `x` coordinate encoded to it, together with polarity. The timestamp and `y` address have been passed in previous events. This event is structured as follows:
 
 ```
@@ -169,7 +169,7 @@ The logic behind EVT3 is the following:  a new event is registered when the **`x
   --------------------------------------------------------
 ```
 
-* `VECTOR_12`: 12 events vectorized in a single data buffer. In particular, starting forom a **base `x` address**, called `baseX`, all the events in this buffer are placed in the next 12 pixels strarting from `baseX`:
+* `VECTOR_12`: 12 events vectorized in a single data buffer. In particular, starting forom a **base `x` address**, called `baseX`, all the events in this buffer are placed in the next 12 pixels starting from `baseX`:
 
 ```
         4 bits         1 bit             11 bits
@@ -187,7 +187,7 @@ The mask vector is encoded in the following way:
   --------------------------------------------------------
 ```
 
-Not all the events in the vector are valid! For this reason, a validity mask made up of 12 bits is provided: if we see the validity mask as a vector of 12 integers, the code to interpret it is the following:
+Not all the events in the vector are valid: only the ones to which a bit equal to 1 in the mask is associated are! For this reason, a validity mask made up of 12 bits is provided: if we see the validity mask as a vector of 12 integers, the code to interpret it is the following:
 
 ```cpp
 for (int i=0; i<12; i++) {
@@ -208,7 +208,6 @@ for (int i=0; i<12; i++) {
     if (mask & 1) { // Reading the LSB.
         isEvent = true; 
         x_addr = base_x + i; 
-        write_event(x_addr); 
     } else {
         isEvent = false; 
     }
@@ -218,7 +217,7 @@ for (int i=0; i<12; i++) {
 
 * `VECTOR_8`: same as `VECTOR_12` but with 8 events.
 
-What about time stamps? Well, now the timestamp is encoded in a 24 bit data buffer, separated in two events: `TIME_LOW` for the lower 12 bits, `TIME_HIGH` for the upper 12 bits. Each of these events is encoded as follows:
+What about timestamps? Well, now the timestamp is encoded in a **24 bits** data buffer, separated in two events: `TIME_LOW` for the lower 12 bits, `TIME_HIGH` for the upper 12 bits. Each of these events is encoded as follows:
 
 ```
          4 bits                     12 bits
@@ -233,15 +232,15 @@ Hence, we need to glue together these values to get the full timestamp.
 
 
 ```cpp
-/* Function that decodes an EVT3 event to a (ts, x, y, p) tuple.
+/** Function that decodes an EVT3 event to a (ts, x, y, p) tuple.
  *
- * @param[in]   buff    16 bits buffer read from the DAT file.
- * @param[out]  ts      64 bits timestamp.
- * @param[out]  x       16 bits x address.
- * @param[out]  y       16 bits y address.
- * @param[out]  p       8 bit polarity.
+ *  @param[in]   buff    16 bits buffer read from the DAT file.
+ *  @param[out]  ts      64 bits timestamp.
+ *  @param[out]  x       16 bits x address.
+ *  @param[out]  y       16 bits y address.
+ *  @param[out]  p       8 bit polarity.
  *
- * @return      isEvent True when an event has been decoded.
+ *  @return      isEvent True when an event has been decoded.
  */
 bool decode_event(
     const uint16_t buff, 
@@ -304,6 +303,7 @@ bool decode_event(
                     p[i] = pLoc; 
                     isEvent = true; 
                 }
+                mask = mask >> 1; 
             }
             numVectEvts = 0; 
             break; 
@@ -323,3 +323,11 @@ bool decode_event(
 
 This code is just for demonstration purposes, it won't actually work, since we need to take care of other things such as timestamp overflows. A working version of this code is provided [here](https://github.com/open-neuromorphic/expelliarmus/blob/cc9fbf1f53bfccd75c920e37d4ed94aa5aec3b1b/expelliarmus/src/evt3.c#L256).
 
+## Authors
+* [Gregor Lenz](https://lenzgregor.com) [to be continued by @Gregor].
+* [Fabrizio Ottati](https://fabrizio-ottati.dev) is a Ph.D. student in the HLS Laboratory of the Department of Electronics and Communications, Politecnico di Torino. His main interests are event-based cameras, digital hardware design and neuromorphic computing. He is one of the maintainers of two open source projects in the field of neuromorphic computing, [Tonic](https://tonic.readthedocs.io) and [Expelliarmus](https://expelliarmus.readthedocs.io), and one of the founders of [Open Neuromorphic](https://open-neuromorphic.org).
+
+## Bibliography
+
+* [Prophesee documentation](https://docs.prophesee.ai/stable/data/file_formats/index.html) on file and event formats.
+* [Expelliarmus](https://expelliarmus.readthedocs.io) source code.
