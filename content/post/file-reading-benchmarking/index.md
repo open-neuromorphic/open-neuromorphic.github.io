@@ -9,7 +9,7 @@ tags: ["file encoding", "events", "event camera", "C programming",]
 
 ## Data formats for event-based data
 
-In contrast to png/jpg for images, there is no standard format for events. When streaming data from an event camera, we get millions of tuples of microsecond timestamps, x/y coordinates and polarity indicators per second that look something like this:
+In contrast to PNG/JPG for images, there is no standard format for events. When streaming data from an event camera, we get millions of tuples of microsecond timestamps, x/y coordinates and polarity indicators per second that look something like this:
 
     [(11718661,  762, 147, 1) (11718665,  833, 184, 1)
      (11718669, 1161,  72, 1) (11718674, 1110, 100, 0)
@@ -20,13 +20,13 @@ In contrast to png/jpg for images, there is no standard format for events. When 
 
 With the emergence of event-based sensors, likewise came numerous ways how to store the data. A straightforward idea is to resort to existing packages such as hdf5 and numpy. When training spiking neural networks, file reading speed is a bottleneck we need to keep in mind. As the spatial resolution of event cameras grows, we receive more and more events per second! Training on bigger datasets means that we want to keep in mind the file reading speed of our data. Here we list the results of our benchmark of different file type encodings and software frameworks that can decode files. 
 
-![benchmark](file_read_benchmark.png)
+![Comparison among file size and read speed of different encodings and software tools.](file_read_benchmark.png)
 
 The file size depends on the encoding, whereas the reading speed depends on the particular implementation of how files are read. In terms of file size, we can see that numpy doesn't use any compression whatsoever, resulting in some 1.7GB file for our sample data. Prophesee's [evt3](https://docs.prophesee.ai/stable/data/encoding_formats/evt3.html) format achieves the best compression by cleverly encoding differences in timestamps. In terms of reading speed, numpy is the fastest as it doesn't deal with any compression on disk. Unzipping the compressed events from disk on the other hand using h5py is by far the slowest. Using [Expelliarmus](https://github.com/open-neuromorphic/expelliarmus) and the [evt2](https://docs.prophesee.ai/stable/data/encoding_formats/evt2.html) file format, we get very close to numpy reading speeds while at the same time only using a fourth of the disk space. This becomes particularly important for larger datasets which can easily reach some 3-4TB when encoded in an inefficient file format. 
 
 ## Prophesee encoding formats
 
-Prophesee used three main encodings for their data: DAT, EVT2 and EV3. 
+[Prophesee](https://prophesee.ai) uses three main encodings for their data: DAT, EVT2 and EV3. 
 
 ### DAT
 
@@ -201,6 +201,53 @@ for (int i=0; i<12; i++) {
 }
 ```
 
+An example of mask is the following:
+
+```
+   4 bits                   12 bits
+  --------------------------------------------------------
+ | VECTOR | 1 | 0 | 1 | 0 | 0 | 1 | 0 | 1 | 1 | 0 | 1 | 1 |
+  --------------------------------------------------------
+```
+
+This leads to the following events being encoded to output:
+
+```
+              Event associated to mask bit #0
+  --------------------------------------------------------
+ | Timestamp |   baseX + 0   |  y address  |   polarity   |
+  --------------------------------------------------------
+
+              Event associated to mask bit #1
+  --------------------------------------------------------
+ | Timestamp |   baseX + 1   |  y address  |   polarity   |
+  --------------------------------------------------------
+
+              Event associated to mask bit #3
+  --------------------------------------------------------
+ | Timestamp |   baseX + 3   |  y address  |   polarity   |
+  --------------------------------------------------------
+
+              Event associated to mask bit #4
+  --------------------------------------------------------
+ | Timestamp |   baseX + 4   |  y address  |   polarity   |
+  --------------------------------------------------------
+
+              Event associated to mask bit #6
+  --------------------------------------------------------
+ | Timestamp |   baseX + 6   |  y address  |   polarity   |
+  --------------------------------------------------------
+
+              Event associated to mask bit #9
+  --------------------------------------------------------
+ | Timestamp |   baseX + 9   |  y address  |   polarity   |
+  --------------------------------------------------------
+
+              Event associated to mask bit #11
+  --------------------------------------------------------
+ | Timestamp |   baseX + 11  |  y address  |   polarity   |
+  --------------------------------------------------------
+```
 Since we are dealing with a 12 bit buffer, the code is actually the following: 
 
 ```cpp 
