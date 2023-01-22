@@ -272,10 +272,10 @@ Hence, we need to glue together these values to get the full timestamp.
 /** Function that decodes an EVT3 event to a (ts, x, y, p) tuple.
  *
  *  @param[in]   buff    16 bits buffer read from the DAT file.
- *  @param[out]  ts      64 bits timestamp.
- *  @param[out]  x       16 bits x address.
- *  @param[out]  y       16 bits y address.
- *  @param[out]  p       8 bit polarity.
+ *  @param[out]  ts      12 entries array of 64 bits timestamps.
+ *  @param[out]  x       12 entries array of 16 bits x addresses.
+ *  @param[out]  y       12 entries array of 16 bits y addresses.
+ *  @param[out]  p       12 entries array of 8 bit polarities.
  *
  *  @return      isEvent True when an event has been decoded.
  */
@@ -290,9 +290,10 @@ bool decode_event(
     const uint16_t mask_11b = 0x7FF; 
 
     static uint64_t tsHigh, tsLow = 0;
-    static int16_t yLoc = 0; // To remember the y value across events.
-    static int8_t pLoc = 0; // To remember the p value across events.
     static int16_t baseX = 0; // Base x address for vectorized events.
+    static int16_t baseY = 0; // To remember the y value across events.
+    static int8_t baseP = 0; // To remember the p value across events.
+
     int16_t numVectEvts = 0; 
 
     bool isEvent = false; 
@@ -310,20 +311,20 @@ bool decode_event(
 
     switch (evt_type) {
         case 0x0: // EVT_ADDR_Y.
-            yLoc = buff & mask_11b;  
+            baseY = buff & mask_11b;  
             break; 
         
         case 0x2: // EVT_ADDR_X.
             ts[0] = (tsHigh << 12) | tsLow; 
             x[0] = buff & mask_11b; 
-            y[0] = yLoc; 
+            y[0] = baseY; 
             p[0] = (buff >> 11) & 1; 
             isEvent = true; 
             break; 
 
         case 0x3: // EVT_BASE_X.
             baseX = buff & mask_11b; 
-            pLoc = (buff >> 11) & 1; 
+            baseP = (buff >> 11) & 1; 
             break; 
 
         case 0x4: // VECT_12.
@@ -336,13 +337,12 @@ bool decode_event(
                 if (mask & 1){
                     ts[i] = (tsHigh << 28) | tsLow; 
                     x[i] = baseX + i; 
-                    y[i] = yLoc; 
-                    p[i] = pLoc; 
+                    y[i] = baseY; 
+                    p[i] = baseP; 
                     isEvent = true; 
                 }
                 mask = mask >> 1; 
             }
-            numVectEvts = 0; 
             break; 
 
         case 0x6: // TIME_LOW.
@@ -351,7 +351,6 @@ bool decode_event(
         
         case 0x8: // TIME_HIGH.
             tsHigh = buff & mask_12b; 
-            break; 
     }
 
     return isEvent; 
