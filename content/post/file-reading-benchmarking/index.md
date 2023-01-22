@@ -342,7 +342,7 @@ bool decode_event(
             int16_t mask = buff & mask_12b; 
             for (i=0; i<numVectEvts; i++) {
                 if (mask & 1){
-                    ts[i] = (tsHigh << 28) | tsLow; 
+                    ts[i] = (tsHigh << 6) | tsLow; 
                     x[i] = baseX + i; 
                     y[i] = baseY; 
                     p[i] = baseP; 
