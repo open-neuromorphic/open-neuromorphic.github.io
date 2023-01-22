@@ -126,9 +126,9 @@ bool decode_event(
     const uint32_t mask_11b = 0x7FF; 
     const uint32_t mask_6b = 0x3F; 
 
-    static uint64_t ts_high = 0; // Static so that ts_high value is 
-                                 // remembered the next time the 
-                                 // function is called.
+    static uint64_t tsHigh = 0; // Static so that ts_high value is 
+                                // remembered the next time the 
+                                // function is called.
     bool isEvent = false; 
     
     uint8_t evt_type = buff >> 28; 
@@ -137,14 +137,14 @@ bool decode_event(
         case 0x0: // CD_OFF
         case 0x1: // CD_ON
             p = evt_type; 
-            ts = (ts_high << 6) | ((buff >> 22) & mask_6b); 
+            ts = (tsHigh << 6) | ((buff >> 22) & mask_6b); 
             x = (buff >> 11) & mask_11b; 
             y = buff & mask_11b; 
             isEvent = true;
             break; 
 
         case 0x8: // TIME_HIGH
-            ts_high = buff & mask_28b; 
+            tsHigh = buff & mask_28b; 
     }
 
     return isEvent; 
