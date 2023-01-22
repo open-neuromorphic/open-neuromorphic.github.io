@@ -206,11 +206,11 @@ An example of mask is the following:
 ```
    4 bits                   12 bits
   --------------------------------------------------------
- | VECTOR | 1 | 0 | 1 | 0 | 0 | 1 | 0 | 1 | 1 | 0 | 1 | 1 |
+ | VECTOR | 1 | 0 | 1 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 1 | 1 |
   --------------------------------------------------------
 ```
 
-This leads to the following events being encoded to output:
+This leads to the following events being encoded to output (keep in mind that we are reading starting from the LSB, i.e. from the right side of the mask):
 
 ```
               Event associated to mask bit #0
@@ -221,16 +221,6 @@ This leads to the following events being encoded to output:
               Event associated to mask bit #1
   --------------------------------------------------------
  | Timestamp |   baseX + 1   |  y address  |   polarity   |
-  --------------------------------------------------------
-
-              Event associated to mask bit #3
-  --------------------------------------------------------
- | Timestamp |   baseX + 3   |  y address  |   polarity   |
-  --------------------------------------------------------
-
-              Event associated to mask bit #4
-  --------------------------------------------------------
- | Timestamp |   baseX + 4   |  y address  |   polarity   |
   --------------------------------------------------------
 
               Event associated to mask bit #6
@@ -303,7 +293,7 @@ bool decode_event(
     static int16_t yLoc = 0; // To remember the y value across events.
     static int8_t pLoc = 0; // To remember the p value across events.
     static int16_t baseX = 0; // Base x address for vectorized events.
-    static int16_t numVectEvts = 0; 
+    int16_t numVectEvts = 0; 
 
     bool isEvent = false; 
 
