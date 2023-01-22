@@ -26,13 +26,13 @@ The file size depends on the encoding, whereas the reading speed depends on the 
 
 ## Prophesee encoding formats
 
-[Prophesee](https://prophesee.ai) uses three main encodings for their data: DAT, EVT2 and EVT3. 
+[Prophesee](https://prophesee.ai) is one of the major event cameras vendor. Their cameras use three main encoding algorithms for their data: DAT, EVT2 and EVT3. By encoding algorithm it is identified the process by which an event sensed by the camera, consisting in a tuple `(timestamp, x_address, y_address, polarity)`, is encoded to a binary data format. 
 
 ### DAT
 
 ![DAT format](dat-format.png)
 
-The [DAT](https://docs.prophesee.ai/stable/data/file_formats/dat.html) format encodes an event to a 64 bits word. However, when reading the events from the binary file in chunks of 64 bits, the image above does not correspond to reality. The following representation, instead, results to be correct:
+The [DAT](https://docs.prophesee.ai/stable/data/file_formats/dat.html) format encodes an event to a 64 bits word. However, when reading the events from the binary file in chunks of 64 bits on a Little Endian (LE) machine, the image above does not correspond to reality. The following representation, instead, results to be correct:
 
 ```
     4 bits     14 bits     14 bits           32 bits
@@ -41,18 +41,20 @@ The [DAT](https://docs.prophesee.ai/stable/data/file_formats/dat.html) format en
   ---------------------------------------------------------
 ```
 
-Each DAT recording can store at most **1 hour and 12 minutes** long, since the timestamp maximum value is 4294967295 μs.
+Each DAT recording can store an event stream lasting at most **1 hour and 12 minutes**, since the timestamp maximum value is 4294967295 μs (unsigned 32 bits maximum value).
 
-The C++ code needed to decode a DAT event is the following:
+The C++ code to decode a DAT event is the following:
 
 ```cpp
 /** Function that decodes a DAT event to a (ts, x, y, p) tuple.
  *
- *  @param[in]   buff    64 bits buffer read from the DAT file.
- *  @param[out]  ts      64 bits timestamp.
- *  @param[out]  x       16 bits x address.
- *  @param[out]  y       16 bits y address.
- *  @param[out]  p       8 bit polarity.
+ *  @param[in]  buff    64 bits buffer read from the DAT file.
+ *  @param[out] ts      64 bits timestamp.
+ *  @param[out] x       16 bits x address.
+ *  @param[out] y       16 bits y address.
+ *  @param[out] p       8 bit polarity.
+ *
+ *  @return     isEvent True when an event has been decoded.
  */
 void decode_event(
     const uint64_t buff, 
@@ -72,15 +74,15 @@ void decode_event(
     y = (upper >> 14) & mask_14b; // Y address
     p = upper >> 28; // Polarity.
 
-    return; 
+    return true; 
 }
 ```
 
-One can notice that the events are not compressed but encoded to a compact binary format. 
+One can notice that the events are not compressed but simply encoded to a compact binary format. 
 
 ### EVT2
 
-Here things get interesting. For [EVT2](https://docs.prophesee.ai/stable/data/encoding_formats/evt2.html), each event is encoded to **32** bits words. In particular, two kinds of events are used: `CD_OFF` and `CD_ON`, respectively associated to events with **negative** and **positive** polarity.
+Here things get interesting. For [EVT2](https://docs.prophesee.ai/stable/data/encoding_formats/evt2.html), each event is encoded to a **32** bits word; in particular, two kinds of events are used: `CD_OFF` and `CD_ON`, respectively associated with **negative** and **positive** polarity events.
 
 A CD event is structured in the following way: 
 
@@ -160,11 +162,11 @@ The version that actually works is available [here](https://github.com/open-neur
 
 ### EVT3
 
-With EVT3, compression is even higher: events are encoded to **16 bits** words, but we have much more event types.
+With [EVT3](https://docs.prophesee.ai/stable/data/encoding_formats/evt3.html), data compression is higher: events are encoded to **16 bits** words but there ate many more event types, as it is shown in the following table, taken from [Prophesee documentation](https://docs.prophesee.ai/stable/data/encoding_formats/evt3.html).
 
 ![EVT3 event types](evt3-event-types.png)
 
-The logic behind EVT3 is the following:  a new event is registered when the **`x` address** changes. From this principle, one has to register an event when one of the following three events appear in the stream:
+The logic behind EVT3 is the following:  a new event is registered when the **`x` address** changes. From this principle, one has to register a camera event when one of the following three events appear in the stream:
 * `EVT_ADDR_X`: single event with the `x` coordinate encoded to it, together with polarity. The timestamp and `y` address have been passed in previous events. This event is structured as follows:
 
 ```
@@ -174,7 +176,7 @@ The logic behind EVT3 is the following:  a new event is registered when the **`x
   --------------------------------------------------------
 ```
 
-* `VECTOR_12`: 12 events vectorized in a single data buffer. In particular, starting forom a **base `x` address**, called `baseX`, all the events in this buffer are placed in the next 12 pixels starting from `baseX`:
+* `VECTOR_12`: 12 events vectorized in a single data buffer. In particular, starting from a **base `x` address**, denoted with `baseX` in the code, all the events in this buffer are placed in the next 12 horizontal pixels (i.e. with `y` fixed and `x` varying) starting from `baseX`:
 
 ```
         4 bits         1 bit             11 bits
@@ -192,7 +194,7 @@ The mask vector is encoded in the following way:
   --------------------------------------------------------
 ```
 
-Not all the events in the vector are valid: only the ones to which a bit equal to 1 in the mask is associated are! For this reason, a validity mask made up of 12 bits is provided: if we see the validity mask as a vector of 12 integers, the code to interpret it is the following:
+Not all the events in the vector are valid: only the ones to which a bit equal to 1 in the validity mask depicted above is associated! For this reason, a validity mask made up of 12 bits is provided: if we consider the mask a vector of 12 integers of value either 0 or 1, the pseudo-code to interpret it is the following:
 
 ```cpp
 for (int i=0; i<12; i++) {
@@ -205,7 +207,7 @@ for (int i=0; i<12; i++) {
 }
 ```
 
-An example of mask is the following:
+An example of vectorized event is the following:
 
 ```
    4 bits                   12 bits
@@ -242,7 +244,7 @@ This leads to the following events being encoded to output (keep in mind that we
  | Timestamp |   baseX + 11  |  y address  |   polarity   |
   --------------------------------------------------------
 ```
-Since we are dealing with a 12 bit buffer, the code is actually the following: 
+Since we are dealing with a 12 bit buffer, the pseudo-code is actually the following: 
 
 ```cpp 
 for (int i=0; i<12; i++) {
@@ -256,9 +258,9 @@ for (int i=0; i<12; i++) {
 }
 ```
 
-* `VECTOR_8`: same as `VECTOR_12` but with 8 events.
+* `VECTOR_8`: same as `VECTOR_12` but with 8 events encoded in the vector.
 
-What about timestamps? Well, now the timestamp is encoded in a **24 bits** data buffer, separated in two events: `TIME_LOW` for the lower 12 bits, `TIME_HIGH` for the upper 12 bits. Each of these events is encoded as follows:
+What about timestamps? Well, now the timestamp is encoded to a **24 bits** data buffer, separated in two events: `TIME_LOW` for the lower 12 bits, `TIME_HIGH` for the upper 12 bits. Each of these events is encoded as follows:
 
 ```
          4 bits                     12 bits
@@ -267,10 +269,11 @@ What about timestamps? Well, now the timestamp is encoded in a **24 bits** data 
   --------------------------------------------------------
 ```
 
-Hence, we need to glue together these values to get the full timestamp.
+Hence, we need to glue together these values to get the full timestamp, as it is shown in the following picture taken from Prophesee documentation.
 
 ![EVT3 time high and low parts of the timestamp](evt3-time-high-time-low.png)
 
+The full C++ code to handle EVT3 events is shown in the following.
 
 ```cpp
 /** Function that decodes an EVT3 event to a (ts, x, y, p) tuple.
