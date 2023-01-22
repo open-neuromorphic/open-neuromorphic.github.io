@@ -26,21 +26,24 @@ The file size depends on the encoding, whereas the reading speed depends on the 
 
 ## Prophesee encoding formats
 
-[Prophesee](https://prophesee.ai) uses three main encodings for their data: DAT, EVT2 and EV3. 
+[Prophesee](https://prophesee.ai) uses three main encodings for their data: DAT, EVT2 and EVT3. 
 
 ### DAT
 
 ![DAT format](dat-format.png)
 
-The [DAT](https://docs.prophesee.ai/stable/data/file_formats/dat.html) format encodes an event to a 64 bits word, divided in the following way (following Little Endian (LE) ordering):
-* bits 31-0 (**32** bits) are dedicated to the **timestamp**. Hence, each DAT recording can store at most **1 hour and 12 minutes** long.
-* bits 45-32 (**14** bits) are allocated for the **x address** of the event.
-* bits 59-46 (**14** bits) are allocated for the **y address** of the event.
-* bits 63-60 (**4** bits) are dedicated to the **polarity** of the event.
+The [DAT](https://docs.prophesee.ai/stable/data/file_formats/dat.html) format encodes an event to a 64 bits word. However, when reading the events from the binary file in chunks of 64 bits, the image above does not correspond to reality. The following representation, instead, results to be correct:
 
-It is evident that the data is not compressed but simply stored in a binary format. One might say that the description does not follow the picture provided in the documentation, but this is the actual format when reading 64 bits at time from the binary file on a LE machine. Check the code [here](https://github.com/open-neuromorphic/expelliarmus/blob/cc9fbf1f53bfccd75c920e37d4ed94aa5aec3b1b/expelliarmus/src/dat.c#L136).
+```
+    4 bits     14 bits     14 bits           32 bits
+  ---------------------------------------------------------
+ | Polarity | Y address | X address |       Timestamp      |
+  ---------------------------------------------------------
+```
 
-The C++ code needed to decode such an event is the following:
+Each DAT recording can store at most **1 hour and 12 minutes** long, since the timestamp maximum value is 4294967295 μs.
+
+The C++ code needed to decode a DAT event is the following:
 
 ```cpp
 /** Function that decodes a DAT event to a (ts, x, y, p) tuple.
@@ -73,6 +76,8 @@ void decode_event(
 }
 ```
 
+One can notice that the events are not compressed but encoded to a compact binary format. 
+
 ### EVT2
 
 Here things get interesting. For [EVT2](https://docs.prophesee.ai/stable/data/encoding_formats/evt2.html), each event is encoded to **32** bits words. In particular, two kinds of events are used: `CD_OFF` and `CD_ON`, respectively associated to events with **negative** and **positive** polarity.
@@ -100,7 +105,7 @@ Hence, the **lower 6 bits** are passed during a `CD_*` event, while the **upper 
   --------------------------------------------------------
 ```
 
-Since the lower 6 bits change **more frequently** than the upper one, many events can be encoded in `CD_*` ones before sending out a new `TIME_HIGH` reference. 
+Since the lower 6 bits change **more frequently** than the upper ones, many events can be encoded in `CD_*` ones before sending out a new `TIME_HIGH` reference. 
 
 Probably the reader would like to see some code, and here it comes:
 
@@ -136,10 +141,10 @@ bool decode_event(
     switch (evt_type) {
         case 0x0: // CD_OFF
         case 0x1: // CD_ON
-            p = evt_type; 
             ts = (tsHigh << 6) | ((buff >> 22) & mask_6b); 
             x = (buff >> 11) & mask_11b; 
             y = buff & mask_11b; 
+            p = evt_type; 
             isEvent = true;
             break; 
 
@@ -193,8 +198,7 @@ Not all the events in the vector are valid: only the ones to which a bit equal t
 for (int i=0; i<12; i++) {
     if (mask[i] == 1) {
         isEvent = true; 
-        x_addr = base_x + i; 
-        write_event(x_addr); 
+        xAddr = baseX + i; 
     } else {
         isEvent = false; 
     }
@@ -244,7 +248,7 @@ Since we are dealing with a 12 bit buffer, the code is actually the following:
 for (int i=0; i<12; i++) {
     if (mask & 1) { // Reading the LSB.
         isEvent = true; 
-        x_addr = base_x + i; 
+        xAddr = baseX + i; 
     } else {
         isEvent = false; 
     }
