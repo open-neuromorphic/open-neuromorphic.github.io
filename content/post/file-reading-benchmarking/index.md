@@ -25,6 +25,9 @@ A straightforward idea is to resort to existing packages such as hdf5 and numpy 
 Because when training spiking neural networks using events, file reading speed is a bottleneck we need to keep in mind.  Training on bigger datasets means that we want to keep in mind the file reading speed of our data. Here we list the results of our benchmark of different file type encodings and software frameworks that can decode files.
 
 <!-- As the spatial resolution of event cameras grows, we receive more and more events per second! -->
+
+{{< chart data="file_read_benchmark" >}}
+
 ![Comparison among file size and read speed of different encodings and software tools.](file_read_benchmark.png)
 
 The file size depends on the encoding, whereas the reading speed depends on the particular implementation/framework of how files are read. In terms of file size, we can see that numpy doesn't use any compression whatsoever, resulting in some 1.7GB file for our sample data. Prophesee's [evt3](https://docs.prophesee.ai/stable/data/encoding_formats/evt3.html) format achieves the best compression by cleverly encoding differences in timestamps. In terms of reading speed, numpy is the fastest as it doesn't deal with any compression on disk. Unzipping the compressed events from disk on the other hand using h5py is by far the slowest. Using [Expelliarmus](https://github.com/open-neuromorphic/expelliarmus) and the [evt2](https://docs.prophesee.ai/stable/data/encoding_formats/evt2.html) file format, we get very close to numpy reading speeds while at the same time only using a fourth of the disk space. This becomes particularly important for larger datasets which can easily reach some 3-4TB when encoded in an inefficient file format. 
