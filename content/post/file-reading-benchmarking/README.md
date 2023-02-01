@@ -7,7 +7,7 @@ pip install -r requirements.txt
 ```
 
 ## Current benchmarks
-The file format defines the compression factor and therefore file size on disk, as well as the speed with which it can be read to some extent, although that will be implementation-dependent. If we have no way of writing events to file in a particular format, we need to start the benchmark with a file in that format (currently aedat4).
+The file format defines the compression factor and therefore file size on disk, as well as the speed with which it can be read to some extent, although that will be implementation-dependent. If we have no way of writing events to file in a particular format, events from that file need to be the source for all other formats (currently aedat4) which are generated afterwards.
 
 | Format   | Framework   | Can write events |
 |--------------|-----------|------------------|
