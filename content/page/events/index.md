@@ -56,6 +56,10 @@ Trevor is also passionate about reproducible science, particularly when complex 
 
 Giorgia Dellaferrera has completed her PhD in computational neuroscience at the Institute of Neuroinformatics (ETH Zurich and the University of Zurich) and IBM Research Zurich with Prof. Indiveri, Prof. Eleftheriou and Dr. Pantazi. Her doctoral thesis focused on the interplay between neuroscience and artificial intelligence, with an emphasis on learning mechanisms in brains and machines. During her PhD, she visited the lab of Prof. Kreiman at the Harvard Medical School (US), where she developed a biologically inspired training strategy for artificial neural networks. Before her PhD, Giorgia obtained a master in Applied Physics at the Swiss Federal Institute of Technology Lausanne (EPFL) and worked as an intern at the Okinawa Institute of Science and Technology, Logitech, Imperial College London, and EPFL.
 
+### Event content
+
+* [Registration form](https://forms.gle/umvmW3MXyV8AUXue8).
+
 ## 2023-03-02: Jason Eshraghian
 
 ![Jason Eshraghian](jason-eshraghian.webp)
