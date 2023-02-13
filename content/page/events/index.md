@@ -9,40 +9,10 @@ image: /img/ONM.png
 description: "Events organised by ONM: talks, hands-on sessions and more. "
 ---
 
+# Upcoming events
+
 You can access the Google calendar with all events [here](https://calendar.google.com/calendar/u/4?cid=b3Blbi5uZXVyb21vcnBoaWNAZ21haWwuY29t), the events will be populated with the Zoom links once they are available.
 
-## 2022-12-13: First Edition of ONM
-
-On the 13th of December 2022, the first edition of Open Neuromorphic took place! The invited speakers were:
-- [Charlotte Frenkel](https://chfrenkel.github.io) ([slides](/onm-events/event-22-12-13/slides/charlotte-frenkel.pdf)).
-- [Gregor Lenz](https://lenzgregor.com) ([slides](https://slides.com/gregorlenz/open-neuromorphic)).
-- [Jason Eshraghian](https://jasoneshraghian.com).
-- [Melika Payvand](https://services.ini.uzh.ch/people/melika).
-- [Jens Egholm Pedersen](https://jepedersen.dk) ([slides](https://jepedersen.dk/slides/2212_ONM/index.html)).
-
-Host: [Fabrizio Ottati](https://fabrizio-ottati.github.io) ([slides](/onm-events/event-22-12-13/slides/fabrizio-ottati.pdf)).
-
-## 2023-01-26: Applied Brain Research
-
-![Trevor Bekolay](trevor-bekolay.jpeg)
-
-### Event description
-
-* **Title:** Nengo - Applied Brain Research.
-
-* **Time**: 6PM - 7:30PM CET.
-
-
-### Speaker's bio
-
-Trevor Bekolay’s primary research interest is in learning and memory. In his Master’s degree, he explored how to do supervised, unsupervised, and reinforcement learning in networks of biologically plausible spiking neurons. In his PhD, he applied this knowledge to the domain of speech to explore how sounds coming into the ear become high-level linguistic representations, and how those representations become sequences of vocal tract movements that produce speech.
-
-Trevor is also passionate about reproducible science, particularly when complex software pipelines are involved. In 2013, he started a development effort to reimplement the Nengo neural simulator from scratch in Python, which has now grown to a project with over 20 contributors around the world.
-
-### Event material
-
-* [Slides](2023-01-26-Nengo.pdf).
-* [Event recording](https://youtu.be/sgu9l_bqAHM).
 
 ## 2023-02-14: Giorgia Dellaferrera
 
@@ -140,3 +110,39 @@ Dylan Muir is the Vice President for Global Research Operations; Director for Al
 ### Abstract
 
 Lava is an open-source software framework for developing neuro-inspired applications and mapping them to neuromorphic hardware. Lava provides developers with the tools and abstractions to develop applications that fully exploit the principles of neural computation. Constrained in this way, like the brain, Lava applications allow neuromorphic platforms to intelligently process, learn from, and respond to real-world data with great gains in energy efficiency and speed compared to conventional computer architectures.
+
+
+# Past events
+
+## 2022-12-13: First Edition of ONM
+
+On the 13th of December 2022, the first edition of Open Neuromorphic took place! The invited speakers were:
+- [Charlotte Frenkel](https://chfrenkel.github.io) ([slides](/onm-events/event-22-12-13/slides/charlotte-frenkel.pdf)).
+- [Gregor Lenz](https://lenzgregor.com) ([slides](https://slides.com/gregorlenz/open-neuromorphic)).
+- [Jason Eshraghian](https://jasoneshraghian.com).
+- [Melika Payvand](https://services.ini.uzh.ch/people/melika).
+- [Jens Egholm Pedersen](https://jepedersen.dk) ([slides](https://jepedersen.dk/slides/2212_ONM/index.html)).
+
+Host: [Fabrizio Ottati](https://fabrizio-ottati.github.io) ([slides](/onm-events/event-22-12-13/slides/fabrizio-ottati.pdf)).
+
+## 2023-01-26: Applied Brain Research
+
+![Trevor Bekolay](trevor-bekolay.jpeg)
+
+### Event description
+
+* **Title:** Nengo - Applied Brain Research.
+
+* **Time**: 6PM - 7:30PM CET.
+
+
+### Speaker's bio
+
+Trevor Bekolay’s primary research interest is in learning and memory. In his Master’s degree, he explored how to do supervised, unsupervised, and reinforcement learning in networks of biologically plausible spiking neurons. In his PhD, he applied this knowledge to the domain of speech to explore how sounds coming into the ear become high-level linguistic representations, and how those representations become sequences of vocal tract movements that produce speech.
+
+Trevor is also passionate about reproducible science, particularly when complex software pipelines are involved. In 2013, he started a development effort to reimplement the Nengo neural simulator from scratch in Python, which has now grown to a project with over 20 contributors around the world.
+
+### Event material
+
+* [Slides](2023-01-26-Nengo.pdf).
+* [Event recording](https://youtu.be/sgu9l_bqAHM).
