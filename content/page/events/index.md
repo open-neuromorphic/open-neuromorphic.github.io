@@ -6,8 +6,10 @@ menu:
         params:
             icon: events
 image: /img/ONM.png
-description: "Events organised by ONM: talks, hands-on sessions and so on."
+description: "Events organised by ONM: talks, hands-on sessions and more. "
 ---
+
+You can access the Google calendar with all events [here](https://calendar.google.com/calendar/u/4?cid=b3Blbi5uZXVyb21vcnBoaWNAZ21haWwuY29t), the events will be populated with the Zoom links once they are available.
 
 ## 2022-12-13: First Edition of ONM
 
