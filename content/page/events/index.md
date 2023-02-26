@@ -126,7 +126,7 @@ Trevor is also passionate about reproducible science, particularly when complex 
 ### Event material
 
 * [Slides](2023-01-26-Nengo.pdf).
-* [Event recording](https://youtu.be/sgu9l_bqAHM).
+* [YouTube video](https://youtu.be/sgu9l_bqAHM).
 
 ## 2023-02-14: Giorgia Dellaferrera
 
