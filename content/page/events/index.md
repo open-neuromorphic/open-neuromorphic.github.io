@@ -13,25 +13,6 @@ description: "Events organised by ONM: talks, hands-on sessions and more. "
 
 You can access the Google calendar with all events [here](https://calendar.google.com/calendar/u/4?cid=b3Blbi5uZXVyb21vcnBoaWNAZ21haWwuY29t), the events will be populated with the Zoom links once they are available.
 
-
-## 2023-02-14: Giorgia Dellaferrera
-
-![Giorgia Dellaferrera](giorgia-dellaferrera.jpeg)
-
-### Event description 
-
-* **Title:** PEPITA - A forward-forward alternative to backpropagation.
-
-* **Time:** 6PM - 7:30PM CET.
-
-### Speaker's bio
-
-Giorgia Dellaferrera has completed her PhD in computational neuroscience at the Institute of Neuroinformatics (ETH Zurich and the University of Zurich) and IBM Research Zurich with Prof. Indiveri, Prof. Eleftheriou and Dr. Pantazi. Her doctoral thesis focused on the interplay between neuroscience and artificial intelligence, with an emphasis on learning mechanisms in brains and machines. During her PhD, she visited the lab of Prof. Kreiman at the Harvard Medical School (US), where she developed a biologically inspired training strategy for artificial neural networks. Before her PhD, Giorgia obtained a master in Applied Physics at the Swiss Federal Institute of Technology Lausanne (EPFL) and worked as an intern at the Okinawa Institute of Science and Technology, Logitech, Imperial College London, and EPFL.
-
-### Event content
-
-* [Registration form](https://forms.gle/umvmW3MXyV8AUXue8).
-
 ## 2023-03-02: Jason Eshraghian
 
 ![Jason Eshraghian](jason-eshraghian.webp)
@@ -146,3 +127,22 @@ Trevor is also passionate about reproducible science, particularly when complex 
 
 * [Slides](2023-01-26-Nengo.pdf).
 * [Event recording](https://youtu.be/sgu9l_bqAHM).
+
+## 2023-02-14: Giorgia Dellaferrera
+
+![Giorgia Dellaferrera](giorgia-dellaferrera.jpeg)
+
+### Event description 
+
+* **Title:** PEPITA - A forward-forward alternative to backpropagation.
+
+* **Time:** 6PM - 7:30PM CET.
+
+### Speaker's bio
+
+Giorgia Dellaferrera has completed her PhD in computational neuroscience at the Institute of Neuroinformatics (ETH Zurich and the University of Zurich) and IBM Research Zurich with Prof. Indiveri, Prof. Eleftheriou and Dr. Pantazi. Her doctoral thesis focused on the interplay between neuroscience and artificial intelligence, with an emphasis on learning mechanisms in brains and machines. During her PhD, she visited the lab of Prof. Kreiman at the Harvard Medical School (US), where she developed a biologically inspired training strategy for artificial neural networks. Before her PhD, Giorgia obtained a master in Applied Physics at the Swiss Federal Institute of Technology Lausanne (EPFL) and worked as an intern at the Okinawa Institute of Science and Technology, Logitech, Imperial College London, and EPFL.
+
+### Event content
+
+* [Slides](2023-02-14-Giorgia-Dellaferrera.pdf).
+* [YouTube video](https://youtu.be/RKgdUrCun5w).
