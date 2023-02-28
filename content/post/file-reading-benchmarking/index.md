@@ -41,6 +41,6 @@ When training spiking neural networks on event-based data, we want to be able to
 The aedat4 file contains IMU events as well as change detection events, which increases the file size artificially in contrast to the other benchmarked formats.
 
 ## Authors
-* [Gregor Lenz](https://lenzgregor.com).
+* [Gregor Lenz](https://lenzgregor.com) is a research engineer at SynSense, where he works on machine learning pipelines that can train and deploy robust models on neuromorphic hardware. He hold a PhD in neuromorphic engineering from Sorbonne University in Paris, France.
 * [Fabrizio Ottati](https://fabrizio-ottati.dev) is a Ph.D. student in the HLS Laboratory of the Department of Electronics and Communications, Politecnico di Torino. His main interests are event-based cameras, digital hardware design and neuromorphic computing. He is one of the maintainers of two open source projects in the field of neuromorphic computing, [Tonic](https://tonic.readthedocs.io) and [Expelliarmus](https://expelliarmus.readthedocs.io), and one of the founders of [Open Neuromorphic](https://open-neuromorphic.org).
 * [Alexandre Marcireau](https://github.com/aMarcireau).
