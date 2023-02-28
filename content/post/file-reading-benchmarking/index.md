@@ -1,6 +1,6 @@
 ---
 title: "Efficient compression for event-based data"
-date: 2023-02-27
+date: 2023-02-28
 description: "Choosing a good trade-off between disk footprint and file loading times."
 draft: false
 image: file_read_benchmark.png
@@ -29,7 +29,7 @@ In the following figure we plot the results of our benchmark of different file t
 
 ![Comparison among file size and read speed of different encodings and software tools.](file_read_benchmark.png)
 
-Ideally, we want to be close to the origin where we read fast and compression is high. The file size depends on the encoding, whereas the reading speed depends on the particular implementation/framework of how files are read. In terms of file size, we can see that numpy doesn't use any compression whatsoever, resulting in some 1.7GB file for our sample recording. Prophesee's [evt3](https://docs.prophesee.ai/stable/data/encoding_formats/evt3.html) and the generic lossless [brotli](https://github.com/google/brotli) formats achieve the best compression. In terms of reading speed, numpy is the fastest as it doesn't deal with any compression on disk. Unzipping the compressed events from disk on the other hand using h5py is by far the slowest. Using [Expelliarmus](https://github.com/open-neuromorphic/expelliarmus) and the [evt2](https://docs.prophesee.ai/stable/data/encoding_formats/evt2.html) file format, we get very close to numpy reading speeds while at the same time only using a fourth of the disk space. 
+Ideally, we want to be close to the origin where we read fast and compression is high. The file size depends on the encoding, whereas the reading speed depends on the particular implementation/framework of how files are read. In terms of file size, we can see that numpy doesn't use any compression whatsoever, resulting in some 1.7GB file for our sample recording. Prophesee's [evt3](https://docs.prophesee.ai/stable/data/encoding_formats/evt3.html) and the generic lossless [brotli](https://github.com/google/brotli) formats achieve the best compression. In terms of reading speed, numpy is the fastest as it doesn't deal with any compression on disk. Unzipping the compressed events from disk on the other hand using h5py is by far the slowest. Using [Expelliarmus](https://github.com/open-neuromorphic/expelliarmus) and the [evt2](https://docs.prophesee.ai/stable/data/encoding_formats/evt2.html) file format, we get very close to numpy reading speeds while at the same time only using a fourth of the disk space. For more information about Prophesee event encoding formats, check out [this blog post](https://fabrizio-ottati.dev/blog/file-reading-benchmark/).
 
 ## Capable frameworks
 The authors of this post have released [Expelliarmus](https://github.com/open-neuromorphic/expelliarmus) as a lightweight, well-tested, pip-installable framework that can read and write different formats easily. If you're working with dat, evt2 or evt3 formats, why not give it a try? 
