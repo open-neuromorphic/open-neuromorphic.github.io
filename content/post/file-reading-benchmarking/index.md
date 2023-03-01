@@ -38,7 +38,7 @@ The authors of this post have released [Expelliarmus](https://github.com/open-ne
 When training spiking neural networks on event-based data, we want to be able to feed new data to the network as fast as possible. But given the high data rate of an event camera, the amount of data quickly becomes an issue itself, especially for more complex tasks. So we want to choose a good trade-off between a dataset size that's manageable and reading speed. We hope that this article will help future groups that record large-scale datasets to pick a good encoding format. 
 
 ## Authors
-* [Gregor Lenz](https://lenzgregor.com) is a research engineer at SynSense, where he works on machine learning pipelines that can train and deploy robust models on neuromorphic hardware. He hold a PhD in neuromorphic engineering from Sorbonne University in Paris, France.
+* [Gregor Lenz](https://lenzgregor.com) is a research engineer at SynSense, where he works on machine learning pipelines that can train and deploy robust models on neuromorphic hardware. He holds a PhD in neuromorphic engineering from Sorbonne University in Paris, France.
 * [Fabrizio Ottati](https://fabrizio-ottati.dev) is a Ph.D. student in the HLS Laboratory of the Department of Electronics and Communications, Politecnico di Torino. His main interests are event-based cameras, digital hardware design and neuromorphic computing. He is one of the maintainers of two open source projects in the field of neuromorphic computing, [Tonic](https://tonic.readthedocs.io) and [Expelliarmus](https://expelliarmus.readthedocs.io), and one of the founders of [Open Neuromorphic](https://open-neuromorphic.org).
 * [Alexandre Marcireau](https://github.com/aMarcireau).
 
