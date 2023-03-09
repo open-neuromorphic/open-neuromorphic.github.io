@@ -80,6 +80,19 @@ Lava is an open-source software framework for developing neuro-inspired applicat
 
 ## 2023-07-19: Lana Josipović
 
+![Lana Josipović](lana-josipovic.jpg)
+
+* **Title:** From C/C++ to Dynamically Scheduled Circuits.
+
+* **Time:** 6PM - 7:30PM CET.
+
+### Abstract
+
+High-level synthesis (HLS) tools generate digital hardware designs from high-level programming languages (e.g., C/C++) and promise to liberate designers from low-level hardware description details. Yet, HLS tools are still acceptable only for certain classes of applications and are criticized for the difficulty of extracting the desired level of performance: generating good circuits still requires tedious code restructuring and hardware design expertise. In this talk, I will present a new HLS methodology that produces dynamically scheduled, dataflow circuits out of C/C++ code; the resulting circuits achieve good performance out-of-the-box and realize behaviors that are beyond the capabilities of standard HLS tools. I will outline mathematical models to optimize the performance and area of the resulting circuits, as well as techniques to achieve characteristics that standard HLS cannot support, such as out-of-order memory accesses and speculative execution. These contributions redefine the HLS paradigm by introducing characteristics of modern superscalar processors to hardware designs; such behaviors are key for specialized computing to be successful in new contexts and broader application domains.
+
+### Speaker's bio
+
+Lana Josipović is an Assistant Professor in the Department of Information Technology and Electrical Engineering at ETH Zurich. Prior to joining ETH Zurich in January 2022, she received a Ph.D. degree in Computer Science from EPFL, Switzerland. Her research interests include reconfigurable computing and electronic design automation, with an emphasis on high-level synthesis techniques to generate hardware designs from high-level programming languages. She developed Dynamatic, an open-source high-level synthesis tool that produces dynamically scheduled circuits from C/C++ code. She is a recipient of the EDAA Outstanding Dissertation Award, Google Ph.D. Fellowship in Systems and Networking, Google Women Techmakers Scholarship, and Best Paper Award at FPGA'20.
 
 # Past events
 
