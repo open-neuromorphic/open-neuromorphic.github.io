@@ -76,6 +76,11 @@ Dylan Muir is the Vice President for Global Research Operations; Director for Al
 
 Lava is an open-source software framework for developing neuro-inspired applications and mapping them to neuromorphic hardware. Lava provides developers with the tools and abstractions to develop applications that fully exploit the principles of neural computation. Constrained in this way, like the brain, Lava applications allow neuromorphic platforms to intelligently process, learn from, and respond to real-world data with great gains in energy efficiency and speed compared to conventional computer architectures.
 
+## 2023-06-22: Innatera
+
+## 2023-07-19: Lana Josipović
+
+
 # Past events
 
 ## 2022-12-13: First Edition of ONM
