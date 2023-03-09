@@ -13,22 +13,6 @@ description: "Events organised by ONM: talks, hands-on sessions and more. "
 
 You can access the Google calendar with all events [here](https://calendar.google.com/calendar/u/4?cid=b3Blbi5uZXVyb21vcnBoaWNAZ21haWwuY29t), the events will be populated with the Zoom links once they are available.
 
-## 2023-03-02: Jason Eshraghian
-
-![Jason Eshraghian](jason-eshraghian.webp)
-
-### Event description
-
-* **Title:** Hands-on session with snnTorch.
-
-* **Time**: 6PM - 7:30PM CET.
-
-### Speaker's bio
-
-[Jason K. Eshraghian](https://jasoneshraghian.com) is an Assistant Professor at the Department of Electrical and Computer Engineering at UC Santa Cruz, CA, USA. Prior to that, he was a Post-Doctoral Researcher at the Department of Electrical Engineering and Computer Science, University of Michigan in Ann Arbor. He received the Bachelor of Engineering (Electrical and Electronic) and the Bachelor of Laws degrees from The University of Western Australia, WA, Australia in 2016, where he also completed his Ph.D. Degree. 
-
-Professor Eshraghian was awarded the 2019 IEEE VLSI Best Paper Award, the Best Paper Award at 2019 IEEE Artificial Intelligence CAS Conference, and the Best Live Demonstration Award at 2020 IEEE ICECS for his work on neuromorphic vision and in-memory computing using RRAM. He currently serves as the secretary-elect of the IEEE Neural Systems and Applications Committee, and was a recipient of the Fulbright Future Fellowship (Australian-America Fulbright Commission), the Forrest Research Fellowship (Forrest Research Foundation), and the Endeavour Fellowship (Australian Government).
-
 
 ## 2023-03-21: Catherine Schuman 
 
@@ -92,7 +76,6 @@ Dylan Muir is the Vice President for Global Research Operations; Director for Al
 
 Lava is an open-source software framework for developing neuro-inspired applications and mapping them to neuromorphic hardware. Lava provides developers with the tools and abstractions to develop applications that fully exploit the principles of neural computation. Constrained in this way, like the brain, Lava applications allow neuromorphic platforms to intelligently process, learn from, and respond to real-world data with great gains in energy efficiency and speed compared to conventional computer architectures.
 
-
 # Past events
 
 ## 2022-12-13: First Edition of ONM
@@ -146,3 +129,25 @@ Giorgia Dellaferrera has completed her PhD in computational neuroscience at the 
 
 * [Slides](2023-02-14-Giorgia-Dellaferrera.pdf).
 * [YouTube video](https://youtu.be/RKgdUrCun5w).
+
+
+## 2023-03-02: Jason Eshraghian
+
+![Jason Eshraghian](jason-eshraghian.webp)
+
+### Event description
+
+* **Title:** Hands-on session with snnTorch.
+
+* **Time**: 6PM - 7:30PM CET.
+
+### Speaker's bio
+
+[Jason K. Eshraghian](https://jasoneshraghian.com) is an Assistant Professor at the Department of Electrical and Computer Engineering at UC Santa Cruz, CA, USA. Prior to that, he was a Post-Doctoral Researcher at the Department of Electrical Engineering and Computer Science, University of Michigan in Ann Arbor. He received the Bachelor of Engineering (Electrical and Electronic) and the Bachelor of Laws degrees from The University of Western Australia, WA, Australia in 2016, where he also completed his Ph.D. Degree. 
+
+Professor Eshraghian was awarded the 2019 IEEE VLSI Best Paper Award, the Best Paper Award at 2019 IEEE Artificial Intelligence CAS Conference, and the Best Live Demonstration Award at 2020 IEEE ICECS for his work on neuromorphic vision and in-memory computing using RRAM. He currently serves as the secretary-elect of the IEEE Neural Systems and Applications Committee, and was a recipient of the Fulbright Future Fellowship (Australian-America Fulbright Commission), the Forrest Research Fellowship (Forrest Research Foundation), and the Endeavour Fellowship (Australian Government).
+
+### Event content
+
+* [YouTube video](https://youtu.be/aUjWRpisRRg).
+
