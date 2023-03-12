@@ -168,4 +168,4 @@ Professor Eshraghian was awarded the 2019 IEEE VLSI Best Paper Award, the Best P
 ### Event content
 
 * [YouTube video](https://youtu.be/aUjWRpisRRg).
-
+* [Notebooks](https://github.com/open-neuromorphic/hands-on-session-snntorch-230302).
