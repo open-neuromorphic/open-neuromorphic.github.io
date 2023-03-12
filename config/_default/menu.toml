@@ -30,3 +30,12 @@ url = "https://discord.gg/C9bzWgNmqk"
 
 [social.params]
 icon = "discord-icon"
+
+[[social]]
+identifier = "youtube"
+name = "YouTube"
+url = "https://www.youtube.com/@openneuromorphic"
+
+[social.params]
+icon = "youtube-icon"
+
