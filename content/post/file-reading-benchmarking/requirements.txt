@@ -9,3 +9,4 @@ brotli
 plotly
 pandas
 kaleido
+git+https://github.com/norse/aestream
