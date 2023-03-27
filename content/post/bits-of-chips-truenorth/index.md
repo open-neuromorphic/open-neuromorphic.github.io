@@ -6,6 +6,7 @@ draft: false
 date: 2023-03-27
 tags: ["research", "hardware", "digital", "neuromorphic"]
 showTableOfContents: true
+math: true
 ---
 
 ![The beautiful TrueNorth article image](brain-to-chip.png) 
