@@ -9,8 +9,6 @@ showTableOfContents: true
 math: true
 ---
 
-![The beautiful TrueNorth article image](brain-to-chip.png) 
-
 ## Why do we want to emulate the brain?
 
 If you have ever read an article on neuromorphic computing, you might have noticed that in the introduction of each of these there is the same statement: "The brain is much powerful than any AI machine when it comes to cognitive tasks but it runs on a **10W** power budget!". This is absolutely true: neurons in the brain communicate among each other by means of **spikes**, which are short voltage pulses that propagate from one neuron to the other. The average spiking activity is estimated to be around **10Hz** (i.e. a spike every 100ms). This yields **very low processing power consumption**, since the activity in the brain results to be **really sparse** (at least, this is the hypothesis). 
