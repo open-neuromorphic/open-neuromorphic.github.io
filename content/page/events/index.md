@@ -13,20 +13,6 @@ description: "Events organised by ONM: talks, hands-on sessions and more. "
 
 You can access the Google calendar with all events [here](https://calendar.google.com/calendar/u/4?cid=b3Blbi5uZXVyb21vcnBoaWNAZ21haWwuY29t), the events will be populated with the Zoom links once they are available.
 
-
-## 2023-03-21: Catherine Schuman 
-
-![Catherine Schuman](catherine-schuman.webp)
-
-### Event description
-
-* **Title:** Evolutionary Optimization for Neuromorphic Systems.
-
-* **Time:** 6PM - 7:30PM CET.
-
-### Speaker's bio
-
-Catherine (Katie) Schuman is an Assistant Professor in the Department of Electrical Engineering and Computer Science at the University of Tennessee (UT). She received her Ph.D. in Computer Science from UT in 2015, where she completed her dissertation on the use of evolutionary algorithms to train spiking neural networks for neuromorphic systems. Katie previously served as a research scientist at Oak Ridge National Laboratory, where her research focused on algorithms and applications of neuromorphic systems.  Katie co-leads the TENNLab Neuromorphic Computing Research Group at UT.  She has over 100 publications as well as seven patents in the field of neuromorphic computing. She received the Department of Energy Early Career Award in 2019.
  
 ## 2023-04-04: Gregor Lenz
 
@@ -61,20 +47,26 @@ He is the maintainer of two open source projects in the field of neuromorphic co
 Dylan Muir is the Vice President for Global Research Operations; Director for Algorithms and Applications; and Director for Global Business Development at SynSense. Dr. Muir is a specialist in architectures for neural computation. He has published extensively in computational and experimental neuroscience. At SynSense he is responsible for the company research vision, and directing development of neural architectures for signal processing. Dr. Muir holds a Doctor of Science (PhD) from ETH Zurich, and undergraduate degrees (Masters) in Electronic Engineering and in Computer Science from QUT, Australia.
 
 
-## 2023-05-31: Intel 
+## 2023-05-31: Andreas Wild & Mathis Richter (Intel) 
 
-![Intel](intel.png)
+![Lava](https://user-images.githubusercontent.com/68661711/135301797-400e163d-71a3-45f8-b35f-e849e8c74f0c.png)
 
 
 ### Event description
 
-* **Title:** Lava.
+* **Title:** Lava - an open-source software framework for developing neuro-inspired applications.
 
 * **Time:** 6PM - 7:30PM CET.
 
 ### Abstract
+Lava is an open-source software framework for developing neuro-inspired applications and mapping them to heterogeneous neuromorphic hardware systems. Lava allows programming fast and energy efficient neuromorphic platforms at a high level of abstraction. This enables researchers and application experts to easily develop a broad range of neuromorphic applications that process, learn from, and respond to real-world data with unprecedent performance compared to conventional architectures. Lava currently supports applications on Intel’s Loihi 2 neuromorphic research chip as well as on CPU/GPUs. Our vision for Lava is to promote convergence toward a common software framework for the neuromorphic community and to spread the adoption of this emerging computing paradigm.
 
-Lava is an open-source software framework for developing neuro-inspired applications and mapping them to neuromorphic hardware. Lava provides developers with the tools and abstractions to develop applications that fully exploit the principles of neural computation. Constrained in this way, like the brain, Lava applications allow neuromorphic platforms to intelligently process, learn from, and respond to real-world data with great gains in energy efficiency and speed compared to conventional computer architectures.
+In this session, we will give an overview of Lava, explain the software stack along a few examples, and share our vision for Lava. There will be ample time for discussing the future of Lava and where the neuromorphic community is seeing critical roadblocks as well as exciting potential.
+
+### Speaker bios
+Andreas Wild received the Dr. rer. nat degree in physics with a focus on the development of silicon-based electron spin qubits from the Technical University of Munich, Germany, in 2013. After joining Intel in 2013, he has been a Senior Researcher with the Intel Neuromorphic Computing Lab since 2015 where he leads algorithm research.
+
+Mathis Richter is a Research Scientist in the Neuromorphic Computing Lab at Intel Labs, where he leads the Application Software team, developing commercial software solutions based on neuromorphic technology. Before joining Intel in 2021, he worked as a post doc and PhD student on neural process models of higher cognition at the Institute for Neural Computation, Ruhr-University Bochum.
 
 ## 2023-06-22: Innatera
 
@@ -169,3 +161,17 @@ Professor Eshraghian was awarded the 2019 IEEE VLSI Best Paper Award, the Best P
 
 * [YouTube video](https://youtu.be/aUjWRpisRRg).
 * [Notebooks](https://github.com/open-neuromorphic/hands-on-session-snntorch-230302).
+
+## 2023-03-21: Catherine Schuman 
+
+![Catherine Schuman](catherine-schuman.webp)
+
+### Event description
+
+* **Title:** Evolutionary Optimization for Neuromorphic Systems.
+
+* **Time:** 6PM - 7:30PM CET.
+
+### Speaker's bio
+
+Catherine (Katie) Schuman is an Assistant Professor in the Department of Electrical Engineering and Computer Science at the University of Tennessee (UT). She received her Ph.D. in Computer Science from UT in 2015, where she completed her dissertation on the use of evolutionary algorithms to train spiking neural networks for neuromorphic systems. Katie previously served as a research scientist at Oak Ridge National Laboratory, where her research focused on algorithms and applications of neuromorphic systems.  Katie co-leads the TENNLab Neuromorphic Computing Research Group at UT.  She has over 100 publications as well as seven patents in the field of neuromorphic computing. She received the Department of Energy Early Career Award in 2019.
