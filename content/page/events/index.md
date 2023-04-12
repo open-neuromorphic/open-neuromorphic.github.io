@@ -13,24 +13,6 @@ description: "Events organised by ONM: talks, hands-on sessions and more. "
 
 You can access the Google calendar with all events [here](https://calendar.google.com/calendar/u/4?cid=b3Blbi5uZXVyb21vcnBoaWNAZ21haWwuY29t), the events will be populated with the Zoom links once they are available.
 
- 
-## 2023-04-04: Gregor Lenz
-
- ![Gregor Lenz](gregor-lenz.jpeg)
-
-### Event description
-
-* **Abstract:** Hands-on session with Sinabs and Speck.
-
-* **Time:** 6PM - 7:30PM CET.
-
-### Speaker's bio
-
-[Gregor Lenz](https://lenzgregor.com) graduated with a Ph.D. in neuromorphic engineering from Sorbonne University. He thinks that technology can learn a thing or two from how biological systems process information.
-
-His main interests are event cameras that are inspired by the human retina and spiking neural networks that mimic human brain in an effort to teach machines to compute a bit more like humans do. At the very least there are some power efficiency gains to be made, but hopefully more! Also he loves to build open source software for spike-based machine learning. You can find more information on his personal website.
-
-He is the maintainer of two open source projects in the field of neuromorphic computing, [Tonic](https://tonic.readthedocs.io) and [expelliarmus](https://expelliarmus.readthedocs.io).
 
 ## 2023-04-26: Dylan Muir
 
@@ -67,6 +49,8 @@ In this session, we will give an overview of Lava, explain the software stack al
 Andreas Wild received the Dr. rer. nat degree in physics with a focus on the development of silicon-based electron spin qubits from the Technical University of Munich, Germany, in 2013. After joining Intel in 2013, he has been a Senior Researcher with the Intel Neuromorphic Computing Lab since 2015 where he leads algorithm research.
 
 Mathis Richter is a Research Scientist in the Neuromorphic Computing Lab at Intel Labs, where he leads the Application Software team, developing commercial software solutions based on neuromorphic technology. Before joining Intel in 2021, he worked as a post doc and PhD student on neural process models of higher cognition at the Institute for Neural Computation, Ruhr-University Bochum.
+
+## 2023-06-08: Federico Corradi
 
 ## 2023-06-22: Innatera
 
@@ -175,3 +159,21 @@ Professor Eshraghian was awarded the 2019 IEEE VLSI Best Paper Award, the Best P
 ### Speaker's bio
 
 Catherine (Katie) Schuman is an Assistant Professor in the Department of Electrical Engineering and Computer Science at the University of Tennessee (UT). She received her Ph.D. in Computer Science from UT in 2015, where she completed her dissertation on the use of evolutionary algorithms to train spiking neural networks for neuromorphic systems. Katie previously served as a research scientist at Oak Ridge National Laboratory, where her research focused on algorithms and applications of neuromorphic systems.  Katie co-leads the TENNLab Neuromorphic Computing Research Group at UT.  She has over 100 publications as well as seven patents in the field of neuromorphic computing. She received the Department of Energy Early Career Award in 2019.
+
+## 2023-04-04: Gregor Lenz
+
+ ![Gregor Lenz](gregor-lenz.jpeg)
+
+### Event description
+
+* **Abstract:** Hands-on session with Sinabs and Speck.
+
+* **Time:** 6PM - 7:30PM CET.
+
+### Speaker's bio
+
+[Gregor Lenz](https://lenzgregor.com) graduated with a Ph.D. in neuromorphic engineering from Sorbonne University. He thinks that technology can learn a thing or two from how biological systems process information.
+
+His main interests are event cameras that are inspired by the human retina and spiking neural networks that mimic human brain in an effort to teach machines to compute a bit more like humans do. At the very least there are some power efficiency gains to be made, but hopefully more! Also he loves to build open source software for spike-based machine learning. You can find more information on his personal website.
+
+He is the maintainer of two open source projects in the field of neuromorphic computing, [Tonic](https://tonic.readthedocs.io) and [expelliarmus](https://expelliarmus.readthedocs.io).
