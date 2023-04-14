@@ -114,3 +114,7 @@ Shyam is a Ph.D. student in the Neuromorphic Cognitive Systems (NCS) group at th
 After working as a chip designer in the industry for over a decade, he decided to pursue a Ph.D. in Bio-Inspired Wide Band Circuits and Systems for Edge Neuromorphic Computing. His research interests lie at the intersection of analog/mixed-signal IC design, Neuroscience, and Robotics.
 
 He believes that Neuromorphic Engineering has its own merits and a coordinated effort from the community on device, circuits, and algorithm levels are needed to push the envelope.
+
+{{ figure src="catherine-schuman.jpg" caption="Catherine Schuman" width=500px }}
+
+Catherine (Katie) Schuman is an Assistant Professor in the Department of Electrical Engineering and Computer Science at the University of Tennessee (UT). She received her Ph.D. in Computer Science from UT in 2015, where she completed her dissertation on the use of evolutionary algorithms to train spiking neural networks for neuromorphic systems. Katie previously served as a research scientist at Oak Ridge National Laboratory, where her research focused on algorithms and applications of neuromorphic systems.  Katie co-leads the TENNLab Neuromorphic Computing Research Group at UT.  She has over 100 publications as well as seven patents in the field of neuromorphic computing. She received the Department of Energy Early Career Award in 2019.
