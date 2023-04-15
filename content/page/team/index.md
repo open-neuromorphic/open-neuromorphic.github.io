@@ -11,7 +11,7 @@ comments: false
 
 ## Fabrizio Ottati
 
-![Fabrizio Ottati](fabrizio-ottati.jpg)
+{{< figure src="fabrizio-ottati.jpg" caption="Fabrizio Ottati" width=500px >}}
 
 Fabrizio Ottati is a Ph.D. student in the Department of Electronics and Communications of Politecnico di Torino, under the supervision of professor Luciano Lavagno and professor Mario Roberto Casu.
 
