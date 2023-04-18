@@ -54,7 +54,11 @@ Mathis Richter is a Research Scientist in the Neuromorphic Computing Lab at Inte
 
 ## 2023-06-08: Federico Corradi
 
+TBD.
+
 ## 2023-06-22: Innatera
+
+TBD.
 
 ## 2023-07-19: Lana Josipović
 
@@ -71,6 +75,19 @@ High-level synthesis (HLS) tools generate digital hardware designs from high-lev
 ### Speaker's bio
 
 Lana Josipović is an Assistant Professor in the Department of Information Technology and Electrical Engineering at ETH Zurich. Prior to joining ETH Zurich in January 2022, she received a Ph.D. degree in Computer Science from EPFL, Switzerland. Her research interests include reconfigurable computing and electronic design automation, with an emphasis on high-level synthesis techniques to generate hardware designs from high-level programming languages. She developed Dynamatic, an open-source high-level synthesis tool that produces dynamically scheduled circuits from C/C++ code. She is a recipient of the EDAA Outstanding Dissertation Award, Google Ph.D. Fellowship in Systems and Networking, Google Women Techmakers Scholarship, and Best Paper Award at FPGA'20.
+
+## 2023-09-TBD: Giulia D'Angelo
+
+{{< figure src="giulia-dangelo.jpg" caption="Giulia D'Angelo" width=500px >}}
+
+### Abstract
+
+TBD.
+
+
+### Speaker's bio
+
+Giulia D’Angelo is a Neuroengineer, currently a Postdoctoral researcher at the Italian Institute of Technology in the Event Driven Perception for Robotics laboratory. Her current research takes advantage of bioinspired event-driven cameras and compact and low-power neuroinspired hardware for bioinspired visual algorithms. She obtained a Bachelor’s Degree in Biomedical Engineering at The University of Genoa in 2015. She, therefore, accomplished a Master’s Degree in Neuroengineering developing a neuromorphic algorithm for the egocentric representation of the peripersonal visual space at The King’s College of London. She received a Doctorate in bioinspired visual attention mechanisms for robotic applications exploiting neuromorphic architectures at The University of Manchester in 2022. She aims to emulate nature, bridging the gap between biologically plausible models of the visual system and bio-inspired hardware.
 
 # Past events
 
