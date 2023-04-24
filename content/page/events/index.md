@@ -96,7 +96,10 @@ He received a PhD from Imperial College in January 2019. His thesis was awarded 
 
 {{< figure src="giulia-dangelo.jpg" caption="Giulia D'Angelo" width=500px >}}
 
+### Event description
+
 * **Title:** TBD.
+
 * **Time:** 6PM-7:30PM, CEST.
 
 ### Abstract
