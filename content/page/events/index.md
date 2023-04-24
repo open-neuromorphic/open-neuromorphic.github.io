@@ -16,7 +16,7 @@ You can access the Google calendar with all events [here](https://calendar.googl
 
 ## 2023-04-26: Dylan Muir
 
-![Dylan Muir](dylan-muir.png)
+{{< figure src="https://avatars.githubusercontent.com/u/1415148?v=4" caption="Dylan Muir" width=500px >}}
 
 ### Event description 
 
@@ -33,7 +33,7 @@ Dylan Muir is the Vice President for Global Research Operations; Director for Al
 
 ## 2023-05-31: Andreas Wild & Mathis Richter (Intel) 
 
-![Lava](https://user-images.githubusercontent.com/68661711/135301797-400e163d-71a3-45f8-b35f-e849e8c74f0c.png)
+{{< figure src="https://user-images.githubusercontent.com/68661711/135301797-400e163d-71a3-45f8-b35f-e849e8c74f0c.png" caption="The Lava framework" width=700px" >}}
 
 
 ### Event description
@@ -58,11 +58,13 @@ TBD.
 
 ## 2023-06-22: Innatera
 
+{{< figure src="https://innatera.com/wp-content/uploads/2018/10/innatera-1.png" caption="Innatera" width=500px >}}
+
 TBD.
 
 ## 2023-07-19: Lana Josipović
 
-![Lana Josipović](lana-josipovic.jpg)
+{{< figure src="https://lh3.googleusercontent.com/U0YjOI_XxC0BBpe50Qi9iYDo-yis18jrTNnZvdbT0wACko_ytNqWgL8cK9mDFz6pF2z-EKGBLO8N3Yt1rwzIdwwD3wHy4qbR0ocw5vmVXX2v28y-xAm2oEpjvPofsYYNgw=w1280" caption="Lana Josipović" width=500px >}}
 
 * **Title:** From C/C++ to Dynamically Scheduled Circuits.
 
