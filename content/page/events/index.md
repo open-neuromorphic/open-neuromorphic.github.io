@@ -76,6 +76,22 @@ High-level synthesis (HLS) tools generate digital hardware designs from high-lev
 
 Lana Josipović is an Assistant Professor in the Department of Information Technology and Electrical Engineering at ETH Zurich. Prior to joining ETH Zurich in January 2022, she received a Ph.D. degree in Computer Science from EPFL, Switzerland. Her research interests include reconfigurable computing and electronic design automation, with an emphasis on high-level synthesis techniques to generate hardware designs from high-level programming languages. She developed Dynamatic, an open-source high-level synthesis tool that produces dynamically scheduled circuits from C/C++ code. She is a recipient of the EDAA Outstanding Dissertation Award, Google Ph.D. Fellowship in Systems and Networking, Google Women Techmakers Scholarship, and Best Paper Award at FPGA'20.
 
+## 2023-08-22: Tobias Fischer.
+
+{{< figure src="https://www.tobiasfischer.info/generated/assets/images/profile-1000-a2dde0f8b.webp" caption="Tobias Fischer" width=500px >}}
+
+### Abstract 
+
+TBD.
+
+### Speaker's bio
+
+Tobias conducts interdisciplinary research at the intersection of intelligent robotics, computer vision, and computational cognition. His main goal is to develop high-performing, bio-inspired computer vision algorithms that simultaneously examine animals/humans and robots' perceptional capabilities. 
+
+He is a Lecturer (Assistant Professor) in Queensland University of Technology's Centre for Robotics. He joined the Centre as an Associate Investigator and Research Fellow in January 2020. Previously, he was a postdoctoral researcher in the Personal Robotics Lab at Imperial College London. 
+
+He received a PhD from Imperial College in January 2019. His thesis was awarded the UK Best Thesis in Robotics Award 2018 and the Eryl Cadwaladr Davies Award for the best thesis in Imperial's EEE Department in 2017-2018. He previously received an M.Sc. degree (distinction) in Artificial Intelligence from The University of Edinburgh in 2014 and a B.Sc. degree in Computer Engineering from Ilmenau University of Technology, Germany, in 2013. His works have attracted two best poster awards, one best paper award, and he was the senior author of the winning submission to the Facebook Mapillary Place Recognition Challenge 2020.
+
 ## 2023-09-TBD: Giulia D'Angelo
 
 {{< figure src="giulia-dangelo.jpg" caption="Giulia D'Angelo" width=500px >}}
