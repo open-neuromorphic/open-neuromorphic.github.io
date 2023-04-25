@@ -11,7 +11,7 @@ description: "Events organised by ONM: talks, hands-on sessions and more. "
 
 # Upcoming events
 
-You can access the Google calendar with all events [here](https://calendar.google.com/calendar/u/4?cid=b3Blbi5uZXVyb21vcnBoaWNAZ21haWwuY29t), the events will be populated with the Zoom links once they are available.
+Join our [newsletter](https://forms.gle/FeLrRVepUGYuW23N8) to be updated on new events and get a reminder! 
 
 
 ## 2023-04-26: Dylan Muir
