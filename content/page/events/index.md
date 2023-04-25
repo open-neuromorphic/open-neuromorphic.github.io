@@ -64,7 +64,7 @@ TBD.
 
 ## 2023-07-19: Lana Josipović
 
-{{< figure src="https://lh3.googleusercontent.com/U0YjOI_XxC0BBpe50Qi9iYDo-yis18jrTNnZvdbT0wACko_ytNqWgL8cK9mDFz6pF2z-EKGBLO8N3Yt1rwzIdwwD3wHy4qbR0ocw5vmVXX2v28y-xAm2oEpjvPofsYYNgw=w1280" caption="Lana Josipović" width=500px >}}
+{{< figure src="lana-josipovic.jpg" caption="Lana Josipović" width=500px >}}
 
 * **Title:** From C/C++ to Dynamically Scheduled Circuits.
 
