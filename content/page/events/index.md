@@ -14,23 +14,6 @@ description: "Events organised by ONM: talks, hands-on sessions and more. "
 Join our [newsletter](https://forms.gle/FeLrRVepUGYuW23N8) to be updated on new events and get a reminder! 
 
 
-## 2023-04-26: Dylan Muir
-
-{{< figure src="https://avatars.githubusercontent.com/u/1415148?v=4" caption="Dylan Muir" width=500px >}}
-
-### Event description 
-
-* **Title:** Hands-on session with Xylo and Rockpool.
-
-* **Time:** 6PM - 7:30PM CET.
-
-* **Zoom:** https://tudelft.zoom.us/j/94945539238.
-
-### Speaker's bio
-
-Dylan Muir is the Vice President for Global Research Operations; Director for Algorithms and Applications; and Director for Global Business Development at SynSense. Dr. Muir is a specialist in architectures for neural computation. He has published extensively in computational and experimental neuroscience. At SynSense he is responsible for the company research vision, and directing development of neural architectures for signal processing. Dr. Muir holds a Doctor of Science (PhD) from ETH Zurich, and undergraduate degrees (Masters) in Electronic Engineering and in Computer Science from QUT, Australia.
-
-
 ## 2023-05-31: Andreas Wild & Mathis Richter (Intel) 
 
 {{< figure src="https://user-images.githubusercontent.com/68661711/135301797-400e163d-71a3-45f8-b35f-e849e8c74f0c.png" caption="The Lava framework" width=700px" >}}
@@ -220,3 +203,27 @@ Catherine (Katie) Schuman is an Assistant Professor in the Department of Electri
 His main interests are event cameras that are inspired by the human retina and spiking neural networks that mimic human brain in an effort to teach machines to compute a bit more like humans do. At the very least there are some power efficiency gains to be made, but hopefully more! Also he loves to build open source software for spike-based machine learning. You can find more information on his personal website.
 
 He is the maintainer of two open source projects in the field of neuromorphic computing, [Tonic](https://tonic.readthedocs.io) and [expelliarmus](https://expelliarmus.readthedocs.io).
+
+
+## 2023-04-26: Dylan Muir
+
+{{< figure src="https://avatars.githubusercontent.com/u/1415148?v=4" caption="Dylan Muir" width=500px >}}
+
+### Event description 
+
+* **Title:** Hands-on session with Xylo and Rockpool.
+
+* **Time:** 6PM - 7:30PM CET.
+
+* **YouTube:** https://youtu.be/WsAqVuQ3B-I.
+
+* **Code:** https://github.com/synsense/OpenNeuromorphic_26042023.
+
+* **Slides:** https://github.com/synsense/OpenNeuromorphic_26042023/raw/main/slides.pdf.
+
+### Speaker's bio
+
+Dylan Muir is the Vice President for Global Research Operations; Director for Algorithms and Applications; and Director for Global Business Development at SynSense. Dr. Muir is a specialist in architectures for neural computation. He has published extensively in computational and experimental neuroscience. At SynSense he is responsible for the company research vision, and directing development of neural architectures for signal processing. Dr. Muir holds a Doctor of Science (PhD) from ETH Zurich, and undergraduate degrees (Masters) in Electronic Engineering and in Computer Science from QUT, Australia.
+
+
+
