@@ -39,12 +39,6 @@ Mathis Richter is a Research Scientist in the Neuromorphic Computing Lab at Inte
 
 TBD.
 
-## 2023-06-22: Innatera
-
-{{< figure src="https://innatera.com/wp-content/uploads/2018/10/innatera-1.png" caption="Innatera" width=500px >}}
-
-TBD.
-
 ## 2023-07-19: Lana Josipović
 
 {{< figure src="lana-josipovic.jpg" caption="Lana Josipović" width=500px >}}
@@ -95,6 +89,14 @@ TBD.
 ### Speaker's bio
 
 Giulia D’Angelo is a Neuroengineer, currently a Postdoctoral researcher at the Italian Institute of Technology in the Event Driven Perception for Robotics laboratory. Her current research takes advantage of bioinspired event-driven cameras and compact and low-power neuroinspired hardware for bioinspired visual algorithms. She obtained a Bachelor’s Degree in Biomedical Engineering at The University of Genoa in 2015. She, therefore, accomplished a Master’s Degree in Neuroengineering developing a neuromorphic algorithm for the egocentric representation of the peripersonal visual space at The King’s College of London. She received a Doctorate in bioinspired visual attention mechanisms for robotic applications exploiting neuromorphic architectures at The University of Manchester in 2022. She aims to emulate nature, bridging the gap between biologically plausible models of the visual system and bio-inspired hardware.
+
+
+## 2023-10-22: Innatera
+
+{{< figure src="https://innatera.com/wp-content/uploads/2018/10/innatera-1.png" caption="Innatera" width=500px >}}
+
+TBD.
+
 
 # Past events
 
