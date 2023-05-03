@@ -16,7 +16,7 @@ Join our [newsletter](https://forms.gle/FeLrRVepUGYuW23N8) to be updated on new 
 
 ## 2023-05-31: Andreas Wild & Mathis Richter (Intel) 
 
-{{< figure src="https://user-images.githubusercontent.com/68661711/135301797-400e163d-71a3-45f8-b35f-e849e8c74f0c.png" caption="The Lava framework" width=700px" >}}
+{{< figure src="lava-intel.png" caption="The Lava framework" width=700px" >}}
 
 
 ### Event description
@@ -57,7 +57,7 @@ Lana Josipović is an Assistant Professor in the Department of Information Techn
 
 ## 2023-08-22: Tobias Fischer.
 
-{{< figure src="https://www.tobiasfischer.info/generated/assets/images/profile-1000-a2dde0f8b.webp" caption="Tobias Fischer" width=500px >}}
+{{< figure src="tobias-fischer.webp" caption="Tobias Fischer" width=500px >}}
 
 ### Abstract 
 
@@ -93,7 +93,27 @@ Giulia D’Angelo is a Neuroengineer, currently a Postdoctoral researcher at the
 
 ## 2023-10-22: Innatera
 
-{{< figure src="https://innatera.com/wp-content/uploads/2018/10/innatera-1.png" caption="Innatera" width=500px >}}
+{{< figure src="innatera.png" caption="Innatera" width=500px >}}
+
+TBD.
+
+
+## 2023-11-16: Timoleon Moraitis
+
+{{< figure src="timoleon-moraitis.webp" caption="Timoleon Moraitis" width=500px >}}
+
+### Event description
+
+* **Title:** Making neuromorphic computing mainstream.
+
+* **Time:** 6PM-7PM, CET.
+
+### Abstract
+
+TBD.
+
+
+### Speaker's bio
 
 TBD.
 
