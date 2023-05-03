@@ -100,7 +100,7 @@ TBD.
 
 ## 2023-11-16: Timoleon Moraitis
 
-{{< figure src="timoleon-moraitis.webp" caption="Timoleon Moraitis" width=500px >}}
+{{< figure src="timoleon-moraitis.jpeg" caption="Timoleon Moraitis" width=300px >}}
 
 ### Event description
 
