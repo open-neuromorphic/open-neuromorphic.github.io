@@ -46,3 +46,7 @@ Specific areas:
 Check out our [opportunities page](http://imse-cnm.csic.es/en/career-imse.php).
 
 **Contact:** bernabe@imse-cnm.csic.es.
+
+### Scientist - Exploratory Research Project Innovative Neuromorphic Vision Sensors (INVISIONS)
+
+https://recruitment.jrc.ec.europa.eu/showprj.php?type=A&id=2539&target=
