@@ -36,6 +36,16 @@ Andreas Wild received the Dr. rer. nat degree in physics with a focus on the dev
 Mathis Richter is a Research Scientist in the Neuromorphic Computing Lab at Intel Labs, where he leads the Application Software team, developing commercial software solutions based on neuromorphic technology. Before joining Intel in 2021, he worked as a post doc and PhD student on neural process models of higher cognition at the Institute for Neural Computation, Ruhr-University Bochum.
 
 ## 2023-06-08: Federico Corradi
+### Title
+Low-power spiking neural network processing systems for extreme-edge applications
+
+### Time
+6pm CET
+
+### Abstract
+Without a doubt, we are still many orders of magnitude away from reaching the incredible efficiency, speed, and intelligence found in natural brains with our modern computing architectures. Moreover, our traditional computing systems are currently hitting hard limits, such as the memory wall and the end of Dennard scaling (i.e., the performance per watt increase has slowed significantly). For these reasons, many scientists worldwide are researching new computing architectures inspired by the brain. In this regard, neuromorphic computing is among the most promising approaches for achieving energy-efficient hardware systems for real-time signal processing; it can potentially enable several edge artificial intelligence tasks. In this approach, brain computation is mimicked at the circuit level, employing event-driven and massively parallel spiking neural networks directly implemented in hardware.
+
+During this talk, Dr Corradi will present the computing paradigm of spiking neural networks and illustrate practical training algorithms and a family of computing architectures based on ultra-low-power and massively parallel implementations of neurons and synapse circuits. Finally, he will showcase a few prototype devices that meet extreme-edge applications' strict energy and cost reduction constraints on the Internet of Things and biomedical signal processing applications.
 
 TBD.
 
