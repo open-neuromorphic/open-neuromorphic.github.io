@@ -25,6 +25,8 @@ Join our [newsletter](https://forms.gle/FeLrRVepUGYuW23N8) to be updated on new 
 
 * **Time:** 6PM - 7:30PM CET.
 
+* **Zoom:** https://tudelft.zoom.us/j/98895034054. 
+
 ### Abstract
 Lava is an open-source software framework for developing neuro-inspired applications and mapping them to heterogeneous neuromorphic hardware systems. Lava allows programming fast and energy efficient neuromorphic platforms at a high level of abstraction. This enables researchers and application experts to easily develop a broad range of neuromorphic applications that process, learn from, and respond to real-world data with unprecedent performance compared to conventional architectures. Lava currently supports applications on Intel’s Loihi 2 neuromorphic research chip as well as on CPU/GPUs. Our vision for Lava is to promote convergence toward a common software framework for the neuromorphic community and to spread the adoption of this emerging computing paradigm.
 
