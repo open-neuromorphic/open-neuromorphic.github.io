@@ -20,6 +20,9 @@ Join our [newsletter](https://forms.gle/FeLrRVepUGYuW23N8) to be updated on new 
 ### Time
 6pm CEST
 
+### Link
+https://tudelft.zoom.us/j/99670279744
+
 ### Abstract
 Without a doubt, we are still many orders of magnitude away from reaching the incredible efficiency, speed, and intelligence found in natural brains with our modern computing architectures. Moreover, our traditional computing systems are currently hitting hard limits, such as the memory wall and the end of Dennard scaling (i.e., the performance per watt increase has slowed significantly). For these reasons, many scientists worldwide are researching new computing architectures inspired by the brain. In this regard, neuromorphic computing is among the most promising approaches for achieving energy-efficient hardware systems for real-time signal processing; it can potentially enable several edge artificial intelligence tasks. In this approach, brain computation is mimicked at the circuit level, employing event-driven and massively parallel spiking neural networks directly implemented in hardware.
 
