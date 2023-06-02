@@ -13,12 +13,12 @@ description: "Events organised by ONM: talks, hands-on sessions and more. "
 
 Join our [newsletter](https://forms.gle/FeLrRVepUGYuW23N8) to be updated on new events and get a reminder! 
 
-## 2023-06-08: Federico Corradi
-### Title
-Low-power spiking neural network processing systems for extreme-edge applications
+## 2023-06-08: Federico Corradi, Low-power spiking neural network processing systems for extreme-edge applications
+
+{{< figure src="corradi.jpg" caption="Federico Corradi" width=300px >}}
 
 ### Time
-6pm CET
+6pm CEST
 
 ### Abstract
 Without a doubt, we are still many orders of magnitude away from reaching the incredible efficiency, speed, and intelligence found in natural brains with our modern computing architectures. Moreover, our traditional computing systems are currently hitting hard limits, such as the memory wall and the end of Dennard scaling (i.e., the performance per watt increase has slowed significantly). For these reasons, many scientists worldwide are researching new computing architectures inspired by the brain. In this regard, neuromorphic computing is among the most promising approaches for achieving energy-efficient hardware systems for real-time signal processing; it can potentially enable several edge artificial intelligence tasks. In this approach, brain computation is mimicked at the circuit level, employing event-driven and massively parallel spiking neural networks directly implemented in hardware.
@@ -32,11 +32,9 @@ Dr. Corradi received a Ph.D. degree from the University of Zurich in Neuroinform
 
 He is an active review editor of Frontiers in Neuromorphic Engineering, IEEE, and other international journals. In addition, he currently serves as a technical program committee member of several machine learning and neuromorphic symposiums and conferences (ICTOPEN, ICONS, DSD, EUROMICRO). 
 
-## 2023-07-19: Lana Josipović
+## 2023-07-19: Lana Josipović, From C/C++ to Dynamically Scheduled Circuits
 
 {{< figure src="lana-josipovic.jpg" caption="Lana Josipović" width=500px >}}
-
-* **Title:** From C/C++ to Dynamically Scheduled Circuits.
 
 * **Time:** 6PM - 7:30PM CET.
 
@@ -53,11 +51,9 @@ Lana Josipović is an Assistant Professor in the Department of Information Techn
 {{< figure src="tobias-fischer.webp" caption="Tobias Fischer" width=500px >}}
 
 ### Abstract 
-
 TBD.
 
 ### Speaker's bio
-
 Tobias conducts interdisciplinary research at the intersection of intelligent robotics, computer vision, and computational cognition. His main goal is to develop high-performing, bio-inspired computer vision algorithms that simultaneously examine animals/humans and robots' perceptional capabilities. 
 
 He is a Lecturer (Assistant Professor) in Queensland University of Technology's Centre for Robotics. He joined the Centre as an Associate Investigator and Research Fellow in January 2020. Previously, he was a postdoctoral researcher in the Personal Robotics Lab at Imperial College London. 
@@ -68,16 +64,11 @@ He received a PhD from Imperial College in January 2019. His thesis was awarded 
 
 {{< figure src="giulia-dangelo.jpg" caption="Giulia D'Angelo" width=500px >}}
 
-### Event description
-
-* **Title:** TBD.
-
-* **Time:** 6PM-7:30PM, CEST.
+### Time
+6PM-7:30PM, CEST.
 
 ### Abstract
-
 TBD.
-
 
 ### Speaker's bio
 
@@ -91,15 +82,12 @@ Giulia D’Angelo is a Neuroengineer, currently a Postdoctoral researcher at the
 TBD.
 
 
-## 2023-11-16: Timoleon Moraitis
+## 2023-11-16: Timoleon Moraitis, Making neuromorphic computing mainstream
 
 {{< figure src="timoleon-moraitis.png" caption="Timoleon Moraitis" width=400px >}}
 
-### Event description
-
-* **Title:** Making neuromorphic computing mainstream.
-
-* **Time:** 6PM-7PM, CET.
+### Time
+6PM-7PM, CET.
 
 ### Abstract
 
@@ -124,7 +112,7 @@ On the 13th of December 2022, the first edition of Open Neuromorphic took place!
 
 Host: [Fabrizio Ottati](https://fabrizio-ottati.github.io) ([slides](/onm-events/event-22-12-13/slides/fabrizio-ottati.pdf)).
 
-## 2023-01-26: Trevor Bekolay: Nengo - Applied Brain Research
+## 2023-01-26: Trevor Bekolay, Nengo - Applied Brain Research
 
 ![Trevor Bekolay](trevor-bekolay.jpeg)
 
@@ -140,7 +128,7 @@ Trevor Bekolay’s primary research interest is in learning and memory. In his M
 Trevor is also passionate about reproducible science, particularly when complex software pipelines are involved. In 2013, he started a development effort to reimplement the Nengo neural simulator from scratch in Python, which has now grown to a project with over 20 contributors around the world.
 
 
-## 2023-02-14: Giorgia Dellaferrera: PEPITA - A forward-forward alternative to backpropagation
+## 2023-02-14: Giorgia Dellaferrera, PEPITA - A forward-forward alternative to backpropagation
 
 ![Giorgia Dellaferrera](giorgia-dellaferrera.jpeg)
 
@@ -154,7 +142,7 @@ https://youtu.be/RKgdUrCun5w
 Giorgia Dellaferrera has completed her PhD in computational neuroscience at the Institute of Neuroinformatics (ETH Zurich and the University of Zurich) and IBM Research Zurich with Prof. Indiveri, Prof. Eleftheriou and Dr. Pantazi. Her doctoral thesis focused on the interplay between neuroscience and artificial intelligence, with an emphasis on learning mechanisms in brains and machines. During her PhD, she visited the lab of Prof. Kreiman at the Harvard Medical School (US), where she developed a biologically inspired training strategy for artificial neural networks. Before her PhD, Giorgia obtained a master in Applied Physics at the Swiss Federal Institute of Technology Lausanne (EPFL) and worked as an intern at the Okinawa Institute of Science and Technology, Logitech, Imperial College London, and EPFL.
 
 
-## 2023-03-02: Jason Eshraghian: Hands-on session with snnTorch
+## 2023-03-02: Jason Eshraghian, Hands-on session with snnTorch
 
 ![Jason Eshraghian](jason-eshraghian.webp)
 
@@ -170,7 +158,7 @@ https://github.com/open-neuromorphic/hands-on-session-snntorch-230302
 Professor Eshraghian was awarded the 2019 IEEE VLSI Best Paper Award, the Best Paper Award at 2019 IEEE Artificial Intelligence CAS Conference, and the Best Live Demonstration Award at 2020 IEEE ICECS for his work on neuromorphic vision and in-memory computing using RRAM. He currently serves as the secretary-elect of the IEEE Neural Systems and Applications Committee, and was a recipient of the Fulbright Future Fellowship (Australian-America Fulbright Commission), the Forrest Research Fellowship (Forrest Research Foundation), and the Endeavour Fellowship (Australian Government).
 
 
-## 2023-03-21: Catherine Schuman: Evolutionary Optimization for Neuromorphic Systems
+## 2023-03-21: Catherine Schuman, Evolutionary Optimization for Neuromorphic Systems
 
 ![Catherine Schuman](catherine-schuman.webp)
 
@@ -180,7 +168,7 @@ https://youtu.be/-g5XZDJPoO8
 ### Speaker's bio
 Catherine (Katie) Schuman is an Assistant Professor in the Department of Electrical Engineering and Computer Science at the University of Tennessee (UT). She received her Ph.D. in Computer Science from UT in 2015, where she completed her dissertation on the use of evolutionary algorithms to train spiking neural networks for neuromorphic systems. Katie previously served as a research scientist at Oak Ridge National Laboratory, where her research focused on algorithms and applications of neuromorphic systems.  Katie co-leads the TENNLab Neuromorphic Computing Research Group at UT.  She has over 100 publications as well as seven patents in the field of neuromorphic computing. She received the Department of Energy Early Career Award in 2019.
 
-## 2023-04-04: Gregor Lenz: Hands-on session with Sinabs and Speck
+## 2023-04-04: Gregor Lenz, Hands-on session with Sinabs and Speck
 
  ![Gregor Lenz](gregor-lenz.jpeg)
 
@@ -188,7 +176,6 @@ Catherine (Katie) Schuman is an Assistant Professor in the Department of Electri
 https://youtu.be/kOiyRtvPO2Q
 
 ### Speaker's bio
-
 [Gregor Lenz](https://lenzgregor.com) graduated with a Ph.D. in neuromorphic engineering from Sorbonne University. He thinks that technology can learn a thing or two from how biological systems process information.
 
 His main interests are event cameras that are inspired by the human retina and spiking neural networks that mimic human brain in an effort to teach machines to compute a bit more like humans do. At the very least there are some power efficiency gains to be made, but hopefully more! Also he loves to build open source software for spike-based machine learning. You can find more information on his personal website.
@@ -196,7 +183,7 @@ His main interests are event cameras that are inspired by the human retina and s
 He is the maintainer of two open source projects in the field of neuromorphic computing, [Tonic](https://tonic.readthedocs.io) and [expelliarmus](https://expelliarmus.readthedocs.io).
 
 
-## 2023-04-26: Dylan Muir: Hands-on session with Xylo and Rockpool
+## 2023-04-26: Dylan Muir, Hands-on session with Xylo and Rockpool
 
 {{< figure src="https://avatars.githubusercontent.com/u/1415148?v=4" caption="Dylan Muir" width=500px >}}
 
@@ -213,7 +200,7 @@ https://github.com/synsense/OpenNeuromorphic_26042023/raw/main/slides.pdf
 
 Dylan Muir is the Vice President for Global Research Operations; Director for Algorithms and Applications; and Director for Global Business Development at SynSense. Dr. Muir is a specialist in architectures for neural computation. He has published extensively in computational and experimental neuroscience. At SynSense he is responsible for the company research vision, and directing development of neural architectures for signal processing. Dr. Muir holds a Doctor of Science (PhD) from ETH Zurich, and undergraduate degrees (Masters) in Electronic Engineering and in Computer Science from QUT, Australia.
 
-## 2023-05-31: Andreas Wild & Mathis Richter: Lava - an open-source software framework for developing neuro-inspired applications.
+## 2023-05-31: Andreas Wild & Mathis Richter, Lava - an open-source software framework for developing neuro-inspired applications.
 
 {{< figure src="lava-intel.png" caption="The Lava framework" width=700px" >}}
 
