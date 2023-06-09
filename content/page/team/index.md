@@ -126,3 +126,10 @@ Catherine (Katie) Schuman is an Assistant Professor in the Department of Electri
 {{< figure src="melika-payvand.jpg" caption="Melika Payvand" width=500px >}}
 
 Melika Payvand is an Assistant Professor at the Institute of Neuroinformatics, University of Zurich and ETH Zurich. She received her PhD in Electrical and Computer Engineering at the University of California Santa Barbara. Her recent research interest is in developing  on-device learning systems that form themselves to the sensory input in a real-time fashion.  Specifically, she exploits the physics of resistive memory for synaptic, neuronal, dendritic and structural plasticity, inspired by the structure-function relationship of the brain circuits. She is the recipient of the 2023 “Swiss ERC” starting grant and "Best Neuromorph" award at 2019 Telluride workshop. She has co-coordinated the European project [NEUROTECH](https://neurotechai.eu), is the program co-chair of the International Conference on Neuromorphic Systems (ICONS) and co-organizes the scientific program of the Capocaccia Neuromorphic Intelligence workshop.
+
+
+## Henning Wessels 
+
+{{< figure src="henning-wessels.jpg" caption="Henning Wessels" width=500px >}}
+
+Henning Wessels is Assistant Professor at the Department of Civil and Environmental Engineering, Technical University Braunschweig, where he is leading the data-driven modeling group. His group is developing computational methods at the intersection of mechanics, numerics, machine learning and uncertainty quantification. Applications can be found, for instance, in virtual sensing and structural health monitoring. Here, SNN offer huge potential for data-driven mechanics on neuromorphic hardware within embedded systems.
