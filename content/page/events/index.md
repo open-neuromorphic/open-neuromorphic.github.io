@@ -13,27 +13,18 @@ description: "Events organised by ONM: talks, hands-on sessions and more. "
 
 Join our [newsletter](https://forms.gle/FeLrRVepUGYuW23N8) to be updated on new events and get a reminder! 
 
-## 2023-06-08: Federico Corradi, Low-power spiking neural network processing systems for extreme-edge applications
+## 2023-07-11: Konrad Kording, Does the brain do gradient descent?
 
-{{< figure src="corradi.jpg" caption="Federico Corradi" width=300px >}}
+{{< figure src="konrad-kording.jpg" caption="Konrad Kording" width=500px >}}
 
-### Time
-6pm CEST
+* **Title:** Does the brain do gradient descent? If so, how?
 
-### Link
-https://tudelft.zoom.us/j/99670279744
-
-### Abstract
-Without a doubt, we are still many orders of magnitude away from reaching the incredible efficiency, speed, and intelligence found in natural brains with our modern computing architectures. Moreover, our traditional computing systems are currently hitting hard limits, such as the memory wall and the end of Dennard scaling (i.e., the performance per watt increase has slowed significantly). For these reasons, many scientists worldwide are researching new computing architectures inspired by the brain. In this regard, neuromorphic computing is among the most promising approaches for achieving energy-efficient hardware systems for real-time signal processing; it can potentially enable several edge artificial intelligence tasks. In this approach, brain computation is mimicked at the circuit level, employing event-driven and massively parallel spiking neural networks directly implemented in hardware.
-
-During this talk, Dr Corradi will present the computing paradigm of spiking neural networks and illustrate practical training algorithms and a family of computing architectures based on ultra-low-power and massively parallel implementations of neurons and synapse circuits. Finally, he will showcase a few prototype devices that meet extreme-edge applications' strict energy and cost reduction constraints on the Internet of Things and biomedical signal processing applications.
+* **Time:** 6:30PM - 7:30PM CEST.
+* **Zoom link:** https://tudelft.zoom.us/j/97926997147?pwd=cVY3T0lrU0Q4aHprbmJvTC9aZkZOQT09.
 
 ### Speaker's bio
-Dr. Federico Corradi is an Assistant Professor in the Electrical Engineering Department. His research activities are in Neuromorphic Computing and Engineering and span from the development of efficient models of computation to novel microelectronic architectures, with CMOS and emerging technologies, for both efficient deep learning and brain-inspired algorithms. His long-term research goal is to understand the principles of computation in natural neural systems and apply those for the development of a new generation of energy-efficient sensing and computing technologies. His research outputs find use in several application domains as robotics, machine vision, temporal signal processing, and biomedical signal analysis. 
 
-Dr. Corradi received a Ph.D. degree from the University of Zurich in Neuroinformatics and an international Ph.D. from the ETH Neuroscience Centre Zurich in 2015. He was a Postgraduate at the Institute of Neuroinformatics in 2018. From 2015 to 2018, he worked in the Institute of Neuroinformatics' spin-off company Inilabs, developing event-based cameras and neuromorphic processors. From 2018 to 2022, he was at IMEC, the Netherlands, where he started a group focusing on neuromorphic ICs design activities. His passion for research recently brought him back to academia while keeping strong ties with startups and companies. 
-
-He is an active review editor of Frontiers in Neuromorphic Engineering, IEEE, and other international journals. In addition, he currently serves as a technical program committee member of several machine learning and neuromorphic symposiums and conferences (ICTOPEN, ICONS, DSD, EUROMICRO). 
+Konrad Kording runs his lab at the University of Pennsylvania. Konrad is interested in the question of how the brain solves the credit assignment problem and similarly how we should assign credit in the real world (through causality). In extension of this main thrust he is interested in applications of causality in biomedical research. Konrad has trained as student at ETH Zurich with Peter Konig, as postdoc at UCL London with Daniel Wolpert and at MIT with Josh Tenenbaum. After a decade at Northwestern University, he is now PIK professor at UPenn.
 
 ## 2023-07-19: Lana Josipović, From C/C++ to Dynamically Scheduled Circuits
 
@@ -220,3 +211,27 @@ In this session, we will give an overview of Lava, explain the software stack al
 Andreas Wild received the Dr. rer. nat degree in physics with a focus on the development of silicon-based electron spin qubits from the Technical University of Munich, Germany, in 2013. After joining Intel in 2013, he has been a Senior Researcher with the Intel Neuromorphic Computing Lab since 2015 where he leads algorithm research.
 
 Mathis Richter is a Research Scientist in the Neuromorphic Computing Lab at Intel Labs, where he leads the Application Software team, developing commercial software solutions based on neuromorphic technology. Before joining Intel in 2021, he worked as a post doc and PhD student on neural process models of higher cognition at the Institute for Neural Computation, Ruhr-University Bochum.
+
+## 2023-06-08: Federico Corradi
+
+{{< figure src="corradi.jpg" caption="Federico Corradi" width=300px >}}
+
+### Time
+6pm CEST
+
+### Link
+https://tudelft.zoom.us/j/99670279744
+
+### Abstract
+Without a doubt, we are still many orders of magnitude away from reaching the incredible efficiency, speed, and intelligence found in natural brains with our modern computing architectures. Moreover, our traditional computing systems are currently hitting hard limits, such as the memory wall and the end of Dennard scaling (i.e., the performance per watt increase has slowed significantly). For these reasons, many scientists worldwide are researching new computing architectures inspired by the brain. In this regard, neuromorphic computing is among the most promising approaches for achieving energy-efficient hardware systems for real-time signal processing; it can potentially enable several edge artificial intelligence tasks. In this approach, brain computation is mimicked at the circuit level, employing event-driven and massively parallel spiking neural networks directly implemented in hardware.
+
+During this talk, Dr Corradi will present the computing paradigm of spiking neural networks and illustrate practical training algorithms and a family of computing architectures based on ultra-low-power and massively parallel implementations of neurons and synapse circuits. Finally, he will showcase a few prototype devices that meet extreme-edge applications' strict energy and cost reduction constraints on the Internet of Things and biomedical signal processing applications.
+
+### Speaker's bio
+Dr. Federico Corradi is an Assistant Professor in the Electrical Engineering Department. His research activities are in Neuromorphic Computing and Engineering and span from the development of efficient models of computation to novel microelectronic architectures, with CMOS and emerging technologies, for both efficient deep learning and brain-inspired algorithms. His long-term research goal is to understand the principles of computation in natural neural systems and apply those for the development of a new generation of energy-efficient sensing and computing technologies. His research outputs find use in several application domains as robotics, machine vision, temporal signal processing, and biomedical signal analysis. 
+
+Dr. Corradi received a Ph.D. degree from the University of Zurich in Neuroinformatics and an international Ph.D. from the ETH Neuroscience Centre Zurich in 2015. He was a Postgraduate at the Institute of Neuroinformatics in 2018. From 2015 to 2018, he worked in the Institute of Neuroinformatics' spin-off company Inilabs, developing event-based cameras and neuromorphic processors. From 2018 to 2022, he was at IMEC, the Netherlands, where he started a group focusing on neuromorphic ICs design activities. His passion for research recently brought him back to academia while keeping strong ties with startups and companies. 
+
+He is an active review editor of Frontiers in Neuromorphic Engineering, IEEE, and other international journals. In addition, he currently serves as a technical program committee member of several machine learning and neuromorphic symposiums and conferences (ICTOPEN, ICONS, DSD, EUROMICRO). 
+
+
