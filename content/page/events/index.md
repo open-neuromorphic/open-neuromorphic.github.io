@@ -13,33 +13,6 @@ description: "Events organised by ONM: talks, hands-on sessions and more. "
 
 Join our [newsletter](https://forms.gle/FeLrRVepUGYuW23N8) to be updated on new events and get a reminder! 
 
-## 2023-07-11: Konrad Kording, Does the brain do gradient descent?
-
-{{< figure src="konrad-kording.jpg" caption="Konrad Kording" width=500px >}}
-
-* **Title:** Does the brain do gradient descent? If so, how?
-
-* **Time:** 6:30PM - 7:30PM CEST.
-* **Zoom link:** https://tudelft.zoom.us/j/97926997147?pwd=cVY3T0lrU0Q4aHprbmJvTC9aZkZOQT09.
-
-### Speaker's bio
-
-Konrad Kording runs his lab at the University of Pennsylvania. Konrad is interested in the question of how the brain solves the credit assignment problem and similarly how we should assign credit in the real world (through causality). In extension of this main thrust he is interested in applications of causality in biomedical research. Konrad has trained as student at ETH Zurich with Peter Konig, as postdoc at UCL London with Daniel Wolpert and at MIT with Josh Tenenbaum. After a decade at Northwestern University, he is now PIK professor at UPenn.
-
-## 2023-07-19: Lana Josipović, From C/C++ to Dynamically Scheduled Circuits
-
-{{< figure src="lana-josipovic.jpg" caption="Lana Josipović" width=500px >}}
-
-* **Time:** 6PM - 7:30PM CET.
-
-### Abstract
-
-High-level synthesis (HLS) tools generate digital hardware designs from high-level programming languages (e.g., C/C++) and promise to liberate designers from low-level hardware description details. Yet, HLS tools are still acceptable only for certain classes of applications and are criticized for the difficulty of extracting the desired level of performance: generating good circuits still requires tedious code restructuring and hardware design expertise. In this talk, I will present a new HLS methodology that produces dynamically scheduled, dataflow circuits out of C/C++ code; the resulting circuits achieve good performance out-of-the-box and realize behaviors that are beyond the capabilities of standard HLS tools. I will outline mathematical models to optimize the performance and area of the resulting circuits, as well as techniques to achieve characteristics that standard HLS cannot support, such as out-of-order memory accesses and speculative execution. These contributions redefine the HLS paradigm by introducing characteristics of modern superscalar processors to hardware designs; such behaviors are key for specialized computing to be successful in new contexts and broader application domains.
-
-### Speaker's bio
-
-Lana Josipović is an Assistant Professor in the Department of Information Technology and Electrical Engineering at ETH Zurich. Prior to joining ETH Zurich in January 2022, she received a Ph.D. degree in Computer Science from EPFL, Switzerland. Her research interests include reconfigurable computing and electronic design automation, with an emphasis on high-level synthesis techniques to generate hardware designs from high-level programming languages. She developed Dynamatic, an open-source high-level synthesis tool that produces dynamically scheduled circuits from C/C++ code. She is a recipient of the EDAA Outstanding Dissertation Award, Google Ph.D. Fellowship in Systems and Networking, Google Women Techmakers Scholarship, and Best Paper Award at FPGA'20.
-
 ## 2023-08-22: Tobias Fischer.
 
 {{< figure src="tobias-fischer.webp" caption="Tobias Fischer" width=500px >}}
@@ -233,5 +206,32 @@ Dr. Federico Corradi is an Assistant Professor in the Electrical Engineering Dep
 Dr. Corradi received a Ph.D. degree from the University of Zurich in Neuroinformatics and an international Ph.D. from the ETH Neuroscience Centre Zurich in 2015. He was a Postgraduate at the Institute of Neuroinformatics in 2018. From 2015 to 2018, he worked in the Institute of Neuroinformatics' spin-off company Inilabs, developing event-based cameras and neuromorphic processors. From 2018 to 2022, he was at IMEC, the Netherlands, where he started a group focusing on neuromorphic ICs design activities. His passion for research recently brought him back to academia while keeping strong ties with startups and companies. 
 
 He is an active review editor of Frontiers in Neuromorphic Engineering, IEEE, and other international journals. In addition, he currently serves as a technical program committee member of several machine learning and neuromorphic symposiums and conferences (ICTOPEN, ICONS, DSD, EUROMICRO). 
+
+## 2023-07-11: Konrad Kording, Does the brain do gradient descent?
+
+{{< figure src="konrad-kording.jpg" caption="Konrad Kording" width=500px >}}
+
+* **Title:** Does the brain do gradient descent? If so, how?
+
+* **Time:** 6:30PM - 7:30PM CEST.
+* **Zoom link:** https://tudelft.zoom.us/j/97926997147?pwd=cVY3T0lrU0Q4aHprbmJvTC9aZkZOQT09.
+
+### Speaker's bio
+
+Konrad Kording runs his lab at the University of Pennsylvania. Konrad is interested in the question of how the brain solves the credit assignment problem and similarly how we should assign credit in the real world (through causality). In extension of this main thrust he is interested in applications of causality in biomedical research. Konrad has trained as student at ETH Zurich with Peter Konig, as postdoc at UCL London with Daniel Wolpert and at MIT with Josh Tenenbaum. After a decade at Northwestern University, he is now PIK professor at UPenn.
+
+## 2023-07-19: Lana Josipović, From C/C++ to Dynamically Scheduled Circuits
+
+{{< figure src="lana-josipovic.jpg" caption="Lana Josipović" width=500px >}}
+
+* **Time:** 6PM - 7:30PM CET.
+
+### Abstract
+
+High-level synthesis (HLS) tools generate digital hardware designs from high-level programming languages (e.g., C/C++) and promise to liberate designers from low-level hardware description details. Yet, HLS tools are still acceptable only for certain classes of applications and are criticized for the difficulty of extracting the desired level of performance: generating good circuits still requires tedious code restructuring and hardware design expertise. In this talk, I will present a new HLS methodology that produces dynamically scheduled, dataflow circuits out of C/C++ code; the resulting circuits achieve good performance out-of-the-box and realize behaviors that are beyond the capabilities of standard HLS tools. I will outline mathematical models to optimize the performance and area of the resulting circuits, as well as techniques to achieve characteristics that standard HLS cannot support, such as out-of-order memory accesses and speculative execution. These contributions redefine the HLS paradigm by introducing characteristics of modern superscalar processors to hardware designs; such behaviors are key for specialized computing to be successful in new contexts and broader application domains.
+
+### Speaker's bio
+
+Lana Josipović is an Assistant Professor in the Department of Information Technology and Electrical Engineering at ETH Zurich. Prior to joining ETH Zurich in January 2022, she received a Ph.D. degree in Computer Science from EPFL, Switzerland. Her research interests include reconfigurable computing and electronic design automation, with an emphasis on high-level synthesis techniques to generate hardware designs from high-level programming languages. She developed Dynamatic, an open-source high-level synthesis tool that produces dynamically scheduled circuits from C/C++ code. She is a recipient of the EDAA Outstanding Dissertation Award, Google Ph.D. Fellowship in Systems and Networking, Google Women Techmakers Scholarship, and Best Paper Award at FPGA'20.
 
 
