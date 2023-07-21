@@ -189,11 +189,10 @@ Mathis Richter is a Research Scientist in the Neuromorphic Computing Lab at Inte
 
 {{< figure src="corradi.jpg" caption="Federico Corradi" width=300px >}}
 
-### Time
-6pm CEST
+### Recording
 
-### Link
-https://tudelft.zoom.us/j/99670279744
+[https://youtu.be/xiYUVzdwDIA](https://youtu.be/xiYUVzdwDIA).
+
 
 ### Abstract
 Without a doubt, we are still many orders of magnitude away from reaching the incredible efficiency, speed, and intelligence found in natural brains with our modern computing architectures. Moreover, our traditional computing systems are currently hitting hard limits, such as the memory wall and the end of Dennard scaling (i.e., the performance per watt increase has slowed significantly). For these reasons, many scientists worldwide are researching new computing architectures inspired by the brain. In this regard, neuromorphic computing is among the most promising approaches for achieving energy-efficient hardware systems for real-time signal processing; it can potentially enable several edge artificial intelligence tasks. In this approach, brain computation is mimicked at the circuit level, employing event-driven and massively parallel spiking neural networks directly implemented in hardware.
@@ -211,10 +210,9 @@ He is an active review editor of Frontiers in Neuromorphic Engineering, IEEE, an
 
 {{< figure src="konrad-kording.jpg" caption="Konrad Kording" width=500px >}}
 
-* **Title:** Does the brain do gradient descent? If so, how?
+### Recoding
 
-* **Time:** 6:30PM - 7:30PM CEST.
-* **Zoom link:** https://tudelft.zoom.us/j/97926997147?pwd=cVY3T0lrU0Q4aHprbmJvTC9aZkZOQT09.
+[https://youtu.be/E5hATeCZQnU](https://youtu.be/E5hATeCZQnU).
 
 ### Speaker's bio
 
@@ -224,7 +222,9 @@ Konrad Kording runs his lab at the University of Pennsylvania. Konrad is interes
 
 {{< figure src="lana-josipovic.jpg" caption="Lana Josipović" width=500px >}}
 
-* **Time:** 6PM - 7:30PM CET.
+### Recoding
+
+[https://youtu.be/mQU8iU0HyHw](https://youtu.be/mQU8iU0HyHw).
 
 ### Abstract
 
