@@ -12,9 +12,11 @@ menu:
 ![Trevor Bekolay](trevor-bekolay.jpeg)
 
 ### Recording
+
 https://youtu.be/sgu9l_bqAHM
 
 ### Slides
+
 [click here](2023-01-26-Nengo.pdf)
 
 ### Speaker's bio
@@ -28,9 +30,11 @@ Trevor is also passionate about reproducible science, particularly when complex 
 ![Giorgia Dellaferrera](giorgia-dellaferrera.jpeg)
 
 ### Recording
+
 https://youtu.be/RKgdUrCun5w
 
 ### Slides
+
 [click here](2023-02-14-Giorgia-Dellaferrera.pdf)
 
 ### Speaker's bio
@@ -42,12 +46,15 @@ Giorgia Dellaferrera has completed her PhD in computational neuroscience at the 
 ![Jason Eshraghian](jason-eshraghian.webp)
 
 ### Recording
+
 https://youtu.be/aUjWRpisRRg
 
 ### Notebooks
+
 https://github.com/open-neuromorphic/hands-on-session-snntorch-230302
 
 ### Speaker's bio
+
 [Jason K. Eshraghian](https://jasoneshraghian.com) is an Assistant Professor at the Department of Electrical and Computer Engineering at UC Santa Cruz, CA, USA. Prior to that, he was a Post-Doctoral Researcher at the Department of Electrical Engineering and Computer Science, University of Michigan in Ann Arbor. He received the Bachelor of Engineering (Electrical and Electronic) and the Bachelor of Laws degrees from The University of Western Australia, WA, Australia in 2016, where he also completed his Ph.D. Degree. 
 
 Professor Eshraghian was awarded the 2019 IEEE VLSI Best Paper Award, the Best Paper Award at 2019 IEEE Artificial Intelligence CAS Conference, and the Best Live Demonstration Award at 2020 IEEE ICECS for his work on neuromorphic vision and in-memory computing using RRAM. He currently serves as the secretary-elect of the IEEE Neural Systems and Applications Committee, and was a recipient of the Fulbright Future Fellowship (Australian-America Fulbright Commission), the Forrest Research Fellowship (Forrest Research Foundation), and the Endeavour Fellowship (Australian Government).
@@ -58,9 +65,11 @@ Professor Eshraghian was awarded the 2019 IEEE VLSI Best Paper Award, the Best P
 ![Catherine Schuman](catherine-schuman.webp)
 
 ### Recording 
+
 https://youtu.be/-g5XZDJPoO8
 
 ### Speaker's bio
+
 Catherine (Katie) Schuman is an Assistant Professor in the Department of Electrical Engineering and Computer Science at the University of Tennessee (UT). She received her Ph.D. in Computer Science from UT in 2015, where she completed her dissertation on the use of evolutionary algorithms to train spiking neural networks for neuromorphic systems. Katie previously served as a research scientist at Oak Ridge National Laboratory, where her research focused on algorithms and applications of neuromorphic systems.  Katie co-leads the TENNLab Neuromorphic Computing Research Group at UT.  She has over 100 publications as well as seven patents in the field of neuromorphic computing. She received the Department of Energy Early Career Award in 2019.
 
 ## 2023-04-04: Gregor Lenz, Hands-on session with Sinabs and Speck
@@ -68,9 +77,11 @@ Catherine (Katie) Schuman is an Assistant Professor in the Department of Electri
  ![Gregor Lenz](gregor-lenz.jpeg)
 
 ### Recording
+
 https://youtu.be/kOiyRtvPO2Q
 
 ### Speaker's bio
+
 [Gregor Lenz](https://lenzgregor.com) graduated with a Ph.D. in neuromorphic engineering from Sorbonne University. He thinks that technology can learn a thing or two from how biological systems process information.
 
 His main interests are event cameras that are inspired by the human retina and spiking neural networks that mimic human brain in an effort to teach machines to compute a bit more like humans do. At the very least there are some power efficiency gains to be made, but hopefully more! Also he loves to build open source software for spike-based machine learning. You can find more information on his personal website.
@@ -83,12 +94,15 @@ He is the maintainer of two open source projects in the field of neuromorphic co
 {{< figure src="https://avatars.githubusercontent.com/u/1415148?v=4" caption="Dylan Muir" width=500px >}}
 
 ### Recording
+
 https://youtu.be/WsAqVuQ3B-I
 
 ### Code
+
 https://github.com/synsense/OpenNeuromorphic_26042023
 
 ### Slides
+
 https://github.com/synsense/OpenNeuromorphic_26042023/raw/main/slides.pdf
 
 ### Speaker's bio
@@ -101,9 +115,11 @@ Dylan Muir is the Vice President for Global Research Operations; Director for Al
 
 
 ### Recording 
+
 https://www.youtube.com/watch?v=vXZukQ6A79k 
 
 ### Speakers' bios
+
 Andreas Wild received the Dr. rer. nat degree in physics with a focus on the development of silicon-based electron spin qubits from the Technical University of Munich, Germany, in 2013. After joining Intel in 2013, he has been a Senior Researcher with the Intel Neuromorphic Computing Lab since 2015 where he leads algorithm research.
 
 Mathis Richter is a Research Scientist in the Neuromorphic Computing Lab at Intel Labs, where he leads the Application Software team, developing commercial software solutions based on neuromorphic technology. Before joining Intel in 2021, he worked as a post doc and PhD student on neural process models of higher cognition at the Institute for Neural Computation, Ruhr-University Bochum.
@@ -146,5 +162,3 @@ Konrad Kording runs his lab at the University of Pennsylvania. Konrad is interes
 ### Speaker's bio
 
 Lana Josipović is an Assistant Professor in the Department of Information Technology and Electrical Engineering at ETH Zurich. Prior to joining ETH Zurich in January 2022, she received a Ph.D. degree in Computer Science from EPFL, Switzerland. Her research interests include reconfigurable computing and electronic design automation, with an emphasis on high-level synthesis techniques to generate hardware designs from high-level programming languages. She developed Dynamatic, an open-source high-level synthesis tool that produces dynamically scheduled circuits from C/C++ code. She is a recipient of the EDAA Outstanding Dissertation Award, Google Ph.D. Fellowship in Systems and Networking, Google Women Techmakers Scholarship, and Best Paper Award at FPGA'20.
-
-
