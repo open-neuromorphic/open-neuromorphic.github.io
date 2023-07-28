@@ -13,20 +13,6 @@ description: "Events organised by ONM: talks, hands-on sessions and more. "
 
 Join our [newsletter](https://forms.gle/FeLrRVepUGYuW23N8) to be updated on new events and get a reminder! 
 
-## 2023-08-22: Tobias Fischer.
-
-{{< figure src="tobias-fischer.webp" caption="Tobias Fischer" width=500px >}}
-
-### Abstract 
-TBD.
-
-### Speaker's bio
-Tobias conducts interdisciplinary research at the intersection of intelligent robotics, computer vision, and computational cognition. His main goal is to develop high-performing, bio-inspired computer vision algorithms that simultaneously examine animals/humans and robots' perceptional capabilities. 
-
-He is a Lecturer (Assistant Professor) in Queensland University of Technology's Centre for Robotics. He joined the Centre as an Associate Investigator and Research Fellow in January 2020. Previously, he was a postdoctoral researcher in the Personal Robotics Lab at Imperial College London. 
-
-He received a PhD from Imperial College in January 2019. His thesis was awarded the UK Best Thesis in Robotics Award 2018 and the Eryl Cadwaladr Davies Award for the best thesis in Imperial's EEE Department in 2017-2018. He previously received an M.Sc. degree (distinction) in Artificial Intelligence from The University of Edinburgh in 2014 and a B.Sc. degree in Computer Engineering from Ilmenau University of Technology, Germany, in 2013. His works have attracted two best poster awards, one best paper award, and he was the senior author of the winning submission to the Facebook Mapillary Place Recognition Challenge 2020.
-
 ## 2023-09-25: Giulia D'Angelo, What's catching your eye? The visual attention mechanism
 
 {{< figure src="giulia-dangelo.jpg" caption="Giulia D'Angelo" width=500px >}}
@@ -64,4 +50,18 @@ TBD.
 ### Speaker's bio
 
 TBD.
+
+## Tobias Fischer
+
+{{< figure src="tobias-fischer.webp" caption="Tobias Fischer" width=500px >}}
+
+### Abstract 
+TBD.
+
+### Speaker's bio
+Tobias conducts interdisciplinary research at the intersection of intelligent robotics, computer vision, and computational cognition. His main goal is to develop high-performing, bio-inspired computer vision algorithms that simultaneously examine animals/humans and robots' perceptional capabilities. 
+
+He is a Lecturer (Assistant Professor) in Queensland University of Technology's Centre for Robotics. He joined the Centre as an Associate Investigator and Research Fellow in January 2020. Previously, he was a postdoctoral researcher in the Personal Robotics Lab at Imperial College London. 
+
+He received a PhD from Imperial College in January 2019. His thesis was awarded the UK Best Thesis in Robotics Award 2018 and the Eryl Cadwaladr Davies Award for the best thesis in Imperial's EEE Department in 2017-2018. He previously received an M.Sc. degree (distinction) in Artificial Intelligence from The University of Edinburgh in 2014 and a B.Sc. degree in Computer Engineering from Ilmenau University of Technology, Germany, in 2013. His works have attracted two best poster awards, one best paper award, and he was the senior author of the winning submission to the Facebook Mapillary Place Recognition Challenge 2020.
 
