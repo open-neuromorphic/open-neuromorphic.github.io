@@ -9,6 +9,7 @@ vendor/
 *.tgz
 *.zip
 resources
+__pycache__
 
 data
 *.hdf5
