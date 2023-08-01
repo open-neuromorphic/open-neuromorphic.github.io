@@ -61,6 +61,7 @@ def benchmark_framework(
         # - Forward pass
         forward_times.append(timeit(lambda: forward_fn(bench_dict)))
         bench_dict = forward_fn(bench_dict)
+        # assert bench_dict["output"].shape == bench_dict["input"].shape
 
         # - Backward pass
         backward_times.append(timeit(lambda: backward_fn(bench_dict)))
