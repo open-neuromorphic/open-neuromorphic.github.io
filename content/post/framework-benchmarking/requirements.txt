@@ -1,5 +1,5 @@
-spikingjelly==0.0.0.0.14
 sinabs-exodus
 norse
 snntorch
 rockpool
+kaleido
