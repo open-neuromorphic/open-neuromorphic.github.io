@@ -13,7 +13,7 @@ Open Neuromorphic's [list of SNN frameworks](https://github.com/open-neuromorphi
 
 ![Comparison of time taken for forward and backward passes in different frameworks, for 512 neurons.](framework-benchmarking-512.png)
 
-The figure shows average times across 100 runs for forward and backward passes in different frameworks. Standard deviations have been omitted because they are negligible. The input data has batch size of 10, 500 time steps and $n$ neurons. The order of dimensions in the input tensor and how exactly it is fed to the respective models differs between libraries. Benchmarks are run on a RTX 2070 GPU with 8GB of memory. Overall, SpikingJelly is the fastest when using the CuPy backend. Those that use an implementation of EXODUS (Sinabs / Rockpool) or SLAYER (Lava DL) equally benefit from custom CUDA code and vectorization across the time dimension in both forward and backward passes. 
+The figure shows average times across 100 runs for forward and backward passes in different frameworks. Standard deviations have been omitted because they are negligible. The input data has batch size of 10, 500 time steps and n neurons. The order of dimensions in the input tensor and how exactly it is fed to the respective models differs between libraries. Benchmarks are run on a RTX 2070 GPU with 8GB of memory. Overall, SpikingJelly is the fastest when using the CuPy backend. Those that use an implementation of EXODUS (Sinabs / Rockpool) or SLAYER (Lava DL) equally benefit from custom CUDA code and vectorization across the time dimension in both forward and backward passes. 
 
 ![Comparison of time taken for forward and backward passes in different frameworks, for 4k neurons.](framework-benchmarking-4k.png)
 
