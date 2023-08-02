@@ -3,7 +3,7 @@ title: "SNN library benchmarks"
 date: 2023-08-02
 description: "Comparing the most popular SNN frameworks for gradient-based optimization based on PyTorch."
 draft: false
-image: framework-benchmarking-16k.png
+image: framework-benchmarking-16k-header.png
 tags: ["snn", "framework", "library", "pytorch"]
 ---
 
