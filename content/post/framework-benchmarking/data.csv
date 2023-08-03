@@ -1,0 +1,49 @@
+,framework,neurons,pass,time [s]
+0,SpikingJelly CuPy<br>v0.0.0.0.15,512,forward,0.0007805065210099058
+1,SpikingJelly CuPy<br>v0.0.0.0.15,4096,forward,0.0124769107795056
+2,SpikingJelly CuPy<br>v0.0.0.0.15,16384,forward,0.027920798821882767
+3,Rockpool<br>v2.6,512,forward,0.37688859303792316
+4,Rockpool<br>v2.6,4096,forward,0.39487791061401367
+5,Rockpool<br>v2.6,16384,forward,0.8107947508494059
+6,Rockpool EXODUS<br>v2.6,512,forward,0.002076975900683695
+7,Rockpool EXODUS<br>v2.6,4096,forward,0.06692159175872803
+8,Rockpool EXODUS<br>v2.6,16384,forward,0.5919832587242126
+9,Sinabs<br>v1.2.8,512,forward,0.06987739431446996
+10,Sinabs<br>v1.2.8,4096,forward,0.0824661922454834
+11,Sinabs<br>v1.2.8,16384,forward,0.5325368642807007
+12,Sinabs EXODUS<br>v1.1.2,512,forward,0.0015409472176033101
+13,Sinabs EXODUS<br>v1.1.2,4096,forward,0.05830531120300293
+14,Sinabs EXODUS<br>v1.1.2,16384,forward,0.596237301826477
+15,snnTorch<br>v0.7.0,512,forward,0.12985163927078247
+16,snnTorch<br>v0.7.0,4096,forward,0.20558152198791504
+17,snnTorch<br>v0.7.0,16384,forward,2.07729172706604
+18,Norse<br>v1.0.0,512,forward,0.12789078056812286
+19,Norse<br>v1.0.0,4096,forward,0.12744338810443878
+20,Norse<br>v1.0.0,16384,forward,0.5510208606719971
+21,Lava DL<br>v0.4.0.dev0,512,forward,0.00212576589472869
+22,Lava DL<br>v0.4.0.dev0,4096,forward,0.06678892771402994
+23,Lava DL<br>v0.4.0.dev0,16384,forward,
+24,SpikingJelly CuPy<br>v0.0.0.0.15,512,backward,0.000706080198708752
+25,SpikingJelly CuPy<br>v0.0.0.0.15,4096,backward,0.030669746976910217
+26,SpikingJelly CuPy<br>v0.0.0.0.15,16384,backward,0.4747912883758545
+27,Rockpool<br>v2.6,512,backward,0.21001343727111815
+28,Rockpool<br>v2.6,4096,backward,0.9924057324727377
+29,Rockpool<br>v2.6,16384,backward,4.060965855916341
+30,Rockpool EXODUS<br>v2.6,512,backward,0.003395784911462816
+31,Rockpool EXODUS<br>v2.6,4096,backward,0.04521534177992079
+32,Rockpool EXODUS<br>v2.6,16384,backward,0.10865803559621175
+33,Sinabs<br>v1.2.8,512,backward,0.11612474918365479
+34,Sinabs<br>v1.2.8,4096,backward,0.7617576917012533
+35,Sinabs<br>v1.2.8,16384,backward,3.246778726577759
+36,Sinabs EXODUS<br>v1.1.2,512,backward,0.004442035755402762
+37,Sinabs EXODUS<br>v1.1.2,4096,backward,0.04086161613464356
+38,Sinabs EXODUS<br>v1.1.2,16384,backward,0.09781840214362511
+39,snnTorch<br>v0.7.0,512,backward,0.08350504438082378
+40,snnTorch<br>v0.7.0,4096,backward,0.3494421641031901
+41,snnTorch<br>v0.7.0,16384,backward,5.430537621180217
+42,Norse<br>v1.0.0,512,backward,0.1313396394252777
+43,Norse<br>v1.0.0,4096,backward,0.4413779258728027
+44,Norse<br>v1.0.0,16384,backward,2.0151825745900473
+45,Lava DL<br>v0.4.0.dev0,512,backward,0.002021573529098973
+46,Lava DL<br>v0.4.0.dev0,4096,backward,0.049568972936490686
+47,Lava DL<br>v0.4.0.dev0,16384,backward,
