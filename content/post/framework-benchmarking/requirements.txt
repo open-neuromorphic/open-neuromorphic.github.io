@@ -3,3 +3,5 @@ norse
 snntorch
 rockpool
 kaleido
+ipykernel
+plotly
