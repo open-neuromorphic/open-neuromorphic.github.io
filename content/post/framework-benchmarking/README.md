@@ -17,6 +17,9 @@ Install the benchmarked frameworks from PyPI
 pip install -r requirements.txt
 ```
 At the time of testing (02/08/2023), SpikingJelly v0.0...14 contains a [bug](https://github.com/fangwei123456/spikingjelly/issues/401) in the latest CuPy implementation, so you'll have to install from source. Hopefully they'll release v0.....15 soon.
+https://github.com/fangwei123456/spikingjelly
+
+You'll also need to [install CuPy](https://docs.cupy.dev/en/stable/install.html) to enable it as a backend.
 
 In addition I installed Lava-dl via Conda after the pip install
 ```
