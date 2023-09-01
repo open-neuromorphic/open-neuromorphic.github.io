@@ -1,6 +1,6 @@
 ---
 title: "Neuromorphic engineering in 10 minutes"
-date: 2023-08-31
+date: 2023-09-01
 description: "A brief take on neuromorphic computing and the technology involved."
 draft: false
 # image: framework-benchmarking-16k-header.png
@@ -8,19 +8,20 @@ tags: ["neuromorphic", "computing", "engineering", "overview"]
 ---
 
 # Neuromorphic Engineering in 10 minutes
-Neuromorphic engineering is a broad term that encompasses multiple approaches. Generally speaking, it takes inspiration from biological systems to process information as efficiently as possible. Such systems can be the mammal brain that is capable of language or abstract thought, a retina that compresses visual information or the navigation system of a bee. We then try to mimic those systems to a certain level of abstraction, by rebuilding them from the ground up. This brings is to the first important principle of neuromorphic engineering, which is that it relies on a new class of hardware. Why is that necessary? Because current hardware doesn’t work like biological systems! The von Neumann architecture that our computers are based on separates computation from memory and constantly has to move data around. This data movement costs up to 40% of the overall power budget, which is a huge waste! 
+Neuromorphic engineering is a broad term that encompasses multiple approaches. Generally speaking, it takes inspiration from biological systems to process information as efficiently as possible. Such systems can be the mammal brain that is capable of language or abstract thought, a retina that compresses visual information or the navigation system of a bee. We then try to mimic those systems to a certain level of abstraction, by rebuilding them from the ground up on another substrate. This brings is to the first important principle of neuromorphic engineering, which is that it relies on a new class of hardware. Why is that necessary? Because current hardware doesn’t work like biological systems! The von Neumann architecture, that our computers are based on, separates computation from memory and constantly has to move data around, which is called von Neumann bottleneck. This data movement takes up to 40% of the overall power budget, which is a huge waste! 
 
-### In-memory computing
-
-In a brain, the computation and data is co-located, meaning that the information is stored (in the form of ion concentrations, membrane potentials, synaptic connections) and processed (in the form of spike rates, phases or timings) in the same neuron! Therefore neuromorphic engineering is interested in what’s called in-memory computing, where data doesn’t have to be moved around but can be modified and used to calculate where it’s stored. Such in-memory computing exists in digital technology or more recently also in analog technology, where a new eletrical component called the memristor could bring potentially very high gains. Such memristors can be arranged on a large grid, which is called a crossbar array. Every node (crossing) in the array can be seen as a connection in a neural network. Then, instead of using digital CMOS technology and many transistors to represent numbers in a digital format, store and retrieve them from memory, add them together and then move all those bits again to storage, in the case of a crossbar array, we can work with eletrical currents and voltages directly! An input is therefore represented in the analog domain in the form of a current or voltage, in contrast to converting it to bits. This makes the computation extremely efficient, but also a bit more erroneous. That is an example of the trade-offs between computing in the analog versus in the digital domain. 
+## In-memory computing
+In a brain, the computation and data is co-located, meaning that the information is stored (in the form of ion concentrations, membrane potentials, synaptic connections) and processed (in the form of spike rates, phases or timings) in the same neuron! Therefore neuromorphic engineering is interested in what’s called in-memory computing, where data doesn’t have to be moved around but can be modified in place. The problem of data movement in digital hardware is alleviated through cache-level computation or processing-in-memory. In analog technology, in-memory computing can be achieved with a new eletrical component called the memristor. Memristors are resistive devices that retain a sort of memory of their past states. They tiny devices can be arranged on a large grid, which is called a crossbar array. Every node (crossing) in the array can be seen as a connection in a neural network. Then, instead of using digital CMOS technology and many transistors to represent numbers in a digital format, store and retrieve them from memory, add them together and then move all those bits again to storage, in the case of a crossbar array, we can work with eletrical currents and voltages directly to perform vector-matrix multiplications very efficiently! An input is therefore represented in the analog domain in the form of a current or voltage, in contrast to converting it to bits. This makes the computation extremely efficient, but also a bit more erroneous. 
 
 ### Analog vs digital hardware
-
-The analog circuit will necessarily have some variations between its components (resistors, transistors), and when used to compute directly, results will vary. The components of the digital circuit are subject to the same variations during fabrication (mainly because a transistor is now as wide as a few hundred atoms), but CMOS technology combines multiple of them to use digital representations (bits that are either 0 or 1) that are much more stable. There are two more principles that neuromorpic is making use of.
-
+That is an example of the trade-offs between computing in the analog versus in the digital domain. 
 Analog hardware leverages continuous signals to mimic the behavior of biological neurons more closely. Its main strength lies in its ability to process information in parallel, providing high-speed and energy-efficient computations. Additionally, analog circuits are well-suited for solving complex, continuous-valued problems, making them ideal for tasks such as pattern recognition and sensory processing. However, analog hardware suffers from noise, limited precision, and calibration challenges, which can impact the accuracy and reliability of computations.
 
 On the other hand, digital hardware employs discrete signals and binary logic, allowing for precise and reliable computations. Digital neuromorphic systems excel at handling spiking neural networks and tasks involving discrete values or events. The ability to perform complex mathematical operations accurately makes digital hardware suitable for tasks like complex mathematical modeling and data processing. Moreover, digital systems are inherently robust against noise and environmental variations, ensuring consistency in computations. However, they tend to consume more power and may face challenges in efficiently simulating certain biologically inspired neural behaviors.
+
+The analog circuit will necessarily have some variations between its components (resistors, transistors), and when used to compute directly, results will vary. The components of the digital circuit are subject to the same variations during fabrication (mainly because a transistor is as wide as a few hundred atoms these days), but CMOS technology combines multiple of them to use digital representations (bits that are either 0 or 1) that are much more stable. 
+
+There are two more principles that neuromorpic is making use of.
 
 ### Asynchronous computation
 
@@ -30,6 +31,44 @@ Our current computer architecture is driven by clocks that time the exact execut
 
 There exist neural network accelerators that use analog technology to drive down the power cost (mythic.ai, rain.ai), some of which claim that this is enough to be considered neuromorphic. However when looking at how biology transmits information, action potentials, also called spikes, are a key factor. Neurons in our brain spontaneously spike all the time, and sometimes react to a certain input. All we know is that the brain can do amazing things by just using 20W of power. Try to match an equally-capable language model based on modern deep learning accelerators with that power budget, you will not even get close! A somewhat critical part of neuromorphic computing for some therefore is the computation using spikes. Most neuromorphic chips (IBM TrueNorth, Intel Loihi, Stanford’s Neurogrid, SpiNNaker, BrainScales, SynSense Speck) therefore implement a form of a spiking mechanism. When combining asynchronous and spiking computation for machine learning tasks, we end up with a new generation of neural networks called spiking neural networks.
 
-### Spiking neural networks (SNN)
+### Spiking neural networks
 
-Spiking neural networks (SNNs) are bio-inspired computational models used in neuromorphic computing. Unlike traditional neural networks, SNNs communicate through discrete spikes, capturing temporal information for event-driven processing. They offer energy efficiency, real-time event detection, and pattern recognition capabilities. Challenges include specialized learning algorithms and ongoing efforts to improve training methods and hardware implementations. SNNs hold promise for efficient AI technologies in resource-constrained environments, advancing brain-inspired computing.
+Spiking neural networks (SNN) are bio-inspired computational models used in neuromorphic computing. Unlike traditional neural networks, SNNs communicate through discrete spikes, capturing temporal information for event-driven processing. They offer energy efficiency, real-time event detection, and pattern recognition capabilities. Challenges include specialized learning algorithms and ongoing efforts to improve training methods and hardware implementations. SNNs hold promise for efficient AI technologies in resource-constrained environments, advancing brain-inspired computing.
+
+## Use cases
+It's possible to take a single part of the neuromorphic pipeline and combine it with conventional computing. For example you could process event camera input with the latest computer vision model to get best task accuracy. Or try to skip the zeros when processing conventional images on neuromorphic hardware. The best energy efficiency however is likely to be shown using the full pipeline of sensors, algorithms and processing hardware together.  
+So what will neuromorphic be used for? When thinking about energy-efficiency, a plethora of edge computing applications comes to mind:
+
+* Robotics: navigation, control, planning
+* Sensory integration: vision, audio, touch and olfactory neuromorphic sensors
+* Optimization: resource and facility management
+* Biomedical signals such as ECG, EMG, EEG: ultra-low-power monitoring 
+* Brain-machine interfaces: Pre-process brain signals using the spikes directly
+* Anything that needs high frame rate cameras: event cameras do it faster at lower power
+* Anything battery-powered in remote locations: deep sea, space, deserts
+
+## What are the limitations of this technology?
+Neuromorphic is not going to replace conventional computing completely. Rather, it will be another strand in an increasingly heterogenous computing landscape. Your phone already has many specialised pieces of silicon to help with screen rendering, encryption, AI applications and more. Neuromorphic tech is going to unlock extra capabilities of edge computation. It is not great at competing with conventional computing for high-throughput tasks such as image classification. The current challenges are to be able to scale up the network sizes both in simulation and hardware. The asynchronous information exchange principle is great for sporadic, transient events, but at some data input rate, the overhead of handshaking every event is higher than simple clocked computation. Training SNNs is currently difficult and slow because the networks are stateful / rely on time and their activation is extremely sparse. During inference time, this is where we get some power benefits from, but during training time, we also get less of a teaching signal. 
+Neuromorphic being a highly interdisplinary field, it suffers from some standardized neuron models and common training techniques. Efforts such as the [Neuromorphic Intermediate Representation](https://github.com/neuromorphic/nir) try to tackle that. The landscape of training frameworks is also [growing](https://github.com/open-neuromorphic/open-neuromorphic), which is good for features but bad for newcomers. 
+
+## Can I access / buy neuromorphic hardware?
+
+## How does neuromorphic relate to quantum computing?
+Both paradigms diverge from classical computing but aim to address its limitations. Neuromorphic computing mimics the architecture of biological neural networks and excels at pattern recognition and learning tasks. In contrast, quantum computing is based on the principles of quantum mechanics and is advantageous for problems like optimization and simulation that are computationally hard for classical systems. Although they serve different problem domains, both paradigms aim for greater energy efficiency and have the potential to be complementary. Advances in materials science and fabrication techniques are crucial for both, and there's theoretical potential for hybrid systems that leverage the strengths of each technology.
+
+## Summary
+Why are not all neuromorphic chips mixed-signal today? Until we figure out how to train large networks reliably that can cope with high variance of single neurons, we rely on the long history of CMOS progress and the determinism of digital architectures that act as stabilizing wheels on our neuromorphic bicycle. The highest gains in energy-efficiency will be achieved with the use of analog computing, but until then, some issues still have to be figured out.  
+
+## Some active companies in the space and their headquarters
+Check out this helpful [resource map](https://www.neuropac.info/resources-3/map/) and add your company / institution if it's not already on there!
+
+## More resources
+[Event-based vision papers](https://github.com/uzh-rpg/event-based_vision_resources)
+[Popular SNN training frameworks](https://github.com/open-neuromorphic/open-neuromorphic)
+[Training courses and books](https://github.com/mikeroyal/Neuromorphic-Computing-Guide#online-training-courses)
+[Videos](https://www.neuropac.info/video-category/)
+
+https://aimodels.org/neuromorphic-computing
+
+## Author
+* [Gregor Lenz](https://lenzgregor.com) started his journey in neuromorphic engineering in 2017 for his PhD at Sorbonne University in Paris. 
