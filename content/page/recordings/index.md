@@ -118,6 +118,12 @@ Dylan Muir is the Vice President for Global Research Operations; Director for Al
 
 https://www.youtube.com/watch?v=vXZukQ6A79k 
 
+
+### Slides
+
+[Link](lava-slides.pdf) to slides.
+
+
 ### Speakers' bios
 
 Andreas Wild received the Dr. rer. nat degree in physics with a focus on the development of silicon-based electron spin qubits from the Technical University of Munich, Germany, in 2013. After joining Intel in 2013, he has been a Senior Researcher with the Intel Neuromorphic Computing Lab since 2015 where he leads algorithm research.
