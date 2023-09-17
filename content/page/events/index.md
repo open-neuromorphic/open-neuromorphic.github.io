@@ -51,6 +51,21 @@ TBD.
 
 TBD.
 
+## 2023-12-19: Brad Aimone
+
+### Time
+
+6PM-7:30PM CET.
+
+### Abstract
+
+TBD.
+
+### Speaker's bio
+
+TBD.
+
+
 ## Tobias Fischer
 
 {{< figure src="tobias-fischer.webp" caption="Tobias Fischer" width=500px >}}
