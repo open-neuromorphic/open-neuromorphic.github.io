@@ -130,7 +130,7 @@ Andreas Wild received the Dr. rer. nat degree in physics with a focus on the dev
 
 Mathis Richter is a Research Scientist in the Neuromorphic Computing Lab at Intel Labs, where he leads the Application Software team, developing commercial software solutions based on neuromorphic technology. Before joining Intel in 2021, he worked as a post doc and PhD student on neural process models of higher cognition at the Institute for Neural Computation, Ruhr-University Bochum.
 
-## 2023-06-08: Federico Corradi
+## 2023-06-08: Federico Corradi - Low-power spiking neural network processing systems for extreme-edge applications
 
 {{< figure src="corradi.jpg" caption="Federico Corradi" width=300px >}}
 
