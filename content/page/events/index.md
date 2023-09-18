@@ -13,7 +13,7 @@ description: "Events organised by ONM: talks, hands-on sessions and more. "
 
 Join our [newsletter](https://forms.gle/FeLrRVepUGYuW23N8) to be updated on new events and get a reminder! 
 
-## 2023-09-25: Giulia D'Angelo, What's catching your eye? The visual attention mechanism
+## 2023-09-26: Giulia D'Angelo, What's catching your eye? The visual attention mechanism
 
 {{< figure src="giulia-dangelo.jpg" caption="Giulia D'Angelo" width=500px >}}
 
