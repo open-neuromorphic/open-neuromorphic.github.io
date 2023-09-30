@@ -1,0 +1,8 @@
+sinabs-exodus
+norse
+snntorch
+rockpool
+kaleido
+ipykernel
+plotly
+nbformat

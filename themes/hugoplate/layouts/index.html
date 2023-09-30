@@ -1,0 +1,63 @@
+{{ define "main" }}
+<section class="section-sm xl:pb-5">
+  <div class="container">
+    <div class="row items-center justify-between">
+      <div class="md:col-6 lg:col-7">
+        <h1 class="mb-4 text-3xl">
+          Neuromorphic Computing meets Open Source
+        </h1>
+        <ul class="list-none ml-3 mb-8 text-lg">
+          <li class="relative mb-4 pl-6">
+            <i class="fa fa-check absolute left-0 top-1.5"></i>
+            A curated list of <strong>software frameworks</strong> to make it easier to find <strong>the tool you need</strong>.
+          </li>
+          <li class="relative mb-4 pl-6">
+            <i class="fa fa-check absolute left-0 top-1.5"></i>
+            <strong>A platform for your code</strong>. If you wish to create a new repository or migrate your existing code to ONM, please get in touch with us.
+          </li>
+          <li class="relative mb-4 pl-6">
+            <i class="fa fa-check absolute left-0 top-1.5"></i>
+            Educational content to get you started in the neuromorphic world.
+          </li>
+          <li class="relative mb-4 pl-6">
+            <i class="fa fa-check absolute left-0 top-1.5"></i>
+            Events about neuromorphic research and software, with contributions from both academia and industry.
+          </li>
+        </ul>
+      </div>
+      <div class="bg-theme-light dark:bg-darkmode-theme-light rounded p-10 mb:md-0 md:col-6 lg:col-5 mb-6">
+        <h3 class="pb-5">Upcoming Workshop</h3>
+        {{ $events := where .Site.RegularPages "Section" "events" }}
+        {{ $upcomingEvents := where $events "Params.date" "gt" now }}
+        {{ $sortedUpcomingEvents := sort $upcomingEvents "Params.date" }}
+        {{ with index $sortedUpcomingEvents 0 }}
+        <!-- Display the nearest upcoming event -->
+        <div class="mb-0">
+          {{ partial "components/session-card" . }}
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section-sm">
+  <div class="container">
+    <div class="row">
+      <div class="col-6 pb-8">
+        <h3>Recent Workshops</h3>
+      </div>
+      <div class="col-6">
+        <a href="/recordings" class="btn btn-primary float-right">Explore All Workshops</a>
+      </div>
+      {{ $events := where .Site.RegularPages "Section" "workshops" }}
+      {{ $recentRecordings := slice }}
+      {{ $sortedRecentRecordings := sort $events "Params.date" "desc" }}
+      {{ range first 3 $sortedRecentRecordings }}
+        <div class="md:col-4 mb-14">
+          {{ partial "components/session-card" . }}
+        </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}

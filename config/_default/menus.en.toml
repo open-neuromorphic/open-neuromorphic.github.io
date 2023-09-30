@@ -1,0 +1,69 @@
+############# English navigation ##############
+
+# main menu
+[[main]]
+name = "Home"
+url = "/"
+weight = 1
+
+[[main]]
+name = "Workshops"
+haschildren = true
+
+[[main]]
+parent = "Workshops"
+name = "Upcoming"
+url = "/events/"
+
+[[main]]
+parent = "Workshops"
+name = "Recordings"
+url = "/workshops/"
+
+
+
+[[main]]
+name = "About"
+hasChildren = true
+
+[[main]]
+parent = "About"
+name = "About Open Neuromorphic"
+url = "/about/"
+
+[[main]]
+parent = "About"
+name = "Getting Involved"
+url = "/getting-involved/"
+
+[[main]]
+parent = "About"
+name = "Resources"
+url = "/resources/"
+
+[[main]]
+parent = "About"
+name = "Team"
+url = "/team/"
+
+[[main]]
+name = "Posts"
+url = "/blog/"
+
+
+
+# footer menu
+[[footer]]
+name = "About"
+url = "about/"
+weight = 1
+
+[[footer]]
+name = "Elements"
+url = "elements/"
+weight = 2
+
+[[footer]]
+name = "Privacy Policy"
+url = "privacy-policy/"
+weight = 3

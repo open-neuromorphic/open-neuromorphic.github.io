@@ -1,0 +1,24 @@
+{{ define "main" }}
+  {{ partial "page-header" . }}
+
+  <section class="section">
+    <div class="container">
+      <div class="row gx-5">
+        <!-- blog posts -->
+        <div class="lg:col-12">
+          <div class="row">
+            {{ $sortedPages := sort .RegularPages "Params.date" "asc" }}
+            {{ $paginator := .Paginate $sortedPages }}
+            {{ range $paginator.Pages }}
+              <div class="md:col-4 mb-14">
+                {{ partial "components/session-card" . }}
+              </div>
+            {{ end }}
+          </div>
+          {{ partial "components/pagination.html" . }}
+        </div>
+        <!-- sidebar -->
+      </div>
+    </div>
+  </section>
+{{ end }}
