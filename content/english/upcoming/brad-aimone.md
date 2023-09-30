@@ -2,7 +2,7 @@
 title: "ONM Talks: Brad Aimone"
 author: "Brad Aimone"
 date: 2023-12-19
-image: images/open-neuromorphic-thumbnail.png
+image: /images/open-neuromorphic-thumbnail.png
 ---
 
 ## 2023-12-19: Brad Aimone

@@ -2,7 +2,7 @@
 title: "Making Neuromorphic Computing Mainstream"
 author: Timoleon Moraitis
 date: 2023-11-16
-image: images/open-neuromorphic-thumbnail.png
+image: /images/open-neuromorphic-thumbnail.png
 ---
 
 ### Time

@@ -1,24 +1,52 @@
 {{ define "main" }}
-  {{ partial "page-header" . }}
+{{ partial "page-header" . }}
 
-  <section class="section">
-    <div class="container">
-      <div class="row gx-5">
-        <!-- blog posts -->
-        <div class="lg:col-12">
-          <div class="row">
-            {{ $sortedPages := sort .RegularPages "Params.customDate" "desc" }}
-            {{ $paginator := .Paginate $sortedPages }}
-            {{ range $paginator.Pages }}
-              <div class="md:col-4 mb-14">
-                {{ partial "components/session-card" . }}
-              </div>
-            {{ end }}
-          </div>
-          {{ partial "components/pagination.html" . }}
-        </div>
-        <!-- sidebar -->
+<section class="section">
+  <div class="container">
+    <div class="row gx-5">
+      <!-- First entry with 8-column width -->
+      {{ with index .RegularPages 0 }}
+      <div class="lg:col-7 mb-14">
+        {{ partial "components/session-card" . }}
       </div>
+      {{ end }}
+      <!-- 4-column placeholder -->
+      <div class="lg:col-5 mb-14">
+        <h3 class="pb-5 text-xl">Upcoming Workshops</h3>
+        {{ $events := where .Site.RegularPages "Section" "upcoming" }}
+        {{ $upcomingEvents := where $events "Params.date" "gt" now }}
+        {{ $sortedUpcomingEvents := slice }}
+        {{ range $upcomingEvents }}
+        {{ $sortedUpcomingEvents = $sortedUpcomingEvents | append . }}
+        {{ end }}
+        {{ $sortedUpcomingEvents = sort $sortedUpcomingEvents "Params.date" }}
+        {{ $upcomingCount := len $sortedUpcomingEvents }}
+        {{ $maxItems := 4 }} <!-- Define the maximum number of items to display -->
+
+        {{ range $index, $event := $sortedUpcomingEvents }}
+        {{ if lt $index $maxItems }}
+        <div class="mb-4">
+          <strong><a href="{{ $event.Permalink }}">{{ dateFormat "January 2, 2006" $event.Params.Date }}</strong> <!-- Link to the workshop -->
+          {{ $event.Title }}
+          {{ $event.Description }}
+          </a>
+        </div>
+        {{ end }}
+        {{ end }}
+      </div>
+
+      <!-- Rest of the entries in a list of 3 to a row, skipping the first one -->
+      {{ $sortedPages := sort (where .RegularPages "Type" "workshops") "Date" "desc" }}
+      {{ $paginator := .Paginate $sortedPages }}
+      {{ range $index, $page := $paginator.Pages }}
+      {{ if gt $index 0 }}
+      <div class="md:col-4 mb-14">
+        {{ partial "components/session-card" $page }}
+      </div>
+      {{ end }}
+      {{ end }}
     </div>
-  </section>
+    {{ partial "components/pagination.html" . }}
+  </div>
+</section>
 {{ end }}

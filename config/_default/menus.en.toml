@@ -9,15 +9,10 @@ weight = 1
 [[main]]
 name = "Workshops"
 haschildren = true
+weight = 2
 
 [[main]]
-parent = "Workshops"
-name = "Upcoming"
-url = "/events/"
-
-[[main]]
-parent = "Workshops"
-name = "Recordings"
+name = "Workshops"
 url = "/workshops/"
 
 
@@ -25,6 +20,7 @@ url = "/workshops/"
 [[main]]
 name = "About"
 hasChildren = true
+weight = 4
 
 [[main]]
 parent = "About"
@@ -49,6 +45,7 @@ url = "/team/"
 [[main]]
 name = "Posts"
 url = "/blog/"
+weight = 3
 
 
 

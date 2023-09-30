@@ -2,7 +2,7 @@
 <section class="section-sm xl:pb-5">
   <div class="container">
     <div class="row items-center justify-between">
-      <div class="md:col-6 lg:col-7">
+      <div class="md:col-7 lg:col-8">
         <h1 class="mb-4 text-3xl">
           Neuromorphic Computing meets Open Source
         </h1>
@@ -25,9 +25,9 @@
           </li>
         </ul>
       </div>
-      <div class="bg-theme-light dark:bg-darkmode-theme-light rounded p-10 mb:md-0 md:col-6 lg:col-5 mb-6">
-        <h3 class="pb-5">Upcoming Workshop</h3>
-        {{ $events := where .Site.RegularPages "Section" "events" }}
+      <div class="bg-theme-light dark:bg-darkmode-theme-light rounded p-7 mb:md-0 md:col-5 lg:col-4 mb-6">
+        <h3 class="pb-5 text-xl">Upcoming Workshop</h3>
+        {{ $events := where .Site.RegularPages "Section" "upcoming" }}
         {{ $upcomingEvents := where $events "Params.date" "gt" now }}
         {{ $sortedUpcomingEvents := sort $upcomingEvents "Params.date" }}
         {{ with index $sortedUpcomingEvents 0 }}
@@ -47,13 +47,33 @@
         <h3>Recent Workshops</h3>
       </div>
       <div class="col-6">
-        <a href="/recordings" class="btn btn-primary float-right">Explore All Workshops</a>
+        <a href="/workshops" class="btn btn-primary float-right">Explore All Workshops</a>
       </div>
       {{ $events := where .Site.RegularPages "Section" "workshops" }}
       {{ $recentRecordings := slice }}
       {{ $sortedRecentRecordings := sort $events "Params.date" "desc" }}
       {{ range first 3 $sortedRecentRecordings }}
         <div class="md:col-4 mb-14">
+          {{ partial "components/session-card" . }}
+        </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+<section class="section-sm">
+  <div class="container">
+    <div class="row">
+      <div class="col-6 pb-8">
+        <h3>Recent Posts</h3>
+      </div>
+      <div class="col-6">
+        <a href="/workshops" class="btn btn-primary float-right">Explore All Workshops</a>
+      </div>
+      {{ $events := where .Site.RegularPages "Section" "blog" }}
+      {{ $recentRecordings := slice }}
+      {{ $sortedRecentRecordings := sort $events "Params.date" "desc" }}
+      {{ range first 4 $sortedRecentRecordings }}
+        <div class="md:col-3 mb-14">
           {{ partial "components/session-card" . }}
         </div>
       {{ end }}

@@ -2,7 +2,7 @@
 title: "ONM: Tobias Fischer"
 author: Tobias Fischer
 date: 2023-12-19
-image: images/open-neuromorphic-thumbnail-2.png
+image: /images/open-neuromorphic-thumbnail-2.png
 ---
 
 ## Tobias Fischer
