@@ -1,1 +1,93 @@
 // Add your own custom styles here
+
+section a {
+  color: #0e3462 !important;
+  text-decoration: none !important;
+  font-weight: 550 !important;
+
+}
+
+.content :is(:where(a):not(:where([class~="not-prose"], [class~="not-prose"] *))) {
+  color: #3c3906 !important;
+  text-decoration: none !important;
+  font-weight: 550 !important;
+}
+
+
+/* Default styles */
+main [target="_blank"]::after {
+  font-family: "Font Awesome 6 Free"; /* Font Awesome class */
+  font-weight: 900;
+  content: "\f35d"; /* FontAwesome Unicode for 'external-link-alt' icon */
+  margin: 0px 3px 0px 5px;
+  font-size: 16px;
+}
+
+/* Dark mode styles */
+main [target="_blank"]::after {
+  color: #000000; /* Change the color for dark mode */
+}
+
+/* Exclude .social-icons */
+main .social-icons [target="_blank"]::after {
+  /* Reset styles or apply different styles for links within .social-icons if needed */
+  content: none; /* Remove the 'external-link-alt' icon */
+  /* Add any additional styles as needed */
+}
+
+.social-icons a {
+  color: #FFF !important;
+}
+
+.dark {
+  section a {
+    color: #bcfbff !important;
+    text-decoration: none !important;
+    font-weight: 550 !important;
+  }
+
+  .content :is(:where(a):not(:where([class~="not-prose"], [class~="not-prose"] *))) {
+    color: #bcfbff !important;
+    text-decoration: none !important;
+    font-weight: 550 !important;
+  }
+
+  a.btn {
+    text: #000;
+  }
+
+  /* Default styles */
+  main [target="_blank"]::after {
+    font-family: "Font Awesome 6 Free"; /* Font Awesome class */
+    font-weight: 900;
+    content: "\f35d"; /* FontAwesome Unicode for 'external-link-alt' icon */
+    margin: 0px 3px 0px 5px;
+    font-size: 16px;
+  }
+
+  /* Dark mode styles */
+  main [target="_blank"]::after {
+    color: #bcfbff; /* Change the color for dark mode */
+  }
+
+  /* Exclude .social-icons */
+  main .social-icons [target="_blank"]::after {
+    /* Reset styles or apply different styles for links within .social-icons if needed */
+    content: none; /* Remove the 'external-link-alt' icon */
+    /* Add any additional styles as needed */
+  }
+  .social-icons a {
+    color: #000 !important;
+  }
+}
+
+.authorContent {
+  ul li {
+    list-style: disc;
+    margin-left: 25px;
+    padding: 10px 30px 10px 0;
+  }
+  p {
+    margin-bottom: 10px;
+  }
+}
