@@ -1,9 +1,10 @@
 ---
-title: "Bits of Chips | TrueNorth"
+title: "TrueNorth: Emulating the Brain with 4096 Cores, 1 Million Neurons, and 256 Million Synapses"
 description: "Analysis of the TrueNorth chip and article."
-image: brain-to-chip.png
+image: images/posts/brain-to-chip.png
 draft: false
 date: 2023-03-27
+author: Fabrizio Ottati
 tags: ["research", "hardware", "digital", "neuromorphic"]
 showTableOfContents: true
 math: true

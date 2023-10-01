@@ -57,3 +57,5 @@
 
 <!-- Crisp Chat -->
 {{/* {{ partialCached "crisp-chat.html" . }} */}}
+
+{{ if .Params.math }}{{ partial "helpers/katex.html" . }}{{ end }}

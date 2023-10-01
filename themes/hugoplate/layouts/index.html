@@ -67,14 +67,14 @@
         <h3>Recent Posts</h3>
       </div>
       <div class="col-6">
-        <a href="/workshops" class="btn btn-primary float-right">Explore All Workshops</a>
+        <a href="/blog/" class="btn btn-primary float-right">Explore All Posts</a>
       </div>
       {{ $events := where .Site.RegularPages "Section" "blog" }}
       {{ $recentRecordings := slice }}
       {{ $sortedRecentRecordings := sort $events "Params.date" "desc" }}
       {{ range first 4 $sortedRecentRecordings }}
         <div class="md:col-3 mb-14">
-          {{ partial "components/session-card" . }}
+          {{ partial "components/blog-card" . }}
         </div>
       {{ end }}
     </div>

@@ -1,13 +1,12 @@
 ---
-title: "Efficient compression for event-based data"
+title: "Efficient Compression For Event-Based Data"
 date: 2023-02-28
 description: "Choosing a good trade-off between disk footprint and file loading times."
 draft: false
-image: file_read_benchmark.png
+author: "Gregor Lenz, Fabrizio Ottati, Alexandre Marcireau"
+image: images/posts/file_read_benchmark.png
 tags: ["file encoding", "events", "event camera", "compression"]
 ---
-
-# Efficient compression for event-based data
 
 ## Datasets grow larger in size
 As neuromorphic algorithms tackle more complex tasks that are linked to bigger datasets, and event cameras mature to have higher spatial resolution, it is worth looking at how to encode that data efficiently when storing it on disk. To give you an example, Prophesee's latest automotive [object detection dataset](https://docs.prophesee.ai/stable/datasets.html) is some 3.5 TB in size for under 40h of recordings with a single camera.

@@ -13,6 +13,14 @@ section a {
   font-weight: 550 !important;
 }
 
+.btn-primary {
+  --tw-border-opacity: 1;
+  border-color: #000000;
+  --tw-bg-opacity: 1;
+  background-color: #FFF;
+  --tw-text-opacity: 1;
+  color: #FFF;
+  }
 
 /* Default styles */
 main [target="_blank"]::after {
@@ -40,22 +48,34 @@ main .social-icons [target="_blank"]::after {
 }
 
 .dark {
+  code {
+    color: #FFF;
+  }
   section a {
     color: #bcfbff !important;
     text-decoration: none !important;
     font-weight: 550 !important;
   }
-
+  h1 a, h2 a,  h3 a, h4 a, h5 a  {
+    color: #ffffff !important;
+    text-decoration: none !important;
+    font-weight: 550 !important;
+  }
   .content :is(:where(a):not(:where([class~="not-prose"], [class~="not-prose"] *))) {
     color: #bcfbff !important;
     text-decoration: none !important;
     font-weight: 550 !important;
   }
 
-  a.btn {
-    text: #000;
-  }
+  :is(.dark .btn-primary) {
+    --tw-border-opacity: 1;
+    border-color: #bcfbff;
+    --tw-bg-opacity: 1;
+    background-color: #000;
+    --tw-text-opacity: 1;
+    color: #FFF;
 
+  }
   /* Default styles */
   main [target="_blank"]::after {
     font-family: "Font Awesome 6 Free"; /* Font Awesome class */

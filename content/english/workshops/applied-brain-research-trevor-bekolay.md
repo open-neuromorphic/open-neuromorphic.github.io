@@ -9,7 +9,7 @@ image: https://img.youtube.com/vi/sgu9l_bqAHM/maxresdefault.jpg
 
 ### Slides
 
-[click here](2023-01-26-Nengo.pdf)
+[click here](assets/2023-01-26-Nengo.pdf)
 
 ### Speaker's bio
 Trevor Bekolay’s primary research interest is in learning and memory. In his Master’s degree, he explored how to do supervised, unsupervised, and reinforcement learning in networks of biologically plausible spiking neurons. In his PhD, he applied this knowledge to the domain of speech to explore how sounds coming into the ear become high-level linguistic representations, and how those representations become sequences of vocal tract movements that produce speech.

@@ -1,14 +1,13 @@
 ---
-title: "Spiking neurons: a digital hardware implementation"
+title: "Spiking Neurons: A Digital Hardware Implementation"
 date: 2023-01-02
-description: "In this article, we will try to model a Leaky Spiking Neuron (LIF) using digital hardware: registers, memories, adders and so on."
+description: "Discover TrueNorth, an innovative 4096-core chip designed to emulate the brain's efficient and low-power processing. Explore its architecture, event-driven design, massive parallelism, and real-time operation in this exploration of neuromorphic computing"
 math: true
 draft: false
-image: loihi.png
+author: "Fabrizio Ottati"
+image: /images/posts/loihi.png
 tags: ["hardware", "digital", "spiking", "snn", "rtl", "verilog", "AI", "machine learning"]
 ---
-
-## Spiking neurons
 
 In this article, we will try to model a layer of Leaky Integrate and Fire (LIF) spiking neurons using digital hardware: registers, memories, adders and so on. To do so, we will consider a single output neuron connected to multiple input neurons from a previous layer.
 
