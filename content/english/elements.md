@@ -6,6 +6,7 @@ meta_title: ""
 description: "This is meta description"
 # save as draft
 draft: false
+exclude_sitemap: true
 ---
 
 {{< toc >}}

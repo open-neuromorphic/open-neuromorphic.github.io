@@ -6,12 +6,16 @@
     <div class="row">
       <!-- First entry with 8-column width -->
       {{ with index (where .Site.RegularPages "Params.upcoming" "ne" true) 0 }}
-      <div class="lg:col-8 mb-14">
+      <div class="lg:col-8 md:col-12 mb-8">
         {{ partial "components/session-card-video" . }}
       </div>
       {{ end }}
       <!-- 4-column placeholder -->
-      <div class="lg:col-4 mb-14">
+      <div class="lg:col-4 md:col-12 mb-14">
+                <div class="pb-4 text-center">~ Sharing is Caring ~
+        {{ partial "override-social-share" (dict "Context" . "Class" "share-icons" "Whatsapp" true
+        "Telegram" false) }}
+        </div>
         <div class="px-7 pt-7 bg-theme-light dark:bg-darkmode-theme-light rounded">
           <h3 class="pb-5 text-xl">Upcoming Workshops</h3>
           {{ partial "components/upcoming-events" . }}
@@ -22,20 +26,28 @@
       </div>
       </div>
     <div class="row">
-      <!-- Remaining entries with 4-column width -->
-      {{ $pagesWorkshop := index (where .RegularPages "Params.upcoming" "ne" true) }}
-      {{ $paginator := .Paginate $pagesWorkshop }}
-      {{ $skipFirst := true }}
-      {{ range $paginator.Pages }}
-      {{ if $skipFirst }}
-      {{ $skipFirst = false }}
-      {{ else }}
-      <div class="md:col-4 mb-14">
-        {{ partial "components/session-card" . }}
-      </div>
-      {{ end }}
-      {{ end }}
-    </div>
+  <!-- First 5 entries with session-card-wide and col-12 width -->
+<div class="row">
+  <!-- Get the first 5 entries with 12-column width -->
+  {{ $pagesWorkshop := index (where .RegularPages "Params.upcoming" "ne" true) }}
+  {{ $firstFivePages := first 4 $pagesWorkshop }}
+  {{ range $firstFivePages }}
+  <div class="col-12 mb-14">
+    {{ partial "components/session-card-wide" . }}
+  </div>
+  {{ end }}
+
+  <!-- Remaining entries with 4-column width -->
+  {{ $remainingPages := after 4 $pagesWorkshop }}
+  {{ range $remainingPages }}
+  <div class="lg:col-4 mb-14">
+    {{ partial "components/session-card" . }}
+  </div>
+  {{ end }}
+</div>
+</div>
+
+
   </div>
 </section>
 {{ end }}

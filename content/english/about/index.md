@@ -24,7 +24,7 @@ Projects that we list here can fall into this non-exclusive list of categories:
 
 Get in touch with us if you wish to give a talk, write an article or to know more about the neuromorphic world.
 
-{{< accordion "Site Credits" >}}
+{{< accordion "Site Dev Credits" >}}
 
 - Website design & custom development by Justin Riddiough at [AI Models](https://www.aimodels.org/)
 - Starter Theme used [Hugoplate](https://github.com/zeon-studio/hugoplate)

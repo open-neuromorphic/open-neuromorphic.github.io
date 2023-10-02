@@ -1,8 +1,9 @@
-######################## default configuration ####################
+###################### default configuration ####################
 # The base URL of your site (required). This will be prepended to all relative URLs.
-baseURL = "/"
+baseURL = "https://open-neuromorphic.org"
 # Title of your website (required).
 title = "Open Neuromorphic"
+
 # Your theme name
 theme = "hugoplate"
 # Default time zone for time stamps; use any valid tz database name: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List
@@ -64,7 +65,7 @@ target = '$1'
 
 ############################# Outputs ############################
 [outputs]
-home = ["HTML", "RSS", "WebAppManifest", "SearchIndex"]
+home = ["HTML", "RSS", "SearchIndex"]
 
 ############################# Imaging ############################
 [imaging]
@@ -150,3 +151,12 @@ link = "js/modal.js"
 link = "plugins/cookie.js"
 [[params.plugins.js]]
 link = "plugins/youtube-lite.js"
+
+[sitemap]
+changeFreq = ''
+filename = 'sitemap.xml'
+priority = -1
+
+disableKinds = ['homepage']
+
+[Taxonomies]

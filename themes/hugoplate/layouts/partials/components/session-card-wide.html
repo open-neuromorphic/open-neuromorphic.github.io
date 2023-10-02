@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="lg:col-4 md:col-12">
+    {{ $image := .Params.image }}
+    {{ if $image }}
+      <a href="{{ .RelPermalink }}" class="pb-4">
+        {{ partial "override-image" (dict "Src" $image "Context" .Page "Alt" .Title "Class" "w-full rounded" "Size" "500x") }}
+      </a>
+    {{ end }}
+  </div>
+  <div class="lg:col-8 md:col-12">
+    <h4 class="mb-3 pt-4">
+      <a href="{{ .RelPermalink }}">
+        {{ .Title }}
+      </a>
+    </h4>
+    <ul class="mb-4">
+      <li class="mr-4 inline-block">
+        <i class="fa-regular fa-circle-user mr-2"></i>{{ .Params.author }}
+      </li>
+      {{ if .Params.date }}
+      <li class="mr-4 inline-block">
+        <i class="fa-regular fa-calendar mr-2"></i>{{ dateFormat "January 2, 2006" .Params.date }}
+      </li>
+      {{ end }}
+      {{ if .Params.upcoming }}
+      <li class="mr-4 inline-block">
+        <i class="fa-regular fa-clock mr-2"></i>{{ .Params.start_time }} - {{ .Params.end_time }}
+      </li>
+      {{ end }}
+    </ul>
+    <p class="mb-2">{{ .Description }}</p>
+  </div>
+</div>

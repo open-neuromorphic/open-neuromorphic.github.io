@@ -62,7 +62,7 @@
       {{ $recentRecordings := slice }}
       {{ $sortedRecentRecordings := sort $events "Params.date" "desc" }}
       {{ range first 3 (where $sortedRecentRecordings "Params.upcoming" "ne" "true") }}
-      <div class="md:col-4 mb-14">
+      <div class="md:col-12 lg:col-4 mb-14">
         {{ partial "components/session-card" . }}
       </div>
       {{ end }}
@@ -84,7 +84,7 @@
       {{ $recentRecordings := slice }}
       {{ $sortedRecentRecordings := sort $events "Params.date" "desc" }}
       {{ range first 4 $sortedRecentRecordings }}
-      <div class="md:col-3 mb-14">
+      <div class="md:col-12 lg:col-3 mb-14">
         {{ partial "components/blog-card" . }}
       </div>
       {{ end }}

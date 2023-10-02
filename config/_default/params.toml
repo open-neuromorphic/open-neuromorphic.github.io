@@ -1,6 +1,6 @@
 #################### default parameters ################################
 # favicon
-favicon = "images/favicon.png"
+favicon = "images/ONM-logo.png"
 # logo
 logo = "images/logo.png"
 logo_darkmode = "images/logo-darkmode.png"
@@ -51,14 +51,14 @@ primary_color = "#121212"
 include_sections = ["blog"]
 show_image = true
 show_description = true
-show_tags = true
-show_categories = true
+show_tags = false
+show_categories = false
 
 
 # seo meta data for OpenGraph / Twitter Card
 # seo module: https://github.com/gethugothemes/hugo-modules/tree/master/seo-tools/basic-seo
 [metadata]
-keywords = ["neruomorphic computing", "artificial intelligence", "open source"]
+keywords = ["neuromorphic computing", "artificial intelligence", "open source"]
 description = "Explore the world of Neuromorphic Computing, AI, and Devices in an open-source community. Join us for educational content, events, and collaborative innovation"
 author = "Open Neuromorphic"
 image = "images/og-image.png"
