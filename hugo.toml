@@ -150,5 +150,3 @@ link = "js/modal.js"
 link = "plugins/cookie.js"
 [[params.plugins.js]]
 link = "plugins/youtube-lite.js"
-
-buildFuture = true

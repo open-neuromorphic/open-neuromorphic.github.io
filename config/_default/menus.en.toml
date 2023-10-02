@@ -12,7 +12,7 @@ url = "/workshops/"
 weight = 2
 
 [[main]]
-name = "Posts"
+name = "Blog"
 url = "/blog/"
 weight = 3
 
@@ -31,10 +31,6 @@ parent = "About"
 name = "Getting Involved"
 url = "/getting-involved/"
 
-[[main]]
-parent = "About"
-name = "Resources"
-url = "/resources/"
 
 [[main]]
 parent = "About"
@@ -42,21 +38,34 @@ name = "Team"
 url = "/team/"
 
 
-
-
-
 # footer menu
 [[footer]]
-name = "About"
-url = "/about/"
-weight = 1
+name = "Quick Links"
+hasChildren = true
 
 [[footer]]
-name = "Elements"
-url = "/elements/"
+parent = "Quick Links"
+name = "ONM Team"
+url = "/team/"
 weight = 2
 
 [[footer]]
-name = "Privacy Policy"
-url = "/privacy-policy/"
+parent = "Quick Links"
+name = "Join Our Discord"
+url = "https://discord.gg/C9bzWgNmqk"
 weight = 3
+
+[[footer]]
+parent = "Quick Links"
+name = "Neuromorphic Frameworks"
+url = "https://github.com/open-neuromorphic/open-neuromorphic"
+weight = 4
+
+[[footer]]
+parent = "Quick Links"
+name = "How to Get Involved"
+url = "/getting-involved/"
+weight = 1
+
+
+

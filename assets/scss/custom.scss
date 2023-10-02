@@ -111,3 +111,21 @@ main .social-icons [target="_blank"]::after {
     margin-bottom: 10px;
   }
 }
+
+
+.footer-menu-item {
+  margin-bottom: 10px;
+  font-weight: 550;
+  font-size: 1.1em;
+  line-height: 2em;
+}
+.footer-menu-item p,
+.footer-menu-item > a {
+  text-decoration: underline;
+}
+
+.footer-menu-subitem {
+  display: block;
+  font-weight: 400;
+  font-size: 0.9em;
+}

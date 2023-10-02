@@ -1,7 +1,9 @@
 <div class="bg-body dark:bg-darkmode-body">
-  {{ $image:= .Params.image }}
+  {{ $image := .Params.image }}
   {{ if $image }}
-    {{ partial "image2" (dict "Src" $image "Alt" .Title "Class" "mb-6 w-full rounded" "Size" "720x400" "Command" "Fill") }}
+    <a href="{{ .RelPermalink }}">
+      {{ partial "image2" (dict "Src" $image "Alt" .Title "Class" "mb-6 w-full rounded" "Size" "720x400" "Command" "Fill") }}
+    </a>
   {{ end }}
   <h4 class="mb-3">
     <a href="{{ .RelPermalink }}">
@@ -13,5 +15,5 @@
       <i class="fa-regular fa-circle-user mr-2"></i>{{ .Params.author }}
     </li>
   </ul>
-  <p class="mb-6">{{ .Summary }}</p>
+  <p class="mb-6">{{ .Description }}</p>
 </div>

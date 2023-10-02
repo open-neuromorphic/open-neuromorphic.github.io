@@ -5,7 +5,7 @@
   "license": "MIT",
   "author": "zeon.studio",
   "scripts": {
-    "dev": "hugo server --buildFuture",
+    "dev": "hugo serve --buildFuture",
     "build": "hugo --gc --minify --buildFuture --templateMetrics --templateMetricsHints --forceSyncStatic",
     "test": "hugo server --disableFastRender --navigateToChanged --templateMetrics --templateMetricsHints --watch --forceSyncStatic -e production --minify",
     "dev:example": "cd exampleSite; hugo server",

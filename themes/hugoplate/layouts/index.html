@@ -4,30 +4,30 @@
     <div class="row items-center justify-between">
       <div class="md:col-7 lg:col-8">
         <h1 class="mb-4 text-3xl">
-          Neuromorphic Computing meets Open Source
+          Neuromorphic Computing Meets Open Source
         </h1>
         <ul class="list-none ml-3 mb-8 text-lg">
           <li class="relative mb-4 pl-6">
             <i class="fa fa-check absolute left-0 top-1.5"></i>
-            A curated list of <strong>software frameworks</strong> to make it easier to find <strong>the tool you need</strong>.
+            A curated list of <a href="https://github.com/open-neuromorphic/open-neuromorphic" target="_blank">software frameworks</a> to make it easier to find <strong>the tool you need</strong>.
           </li>
           <li class="relative mb-4 pl-6">
             <i class="fa fa-check absolute left-0 top-1.5"></i>
-            <strong>A platform for your code</strong>. If you wish to create a new repository or migrate your existing code to ONM, please get in touch with us.
+            <a href="https://github.com/open-neuromorphic" target="_blank">A platform for your code</a>. If you wish to create a new repository or migrate your existing code to ONM, please get in touch with us.
           </li>
           <li class="relative mb-4 pl-6">
             <i class="fa fa-check absolute left-0 top-1.5"></i>
-            Educational content to get you started in the neuromorphic world.
+            <a href="/blog">Educational content</a> to get you started in the neuromorphic world.
           </li>
           <li class="relative mb-4 pl-6">
             <i class="fa fa-check absolute left-0 top-1.5"></i>
-            Events about neuromorphic research and software, with contributions from both academia and industry.
+            <a href="/workshops/">Events about neuromorphic research and software</a>, with contributions from both academia and industry.
           </li>
         </ul>
       </div>
       <div class="bg-theme-light dark:bg-darkmode-theme-light rounded p-7 mb:md-0 md:col-5 lg:col-4 mb-6">
         <h3 class="pb-5 text-xl">Upcoming Workshop</h3>
-        {{ $events := where .Site.RegularPages "Section" "upcoming" }}
+        {{ $events := where .Site.RegularPages "Section" "workshops" }}
         {{ $upcomingEvents := where $events "Params.date" "gt" now }}
         {{ $sortedUpcomingEvents := sort $upcomingEvents "Params.date" }}
         {{ with index $sortedUpcomingEvents 0 }}
@@ -49,14 +49,16 @@
       <div class="col-6">
         <a href="/workshops" class="btn btn-primary float-right">Explore All Workshops</a>
       </div>
-      {{ $events := where .Site.RegularPages "Section" "workshops" }}
-      {{ $recentRecordings := slice }}
-      {{ $sortedRecentRecordings := sort $events "Params.date" "desc" }}
-      {{ range first 3 $sortedRecentRecordings }}
-        <div class="md:col-4 mb-14">
-          {{ partial "components/session-card" . }}
-        </div>
-      {{ end }}
+{{ $events := where .Site.RegularPages "Section" "workshops" }}
+{{ $recentRecordings := slice }}
+{{ $sortedRecentRecordings := sort $events "Params.date" "desc" }}
+{{ range first 3 (where $sortedRecentRecordings "Params.upcoming" "ne" "true") }}
+  <div class="md:col-4 mb-14">
+    {{ partial "components/session-card" . }}
+  </div>
+{{ end }}
+
+
     </div>
   </div>
 </section>

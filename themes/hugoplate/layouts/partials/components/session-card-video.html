@@ -1,6 +1,10 @@
-<div class="">
+<div>
   {{ $image := .Params.image }}
-  {{ if $image }}
+  {{ if .Params.video }}
+  <div class="mb-4 rounded">
+        {{ partial "youtube-lite.html" (dict "Id" .Params.video ) }}
+  </div>
+  {{ else if $image }}
     <a href="{{ .RelPermalink }}">
       {{ partial "image2" (dict "Src" $image "Alt" .Title "Class" "mb-6 w-full rounded") }}
     </a>

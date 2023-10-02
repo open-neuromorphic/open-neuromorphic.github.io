@@ -6,7 +6,7 @@
           {{ $image:= .Params.image }}
           {{ if $image }}
             <div class="mb-10">
-              {{ partial "image" (dict "Src" $image "Alt" .Title "Class" "w-full rounded") }}
+              {{ partial "image2" (dict "Src" $image "Alt" .Title "Class" "w-full rounded" "Size" "1280x720" "Command" "Crop") }}
             </div>
           {{ end }}
           <h1 class="h2 mb-4">
@@ -20,19 +20,19 @@
                 >{{ .Params.author }}
               </a>
             </li>
-            <li class="mr-4 inline-block">
-              <i class="fa-regular fa-folder mr-2"></i>
-              {{ $categories:= .Params.categories }}
-              {{ range $i,$p:= $categories }}
-                <a
-                  href="{{ `categories/` | relLangURL }}{{ . | urlize | lower }}/"
-                  class="ms-1"
-                  >{{ . | humanize }}{{ if ne $i (sub (len $categories) 1) }}
-                    {{ ", " }}
-                  {{ end }}
-                </a>
-              {{ end }}
-            </li>
+<!--            <li class="mr-4 inline-block">-->
+<!--              <i class="fa-regular fa-folder mr-2"></i>-->
+<!--              {{ $categories:= .Params.categories }}-->
+<!--              {{ range $i,$p:= $categories }}-->
+<!--                <a-->
+<!--                  href="{{ `categories/` | relLangURL }}{{ . | urlize | lower }}/"-->
+<!--                  class="ms-1"-->
+<!--                  >{{ . | humanize }}{{ if ne $i (sub (len $categories) 1) }}-->
+<!--                    {{ ", " }}-->
+<!--                  {{ end }}-->
+<!--                </a>-->
+<!--              {{ end }}-->
+<!--            </li>-->
             <li class="mr-4 inline-block">
               <i class="fa-regular fa-clock mr-2"></i>
               {{ time.Format ":date_long" .PublishDate }}

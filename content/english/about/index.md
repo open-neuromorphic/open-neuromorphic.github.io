@@ -6,7 +6,9 @@ title: "About"
 image: ONM.png
 ---
 
-This [organisation](https://github.com/open-neuromorphic) is created by a loose collective of **open source** collaborators across academia, industry and individual contributors. Most of us have never met in person before but have started contributing to a common or each other's projects! What connects us is the love for building tools that can be used in the neuromorphic community and we want to share ownership of this vision. If you feel like that resonates with you, please don't hesitate to get in touch!
+Open Neuromorphic is created by a loose collective of **open source** collaborators across academia, industry and individual contributors. Most of us have never met in person before but have started contributing to a common or each other's projects! 
+
+> What connects us is the love for building tools that can be used in the neuromorphic community and we want to share ownership of this vision. If you feel like that resonates with you, please don't hesitate to get in touch!
 
 **Open Neuromorphic** (ONM) provides the following things:
 
