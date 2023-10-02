@@ -11,6 +11,20 @@ section a {
     font-size: 2rem;
   }
 }
+.nav-dropdown-list {
+  min-width: 300px;
+  background: #000 !important;
+  border-radius: 10px;
+}
+
+a {
+  overflow-wrap: break-word;
+}
+code {
+      overflow-x: auto;
+  white-space: pre-wrap;
+}
+
 .share-link {
   margin: 10px;
   font-size: 1.2em;

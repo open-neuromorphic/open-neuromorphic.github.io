@@ -6,21 +6,21 @@
           class="navbar-brand inline-block"
           href="{{ site.BaseURL | relLangURL }}">
           {{ partial "logo" }} </a
-        ><br />
+        ><br/>
       </div>
       <div class="lg:col-5 mb-8 text-left mb-0"></div>
       <div class="lg:col-4 mb-8 text-center lg:mb-0 lg:mt-0 lg:text-right">
         <ul class="social-icons">
           {{ range site.Data.social.main }}
-            <li>
-              <a
-                target="_blank"
-                aria-label="{{ .name }}"
-                rel="nofollow noopener"
-                href="{{ .link | safeURL }}">
-                <i class="{{ .icon }}"></i>
-              </a>
-            </li>
+          <li>
+            <a
+              target="_blank"
+              aria-label="{{ .name }}"
+              rel="nofollow noopener"
+              href="{{ .link | safeURL }}">
+              <i class="{{ .icon }}"></i>
+            </a>
+          </li>
           {{ end }}
         </ul>
       </div>
@@ -32,65 +32,51 @@
       <div class="lg:col-3 mb-8 text-right mb-0">
         <ul class="footer-menu">
           {{ range site.Menus.footer }}
-            {{ if not .Parent }}
-              <!-- ensure we're only looping over top level items -->
-              <li class="footer-menu-item">
-                <a
-                  {{ if findRE `^http` .URL }}
-                    target="_blank" rel="noopener"
-                  {{ end }}
-                  href="{{ if findRE `^#` .URL }}
+          {{ if not .Parent }}
+          <!-- ensure we're only looping over top level items -->
+          <li class="footer-menu-item">
+            <a
+              {{ if findRE `^http` .URL }}
+              target="_blank" rel="noopener"
+              {{ end }}
+              href="{{ if findRE `^#` .URL }}
                     {{ if not $.IsHome }}
                       {{ site.BaseURL | relLangURL }}
                     {{ end }}{{ .URL }}
                   {{ else }}
                     {{ .URL | relLangURL }}
                   {{ end }}"
-                  >{{ .Name }}</a
-                >
-                {{ if .HasChildren }}
-                  <!-- check for child items -->
-                  <ul>
-                    {{ range .Children }}
-                      <!-- loop over child items -->
-                      <li class="footer-menu-subitem">
-                        <a
-                          {{ if findRE `^http` .URL }}
-                            target="_blank" rel="noopener"
-                          {{ end }}
-                          href="{{ if findRE `^#` .URL }}
+            >{{ .Name }}</a
+            >
+            {{ if .HasChildren }}
+            <!-- check for child items -->
+            <ul>
+              {{ range .Children }}
+              <!-- loop over child items -->
+              <li class="footer-menu-subitem">
+                <a
+                  {{ if findRE `^http` .URL }}
+                  target="_blank" rel="noopener"
+                  {{ end }}
+                  href="{{ if findRE `^#` .URL }}
                             {{ if not $.IsHome }}
                               {{ site.BaseURL | relLangURL }}
                             {{ end }}{{ .URL }}
                           {{ else }}
                             {{ .URL | relLangURL }}
                           {{ end }}"
-                          >{{ .Name }}</a
-                        >
-                      </li>
-                    {{ end }}
-                  </ul>
-                {{ end }}
+                >{{ .Name }}</a
+                >
               </li>
+              {{ end }}
+            </ul>
             {{ end }}
+          </li>
+          {{ end }}
           {{ end }}
         </ul>
       </div>
       <div class="lg:col-5 mb-8 text-right lg:text-right">
-        <div class="footer-menu-item frontiers-section">
-          <p><a href="/workshops/">Upcoming Workshops</a></p>
-<ul class="footer-menu-subitem">
-{{ $workshops := where .Site.RegularPages "Type" "workshops" }}
-{{ $upcomingWorkshops := where $workshops "Params.upcoming" "eq" true }}
-  {{ $sortedUpcomingWorkshops := sort $upcomingWorkshops "Params.date" "asc" }}
-  {{ range $sortedUpcomingWorkshops }}
-    <li>
-      <a href="{{ .Permalink }}">{{ .Title }} <strong>{{ dateFormat "1/2/06" .Params.date }}</strong> </a>
-    </li>
-  {{ end }}
-</ul>
-
-        </div>
         <div class="footer-menu-item frontiers-section">
           <p><a href="/blog/">Neuromorphic Updates & Information</a></p>
           <ul class="footer-menu-subitem">
@@ -99,15 +85,33 @@
             </li>
             <li>
               <a href="/blog/spiking-neurons-digital-hardware-implementation/"
-                >Spiking Neurons: A Step-by-Step Guide</a
+              >Spiking Neurons: A Step-by-Step Guide</a
               >
             </li>
             <li>
               <a href="/blog/spiking-neural-network-framework-benchmarking/"
-                >Spiking Nerual Network (SNN) Library Benchmarks </a
+              >Spiking Nerual Network (SNN) Library Benchmarks</a
               >
             </li>
+            <li>
+              <a href="https://github.com/open-neuromorphic/open-neuromorphic"
+              target="_blank">Open Source Neuromorphic Projects</a>
+            </li>
           </ul>
+        </div>
+        <div class="footer-menu-item frontiers-section">
+          <p><a href="/workshops/">Upcoming Workshops</a></p>
+          <ul class="footer-menu-subitem">
+            {{ $workshops := where .Site.RegularPages "Type" "workshops" }}
+            {{ $upcomingWorkshops := where $workshops "Params.upcoming" "eq" true }}
+            {{ $sortedUpcomingWorkshops := sort $upcomingWorkshops "Params.date" "asc" }}
+            {{ range $sortedUpcomingWorkshops }}
+            <li>
+              <a href="{{ .Permalink }}">{{ .Title }} <strong>{{ dateFormat "1/2/06" .Params.date }}</strong> </a>
+            </li>
+            {{ end }}
+          </ul>
+
         </div>
       </div>
       <div class="lg:col-1 mb-8 bg-gradient text-right lg:text-right"></div>

@@ -57,12 +57,6 @@ weight = 3
 
 [[footer]]
 parent = "Quick Links"
-name = "Neuromorphic Frameworks"
-url = "https://github.com/open-neuromorphic/open-neuromorphic"
-weight = 4
-
-[[footer]]
-parent = "Quick Links"
 name = "How to Get Involved"
 url = "/getting-involved/"
 weight = 1

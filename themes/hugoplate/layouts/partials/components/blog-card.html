@@ -2,7 +2,7 @@
   {{ $image := .Params.image }}
   {{ if $image }}
     <a href="{{ .RelPermalink }}">
-      {{ partial "override-image" (dict "Src" $image "Alt" .Title "Class" "mb-6 w-full rounded" "Size" "504x280" "Command" "Fill") }}
+      {{ partial "image" (dict "Src" $image "Alt" .Title "Class" "mb-6 w-full rounded" "Size" "504x280" "Command" "Fill") }}
     </a>
   {{ end }}
   <h4 class="mb-3">
