@@ -9,23 +9,31 @@
         <ul class="list-none ml-3 mb-8 text-lg">
           <li class="relative mb-4 pl-6">
             <i class="fa fa-check absolute left-0 top-1.5"></i>
-            A curated list of <a href="https://github.com/open-neuromorphic/open-neuromorphic" target="_blank">software frameworks</a> to make it easier to find <strong>the tool you need</strong>.
-          </li>
-          <li class="relative mb-4 pl-6">
-            <i class="fa fa-check absolute left-0 top-1.5"></i>
-            <a href="https://github.com/open-neuromorphic" target="_blank">A platform for your code</a>. If you wish to create a new repository or migrate your existing code to ONM, please get in touch with us.
-          </li>
-          <li class="relative mb-4 pl-6">
-            <i class="fa fa-check absolute left-0 top-1.5"></i>
             <a href="/blog">Educational content</a> to get you started in the neuromorphic world.
           </li>
           <li class="relative mb-4 pl-6">
             <i class="fa fa-check absolute left-0 top-1.5"></i>
-            <a href="/workshops/">Events about neuromorphic research and software</a>, with contributions from both academia and industry.
+            <a href="/workshops/">Events about neuromorphic research and software</a>, with contributions from both
+            academia and industry.
+          </li>
+          <li class="relative mb-4 pl-6">
+            <i class="fa fa-check absolute left-0 top-1.5"></i>
+            A curated list of <a href="https://github.com/open-neuromorphic/open-neuromorphic" target="_blank">software
+            frameworks</a> to make it easier to find <strong>the tool you need</strong>.
+          </li>
+          <li class="relative mb-4 pl-6">
+            <i class="fa fa-check absolute left-0 top-1.5"></i>
+            <a href="https://github.com/open-neuromorphic" target="_blank">A platform for your code</a>. If you wish to
+            create a new repository or migrate your existing code to ONM, please get in touch with us.
+          </li>
+          <li class="relative mb-4 pl-6">
+            <i class="fa fa-check absolute left-0 top-1.5"></i>
+            Welcoming and collaborative environment on <a href="https://discord.gg/C9bzWgNmqk" target="_blank">Discord</a>, join us!
           </li>
         </ul>
       </div>
-      <div class="bg-theme-light dark:bg-darkmode-theme-light rounded p-7 mb:md-0 md:col-5 lg:col-4 mb-6">
+      <div class="mb:md-0 md:col-5 lg:col-4 mb-6">
+        <div class="bg-theme-light dark:bg-darkmode-theme-light rounded p-7">
         <h3 class="pb-5 text-xl">Upcoming Workshop</h3>
         {{ $events := where .Site.RegularPages "Section" "workshops" }}
         {{ $upcomingEvents := where $events "Params.date" "gt" now }}
@@ -36,6 +44,7 @@
           {{ partial "components/session-card" . }}
         </div>
         {{ end }}
+        </div>
       </div>
     </div>
   </div>
@@ -49,14 +58,14 @@
       <div class="col-6">
         <a href="/workshops" class="btn btn-primary float-right">Explore All Workshops</a>
       </div>
-{{ $events := where .Site.RegularPages "Section" "workshops" }}
-{{ $recentRecordings := slice }}
-{{ $sortedRecentRecordings := sort $events "Params.date" "desc" }}
-{{ range first 3 (where $sortedRecentRecordings "Params.upcoming" "ne" "true") }}
-  <div class="md:col-4 mb-14">
-    {{ partial "components/session-card" . }}
-  </div>
-{{ end }}
+      {{ $events := where .Site.RegularPages "Section" "workshops" }}
+      {{ $recentRecordings := slice }}
+      {{ $sortedRecentRecordings := sort $events "Params.date" "desc" }}
+      {{ range first 3 (where $sortedRecentRecordings "Params.upcoming" "ne" "true") }}
+      <div class="md:col-4 mb-14">
+        {{ partial "components/session-card" . }}
+      </div>
+      {{ end }}
 
 
     </div>
@@ -75,9 +84,9 @@
       {{ $recentRecordings := slice }}
       {{ $sortedRecentRecordings := sort $events "Params.date" "desc" }}
       {{ range first 4 $sortedRecentRecordings }}
-        <div class="md:col-3 mb-14">
-          {{ partial "components/blog-card" . }}
-        </div>
+      <div class="md:col-3 mb-14">
+        {{ partial "components/blog-card" . }}
+      </div>
       {{ end }}
     </div>
   </div>

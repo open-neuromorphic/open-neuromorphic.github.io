@@ -6,7 +6,7 @@
   </div>
   {{ else if $image }}
     <a href="{{ .RelPermalink }}">
-      {{ partial "image2" (dict "Src" $image "Alt" .Title "Class" "mb-6 w-full rounded") }}
+      {{ partial "override-image" (dict "Src" $image "Context" .Page "Alt" .Title "Class" "mb-6 w-full rounded") }}
     </a>
   {{ end }}
   <h4 class="mb-3">

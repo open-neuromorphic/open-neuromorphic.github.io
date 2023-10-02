@@ -1,7 +1,13 @@
 <meta charset="utf-8" />
-<title>{{ .Title | default site.Title }}</title>
+{{ $title := "" }}
+{{ if .IsHome }}
+  {{ $title = printf "%s - %s" .Site.Params.homepageTitle .Site.Title }}
+{{ else }}
+  {{ $title = printf "%s - %s" .Title .Site.Title }}
+{{ end }}
+<title>{{ $title }}</title>
 
-<!-- responsive meta -->
+
 <meta
   name="viewport"
   content="width=device-width, initial-scale=1, maximum-scale=5" />

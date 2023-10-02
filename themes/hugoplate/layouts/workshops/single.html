@@ -1,68 +1,96 @@
 {{ define "main" }}
 {{ partial "page-header" . }}
 
-<section class="section pt-7">
+<section class="section pt-14">
   <div class="container">
     <article class="row justify-center">
-        <div class="lg:col-7">
-          {{ $image:= .Params.image }}
-          {{ if .Params.video }}
-          <div class="mb-3">
-            {{ partial "youtube-lite.html" (dict "Id" .Params.video ) }}
-          </div>
-          {{ else if $image }}
-          <div class="mb-3">
-            {{ partial "image2" (dict "Src" $image "Alt" .Title "Class" "w-full rounded") }}
-          </div>
-          {{ end }}
-          <ul class="mb-4">
-            <li class="mr-4 inline-block">
-              <i class="fa-regular fa-circle-user mr-2"></i
-              >{{ .Params.author }}
-            </li>
-            <li class="mr-4 inline-block">
-              <i class="fa-regular fa-clock mr-2"></i>
-              {{ time.Format ":date_long" .PublishDate }}
-            </li>
-          </ul>
-          {{ .Description }}
+      <div class="lg:col-8 mb-7">
+        {{ $image:= .Params.image }}
+        {{ if .Params.video }}
+        <div class="mb-4">
+          {{ partial "youtube-lite.html" (dict "Id" .Params.video ) }}
         </div>
-        <div class="bg-theme-light dark:bg-darkmode-theme-light rounded lg:col-5 mb-14">
-          <h3 class="pb-5 pt-5 text-xl">Upcoming Workshops</h3>
+        {{ else if $image }}
+        <div class="mb-4">
+          {{ partial "override-image" (dict "Src" $image "Context" .Page "Alt" .Title "Class" "w-full rounded") }}
+        </div>
+        {{ end }}
+        <ul class="mb-5">
+          <li class="mr-4 inline-block">
+            <i class="fa-regular fa-circle-user mr-2"></i
+            >{{ .Params.author }}
+          </li>
+          <li class="mr-4 inline-block">
+            <i class="fa-regular fa-clock mr-2"></i>
+            {{ time.Format ":date_long" .PublishDate }}
+          </li>
+          <li class="mr-4 inline-block">
+            {{ $slides := .Params.speaker_slides }}
+            {{ if $slides }}
+            <a href="{{ $slides }}" target="_blank" class="ms-1 btn btn-sm btn-primary">
+              <i class="fa-regular fa-images mr-2"></i>Slides</a>
+            {{ end }}
+
+            {{ $notebook := .Params.speaker_notebook }}
+            {{ if $notebook }}
+            <a href="{{ $notebook }}" target="_blank" class="ms-1 btn btn-sm btn-primary">
+              <i class="fa-regular fa-folder mr-2"></i>Notebook</a>
+            {{ end }}
+
+            {{ $code := .Params.speaker_code }}
+            {{ if $code }}
+            <a href="{{ $code }}" target="_blank" class="ms-1 btn btn-sm btn-primary">
+              <i class="fa-brands fa-github mr-2"></i>Code</a>
+            {{ end }}
+          </li>
+        </ul>
+        <div class="content">
+          {{ .Content }}
+        </div>
+      </div>
+      <div class="lg:col-4 mb-14">
+        <div class="pb-4 text-center">~ Sharing is Caring ~
+        {{ partial "override-social-share" (dict "Context" . "Class" "share-icons" "Whatsapp" true
+        "Telegram" false) }}
+        </div>
+        <div class="px-7 pt-7 bg-theme-light dark:bg-darkmode-theme-light rounded">
+          <h3 class="pb-5 text-xl">Upcoming Workshops</h3>
           {{ partial "components/upcoming-events" . }}
-          <div class="text-right"> <!-- Right-align the button -->
+          <div class="text-right pb-5"> <!-- Right-align the button -->
             <a href="/getting-involved/" class="btn-primary btn-sm btn">Host a workshop</a>
           </div>
         </div>
-
-        <div class="content mb-10">
-          {{ .Content }}
-        </div>
-        <div class="row items-start justify-between">
-          <div class="lg:col-12 flex items-center">
-            {{ partial "social-share" (dict "Context" . "Class" "share-icons" "Title" (i18n "share") "Whatsapp" false
-            "Telegram" false) }}
-          </div>
-        </div>
-        <!-- comments -->
-        {{ if site.DisqusShortname }}
-        <div class="mt-20">
-          {{ template "_internal/disqus.html" . }}
-        </div>
+      </div>
+      <div class="lg:col-3">
+        {{ if .Params.speaker_photo }}
+        {{ partial "override-image" (dict "Src" .Params.speaker_photo "Context" .Page "Alt" .Title "Class" "mb-6 rounded"
+        "Size" "300x300" "Command" "Fit")}}
         {{ end }}
+      </div>
+      {{ if .Params.speaker_bio}}
+      <div class="lg:col-8">
+        <h3 class="pb-5 pt-5 text-xl">About the Speaker</h3>
+        <p>{{ .Params.speaker_bio | markdownify }}</p>
+      </div>
+      {{ end }}
+      <!-- comments -->
+      {{ if site.DisqusShortname }}
+      <div class="mt-20">
+        {{ template "_internal/disqus.html" . }}
+      </div>
+      {{ end }}
     </article>
 
     <!-- Related posts -->
-    {{ $related := (where site.RegularPages "Section" "in" site.Params.mainSections) | intersect (where
-    site.RegularPages ".Title" "!=" .Title) | union (site.RegularPages.Related . ) }}
-    {{ $related = $related | shuffle | first 3 }}
-    {{ with $related }}
+    {{ $related := (where site.RegularPages "Section" "workshops") }}
+    {{ $filteredRelated := (where $related "Params.upcoming" "ne" true) }}
+    {{ $filteredRelated = $filteredRelated | shuffle | first 3 }}
+    {{ with $filteredRelated }}
     <div class="section pb-0">
-      <h2 class="h3 mb-12">{{ i18n "related_posts" }}</h2>
       <div class="row">
         {{ range . }}
         <div class="lg:col-4">
-          {{ partial "components/blog-card" . }}
+          {{ partial "components/session-card" . }}
         </div>
         {{ end }}
       </div>

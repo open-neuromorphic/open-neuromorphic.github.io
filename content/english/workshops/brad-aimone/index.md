@@ -5,19 +5,6 @@ date: 2023-12-19
 start_time: 6:00
 end_time: 7:30 CET
 upcoming: true
-image: /images/open-neuromorphic-thumbnail.png
+description: "Explore neural-inspired computing with Brad Aimone, a leading neuroscientist at Sandia Labs. Join us for insights into next-gen technology and neuroscience."
+image: workshop-thumbnail-default.png
 ---
-
-## 2023-12-19: Brad Aimone
-
-### Time
-
-6PM-7:30PM CET.
-
-### Abstract
-
-TBD.
-
-### Speaker's bio
-
-TBD.

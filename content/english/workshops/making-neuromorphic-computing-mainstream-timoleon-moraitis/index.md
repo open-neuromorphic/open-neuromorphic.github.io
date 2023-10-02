@@ -5,16 +5,6 @@ date: 2023-11-16
 start_time: 6:00
 end_time: 7:00 CET
 upcoming: true
-image: /images/open-neuromorphic-thumbnail.png
+description: "Join us for a workshop with Timoleon Moraitis, research group leader in neuromorphic computing, at the interface of computational neuroscience with artificial intelligence."
+image: workshop-thumbnail-default.png
 ---
-
-### Time
-6PM-7PM, CET.
-
-### Abstract
-
-TBD.
-
-### Speaker's bio
-
-TBD.

@@ -1,19 +1,19 @@
 <div class="bg-theme-light dark:bg-darkmode-theme-light rounded p-8 flex author">
   <div class="w-3/12 flex items-center">
-    {{ $image := .Params.image }}
+    {{ $image := .image }}
     {{ if $image }}
-      {{ partial "image" (dict "Src" $image "Alt" .Title "Class" "mx-auto mb-6 rounded" "Size" "240x") }}
+      {{ partial "image" (dict "Src" $image "Alt" .name "Class" "mx-auto mb-6 rounded" "Size" "240x") }}
     {{ end }}
   </div>
   <div class="w-9/12 pl-4">
     <h4 class="mb-3">
-      {{ .Title }}
+      {{ .name }}
     </h4>
     <div class="authorContent pb-4">
-      {{ .Content }}
+      {{ .description | markdownify }}
     </div>
     <ul class="social-icons">
-      {{ range .Params.social }}
+      {{ range .social }}
         <li>
           <a href="{{ .link | safeURL }}" target="_blank" rel="noopener nofollow">
             <span class="sr-only">{{ .title }}</span>

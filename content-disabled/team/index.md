@@ -11,8 +11,8 @@ members:
     hardware within embedded systems.
   image: /images/team/henning-wessels.jpg
   name: Henning Wessels
-  member_id: 11
-- description: 'Jens Egholm Pedersen is a doctoral student at the [Royal Institute of
+  team_id: 11
+- description: 'ns Egholm Pedersen is a doctoral student at the [Royal Institute of
     Technology (KTH)](https://www.kth.se/profile/jeped/) working to model and construct
     [neuromorphic](https://en.wikipedia.org/wiki/Neuromorphic_engineering) control
     systems.
@@ -39,7 +39,7 @@ members:
   - icon: fa-brands fa-github
     link: https://github.com/jegp
     name: github
-  member_id: 5
+  team_id: 5
 - description: 'Melika Payvand is an Assistant Professor at the Institute of Neuroinformatics,
     University of Zurich and ETH Zurich. She received her PhD in Electrical and Computer
     Engineering at the University of California Santa Barbara.
@@ -59,7 +59,7 @@ members:
     of the Capocaccia Neuromorphic Intelligence workshop.'
   image: /images/team/melika-payvand.jpg
   name: Melika Payvand
-  member_id: 10
+  team_id: 10
 - description: 'Catherine (Katie) Schuman is an Assistant Professor in the Department
     of Electrical Engineering and Computer Science at the University of Tennessee
     (UT). She received her Ph.D. in Computer Science from UT in 2015, where she completed
@@ -74,7 +74,7 @@ members:
     She received the Department of Energy Early Career Award in 2019.'
   image: /images/team/catherine-schuman.jpg
   name: Catherine Schuman
-  member_id: 9
+  team_id: 9
 - description: 'Charlotte Frenkel is an Assistant Professor at the Microelectronics
     department of Delft University of Technology, Delft, The Netherlands.
 
@@ -102,7 +102,7 @@ members:
   - icon: fa-brands fa-github
     link: https://github.com/ChFrenkel
     name: github
-  member_id: 4
+  team_id: 4
 - description: 'Steve is doing his PhD on neuromorphic computing theory in the [MINDS](https://www.ai.rug.nl/minds/)
     research group at the new [CogniGron](https://www.rug.nl/research/fse/cognitive-systems-and-materials/about/)
     center for cognitive systems and materials in Groningen. He is funded by the European
@@ -121,7 +121,7 @@ members:
   - icon: fa fa-house
     link: https://stevenabreu.com/
     name: website
-  member_id: 6
+  team_id: 6
 - description: 'Fabrizio Ottati is a Ph.D. student in the Department of Electronics
     and Communications of Politecnico di Torino, under the supervision of professor
     Luciano Lavagno and professor Mario Roberto Casu.
@@ -139,7 +139,7 @@ members:
   - icon: fa fa-house
     link: https://fabrizio.foo
     name: website
-  member_id: 1
+  team_id: 1
 - description: 'Alexander is currently a Research Fellow with the Advanced Concepts
     Team at the European Space Agency. His research efforts are focused on retinomorphic
     vision as well as the interplay between homeostasis, adaptation, axon guidance
@@ -153,7 +153,7 @@ members:
     is its potential to bring about this unification.'
   image: /images/team/alexander-hadjiivanov.jpeg
   name: Alexander Hadjiivanov
-  member_id: 8
+  team_id: 8
 - description: 'Jason Eshraghian is an Assistant Professor at the Department of Electrical
     and Computer Engineering, University of California, Santa Cruz, leading the [UCSC
     Neuromorphic Computing Group](http://ncg.ucsc.edu/).
@@ -173,7 +173,7 @@ members:
   - icon: fa-brands fa-github
     link: https://github.com/jeshraghian
     name: github
-  member_id: 3
+  team_id: 3
 - description: 'Gregor Lenz graduated with a Ph.D. in neuromorphic engineering from
     Sorbonne University. He thinks that technology can learn a thing or two from how
     biological systems process information.
@@ -194,7 +194,7 @@ members:
   - icon: fa fa-house
     link: https://lenzgregor.com/
     name: website
-  member_id: 2
+  team_id: 2
 - description: 'Alexander Henkes received the B.Sc. (Mechanical Engineering) and M.Sc.
     (Mechanical Engineering) degrees from the University of Paderborn, Germany, in
     2015 and 2018, respectively. In 2022, he received his Ph.D. with honors from the
@@ -217,6 +217,6 @@ members:
     He is a contributor of [snnTorch](https://github.com/jeshraghian/snntorch).'
   image: /images/team/alexander-henkes.jpg
   name: Alexander Henkes
-  member_id: 7
+  team_id: 7
 title: Team
 ---

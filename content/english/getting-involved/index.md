@@ -1,6 +1,6 @@
 ---
 title: Getting involved
-comments: false
+description: Join ONM's collaborative community on Discord. Contribute open source code, write blog posts, and boost visibility for your projects in neuromorphic computing.
 ---
 
 The easiest way to get in touch is probably through [Discord](https://discord.gg/C9bzWgNmqk), where we discuss research topics, job opportunities, open hardware, spiking neural network training and much more. We'd be delighted to have you join! 

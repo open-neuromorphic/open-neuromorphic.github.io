@@ -1,5 +1,4 @@
 ---
 title: "Blog Posts"
-meta_title: ""
-description: "this is meta description"
+description: "Explore SNN frameworks, TrueNorth chips, efficient data compression, and hardware designs. Stay informed with expert articles."
 ---

@@ -6,7 +6,15 @@ section a {
   font-weight: 550 !important;
 
 }
-
+@media (min-width: 768px) {
+  h1, .h1 {
+    font-size: 2rem;
+  }
+}
+.share-link {
+  margin: 10px;
+  font-size: 1.2em;
+}
 .content :is(:where(a):not(:where([class~="not-prose"], [class~="not-prose"] *))) {
   color: #3c3906 !important;
   text-decoration: none !important;
@@ -23,7 +31,7 @@ section a {
   }
 
 /* Default styles */
-main [target="_blank"]::after {
+[target="_blank"]::after {
   font-family: "Font Awesome 6 Free"; /* Font Awesome class */
   font-weight: 900;
   content: "\f35d"; /* FontAwesome Unicode for 'external-link-alt' icon */
@@ -31,24 +39,43 @@ main [target="_blank"]::after {
   font-size: 16px;
 }
 
-/* Dark mode styles */
 main [target="_blank"]::after {
   color: #000000; /* Change the color for dark mode */
 }
 
-/* Exclude .social-icons */
-main .social-icons [target="_blank"]::after {
-  /* Reset styles or apply different styles for links within .social-icons if needed */
+.social-icons [target="_blank"]::after {
   content: none; /* Remove the 'external-link-alt' icon */
-  /* Add any additional styles as needed */
+}
+
+.share-icons [target="_blank"]::after {
+  content: none; /* Remove the 'external-link-alt' icon */
 }
 
 .social-icons a {
   color: #FFF !important;
 }
-
+  figcaption {
+    color: #000;
+    margin-top: 0 !important;
+  }
 .dark {
   code {
+    color: #FFF;
+  }
+
+/* Apply the glowing effect to the button when hovered or focused */
+header .btn-outline-primary {
+  border-color: transparent;
+  color: #ffffff;
+  font-weight: 550;
+  border-width: 2px;
+  border-color: #e8b7fb;
+  transition: box-shadow 0.3s ease-in-out;
+    box-shadow: 0 0 39px 0px rgba(228, 218, 234, 0.5); /* Adjust the color and intensity as needed */
+
+}
+
+  figcaption {
     color: #FFF;
   }
   section a {
@@ -76,26 +103,12 @@ main .social-icons [target="_blank"]::after {
     color: #FFF;
 
   }
-  /* Default styles */
-  main [target="_blank"]::after {
-    font-family: "Font Awesome 6 Free"; /* Font Awesome class */
-    font-weight: 900;
-    content: "\f35d"; /* FontAwesome Unicode for 'external-link-alt' icon */
-    margin: 0px 3px 0px 5px;
-    font-size: 16px;
-  }
 
   /* Dark mode styles */
   main [target="_blank"]::after {
     color: #bcfbff; /* Change the color for dark mode */
   }
 
-  /* Exclude .social-icons */
-  main .social-icons [target="_blank"]::after {
-    /* Reset styles or apply different styles for links within .social-icons if needed */
-    content: none; /* Remove the 'external-link-alt' icon */
-    /* Add any additional styles as needed */
-  }
   .social-icons a {
     color: #000 !important;
   }
