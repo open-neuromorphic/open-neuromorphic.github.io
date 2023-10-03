@@ -19,7 +19,6 @@ section a {
 
 .nav-dropdown-list {
   min-width: 300px;
-  background: #000 !important;
   border-radius: 10px;
 }
 
@@ -131,6 +130,10 @@ h1 a, h2 a, h3 a, h4 a, h5 a {
     border-color: #e8b7fb;
     transition: box-shadow 0.3s ease-in-out;
     box-shadow: 0 0 39px 0px rgba(228, 218, 234, 0.5);
+  }
+
+  .nav-dropdown-list {
+    background: #000 !important;
   }
 
   figcaption {
