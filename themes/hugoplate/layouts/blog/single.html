@@ -7,7 +7,7 @@
         {{ $image:= .Params.image }}
         {{ if $image }}
         <div class="mb-6">
-          {{ partial "override-image" (dict "Src" $image "Alt" .Title "Class" "w-full rounded" "Size" "1280x720"
+          {{ partial "override-image" (dict "Src" $image "Context" .Page "Alt" .Title "Class" "w-full rounded" "Size" "1280x720"
           "Command" "Crop") }}
         </div>
         {{ end }}
