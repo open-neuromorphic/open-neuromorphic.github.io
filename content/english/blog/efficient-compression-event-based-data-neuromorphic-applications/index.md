@@ -4,7 +4,7 @@ date: 2023-02-28
 description: "Discover methods to efficiently encode and store event-based data from high-resolution event cameras, striking a balance between file size and fast retrieval for spiking neural network training."
 draft: false
 author: "Gregor Lenz, Fabrizio Ottati, Alexandre Marcireau"
-image: images/posts/file_read_benchmark.png
+image: file_read_benchmark.png
 tags: ["file encoding", "events", "event camera", "compression"]
 ---
 

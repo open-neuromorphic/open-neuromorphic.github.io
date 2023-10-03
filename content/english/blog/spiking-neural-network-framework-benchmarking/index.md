@@ -4,7 +4,7 @@ date: 2023-08-02
 description: "Discover the fastest Spiking Neural Network (SNN) frameworks for PyTorch optimization. Performance, flexibility, and more analyzed in-depth"
 draft: false
 author: "Gregor Lenz"
-image: /images/posts/framework-benchmarking-16k-header.png
+image: framework-benchmarking-16k-header.png
 tags: ["snn", "framework", "library", "pytorch"]
 ---
 

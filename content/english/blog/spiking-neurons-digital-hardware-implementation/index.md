@@ -5,7 +5,7 @@ description: "Learn how to model Leaky Integrate and Fire (LIF) neurons in digit
 math: true
 draft: false
 author: "Fabrizio Ottati"
-image: /images/posts/loihi.png
+image: loihi.png
 tags: ["hardware", "digital", "spiking", "snn", "rtl", "verilog", "AI", "machine learning"]
 ---
 
