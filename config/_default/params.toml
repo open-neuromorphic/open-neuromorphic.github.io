@@ -16,7 +16,7 @@ logo_text = "Open Neuromorphic"
 navbar_fixed = true
 # theme-mode
 theme_switcher = true
-theme_default = "dark" # available options [light/dark/system]
+theme_default = "system" # available options [light/dark/system]
 # Main Sections
 mainSections = ["blog","workshops"]
 # contact form action
