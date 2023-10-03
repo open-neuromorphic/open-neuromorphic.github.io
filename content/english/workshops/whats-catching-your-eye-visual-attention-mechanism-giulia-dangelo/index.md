@@ -4,7 +4,7 @@ author: Giulia D'Angelo
 date: 2023-09-26
 description: Delve into the world of visual attention mechanisms with Giulia D'Angelo as she explores the interplay of bottom-up and top-down processes, offering insights into bio-inspired models for enhanced robotic perception and interaction.
 video: vwT_3bNNStg
-image: images/open-neuromorphic-thumbnail-giulia.png
+image: open-neuromorphic-thumbnail-giulia.png
 speaker_photo: giulia-dangelo.jpg
 speaker_bio: "Giulia D'Angelo is a postdoctoral researcher in neuroengineering in the EDPR laboratory at the Italian Institute of Technology. She obtained a B.Sc. in biomedical engineering and an M.Sc. in neuroengineering, developing a neuromorphic visual system at the King's College of London. She successfully defended her Ph.D. VIVA in 2022 at the university of Manchester, proposing a biologically plausible model for event-driven saliency-based visual attention. She is currently working on bio-inspired visual algorithms exploiting neuromorphic platforms."
 ---
