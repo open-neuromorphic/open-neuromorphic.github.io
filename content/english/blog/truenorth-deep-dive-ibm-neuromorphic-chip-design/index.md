@@ -77,7 +77,7 @@ The TrueNorth chip is not a Von Neumann machine! But what does this mean?
     alt="The Von Neumann architecture."
     caption="The Von Neumann architecture. <a href='https://en.wikipedia.org/wiki/Von_Neumann_architecture' target='_blank'>Source</a>"
     position="center"
-    class="bg-[#fff]"
+    class="bg-[#fff] p-4"
     width="1024"
 >}}
 
@@ -91,6 +91,7 @@ A neuromorphic chip, in principle, is an **in-memory computing** architecture: i
     caption="An in-memory computing architecture. <a href='https://mythic.ai/technology/compute-in-memory/' target='_blank'>Source</a>"
     position="center"
     width="1024"
+    class="bg-[#fff] p-4"
 >}}
 
 There are two main advantages to this approach:
@@ -111,6 +112,7 @@ In TrueNorth, a mixed approach has been adopted: a neurosynaptic core packs 256 
     caption="A typical neuron. <a href='https://openbooks.lib.msu.edu/neuroscience/chapter/the-neuron/' target='_blank'>Source</a>"
     position="center"
     width="1024"
+    class="bg-[#fff] p-2"
 >}}
 
 A neuron is made of different parts, that are shown in the figure above. **Dendrites** branch out from the cell body, also called **soma**, where the nucleus is located. Then, there is a long communication channel called **axon**, which ends in the **pre-synaptic** terminal, which can have multiple branches.
@@ -121,6 +123,7 @@ A neuron is made of different parts, that are shown in the figure above. **Dendr
     caption="The neuron dendrites. [<a href='https://openbooks.lib.msu.edu/neuroscience/chapter/the-neuron/' target='_blank'>Source</a>]"
     position="center"
     width="1024"
+    class="bg-[#fff] p-2"
 >}}
 
 Dendrites branch out from the soma. Their function is to **receive information** from other neurons. Some dendrites have small protrusions called **spines** that are important for communicating with other neurons.
@@ -131,6 +134,7 @@ Dendrites branch out from the soma. Their function is to **receive information**
     caption="The neuron soma. [Source](https://openbooks.lib.msu.edu/neuroscience/chapter/the-neuron/)"
     position="center"
     width="1024"
+    class="bg-[#fff] p-2"
 >}}
 
 The soma is where the **computation** happens. This is where the membrane potential is built up, by ions exchange with the environment and other neurons.
@@ -141,6 +145,7 @@ The soma is where the **computation** happens. This is where the membrane potent
     caption="The neuron axon. [Source](https://openbooks.lib.msu.edu/neuroscience/chapter/the-neuron/)"
     position="center"
     width="1024"
+    class="bg-[#fff] p-2"
 >}}
 
 
@@ -152,6 +157,7 @@ The axon is the communication channel of the neuron. It is attached to the neuro
     caption="Synaptic connection among neurons. [Source](https://openbooks.lib.msu.edu/neuroscience/chapter/the-neuron/)"
     position="center"
     width="1024"
+    class="bg-[#fff] p-2"
 >}}
 
 
@@ -179,6 +185,7 @@ In a neuromorphic chip, hence, memory and computational units are **co-located**
     caption="A fully-connected neural network (left) and its logical representation in the TrueNorth chip (right). [Source](https://redwood.berkeley.edu/wp-content/uploads/2021/08/Akopyan2015.pdf)"
     position="center"
     width="1024"
+    class="bg-[#fff] p-2"
 >}}
 
 In the figure above, the logical representation of a TrueNorth core is reported. Consider the sub-figure on the left: on the right, the post-synaptic neurons are represented with a triangular shape, and these are connected to some neurons on the left, which outputs are represented by those AND-gate-shaped objects. It is an example of **fully-connected** layer in artificial neural networks.
