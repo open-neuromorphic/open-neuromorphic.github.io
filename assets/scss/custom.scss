@@ -1,5 +1,15 @@
-// Add your own custom styles here
-
+html, body {
+    scroll-padding-top: 120px;
+}
+html {
+	scroll-behavior: smooth;
+}
+.toc nav {
+  position: sticky;
+  top: 7rem;
+  align-self: start;
+  grid-template-columns: 100% 15em;
+}
 section a {
   color: #0e3462 !important;
   text-decoration: none !important;
