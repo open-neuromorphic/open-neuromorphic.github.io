@@ -40,6 +40,12 @@ code {
   overflow-x: auto;
   white-space: pre-wrap;
 }
+.content :is(:where(pre):not(:where([class~="not-prose"], [class~="not-prose"] *))) {
+  border-radius: 0.5rem;
+  --tw-bg-opacity: 1;
+  background-color: #000;
+  border-radius: 12px;
+}
 
 .share-link {
   margin: 10px;
@@ -129,7 +135,8 @@ h1 a, h2 a, h3 a, h4 a, h5 a {
 
 .dark {
   code {
-    color: #FFF;
+    color: #cdf3f5;
+    background-color: #000;
   }
 
   header .btn-outline-primary {
