@@ -38,6 +38,10 @@
   </article>
   {{ if gt (len .TableOfContents) 80 }}
     <div class="toc lg:col-4">
+      <div class="pb-4 text-center">~ Sharing is Caring ~
+        {{ partial "override-social-share" (dict "Context" . "Class" "share-icons" "Whatsapp" true
+        "Telegram" false) }}
+        </div>
       {{ .TableOfContents }}
     </div>
   {{ end }}
