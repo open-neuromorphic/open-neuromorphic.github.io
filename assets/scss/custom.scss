@@ -12,10 +12,12 @@ html {
   align-self: start;
 }
 
+#tableOfContentContainer {
+  height: 65vh; /* Adjust the percentage as needed */
+  overflow-y: auto;
+}
 nav#TableOfContents {
-  li a {
-    font-weight: normal !important
-  }
+  background-color: transparent !important;
   li.active a {
     color: #022b4a !important;
     text-decoration: none !important;
@@ -24,6 +26,7 @@ nav#TableOfContents {
 
   ol ol li {
     margin-left: 10px;
+    margin-bottom: 10px;
   }
 }
 

@@ -14,7 +14,9 @@ If you are new to neuromorphic computing, I strongly suggest to get a grasp of h
 
 ## 2015
 
-### [*TrueNorth: Design and Tool Flow of a 65 mW 1 Million Neuron Programmable Neurosynaptic Chip*](https://redwood.berkeley.edu/wp-content/uploads/2021/08/Akopyan2015.pdf), Filipp Akopyan et al., 2015 
+### TrueNorth: Design and Tool Flow of a 65 mW 1 Million Neuron Programmable Neurosynaptic Chip
+
+[*TrueNorth: Design and Tool Flow of a 65 mW 1 Million Neuron Programmable Neurosynaptic Chip*](https://redwood.berkeley.edu/wp-content/uploads/2021/08/Akopyan2015.pdf), Filipp Akopyan et al., 2015 
 
 This a fully digital chip, embedding **4096** cores with **1M** neurons and **256M** synapses! 
 
@@ -24,7 +26,9 @@ TrueNorth claims to be operating in real-time: a **1KHz synchronization signal**
 
 ## 2018 
 
-### [*Loihi: A Neuromorphic Manycore Processor with On-Chip Learning*](https://redwood.berkeley.edu/wp-content/uploads/2021/08/Davies2018.pdf), Mike Davies et al., 2018
+### Loihi: A Neuromorphic Manycore Processor with On-Chip Learning*
+
+[*Loihi: A Neuromorphic Manycore Processor with On-Chip Learning*](https://redwood.berkeley.edu/wp-content/uploads/2021/08/Davies2018.pdf), Mike Davies et al., 2018
 
 Probably the most popular neuromorphic processor right now. What distinguishes it from the other ones are the online learning capabilities coupled with a **completely asynchronous** design: cores and routing network are completely clock-less! 
 
@@ -34,7 +38,9 @@ The Loihi chip employs **128 neuromorphic cores**, each of which consisting of *
 
 ## 2019
 
-### [*A 0.086-mm2 12.7-pJ/SOP 64k-Synapse 256-Neuron Online-Learning Digital Spiking Neuromorphic Processor in 28nm CMOS*](https://arxiv.org/abs/1804.07858), Charlotte Frenkel et al., 2019
+### A 0.086-mm2 12.7-pJ/SOP 64k-Synapse 256-Neuron Online-Learning Digital Spiking Neuromorphic Processor in 28nm CMOS
+
+[*A 0.086-mm2 12.7-pJ/SOP 64k-Synapse 256-Neuron Online-Learning Digital Spiking Neuromorphic Processor in 28nm CMOS*](https://arxiv.org/abs/1804.07858), Charlotte Frenkel et al., 2019
 
 In this paper, a digital neuromorphic processor is presented. The Verilog is also [open source](https://github.com/ChFrenkel/ODIN)!
 
@@ -45,7 +51,9 @@ The neuron model is programmable through an SPI interface: the user can choose a
 The design is fully **synchronous**. The time evolution of the SNN implemented on the core can be tuned choosing changing the frequency of the time reference events, allowing to update the neurons states only when events actually take place. 
 The result is that each Synaptic OPeration (SOP) requires only **12.7pJ** when the chip is powered with a voltage of 0.55V.
 
-### [*MorphIC: A 65-nm 738k-Synapse/mm2 Quad-Core Binary-Weight Digital Neuromorphic Processor With Stochastic Spike-Driven Online Learning*](https://arxiv.org/abs/1904.08513), Charlotte Frenkel et al., 2019
+### MorphIC: A 65-nm 738k-Synapse/mm2 Quad-Core Binary-Weight Digital Neuromorphic Processor With Stochastic Spike-Driven Online Learning
+
+[*MorphIC: A 65-nm 738k-Synapse/mm2 Quad-Core Binary-Weight Digital Neuromorphic Processor With Stochastic Spike-Driven Online Learning*](https://arxiv.org/abs/1904.08513), Charlotte Frenkel et al., 2019
 
 In this work, a **quad-core neuromorphic processor** is presented.
 
@@ -55,7 +63,9 @@ The neurons interconnection is arranged in a hierarchical routing solution: **me
 
 ## 2020
 
-### [*Always-On, Sub-300-nW, Event-Driven Spiking Neural Network based on Spike-Driven Clock-Generation and Clock- and Power-Gating for an Ultra-Low-Power Intelligent Device*](https://arxiv.org/abs/2006.12314), Dewei Wang et al., 2020
+### Always-On, Sub-300-nW, Event-Driven Spiking Neural Network based on Spike-Driven Clock-Generation and Clock- and Power-Gating for an Ultra-Low-Power Intelligent Device
+
+[*Always-On, Sub-300-nW, Event-Driven Spiking Neural Network based on Spike-Driven Clock-Generation and Clock- and Power-Gating for an Ultra-Low-Power Intelligent Device*](https://arxiv.org/abs/2006.12314), Dewei Wang et al., 2020
 
 In this work, a **synchronous** architecture is proposed. The logic operates at **Near Threshold Voltage** (NTV), and **clock gating** and **power gating** are heavily used to minimize power consumption during idle operation, which results to be **300nW**. The chip is targeted at **always-on applications**, like keyword spotting (KWS); and it is prototyped on a **65nm CMOS** process. The design is an **only-inference** one, with no online-learning capabilities.
 
@@ -66,7 +76,9 @@ On the **GCSC** and **HeySnips** datasets, the recognition accuracies are **91.8
 
 ## 2021
 
-### [*μBrain: An Event-Driven and Fully Synthesizable Architecture for Spiking Neural Networks*](https://www.frontiersin.org/articles/10.3389/fnins.2021.664208/full), Jan Stuijt et al., 2021
+### μBrain: An Event-Driven and Fully Synthesizable Architecture for Spiking Neural Networks
+
+[*μBrain: An Event-Driven and Fully Synthesizable Architecture for Spiking Neural Networks*](https://www.frontiersin.org/articles/10.3389/fnins.2021.664208/full), Jan Stuijt et al., 2021
 
 This is an **asynchronous digital architecture**, with no online-learning capabilities provided. It is an inference-only chip.
 
@@ -74,17 +86,23 @@ The bit precision and network topology is chosen at **synthesis** time, while th
 
 ## 2022 
 
-### [*Spiking Neural Network Integrated Circuits: A Review of Trends and Future Directions*](https://arxiv.org/abs/2203.07006), Arindam Basu et al., 2022
+### Spiking Neural Network Integrated Circuits: A Review of Trends and Future Directions
+
+[*Spiking Neural Network Integrated Circuits: A Review of Trends and Future Directions*](https://arxiv.org/abs/2203.07006), Arindam Basu et al., 2022
 
 Nice **survey** paper that compares different ICs, both digital and mixed-signal ones. 
 
-### [*ReckOn: A 28nm Sub-mm2 Task-Agnostic Spiking Recurrent Neural Network Processor Enabling On-Chip Learning over Second-Long Timescales*](https://arxiv.org/abs/2208.09759), Charlotte Frenkel and Giacomo Indiveri, 2022
+### ReckOn: A 28nm Sub-mm2 Task-Agnostic Spiking Recurrent Neural Network Processor Enabling On-Chip Learning over Second-Long Timescales
+
+[*ReckOn: A 28nm Sub-mm2 Task-Agnostic Spiking Recurrent Neural Network Processor Enabling On-Chip Learning over Second-Long Timescales*](https://arxiv.org/abs/2208.09759), Charlotte Frenkel and Giacomo Indiveri, 2022
 
 In this work, a **Recurrent Spiking Neural Network (RSNN)** processor is presented. The Verilog code is [open source](https://github.com/chfrenkel/ReckON).
 
 The key feature of this chip is the online learning capability, using a modified version of the **feed-forward eligibility traces** algorithm, which is a bio-inspired approximation of the BackPropagation Through Time (BPTT) algorithm employed for artificial RNNs. The chip performance is validated on gesture recognition, keyword spotting and navigation, with **sub-150μW** and **sub-squared millimeter** power and area budgets.
 
-### [*SNE: an Energy-Proportional Digital Accelerator for Sparse Event-Based Convolutions*](https://arxiv.org/abs/2204.10687), Alfio di Mauro et al., 2022
+### SNE: an Energy-Proportional Digital Accelerator for Sparse Event-Based Convolutions
+
+[*SNE: an Energy-Proportional Digital Accelerator for Sparse Event-Based Convolutions*](https://arxiv.org/abs/2204.10687), Alfio di Mauro et al., 2022
 
 In this work, an **only-inference digital** chip is presented. The design is tuned towards **event cameras output processing**, employing **convolution engines** in the hardware. 
 
@@ -94,7 +112,9 @@ The design is validated on the **IBM DVSGesture** dataset, obtaining **80μJ per
 
 The SystemVerilog code is [open source](https://github.com/pulp-platform/sne)!
 
-### [*Sparse Compressed Spiking Neural Network Accelerator for Object Detection*](https://arxiv.org/abs/2205.00778), Hong-Han Lien and Tian-Shehuan Chang, 2022.
+### Sparse Compressed Spiking Neural Network Accelerator for Object Detection
+
+[*Sparse Compressed Spiking Neural Network Accelerator for Object Detection*](https://arxiv.org/abs/2205.00778), Hong-Han Lien and Tian-Shehuan Chang, 2022.
 
 The neuron model employed in this work is a **LIF** one, with a delta-shaped synaptic kernel. The architecture topology is a **feed-forward** one, in which the neuron cores are arranged either is a cascade-fashion or in a configurable Processing Element (PE) array. The focus of this chip is to deal **efficiently** with the sparse nature of the activation maps in an SNN, by compressing the model with **sparse data structures** coupled with **model pruning** and **8 bits fixed point** parallelism to reduce the on-chip memory requirement. The SNN architecture is **mixed with an ANN one**. 
 
