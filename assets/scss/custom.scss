@@ -13,7 +13,7 @@ html {
 }
 
 #tableOfContentContainer {
-  height: 65vh; /* Adjust the percentage as needed */
+  max-height: 65vh; /* Adjust the percentage as needed */
   overflow-y: auto;
 }
 nav#TableOfContents {
