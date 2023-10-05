@@ -66,4 +66,10 @@
 <!-- Crisp Chat -->
 {{/* {{ partialCached "crisp-chat.html" . }} */}}
 
-{{ if .Params.math }}{{ partial "helpers/katex.html" . }}{{ end }}
+{{ if .Params.math }}
+{{ partial "helpers/katex.html" . }}
+{{ end }}
+
+{{/* if where .Site.Pages "Section" "blog" */}}
+    {{/* partial "helpers/scrollspy" . */}}
+{{/* end */}}

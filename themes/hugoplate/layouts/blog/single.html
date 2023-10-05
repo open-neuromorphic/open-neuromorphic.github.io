@@ -40,7 +40,10 @@
           <div class="pb-4 text-center">~ Sharing is Caring ~
             {{ partial "override-social-share" (dict "Context" . "Class" "share-icons" "Whatsapp" true "Telegram" false) }}
           </div>
-          {{ .TableOfContents }}
+          <strong class="pb-3">Table of Contents</strong>
+          <aside class="tableOfContentContainer" id="tableOfContentContainer">
+              {{ .TableOfContents }}
+         </aside>
         </div>
       {{ end }}
     </div>

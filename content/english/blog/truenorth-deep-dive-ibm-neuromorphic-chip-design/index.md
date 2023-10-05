@@ -28,12 +28,12 @@ The TrueNorth design has been driven by seven principles.
 
 The architecture is a **purely event-driven one**, being Globally Asynchronous Locally Synchronous (GALS), with a **completely asynchronous** interconnection fabric among the **synchronous** cores. What does this actually mean? 
 
-{{< image
+{{< override-image
     src="https://d3i71xaburhd42.cloudfront.net/df3434c56233f707da2383620667d57632eaff72/2-Figure1-1.png"
     alt="A Globally Asynchronous Locally Synchronous architecture."
     caption="A Globally Asynchronous Locally Synchronous architecture. <a href='https://d3i71xaburhd42.cloudfront.net/df3434c56233f707da2383620667d57632eaff72/2-Figure1-1.png' target='_blank'>Source</a>"
     position="center"
-    width="1024"
+    size="1024x"
 >}}
 
 
@@ -72,25 +72,26 @@ Designing an asynchronous circuit is a very difficult task, since no VLSI EDAs a
 
 The TrueNorth chip is not a Von Neumann machine! But what does this mean?
 
-{{< image
+{{< override-image
     src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Von_Neumann_Architecture.svg/1920px-Von_Neumann_Architecture.svg.png"
     alt="The Von Neumann architecture."
     caption="The Von Neumann architecture. <a href='https://en.wikipedia.org/wiki/Von_Neumann_architecture' target='_blank'>Source</a>"
     position="center"
-    class="bg-[#fff] p-4"
-    width="1024"
+    size="1024x"
+    class="bg-[#fff] p-2"
 >}}
 
 In a Von Neumann machine, like the one depicted above the processing unit is **separated** from the memory one, which stores both data and instructions. The processor reads the instructions from the memory, decodes them, retrieves the data on which it needs to operate from the same memory and, then, executes the instructions.
 
 A neuromorphic chip, in principle, is an **in-memory computing** architecture: in this, there are not a central memory and a central processing unit, but storage and computational circuitry are **distributed**, i.e. we have many small memories and small computational units, like it is shown in the figure below.
 
-{{< image
+{{< override-image
     src="imc.jpg"
     alt="An in-memory computing architecture."
     caption="An in-memory computing architecture. <a href='https://mythic.ai/technology/compute-in-memory/' target='_blank'>Source</a>"
     position="center"
-    width="1024"
+    size="1024x"
+    action="Resize"
     class="bg-[#fff] p-4"
 >}}
 
@@ -106,57 +107,57 @@ In a Von Neumann architecture, the **memory density** is **higher**: in VLSI cir
 
 In TrueNorth, a mixed approach has been adopted: a neurosynaptic core packs 256 neurons in memory, which share the same PE; 4096 cores are arranged in an in-memory computing fashion for the advantages cited before. However, what is a neuron?
 
-{{< image
+{{< override-image
     src="https://openbooks.lib.msu.edu/app/uploads/sites/6/2020/11/Neuron.jpg"
     alt="A typical neuron."
     caption="A typical neuron. <a href='https://openbooks.lib.msu.edu/neuroscience/chapter/the-neuron/' target='_blank'>Source</a>"
     position="center"
-    width="1024"
+    size="1024x"
     class="bg-[#fff] p-2"
 >}}
 
 A neuron is made of different parts, that are shown in the figure above. **Dendrites** branch out from the cell body, also called **soma**, where the nucleus is located. Then, there is a long communication channel called **axon**, which ends in the **pre-synaptic** terminal, which can have multiple branches.
 
-{{< image
+{{< override-image
     src="https://openbooks.lib.msu.edu/app/uploads/sites/6/2020/11/Dendrites.jpg"
     alt="The neuron dendrites."
     caption="The neuron dendrites. [<a href='https://openbooks.lib.msu.edu/neuroscience/chapter/the-neuron/' target='_blank'>Source</a>]"
     position="center"
-    width="1024"
+    size="1024x"
     class="bg-[#fff] p-2"
 >}}
 
 Dendrites branch out from the soma. Their function is to **receive information** from other neurons. Some dendrites have small protrusions called **spines** that are important for communicating with other neurons.
 
-{{< image
+{{< override-image
     src="https://openbooks.lib.msu.edu/app/uploads/sites/6/2020/11/Soma.jpg"
     alt="The neuron soma."
     caption="The neuron soma. [Source](https://openbooks.lib.msu.edu/neuroscience/chapter/the-neuron/)"
     position="center"
-    width="1024"
+    size="1024x"
     class="bg-[#fff] p-2"
 >}}
 
 The soma is where the **computation** happens. This is where the membrane potential is built up, by ions exchange with the environment and other neurons.
 
-{{< image
+{{< override-image
     src="https://openbooks.lib.msu.edu/app/uploads/sites/6/2020/11/Axon.jpg"
     alt="The neuron axon."
     caption="The neuron axon. [Source](https://openbooks.lib.msu.edu/neuroscience/chapter/the-neuron/)"
     position="center"
-    width="1024"
+    size="1024x"
     class="bg-[#fff] p-2"
 >}}
 
 
 The axon is the communication channel of the neuron. It is attached to the neuron through the **axon hillock**; at the end of the axon, we find the pre-synaptic terminals, which are the "pins" used to connect to the **post-synaptic** terminal of other neurons. These connections are called **synapses**.
 
-{{< image
+{{< override-image
     src="https://openbooks.lib.msu.edu/app/uploads/sites/6/2020/11/Presynaptic-Terminal.jpg"
     alt="Synaptic connection among neurons."
     caption="Synaptic connection among neurons. [Source](https://openbooks.lib.msu.edu/neuroscience/chapter/the-neuron/)"
     position="center"
-    width="1024"
+    size="1024x"
     class="bg-[#fff] p-2"
 >}}
 
@@ -179,12 +180,12 @@ The axon transmit an **action potential**, which is the famous spike! This resul
 
 In a neuromorphic chip, hence, memory and computational units are **co-located**. The neuron constitutes the computational unit, while the synapses weights and the membrane potential are the data on which the neuron operates. The chip is programmed by deciding **which neurons are connected to which**; hence, we do not write instructions to be executed to a memory, but we program the neurons interconnections and parameters! 
 
-{{< image
+{{< override-image
     src="crossbar.png"
     alt="A fully-connected neural network (left) and its logical representation in the TrueNorth chip (right)."
     caption="A fully-connected neural network (left) and its logical representation in the TrueNorth chip (right). [Source](https://redwood.berkeley.edu/wp-content/uploads/2021/08/Akopyan2015.pdf)"
     position="center"
-    width="1024"
+    size="1024x"
     class="bg-[#fff] p-2"
 >}}
 

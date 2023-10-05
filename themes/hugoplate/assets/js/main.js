@@ -14,20 +14,23 @@
     });
   });
 
-  window.addEventListener('DOMContentLoaded', () => {
-
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        const id = entry.target.getAttribute('id');
-        if (entry.intersectionRatio > 0) {
-          document.querySelector(`.toc nav li a[href="#${id}"]`).parentElement.classList.add('active');
-        } else {
-          document.querySelector(`.toc nav li a[href="#${id}"]`).parentElement.classList.remove('active');
-        }
-      });
-    });
-    document.querySelectorAll('section[id]').forEach((section) => {
-      observer.observe(section);
-    });
+  // Testimonial Slider
+  // ----------------------------------------
+  new Swiper(".testimonial-slider", {
+    spaceBetween: 24,
+    loop: true,
+    pagination: {
+      el: ".testimonial-slider-pagination",
+      type: "bullets",
+      clickable: true,
+    },
+    breakpoints: {
+      768: {
+        slidesPerView: 2,
+      },
+      992: {
+        slidesPerView: 3,
+      },
+    },
   });
 })();
