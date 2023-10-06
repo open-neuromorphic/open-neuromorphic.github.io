@@ -9,6 +9,8 @@ image: loihi.png
 tags: ["hardware", "digital", "spiking", "snn", "rtl", "verilog", "AI", "machine learning"]
 ---
 
+## Introduction 
+
 In this article, we will try to model a layer of Leaky Integrate and Fire (LIF) spiking neurons using digital hardware: registers, memories, adders and so on. To do so, we will consider a single output neuron connected to multiple input neurons from a previous layer.
 
 {{< image src="neurons-connected.png" position="center" alt="Multiple pre-synaptic neurons connected to a post-synaptic one." caption="Multiple pre-synaptic neurons connected to a post-synaptic one." >}}

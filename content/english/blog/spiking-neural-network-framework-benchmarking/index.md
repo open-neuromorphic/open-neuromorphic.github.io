@@ -8,6 +8,8 @@ image: framework-benchmarking-16k-header.png
 tags: ["snn", "framework", "library", "pytorch"]
 ---
 
+## Introduction 
+
 Open Neuromorphic's [list of SNN frameworks](https://github.com/open-neuromorphic/open-neuromorphic) currently counts 10 libraries, and those are only the most popular ones! As the sizes of spiking neural network models grow thanks to deep learning, optimization becomes more important for researchers and practitioners alike. Training SNNs is often slow, as the stateful networks are typically fed sequential inputs. Today's most popular training method then is some form of backpropagation through time, whose time complexity scales with the number of time steps. We benchmark libraries that all take slightly different approaches on how to extend PyTorch for gradient-based optimization of SNNs. While we focus on the time it takes to pass data forward and backward through the network, there are obviously other, non-tangible qualities of frameworks (extensibility, quality of documentation, ease of install, support for neuromorphic hardware ...) that we're not going to try to capture here. In our benchmarks, we use a single fully-connected (linear) and a leaky integrate and fire (LIF) layer. The input data has batch size of 10, 500 time steps and n neurons. 
 
 {{< image src="framework-benchmarking-512.png" alt="Comparison of time taken for forward and backward passes in different frameworks, for 512 neurons." caption="Comparison of time taken for forward and backward passes in different frameworks, for 512 neurons." >}}
