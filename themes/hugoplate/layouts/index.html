@@ -1,0 +1,83 @@
+{{ define "main" }}
+<section class="section-sm xl:pb-5">
+  <div class="container">
+    <div class="row items-center justify-between">
+      <div class="md:col-7 lg:col-8">
+        <h1 class="mb-4 text-3xl">
+          Neuromorphic Engineering Meets Open Source
+        </h1>
+        <ul class="list-disc pl-6 ml-3 mb-8 text-lg">
+          <li class="relative mb-4 pl-3">
+            <a href="/blog">Educational content</a> to get you started in the neuromorphic world.
+          </li>
+          <li class="relative mb-4 pl-3">
+            <a href="/workshops/">Events about neuromorphic research and software</a>, with contributions from both
+            academia and industry.
+          </li>
+          <li class="relative mb-4 pl-3">
+            A curated list of <a href="https://github.com/open-neuromorphic/open-neuromorphic" target="_blank">software
+            frameworks</a> to make it easier to find <strong>the tool you need</strong>.
+          </li>
+          <li class="relative mb-4 pl-3">
+            <a href="https://github.com/open-neuromorphic" target="_blank">A platform for your code</a>. If you wish to
+            create a new repository or migrate your existing code to ONM, please get in touch with us.
+          </li>
+          <li class="relative mb-4 pl-3">
+            Welcoming and collaborative environment on <a href="https://discord.gg/C9bzWgNmqk" target="_blank">Discord</a>, join us!
+          </li>
+        </ul>
+      </div>
+      <div class="mb:md-0 md:col-5 lg:col-4 mb-6">
+        <div class="bg-theme-light dark:bg-darkmode-theme-light rounded p-7">
+        <h3 class="pb-5 text-xl">Upcoming Workshop</h3>
+        {{ $events := where .Site.RegularPages "Section" "workshops" }}
+        {{ $upcomingEvents := where $events "Params.date" "gt" now }}
+        {{ $sortedUpcomingEvents := sort $upcomingEvents "Params.date" }}
+        {{ with index $sortedUpcomingEvents 0 }}
+        <!-- Display the nearest upcoming event -->
+        <div class="mb-0">
+          {{ partial "components/session-card" . }}
+        </div>
+        {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section-sm">
+  <div class="container">
+    <div class="row">
+      <div class="col-6 pb-8">
+        <h3>Recent Workshops</h3>
+      </div>
+      <div class="col-6">
+        <a href="/workshops" class="btn btn-primary float-right">Explore All Workshops</a>
+      </div>
+      {{ $events := where .Site.RegularPages "Section" "workshops" }}
+      {{ $recentRecordings := slice }}
+      {{ $sortedRecentRecordings := sort $events "Params.date" "desc" }}
+      {{ range first 3 (where $sortedRecentRecordings "Params.upcoming" "ne" "true") }}
+      <div class="md:col-12 lg:col-4 mb-14">
+        {{ partial "components/session-card" . }}
+      </div>
+      {{ end }}
+    </div>
+    <div class="row">
+      <div class="col-6 pb-8">
+        <h3>Recent Posts</h3>
+      </div>
+      <div class="col-6">
+        <a href="/blog/" class="btn btn-primary float-right">Explore All Posts</a>
+      </div>
+      {{ $events := where .Site.RegularPages "Section" "blog" }}
+      {{ $recentRecordings := slice }}
+      {{ $sortedRecentRecordings := sort $events "Params.date" "desc" }}
+      {{ range first 4 $sortedRecentRecordings }}
+      <div class="md:col-12 lg:col-3 mb-14">
+        {{ partial "components/blog-card" . }}
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}

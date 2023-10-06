@@ -1,0 +1,72 @@
+{{ define "main" }}
+{{ partial "page-header" . }}
+<section class="section pt-14">
+  <div class="container">
+    <div class="row">
+      <article class="{{ if gt (len .TableOfContents) 80 }}lg:col-8{{ else }}lg:col-10{{ end }}">
+        {{ $image:= .Params.image }}
+        {{ if $image }}
+        <div class="mb-6">
+          {{ partial "override-image" (dict "Src" $image "Context" .Page "Alt" .Title "Class" "w-full rounded" "Size" "1280x720" "Command" "Crop") }}
+        </div>
+        {{ end }}
+        <ul class="mb-4">
+          <li class="mr-4 inline-block">
+            <i class="fa-regular fa-circle-user mr-2"></i>{{ .Params.author }}
+          </li>
+          <li class="mr-4 inline-block">
+            <i class="fa-regular fa-clock mr-2"></i>
+            {{ time.Format ":date_long" .PublishDate }}
+          </li>
+        </ul>
+        <div class="content mb-10">
+          {{ .Content }}
+        </div>
+        <div class="row items-start justify-between">
+          <div class="lg:col-12 flex justify-end">
+            {{ partial "override-social-share" (dict "Context" . "Class" "share-icons" "Title" (i18n "share") "Whatsapp" true "Telegram" false) }}
+          </div>
+        </div>
+        <!-- comments -->
+        {{ if site.DisqusShortname }}
+        <div class="mt-20">
+          {{ template "_internal/disqus.html" . }}
+        </div>
+        {{ end }}
+      </article>
+      {{ if gt (len .TableOfContents) 80 }}
+        <!-- Use responsive class to hide on medium and smaller screens -->
+        <div class="toc lg:col-4 md:hidden lg:block">
+          <div class="pb-4 text-center">~ Share this Site ~
+            {{ partial "override-social-share" (dict "Context" . "Class" "share-icons" "Whatsapp" true "Telegram" false) }}
+          </div>
+          <div class="px-3 pt-5 pb-5 bg-theme-light dark:bg-darkmode-theme-light rounded">
+            <div class="pb-3">
+              <strong class="text-xl">Table of Contents</strong>
+            </div>
+            <aside class="tableOfContentContainer" id="tableOfContentContainer">
+              {{ .TableOfContents }}
+            </aside>
+          </div>
+        </div>
+      {{ end }}
+    </div>
+
+    <!-- Related posts -->
+    {{ $related := (where site.RegularPages "Section" "blog") | intersect (where
+    site.RegularPages ".Title" "!=" .Title) | union (site.RegularPages.Related . ) }}
+    {{ $related = $related | shuffle | first 3 }}
+    {{ with $related }}
+      <div class="section pb-0">
+        <div class="row">
+          {{ range . }}
+            <div class="lg:col-4">
+              {{ partial "components/blog-card" . }}
+            </div>
+          {{ end }}
+        </div>
+      </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

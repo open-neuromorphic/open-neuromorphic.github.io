@@ -1,0 +1,26 @@
+<div>
+  {{ $image := .Params.image }}
+  {{ if .Params.video }}
+  <div class="mb-4 rounded">
+        {{ partial "youtube-lite.html" (dict "Id" .Params.video ) }}
+  </div>
+  {{ else if $image }}
+    <a href="{{ .RelPermalink }}">
+      {{ partial "override-image" (dict "Src" $image "Context" .Page "Alt" .Title "Class" "mb-6 w-full rounded") }}
+    </a>
+  {{ end }}
+  <h4 class="mb-3">
+    <a href="{{ .RelPermalink }}">
+      {{ .Title }}
+    </a>
+  </h4>
+  <ul class="mb-4">
+    <li class="mr-4 inline-block">
+      <i class="fa-regular fa-circle-user mr-2"></i>{{ .Params.author }}
+    </li>
+    <li class="mr-4 inline-block">
+      <i class="fa-regular fa-calendar mr-2"></i>{{ dateFormat "January 2, 2006" .Params.date }}
+    </li>
+  </ul>
+  <p class="mb-6">{{ .Description }}</p>
+</div>

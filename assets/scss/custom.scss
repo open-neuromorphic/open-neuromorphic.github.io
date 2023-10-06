@@ -1,0 +1,231 @@
+html, body {
+  scroll-padding-top: 120px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.toc {
+  position: sticky;
+  top: 7rem;
+  align-self: start;
+}
+
+#tableOfContentContainer {
+  max-height: 65vh; /* Adjust the percentage as needed */
+  overflow-y: auto;
+}
+nav#TableOfContents {
+  background-color: transparent !important;
+  li.active a {
+    color: #022b4a !important;
+    text-decoration: none !important;
+    font-weight: 550 !important;
+  }
+
+  ol ol li {
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
+}
+
+section a {
+  color: #1f0e62 !important;
+  text-decoration: none !important;
+  font-weight: 550 !important;
+}
+
+.frontiers-section a {
+  max-width: 450px;
+  display: inline-block;
+}
+
+@media (min-width: 768px) {
+  h1, .h1 {
+    font-size: 2rem;
+  }
+}
+
+.nav-dropdown-list {
+  min-width: 300px;
+  border-radius: 10px;
+}
+
+a {
+  overflow-wrap: break-word;
+}
+
+code {
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+
+.content :is(:where(pre):not(:where([class~="not-prose"], [class~="not-prose"] *))) {
+  border-radius: 0.5rem;
+  --tw-bg-opacity: 1;
+  background-color: #000;
+  border-radius: 12px;
+}
+
+
+.share-link {
+  margin: 10px;
+  font-size: 1.2em;
+}
+
+.content :is(:where(a):not(:where([class~="not-prose"], [class~="not-prose"] *))) {
+  color: #3c3906 !important;
+  text-decoration: none !important;
+  font-weight: 550 !important;
+}
+
+.btn-primary {
+  --tw-border-opacity: 1;
+  border-color: #000000;
+  --tw-bg-opacity: 1;
+  background-color: #FFF;
+  --tw-text-opacity: 1;
+  color: #FFF;
+}
+
+/* Default styles */
+[target="_blank"]::after {
+  font-family: "Font Awesome 6 Free"; /* Font Awesome class */
+  font-weight: 900;
+  content: "\f35d"; /* FontAwesome Unicode for 'external-link-alt' icon */
+  margin: 0px 3px 0px 5px;
+  font-size: 16px;
+}
+
+main [target="_blank"]::after {
+  color: #000000; /* Change the color for dark mode */
+}
+
+.social-icons [target="_blank"]::after {
+  content: none; /* Remove the 'external-link-alt' icon */
+}
+
+.share-icons [target="_blank"]::after {
+  content: none; /* Remove the 'external-link-alt' icon */
+}
+
+.social-icons a {
+  color: #FFF !important;
+}
+
+figcaption {
+  color: #000;
+  margin-top: 0 !important;
+}
+
+.authorContent {
+  ul li {
+    list-style: disc;
+    margin-left: 25px;
+    padding: 10px 30px 10px 0;
+  }
+
+  p {
+    margin-bottom: 10px;
+  }
+}
+
+
+.footer-menu-item {
+  margin-bottom: 10px;
+  font-weight: 550;
+  font-size: 1.1em;
+  line-height: 2em;
+}
+
+.footer-menu-item p,
+.footer-menu-item > a {
+  text-decoration: underline;
+}
+
+.footer-menu-subitem {
+  display: block;
+  font-weight: 400;
+  font-size: 0.9em;
+}
+
+.content {
+  --tw-prose-bullets: #000 !important;
+}
+
+h1 a, h2 a, h3 a, h4 a, h5 a {
+  text-decoration: none !important;
+  font-weight: 550 !important;
+}
+
+.dark {
+  code {
+    color: #cdf3f5;
+    background-color: #000;
+  }
+  .content {
+    --tw-prose-bullets: #FFF !important;
+  }
+
+nav#TableOfContents {
+
+  li.active a {
+    color: #bcfbff !important;
+    font-weight: 600 !important;
+  }
+
+}
+  header .btn-outline-primary {
+    border-color: transparent;
+    color: #ffffff;
+    font-weight: 550;
+    border-width: 2px;
+    border-color: #e8b7fb;
+    transition: box-shadow 0.3s ease-in-out;
+    box-shadow: 0 0 39px 0px rgba(228, 218, 234, 0.5);
+  }
+
+  .nav-dropdown-list {
+    background: #000 !important;
+  }
+
+  figcaption {
+    color: #FFF;
+  }
+
+  section a {
+    color: #bcfbff !important;
+    text-decoration: none !important;
+    font-weight: 550 !important;
+  }
+
+  h1 a, h2 a, h3 a, h4 a, h5 a {
+    color: #ffffff !important;
+  }
+
+  .content :is(:where(a):not(:where([class~="not-prose"], [class~="not-prose"] *))) {
+    color: #bcfbff !important;
+    text-decoration: none !important;
+    font-weight: 550 !important;
+  }
+
+  :is(.dark .btn-primary) {
+    --tw-border-opacity: 1;
+    border-color: #bcfbff;
+    --tw-bg-opacity: 1;
+    background-color: #000;
+    --tw-text-opacity: 1;
+    color: #FFF;
+
+  }
+
+  main [target="_blank"]::after {
+    color: #bcfbff; /* Change the color for dark mode */
+  }
+
+  .social-icons a {
+    color: #000 !important;
+  }
+}
+

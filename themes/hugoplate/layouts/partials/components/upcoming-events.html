@@ -1,0 +1,27 @@
+{{ $events := where .Site.RegularPages "Params.upcoming" "eq" true }}
+{{ if $events }}
+{{ $sortedUpcomingEvents := slice }}
+{{ range $events }}
+{{ $sortedUpcomingEvents = $sortedUpcomingEvents | append . }}
+{{ end }}
+{{ $sortedUpcomingEvents = sort $sortedUpcomingEvents "Params.date" }}
+{{ $upcomingCount := len $sortedUpcomingEvents }}
+{{ $maxItems := 4 }} <!-- Define the maximum number of items to display -->
+
+{{ range $index, $event := $sortedUpcomingEvents }}
+{{ if lt $index $maxItems }}
+<div class="mb-4">
+  <div>
+    <a href="{{ $event.Permalink }}" class="flex">
+      {{ $event.Title }}<br></a>
+    <i class="fa-regular fa-calendar mr-2"></i>{{ dateFormat "January 2, 2006" $event.Params.Date }}<br>
+    <i class="fa-regular fa-clock mr-2"></i>{{ $event.Params.start_time}}-{{ $event.Params.end_time}}
+  </div>
+
+</div>
+{{ end }}
+{{ end }}
+{{ else }}
+<!-- Handle the case where there are no upcoming events -->
+<p>No upcoming events.</p>
+{{ end }}

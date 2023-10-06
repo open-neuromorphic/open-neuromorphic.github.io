@@ -1,151 +1,103 @@
-# Pages placed under these sections will be shown on homepage and archive page.
-mainSections = ["post"]
-# Output page's full content in RSS (if true).
-rssFullContent = false
+#################### default parameters ################################
+# favicon
+favicon = "images/ONM-logo.png"
+# logo
+logo = "images/logo.png"
+logo_darkmode = "images/logo-darkmode.png"
+# use `px` or `x` with logo_width, example: "100px".
+# Note: logo_width is not work with .svg file
+logo_width = "350px"
+logo_height = "54px"
+# if logo_webp set false, will not generate WEBP version of logo | default is true
+logo_webp = true
+# logo text will only show when logo is missing.
+logo_text = "Open Neuromorphic"
+# navbar fixed to top
+navbar_fixed = true
+# theme-mode
+theme_switcher = true
+theme_default = "system" # available options [light/dark/system]
+# Main Sections
+mainSections = ["blog","workshops"]
+# contact form action
+contact_form_action = "#" # contact form works with [https://airform.io/] or [https://formspree.io]
+# google tag manager, see https://developers.google.com/tag-manager/
+google_tag_manager = "" # example: G-XXXXXXXXXX
+google_adsense = ""     # example: ca-pub-xxxxxxxxxxxxxxxx
+# custom script on header, example: custom_script= "<script>console.log(\"Hello World\")</script>"
+custom_script = ""
+# copyright
+copyright = "© 2022 - 2023 Open Neuromorphic<br>Website design & dev by [AI Models Hub](https://aimodels.org)"
 
-# Set favicon for the tab.
-favicon = "/img/ONM-logo.png"
+homepageTitle = "Exploring Neuromorphic Computing, Artificial Intelligence, Neuromorphic Hardware and Cameras"
 
-[footer]
-since = 2022
-customText = ""
+# Preloader
+# preloader module: https://github.com/gethugothemes/hugo-modules/tree/master/components/preloader
+[preloader]
+enable = false
+preloader = "" # use jpg, png, svg or gif format.
 
-[dateFormat]
-published = "Jan 02, 2006"
-lastUpdated = "Jan 02, 2006 15:04 MST"
+# Navigation button
+[navigation_button]
+enable = true
+label = "Join Discord"
+link = "https://discord.gg/C9bzWgNmqk"
 
-[sidebar]
-#emoji = "🍥"
-subtitle = "We are an organization of neuromorphic open source enthusiasts! We build tools for the community, host talks and discuss research. Click the Discord item below to join us and jump right in!"
+# search
+# search module: https://github.com/gethugothemes/hugo-modules/tree/master/search
+[search]
+enable = true
+primary_color = "#121212"
+include_sections = ["blog"]
+show_image = true
+show_description = true
+show_tags = false
+show_categories = false
 
-[sidebar.avatar]
-enabled = true
-local = false
-src = "/img/ONM-logo.png"
 
-[article]
-math = false
-readingTime = true
+# seo meta data for OpenGraph / Twitter Card
+# seo module: https://github.com/gethugothemes/hugo-modules/tree/master/seo-tools/basic-seo
+[metadata]
+keywords = ["neuromorphic computing", "artificial intelligence", "open source"]
+description = "Explore the world of Neuromorphic Computing, AI, and Devices in an open-source community. Join us for educational content, events, and collaborative innovation"
+author = "Open Neuromorphic"
+image = "images/og-image.png"
 
-#[article.license]
-#enabled = true
-#default = "Licensed under CC BY-NC-SA 4.0"
 
-## Widgets
-# [[widgets.homepage]]
-# type = "search"
+# site verifications
+# verification module: https://github.com/gethugothemes/hugo-modules/tree/master/seo-tools/site-verifications
+[site_verification]
+google = ""   # Your verification code
+bing = ""     # Your verification code
+baidu = ""    # Your verification code
+facebook = "" # Your verification code
+mastodon = "" # Your verification code
 
-#[[widgets.homepage]]
-#type = "archives"
+# cookies
+# cookies module: https://github.com/gethugothemes/hugo-modules/tree/master/components/cookie-consent
+[cookies]
+enable = false
+expire_days = 60
+content = "This site uses cookies. By continuing to use this website, you agree to their use."
+button = "I Accept"
 
-#[widgets.homepage.params]
-#limit = 5
+######################## sidebar widgets #########################
+[widgets]
+sidebar = []
 
-#[[widgets.homepage]]
-#type = "categories"
 
-#[widgets.homepage.params]
-#limit = 10
+# google map
+[google_map]
+enable = false
+map_api_key = "AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU"
+map_latitude = "51.5223477"
+map_longitude = "-0.1622023"
+map_marker = "images/marker.png"
 
-#[[widgets.homepage]]
-#type = "tag-cloud"
 
-#[widgets.homepage.params]
-#limit = 10
-
-[[widgets.page]]
-type = "toc"
-
-# [opengraph.twitter]
-# site = ""
-# card = "summary_large_image"
-# 
-# [defaultImage.opengraph]
-# enabled = false
-# local = false
-# src = ""
-
-[colorScheme]
-toggle = true
-default = "auto"
-
-[imageProcessing.cover]
-enabled = true
-
-[imageProcessing.content]
-enabled = true
-
-## Comments
-#[comments]
-#enabled = true
-#provider = "disqus"
-#
-#[comments.disqusjs]
-#shortname = ""
-#apiUrl = ""
-#apiKey = ""
-#admin = ""
-#adminLabel = ""
-#
-#[comments.utterances]
-#repo = ""
-#issueTerm = "pathname"
-#label = ""
-#
-#[comments.remark42]
-#host = ""
-#site = ""
-#locale = ""
-#
-#[comments.vssue]
-#platform = ""
-#owner = ""
-#repo = ""
-#clientId = ""
-#clientSecret = ""
-#autoCreateIssue = false
-#
-#[comments.waline]
-#serverURL = ""
-#lang = ""
-#visitor = ""
-#avatar = ""
-#emoji = ["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"]
-#requiredMeta = ["name", "email", "url"]
-#placeholder = ""
-#
-#[comments.waline.locale]
-#admin = "Admin"
-#
-#[comments.twikoo]
-#envId = ""
-#region = ""
-#path = ""
-#lang = ""
-#
-#[comments.cactus]
-#defaultHomeserverUrl = "https://matrix.cactus.chat:8448"
-#serverName = "cactus.chat"
-#siteName = ""
-#
-#[comments.giscus]
-#repo = ""
-#repoID = ""
-#category = ""
-#categoryID = ""
-#mapping = ""
-#lightTheme = ""
-#darkTheme = ""
-#reactionsEnabled = 1
-#emitMetadata = 0
-#
-#[comments.gitalk]
-#owner = ""
-#admin = ""
-#repo = ""
-#clientID = ""
-#clientSecret = ""
-#
-#[comments.cusdis]
-#host = ""
-#id = ""
+# Subscription
+[subscription]
+enable = false
+# mailchimp subsciption
+#mailchimp_form_action = "https://gmail.us4.list-manage.com/subscribe/post?u=463ee871f45d2d93748e77cad&amp;id=a0a2c6d074" # replace this url with yours
+#mailchimp_form_name = "b_463ee871f45d2d93748e77cad_a0a2c6d074"
