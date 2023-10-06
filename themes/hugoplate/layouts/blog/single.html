@@ -37,7 +37,7 @@
       {{ if gt (len .TableOfContents) 80 }}
         <!-- Use responsive class to hide on medium and smaller screens -->
         <div class="toc lg:col-4 md:hidden lg:block">
-          <div class="pb-4 text-center">~ Sharing is Caring ~
+          <div class="pb-4 text-center">~ Share this Site ~
             {{ partial "override-social-share" (dict "Context" . "Class" "share-icons" "Whatsapp" true "Telegram" false) }}
           </div>
           <div class="px-3 pt-5 pb-5 bg-theme-light dark:bg-darkmode-theme-light rounded">

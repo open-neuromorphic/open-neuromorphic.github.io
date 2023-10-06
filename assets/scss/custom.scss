@@ -150,6 +150,10 @@ figcaption {
   font-size: 0.9em;
 }
 
+.content {
+  --tw-prose-bullets: #000 !important;
+}
+
 h1 a, h2 a, h3 a, h4 a, h5 a {
   text-decoration: none !important;
   font-weight: 550 !important;
@@ -159,6 +163,9 @@ h1 a, h2 a, h3 a, h4 a, h5 a {
   code {
     color: #cdf3f5;
     background-color: #000;
+  }
+  .content {
+    --tw-prose-bullets: #FFF !important;
   }
 
 nav#TableOfContents {
