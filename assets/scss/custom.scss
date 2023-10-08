@@ -16,8 +16,10 @@ html {
   max-height: 65vh; /* Adjust the percentage as needed */
   overflow-y: auto;
 }
+
 nav#TableOfContents {
   background-color: transparent !important;
+
   li.active a {
     color: #022b4a !important;
     text-decoration: none !important;
@@ -91,15 +93,17 @@ code {
 
 /* Default styles */
 [target="_blank"]::after {
-  font-family: "Font Awesome 6 Free"; /* Font Awesome class */
-  font-weight: 900;
-  content: "\f35d"; /* FontAwesome Unicode for 'external-link-alt' icon */
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
   margin: 0px 3px 0px 5px;
-  font-size: 16px;
+  background-size: contain;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 512 512"><path fill="black" d="M432,320H400a16,16,0,0,0-16,16V448H64V128H208a16,16,0,0,0,16-16V80a16,16,0,0,0-16-16H48A48,48,0,0,0,0,112V464a48,48,0,0,0,48,48H400a48,48,0,0,0,48-48V336A16,16,0,0,0,432,320ZM488,0h-128c-21.37,0-32.05,25.91-17,41l35.73,35.73L135,320.37a24,24,0,0,0,0,34L157.67,377a24,24,0,0,0,34,0L435.28,133.32,471,169c15,15,41,4.5,41-17V24A24,24,0,0,0,488,0Z"/></svg>') no-repeat;
 }
 
-main [target="_blank"]::after {
-  color: #000000; /* Change the color for dark mode */
+.dark [target="_blank"]::after {
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 512 512"><path fill="white" d="M432,320H400a16,16,0,0,0-16,16V448H64V128H208a16,16,0,0,0,16-16V80a16,16,0,0,0-16-16H48A48,48,0,0,0,0,112V464a48,48,0,0,0,48,48H400a48,48,0,0,0,48-48V336A16,16,0,0,0,432,320ZM488,0h-128c-21.37,0-32.05,25.91-17,41l35.73,35.73L135,320.37a24,24,0,0,0,0,34L157.67,377a24,24,0,0,0,34,0L435.28,133.32,471,169c15,15,41,4.5,41-17V24A24,24,0,0,0,488,0Z"/></svg>');
 }
 
 .social-icons [target="_blank"]::after {
@@ -159,26 +163,38 @@ h1 a, h2 a, h3 a, h4 a, h5 a {
   font-weight: 550 !important;
 }
 
+header .btn-outline-primary {
+  border-color: transparent;
+  color: #000000;
+  background-color: #FFF;
+  font-weight: 550;
+  border-width: 2px;
+  border-color: #8b2eaf;
+  transition: box-shadow 0.3s ease-in-out;
+  box-shadow: 0 0 39px 0px rgba(95, 32, 135, 0.5);
+}
+
 .dark {
   code {
     color: #cdf3f5;
     background-color: #000;
   }
+
   .content {
     --tw-prose-bullets: #FFF !important;
   }
 
-nav#TableOfContents {
-
-  li.active a {
-    color: #bcfbff !important;
-    font-weight: 600 !important;
+  nav#TableOfContents {
+    li.active a {
+      color: #bcfbff !important;
+      font-weight: 600 !important;
+    }
   }
 
-}
   header .btn-outline-primary {
     border-color: transparent;
     color: #ffffff;
+    background-color: #000;
     font-weight: 550;
     border-width: 2px;
     border-color: #e8b7fb;
@@ -218,10 +234,6 @@ nav#TableOfContents {
     --tw-text-opacity: 1;
     color: #FFF;
 
-  }
-
-  main [target="_blank"]::after {
-    color: #bcfbff; /* Change the color for dark mode */
   }
 
   .social-icons a {
