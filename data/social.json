@@ -11,6 +11,11 @@
       "link": "https://github.com/open-neuromorphic"
     },
     {
+      "name": "twitter",
+      "icon": "fab fa-twitter",
+      "link": "https://twitter.com/OpenNeuroMorph"
+    },
+    {
       "name": "linkedin",
       "icon": "fab fa-linkedin",
       "link": "https://www.linkedin.com/groups/9267873"

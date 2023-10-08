@@ -59,7 +59,7 @@ show_categories = false
 # seo module: https://github.com/gethugothemes/hugo-modules/tree/master/seo-tools/basic-seo
 [metadata]
 keywords = ["neuromorphic computing", "artificial intelligence", "open source"]
-description = "Explore the world of Neuromorphic Computing, AI, and Devices in an open-source community. Join us for educational content, events, and collaborative innovation"
+description = "Explore the world of Neuromorphic Computing, AI, and Devices in an open-source community. Join us for educational content, and collaborative innovation"
 author = "Open Neuromorphic"
 image = "images/og-image.png"
 
