@@ -93,11 +93,9 @@ code {
 
 /* Default styles */
 [target="_blank"]::after {
-  font-family: "Font Awesome 6 Free";
-  font-weight: 900;
   content: "";
   display: inline-block;
-  width: 16px; /* Set the width and height as needed */
+  width: 16px;
   height: 16px;
   margin: 0px 3px 0px 5px;
   background-size: contain;
