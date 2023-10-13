@@ -6,6 +6,10 @@ html {
   scroll-behavior: smooth;
 }
 
+.accordion.active .accordion-content {
+  max-height: none;
+}
+
 .toc {
   position: sticky;
   top: 7rem;
@@ -91,6 +95,14 @@ code {
   color: #FFF;
 }
 
+.content :where(blockquote p:first-of-type):not(:where([class~="not-prose"], [class~="not-prose"] *))::before {
+  content: none;
+}
+
+.MathJax {
+font-size: 2em;
+}
+
 /* Default styles */
 [target="_blank"]::after {
   content: "";
@@ -174,11 +186,25 @@ header .btn-outline-primary {
   box-shadow: 0 0 39px 0px rgba(95, 32, 135, 0.5);
 }
 
+#biblio pre {
+  max-height: 400px !important;
+}
+#biblio pre code span span a {
+  display: none !important;
+}
+
+
+
 .dark {
   code {
     color: #cdf3f5;
     background-color: #000;
   }
+
+.content :where(ol > li):not(:where([class~="not-prose"], [class~="not-prose"] *))::marker {
+  font-weight: 400;
+  color: #FFF;
+}
 
   .content {
     --tw-prose-bullets: #FFF !important;

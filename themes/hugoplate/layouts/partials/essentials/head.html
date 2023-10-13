@@ -67,6 +67,7 @@
 {{/* {{ partialCached "crisp-chat.html" . }} */}}
 
 {{ if .Params.math }}
+{{/* partial "helpers/mathjax.html" . */}}
 {{ partial "helpers/katex.html" . }}
 {{ end }}
 
