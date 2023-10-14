@@ -124,11 +124,11 @@ members:
   member_id: 6
 - description: 'Fabrizio Ottati is a Ph.D. student in the Department of Electronics
     and Communications of Politecnico di Torino, under the supervision of professor
-    Luciano Lavagno and professor Mario Roberto Casu.
+    Luciano Lavagno.
 
 
     His main interests are event-based cameras, digital hardware design and automation,
-    spiking neural networks and piedmontese red wine.
+    deep learning and piedmontese red wine.
 
 
     He is the maintainer of two open source projects in the field of neuromorphic
