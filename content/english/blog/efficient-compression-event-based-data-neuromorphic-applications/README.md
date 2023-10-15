@@ -11,10 +11,11 @@ The file format defines the compression factor and therefore file size on disk, 
 
 | Format   | Framework   | Can write events |
 |--------------|-----------|------------------|
+| [dat](https://docs.prophesee.ai/stable/data/file_formats/dat.html) | [Expelliarmus](https://github.com/open-neuromorphic/expelliarmus)  | &#9745;  |
 | [evt2](https://docs.prophesee.ai/stable/data/encoding_formats/evt2.html)   |[Expelliarmus](https://github.com/open-neuromorphic/expelliarmus) |  &#9745;  |
 | [evt3](https://docs.prophesee.ai/stable/data/encoding_formats/evt3.html) | [Expelliarmus](https://github.com/open-neuromorphic/expelliarmus)  | &#9745;  |
-| [dat](https://docs.prophesee.ai/stable/data/file_formats/dat.html) | [Expelliarmus](https://github.com/open-neuromorphic/expelliarmus)  | &#9745;  |
 | [dat](https://docs.prophesee.ai/stable/data/file_formats/dat.html) | [AEStream](https://github.com/norse/aestream)  | &#9744;  |
+| [evt3](https://docs.prophesee.ai/stable/data/file_formats/dat.html) | [AEStream](https://github.com/norse/aestream)  | &#9744;  |
 | [aedat4](https://gitlab.com/inivation/inivation-docs/-/blob/master/Software%20user%20guides/AEDAT_file_formats.md#aedat-40) | [AEDAT](https://github.com/neuromorphicsystems/aedat)   | &#9744;  |
 | [eventstream](https://github.com/neuromorphic-paris/event_stream) | [loris](https://github.com/neuromorphic-paris/loris)  | &#9745;  |
 | [numpy](https://numpy.org/) | [numpy](https://numpy.org/)  | &#9745;  |
