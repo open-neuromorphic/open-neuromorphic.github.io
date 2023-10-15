@@ -5,7 +5,7 @@
   <div class="container">
     <div class="row">
       <!-- First entry with 8-column width -->
-      {{ with index (where .Site.RegularPages "Params.upcoming" "ne" true) 0 }}
+      {{ with index (where .RegularPages "Params.upcoming" "ne" true) 0 }}
       <div class="lg:col-8 md:col-12 mb-8">
         {{ partial "components/session-card-video" . }}
       </div>

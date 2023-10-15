@@ -1,5 +1,5 @@
 ---
-title: "Spiking Nerual Network (SNN) Library Benchmarks"
+title: "Spiking Neyral Network (SNN) Library Benchmarks"
 date: 2023-08-02
 description: "Discover the fastest Spiking Neural Network (SNN) frameworks for PyTorch optimization. Performance, flexibility, and more analyzed in-depth"
 draft: false

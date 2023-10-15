@@ -1,10 +1,11 @@
 ---
 title: "Training Spiking Neural Networks Using Lessons from Deep Learning"
 description: "Explore the future of deep learning and spiking neural networks. Learn from decades of research in deep learning, gradient descent, and neuroscience for biologically plausible spiking neural networks."
-date: 2023-10-14
+date: 2023-10-15
 author: "Papers"
-whee: "ok"
-image: open-neuromorphic-thumbnail.png
+license: "CC-BY-4.0"
+arxiv: "2109.12894"
+image: open-neuromorphic-thumbnail2.png
 math: true
 ---
 
@@ -52,7 +53,7 @@ The fields of deep learning and spiking neural networks evolve very rapidly. We 
 A series of companion interactive tutorials complementary to this paper using our Python package, _snnTorch_, are also made available.\footnote{Link to interactive tutorials: <a href="https://snntorch.readthedocs.io/en/latest/tutorials/index.html">https://snntorch.readthedocs.io/en/latest/tutorials/index.html</a>.}
 
 
-## Introduction 
+## Introduction \label{sec:1}
 Deep learning has solved numerous problems in computer vision<sup>[1](#line-1)</sup> <sup>[2](#line-10)</sup> <sup>[3](#line-19)</sup> <sup>[4](#line-27)</sup> <sup>[5](#line-36)</sup> <sup>[6](#line-353)</sup>, speech recognition<sup>[1](#line-52)</sup> <sup>[2](#line-211)</sup> <sup>[3](#line-61)</sup>, and natural language processing<sup>[1](#line-238)</sup> <sup>[2](#line-246)</sup> <sup>[3](#line-254)</sup> <sup>[4](#line-261)</sup> <sup>[5](#line-269)</sup>. Neural networks have been instrumental in outperforming world champions in a diverse range of games, from Go to Starcraft<sup>[1](#line-276)</sup> <sup>[2](#line-287)</sup>. They are now surpassing the diagnostic capability of clinical specialists in numerous medical tasks<sup>[1](#line-298)</sup> <sup>[2](#line-309)</sup> <sup>[3](#line-320)</sup> <sup>[4](#line-335)</sup>. But for all the state-of-the-art models designed every day, a Kaggle<sup>[1](#line-2010)</sup> contest for state-of-the-art energy efficiency would go to the brain, every time. A new generation of brain-inspired spiking neural networks (SNNs) is poised to bridge this efficiency gap.
 
 The amount of computational power required to run top performing deep learning models has increased at a rate of 10$\times$ per year from 2012 to 2019<sup>[1](#line-220)</sup> <sup>[2](#line-381)</sup>. The rate of data generation is likewise increasing at an exponential rate. The backbone of OpenAI's ChatGPT language model, GPT-3, contains 175 billion learnable parameters, estimated to consume roughly 190,000~kWh to train<sup>[1](#line-346)</sup> <sup>[2](#line-371)</sup> <sup>[3](#line-388)</sup>.
@@ -101,7 +102,7 @@ The brain's neural circuitry is a physical manifestation of its neural algorithm
 
  The aim is to combine artificial neural networks (ANNs), which have already proven their worth in a broad range of domains, with the potential efficiency of SNNs<sup>[1](#line-452)</sup>. 
 
-## From Artificial to Spiking Neural Networks  
+## From Artificial to Spiking Neural Networks \label{sec:2} 
 <div class="flex items-center justify-center">{{< image src="figures/fig1_p2.png" caption="Neurons communicate via spikes. (a) Diagram of a neuron. (b) Measuring an action potential propagated along the axon of a neuron. Fluctuating subthreshold voltages are present in the soma, but become severely attenuated over distances beyond 1~mm<sup>[1](#line-561)</sup>. Only the action potential is detectable along the axon. (c) The neuron's spike is approximated with a binary representation. (d) Event-Driven Processing. Only dynamic segments of a scene are passed to the output (\'1'), while static regions are suppressed (\'0'). (e) Active Pixel Sensor and Dynamic Vision Sensor." >}}</div>
 
 The neural code refers to how the brain represents information, and while many theories exist, the code is yet to be cracked. There are several persistent themes across these theories, which can be distilled down to _\'the three S's'_: spikes, sparsity, and static suppression. These traits are a good starting point to show _why_ the neural code might improve the efficiency of ANNs. Our first observation is:
@@ -213,7 +214,7 @@ A graphical depiction of the LIF neuron is provided in <a href='#fig-2-5'>fig-2-
 
 <div class="flex items-center justify-center">{{< image src="figures/fig2.5_p2.png" caption="Computational steps in solving the LIF neuron model. (a) A recurrent representation of a spiking neuron. Hidden state decay is referred to as \'implicit recurrence', and external feedback from the spike is \'explicit recurrence', where $V$ is the recurrent weight (omitted from <a href='#eq-2'>eq-2</a>)<sup>[1](#line-1088)</sup>. (b) An unrolled computational graph of the neuron where time flows from left to right. $-\theta$ represents the reset term from <a href='#eq-2'>eq-2</a>, while $\beta$ is the decay rate of $U$ over time. Explicit recurrence is omitted for clarity. Note that kernel-based neuron models replace implicit recurrence with a time-varying filter<sup>[1](#line-495)</sup> <sup>[2](#line-505)</sup> <sup>[3](#line-827)</sup>." >}}</div>
 
-### Alternative Spiking Neuron Models
+### Alternative Spiking Neuron Models\label{sec:alt-neurons}
 The LIF neuron is but one of many spiking neuron models. Some other models you might encounter are listed below:
 *  **Integrate-and-Fire (IF):** The leakage mechanism is removed; $\beta=1$ in <a href='#eq-2'>eq-2</a>.
 *  **Current-based:** Often referred to as CuBa neuron models, these incorporate synaptic conductance variation into leaky integrate and fire neurons. If the default LIF neuron is a first-order low-pass filter, then CuBa neurons are a second-order low-pass filter. The input spike train undergoes two rounds of \'smoothing’, which means the membrane potential has a finite rise time rather than experiencing discontinuous jumps in response to incoming spikes<sup>[1](#line-514)</sup> <sup>[2](#line-525)</sup> <sup>[3](#line-536)</sup>. A depiction of such a neuron with a finite rise time of membrane potential is shown in Figure~\ref{fig:2}(d).
@@ -264,7 +265,7 @@ While there are plenty more physiologically accurate neuron models<sup>[1](#line
 > *  **Kernel-based Models** are, in theory, equally performant as all other first-order neuron models. They also demand more memory, as solving the state of the neuron at each time step depends on knowledge of the full history of spikes. In contrast, the formulation in <a href='#eq-2'>eq-2</a> only requires information from the previous time step. SLAYER<sup>[1](#line-505)</sup> popularized their use in multi-layer deep learning, and its implementation was parallelized to improve training time in EXODUS<sup>[1](#line-1806)</sup>.
 > *  **Deep learning inspired neurons** deviate from biology and adopt models from deep learning instead. For example, LSTMs are known to have better memory capacity than basic neurons with recurrent connections. Adding a firing threshold to the state of the LSTM can reduce inter-layer spike traffic. However, some of these neurons may introduce higher-dimensional states which can be more expensive to compute. Where leaky integrate-and-fire neurons and recurrent SNNs are insufficient, deep learning-derived models may be a good alternative.
 > *  **Higher-complexity neuroscience-inspired neurons** are less often used in deep learning as they involve solving highly stiff ordinary differential equations. I.e., a tiny perturbation may lead to negligible influence on the membrane potential, but the very same perturbation may skyrocket into an action potential. Harnessing gradients from such an unstable signal is not a pleasant experience. As a glimmer of hope, the neuromorphic folk at Intel Labs have been aiming to bridge the gap between low-level neuronal detail in Resonator neurons and higher-level functionality. They have recently discovered emergent properties of such models that allow for efficient signal processing (e.g., spectral decomposition) and factorization of high-dimensional vectors<sup>[1](#line-1813)</sup>.
-## The Neural Code 
+## The Neural Code \label{sec:3}
 
 Light is what we see when the retina converts photons into spikes. Odors are what we smell when the nose processes volatilised molecules into spikes. Tactile perceptions are what we feel when our nerve endings turn pressure into spikes. The brain trades in the global currency of the _spike_. If all spikes are treated identically, then how do they carry meaning? With respect to spike encoding, there are two parts of a neural network that must be treated separately (<a href='#fig-3'>fig-3</a>):
 
@@ -372,7 +373,7 @@ The previous techniques tend to \'convert' data into spikes. But it is more effi
     SSC<sup>[1](#line-2242)</sup> & Spiking version of the _Speech Commands_ dataset converted using a simulated cochlear model. \\
     \end{tabular}
     }
-    
+    \label{tab:datasets}
 \end{table}
 
 > <span class='font-bold text-xl'>Practical Note: Input Encoding</span>
@@ -387,7 +388,7 @@ Encoding input data into spikes can be thought of as how the sensory periphery t
 1. **Latency (or temporal) coding** chooses the output neuron that fires **first** as the predicted class
 1. **Population coding** applies the above coding schemes (typically a rate code) with **multiple neurons** per class
 
-#### Rate Coded Outputs
+#### Rate Coded Outputs\label{rco}
 Consider a multi-class classification problem, where $N_C$ is the number of classes. A non-spiking neural network would select the neuron with the largest output activation as the predicted class. For a rate-coded spiking network, the neuron that fires with the highest frequency is used. As each neuron is simulated for the same number of time steps, simply choose the neuron with the highest spike count (<a href='#app-a4'>app-a4</a>).
 
 #### Latency Coded Outputs
@@ -396,7 +397,7 @@ This addresses the energy burden that arises from the multiple spikes needed in 
 
 Biologically, does it make sense for neurons to operate on a time to first spike principle? How might we define \'first' if our brains are not constantly resetting to some initial, default state? This is quite easy to address conceptually. The idea of a latency or temporal code is motivated by our response to a sudden input stimulus. For example, when viewing a static, unchanging visual scene, the retina undergoes rapid, yet subtle, saccadic motion. The scene projected onto the retina changes every few hundreds of milliseconds. It could very well be the case that the first spike must occur with respect to the reference signal generated by this saccade. 
 
-#### Rate vs. Latency Code 
+#### Rate vs. Latency Code \label{rvl}
 Whether neurons encode information as a rate, as latency, or as something wholly different, is a topic of much controversy. We do not seek to crack the neural code here, but instead aim to provide intuition on when SNNs might benefit from one code over the other.
 
 **Advantages of Rate Codes**
@@ -412,17 +413,17 @@ The power consumption benefit of latency codes is also supported by observations
 Lesser explored encoding mechanisms in gradient-based SNNs include using spikes to represent a prediction or reconstruction error<sup>[1](#line-1663)</sup>. The brain may be perceived as an anticipatory machine that takes action based on its predictions. When these predictions do not match reality, spikes are triggered to update the system. 
 Some assert the true code must lie between rate and temporal codes<sup>[1](#line-2053)</sup>, while others argue that the two may co-exist and only differ based on the timescale of observation: rates are observed for long timescales, latency for short timescales<sup>[1](#line-2105)</sup>. Some reject rate codes entirely<sup>[1](#line-2095)</sup>. This is one of those instances where a deep learning practitioner might be less concerned with what the brain does, and prefers to focus on what is most useful. 
 
-### Objective Functions
+### Objective Functions\label{sec:obj}
 While it is unlikely that our brains use something as explicit as a cross-entropy loss function, it is fair to say that humans and animals have baseline objectives<sup>[1](#line-1242)</sup>. Biological variables, such as dopamine release, have been meaningfully related to objective functions from reinforcement learning<sup>[1](#line-1253)</sup>. Predictive coding models often aim to minimise the information entropy of sensory encodings, such that the brain can actively predict incoming signals and inhibit what it already expects<sup>[1](#line-1264)</sup>. The multi-faceted nature of the brain's function likely calls for the existence of multiple objectives<sup>[1](#line-1275)</sup>. How the brain can be optimised using these objectives remains a mystery, though we might be able to gain insight from multi-objective optimisation<sup>[1](#line-2064)</sup>.
 A variety of loss functions can be used to encourage the output layer of a network to fire as a rate or temporal code. The optimal choice is largely unsettled, and tends to be a function of the network hyperparameters and complexity of the task at hand. All objective functions described below have successfully trained networks to competitive results on a variety of datasets, though come with their own trade-offs.
 
-#### Spike Rate Objective Functions 
+#### Spike Rate Objective Functions \label{sec:3sro}
 A summary of approaches commonly adopted in supervised learning classification tasks with SNNs to promote the correct neuron class to fire with the highest frequency is provided in <a href='#tab-rateobj'>tab-rateobj</a>. In general, either the cross-entropy loss or mean square error is applied to the spike count or the membrane potential of the output layer of neurons.
 
 \begin{table*}[!ht] 
 \centering \small
     \caption{Rate-coded objectives}
-    
+    \label{tab:rateobj}
     \begin{tabular}{  p{1.5cm}  p{6.85cm}  p{6.85cm} }
         \toprule
 & **Cross-Entropy Loss**   
@@ -456,13 +457,13 @@ loss_3 = SF.ce_max_membrane_loss() # maximum membrane
 loss_4 = SF.mse_membrane_loss() # mean square membrane
 ```
 
-#### Spike Time Objectives 
+#### Spike Time Objectives \label{sec:spiketimeobj}
 Loss functions that implement spike timing objectives are less commonly used than rate-coded objectives. Two possible reasons may explain why: (1) error rates are typically perceived to be the most important metric in deep learning literature, and rate codes are more tolerant to noise, and (2) temporal codes are considerably more difficult to implement. A summary of approaches is provided in <a href='#tab-latencyobj'>tab-latencyobj</a>, with their snnTorch implementation below.
 
 \begin{table*}[!ht] 
 \centering \small
     \caption{Latency-coded objectives}
-    
+    \label{tab:latencyobj}
     \begin{tabular}{  p{1.5cm}  p{6.85cm}  p{6.85cm} }
         \toprule
 & **Cross-Entropy Loss**   
@@ -496,7 +497,7 @@ A subtle challenge with using spike times is that the default implementation ass
 > <span class='font-bold text-xl'>Practical Note: Output Decoding with a Read-Out Layer</span>
 > 
 >   Several state-of-the-art models wholly abandon spiking neurons at the output and train their models using a \'read-out layer'. This often consists of an integrate-and-fire layer with infinitely high thresholds (i.e., they will never fire), or with typical artificial neurons that use standard activation functions (ReLU, sigmoid, softmax, etc.). While this often improves accuracy, this may not qualify as a fully spiking network. Does this actually matter? If one can still achieve power efficiency, then engineers will be happy and that's often all that matters.
-### Learning Rules 
+### Learning Rules \label{sec:bml}
 
 #### Spatial and Temporal Credit Assignment
 Once a loss has been determined, it must somehow be used to update the network parameters with the hope that the network will iteratively improve at the trained task. Each weight takes some blame for its contribution to the total loss, and this is known as \'credit assignment'. This can be split into the _spatial_ and _temporal_ credit assignment problems. Spatial credit assignment aims to find the spatial location of the weight contributing to the error, while the temporal credit assignment problem aims to find the time at which the weight contributes to the error. Backpropagation has proven to be an extremely robust way to address credit assignment, but the brain is far more constrained in developing solutions to these challenges.
@@ -536,7 +537,7 @@ Encouraging each neuron to have a baseline spike count helps with the backpropag
 > 
 >   One of the most common reasons your network will not train is that neurons are not firing. Probing the spiking activity to identify the layer at which activity dies out is important, and can be used to guide how to regularise your objective function. An easier approach is to simply reduce the threshold of the at-risk layers. We do this threshold hack all the time!
 
-## Training Spiking Neural Networks
+## Training Spiking Neural Networks\label{sec:4}
 The rich temporal dynamics of SNNs give rise to a variety of ways in which a neuron's firing pattern can be interpreted. Naturally, this means there are several methods for training SNNs. They can generally be classified into the following methods:
 
 *  **Shadow training:** A non-spiking ANN is trained and converted into an SNN by interpreting the activations as a firing rate or spike time
@@ -552,14 +553,14 @@ To gain deeper insight behind the non-differentiability of spikes, recall the di
 <div class="flex items-center justify-center">{{< image src="figures/training-snns.png" caption="Addressing the dead neuron problem. Only one time step is shown, where temporal connections and subscripts from <a href='#fig-2-5'>fig-2-5</a> have been omitted for simplicity. (a) The dead neuron problem: the analytical solution of $\partial S/\partial U \in \{0, \infty\}$ results in a gradient that does not enable learning. (b) Shadow training: a non-spiking network is first trained and subsequently converted into an SNN. (c) Spike-time gradient: the gradient of spike time $f$ is taken instead of the gradient of the spike generation mechanism, which is a continuous function as long as a spike necessarily occurs<sup>[1](#line-965)</sup>. (d) Surrogate gradients: the spike generation function is approximated to a continuous function during the backward pass<sup>[1](#line-756)</sup>. The left arrow ($\leftarrow$) indicates function substitution. This is the most broadly adopted solution to the dead neuron problem." >}}</div>
 
 
-### Shadow Training 
+### Shadow Training \label{sec:shadow}
 The dead neuron problem can be completely circumvented by instead training on a shadow ANN and converting it into an SNN (<a href='#fig-5'>fig-5</a>(b)). The high precision activation function of each neuron is converted into either a spike rate<sup>[1](#line-714)</sup> <sup>[2](#line-1004)</sup> <sup>[3](#line-1011)</sup> <sup>[4](#line-1020)</sup> <sup>[5](#line-1027)</sup> or a latency code<sup>[1](#line-1037)</sup>. One of the most compelling reasons to use shadow training is that advances in conventional deep learning can be directly applied to SNNs. For this reason, ANN-to-SNN conversion currently takes the crown for static image classification tasks on complex datasets, such as CIFAR-10 and ImageNet. Where inference efficiency is more important than training efficiency, and if input data is not time-varying, then shadow training could be the optimal way to go.
 
 In addition to the inefficient training process, there are several drawbacks. Firstly, the types of tasks that are most commonly benchmarked do not make use of the temporal dynamics of SNNs, and the conversion of sequential neural networks to SNNs is an under-explored area<sup>[1](#line-1011)</sup>. Secondly, converting high-precision activations into spikes typically requires a long number of simulation time steps which may offset the power/latency benefits initially sought from SNNs. But what really motivates doing away with ANNs is that the conversion process is necessarily an approximation. Therefore, a shadow-trained SNN is very unlikely to reach the performance of the original network.
 
 The issue of long time sequences can be partially addressed by using a hybrid approach: start with a shadow-trained SNN, and then perform backpropagation on the converted SNN<sup>[1](#line-1048)</sup>. Although this appears to degrade accuracy (reported on CIFAR-10 and ImageNet), it is possible to reduce the required number of steps by an order of magnitude. A more rigorous treatment of shadow training techniques and challenges can be found in<sup>[1](#line-1067)</sup>.
 
-### Backpropagation Using Spike Times 
+### Backpropagation Using Spike Times \label{sec:4bpst}
 An alternative method to side step the dead neuron problem is to instead take the derivative at spike times. In fact, this was the first proposed method to training multi-layer SNNs using backpropagation<sup>[1](#line-965)</sup>. The original approach in _SpikeProp_ observes that while spikes may be discontinuous, time is continuous. Therefore, taking the derivative of spike _timing_ with respect to the weights achieves functional results. A thorough description is provided in <a href='#app-c1'>app-c1</a>.
 
 > <span class='font-bold text-xl'>Practical Note: Gradients at Spike Times</span>
@@ -571,7 +572,7 @@ Intuitively, SpikeProp calculates the gradient of the error with respect to the 
 Several drawbacks arise. Once neurons become inactive, their weights become frozen. In most instances, no closed-form solutions exist to solving for the gradient if there is no spiking<sup>[1](#line-1670)</sup>. SpikeProp tackles this by modifying parameter initialization (i.e., increasing weights until a spike is triggered). But since the inception of SpikeProp in 2002, the deep learning community's understanding of weight initialization has gradually matured. We now know initialization aims to set a constant activation variance between layers, the absence of which can lead to vanishing and exploding gradients through space and time<sup>[1](#line-847)</sup> <sup>[2](#line-976)</sup>. Modifying weights to promote spiking may detract from this. Instead, a more effective way to overcome the lack of firing is to lower the firing thresholds of the neurons. One may consider applying activity regularization to encourage firing in hidden layers, though this has degraded classification accuracy when taking the derivative at spike times. This result is unsurprising, as regularization can only be applied at the spike time rather than when the neuron is quiet. 
 
 Another challenge is that it enforces stringent priors upon the network (e.g., each neuron must fire only once) that are incompatible with dynamically changing input data. This may be addressed by using periodic temporal codes that refresh at given intervals, in a similar manner to how visual saccades may set a reference time. But it is the only approach that enables the calculation of an unbiased gradient without any approximations in multi-layer SNNs. Whether this precision is necessary is a matter of further exploration on a broader range of tasks. 
-### Backpropagation Using Spikes
+### Backpropagation Using Spikes\label{sec:bps}
 
 <div class="flex items-center justify-center">{{< image src="figures/fig_bptt3.png" caption="Backpropagation through time. (a) The present time application of $W$ is referred to as the immediate influence, with historical application of $W$ described as the prior influence. Reset dynamics and explicit recurrence have been omitted for brevity. The error pathways through $\mathcal{L}[0]$ and $\mathcal{L}[1]$ are also hidden but follow the same idea as that of $\mathcal{L}[2]$. (b) The hybrid approach defaults to a non-zero gradient only at spike times. For present time $t=0$, the derivative of each application of $W[s]$ with respect to the loss decays exponentially moving back in time. The magnitude of the weight update $\Delta W$ for prior influences of $W[s]$ follows a relationship qualitatively resembling that of STDP learning curves, where the strength of the synaptic update is dependent on the order and firing time of a pair of connected neurons<sup>[1](#line-441)</sup>. " >}}</div>
 
@@ -736,7 +737,7 @@ Many advances in deep learning stem from a series of incremental techniques that
 *  **Learnable Thresholds** have _not_ been shown to help the training process. This is likely due to the discrete nature of thresholds, giving rise to non-differentiable operators in a computational graph. On the other hand, normalizing the values that are passed into a threshold significantly helps. Adopting batch-normalization in convolutional networks helps boost performance, and learnable normalization approaches may act as an effective surrogate for learnable thresholds<sup>[1](#line-125)</sup> <sup>[2](#line-134)</sup> <sup>[3](#line-158)</sup>.
 *  **Pooling** is effective for downsampling large spatial dimensions in convolutional networks, and achieving translational invariance. If max-pooling is applied to a sparse, spiking tensor, then tie-breaking between 1's and 0's does not make much sense. One might expect we can borrow ideas from training binarized neural networks, were pooling is applied to the activations _before_ they are thresholded to binarized quantities. This corresponds to applying pooling to the membrane potential, in a manner that resembles a form of \'local lateral inhibition'. But this does not necessarily lead to optimal performance in SNNs. Interestingly, Yu _et al._ applied pooling to the spikes instead. Where multiple spikes occurred in a pooling window, a tie-break would occur randomly among them<sup>[1](#line-863)</sup>. While no reason was given for doing this, it nonetheless achieved state-of-the-art (at the time) performance on a series of computer vision problems. Our best guess is that this randomness acted as a type of regularization. Whether max-pooling or average-pooling is used can be treated as a hyperparameter. As an alternative, SynSense's neuromorphic hardware adopts sum-pooling, where spatial dimensions are reduced by re-routing the spikes in a receptive field to a common post-synaptic neuron.
 *  **Optimizer:** Most SNNs default to the Adam optimizer as they have classically been shown to be robust when used with sequential models<sup>[1](#line-143)</sup>. As SNNs become deeper, stochastic gradient descent with momentum seems to increase in prevalence over the Adam optimizer. The reader is referred to Godbole _et al._'s Deep Learning Tuning Playbook for a systematic approach to hyperparameter optimization that applies generally<sup>[1](#line-150)</sup>.
-#### The Intersection Between Backprop and Local Learning  
+#### The Intersection Between Backprop and Local Learning  \label{sec:hybrid}
 An interesting result arises when comparing backpropagation pathways that traverse varying durations of time. The derivative of the hidden state over time is $\partial U[t]/\partial U[t-1]=\beta$ as per <a href='#eq-2'>eq-2</a>. A gradient that backpropagates through $n$ time steps is scaled by $\beta^n$. For a leaky neuron we get $\beta < 1$, which causes the magnitude of a weight update to exponentially diminish with time between a pair of spikes. This proportionality is illustrated in <a href='#fig-bptt'>fig-bptt</a>(b). This result shows how the strength of a synaptic update is exponentially proportional to the spike time difference between a pre- and post-synaptic neuron. In other words, weight updates from BPTT closely resemble weight updates from spike-timing dependent plasticity (STDP) learning curves (<a href='#app-bpus'>app-bpus</a>)<sup>[1](#line-441)</sup>.
 
 Is this link just a coincidence? BPTT was derived from function optimization. STDP is a model of a biological observation. Despite being developed via completely independent means, they converge upon an identical result. This could have immediately practical implications, where hardware accelerators that train models can excise a chunk of BPTT and replace it with the significantly cheaper and local STDP rule. Adopting such an approach might be thought of as an online variant of BPTT, or as a gradient-modulated form of STDP.
@@ -758,7 +759,7 @@ Mixing discrete and continuous dynamics may enable SNNs to learn features that o
 
 Several rudimentary slow timescale dynamics have been tested in gradient-based approaches to training SNNs with a good deal of success<sup>[1](#line-505)</sup> <sup>[2](#line-1503)</sup>, but there are several neuronal dynamics that are yet to be explored. LSTMs showed us the importance of temporal regulation of information, and effectively cured the short-term memory problem that plagued RNNs. Translating more nuanced neuronal features into gradient-based learning frameworks can undoubtedly strengthen the ability of SNNs to represent dynamical data in an efficient manner.
 
-## Online Learning
+## Online Learning\label{sec:ol}
 ### Temporal Locality
 As incredible as our brains are, sadly, they are not time machines. It is highly unlikely our neurons are breaching the space-time continuum to explicitly reference historical states to run the BPTT algorithm.
 As with all computers, brains operate on a physical substrate which dictates the operations it can handle and where memory is located. While conventional computers operate on an abstraction layer, memory is delocalised and communicated on demand, thus paying a considerable price in latency and energy. 
@@ -867,7 +868,7 @@ A series of interactive tutorials complementary to this paper are available in t
 \setcounter{figure}{0}
 
 ## Appendix A: From Artificial to Spiking Neural Networks 
-### Forward Euler Method to Solving Spiking Neuron Models
+### Forward Euler Method to Solving Spiking Neuron Models\label{app:a1}
 The time derivative $dU(t)/dt$ is substituted into <a href='#eq-1'>eq-1</a> without taking the limit $\Delta t \rightarrow 0$:
 
 $$  \tau \frac{U(t+\Delta t) - U(t)}{\Delta t} = -U(t) + I\_{\rm in}(t)R  $$
@@ -918,7 +919,7 @@ In general, reset-by-subtraction is thought to be better for performance as it r
 ## Appendix B: Spike Encoding
 The following spike encoding mechanisms and loss functions are described with respect to a single sample of data. They can be generalised to multiple samples as is common practice in deep learning to process data in batches. 
 
-### Rate Coded Input Conversion 
+### Rate Coded Input Conversion \label{app:a2}
 An example of conversion of an input sample to a rate coded spike train follows. Let $\boldsymbol{X} \in \mathbb{R}^{m \times n}$, be a sample from the MNIST dataset, where $m=n=28$. We wish to convert $\boldsymbol{X}$ to a rate-coded 3-D tensor $\mathbf{R} \in \mathbb{R}^{m \times n \times t}$, where $t$ is the number of time steps. Each feature of the original sample $X_{ij}$ is encoded separately, where the normalised pixel intensity (between 0 and 1) is the probability a spike occurs at any given time step. This can be treated as a Bernoulli trial, a special case of the binomial distribution $R_{ijk}\sim B(n, p)$ where the number of trials is $n=1$, and the probability of success (spiking) is $p=X_{ij}$. Explicitly, the probability a spike occurs is:
 
 $$  {\rm P}(R\_{ijk}=1) = X\_{ij} = 1 - {\rm P}(R\_{ijk}=0)  $$
@@ -928,7 +929,7 @@ Sampling from the Bernoulli distribution for every feature at each time step wil
 <div class="flex items-center justify-center">{{< image src="figures/supp/b1.png" caption="Rate coded input pixel. An input pixel of greater intensity corresponds to a higher firing rate." >}}</div>
 
 
-### Latency Coded Input Conversion 
+### Latency Coded Input Conversion \label{app:a3}
 The logarithmic dependence between input feature intensity and spiking timing can be derived using an RC circuit model. Starting with the general solution of the membrane potential with respect to the input current in <a href='#eq-generalsolution'>eq-generalsolution</a> and nulling out the initial conditions $U_0=0$, we obtain:
 
 $$  U(t) = I\_{\rm in}R(1 - e^{-t/\tau})  $$
@@ -944,7 +945,7 @@ $$  t(x) = \begin{cases} \tau\Big[{\rm ln}\Big(\frac{x}{x-\theta}\Big)\Big], & x
 <div class="flex items-center justify-center">{{< image src="figures/supp/b2.png" caption="Latency coded input pixel. An input pixel of greater intensity corresponds to an earlier spike time." >}}</div>
 
 
-### Rate Coded Outputs 
+### Rate Coded Outputs \label{app:a4}
 A vectorised implementation of determining the predicted class from rate-coded output spike trains is described. Let $\vec{S}[t] \in \mathbb{R}^{N_C}$ be a time-varying vector that represents the spikes emitted from each output neuron across time, where $N_C$ is the number of output classes. Let $\vec{c}\in \mathbb{R}^{N_C}$ be the spike count from each output neuron, which can be obtained by summing $\vec{S[t]}$ over $T$ time steps:
 
 $$  \vec{c} = \sum\_{j=0}^T\vec{S}[t]  $$
@@ -956,7 +957,7 @@ $$  \hat{y} = \arg\,max\_ic\_i  $$
 <div class="flex items-center justify-center">{{< image src="figures/supp/b3.png" caption="Rate coded outputs. $\vec{c} \in \mathbb{R}^{N_C}$ is the spike count from each output neuron, where the example above shows the first neuron firing a total of 8 times. $\hat{y}$ represents the index of the predicted output neuron, where it indicates the first neuron is the correct class." >}}</div>
 
 
-### Cross Entropy Spike Rate 
+### Cross Entropy Spike Rate \label{app:a5}
 The spike count of the output layer $\vec{c}\in \mathbb{R}^{N_C}$ is obtained as in <a href='#beq-5'>beq-5</a>. $c_i$ is the $i^{th}$ element of $\vec{c}$, treated as the logits in the softmax function:
     
 $$  p\_i=\frac{e^{c\_i}}{\sum\_{i=1}^{N\_C}e^{c\_i}}  $$
@@ -969,7 +970,7 @@ $$  \mathcal{L}\_{CE} = \sum\_{i=0}^{N\_C}y\_i{\rm log}(p\_i)  $$
 
 
  
-### Mean Square Spike Rate
+### Mean Square Spike Rate\label{app:a6}
 As in <a href='#beq-5'>beq-5</a>, the spike count of the output layer $\vec{c}\in \mathbb{R}^{N_C}$ is obtained. $c_i$ is the $i^{th}$ element of $\vec{c}$, and let $y_i\in \mathbb{R}$ be the target spike count over a period of time $T$ for the $i^{th}$ output neuron. The target for the correct class should be greater than that of incorrect classes:
 
 $$  \mathcal{L}\_{MSE} = \sum\_i^{N\_C}(y\_i - c\_i)^2  $$
@@ -977,7 +978,7 @@ $$  \mathcal{L}\_{MSE} = \sum\_i^{N\_C}(y\_i - c\_i)^2  $$
 <div class="flex items-center justify-center">{{< image src="figures/supp/b5.png" caption="Mean Square Spike Rate. The target vector $\vec{y}$ specifies the total desired number of spikes for each class." >}}</div>
 
 
-### Maximum Membrane
+### Maximum Membrane\label{app:a7}
 The logits $\vec{m}\in \mathbb{R}^{N_C}$ are obtained by taking the maximum value of the membrane potential of the output layer $\vec{U}[t]\in \mathbb{R}^{N_C}$ over time:
 
 $$  \vec{m} = {\rm max}\_t\vec{U}[t]  $$
@@ -990,7 +991,7 @@ Alternatively, the membrane potential is summed over time to obtain the logits:
 
 $$  \vec{m} = \sum\_t^T\vec{U}[t]  $$
 
-### Mean Square Membrane
+### Mean Square Membrane\label{app:a11}
 Let $y_{i}[t]$ be a time-varying value that specifies the target membrane potential of the $i^{th}$ neuron at each time step. The total mean square error is calculated by summing the loss for all $T$ time steps and for all $N_C$ output layer neurons:
 
 $$  \mathcal{L}\_{MSE} = \sum\_i^{N\_C}\sum\_t^T(y\_i[t]-U[t])^2  $$
@@ -1000,7 +1001,7 @@ Alternatively, the time-varying target $y_{i}[t]$ can be replaced with a time-st
 <div class="flex items-center justify-center">{{< image src="figures/supp/b10.png" caption="Mean Square Membrane. The membrane potential at each time step is applied to the mean square error loss function. This allows a defined membrane target. The example above sets the target at all time steps at the firing threshold for the correct class, and to zero for incorrect classes." >}}</div>
 
 
-### Cross Entropy Latency Code
+### Cross Entropy Latency Code\label{app:a8}
 Let $\vec{f}\in\mathbb{R}^{N_C}$ be a vector containing the first spike time of each neuron in the output layer. Cross entropy minimisation aims to maximise the logit of the correct class and reduce the logits of the incorrect classes. However, we wish for the correct class to spike first, which corresponds to a smaller value. Therefore, a monotonically decreasing function must be applied to $\vec{f}$. A limitless number of options are available. The work in<sup>[1](#line-827)</sup> simply negates the spike times:
 
 $$  \vec{f}:=-\vec{f}  $$
@@ -1013,7 +1014,7 @@ The new values of $f_i$ then replace $c_i$ in the softmax function from <a href=
 <div class="flex items-center justify-center">{{< image src="figures/supp/b7.png" caption="Cross Entropy Latency Code. Applying the inverse (or negated) spike time to the cross entropy loss pushes the correct class to fire first, and incorrect classes to fire later." >}}</div>
 
 
-### Mean Square Spike Time
+### Mean Square Spike Time\label{app:a9}
 The spike time(s) of all neurons are specified as targets. In the case where only the first spike matters, $\vec{f}\in\mathbb{R}^{N_C}$ contains the first spike time of each neuron in the output layer, $y_i\in \mathbb{R}$ is the target spike time for the $i^{th}$ output neuron. The mean square errors between the actual and target spike times of all output classes are summed together:
 
 $$  \mathcal{L}\_{MSE} = \sum\_i^{N\_C}(y\_i - f\_i)^2  $$
@@ -1025,7 +1026,7 @@ $$  \mathcal{L}\_{MSE} = \sum\_k^{n}\sum\_i^{N\_C}(y\_{i,k} - f\_{i,k})^2  $$
 <div class="flex items-center justify-center">{{< image src="figures/supp/b8.png" caption="Mean Square Spike Time. The timing of all spikes are iterated over, and sequentially applied to the mean square error loss function. This enables the timing for multiple spikes to be precisely defined." >}}</div>
 
 
-### Mean Square Relative Spike Time 
+### Mean Square Relative Spike Time \label{app:a10}
 The difference between the spike time of correct and incorrect neurons is specified as a target. As in <a href='#app-a9'>app-a9</a>, $y_i$ is the desired spike time for the $i^{th}$ neuron and $f_i$ is the actual emitted spike time. The key difference is that $y_i$ can change throughout the training process.
 
 Let the minimum possible spike time be $f_0 \in \mathbb{R}$. This sets the target firing time of the correct class. The target firing time of incorrect neuron classes $y_i$ is set to:
@@ -1037,7 +1038,7 @@ where $\gamma$ is a pre-defined latency, treated as a hyperparameter. In the fir
 <div class="flex items-center justify-center">{{< image src="figures/supp/b9.png" caption="Mean Square Relative Spike Time. The relative timing between all spikes are applied to the mean square error loss function, enabling a defined time window $\gamma$ to occur between the correct class firing and incorrect classes firing." >}}</div>
 
 
-### Population Level Regularisation
+### Population Level Regularisation\label{app:regpop}
 L1-regularisation can be applied to the total number of spikes emitted at the output layer to penalise excessive firing<sup>[1](#line-841)</sup>, thus encouraging sparse activity at the output: 
 
 $$  \mathcal{L}\_{L1} = \lambda\_1\sum\_t^T\sum\_i^{N\_C}S\_{i}[t]  $$
@@ -1050,7 +1051,7 @@ $$  \mathcal{L}\_{U} = \lambda\_U\Big(\Big[\sum\_i^{N}c\_{i}^{(l)} - \theta\_U\B
 
 where $c_{i}$ is the total spike count over time for the $i^{th}$ neuron in layer $l$, and $N$ is the total number of neurons in layer $l$. $\lambda_U$ is a hyperparameter influencing the strength of the upper-activity regularisation, and $[\cdot]_+$ is a linear rectification: if the total number of spikes from the layer is less than $\theta_U$, the rectifier clips the negative result to zero such that a penalty is not added. $L$ is typically chosen to be either 1 or 2<sup>[1](#line-756)</sup>. It is possible to swap out the spike count for a time-averaged membrane potential as well, if using hidden-state variables is permissible<sup>[1](#line-817)</sup>.
 
-### Neuron Level Regularisation
+### Neuron Level Regularisation\label{app:regneu}
 A lower-activity threshold $\theta_L$ that specifies the lower permissible limit of firing for _each_ neuron before the regularisation penalty is applied:
 
 $$  \mathcal{L}\_{L} = \frac{\lambda\_L}{N}\sum\_i^N\Big(\Big[\theta\_L - c\_i^{(l)}\Big]\_+\Big)^2  $$
@@ -1058,7 +1059,7 @@ $$  \mathcal{L}\_{L} = \frac{\lambda\_L}{N}\sum\_i^N\Big(\Big[\theta\_L - c\_i^{
 The rectification $[\cdot]_+$ now falls within the summation, and is applied to the firing activity of each individual neuron, rather than a population of neurons, where $\lambda_L$ is a hyperparameter that influences the strength of lower-activity regularisation<sup>[1](#line-756)</sup>. As with population-level regularisation, the spike count can also be substituted for a time-averaged membrane potential<sup>[1](#line-817)</sup>.
 
 ## Appendix C: Training Spiking Neural Networks
-### Backpropagation Using Spike Times
+### Backpropagation Using Spike Times\label{app:c1}
 In the original description of SpikeProp from<sup>[1](#line-965)</sup>, a spike response model is used:
 
 $$   U\_j(t) = \sum\_{i,k} W\_{i,j}I\_i^{(k)}(t),\nonumber  $$
@@ -1097,7 +1098,7 @@ $$  \frac{\partial\mathcal{L}}{\partial W\_{i,j}} = -\frac{2(y\_j-f\_j)\sum\_k I
 
 This approach can be generalized to handle deeper layers, and the original formulation also includes delayed response kernels that are not included above for simplicity. 
 
-### Backpropagation Using Spikes
+### Backpropagation Using Spikes\label{app:bpus}
 **Spike Timing Dependent Plasticity**
 
 The connection between a pair of neurons can be altered by the spikes emitted by both neurons. Several experiments have shown the relative timing of spikes between pre- and post-synaptic neurons can be used to define a learning rule for updating the synaptic weight<sup>[1](#line-441)</sup>. Let $t_{\rm pre}$ and $t_{\rm post}$ represent the timing of the pre- and post-synaptic spikes, respectively. The difference in spike time is:
@@ -1119,7 +1120,7 @@ Input sensory data is typically correlated in both space and time, so a network'
 
 However, without an upper bound, this will lead to unstable and indefinitely large growth of the synaptic weight. In practice, an upper limit should be applied to constrain potentiation. Alternatively, homeostatic mechanisms can also be used to offset this unbounded growth, such as an adaptive threshold that increases each time a spike is triggered from the neuron (<a href='#app-c2'>app-c2</a>).
 
-### Long-Term Temporal Dependencies 
+### Long-Term Temporal Dependencies \label{app:c2}
 One of the simplest implementations of an adaptive threshold is to choose a steady-state threshold $\theta_0$ and a decay rate $\alpha$:
 
 $$  \theta[t] = \theta\_0 + b[t]  $$
