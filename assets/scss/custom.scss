@@ -15,7 +15,9 @@ html {
   top: 7rem;
   align-self: start;
 }
-
+h1.homepage {
+  font-size: 1.7em;
+}
 #tableOfContentContainer {
   max-height: 65vh; /* Adjust the percentage as needed */
   overflow-y: auto;
@@ -36,17 +38,6 @@ nav#TableOfContents {
   }
 }
 
-section a {
-  color: #1f0e62 !important;
-  text-decoration: none !important;
-  font-weight: 550 !important;
-}
-
-.frontiers-section a {
-  max-width: 450px;
-  display: inline-block;
-}
-
 @media (min-width: 768px) {
   h1, .h1 {
     font-size: 2rem;
@@ -58,11 +49,8 @@ section a {
   border-radius: 10px;
 }
 
-a {
-  overflow-wrap: break-word;
-}
-
 code {
+  color: #cdf3f5;
   overflow-x: auto;
   white-space: pre-wrap;
 }
@@ -76,16 +64,41 @@ code {
   border-radius: 12px;
 }
 
-
 .share-link {
   margin: 10px;
   font-size: 1.2em;
 }
 
-.content :is(:where(a):not(:where([class~="not-prose"], [class~="not-prose"] *))) {
-  color: #3c3906 !important;
+//Links & Buttons
+
+a {
+  overflow-wrap: break-word;
+}
+
+.content :is(:where(a):not(:where([class~="not-prose"], [class~="not-prose"] *))),
+section a {
+  color: #200435 !important;
+  text-decoration-color: #d7c7e3;
+  text-decoration-thickness: 0.115em;
+  text-underline-offset: 2.6px;
+  text-decoration-line: underline;
+  font-weight: 550 !important;
+  transition: text-decoration-color 0.3s ease-in-out; /* Add transition for a smooth hover effect */
+}
+
+.content :is(:where(a):not(:where([class~="not-prose"], [class~="not-prose"] *)):hover),
+section a:hover {
+  text-decoration-color: #200435; /* Change text-decoration-color on hover */
+}
+
+
+h1 a, h2 a, h3 a, h4 a, h5 a {
   text-decoration: none !important;
   font-weight: 550 !important;
+}
+
+.social-icons a {
+  color: #FFF !important;
 }
 
 .btn-primary {
@@ -95,6 +108,10 @@ code {
   background-color: #FFF;
   --tw-text-opacity: 1;
   color: #FFF;
+}
+
+section .btn {
+  text-decoration-line: none !important;
 }
 
 .content :where(blockquote p:first-of-type):not(:where([class~="not-prose"], [class~="not-prose"] *))::before {
@@ -149,7 +166,6 @@ figcaption {
   }
 }
 
-
 .footer-menu-item {
   margin-bottom: 10px;
   font-weight: 550;
@@ -168,13 +184,13 @@ figcaption {
   font-size: 0.9em;
 }
 
-.content {
-  --tw-prose-bullets: #000 !important;
+.frontiers-section a {
+  max-width: 450px;
+  display: inline-block;
 }
 
-h1 a, h2 a, h3 a, h4 a, h5 a {
-  text-decoration: none !important;
-  font-weight: 550 !important;
+.content {
+  --tw-prose-bullets: #000 !important;
 }
 
 header .btn-outline-primary {
@@ -214,13 +230,6 @@ blockquote ul li {
     --tw-prose-bullets: #FFF !important;
   }
 
-  nav#TableOfContents {
-    li.active a {
-      color: #bcfbff !important;
-      font-weight: 600 !important;
-    }
-  }
-
   header .btn-outline-primary {
     border-color: transparent;
     color: #ffffff;
@@ -240,22 +249,27 @@ blockquote ul li {
     color: #FFF;
   }
 
-  section a {
-    color: #bcfbff !important;
-    text-decoration: none !important;
-    font-weight: 550 !important;
-  }
+.content :is(:where(a):not(:where([class~="not-prose"], [class~="not-prose"] *))),
+section a {
+  color: #bcfbff !important;
+  text-decoration-color: #288b8c;
+}
+
+.content :is(:where(a):not(:where([class~="not-prose"], [class~="not-prose"] *)):hover),
+section a:hover {
+  text-decoration-color: #bcfbff; /* Change text-decoration-color on hover */
+}
 
   h1 a, h2 a, h3 a, h4 a, h5 a {
     color: #ffffff !important;
   }
 
-  .content :is(:where(a):not(:where([class~="not-prose"], [class~="not-prose"] *))) {
-    color: #bcfbff !important;
-    text-decoration: none !important;
-    font-weight: 550 !important;
+  nav#TableOfContents {
+    li.active a {
+      color: #bcfbff !important;
+      font-weight: 600 !important;
+    }
   }
-
   :is(.dark .btn-primary) {
     --tw-border-opacity: 1;
     border-color: #bcfbff;
