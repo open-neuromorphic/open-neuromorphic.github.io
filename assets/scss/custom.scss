@@ -32,17 +32,6 @@ nav#TableOfContents {
   }
 }
 
-section a {
-  color: #1f0e62 !important;
-  text-decoration: none !important;
-  font-weight: 550 !important;
-}
-
-.frontiers-section a {
-  max-width: 450px;
-  display: inline-block;
-}
-
 @media (min-width: 768px) {
   h1, .h1 {
     font-size: 2rem;
@@ -54,11 +43,8 @@ section a {
   border-radius: 10px;
 }
 
-a {
-  overflow-wrap: break-word;
-}
-
 code {
+  color: #cdf3f5;
   overflow-x: auto;
   white-space: pre-wrap;
 }
@@ -70,16 +56,41 @@ code {
   border-radius: 12px;
 }
 
-
 .share-link {
   margin: 10px;
   font-size: 1.2em;
 }
 
-.content :is(:where(a):not(:where([class~="not-prose"], [class~="not-prose"] *))) {
-  color: #3c3906 !important;
+//Links & Buttons
+
+a {
+  overflow-wrap: break-word;
+}
+
+.content :is(:where(a):not(:where([class~="not-prose"], [class~="not-prose"] *))),
+section a {
+  color: #200435 !important;
+  text-decoration-color: #d7c7e3;
+  text-decoration-thickness: 0.115em;
+  text-underline-offset: 2.6px;
+  text-decoration-line: underline;
+  font-weight: 550 !important;
+  transition: text-decoration-color 0.3s ease-in-out; /* Add transition for a smooth hover effect */
+}
+
+.content :is(:where(a):not(:where([class~="not-prose"], [class~="not-prose"] *)):hover),
+section a:hover {
+  text-decoration-color: #200435; /* Change text-decoration-color on hover */
+}
+
+
+h1 a, h2 a, h3 a, h4 a, h5 a {
   text-decoration: none !important;
   font-weight: 550 !important;
+}
+
+.social-icons a {
+  color: #FFF !important;
 }
 
 .btn-primary {
@@ -91,31 +102,8 @@ code {
   color: #FFF;
 }
 
-/* Default styles */
-[target="_blank"]::after {
-  content: "";
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  margin: 0px 3px 0px 5px;
-  background-size: contain;
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 512 512"><path fill="black" d="M432,320H400a16,16,0,0,0-16,16V448H64V128H208a16,16,0,0,0,16-16V80a16,16,0,0,0-16-16H48A48,48,0,0,0,0,112V464a48,48,0,0,0,48,48H400a48,48,0,0,0,48-48V336A16,16,0,0,0,432,320ZM488,0h-128c-21.37,0-32.05,25.91-17,41l35.73,35.73L135,320.37a24,24,0,0,0,0,34L157.67,377a24,24,0,0,0,34,0L435.28,133.32,471,169c15,15,41,4.5,41-17V24A24,24,0,0,0,488,0Z"/></svg>') no-repeat;
-}
-
-.dark [target="_blank"]::after {
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 512 512"><path fill="white" d="M432,320H400a16,16,0,0,0-16,16V448H64V128H208a16,16,0,0,0,16-16V80a16,16,0,0,0-16-16H48A48,48,0,0,0,0,112V464a48,48,0,0,0,48,48H400a48,48,0,0,0,48-48V336A16,16,0,0,0,432,320ZM488,0h-128c-21.37,0-32.05,25.91-17,41l35.73,35.73L135,320.37a24,24,0,0,0,0,34L157.67,377a24,24,0,0,0,34,0L435.28,133.32,471,169c15,15,41,4.5,41-17V24A24,24,0,0,0,488,0Z"/></svg>');
-}
-
-.social-icons [target="_blank"]::after {
-  content: none; /* Remove the 'external-link-alt' icon */
-}
-
-.share-icons [target="_blank"]::after {
-  content: none; /* Remove the 'external-link-alt' icon */
-}
-
-.social-icons a {
-  color: #FFF !important;
+section .btn {
+  text-decoration-line: none !important;
 }
 
 figcaption {
@@ -135,7 +123,6 @@ figcaption {
   }
 }
 
-
 .footer-menu-item {
   margin-bottom: 10px;
   font-weight: 550;
@@ -154,13 +141,13 @@ figcaption {
   font-size: 0.9em;
 }
 
-.content {
-  --tw-prose-bullets: #000 !important;
+.frontiers-section a {
+  max-width: 450px;
+  display: inline-block;
 }
 
-h1 a, h2 a, h3 a, h4 a, h5 a {
-  text-decoration: none !important;
-  font-weight: 550 !important;
+.content {
+  --tw-prose-bullets: #000 !important;
 }
 
 header .btn-outline-primary {
@@ -184,13 +171,6 @@ header .btn-outline-primary {
     --tw-prose-bullets: #FFF !important;
   }
 
-  nav#TableOfContents {
-    li.active a {
-      color: #bcfbff !important;
-      font-weight: 600 !important;
-    }
-  }
-
   header .btn-outline-primary {
     border-color: transparent;
     color: #ffffff;
@@ -210,22 +190,27 @@ header .btn-outline-primary {
     color: #FFF;
   }
 
-  section a {
-    color: #bcfbff !important;
-    text-decoration: none !important;
-    font-weight: 550 !important;
-  }
+.content :is(:where(a):not(:where([class~="not-prose"], [class~="not-prose"] *))),
+section a {
+  color: #bcfbff !important;
+  text-decoration-color: #288b8c;
+}
+
+.content :is(:where(a):not(:where([class~="not-prose"], [class~="not-prose"] *)):hover),
+section a:hover {
+  text-decoration-color: #bcfbff; /* Change text-decoration-color on hover */
+}
 
   h1 a, h2 a, h3 a, h4 a, h5 a {
     color: #ffffff !important;
   }
 
-  .content :is(:where(a):not(:where([class~="not-prose"], [class~="not-prose"] *))) {
-    color: #bcfbff !important;
-    text-decoration: none !important;
-    font-weight: 550 !important;
+  nav#TableOfContents {
+    li.active a {
+      color: #bcfbff !important;
+      font-weight: 600 !important;
+    }
   }
-
   :is(.dark .btn-primary) {
     --tw-border-opacity: 1;
     border-color: #bcfbff;
