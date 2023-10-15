@@ -11,7 +11,9 @@ html {
   top: 7rem;
   align-self: start;
 }
-
+h1.homepage {
+  font-size: 1.7em;
+}
 #tableOfContentContainer {
   max-height: 65vh; /* Adjust the percentage as needed */
   overflow-y: auto;
