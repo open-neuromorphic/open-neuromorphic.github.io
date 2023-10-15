@@ -1,7 +1,7 @@
 <meta charset="utf-8" />
 {{ $title := "" }}
 {{ if .IsHome }}
-  {{ $title = printf "%s - %s" .Site.Params.homepageTitle .Site.Title }}
+  {{ $title = printf "%s - %s" .Site.Params.homepageTitle }}
 {{ else }}
   {{ $title = printf "%s - %s" .Title .Site.Title }}
 {{ end }}
