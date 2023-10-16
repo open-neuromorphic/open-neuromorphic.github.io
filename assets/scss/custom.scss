@@ -6,6 +6,10 @@ html {
   scroll-behavior: smooth;
 }
 
+section.section-sm.hero {
+  padding-top: 1em !important;
+}
+
 .accordion.active .accordion-content {
   max-height: none;
 }
