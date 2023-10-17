@@ -6,6 +6,15 @@ html {
   scroll-behavior: smooth;
 }
 
+section.section-sm.hero {
+  padding-top: 2em !important;
+}
+
+.bg-theme-light {
+  --tw-bg-opacity: 1;
+  background-color: #ffffff;
+}
+
 .toc {
   position: sticky;
   top: 7rem;
