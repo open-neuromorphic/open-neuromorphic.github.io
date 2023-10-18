@@ -1,9 +1,9 @@
 # <a href="https://open-neuromorphic.org">Open Neuromorphic</a> (ONM) Website Docs
 
-- [Build and Deploy](#-build-and-deploy)
+- [Build and Deploy](readme.md#-build-and-deploy)
 - [Content Guidelines](content.md)
-  - [Upcoming Workshops](#upcoming-workshops)
-  - [Past Workshops](#past-workshops)
+  - [Upcoming Workshops](content.md#upcoming-workshops)
+  - [Past Workshops](content.md#past-workshops)
 - Building Content
   - [Elements Available](elements.md)
     - [Elements Demo](https://hugoplate.netlify.app/elements/)
