@@ -1,6 +1,6 @@
 #################### default parameters ################################
 # favicon
-favicon = "images/ONM-logo.png"
+favicon = "images/favicon.png"
 # logo
 logo = "images/logo.png"
 logo_darkmode = "images/logo-darkmode.png"

@@ -10,6 +10,10 @@ section.section-sm.hero {
   padding-top: 2em !important;
 }
 
+.content :where(blockquote p:first-of-type):not(:where([class~="not-prose"], [class~="not-prose"] *))::before {
+  content: none;
+}
+
 .bg-theme-light {
   --tw-bg-opacity: 1;
   background-color: #ffffff;
@@ -59,7 +63,9 @@ code {
   overflow-x: auto;
   white-space: pre-wrap;
 }
-
+.code span {
+  color: #000;
+}
 .content :is(:where(pre):not(:where([class~="not-prose"], [class~="not-prose"] *))) {
   border-radius: 0.5rem;
   --tw-bg-opacity: 1;
