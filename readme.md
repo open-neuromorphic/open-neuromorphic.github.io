@@ -1,15 +1,13 @@
-# <a href="https://open-neuromorphic.org">Open Neuromorphic</a> (ONM) Website Docs 
+# <a href="https://open-neuromorphic.org">Open Neuromorphic</a> (ONM) Website Docs
 
-[Build and Deploy](#-build-and-deploy)
-
-[Content Guidelines](content.md)
-
-[Page Elements Demo](https://hugoplate.netlify.app/elements/)
-
-[Page Elements Markdown Code](elements.md)
-
-[Hugo Modules](https://github.com/gethugothemes/hugo-modules)
-
+- [Build and Deploy](#-build-and-deploy)
+- [Content Guidelines](content.md)
+  - [Upcoming Workshops](#upcoming-workshops)
+  - [Past Workshops](#past-workshops)
+- Building Content
+  - [Elements Available](elements.md)
+    - [Elements Demo](https://hugoplate.netlify.app/elements/)
+    - [Shortcode Docs](https://github.com/gethugothemes/hugo-modules)
 
 ## 🚀 Getting Started
 

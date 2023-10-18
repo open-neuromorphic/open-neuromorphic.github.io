@@ -1,16 +1,15 @@
 # <a href="https://open-neuromorphic.org">Open Neuromorphic</a> (ONM) Website Docs: Elements
 
-[Build and Deploy](#-build-and-deploy)
+- [Build and Deploy](#-build-and-deploy)
+- [Content Guidelines](content.md)
+  - [Upcoming Workshops](#upcoming-workshops)
+  - [Past Workshops](#past-workshops)
+- Building Content
+  - [Elements Available](elements.md)
+    - [Elements Demo](https://hugoplate.netlify.app/elements/)
+    - [Shortcode Docs](https://github.com/gethugothemes/hugo-modules)
 
-[Content Guidelines](content.md)
-
-[Page Elements Demo](https://hugoplate.netlify.app/elements/)
-
-[Page Elements Markdown Code](elements.md)
-
-[Hugo Modules](https://github.com/gethugothemes/hugo-modules)
-
-{{< toc >}}
+> **What is a shortcode?** A shortcode is a simple snippet inside a content file that Hugo will render using a predefined template. Shortcodes are meant to be simple to use and are accessible to users without knowledge of HTML or CSS. Shortcodes can be used to add styling and layout elements to your content.
 
 Here is an example of headings. You can use this heading by the following markdown rules. For example: use `#` for heading 1 and use `######` for heading 6.
 
