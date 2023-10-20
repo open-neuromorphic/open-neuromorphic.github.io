@@ -31,7 +31,7 @@ The ideal library will often depend on a multitude of factors, such as accessibl
 13/08/2023: Thanks to Sumit Bam Shrestha who fixed Lava's out-of-memory issue by disactivating quantization. That makes it more similar to the other frameworks under test after the edit.
 
 ## Code and comments
-The code for this benchmark is available [here](https://github.com/open-neuromorphic/open-neuromorphic.github.io/blob/main/content/post/framework-benchmarking/data-generation.ipynb). The order of dimensions in the input tensor and how it is fed to the respective models differs between libraries. Benchmarks are averaged across 100 runs on a NVIDIA RTX 2070 GPU with 8GB of memory. Standard deviations have been omitted because they are negligible. Some things that would be interesting to add:
+The code for this benchmark is available [here](https://github.com/open-neuromorphic/open-neuromorphic.github.io/blob/main/content/english/blog/spiking-neural-network-framework-benchmarking/data-generation.ipynb). The order of dimensions in the input tensor and how it is fed to the respective models differs between libraries. Benchmarks are averaged across 100 runs on a NVIDIA RTX 2070 GPU with 8GB of memory. Standard deviations have been omitted because they are negligible. Some things that would be interesting to add:
 
 * check that forward dynamics are roughly equal in each case
 * given equivalent forward dynamics, check gradient correlations and magnitudes
