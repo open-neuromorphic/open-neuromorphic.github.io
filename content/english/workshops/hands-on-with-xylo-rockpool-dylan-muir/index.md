@@ -2,6 +2,9 @@
 title: "Hands-on with Xylo and Rockpool"
 author: "Dylan Muir"
 date: "2023-04-26"
+start_time: 18:00
+end_time: 19:30
+time_zone: CET
 description: Discover Xylo and Rockpool in a hands-on session with Dylan Muir, exploring cutting-edge neural computation architectures and signal processing.
 video: WsAqVuQ3B-I
 speaker_photo: dylan-muir.png

@@ -12,11 +12,14 @@
         {{ end }}
         <ul class="mb-4">
           <li class="mr-4 inline-block">
-            <i class="fa-regular fa-circle-user mr-2"></i>{{ .Params.author }}
+            <i class="fa-regular fa-circle-user mr-2"></i>{{delimit .Params.author ", "}}
           </li>
           <li class="mr-4 inline-block">
             <i class="fa-regular fa-clock mr-2"></i>
-            {{ time.Format ":date_long" .PublishDate }}
+            {{ time.Format "Jan 2, 2006" .PublishDate }}
+            {{ if .Lastmod }}
+            (Updated {{ time.Format "Jan 2, 2006" .Lastmod }})
+            {{ end }}
           </li>
         </ul>
         <div class="content mb-10">

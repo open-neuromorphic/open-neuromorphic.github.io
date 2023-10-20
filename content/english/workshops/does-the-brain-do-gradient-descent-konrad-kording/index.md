@@ -2,6 +2,9 @@
 title: "Does the brain do gradient descent?"
 author: "Konrad Kording"
 date: "2023-07-11"
+start_time: 18:00
+end_time: 19:30
+time_zone: CET
 description: Explore the brain's potential use of gradient descent in learning processes with Konrad Kording in this engaging recorded session. 
 video: E5hATeCZQnU
 speaker_photo: konrad-kording.jpg

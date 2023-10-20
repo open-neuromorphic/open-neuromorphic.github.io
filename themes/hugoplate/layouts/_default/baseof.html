@@ -8,6 +8,7 @@
     <!-- head (don't cache it) -->
     {{ partial "essentials/head.html" . }}
 
+    {{ partial "structured-markup/jsonld.html" . }}
 
     <!-- style (always cache it) -->
     {{ partialCached "essentials/style.html" . }}
