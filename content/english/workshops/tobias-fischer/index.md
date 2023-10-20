@@ -1,7 +1,11 @@
 ---
 title: "ONM Talks: Tobias Fischer"
-author: Tobias Fischer
+author: 
+- Tobias Fischer
 date: 2023-12-19
+start_time: 18:00
+end_time: 19:30
+time_zone: CET
 upcoming: true
 image: workshop-thumbnail-default.png
 speaker_photo: tobias-fischer.webp

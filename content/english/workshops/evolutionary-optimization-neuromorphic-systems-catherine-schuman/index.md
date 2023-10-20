@@ -1,7 +1,11 @@
 ---
 title: "Evolutionary Optimization for Neuromorphic Systems"
-author: "Catherine Schuman"
+author: 
+- "Catherine Schuman"
 date: "2023-03-21"
+start_time: 18:00
+end_time: 19:30
+time_zone: CET
 description: Dive into evolutionary optimization techniques for neuromorphic systems with Catherine Schuman, an expert in the field. Watch the recorded workshop for valuable insights.
 video: -g5XZDJPoO8
 speaker_photo: catherine-schuman.webp

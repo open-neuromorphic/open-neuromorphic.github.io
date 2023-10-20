@@ -1,7 +1,11 @@
 ---
 title: "PEPITA - A forward-forward alternative to backpropagation"
-author: "Giorgia Dellaferrera"
+author:
+- "Giorgia Dellaferrera"
 date: "2023-02-14"
+start_time: 18:00
+end_time: 19:30
+time_zone: CET
 description: Explore PEPITA, a forward-forward approach as an alternative to backpropagation, presented by Giorgia Dellaferrera. Learn about its advantages and implementation with PyTorch.
 video: RKgdUrCun5w
 speaker_photo: giorgia-dellaferrera.jpeg

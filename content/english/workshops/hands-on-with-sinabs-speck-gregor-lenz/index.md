@@ -1,7 +1,11 @@
 ---
 title: "Hands-on with Sinabs and Speck"
-author: "Gregor Lenz"
+author:
+- "Gregor Lenz"
 date: "2023-04-04"
+start_time: 18:00
+end_time: 19:30
+time_zone: CET
 description: Join Gregor Lenz for an engaging hands-on session featuring Sinabs and Speck. Explore the world of neuromorphic engineering and spike-based machine learning.
 video: kOiyRtvPO2Q
 speaker_photo: gregor-lenz.jpeg

@@ -12,7 +12,7 @@
   </h4>
   <ul class="mb-4">
     <li class="mr-4 inline-block">
-      <i class="fa-regular fa-circle-user mr-2"></i>{{ .Params.author }}
+      <i class="fa-regular fa-circle-user mr-2"></i>{{delimit .Params.author ", "}}
     </li>
     {{ if .Params.date }}
     <li class="mr-4 inline-block">
@@ -21,7 +21,7 @@
     {{ end }}
         {{ if .Params.upcoming }}
     <li class="mr-4 inline-block">
-      <i class="fa-regular fa-clock mr-2"></i>{{ .Params.start_time }} - {{ .Params.end_time }}
+      <i class="fa-regular fa-clock mr-2"></i>{{ partial "timeConv" .Params.start_time }} - {{ partial "timeConv" .Params.end_time }} {{ .Params.time_zone }}
     </li>
     {{ end }}
   </ul>

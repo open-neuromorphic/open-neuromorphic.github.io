@@ -1,0 +1,40 @@
+{{$startDate := printf "%sT%s" (.Date.Add 6 | dateFormat "2006-01-02") .Page.Params.start_time }}
+{{$endDate := printf "%sT%s" (.Date.Add 6 | dateFormat "2006-01-02") .Page.Params.end_time }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "{{ .Params.Title }}",
+  "startDate": "{{ $startDate }}+01:00",
+  "endDate": "{{ $endDate }}+01:00",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
+  "location": {
+    "@type": "VirtualLocation",
+    "url": "https://youtube.com/@openneuromorphic"
+    },
+  "image": [
+    "https://open-neuromorphic.org{{ .RelPermalink }}{{ .Params.image }}"
+   ],
+  "description": "{{ .Params.Description }}",
+  "offers": {
+    "@type": "Offer",
+    "price": "0"
+  },
+  "performer": [
+        {{ $authors := .Params.author }}
+    {{ range $index, $author := $authors }}
+    {
+        "@type": "Person",
+        "name": "{{ $author }}"
+    }
+    {{ if ne (add $index 1) (len $authors) }},{{ end }}
+    {{ end }}
+  ],
+  "organizer": {
+    "@type": "Organization",
+    "name": "Open Neuromorphic",
+    "url": "https://open-neuromorphic.org"
+  }
+}
+</script>

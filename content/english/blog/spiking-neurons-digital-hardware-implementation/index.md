@@ -4,7 +4,8 @@ date: 2023-01-02
 description: "Learn how to model Leaky Integrate and Fire (LIF) neurons in digital hardware. Understand spike communication, synapse integration, and more for hardware implementation."
 math: true
 draft: false
-author: "Fabrizio Ottati"
+author: 
+- "Fabrizio Ottati"
 image: loihi.png
 tags: ["hardware", "digital", "spiking", "snn", "rtl", "verilog", "AI", "machine learning"]
 ---

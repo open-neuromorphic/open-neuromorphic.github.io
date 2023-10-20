@@ -4,7 +4,8 @@ description: "Explore the innovative TrueNorth neuromorphic chip, its event-driv
 image: brain-to-chip.png
 draft: false
 date: 2023-03-27
-author: Fabrizio Ottati
+author: 
+- Fabrizio Ottati
 tags: ["research", "hardware", "digital", "neuromorphic"]
 showTableOfContents: true
 math: true
