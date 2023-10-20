@@ -5,6 +5,7 @@ description: "Discover the fastest Spiking Neural Network (SNN) frameworks for P
 draft: false
 author: 
 - "Gregor Lenz"
+- "Sumit Bam Shrestha"
 image: framework-benchmarking-16k-header.png
 tags: ["snn", "framework", "library", "pytorch"]
 ---
@@ -39,5 +40,6 @@ The code for this benchmark is available [here](https://github.com/open-neuromor
 * effect of CUDA graph replay
 * benchmarking JAX implementations
 
-## Author
+## Authors
 * [Gregor Lenz](https://lenzgregor.com) holds a PhD in neuromorphic engineering from Sorbonne University and has been training SNNs for a little while now!
+* [Sumit Bam Shrestha](https://www.intel.com/content/www/us/en/research/featured-researchers/sumit-bam-shrestha.html) is a research scientist in neuromorphic computing at Intel Labs, where he focuses on deep spiking neural networks.
