@@ -17,8 +17,8 @@
           <li class="mr-4 inline-block">
             <i class="fa-regular fa-clock mr-2"></i>
             {{ time.Format "Jan 2, 2006" .PublishDate }}
-            {{ if .Lastmod }}
-            (Updated {{ time.Format "Jan 2, 2006" .Lastmod }})
+            {{ if ne .Params.Lastmod .Params.Date }}
+              (Updated {{ .Params.Lastmod.Format "Jan 2, 2006" }})
             {{ end }}
           </li>
         </ul>
