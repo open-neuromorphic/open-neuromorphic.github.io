@@ -1,5 +1,5 @@
 ---
-title: Lava: An Open-Source Software Framework for Developing Neuro-Inspired Applications
+title: "Lava: An Open-Source Software Framework for Developing Neuro-Inspired Applications"
 author: 
 - "Andreas Wild"
 - "Mathis Richter"
