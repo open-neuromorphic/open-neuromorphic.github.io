@@ -4,8 +4,8 @@ author:
 - George Vathakkattil Joseph, Innatera
 date: 2023-10-23
 start_time: 18:00 
-end_time: 19:30
-time_zone: CET
+end_time: 19:00
+time_zone: CEST
 upcoming: true
 image: workshop-thumbnail-default.png
 speaker_photo: speaker.jpg
