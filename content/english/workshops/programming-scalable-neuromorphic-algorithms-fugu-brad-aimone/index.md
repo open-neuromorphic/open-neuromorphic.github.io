@@ -1,5 +1,5 @@
 ---
-title: "ONM Talks: Brad Aimone"
+title: "Programming Scalable Neuromorphic Algorithms with Fugu"
 author: 
 - "Brad Aimone"
 date: 2023-12-19
