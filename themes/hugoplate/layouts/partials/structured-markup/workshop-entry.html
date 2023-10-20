@@ -1,12 +1,23 @@
 {{$startDate := printf "%sT%s" (.Date.Add 6 | dateFormat "2006-01-02") .Page.Params.start_time }}
 {{$endDate := printf "%sT%s" (.Date.Add 6 | dateFormat "2006-01-02") .Page.Params.end_time }}
+{{ $offset := "" }}
+{{ with .Page.Params.time_zone }}
+  {{ if eq . "CET" }}
+    {{ $offset = "01:00" }}
+  {{ else if eq . "CEST" }}
+    {{ $offset = "02:00" }}
+  {{ else }}
+    {{ $offset = "00:00" }}
+  {{ end }}
+{{ end }}
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "{{ .Params.Title }}",
-  "startDate": "{{ $startDate }}+01:00",
-  "endDate": "{{ $endDate }}+01:00",
+  "startDate": "{{ $startDate }}+{{ $offset }}",
+  "endDate": "{{ $endDate }}+{{ $offset }}",
   "eventStatus": "https://schema.org/EventScheduled",
   "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
   "location": {
