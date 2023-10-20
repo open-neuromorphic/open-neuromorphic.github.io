@@ -1,6 +1,7 @@
 ---
 title: Hands-on with snnTorch
-author: Jason Eshraghian
+author: 
+- Jason Eshraghian
 date: 2023-03-02
 start_time: 18:00
 end_time: 19:30

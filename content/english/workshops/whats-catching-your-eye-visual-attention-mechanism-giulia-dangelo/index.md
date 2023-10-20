@@ -1,6 +1,7 @@
 ---
 title: What's catching your eye? The visual attention mechanism
-author: Giulia D'Angelo
+author: 
+- Giulia D'Angelo
 date: 2023-09-26
 start_time: 18:00
 end_time: 19:30

@@ -1,6 +1,7 @@
 ---
 title: "Building Neuromorphic Applications Using Talamo"
-author: George Vathakkattil Joseph, Innatera
+author: 
+- George Vathakkattil Joseph, Innatera
 date: 2023-10-23
 start_time: 18:00 
 end_time: 19:30

@@ -1,6 +1,7 @@
 ---
-title: "Making Neuromorphic Computing Mainstream with Timoleon Moraitis"
-author: Timoleon Moraitis
+title: "Making Neuromorphic Computing Mainstream"
+author: 
+- Timoleon Moraitis
 date: 2023-11-16
 start_time: 18:00
 end_time: 19:00

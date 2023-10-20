@@ -1,6 +1,8 @@
 ---
 title: Lava - an open-source software framework for developing neuro-inspired applications
-author: "Andreas Wild & Mathis Richter"
+author: 
+- "Andreas Wild"
+- "Mathis Richter"
 date: "2023-05-31"
 start_time: 18:00
 end_time: 19:30

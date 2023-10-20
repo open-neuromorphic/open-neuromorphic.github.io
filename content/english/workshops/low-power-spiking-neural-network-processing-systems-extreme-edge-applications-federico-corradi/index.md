@@ -1,6 +1,7 @@
 --- 
 title: Low-power spiking neural network processing systems for extreme-edge applications
-author: "Federico Corradi"
+author: 
+- "Federico Corradi"
 date: "2023-06-08"
 start_time: 18:00
 end_time: 19:30

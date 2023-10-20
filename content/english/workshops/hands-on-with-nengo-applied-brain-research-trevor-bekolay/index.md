@@ -1,6 +1,7 @@
 ---
 title: "Hands-on with Nengo Applied Brain Research"
-author: "Trevor Bekolay"
+author: 
+- "Trevor Bekolay"
 description: "Dive into the world of applied brain research with Trevor Bekolay. Explore learning, memory, and neural simulations in this insightful recorded session"
 date: 2023-01-26
 start_time: 18:00

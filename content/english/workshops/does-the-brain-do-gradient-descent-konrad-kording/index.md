@@ -1,6 +1,7 @@
 ---
 title: "Does the brain do gradient descent?"
-author: "Konrad Kording"
+author: 
+- "Konrad Kording"
 date: "2023-07-11"
 start_time: 18:00
 end_time: 19:30

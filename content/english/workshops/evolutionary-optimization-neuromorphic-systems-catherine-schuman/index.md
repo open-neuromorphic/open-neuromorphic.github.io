@@ -1,6 +1,7 @@
 ---
 title: "Evolutionary Optimization for Neuromorphic Systems"
-author: "Catherine Schuman"
+author: 
+- "Catherine Schuman"
 date: "2023-03-21"
 start_time: 18:00
 end_time: 19:30

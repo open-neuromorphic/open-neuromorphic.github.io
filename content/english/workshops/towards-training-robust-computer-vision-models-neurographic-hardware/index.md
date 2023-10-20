@@ -1,6 +1,7 @@
 ---
 title: Towards training robust computer vision models for neuromorphic hardware
-author: Gregor Lenz
+author: 
+- Gregor Lenz
 date: 2023-03-10
 start_time: 18:00
 end_time: 19:30

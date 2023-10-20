@@ -21,10 +21,16 @@
     "@type": "Offer",
     "price": "0"
   },
-  "performer": {
-    "@type": "PerformingGroup",
-    "name": "{{ .Params.author }}"
-  },
+  "performer": [
+        {{ $authors := .Params.author }}
+    {{ range $index, $author := $authors }}
+    {
+        "@type": "Person",
+        "name": "{{ $author }}"
+    }
+    {{ if ne (add $index 1) (len $authors) }},{{ end }}
+    {{ end }}
+  ],
   "organizer": {
     "@type": "Organization",
     "name": "Open Neuromorphic",

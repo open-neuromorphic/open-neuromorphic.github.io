@@ -1,6 +1,7 @@
 ---
 title: "Hands-on with Sinabs and Speck"
-author: "Gregor Lenz"
+author:
+- "Gregor Lenz"
 date: "2023-04-04"
 start_time: 18:00
 end_time: 19:30
