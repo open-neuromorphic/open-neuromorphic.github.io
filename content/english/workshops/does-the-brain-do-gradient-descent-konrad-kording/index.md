@@ -1,5 +1,5 @@
 ---
-title: "Does the brain do gradient descent?"
+title: "Does the Brain do Gradient Descent?"
 author: 
 - "Konrad Kording"
 date: "2023-07-11"

@@ -1,5 +1,5 @@
 ---
-title: What's catching your eye? The visual attention mechanism
+title: What's Catching Your Eye? The Visual Attention Mechanism
 author: 
 - Giulia D'Angelo
 date: 2023-09-26

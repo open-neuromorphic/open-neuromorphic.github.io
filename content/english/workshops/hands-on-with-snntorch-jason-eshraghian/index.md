@@ -1,5 +1,5 @@
 ---
-title: Hands-on with snnTorch
+title: Hands-On with snnTorch
 author: 
 - Jason Eshraghian
 date: 2023-03-02

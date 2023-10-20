@@ -1,5 +1,5 @@
 ---
-title: "Hands-on with Nengo Applied Brain Research"
+title: "Hands-On with Nengo Applied Brain Research"
 author: 
 - "Trevor Bekolay"
 description: "Dive into the world of applied brain research with Trevor Bekolay. Explore learning, memory, and neural simulations in this insightful recorded session"

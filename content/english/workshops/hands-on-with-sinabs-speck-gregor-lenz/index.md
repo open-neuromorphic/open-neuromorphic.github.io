@@ -1,5 +1,5 @@
 ---
-title: "Hands-on with Sinabs and Speck"
+title: "Hands-On with Sinabs and Speck"
 author:
 - "Gregor Lenz"
 date: "2023-04-04"

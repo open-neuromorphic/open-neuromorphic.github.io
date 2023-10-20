@@ -1,5 +1,5 @@
 ---
-title: "PEPITA - A forward-forward alternative to backpropagation"
+title: "PEPITA - A Forward-Forward Alternative to Backpropagation"
 author:
 - "Giorgia Dellaferrera"
 date: "2023-02-14"

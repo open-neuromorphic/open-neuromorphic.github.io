@@ -1,5 +1,5 @@
 ---
-title: "The ELM Neuron: an Efficient and Expressive Cortical Neuron Model Can Solve Long-Horizon Tasks."
+title: "The ELM Neuron: An Efficient and Expressive Cortical Neuron Model Can Solve Long-Horizon Tasks."
 author: 
 - Aaron Spieler
 date: 2024-02
