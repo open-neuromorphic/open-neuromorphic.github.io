@@ -1,5 +1,5 @@
 --- 
-title: Low-power spiking neural network processing systems for extreme-edge applications
+title: Low-power Spiking Neural Network Processing Systems for Extreme-Edge Applications
 author: 
 - "Federico Corradi"
 date: "2023-06-08"

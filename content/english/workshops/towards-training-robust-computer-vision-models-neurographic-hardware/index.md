@@ -1,5 +1,5 @@
 ---
-title: Towards training robust computer vision models for neuromorphic hardware
+title: Towards Training Robust Computer Vision Models for Neuromorphic Hardware
 author: 
 - Gregor Lenz
 date: 2023-03-10
