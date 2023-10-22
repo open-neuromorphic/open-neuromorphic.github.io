@@ -35,7 +35,7 @@ The ideal library will often depend on a multitude of factors, such as accessibl
 22/10/2023: Experiments were reperformed on an A100 and Spyx was added to the benchmark.
 
 ## Code and comments
-The code for this benchmark is available [here](https://github.com/open-neuromorphic/open-neuromorphic.github.io/blob/main/content/english/blog/spiking-neural-network-framework-benchmarking/data-generation.ipynb). The order of dimensions in the input tensor and how it is fed to the respective models differs between libraries. Benchmarks are averaged across 100 runs on a NVIDIA A100 GPU with 40GB of vRAM. Standard deviations have been omitted because they are negligible. Some things that would be interesting to add:
+The code for this benchmark is available [here](https://github.com/open-neuromorphic/open-neuromorphic.github.io/blob/main/content/english/blog/spiking-neural-network-framework-benchmarking/). The order of dimensions in the input tensor and how it is fed to the respective models differs between libraries. Benchmarks are averaged across 100 runs on a NVIDIA A100 GPU with 40GB of vRAM. Standard deviations have been omitted because they are negligible. Some things that would be interesting to add:
 
 * multilayer scalability and benchmarking
 * evaluation of PyTorch frameworks when using torch.compile and with automatic mixed precision
