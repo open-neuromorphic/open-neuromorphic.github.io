@@ -1,5 +1,7 @@
 sinabs-exodus
 norse
+spyx
+tonic
 snntorch
 rockpool
 kaleido
