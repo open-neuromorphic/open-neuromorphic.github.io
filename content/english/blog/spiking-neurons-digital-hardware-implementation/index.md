@@ -13,8 +13,8 @@ tags: ["hardware", "digital", "spiking", "snn", "rtl", "verilog", "AI", "machine
 ## Introduction 
 
 In this article, we will try to model a layer of Leaky Integrate and Fire (LIF) spiking neurons using digital hardware: registers, memories, adders and so on. To do so, we will consider a single output neuron connected to multiple input neurons from a previous layer.
-
-{{< image src="neurons-connected.png" position="center" alt="Multiple pre-synaptic neurons connected to a post-synaptic one." caption="Multiple pre-synaptic neurons connected to a post-synaptic one." >}}
+oo
+{{< image src="neurons-connected.png" position="center" alt="Multiple pre-synaptic neurons connected to a post-synaptic one." caption="Multiple pre-synaptic neurons connected to a post-synaptic one." zoomable="true">}}
 
 In a Spiking Neural Network (SNN), neurons communicate by means of **spikes**: these activation voltages are then converted to currents through the **synapses**, charging the **membrane potential** of the destination neuron. In the following, the destination neuron is denoted as **post-synaptic** neuron, with the index $i$, while the input neuron under consideration is denoted as **pre-synaptic** neuron, with the index $j$. 
 
@@ -54,7 +54,7 @@ How do we describe a neuron in hardware? First of all, we need to list some basi
 
 Since there are $M$ neurons in the layer, we need an $M$-entries vector, denoted with $V[t]$, to store the membrane potentials values evaluated at timestamp $t$; this vector is associated with a **memory array** in the hardware architecture.
 
-{{< image src="membrane-potentials.png" position="center" alt="The membrane potentials memory." caption="The membrane potentials memory." >}}
+{{< image src="membrane-potentials.png" position="center" alt="The membrane potentials memory." caption="The membrane potentials memory."  zoomable="true" >}}
 
 An **address** is associated to each neuron, which can be thought as the $i$ index in the $V[t]$ vector; to obtain $v_{i}[t]$, the post-synaptic neuron address is used to index the membrane potentials memory $V[t]$.
 
@@ -64,7 +64,7 @@ Let us start from a single input pre-synaptic neuron:
 $$ u_{ij}[t] = w_{ij} \cdot S_{j}[t] $$
 We know that $S_{j}[t]$ is either 1 or 0; hence, we have either $u_{ij}[t] = w_{ij}$ or $u_{ij}[t] = 0$; this means that the synapse weight is **either added or not** to the total current $u_{i}[t]$; hence, the weight $w_{ij}$ is read from memory **only if the corresponding pre-synaptic neuron spikes!** Given a layer of $M$ neurons, each of which is connected in input to $N$ synapses, we can think of grouping the $M \cdot N$ weights in a **matrix**, which can be associated with another memory array, denoted with $W$.
 
-{{< image src="synapses-weights.png" position="center" alt="The synapses weights memory." caption="The synapses weights memory." >}}
+{{< image src="synapses-weights.png" position="center" alt="The synapses weights memory." caption="The synapses weights memory." zoomable="true">}}
 
 This memory is addressed with the pre-synaptic neuron and the post-synaptic neuron indices to retrieve the weight $w_{ij}$, which automatically corresponds to the $u_{ij}[t]$ current being accumulated in the post-synaptic neuron membrane when the pre-synaptic neuron spikes at timestamp $t$.
 
@@ -72,13 +72,13 @@ This memory is addressed with the pre-synaptic neuron and the post-synaptic neur
 
 Let us implement neural functionalities using the data structures defined for a neuron (i.e. membrane potential and synapses), starting with the **membrane potential charging** of a post-synaptic neuron. When the pre-synaptic neuron spikes, its synapse weight $w_{ij}$ gets extracted from the synapse memory $W$ and multiplied by the spike; since the spike is a **digital bit** equal to 1, this is equivalent to **using $w_{ij}$ itself as input current** for the post-synaptic neuron; to add this current to $v_{i}[t]$, we need to use an arithmetic circuit called **adder**!
 
-{{< image src="accumulation.png" position="center" alt="The spikes accumulation circuit." caption="The spikes accumulation circuit." >}}
+{{< image src="accumulation.png" position="center" alt="The spikes accumulation circuit." caption="The spikes accumulation circuit." zoomable="true">}}
 
 The membrane potential $v_{i}[t]$ is read from the potentials memory $V[t]$ and added to the corresponding synapse current $w_{ij}$; the result is the membrane potential of the next time step, $v_{i}[t+1]$, that is stored in the **register** put on the adder output; this value is written back to the $V[t]$ memory in the next clock cycle. The register storing the adder output is denoted as **membrane register**.
 
 To **prevent multiple read-write cycles** due to multiple spiking pre-synaptic neurons, one can think of adding a **loop** to the membrane register in order to **accumulate all the currents** of the pre-synaptic neurons that are spiking at timestep $t$ and writing the final value $v_{i}[t+1]$ back to memory **only once**. The corresponding circuit is shown in the following.
 
-{{< image src="accumulation-loop.png" position="center" alt="Adding a loop register to accumulate multiple spikes before the write-back to memory." caption="Adding a loop register to accumulate multiple spikes before the write-back to memory." >}}
+{{< image src="accumulation-loop.png" position="center" alt="Adding a loop register to accumulate multiple spikes before the write-back to memory." caption="Adding a loop register to accumulate multiple spikes before the write-back to memory." zoomable="true">}}
 
 A **multiplexer** is placed on one side of the adder; in this way:
 - the first weight $w_{i0}$ to be accumulated is added to the $v_{i}[t]$ read from memory and saved to the membrane register:
@@ -90,17 +90,17 @@ $$ v_{i}[t+1] = v_{i}[t+1] + w_{ij},~ 0 \lt j \leq N $$
 
 Our post-synaptic neuron is able to accumulate spikes in its membrane; however, input spikes do not always result in membrane potential charging! In fact, a pre-synaptic neuron can be **excitatory** (i.e. it **charges** the post-synaptic neuron membrane) or **inhibitory** (i.e. it **discharges** the post-synaptic neuron membrane); in the digital circuit, this phenomenon corresponds to **adding** or **subtracting**, respectively, the synapse weight $w_{ij}$ to or from $v_{i}[t]$; this functionality can be added to the architecture by placing an adder capable of performing **both additions and subtractions**, choosing among these with a control signal generated by an **FSM (Finite State Machine)**, which is a sequential digital circuit that evolves through a series of states depending on its inputs and, consequently, generates controls signals for the rest of the circuit. 
 
-{{< image src="inhibitory.png" position="center" alt="Control circuit for choosing between excitatory and inhibitory stimulation." caption="Control circuit for choosing between excitatory and inhibitory stimulation." >}}
+{{< image src="inhibitory.png" position="center" alt="Control circuit for choosing between excitatory and inhibitory stimulation." caption="Control circuit for choosing between excitatory and inhibitory stimulation." zoomable="true">}}
 
 This FSM, given the operation to be executed on the post-synaptic neuron, chooses if the adder has to add or subtract the synapse current. 
 
 However, is this design efficient in terms of resources employed? It has to be reminded that inhibitory and excitatory neurons are chosen at **chip programming time**; this means that **the neuron type does not change during the chip operation** (however, with the solution we are about to propose, it would not be a problem to change the neuron type on-the-fly); hence, we can **embed this information** in the neuron description by **adding a bit to the synapses weights memory row** that, depending on its value, denotes that neuron as excitatory or inhibitory.
 
-{{< image src="synapse-encoding.png" position="center" alt="Synapses weight storage in memory." caption="Synapses weight storage in memory." >}}
+{{< image src="synapse-encoding.png" position="center" alt="Synapses weight storage in memory." caption="Synapses weight storage in memory." zoomable="true">}}
 
 Suppose that, given a pre-synaptic neuron, all its $M$ output synapses are stored in a memory row of $n$ bits words, where $n$ is the number of bits to which the synapse weight is quantized. At the end of the memory row $j$, we add a bit denoted with $e_{j}$ that identifies the neuron type and that is read together with the weights from the same memory row: if the pre-synaptic neuron $j$ is **excitatory**, $e_{j}=1$ and the weight is **added**; if it is **inhibitory**, $e_{j}=0$ and the weight is **subtracted**; in this way, **the $e_{j}$ field of the synapse can drive the adder directly**. 
 
-{{< image src="modified-adder.png" position="center" alt="Using the neuron type bit to drive the adder." caption="Using the neuron type bit to drive the adder." >}}
+{{< image src="modified-adder.png" position="center" alt="Using the neuron type bit to drive the adder." caption="Using the neuron type bit to drive the adder." zoomable="true"  >}}
 
 ## Leakage 
 
@@ -110,13 +110,13 @@ However, multiplication is an **expensive** operation in hardware; furthermore, 
 
 If we choose $\beta$ as a power of $\frac{1}{2}$, such as $2^{-n}$, the multiplication becomes **equivalent to a $n$-positions right shift**! A really **hardware-friendly** operation! 
 
-{{< image src="leak.png" alt="Leakage circuit." position="center" caption="Leakage circuit." >}}
+{{< image src="leak.png" alt="Leakage circuit." position="center" caption="Leakage circuit." zoomable="true"  >}}
 
 In this circuit, an $n$-positions righ-shift block, denoted with the symbol `>>`, is placed on one of the adder inputs to obtain $\beta \cdot v_{i}[t]$ from $v_{i}[t]$. A **multiplexer** is introduced to choose among the synapse weight $w_{ij}$ and the leakage contribution $\beta \cdot v_{i}[t]$ as input to the adder.
 
 Notice that **the leakage has to be always subtracted** from the membrane potential; hence, we cannot use $e_{j}$ directly to control the adder but we must modify the circuit so that a subtraction is performed during a leakage operation, regardless of the value of $e_{j}$. A possible solution is to use a signal from the FSM and a **logic AND gate** to force the adder control signal to 0 during a leakage operation.
 
-{{< image src="subtract-leak.png" position="center" alt="Simplified leakage circuit." caption="Simplified leakage circuit." >}}
+{{< image src="subtract-leak.png" position="center" alt="Simplified leakage circuit." caption="Simplified leakage circuit." zoomable="true"  >}}
 
 Denoting with `adder_ctrl` the signal which controls the adder and with `leak_op_n` the one provided by the FSM, and stating that:
 - for `adder_ctrl=1`, the adder performs an addition, otherwise a subtraction.
@@ -128,13 +128,13 @@ Denoting with `adder_ctrl` the signal which controls the adder and with `leak_op
 
 Our neuron needs to spike! If this is encoded as a single digital bit, given the spiking threshold $\theta$, we **compare $v_{i}[t]$ to $\theta$** and generate a logic 1 in output **when the membrane potential is larger than the threshold**. This can be implemented using a **comparator** circuit. 
 
-{{< image src="spike.png" alt="Spike circuit." position="center" caption="Spike circuit." >}}
+{{< image src="spike.png" alt="Spike circuit." position="center" caption="Spike circuit." zoomable="true"  >}}
 
 The output of the comparator is used directly as **spike bit**.
 
 The membrane has to be **reset to a rest potential** when the neuron spikes; hence, we need to **subtract $\theta$ from $v_{i}[t]$ when the neuron fires**. This can be done by driving the input multiplexer of the membrane register to **provide $\theta$ in input to the adder**, that performs a subtraction.
 
-{{< image src="reset.png" position="center" alt="Membrane reset by threshold subtraction." caption="Membrane reset by threshold subtraction." >}}
+{{< image src="reset.png" position="center" alt="Membrane reset by threshold subtraction." caption="Membrane reset by threshold subtraction."  zoomable="true" >}}
 
 This circuit can be simplified:
 - by choosing $\theta = 2^m-1$, where $m$ is the **bitwidth of the membrane register and the adder**, having $v_{i}[t] \gt \theta$ is **equivalent to having an overflow in the addition**; hence, the comparison result is equal to the **overflow flag** of the adder, which can be **provided directly in output as spike bit**.
@@ -142,7 +142,7 @@ This circuit can be simplified:
 
 The resulting circuit is the following.
 
-{{< image src="smart-reset.png" position="center" alt="Membrane reset by membrane potential zeroing." caption="Membrane reset by membrane potential zeroing." >}}
+{{< image src="smart-reset.png" position="center" alt="Membrane reset by membrane potential zeroing." caption="Membrane reset by membrane potential zeroing." zoomable="true"  >}}
 
 ## Conclusion
 
