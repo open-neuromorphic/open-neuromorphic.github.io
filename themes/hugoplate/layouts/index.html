@@ -15,7 +15,8 @@
             academia and industry.
           </li>
           <li class="relative mb-4 pl-3">
-            A curated list of open source <a href="https://github.com/open-neuromorphic/open-neuromorphic" target="_blank">software
+            A curated list of open source <a href="https://github.com/open-neuromorphic/open-neuromorphic"
+                                             target="_blank">software
             frameworks</a> to make it easier to find <strong>the tool you need</strong>.
           </li>
           <li class="relative mb-4 pl-3">
@@ -23,25 +24,27 @@
             create a new repository or migrate your existing code to ONM, please get in touch with us.
           </li>
           <li class="relative mb-4 pl-3">
-            Welcoming and collaborative environment on <a href="https://discord.gg/C9bzWgNmqk" target="_blank">Discord</a>, join us!
+            Welcoming and collaborative environment on <a href="https://discord.gg/C9bzWgNmqk"
+                                                          target="_blank">Discord</a>, join us!
           </li>
         </ul>
       </div>
       <div class="mb:md-0 md:col-5 lg:col-4 mb-6">
         <div class="bg-theme-light dark:bg-darkmode-theme-light rounded p-7">
-        <h3 class="pb-5 text-xl">Upcoming Workshop</h3>
-        {{ $events := where .Site.RegularPages "Section" "workshops" }}
-        {{ $upcomingEvents := where $events "Params.date" "gt" now }}
-        {{ $sortedUpcomingEvents := sort $upcomingEvents "Params.date" }}
-        {{ with index $sortedUpcomingEvents 0 }}
-        <!-- Display the nearest upcoming event -->
-        <div class="mb-0">
-          {{ partial "components/session-card" . }}
-        </div>
-        {{ end }}
+          <h3 class="pb-5 text-xl">Upcoming Workshop</h3>
+          {{ $events := where .Site.RegularPages "Section" "workshops" }}
+          {{ $upcomingEvents := where $events "Params.upcoming" true }}
+          {{ $sortedUpcomingEvents := sort $upcomingEvents "Params.date" }}
+          {{ with index $sortedUpcomingEvents 0 }}
+          <!-- Display the nearest upcoming event -->
+          <div class="mb-0">
+            {{ partial "components/session-card" . }}
+          </div>
+          {{ end }}
         </div>
       </div>
     </div>
+  </div>
   </div>
 </section>
 <section class="section-sm">
