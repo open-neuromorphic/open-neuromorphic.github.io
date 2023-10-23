@@ -1,13 +1,14 @@
 ---
 title: "Spiking Neural Network (SNN) Library Benchmarks"
 date: 2023-08-02
+lastmod: 2023-10-23
 description: "Discover the fastest Spiking Neural Network (SNN) frameworks for deep learning-based optimization. Performance, flexibility, and more analyzed in-depth"
 draft: false
 author: 
 - "Gregor Lenz"
 - "Kade Heckel"
 - "Sumit Bam Shrestha"
-image: framework-benchmarking-4k.png
+image: framework-benchmarking-4k-header.png
 tags: ["snn", "framework", "library", "pytorch", "JAX"]
 ---
 
