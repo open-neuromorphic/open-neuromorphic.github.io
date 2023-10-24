@@ -1,20 +1,19 @@
 {{ define "main" }}
 {{ partial "page-header" . }}
-
 <section class="section pt-14">
   <div class="container">
     <article class="row justify-center">
       <div class="lg:col-8 mb-7">
+        <div class="mb-4">
         {{ $image:= .Params.image }}
         {{ if .Params.video }}
-        <div class="mb-4">
-          {{ partial "youtube-lite.html" (dict "Id" .Params.video ) }}
-        </div>
+           {{ partial "youtube-lite.html" (dict "Id" .Params.video ) }}
         {{ else if $image }}
-        <div class="mb-4">
           {{ partial "override-image" (dict "Src" $image "Context" .Page "Alt" .Title "Class" "w-full rounded") }}
-        </div>
+        {{ else }}
+          {{ partial "override-image" (dict "Src" "images/workshop-thumbnail-default.png" "Alt" .Title "Class" "w-full rounded") }}
         {{ end }}
+        </div>
         <ul class="mb-5">
           <li class="mr-2 inline-block">
             <i class="fa-regular fa-circle-user mr-2"></i>{{delimit .Params.author ", "}}
