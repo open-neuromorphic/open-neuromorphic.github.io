@@ -1,0 +1,20 @@
+{{ $id := delimit (shuffle (seq 1 9)) "" }}
+<div id="chart-{{$id}}" class="chart"></div>
+<script>
+  (function() {
+    let a = setInterval(function() {
+      if (typeof window.Plotly === 'undefined') {
+        return;
+      }
+      clearInterval(a);
+
+      // Read the JSON data directly from the file
+      fetch("{{ .Get "data" }}.json")
+        .then(response => response.json())
+        .then(chartData => {
+          // Initialize the Plotly chart with the loaded data and layout
+          Plotly.newPlot('chart-{{$id}}', chartData.data, chartData.layout, {responsive: true, displaylogo: false});
+        });
+    });
+  })();
+</script>
