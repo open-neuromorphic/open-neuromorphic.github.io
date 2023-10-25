@@ -1,5 +1,14 @@
 {{ $id := delimit (shuffle (seq 1 9)) "" }}
-<div id="chart-{{$id}}" class="chart"></div>
+<div id="chart-{{$id}}" class="chart hidden lg:block"></div>
+{{ if .Get "mobile" }}
+  {{ $mobileImage := .Get "mobile" }}
+  {{ $page := .Page }}
+  {{ with $mobileImage }}
+  <div class="block lg:hidden">
+    {{ partial "override-image" (dict "Src" $mobileImage "Context" $page "Alt" "Comparison of time taken for forward and backward passes in different frameworks, for 512 neurons." "Caption" "Comparison of time taken for forward and backward passes in different frameworks, for 512 neurons." "Zoomable" "true" "Class" "glightbox") }}
+  </div>
+  {{ end }}
+{{ end }}
 <script>
   (function() {
     let a = setInterval(function() {
