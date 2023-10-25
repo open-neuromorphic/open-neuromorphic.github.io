@@ -11,7 +11,7 @@
     {{ partial "structured-markup/jsonld.html" . }}
 
   {{ if .HasShortcode "chart" }}
-   <script src="https://cdn.plot.ly/plotly-2.26.0.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.27.0/plotly-basic.min.js" integrity="sha512-TiY/d3GpuSKgQYgnqegSfdqlXp6ebBvi6A47mFTMSpZM7BMbvfkkvU/SlDzZHs9lWqF+BteevHlqgauHhLLbIA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   {{ end }}
 
     <!-- style (always cache it) -->
