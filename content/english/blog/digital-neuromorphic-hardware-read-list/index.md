@@ -1,5 +1,5 @@
 ---
-title: "Digital Neuromophic Hardware Read List"
+title: "Digital Neuromorphic Hardware Read List"
 description: "Stay up-to-date with cutting-edge digital hardware designs for neuromorphic applications. Explore recent research on power-efficient event-driven spiking neural networks and state-of-the-art processors like TrueNorth and Loihi."
 date: 2023-01-11
 author: 
