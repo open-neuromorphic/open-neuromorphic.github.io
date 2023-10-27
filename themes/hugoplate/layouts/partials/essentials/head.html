@@ -7,15 +7,11 @@
 {{ end }}
 <title>{{ $title }}</title>
 
-
 <meta
   name="viewport"
   content="width=device-width, initial-scale=1, maximum-scale=5" />
 
 <link rel="canonical" href="{{ .Permalink }}" />
-
-<!-- theme meta -->
-<meta name="theme-name" content="hugoplate" />
 
 <!-- favicon -->
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -23,11 +19,11 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 
 <!-- manifest -->
-{{ partialCached "manifest" . }}
+{{/* partialCached "manifest" . */}}
 
 
 <!-- site verifications -->
-{{ partialCached "site-verifications.html" . }}
+{{/* partialCached "site-verifications.html" . */}}
 
 
 <!-- opengraph and twitter card -->
@@ -39,13 +35,13 @@
 
 
 <!-- google analytics -->
-{{ if and site.Config.Services.GoogleAnalytics.ID (ne site.Config.Services.GoogleAnalytics.ID "G-MEASUREMENT_ID") }}
-  {{ template "_internal/google_analytics.html" . }}
-{{ end }}
+{{/* if and site.Config.Services.GoogleAnalytics.ID (ne site.Config.Services.GoogleAnalytics.ID "G-MEASUREMENT_ID") */}}
+  {{/* template "_internal/google_analytics.html" . */}}
+{{/* end */}}
 
 
 <!-- google tag manager -->
-{{ partialCached "gtm.html" . }}
+{{/* partialCached "gtm.html" . */}}
 
 
 <!-- search index -->
