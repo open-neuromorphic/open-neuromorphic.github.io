@@ -34,9 +34,18 @@ url = "/getting-involved/"
 
 [[main]]
 parent = "About"
-name = "Team"
-url = "/team/"
+name = "Organizers"
+url = "/organizers/"
 
+[[main]]
+parent = "About"
+name = "Advisers"
+url = "/advisers/"
+
+[[main]]
+parent = "About"
+name = "Contributors"
+url = "/contributors/"
 
 # footer menu
 [[footer]]

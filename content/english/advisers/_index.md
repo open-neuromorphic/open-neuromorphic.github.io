@@ -1,5 +1,5 @@
 ---
-description: Meet the Open Neuromorphic team members - experts in neuromorphic computing,
+description: Our advisers are experts in neuromorphic computing,
   digital hardware, AI, and more. Discover their research and contributions.
 members:
 - description: Henning Wessels is Assistant Professor at the Department of Civil and
@@ -103,43 +103,7 @@ members:
     link: https://github.com/ChFrenkel
     name: github
   member_id: 4
-- description: 'Steve is doing his PhD on neuromorphic computing theory in the [MINDS](https://www.ai.rug.nl/minds/)
-    research group at the new [CogniGron](https://www.rug.nl/research/fse/cognitive-systems-and-materials/about/)
-    center for cognitive systems and materials in Groningen. He is funded by the European
-    [Post-Digital](http://postdigital.astonphotonics.uk/) research network.
 
-
-    In his PhD, he works with different neuromorphic systems ([Loihi 2](https://www.intel.com/content/www/us/en/research/neuromorphic-computing.html),
-    [DynapSE2](https://www.synsense.ai/products/dynap-se2/), and [photonic reservoirs](https://photonics.intec.ugent.be/research/topics.asp?ID=112))
-    to develop programming methods for devices that explore a richer set of physical
-    dynamics than the synchronous bi-stable switching that (most of) computer science
-    relies on. Steve''s background is in computer science and machine learning, with
-    a touch of physics.'
-  image: /images/team/steven-abreu.jpg
-  name: Steven Abreu
-  social:
-  - icon: fa fa-house
-    link: https://stevenabreu.com/
-    name: website
-  member_id: 6
-- description: 'Fabrizio Ottati is a Ph.D. student in the Department of Electronics
-    and Communications of Politecnico di Torino, under the supervision of professor
-    Luciano Lavagno.
-
-
-    His main interests are event-based cameras, digital hardware design and automation,
-    deep learning and piedmontese red wine.
-
-
-    He is the maintainer of two open source projects in the field of neuromorphic
-    computing, [Tonic](https://tonic.readthedocs.io) and [Expelliarmus](https://expelliarmus.readthedocs.io).'
-  image: /images/team/fabrizio-ottati.jpg
-  name: Fabrizio Ottati
-  social:
-  - icon: fa fa-house
-    link: https://fabrizio.foo
-    name: website
-  member_id: 1
 - description: 'Alexander is currently a Research Fellow with the Advanced Concepts
     Team at the European Space Agency. His research efforts are focused on retinomorphic
     vision as well as the interplay between homeostasis, adaptation, axon guidance
@@ -154,47 +118,7 @@ members:
   image: /images/team/alexander-hadjiivanov.jpeg
   name: Alexander Hadjiivanov
   member_id: 8
-- description: 'Jason Eshraghian is an Assistant Professor at the Department of Electrical
-    and Computer Engineering, University of California, Santa Cruz, leading the [UCSC
-    Neuromorphic Computing Group](http://ncg.ucsc.edu/).
 
-
-    His research focuses on brain-inspired circuit design to accelerate AI algorithms
-    and spiking neural networks.
-
-
-    He is the maintainer of [snnTorch](https://github.com/jeshraghian/snntorch).'
-  image: /images/team/jason-eshraghian.webp
-  name: Jason Eshraghian
-  social:
-  - icon: fa fa-house
-    link: https://www.jasoneshraghian.com/
-    name: website
-  - icon: fa-brands fa-github
-    link: https://github.com/jeshraghian
-    name: github
-  member_id: 3
-- description: 'Gregor Lenz graduated with a Ph.D. in neuromorphic engineering from
-    Sorbonne University. He thinks that technology can learn a thing or two from how
-    biological systems process information.
-
-
-    His main interests are event cameras that are inspired by the human retina and
-    spiking neural networks that mimic human brain in an effort to teach machines
-    to compute a bit more like humans do. At the very least there are some power efficiency
-    gains to be made, but hopefully more! Also he loves to build open source software
-    for spike-based machine learning.
-
-
-    He is the maintainer of two open source projects in the field of neuromorphic
-    computing, [Tonic](https://github.com/neuromorphs/tonic) and [expelliarmus](https://github.com/open-neuromorphic/expelliarmus).'
-  image: /images/team/gregor-lenz.jpeg
-  name: Gregor Lenz
-  social:
-  - icon: fa fa-house
-    link: https://lenzgregor.com/
-    name: website
-  member_id: 2
 - description: 'Alexander Henkes received the B.Sc. (Mechanical Engineering) and M.Sc.
     (Mechanical Engineering) degrees from the University of Paderborn, Germany, in
     2015 and 2018, respectively. In 2022, he received his Ph.D. with honors from the
@@ -218,5 +142,5 @@ members:
   image: /images/team/alexander-henkes.jpg
   name: Alexander Henkes
   member_id: 7
-title: Team
+title: Advisers
 ---
