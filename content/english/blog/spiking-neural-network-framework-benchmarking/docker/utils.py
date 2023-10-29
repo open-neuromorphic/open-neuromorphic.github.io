@@ -1,7 +1,13 @@
 from typing import Callable, Optional, List, Tuple
 import warnings
+from csv import writer
 
 from time import time
+
+def log_result(framework, neurons, forward, backward, memory):
+    with open('data.csv', 'a') as f:
+        w = writer(f)
+        w.writerow([framework, neurons, forward, backward, memory])
 
 
 def timeit(

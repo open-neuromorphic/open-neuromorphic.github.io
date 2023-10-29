@@ -28,3 +28,17 @@ conda install lava-dl -c conda-forge
 
 # Rules of adding benchmarks
 1. The implementation you're benchmarking must be in the library's docs. 
+
+# Docker
+
+The following command will build the docker image, generate the figures and copy them to this folder.
+
+```
+./bench.sh
+```
+
+<!-- The default batch size is 16 but this can be manaually set as shown below for a batch size of 32.
+
+```
+./bench.sh 32
+``` -->

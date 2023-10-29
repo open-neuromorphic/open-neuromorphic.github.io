@@ -1,3 +1,4 @@
+pytorch~=2.1.0
 sinabs-exodus
 norse
 spyx
@@ -8,3 +9,4 @@ kaleido
 ipykernel
 plotly
 nbformat
+spikingjelly @ git+https://github.com/fangwei123456/spikingjelly.git
