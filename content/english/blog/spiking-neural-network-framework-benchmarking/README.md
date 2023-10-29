@@ -37,8 +37,8 @@ The following command will build the docker image, generate the figures and copy
 ./bench.sh
 ```
 
-<!-- The default batch size is 16 but this can be manaually set as shown below for a batch size of 32.
+The default batch size is 16 but this can be manaually set as shown below for a batch size of 32.
 
 ```
 ./bench.sh 32
-``` -->
+```

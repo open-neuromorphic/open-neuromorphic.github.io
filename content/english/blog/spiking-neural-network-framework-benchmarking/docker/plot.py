@@ -10,6 +10,7 @@ os.mkdir("./fig")
 ##############
 
 df["total"] = df["forward"] + df["backward"]
+df["memory"]=df["memory"]*1e-6
 df["framework"] = df["framework"].str.replace("<br>", " ")
 df["framework"] = df["framework"].str.replace(
     "SpikingJelly CuPy v0.0.0.0.15", "SpikingJelly v0.0.15"
@@ -58,7 +59,7 @@ def get_runtime_figure(df, rounding=2, title=""):
     return fig
 
 
-def get_memory_figure(df, rounding=2, title=""):
+def get_memory_figure(df, rounding=0, title=""):
     fig = px.bar(
         df,
         y="framework",
@@ -72,9 +73,10 @@ def get_memory_figure(df, rounding=2, title=""):
     fig.update_layout(
         title=title,
         yaxis={"categoryorder": "total descending"},
-        legend=dict(orientation="h", yanchor="bottom", y=1.01, xanchor="right", x=1),
+        # legend=dict(orientation="h", yanchor="bottom", y=1.01, xanchor="right", x=1),
         margin=dict(l=0, r=20, t=70, b=10),
         yaxis_title="",
+        xaxis_title="Max memory usage (MB)"
     )
     # increase size of facet titles
     fig.update_annotations(font_size=14)
