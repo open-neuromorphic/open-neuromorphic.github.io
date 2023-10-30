@@ -15,7 +15,7 @@ for benchmark in "rockpool_torch" "rockpool_exodus" "sinabs" "sinabs_exodus" "no
     python3 ./run_benchmark.py $benchmark $1
 done
 
-python3 ./plot.py
+python3 ./plot.py --batch_size $1
 
 echo "done"
 
