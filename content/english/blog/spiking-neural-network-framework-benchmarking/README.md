@@ -32,12 +32,13 @@ conda install lava-dl -c conda-forge
 # Docker
 
 The following command will build the docker image, generate the figures and copy them to this folder.
+32 is the batch size and the build agument specifies to build the docker image.
 
 ```
-./bench.sh
+./bench.sh 32 build
 ```
 
-The default batch size is 16 but this can be manaually set as shown below for a batch size of 32.
+Once you have the docker image installed you can simply run the following to rerun the benchmarks.
 
 ```
 ./bench.sh 32

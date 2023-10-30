@@ -19,4 +19,3 @@ python3 ./plot.py --batch_size $1
 
 echo "done"
 
-ls -a

@@ -78,6 +78,7 @@ def get_memory_figure(df, rounding=0, title=""):
         margin=dict(l=0, r=20, t=70, b=10),
         yaxis_title="",
         xaxis_title="Max memory usage (MB)",
+        showlegend=False
     )
     # increase size of facet titles
     fig.update_annotations(font_size=14)
