@@ -1,11 +1,6 @@
 #!/bin/bash
 
-pip3 install git+https://github.com/fangwei123456/spikingjelly.git
-
-wget https://github.com/lava-nc/lava-dl/releases/download/v0.4.0/lava_dl-0.4.0.tar.gz
-pip3 install ./lava_dl-0.4.0.tar.gz
-
-pip3 install -r ./requirements.txt
+pip3 install sinabs-exodus
 
 echo "running benchmarks with batch size $1"
 

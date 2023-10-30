@@ -499,7 +499,7 @@ benchmarks = {
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("benchmark", choices=benchmarks.keys())
-    parser.add_argument("batch_size")
+    parser.add_argument("batch_size", default=16)
     args = parser.parse_args()
 
     benchmark = benchmarks[args.benchmark]

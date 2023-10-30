@@ -1,6 +1,5 @@
-torch
+torch>=2.0.0
 sinabs
-sinabs-exodus
 norse
 spyx
 tonic
@@ -10,4 +9,5 @@ kaleido
 ipykernel
 plotly
 nbformat
-spikingjelly
+cupy-cuda11x
+ninja
