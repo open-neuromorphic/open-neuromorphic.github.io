@@ -25,27 +25,31 @@ weight = 4
 parent = "About"
 name = "About Open Neuromorphic"
 url = "/about/"
+weight = 1
 
 [[main]]
 parent = "About"
 name = "Getting Involved"
 url = "/getting-involved/"
-
+weight = 2
 
 [[main]]
 parent = "About"
 name = "Organizers"
 url = "/organizers/"
+weight = 3
 
 [[main]]
 parent = "About"
 name = "Advisers"
 url = "/advisers/"
+weight = 4
 
 [[main]]
 parent = "About"
 name = "Contributors"
 url = "/contributors/"
+weight = 5
 
 # footer menu
 [[footer]]
