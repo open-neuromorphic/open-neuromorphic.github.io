@@ -1,0 +1,17 @@
+{{ define "main" }}
+  {{ partial "page-header" . }}
+
+  <section class="section pt-14">
+    <div class="container">
+      <div class="row">
+        {{ $sortedMembers := sort .Params.members "member_id" "asc" }}
+        {{ range $sortedMembers }}
+          <div class="md:col-12 lg:col-12 mb-14">
+            {{ partial "components/team-card" . }}
+          </div>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+{{ end }}
+
