@@ -4,17 +4,13 @@ WORKDIR /app
 
 COPY . .
 
-RUN apt update && apt install -y git wget python3 python3-pip
+RUN apt update && apt install -y git wget python3 python3-pip python3-dev cmake build-essential
 
-RUN pip3 install --upgrade "jax[cuda11_local]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+RUN pip3 install --upgrade "jax[cuda11_pip]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
 
-RUN pip3 install torch==2.0.0 torchvision==0.15.1 torchaudio==2.0.1 --index-url https://download.pytorch.org/whl/cu118
+RUN pip3 install torch torchvision torchaudio
 
 RUN pip3 install -r ./requirements.txt
-
-RUN pip3 install git+https://github.com/lava-nc/lava-dl.git \
-    && pip3 install git+https://github.com/fangwei123456/spikingjelly.git
-
 
 RUN ["chmod","+x","./run_benchmarks.sh"]
 

@@ -499,7 +499,7 @@ benchmarks = {
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("benchmark", choices=benchmarks.keys())
-    parser.add_argument("batch_size", default=16)
+    parser.add_argument("batch_size")
     args = parser.parse_args()
 
     benchmark = benchmarks[args.benchmark]
@@ -510,9 +510,10 @@ if __name__ == "__main__":
     device = "cuda"
 
     for n_neurons in [
-        512,
+        # 512,
         4096,
         8192,
+        16384,
     ]:  #  1024, 2048, 4096, 8192, 16384,
         prepare_fn, forward_fn, backward_fn, bench_desc = benchmark()
         print("Benchmarking", bench_desc, "with n_neurons =", n_neurons)

@@ -12,7 +12,10 @@ df["total"] = df["forward"] + df["backward"]
 df["memory"] = df["memory"] * 1e-6
 df["framework"] = df["framework"].str.replace("<br>", " ")
 df["framework"] = df["framework"].str.replace(
-    "SpikingJelly CuPy v0.0.0.0.15", "SpikingJelly v0.0.15"
+    "SpikingJelly CuPy v0.0.0.0.15", "SpikingJelly CuPy<br>v0.0.15"
+)
+df["framework"] = df["framework"].str.replace(
+    "SpikingJelly PyTorch v0.0.0.0.15", "SpikingJelly PyTorch<br>v0.0.15"
 )
 df["framework"] = df["framework"].str.replace("Rockpool EXODUS", "Rockpool EXODUS<br>")
 df["framework"] = df["framework"].str.replace("Sinabs EXODUS", "Sinabs EXODUS<br>")
@@ -55,7 +58,7 @@ def get_runtime_figure(df, rounding=2, title=""):
         xaxis_title="Time (s)",
     )
     # increase size of facet titles
-    fig.update_annotations(font_size=14)
+    fig.update_annotations(font_size=16)
     return fig
 
 
@@ -136,24 +139,24 @@ if __name__ == "__main__":
 
     ###################
 
-    df512 = df[df["neurons"] == 512]
+    df16k = df[df["neurons"] == 16384]
 
     fig = get_runtime_figure(
-        df512, title=f"Latency for 512 neurons, lower is better{batch_str}"
+        df16k, title=f"Latency for 16k neurons, lower is better{batch_str}"
     )
 
-    fig.write_json("./fig/framework-benchmarking-512.json")
-    fig.write_image("./fig/framework-benchmarking-512.png", width=1024)  # scale=2)
+    fig.write_json("./fig/framework-benchmarking-16k.json")
+    fig.write_image("./fig/framework-benchmarking-16k.png", width=1024)  # scale=2)
     fig.write_image(
-        "./fig/framework-benchmarking-512-header.png", width=1024, height=570
+        "./fig/framework-benchmarking-16k-header.png", width=1024, height=570
     )
     fig.show()
 
     fig = get_memory_figure(
-        df512, title=f"Memory use for 512 neurons, lower is better{batch_str}"
+        df16k, title=f"Memory use for 16k neurons, lower is better{batch_str}"
     )
 
-    fig.write_json("./fig/framework-benchmarking-mem-512.json")
-    fig.write_image("./fig/framework-benchmarking-mem-512.png", width=1024)
-    fig.write_image("./fig/framework-benchmarking-mem-512-header.png", width=1600)
+    fig.write_json("./fig/framework-benchmarking-mem-16k.json")
+    fig.write_image("./fig/framework-benchmarking-mem-16k.png", width=1024)
+    fig.write_image("./fig/framework-benchmarking-mem-16k-header.png", width=1600)
     fig.show()

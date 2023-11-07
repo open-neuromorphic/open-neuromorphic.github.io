@@ -1,6 +1,9 @@
 torch>=2.0.0
 sinabs
+# sinabs-exodus
 norse
+# spikingjelly
+# lava-dl
 spyx
 tonic
 snntorch
