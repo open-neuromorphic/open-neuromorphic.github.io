@@ -9,7 +9,7 @@ os.makedirs("./fig", exist_ok=True)
 ##############
 
 df["total"] = df["forward"] + df["backward"]
-df["memory"] = df["memory"] * 1e-6
+df["memory"] = df["memory"] * 1e-9  # convert to GB
 df["framework"] = df["framework"].str.replace("<br>", " ")
 df["framework"] = df["framework"].str.replace(
     "SpikingJelly CuPy v0.0.0.0.15", "SpikingJelly CuPy<br>v0.0.15"
@@ -32,22 +32,22 @@ def get_runtime_figure(df, rounding=2, title=""):
     fig = px.bar(
         df,
         y="framework",
-        x=["forward", "backward"],
+        # x=["forward", "backward"],
+        x="total",
         log_x=True,
         text_auto=f".{rounding}f",
         orientation="h",
-    ).add_trace(
-        go.Scatter(
-            y=frameworks,
-            x=df["total"].to_numpy() * 1.05,
-            mode="text",
-            text=df["total"].round(rounding),
-            textposition="middle right",
-            showlegend=False,
-        )
+        # ).add_trace(
+        #     go.Scatter(
+        #         y=frameworks,
+        #         x=df["total"].to_numpy() * 1.05,
+        #         mode="text",
+        #         text=df["total"].round(rounding),
+        #         textposition="middle right",
+        #         showlegend=False,
+        #     )
+        range_x=(0.01, df["total"].max() * 1.2),
     )
-    fig.data[0]["textposition"] = "inside"
-    fig.data[1]["textposition"] = "inside"
 
     fig.update_layout(
         title=title,
@@ -62,29 +62,27 @@ def get_runtime_figure(df, rounding=2, title=""):
     return fig
 
 
-def get_memory_figure(df, rounding=0, title=""):
+def get_memory_figure(df, rounding=2, title=""):
     df = df[df["framework"].str.contains("Spyx") == False]
     fig = px.bar(
         df,
         y="framework",
-        x=["memory"],
+        x="memory",
         # log_x=True,
         text_auto=f".{rounding}f",
         orientation="h",
-        # range_x=(0, df["memory"].max() * 1.1),
+        range_x=(0.01, df["memory"].max() * 1.2),
     )
-    fig.data[0]["textposition"] = "inside"
 
     fig.update_layout(
         title=title,
         yaxis={"categoryorder": "total descending"},
         margin=dict(l=0, r=20, t=70, b=10),
         yaxis_title="",
-        xaxis_title="Max memory usage (MB)",
-        showlegend=False
+        xaxis_title="Max memory usage (GB)",
     )
     # increase size of facet titles
-    fig.update_annotations(font_size=14)
+    fig.update_annotations(font_size=16)
     return fig
 
 
