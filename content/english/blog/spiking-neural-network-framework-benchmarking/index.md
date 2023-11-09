@@ -9,7 +9,7 @@ author:
 - "Kade Heckel"
 - "Sumit Bam Shrestha"
 - "Cameron Barker"
-image: framework-benchmarking-16k-header.png
+image: neurons-race.png
 tags: ["snn", "framework", "library", "pytorch", "JAX"]
 ---
 
