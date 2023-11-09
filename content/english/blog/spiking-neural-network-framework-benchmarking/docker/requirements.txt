@@ -1,0 +1,16 @@
+torch>=2.0.0
+sinabs
+# sinabs-exodus
+norse
+# spikingjelly
+# lava-dl
+spyx
+tonic
+snntorch
+rockpool
+kaleido
+ipykernel
+plotly
+nbformat
+cupy-cuda11x
+ninja
