@@ -45,6 +45,12 @@ name = "Contributors"
 url = "/contributors/"
 weight = 5
 
+# [[main]]
+# parent = "About"
+# name = "Advisers"
+# url = "/advisers/"
+# weight = 6
+
 # footer menu
 [[footer]]
 name = "Quick Links"

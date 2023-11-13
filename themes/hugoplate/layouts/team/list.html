@@ -7,19 +7,7 @@
       <h3 class="pb-2">Organizers</h3>
       <p class="pb-4">Organizers make sure that Open Neuromorphic continues to thrive! Get in touch if you'd like to step up, we're a friendly bunch!</p>
       {{ $sortedMembers := slice }}
-      {{ range sort .Params.members_organizers "member_id" "asc" }}
-      {{ $sortedMembers = $sortedMembers | append . }}
-      {{ end }}
-      {{ range $sortedMembers }}
-      <div class="md:col-12 lg:col-12 mb-14">
-        {{ partial "components/team-card" . }}
-      </div>
-      {{ end }}
-      <h3 class="pb-2">Advisers</h3>
-      <p class="pb-4">Our advisers are experts in neuromorphic computing,
-  digital hardware, AI, and more. Discover their research and contributions.</p>
-      {{ $sortedMembers = slice }}
-      {{ range sort .Params.members_advisers "member_id" "asc" }}
+      {{ range sort .Params.members "member_id" "asc" }}
       {{ $sortedMembers = $sortedMembers | append . }}
       {{ end }}
       {{ range $sortedMembers }}
