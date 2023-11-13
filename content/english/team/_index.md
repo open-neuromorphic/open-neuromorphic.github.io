@@ -1,6 +1,6 @@
 ---
-description: Meet the organizers and expert advisers behind Open Neuromorphic. Our team ensures the thriving community of neuromorphic computing, digital hardware, and AI enthusiasts.
-members_organizers:
+description: Meet the organizers behind Open Neuromorphic. Our team ensures the thriving community of neuromorphic computing, digital hardware, and AI enthusiasts.
+members:
 - description: 'Fabrizio Ottati is a Ph.D. student in the Department of Electronics
     and Communications of Politecnico di Torino, under the supervision of professor
     Luciano Lavagno.
