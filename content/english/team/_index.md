@@ -209,5 +209,5 @@ members_advisers:
   image: /images/team/alexander-henkes.jpg
   name: Alexander Henkes
   member_id: 7
-title: Team
+title: Organizers
 ---
