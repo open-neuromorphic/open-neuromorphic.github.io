@@ -14,6 +14,16 @@ members:
     name: github
   member_id: 1
 
+- description: 'Giulia D’Angelo is a Researcher with a PhD in visual attention neuromorphic algorithms for online robotic applications at the Italian Institute of Technology. 
+
+    She’s passionate about bioinspired architectures, cats, event-based cameras, cats, spiking neural networks for vision and embodiment, cats, how much the human visual system is fascinating and her cats. 
+
+    She is the Co-founder and Co-creator of the Brains&Machines Podcast sponsored by EETimes.' 
+  image: /images/team/giulia-dangelo.jpg
+  name: Giulia D'Angelo
+  member_id: 3
+
+
 
 - description: 'Alexander Henkes received the B.Sc. (Mechanical Engineering) and M.Sc.
     (Mechanical Engineering) degrees from the University of Paderborn, Germany, in
@@ -37,7 +47,7 @@ members:
     He is a contributor of [snnTorch](https://github.com/jeshraghian/snntorch).'
   image: /images/team/alexander-henkes.jpg
   name: Alexander Henkes
-  member_id: 2
+  member_id: 3
 
 
 - description: 'Jens Egholm Pedersen is a doctoral student at the [Royal Institute of
@@ -67,7 +77,7 @@ members:
   - icon: fa-brands fa-github
     link: https://github.com/jegp
     name: github
-  member_id: 3
+  member_id: 4
 
 
 - description: 'Steve is doing his PhD on neuromorphic computing theory in the [MINDS](https://www.ai.rug.nl/minds/)
@@ -88,7 +98,7 @@ members:
   - icon: fa fa-house
     link: https://stevenabreu.com/
     name: website
-  member_id: 4
+  member_id: 5
 
 
 - description: 'Alexander is currently a Research Fellow with the Advanced Concepts
@@ -104,7 +114,7 @@ members:
     is its potential to bring about this unification.'
   image: /images/team/alexander-hadjiivanov.jpeg
   name: Alexander Hadjiivanov
-  member_id: 5
+  member_id: 6
 
 
 title: Contributors
