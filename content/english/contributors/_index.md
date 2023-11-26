@@ -2,7 +2,7 @@
 description: People who have written code, contributed to blog posts, designed artwork, refined the website, revamped social media channels or are who have been helpful and active on our Discord.
 
 members:
-- description: 'Results-driven Software Engineer with 20+ years of experience in collaborating with in-house software developers, technologists, and strategists through the development and deployment of robust, scalable web applications and customer-facing software. Justin re-designed ONM''s website and Youtube channel from scratch to give it a modern and responsive feel.'
+- description: 'Justin Riddiough is passionately dedicated to supporting the development of small to medium-sized open-source AI projects. Beyond conventional software engineering, his guidance focuses on empowering these initiatives.<br><br>With over two decades of experience, Justin brings a wealth of knowledge in collaborating with in-house developers, technologists, and strategists. His expertise extends to crafting and deploying robust, scalable web applications and strategically coordinating growth across various Open Neuromorphic initiatives.<br><br>Justin is the driving force behind <a href="https://aimodels.org/" target="_blank">AI Models</a> which recently began an initiative on <a href="https://aimodels.org/ai-governance-organizations" target="_blank">AI Governance</a>'
   image: /images/team/justin-riddiough.webp
   name: Justin Riddiough
   social:

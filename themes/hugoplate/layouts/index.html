@@ -55,7 +55,7 @@
       </div>
       <div class="mb:md-0 md:col-5 lg:col-4 mb-6">
         <div class="bg-theme-light dark:bg-darkmode-theme-light rounded p-7">
-          <h3 class="pb-5 text-xl">Upcoming Workshop</h3>
+          <h3 class="pb-5 text-xl">Next Workshop</h3>
           {{ $events := where .Site.RegularPages "Section" "workshops" }}
           {{ $upcomingEvents := where $events "Params.upcoming" true }}
           {{ $sortedUpcomingEvents := sort $upcomingEvents "Params.date" }}
@@ -67,6 +67,10 @@
           {{ end }}
         </div>
       </div>
+      <div class="pt-2 pb-0">
+      <div class="bg-theme-light dark:bg-darkmode-theme-light rounded p-5">
+      {{ partial "components/upcoming-wide" . }}
+        </div></div>
     </div>
   </div>
   </div>
