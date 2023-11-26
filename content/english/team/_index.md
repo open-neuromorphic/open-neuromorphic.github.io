@@ -33,7 +33,7 @@ members:
 
 
     He is the maintainer of [snnTorch](https://github.com/jeshraghian/snntorch).'
-  image: jason.jpg
+  image: /images/team/jason-eshraghian.jpg
   name: Jason Eshraghian
   social:
   - icon: fa fa-house
