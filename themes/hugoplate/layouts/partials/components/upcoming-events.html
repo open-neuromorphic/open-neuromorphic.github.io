@@ -6,7 +6,7 @@
 {{ end }}
 {{ $sortedUpcomingEvents = sort $sortedUpcomingEvents "Params.date" }}
 {{ $upcomingCount := len $sortedUpcomingEvents }}
-{{ $maxItems := 4 }} <!-- Define the maximum number of items to display -->
+{{ $maxItems := 6 }} <!-- Define the maximum number of items to display -->
 
 {{ range $index, $event := $sortedUpcomingEvents }}
 {{ if lt $index $maxItems }}
