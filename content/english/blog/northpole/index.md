@@ -16,7 +16,7 @@ biology. We will use them as guidelines to analyze the paper.
 
 The outline of this blog post is the same as the original article.
 
-# Axiomatic design
+## Axiomatic design
 
 > NorthPole, an architecture and a programming model for neural inference,
 reimagines (Fig. 1) the interaction between compute and memory by embodying 10
@@ -24,7 +24,7 @@ interrelated, synergistic axioms that build on brain-inspired computing.
 
 Fancy terminology :)
 
-## Axiom 1 - A dedicated DNN inference engine
+### Axiom 1 - A dedicated DNN inference engine
 
 > Turning to architecture, NorthPole is specialized for neural inference.  For
 example, it has no data-dependent conditional branching, and it does not support
@@ -97,7 +97,7 @@ processing units (GPUs) support 2:4 sparsity, which means that every 4 elements
 in a matrix, 2 are zeros (more or less, I am not being extremely precise on
 this).
 
-## Axiom 2 - Getting inspired by biological neurons 
+### Axiom 2 - Getting inspired by biological neurons 
 
 > Inspired by biological precision, NorthPole is optimized for 8, 4, and 2-bit
 low-precision. This is sufficient to achieve state-of-the-art inference accuracy
@@ -153,7 +153,7 @@ Moreover, FP16 precision is starting to be enough for training. State of the art
 GPUs are also supporting FP8 and _integer_ precision [[NVIDIA H100 Tensor Core
 GPU Architecture](https://resources.nvidia.com/en-us-tensor-core)].
 
-## Axiom 3 - Massive computational parallelism
+### Axiom 3 - Massive computational parallelism
 
 > NorthPole has a distributed, modular core array (16-by-16), with each core
 capable of massive parallelism (8192 2-bit operations per cycle) (Fig. 2F).
@@ -264,7 +264,7 @@ needed to execute a MAC! Instead, if the MAC unit accesses the data in the PE
 itself (the PE register file bar) or from another PE (the NoC bar), the energy
 drawback is bearable. 
 
-## Axiom 4 - Efficiency in distribution
+### Axiom 4 - Efficiency in distribution
 
 > NorthPole distributes memory among cores (Figs. 1B and 2F) and, within a core,
 not only places memories near compute (2) but also intertwines critical compute
@@ -295,7 +295,7 @@ logic or the special purpose macros available on the silicon. I do not know if
 it is brain-inspired but it makes sense from a silicon perspective if you want
 to maximize efficiency.
 
-## Axiom 5 - A neural Network-on-Chip
+### Axiom 5 - A neural Network-on-Chip
 
 > NorthPole uses two dense networks on-chip (NoCs) (20) to interconnect the
 cores, unifying and integrating the distributed computation and memory (Fig. 2,
@@ -311,7 +311,7 @@ network-on-chip (NoC). There are two NoCs in NorthPole: one to exchange the
 intermediate results among PEs (the _gray_ matter NoC), one for the inputs of
 the neural network (the _white_ matter).
 
-## Axiom 6 - Beyond data: efficient code distribution
+### Axiom 6 - Beyond data: efficient code distribution
 
 > Another two NoCs enable reconfiguring synaptic weights and programs on each
 core for high-speed operation of compute units (Fig. 2, C and D). The brain’s
@@ -335,7 +335,7 @@ performed (_i.e._, the sequence of operations to be carried out). The comparison
 with TrueNorth is not really fair: completely different designs, completely
 different goals.
 
-## Axiom 7 - No branches, lots of party
+### Axiom 7 - No branches, lots of party
 
 > NorthPole exploits data-independent branching to support a fully pipelined,
 stall-free, deterministic control operation for high temporal utilization
@@ -352,7 +352,7 @@ data movement is fully deterministic (_e.g._, first I process the channel
 dimension, then the width, then the height etc.), I would be _very_ worried if I
 had stalls or cache misses :)
 
-## Axiom 8 - Low precision, same performance with backprop
+### Axiom 8 - Low precision, same performance with backprop
 
 > Turning to algorithms and software, co-optimized training algorithms (fig. S3)
 enable state-of-the-art inference accuracy to be achieved by incorporating
@@ -368,7 +368,7 @@ of the network: to recover this, the DNN is trained for few more epochs to use
 backprop to tune the network taking into account the approximations brought by
 the quantization process.
 
-## Axiom 9 - Start optimizing inference from the code
+### Axiom 9 - Start optimizing inference from the code
 
 > Codesigned software (fig. S3) automatically determines an explicit
 orchestration schedule for computation, memory, and communication to achieve
@@ -389,7 +389,7 @@ Eyeriss [[Chen et
 al.](https://dspace.mit.edu/bitstream/handle/1721.1/101151/eyeriss_isscc_2016.pdf)]
 strikes again.
 
-## Axiom 10 - What happens in NorthPole, stays in NorthPole
+### Axiom 10 - What happens in NorthPole, stays in NorthPole
 
 > NorthPole employs a usage model that consists of writing an input frame and
 reading an output frame (Figs. 1D and 3), which enables it to operate
@@ -415,7 +415,7 @@ Uhm, real-time embedded system. So it must be super efficient to be run on such
 a limited system, right? However, in Table 1 of the paper, the power consumption
 required to run an INT8 version of ResNet50 is 74 W. Ouch :)
 
-# Silicon implementation
+## Silicon implementation
 
 > NorthPole has been fabricated in a 12-nm process and has 22 billion
 transistors in an 800-mm2 area, 256 cores, 2048 (4096 and 8192) operations per
@@ -432,7 +432,7 @@ weights only) is stored as INT8, occupying 1 B in memory. This means that a
 network with 768 k parameters can be hosted on a single core (forgive me, it is
 not fully precise as I am considering only the weights).
 
-# Energy, space and time
+## Energy, space and time
 
 > For methodological rigor that ensures a fair and level comparison of various
 implementations, it is critical that all evaluation metrics be independent of
@@ -523,7 +523,7 @@ Another reason for which Keller et al. is much more efficient than NorthPole is
 that it supports _sparsity-aware processing_, _i.e._, it skips zero computations
 without reading the zero values (I am simplifying).
 
-# (My) conclusions
+## (My) conclusions
 
 In conclusion, the following statement
 
@@ -557,7 +557,7 @@ there where more technical details in the paper, since it is very divulgative. I
 am fairly sure that we would have got a different paper if they
 chose an IEEE journal instead of Science, where hardware is not really common.
 
-# Acknowledgements
+## Acknowledgements
 
 I would like to thank [Jascha Achterberg](https://www.jachterberg.com) for 
 reviewing this blog post and the super-useful discussion about the 
@@ -566,7 +566,7 @@ authors claim biology inspiration actually proves useful (_e.g._, distributed
 memory hierarchy), differently from other approaches that severly compromise
 performance (_e.g._, accuracy), with negligible efficiency improvements.
 
-# Bibliography
+## Bibliography
 
 * [_Neural inference at the frontier of energy, space, and time_](https://www.science.org/doi/10.1126/science.adh1174), Dharmendra S. Modha et al., Science, 2023.
 * [_HighLight: Efficient and Flexible DNN Acceleration with Hierarchical Structured Sparsity_](https://arxiv.org/abs/2305.12718), Yannan Nellie Wu et al., IEEE Micro, 2023.
