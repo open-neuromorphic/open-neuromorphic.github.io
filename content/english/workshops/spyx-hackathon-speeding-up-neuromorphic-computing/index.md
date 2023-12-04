@@ -13,7 +13,7 @@ upcoming: true
 description: "Explore the power of Spyx in a hands-on hackathon session and dive into the world of neuromorphic frameworks with Kade Heckel."
 ---
 
-Join us on December 14th for an exciting Spyx hackathon and ONM talk! Learn how to use and contribute to [Spyx](https://github.com/kmheckel/spyx), a high-performance spiking neural network library, and gain insights into the latest developments in neuromorphic frameworks. The session will cover Spyx's utilization of memory and GPU to maximize training throughput, along with discussions on the evolving landscape of neuromorphic computing.
+Join us on December 13th for an exciting Spyx hackathon and ONM talk! Learn how to use and contribute to [Spyx](https://github.com/kmheckel/spyx), a high-performance spiking neural network library, and gain insights into the latest developments in neuromorphic frameworks. The session will cover Spyx's utilization of memory and GPU to maximize training throughput, along with discussions on the evolving landscape of neuromorphic computing.
 
 Don't miss this opportunity to engage with experts, collaborate on cutting-edge projects, and explore the potential of Spyx in shaping the future of neuromorphic computing. Whether you're a seasoned developer or just curious about the field, this event promises valuable insights and hands-on experience.
 
