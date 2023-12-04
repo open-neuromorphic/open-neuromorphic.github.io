@@ -2,7 +2,7 @@
 title: "Spyx Hackathon: Speeding up Neuromorphic Computing"
 author: 
   - Kade Heckel
-date: 2023-12-14
+date: 2023-12-13
 start_time: 18:00 
 end_time: 20:00
 speaker_photo: speaker.jpeg
