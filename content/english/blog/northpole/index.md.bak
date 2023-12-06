@@ -2,25 +2,27 @@
 title: "Neural inference at the frontier of energy, space and time - NorthPole, IBM"
 description: "Translating the new paper from IBM to human language."
 image: cover.png
-draft: false
-date: 2023-12-06
+draft: true
+date: 2023-11-28
 showTableOfContents: true
 author:
 - Fabrizio Ottati
 ---
 
 [NorthPole](https://research.ibm.com/blog/northpole-ibm-ai-chip) is the new
-shiny artificial intelligence (AI) accelerator developed by IBM. 
+shiny artificial intelligence (AI) accelerator developed by IBM. The creators
+claim that NorthPole design has been driven by 10 axioms inspired by human
+biology. We will use them as guidelines to analyze the paper.
+
+The outline of this blog post is the same as the original article.
+
+## Axiomatic design
 
 > NorthPole, an architecture and a programming model for neural inference,
 reimagines (Fig. 1) the interaction between compute and memory by embodying 10
 interrelated, synergistic axioms that build on brain-inspired computing.
 
-The creators claim that NorthPole design has been driven by 10 axioms inspired
-by human biology. We will use them as guidelines to analyze the paper, keeping
-the same outline as the original article.
-
-# Axiomatic design
+Fancy terminology :)
 
 ### Axiom 1 - A dedicated DNN inference engine
 
@@ -32,7 +34,7 @@ NorthPole is an application specific integrated circuit (ASIC): it can run only
 deep neural networks (DNNs). Regarding "no data-dependent conditional
 branching", it means that the "code" it is able to run has no conditional
 branches: it is a pure sequence of instructions, to be executed one after the
-other, and pre-defined, as it should be when you are performing matrix
+other.  and pre-defined, as it should be when you are performing matrix
 multiplications, _i.e._, running neural networks. There are no branches with
 data-dependent `if`s.
 
@@ -43,7 +45,7 @@ information on this, the reader is referred to [Computer
 architecture](https://books.google.it/books/about/Computer_Architecture.html?id=v3-1hVwHnHwC&redir_esc=y),
 by Hennessy, Patterson and Asanovic. If the code being run does not contain
 any of these conditional statements, there is no need for supporting them in 
-hardware, which also gives a lot of space to optimizations in the _dataflow_.
+hardware, which gives a lot of space to optimizations.
 
 Moreover, NorthPole is an inference-only accelerator, _i.e._, you cannot train a
 DNN on it, but only run it in inference. Training efficiency and speed is
@@ -54,9 +56,9 @@ to run in the cloud, just taking into account the number of machines and the
 electricity needed to power them and keep them cool.
 
 Things change if you take into account the sparsity of the data inside a neural
-network, _i.e._, that layers in DNNs output a lot of zeros; since multiplying by
-zero a number is useless, a smart strategy would be to skip all the operations
-with zeros involved. To put this in code terms:
+network, _i.e._, when you take into account that layers in DNNs output a lot of
+zeros; since multiplying by zero is useless, a smart strategy would be to skip
+all the operations with zeros involved. To put this in code terms:
 
 ```python
 def dot_prod(a: torch.Tensor, b: torch.Tensor) -> torch.Tensor:
@@ -82,11 +84,11 @@ hardware, the line `a_i, b_i = a[i], b[i]` is much more costly (_i.e._, it takes
 more _energy_ to execute it) than `a_i * b_i` 
 [[Horowitz](https://ieeexplore.ieee.org/document/6757323)]! This is due to how 
 we design our digital circuits to perform these operations. Hence, what you
-would like to avoid is to _read_ the inputs, more than to multiply them! Hence, if
+would like to avoid is to _read_ the inputs, more than to multiply them! And if
 to check that these are not zero you need to read them, well, you have lost the
 game :)
 
-When you want to skip zero-computations, you need to introduce a
+Hence, when you want to skip zero-computations, you need to introduce a
 structured approach (_i.e._, the zeros distribution in the matrices cannot be
 random, but it has to follow a structure) if you want to improve performance
 using sparsity [[Wu et al.](https://arxiv.org/abs/2305.12718)], which means
@@ -95,14 +97,6 @@ processing units (GPUs) support 2:4 sparsity, which means that every 4 elements
 in a matrix, 2 are zeros (more or less, I am not being extremely precise on
 this).
 
-
-{{<
-figure
-src="./dally-sparsity.png"
-caption="Sparse neural networks support in hardware [[William J. Dally]](https://www.computer.org/csdl/proceedings-article/hcs/2023/10254716/1QKTnGyUPbG)."
-width=600px
->}}
-
 ### Axiom 2 - Getting inspired by biological neurons 
 
 > Inspired by biological precision, NorthPole is optimized for 8, 4, and 2-bit
@@ -110,7 +104,7 @@ low-precision. This is sufficient to achieve state-of-the-art inference accuracy
 on many neural networks while dispensing with the high-precision required for
 training.
 
-Neurons in biology communicate by means of voltage spikes. These can interpreted
+Neurons in biology communicate by means of voltage spikes. This can interpreted
 as binary signals: if I have a spike, I have a logic one; if there is no spike, 
 I have a logic zero. This information encoding, if implemented in hardware, 
 requires a single bit. This is the analogy the authors are referring to.
@@ -165,21 +159,12 @@ GPU Architecture](https://resources.nvidia.com/en-us-tensor-core)].
 capable of massive parallelism (8192 2-bit operations per cycle) (Fig. 2F).
 
 When claiming 8192 operations per clock cycle, using INT2 operands, it 
-means that NorthPole is able to process 8192 numbers encoded to 2 bits every _x_
-nanoseconds. NorthPole uses a clock frequency of 400 MHz; hence, every 2.5 ns,
-it processes 8192 INT2 numbers.
-
-However, NorthPole also supports INT4 and INT8 operands. This means that the
-underlying hardware must be _reconfigurable_. To understand this, we must figure
-out which is the fundamental operation implemented by modern deep learning
-accelerators (but not only): multilply-and-accumulate (MAC) operation.  Why do
-we care about MACs?
+means that NorthPole has 2048 multiply-and-accumulate (MAC) units that work on
+INT8 precision operands. Why do we care about MACs?
 
 DNNs are basically matrix multipliers: a neural network receives a vector in 
 input and multiplies it by a matrix of weights, producing in output another 
-vector. The read is referred to the awesome YouTube playlist created by
-[3Blue1Brown](https://youtu.be/aircAruvnKk?si=tzbdXPm_WL5-dg9y) for more
-information on this. Let us consider a _naive_ matrix-vector multiplication. 
+vector. Let us consider a _naive_ matrix-vector multiplication.
 
 ```python
 def naive_mat_vec_mul(v: torch.Tensor, m: torch.Tensor) -> torch.Tensor:
@@ -194,14 +179,11 @@ def naive_mat_vec_mul(v: torch.Tensor, m: torch.Tensor) -> torch.Tensor:
 ```
 
 As you can see, the MAC is the fundamental operation employed in a matrix-vector
-product. That's why we care about it being implemented in hardware in the most
-efficient way.
+product. That's why we care about it.
 
-Coming back to NorthPole MACs, we stated that these can process INT2, INT4 and
-INT8 operands. We also talked about reconfigurability. What does this mean?
-These MACs can be configured in single-instruction-multiple-data (SIMD) mode,
-_i.e._, you can "glue" together 4 INT2 operands to form an INT8 word and work on
-these in parallel. 
+These MACs can be configured in single-instruction-multiple-data (SIMD)
+mode, _i.e._, you can "glue" together 4 INT2 operands to form an INT8 word and
+work on these in parallel. 
 
 {{<
 figure
@@ -213,15 +195,9 @@ caption="The single-instruction-multiple-data MAC unit of NorthPole."
 Above it is shown a visual description of how this parallelism is exploited. The
 total word width is always 8 bit, but more values can be glued together to be
 processed in parallel in the MAC, which produces more outputs at once for the
-INT4 and INT2 precisions. This is why in the "Silicon implementation" section of
-the paper it is written: 
-
-> NorthPole has been fabricated in a 12-nm process and has 22 billion
-> transistors in an 800-mm2 area, 256 cores, **2048** (**4096** and **8192**)
-> operations per core per cycle at 8-bit (at 4- and 2-bit) [...]
-
-Now, each NorthPole core has 256 of these units, and these work in parallel on
-different sections of the neural network layer being processed.
+INT4 and INT2 precisions. Now, our NorthPole core will have 256 of these units,
+and these work in parallel on different sections of the neural network layer
+being processed.
 
 > Cortex-like modularity of the tiled core array enables homogeneous scalability
 in two dimensions and, perhaps, even in three dimensions and is also amenable to
@@ -278,11 +254,8 @@ results are kept among the PEs, that exchange them to finish the computation.
 Ideally, there are no off-chip memory accesses, or it is strongly reduced when 
 compared to an overlay architecture
 
-{{<
-figure
-src="./fabrizio-energy.png"
-width=600px
-caption="Energy cost associated to different operations in hardware [[Chen et al.](https://ieeexplore.ieee.org/abstract/document/7948671)]."
+{{< 
+figure src="memory-energy.png" caption="Stolen from my thesis." width=600px
 >}}
 
 The graph above explains why it is a good idea to keep data among the PEs: to 
@@ -322,7 +295,7 @@ logic or the special purpose macros available on the silicon. I do not know if
 it is brain-inspired but it makes sense from a silicon perspective if you want
 to maximize efficiency.
 
-## Axiom 5, 6 - A neural Network-on-Chip
+### Axiom 5 - A neural Network-on-Chip
 
 > NorthPole uses two dense networks on-chip (NoCs) (20) to interconnect the
 cores, unifying and integrating the distributed computation and memory (Fig. 2,
@@ -332,6 +305,14 @@ and by neuroanatomical topological maps found in cortical sensory and motor
 systems (21). One gray matter–inspired NoC enables spatial computing between
 adjacent cores (Fig. 3 and fig. S1). Another white matter–inspired NoC enables
 neuron activations to be spatially redistributed among all cores.
+
+Take-home message: PEs communicate using dedicated busses, in what is called a
+network-on-chip (NoC). There are two NoCs in NorthPole: one to exchange the
+intermediate results among PEs (the _gray_ matter NoC), one for the inputs of
+the neural network (the _white_ matter).
+
+### Axiom 6 - Beyond data: efficient code distribution
+
 > Another two NoCs enable reconfiguring synaptic weights and programs on each
 core for high-speed operation of compute units (Fig. 2, C and D). The brain’s
 organic biochemical substrate is suitable for supporting many slow analog
@@ -349,33 +330,10 @@ Consequently, NorthPole achieves 3000 times more computation and 640 times
 larger network models than TrueNorth (14), although it has only four times more
 transistors (supplementary text S1).
 
-Take-home message: PEs communicate using dedicated busses, in what is called a
-network-on-chip (NoC). There are two NoCs in NorthPole: one to exchange the
-intermediate results among PEs (the _gray_ matter NoC), one for the inputs of
-the neural network (the _white_ matter). Two more NoCs, to load the weights to
-the PEs and the instructions to be performed (_i.e._, the sequence of operations
-to be carried out). The comparison with TrueNorth is not really fair: completely
-different designs, completely different goals.
-
-{{<
-figure
-src="./northpole-arch.png"
-caption="A snippet of NorthPole architecture [[Modha et al.](https://www.science.org/doi/10.1126/science.adh1174)]"
-width=600px
->}}
-
-NortPhole architecture is summarized above. Each core has memory structures
-named _buffer_ to host locally weights, inputs and partial results of the
-matrix multiplication being performed (figure A). In figure C, the different
-NoCs are highlighted: the partial sums NoC distributes the partial results among
-cores (refer to the layer-fuse architecture); the activation NoC carries inputs
-and layers outputs; the instruction NoC is used to tell the sequence of
-instructions to be carried out by the core; the model NoC is the one that
-trasnfers the layers weights to the computational cores.
-
-In my opinion, the instruction core plays an important role. Having a
-specialized instruction set architecture (ISA) has a large impact on
-performance.
+My bad: two more NoCs, to load the weights to the PEs and the instructions to be
+performed (_i.e._, the sequence of operations to be carried out). The comparison
+with TrueNorth is not really fair: completely different designs, completely
+different goals.
 
 ### Axiom 7 - No branches, lots of party
 
@@ -457,7 +415,7 @@ Uhm, real-time embedded system. So it must be super efficient to be run on such
 a limited system, right? However, in Table 1 of the paper, the power consumption
 required to run an INT8 version of ResNet50 is 74 W. Ouch :)
 
-# Silicon implementation
+## Silicon implementation
 
 > NorthPole has been fabricated in a 12-nm process and has 22 billion
 transistors in an 800-mm2 area, 256 cores, 2048 (4096 and 8192) operations per
@@ -474,7 +432,7 @@ weights only) is stored as INT8, occupying 1 B in memory. This means that a
 network with 768 k parameters can be hosted on a single core (forgive me, it is
 not fully precise as I am considering only the weights).
 
-# Energy, space and time
+## Energy, space and time
 
 > For methodological rigor that ensures a fair and level comparison of various
 implementations, it is critical that all evaluation metrics be independent of
@@ -497,7 +455,9 @@ To measure efficiency on image classification tasks, the author consider how
 many inferences you can run on the accelerator using only one joule of energy.
 Here, I will consider only two GPUs from Nvidia and NorthPole, because that is
 the most interesting comparison. The DNN being used is a ResNet50, and it is
-benchmarked on ImageNet. 
+benchmarked on ImageNet. They also consider other "exotic" figures of merit,
+such as "frames per second per watt per billion of transistor", which I do not
+consider to be meaningful.
 
 | Accelerator | Power [W] | Throughput (FPS) | Efficiency [inferences / J] |   Data format   | Only DNNs? | Training? |
 |:-----------:|:---------:|:----------------:|:---------------------------:|:---------------:|:----------:|:---------:|
@@ -505,16 +465,17 @@ benchmarked on ImageNet.
 | Nvidia H100 |    700    |    **81,292**    |             116             | FP32,16; INT8,4 |      ✘     |     ✔     |
 |  NorthPole  |   **74**  |      42,460      |           **571**           |     INT8,4,1    |      ✔     |     ✘     |
 
-Northpole is winning! And by a lot! This is mostly due to the fact that
-A100 and H100 are really power-hungry devices (look at the power consumption!)
+Northpole seems to be winning! And by a lot! This is mostly due to the fact that
+A100 and H100 are incredibly powerful devices (look at the power consumption!)
 and you can use them to run _any_ model you want, also for training in FP32 and
 FP16. NortPole, instead, is meant only for inference of quantized (_i.e._, INT8
 parameters) neural networks.
 
 Moreover, the GPUs being considered use large amount of off-chip (hence,
 energy-hungry) memory to deal with any kind of DL workload being run on them.
-Hence, most of the inefficiency is due to the large energy consumption
-associated to retrieving data from external DRAM.  In fact, the authors write:
+Hence, most of the inefficiency is due to
+the large energy consumption associated to retrieving data from external DRAM.
+In fact, the authors write:
 
 > Even relative to the H100 GPU, which is implemented using a 4 nm silicon
 process node, NorthPole delivers five times more frames per joule. NorthPole has
@@ -552,19 +513,17 @@ accelerator like NorthPole. This explains why the throughput is so low and the
 efficiency so high.
 
 The Nvidia accelerator is meant for inference only, just like NorthPole, and it
-uses a very advanced quantization technique 
+uses a very fancy quantization technique 
 [[Dai et al.](https://proceedings.mlsys.org/paper_files/paper/2021/file/48a6431f04545e11919887748ec5cb52-Paper.pdf)]
 to use INT4 precision without compromising accuracy. Moreover, the accelerator
 is designed to run large Transformers on it, but I have used their ResNet50 data
-for fair comparison with NorthPole. Like NorthPole, it is an inference-only
-    accelerator.
+for fair comparison with NorthPole.
 
 Another reason for which Keller et al. is much more efficient than NorthPole is
 that it supports _sparsity-aware processing_, _i.e._, it skips zero computations
-without reading the zero values (I am simplifying). From the NorthPole article,
-it does not seem that sparsity-aware computation is supported.
+without reading the zero values (I am simplifying).
 
-# (My) conclusions
+## (My) conclusions
 
 In conclusion, the following statement
 
@@ -572,32 +531,33 @@ In conclusion, the following statement
 for on-chip networks [...]
 
 will make me sleep better tonight, knowing that I do not have a DDR4 stick 
-on top of my head :)
+on top of my head. Sigh.
 
-NorthPole is a super-interesting experiment: it is an extremely large
-accelerator, with a distributed memory hierarchy that allows extreme efficiency
-when parallelizable workloads, such as DNNs, are targeted. Regarding the brain
-inspiration, I do not know if calling NoCs white or gray matter.  In my opinion,
-NorthPole is "just" an excellent engineering work, that takes into account key
-factors:
+NorthPole is an interesting experiment: it is an extremely large accelerator,
+with a distributed memory hierarchy that allows extreme efficiency when
+parallelizable workloads, such as DNNs, are targeted. Regarding the brain
+inspiration, I do not agree with calling a NoC white or gray matter to claim
+biological inspiration.  In my opinion, NorthPole is "just" an excellent
+engineering work, that takes into account key factors:
 * reduced precision operations are much more efficient that high-precision ones.
-  An FP32 multiplication costs _much_ more than an INT8 one.
-* DNNs are extremely robust to quantization, and with INT8 precision there is
-  basically no accuracy degradation.
-* memory accesses are much more costly than computations when going up the
-  memory hierarchy (_i.e._, external DRAMs and so on).
+An FP32 multiplication costs _much_ more than an INT8 one.
+* DNNs are extremely robust to quantization, and with INT8 precision there is 
+basically no accuracy degradation.
+* memory accesses are much more costly than computations when going up the 
+memory hierarchy (_i.e._, external DRAMs and so on).
 
 However, this brain-inspired approach seems to prove more useful than other ones
-at the moment, such as spiking networks accelerators: the distributed memory
-hierarchy leads to great improvement in processing efficiency, without
-compromising network performance on the selected tasks (object detection and
-recognition in the NorthPole paper).
+at the moment, such as spiking network: the distributed memory hierarchy leads to 
+great improvement in processing efficiency, without compromising network 
+performance.
 
 I can see clusters of NorthPole being stacked in servers to improve inference
-efficiency (see the OpenAI case). It is not, in my opinion, an edge computing solution. I wish
-there where more technical details in the paper, since it is more on the divulgative side.
+efficiency (see the OpenAI case). It is not an edge computing solution. I wish
+there where more technical details in the paper, since it is very divulgative. I
+am fairly sure that we would have got a different paper if they
+chose an IEEE journal instead of Science, where hardware is not really common.
 
-# Acknowledgements
+## Acknowledgements
 
 I would like to thank [Jascha Achterberg](https://www.jachterberg.com) for 
 reviewing this blog post and the super-useful discussion about the 
@@ -606,7 +566,7 @@ authors claim biology inspiration actually proves useful (_e.g._, distributed
 memory hierarchy), differently from other approaches that severly compromise
 performance (_e.g._, accuracy), with negligible efficiency improvements.
 
-# Bibliography
+## Bibliography
 
 * [_Neural inference at the frontier of energy, space, and time_](https://www.science.org/doi/10.1126/science.adh1174), Dharmendra S. Modha et al., Science, 2023.
 * [_HighLight: Efficient and Flexible DNN Acceleration with Hierarchical Structured Sparsity_](https://arxiv.org/abs/2305.12718), Yannan Nellie Wu et al., IEEE Micro, 2023.
@@ -617,4 +577,3 @@ performance (_e.g._, accuracy), with negligible efficiency improvements.
 * [_Efficient Processing of Deep Neural Networks: A Tutorial and Survey_](https://ieeexplore.ieee.org/abstract/document/8114708), Vivienne Sze et al., IEEE Proceedings, 2017.
 * [_VS-Quant: Per-Vector Scaled Quantization for Accurate Low-Precision Neural Network Inference_](https://proceedings.mlsys.org/paper_files/paper/2021/file/48a6431f04545e11919887748ec5cb52-Paper.pdf), Steve Dai et al, Machine Learning and Systems (MLSys), 2021.
 * [_What Every Developer Should Know About GPU Computing_](https://codeconfessions.substack.com/p/gpu-computing), Abhinav Upadhyay, 2023.
-* [_Hardware for deep learning_](https://www.computer.org/csdl/proceedings-article/hcs/2023/10254716/1QKTnGyUPbG), William J. Dally, HotChips 2023.
