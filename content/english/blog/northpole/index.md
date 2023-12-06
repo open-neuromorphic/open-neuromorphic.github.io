@@ -377,7 +377,7 @@ In my opinion, the instruction core plays an important role. Having a
 specialized instruction set architecture (ISA) has a large impact on
 performance.
 
-### Axiom 7 - No branches, lots of party
+### Axiom 7 - No branches, lots of fun!
 
 > NorthPole exploits data-independent branching to support a fully pipelined,
 stall-free, deterministic control operation for high temporal utilization
