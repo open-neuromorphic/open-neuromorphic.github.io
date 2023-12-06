@@ -2,6 +2,8 @@
 title: "Neural inference at the frontier of energy, space and time - NorthPole, IBM"
 description: "Translating the new paper from IBM to human language."
 image: cover.png
+aliases:
+- /blog/northpole
 draft: false
 date: 2023-12-06
 showTableOfContents: true
@@ -97,10 +99,9 @@ this).
 
 
 {{<
-figure
-src="./dally-sparsity.png"
+fig
+src="dally-sparsity.png"
 caption="Sparse neural networks support in hardware [[William J. Dally]](https://www.computer.org/csdl/proceedings-article/hcs/2023/10254716/1QKTnGyUPbG)."
-width=600px
 >}}
 
 ### Axiom 2 - Getting inspired by biological neurons 
@@ -204,9 +205,9 @@ _i.e._, you can "glue" together 4 INT2 operands to form an INT8 word and work on
 these in parallel. 
 
 {{<
-figure
+fig
 src="simd-mac.png"
-width=600px
+width=760px
 caption="The single-instruction-multiple-data MAC unit of NorthPole."
 >}}
 
@@ -246,9 +247,9 @@ al.](https://eems.mit.edu/wp-content/uploads/2023/07/2023_ispass_looptree.pdf)].
 We will use a matrix multiplication example to wrap your head around it.
 
 {{<
-figure
+fig
 src="overlay.png"
-width=600px
+width=760px
 caption="An example of overlay architecture."
 >}}
 
@@ -262,9 +263,9 @@ product (A\*B)\*C. Cool, but you need to store a (possibly) huge matrix off-chip
 and then retrieve it, which costs a lot of time and energy!
 
 {{<
-figure
+fig
 src="layer-fused.png"
-width=600px
+width=760px
 caption="An example of layer-fuse architecture."
 >}}
 
@@ -279,9 +280,9 @@ Ideally, there are no off-chip memory accesses, or it is strongly reduced when
 compared to an overlay architecture
 
 {{<
-figure
-src="./fabrizio-energy.png"
-width=600px
+fig
+src="fabrizio-energy.png"
+width=760px
 caption="Energy cost associated to different operations in hardware [[Chen et al.](https://ieeexplore.ieee.org/abstract/document/7948671)]."
 >}}
 
@@ -309,9 +310,9 @@ I suggest [this excellent blog](https://codeconfessions.substack.com/p/gpu-compu
 written by [Abhinav Upadhyay](https://twitter.com/abhi9u).
 
 {{<
-figure
+fig
 src="temporal-vs-spatial.png"
-width=600px
+width=760px
 caption="Spatial (left) and temporal (right) architectures."
 >}}
 
@@ -322,7 +323,7 @@ logic or the special purpose macros available on the silicon. I do not know if
 it is brain-inspired but it makes sense from a silicon perspective if you want
 to maximize efficiency.
 
-## Axiom 5, 6 - A neural Network-on-Chip
+### Axiom 5, 6 - A neural Network-on-Chip
 
 > NorthPole uses two dense networks on-chip (NoCs) (20) to interconnect the
 cores, unifying and integrating the distributed computation and memory (Fig. 2,
@@ -358,10 +359,10 @@ to be carried out). The comparison with TrueNorth is not really fair: completely
 different designs, completely different goals.
 
 {{<
-figure
-src="./northpole-arch.png"
+fig
+src="northpole-arch.png"
 caption="A snippet of NorthPole architecture [[Modha et al.](https://www.science.org/doi/10.1126/science.adh1174)]"
-width=600px
+width=760px
 >}}
 
 NortPhole architecture is summarized above. Each core has memory structures
