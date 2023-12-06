@@ -577,8 +577,8 @@ on top of my head :)
 NorthPole is a super-interesting experiment: it is an extremely large
 accelerator, with a distributed memory hierarchy that allows extreme efficiency
 when parallelizable workloads, such as DNNs, are targeted. Regarding the brain
-inspiration, I do not know if calling NoCs white or gray matter.  In my opinion,
-NorthPole is "just" an excellent engineering work, that takes into account key
+inspiration, I do not know if calling NoCs white or gray matter is enough, and I do not think it matters at all!  In my opinion,
+NorthPole is an excellent engineering work, that takes into account key
 factors:
 * reduced precision operations are much more efficient that high-precision ones.
   An FP32 multiplication costs _much_ more than an INT8 one.
