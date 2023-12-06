@@ -80,6 +80,16 @@ code {
 .code span {
   color: #000;
 }
+.gslider img {
+  background: #fbfbfb;
+  padding: 20px;
+}
+.gdesc-inner {
+  background: #474747;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: 400;
+}
 .content :is(:where(pre):not(:where([class~="not-prose"], [class~="not-prose"] *))) {
   border-radius: 0.5rem;
   --tw-bg-opacity: 1;
