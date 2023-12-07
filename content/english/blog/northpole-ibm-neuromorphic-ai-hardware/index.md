@@ -1,9 +1,10 @@
 ---
-title: "Neural inference at the frontier of energy, space and time - NorthPole, IBM"
+title: "NorthPole, IBM's latest Neuromorphic AI Hardware"
 description: "Translating the new paper from IBM to human language."
 image: cover.png
 aliases:
 - /blog/northpole
+- /blog/northpole-ibm-neural-inference-frontier-energy-space-time
 draft: false
 date: 2023-12-06
 showTableOfContents: true
