@@ -1,6 +1,6 @@
 ---
 title: "NorthPole, IBM's latest Neuromorphic AI Hardware"
-description: "Translating the new paper from IBM to human language."
+description: "Translating the NorthPole paper from IBM to human language."
 image: cover.png
 aliases:
 - /blog/northpole
