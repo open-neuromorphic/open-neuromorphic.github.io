@@ -1,7 +1,7 @@
 ---
 title: "TrueNorth: A Deep Dive into IBM's Neuromorphic Chip Design"
 description: "Explore the innovative TrueNorth neuromorphic chip, its event-driven architecture, low power operation, massive parallelism, real-time capabilities, and scalable design."
-image: brain-to-chip.png
+image: banner.png
 draft: false
 date: 2023-03-27
 author: 

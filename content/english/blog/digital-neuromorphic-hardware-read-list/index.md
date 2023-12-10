@@ -4,7 +4,7 @@ description: "Stay up-to-date with cutting-edge digital hardware designs for neu
 date: 2023-01-11
 author: 
 - "Fabrizio Ottati"
-image: frenkel-thesis.png
+image: banner.png
 draft: false
 tags: ["research", "hardware", "digital", "neuromorphic", "snn", "AI"]
 ---
