@@ -6,7 +6,7 @@ math: true
 draft: false
 author: 
 - "Fabrizio Ottati"
-image: loihi.png
+image: banner.png
 tags: ["hardware", "digital", "spiking", "snn", "rtl", "verilog", "AI", "machine learning"]
 ---
 
