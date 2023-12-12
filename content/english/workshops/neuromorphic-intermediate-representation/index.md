@@ -8,7 +8,7 @@ end_time: 20:00
 speaker_photo: speaker.jpeg
 speaker_bio: ""
 time_zone: CET
-image: workshop-thumbnail-default.png
+image: neuromorphic-intermediate-representation.png
 upcoming: true
 description: "We show how to use the Neuromorphic Intermediate Representation to migrate your spiking model onto neuromorphic hardware."
 ---
