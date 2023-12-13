@@ -45,8 +45,13 @@
             {{ end }}
 
             {{ if .Params.upcoming }}
+              {{ if .Params.upcoming_url }}
+              <a href="{{ .Params.upcoming_url }}" target="_blank" class="ms-1 btn btn-sm btn-primary">
+                <i class="fa-regular fa-calendar mr-2"></i>Event</a>
+              {{ else }}
             <a href="https://www.youtube.com/@openneuromorphic" target="_blank" class="ms-1 btn btn-sm btn-primary">
               <i class="fa-brands fa-youtube mr-2"></i>Event</a>
+              {{ end }}
             {{ end }}
           </li>
         </ul>
