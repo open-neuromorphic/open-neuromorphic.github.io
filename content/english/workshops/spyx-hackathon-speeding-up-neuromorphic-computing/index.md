@@ -10,6 +10,7 @@ speaker_bio: "Kade studied Computer Science and Computer Engineering at the U.S.
 time_zone: CEST
 image: workshop-thumbnail-default.png
 upcoming: true
+upcoming_url: "https://streamyard.com/watch/M72gSEMAMPar"
 description: "Explore the power of Spyx in a hands-on hackathon session and dive into the world of neuromorphic frameworks with Kade Heckel."
 ---
 
