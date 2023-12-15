@@ -9,7 +9,7 @@ speaker_photo: speaker.jpeg
 speaker_bio: "Jens is a computer scientist studying his PhD in neuromorphic computing at the KTH Royal Institute of Technology. Jens co-authored the [Norse](https://github.com/norse/norse) simulator and the [AEStream](https://github.com/aestream/aestream) event-based streaming library."
 speaker_code: "https://github.com/jegp"
 time_zone: CET
-image: neuromorphic-intermediate-representation.png
+image: 
 upcoming: true
 description: "We show how to use the Neuromorphic Intermediate Representation to migrate your spiking model onto neuromorphic hardware."
 ---
