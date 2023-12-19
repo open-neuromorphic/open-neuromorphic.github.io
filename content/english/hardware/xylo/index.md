@@ -30,14 +30,13 @@ organization:
 draft: false
 ---
 
-## Product Description
 Xylo is a digital spiking neural network (SNN) inference processor developed by SynSense AG. It is designed to efficiently simulate leaky integrate-and-fire (LIF) neurons to implement deep spiking neural networks for edge processing applications.
 
 Xylo is a series of ultra-low-power devices for sensory inference, featuring a digital SNN core adaptable to various sensory inputs like audio and bio-signals. Its SNN core uses an integer-logic CuBa-LIF neuron model with customizable parameters for each synapse and neuron, supporting a wide range of network architectures. The Xylo Audio 2 model (SYNS61201) specifically includes 8-bit synaptic weights, 16-bit synaptic and membrane states, two synaptic states per neuron, 16 input channels, 1000 hidden neurons, 8 output neurons with 8 output channels, a maximum fan-in of 63, and a total of 64,000 synaptic weights.
 For more detailed technical information, see https://rockpool.ai/devices/xylo-overview.html.
 The Rockpool toolchain contains quantizaton methods designed for Xylo, as well as bit-accurate simulations of Xylo devices.
 
-### Overview
+## Overview
 
 Xylo is an application-specific integrated circuit (ASIC) chip optimized specifically for SNN inference. Key features include:
 
@@ -49,16 +48,21 @@ Xylo is an application-specific integrated circuit (ASIC) chip optimized specifi
 
 The chip is fabricated in a 28nm CMOS process and occupies 6.5 mm2 die area. It can operate at clock frequencies up to 250 MHz.
 
-### Architecture
+## Architecture
 
 The core of Xylo consists of a bank of 1000 digital LIF neurons. Each neuron maintains 16-bit synaptic and membrane state variables to accumulate inputs and determine spike times. Exponential state decay is efficiently approximated using bit shift operations parameterized by time constants. Additional hardware includes dense input weights, sparse recurrent weights, and linear output weights to map arbitrary network topologies. 
 
 The input and output layers use asynchronous events to communicate spikes, avoiding the need to synchronize with an external clock. This event-based interface helps minimize total system power consumption. 
 
-### Software Tools
+## Software Tools
 
 Xylo leverages the Rockpool ecosystem for mapping and deploying SNNs. The Rockpool library and Python API abstract the SNN programming to high levels, enabling machine learning engineers to easily train networks using standard methods like backpropagation. A compiler handles mapping optimized networks onto the Xylo substrate. 
 
-### Applications
+## Applications
 
 The flexibility to implement generic deep network topologies makes Xylo suitable for a variety of edge deployments in domains such as audio, time series, and control. Example applications demonstrated include low power keyword spotting, biosignal classification, and robotic control. Ultra low idle and dynamic power consumption enables continuous background processing in power constrained environments.
+
+## Related publications
+| Date | Title | Authors  | Venue/Source |
+|------|-------|----------|------------- |
+| August 2022 | [Sub-mW Neuromorphic SNN audio processing applications with Rockpool and Xylo](https://arxiv.org/abs/2208.12991) | Hannah Bos, Dylan Muir | arXiv |

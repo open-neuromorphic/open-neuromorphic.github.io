@@ -7,7 +7,7 @@ product:
   neurons: 128000
   synapses: 128000000
   on_chip_learning: True
-  power: ~1 W
+  power: <1.5 W
   software: nxSDK
   applications: 
   status:
@@ -30,10 +30,9 @@ organization:
 draft: false
 ---
 
-## Product Description
 Loihi is an experimental neuromorphic computer chip developed by Intel Labs as a research platform for spike-based neural networks and computational neuroscience. Formally announced in 2017, it represents a significant advancement in neuromorphic hardware capabilities compared to prior academic and industry prototypes. 
 
-### Architecture
+## Architecture
 
 The Loihi chip integrates 128 neuromorphic cores, 3 x86 processor cores, and over 33MB of on-chip SRAM memory fabricated using Intel's 14nm process technology spanning 60mm2. It supports asynchronous spiking neural network models for up to 130,000 synthetic compartmental neurons and 130 million synapses. 
 
@@ -41,13 +40,13 @@ Its manycore mesh connects cores through an asynchronous network-on-chip that tr
 
 The neural model is based on standard leaky integrate-and-fire dynamics extended with features like dendritic compartments, reward-modulated spike-timing-dependent plasticity, axonal and refractive delays, and stochastic synaptic noise. Asynchronous design techniques minimize active power by exploiting the sparsity of neural spike events in time and across the array. Per-core neuron update rates can exceed 10MHz in a 1V process corner.
 
-### Results
+## Results
 
 Pre-silicon benchmarks demonstrate over 5000x better energy-delay product compared to conventional solutions when solving a large convolutional sparse coding problem involving a 52x52 image and 224-dimensional feature space. Small-scale on-chip learning results proved viable for basic supervised and reinforcement learning algorithms utilizing programmable spike timing and reward mechanisms.
 
 The Loihi architecture and early results provide a case study for the potential of spike-based computation to solve machine learning problems highly efficiently compared to traditional dataflow architectures. The low precision, event-driven operation, and temporal encoding schemes open new points in the design space for specialized AI hardware. Open challenges remain to scale validated network capacity and to map widely useful deep learning architectures.
 
-### Impact
+## Impact
 
 Since its academic publication in IEEE Micro, Loihi has expanded Intel Labs' neuromorphic research agenda as the foundation for ongoing energy-efficient architectures. The programmable asynchronous fabric delivers flexible experimentation combined with patching and telemetry access to internal dynamics - key capabilities distinguished from prior neuromorphic projects.
 
@@ -55,8 +54,8 @@ With community access to Loihi, researchers globally pursue innovative algorithm
 
 ## Related publications
 
-| Date        | Title                                                                                                      | Authors                                                                                                  | Venue/Source                      |
-|-------------|------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|-----------------------------------|
+| Date | Title | Authors  | Venue/Source |
+|------|-------|----------|------------- |
 | July 2022   | Interactive continual learning for robots: a neuromorphic approach                                          | E. Hajizada, P. Berggold, M. Iacono, A. Glover, Y. Sandamirskaya                                          | ICONS 2022                        |
 | July 2022   | Fine-tuning Deep Reinforcement Learning Policies with r-STDP for Domain Adaptation                          | M. Akl, Y. Sandamirskaya, D. Ergene, F. Walter, A. Knoll                                                 | ICONS 2022                        |
 | July 2022   | Sparse Vector Binding on Spiking Neuromorphic Hardware Using Synaptic Delays                               | A. Renner, Y. Sandamirskaya, F. T. Sommer, P. E. Frady                                                   | ICONS 2022                        |

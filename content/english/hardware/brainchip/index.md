@@ -8,7 +8,7 @@ product:
   synapses: 8-Mb SRAM
   on_chip_learning: True
   power: ~30 mW
-  software: TensorFlow, CNN → SNN
+  software: MetaTF
   applications: Smart sensing, one-shot learning
   status:
     announced: true
@@ -26,12 +26,12 @@ organization:
     linkedin:
     twitter:
     wikipedia:
-  product_page_link:
+  product_page_link: https://brainchip.com/akida-generations/
 draft: false
 ---
 
-## Product Description
-Akida is a neuromorphic processor developed by BrainChip Holdings Ltd. Inspired by the human brain's neural architecture, Akida aims to deliver high-performance artificial intelligence capabilities at the edge while being extremely energy efficient. 
+## Overview
+Inspired by the human brain's neural architecture, Akida aims to deliver high-performance artificial intelligence capabilities at the edge while being extremely energy efficient. 
 
 The Akida processor is designed to accelerate neural networks including convolutional neural networks (CNNs), deep neural networks (DNNs), recurrent neural networks (RNNs) and Vision Transformers (ViTs) directly in hardware. A key feature is its support for a novel neural network architecture called Temporal Event-based Neural Nets (TENNs) which are optimized for processing complex time-series data efficiently.
 
@@ -42,3 +42,11 @@ The second generation Akida platform adds capabilities such as support for 8-bit
 Akida leverages standard machine learning frameworks like TensorFlow and development platforms like Edge Impulse for model training and deployment. BrainChip also provides complementary software tools like MetaTF to optimize models for the Akida hardware. Pre-built Akida-compatible models are also offered through a model zoo.
 
 Akida targets applications spanning industrial automation, automotive, healthcare, consumer electronics and more. Use cases include predictive maintenance, in-cabin monitoring, vital sign prediction, home automation, surveillance and more. Its efficiency and on-device learning abilities aim to enable a new class of continuously adaptive, secure and private AI implementations at the edge.
+
+## Related publications
+
+| Date | Title | Authors  | Venue/Source |
+|------|-------|----------|------------- |
+| August 2023 | [Low Power & Low Latency Cloud Cover Detection in Small Satellites Using On-board Neuromorphic Processors](https://ieeexplore.ieee.org/abstract/document/10191569) | Chetan Kadway; Sounak Dey; Arijit Mukherjee; Arpan Pal; Gilles Bézard | IJCNN 2023 |
+| August 2023 | [Neuromorphic Medical Image Analysis at the Edge](http://www.diva-portal.org/smash/record.jsf?pid=diva2%3A1779206&dswid=-6143) | Ebba Bratman, Lucas Dow | Master's course project |
+| October 2022 | [Detection of facial emotions using neuromorphic computation](https://www.spiedigitallibrary.org/conference-proceedings-of-spie/12226/122260E/Detection-of-facial-emotions-using-neuromorphic-computation/10.1117/12.2633707.short) | Teodoro Álvarez-Sánchez, Jesús A. Álvarez-Cedillo, Roberto Herrera-Charles | Applications of Digital Image Processing XLV |
