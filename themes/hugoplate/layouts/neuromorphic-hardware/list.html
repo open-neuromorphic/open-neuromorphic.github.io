@@ -1,0 +1,140 @@
+{{ define "main" }}
+{{ partial "page-header" . }}
+
+<section class="section pt-14">
+  <div class="container">
+    <div class="row gx-5">
+      <div class="content lg:col-7 mb-10 text-xl">
+        <h1 class="text-2xl/8 font-bold mb-4">Unlocking the Potential of Neuromorphic Hardware: A Comprehensive
+          Guide</h1>
+        <p>Neuromorphic hardware represents a cutting-edge frontier in artificial intelligence, redefining how machines
+          mimic the intricate workings of the human brain. In this guide, we delve into the essentials of neuromorphic
+          hardware, exploring its purpose, development, and the crucial role of AI governance.</p>
+      </div>
+      <div class="lg:col-5">
+        {{ if .Params.image }}
+        {{ partial "image" (dict "Src" "image.jpeg" "Context" .Page "Alt" .Title "Class" "w-full rounded" "Size"
+        "1280x720" "Command" "Crop") }}
+        {{ end }}
+      </div>
+      <!-- Column for Chips -->
+      <div class="lg:col-5">
+<div class="row">
+  <div class="pb-4">
+    <h3 class="text-xl pb-4">Current Landscape and Future Prospects (2020s and Beyond)</h3>
+    <p>In the current era, neuromorphic hardware continues to evolve rapidly. Various research projects and
+      commercial ventures focus on enhancing the efficiency, scalability, and applicability of neuromorphic systems. The
+      field holds promise for addressing complex tasks in artificial intelligence, neuromorphic computing, and
+      brain-machine interfaces.</p>
+  </div>
+
+  <div class="pb-4">
+    <h3 class="text-xl pb-4">Advancements in Spiking Neural Networks (2010s)</h3>
+    <p>The 2010s marked significant advancements in spiking neural networks (SNNs) and event-driven computing. These
+      developments enabled more efficient and power-aware neuromorphic hardware designs. Initiatives like the Human Brain
+      Project and the development of specialized neuromorphic chips, such as IBM's TrueNorth, showcased the potential of
+      this technology.</p>
+  </div>
+
+  <div class="pb-4">
+    <h3 class="text-xl pb-4">The Birth of True Neuromorphic Chips (1990s-2000s)</h3>
+    <p>In the 1990s and 2000s, the development of true neuromorphic chips accelerated. Carver Mead's pioneering work laid
+      the foundation for creating circuits that emulate the brain's synapses and neurons. Research institutions and
+      companies began exploring neuromorphic architectures for specialized applications like pattern recognition and
+      sensory processing.</p>
+  </div>
+
+  <div>
+    <h3 class="text-xl pb-4">Early Concepts (1940s-1980s)</h3>
+    <p>The roots of neuromorphic hardware can be traced back to early computational neuroscience efforts in the 1940s.
+      Researchers explored mimicking the brain's structure and functionality. In the 1980s, the concept of neuromorphic
+      engineering gained momentum, focusing on hardware implementations inspired by the brain's neural networks.</p>
+  </div>
+</div>
+
+      </div>
+
+      <div class="lg:col-7">
+        <!-- Active Products List -->
+        <div class="bg-purple-100 dark:bg-darkmode-theme-light rounded-lg mb-4">
+          <ul class="p-6">
+            {{ $paginator := .Paginate .RegularPages }}
+            {{ range $paginator.Pages }}
+            {{ if ne .Params.active_product false }}
+            <li class="pb-4 chip-card">
+              <a href="{{ .Permalink }}">
+                <div class="chip-details">
+                  <h3 class="text-lg">
+                    <span class="chip-icon"><i class="fas fa-microchip"></i></span>
+                    {{ .Params.title }}
+                  </h3>
+                  <p class="pl-6">{{ .Params.description }}</p>
+                  <p class="pl-6"><strong>Chip Type:</strong> {{ .Params.product.chip_type }}</p>
+                </div>
+              </a>
+            </li>
+            {{ end }}
+            {{ end }}
+          </ul>
+        </div>
+
+        <!-- Inactive Products List -->
+        <div class="bg-purple-100 dark:bg-darkmode-theme-light rounded-lg mb-4">
+          <ul class="p-6">
+            {{ range $paginator.Pages }}
+            {{ if eq .Params.active_product false }}
+            <li class="pb-4 chip-card">
+              <a href="{{ .Permalink }}">
+                <div class="chip-details">
+                  <h3 class="text-lg">
+                    <span class="chip-icon"><i class="fas fa-microchip"></i></span>
+                    {{ .Params.title }}
+                  </h3>
+                  <p class="pl-6">{{ .Params.description }}</p>
+                  <p class="pl-6"><strong>Chip Type:</strong> {{ .Params.Product.chip_type }}</p>
+                  <p class="pl-6"><strong>Neurons/Synapses:</strong> {{ .Params.Product.neurons_synapses }}</p>
+                </div>
+              </a>
+            </li>
+            {{ end }}
+            {{ end }}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row for Glossary -->
+    <div class="row">
+      <h2 class="pb-4">Glossary</h2>
+
+      <!-- Column for the First Half of Glossary -->
+      <div class="col-6">
+        <ul>
+          {{ with .Params.glossary }}
+          {{ $half := div (len .) 2 }}
+          {{ range first $half . }}
+          <li class="pb-4">
+            <strong>{{ .term }}</strong>: {{ .definition }}
+          </li>
+          {{ end }}
+          {{ end }}
+        </ul>
+      </div>
+
+      <!-- Second Column for the Second Half of Glossary -->
+      <div class="col-6">
+        <ul>
+          {{ with .Params.glossary }}
+          {{ $half := div (len .) 2 }}
+          {{ range last $half . }}
+          <li class="pb-4">
+            <strong>{{ .term }}</strong>: {{ .definition }}
+          </li>
+          {{ end }}
+          {{ end }}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
