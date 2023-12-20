@@ -8,9 +8,10 @@ end_time: 19:30
 time_zone: CET
 video: UDM9Mbd0Vaw
 description: "Explore neural-inspired computing with Brad Aimone, a leading neuroscientist at Sandia Labs. Join us for insights into next-gen technology and neuroscience."
-image: workshop-thumbnail-default.png
+image: fugu-neuromorphic-algorithyms.png
 speaker_code: https://github.com/sandialabs/Fugu
-speaker_photo: speaker.jpeg
+speaker_slides: Fugu_Aimone.pdf
+speaker_photo: brad-aimone-sandia.jpeg
 speaker_bio: "Brad Aimone is a Distinguished Member of Technical Staff in the Center for Computing Research at Sandia National Laboratories, where he is a lead researcher in leveraging computational neuroscience to advance artificial intelligence and in using neuromorphic computing platforms for future scientific computing applications. Brad currently leads a multi-institution DOE Office of Science Microelectronics Co-Design project titled COINFLIPS (which stands for CO-designed Influenced Neural Foundations Inspired by Physical Stochasticity) which is focused on developing a novel probabilistic neuromorphic computing platform. He also currently leads several other research efforts on designing neural algorithms for scientific computing applications and neuromorphic machine learning implementations.
 
 
