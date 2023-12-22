@@ -13,18 +13,18 @@ product:
   status:
     announced: true
     released: true
-    retired: true
-  announced_date:
-  release_date:
+    retired: false
+  announced_date: 01.01.2022
+  release_date: 01.01.2022 
 image: xylo.png
 organization:
 - org_name: SynSense
-  org_logo:
-  org_website:
+  org_logo: synsense.png
+  org_website: https://www.synsense.ai/
   group_name:
   social_media_links:
-    linkedin:
-    twitter:
+    linkedin: https://www.linkedin.com/company/synsense-neuromorphic/
+    twitter: https://twitter.com/SynSenseNeuro
     wikipedia:
   product_page_link: https://www.synsense.ai/products/xylo/
 draft: false

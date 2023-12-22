@@ -1,31 +1,31 @@
 ---
-title: BrainChip
+title: Akida
 description:  BrainChip's Akida is an ultra-low-power neuromorphic processor inspired by the brain's neural architecture. It accelerates complex AI at the edge through event-based processing, on-chip learning abilities, and support for advanced neural networks like CNNs, RNNs & custom Temporal Event-based Nets.
-active_product: True
+active_product: true
 product:
   chip_type: Digital
   neurons: Configurable
   synapses: 8-Mb SRAM
-  on_chip_learning: True
+  on_chip_learning: true
   power: ~30 mW
   software: MetaTF
   applications: Smart sensing, one-shot learning
   status:
     announced: true
     released: true
-    retired: true
-  announced_date:
-  release_date:
-image: brainchip.png
+    retired: false
+  announced_date: 29.01.2023
+  release_date: 29.01.2023
+image: akida.png
 organization:
-- org_name: BrainChip
-  org_logo:
-  org_website:
+  org_name: BrainChip
+  org_logo: brainchip.png
+  org_website: https://brainchip.com/
   group_name:
   social_media_links:
-    linkedin:
-    twitter:
-    wikipedia:
+    linkedin: https://www.linkedin.com/company/brainchip-holdings-limited/
+    twitter: https://twitter.com/BrainChip_inc
+    wikipedia: https://en.wikipedia.org/wiki/BrainChip
   product_page_link: https://brainchip.com/akida-generations/
 draft: false
 ---

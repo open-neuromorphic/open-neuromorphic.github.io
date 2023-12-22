@@ -1,12 +1,12 @@
 ---
 title: TrueNorth
 description:  TrueNorth is a 5.4B transistor, 4096 core, 1M neuron, 256M synapse neurosynaptic chip implemented in 28nm. Through a mixed async-sync design & custom toolflow, it achieves 58GSOPS & 400GSOPS/W efficiency while running neural networks in 65mW real-time.
-active_product: False
+active_product: false
 product:
   chip_type: Digital
   neurons: 1000000
   synapses: 256000000
-  on_chip_learning: False
+  on_chip_learning: false
   power: ~0.3 W
   software: Custom
   applications: DNN acceleration
@@ -14,18 +14,18 @@ product:
     announced: true
     released: true
     retired: true
-  announced_date:
-  release_date:
+  announced_date: 2014
+  release_date: 2014
 image: truenorth.jpg
 organization:
-- org_name: IBM
-  org_logo:
-  org_website:
+  org_name: IBM
+  org_logo: ibm.jpg
+  org_website: https://www.ibm.com/
   group_name:
   social_media_links:
-    linkedin:
+    linkedin: https://www.linkedin.com/company/ibm/
     twitter:
-    wikipedia:
+    wikipedia: https://en.wikipedia.org/wiki/Cognitive_computer#IBM_TrueNorth_chip
   product_page_link:
 draft: false
 ---

@@ -1,32 +1,32 @@
 ---
 title: SpiNNaker 2
 description: The SpiNNaker 2 chip houses 144 ARM cores with 18MB on-chip SRAM, 8GB DRAM, and dedicated math accelerators. Manufactured in 22nm, it employs body biasing and DVFS for adaptive near-threshold operation down to 0.4V, enabling a 50x increase in neural simulation capacity per watt over SpiNNaker 1.
-active_product: True
+active_product: true
 product:
   chip_type: Digital
   neurons: 1000000000
   synapses: 10000
-  on_chip_learning: True
-  power: ~kW
+  on_chip_learning: true
+  power: ~50W
   software: PyNN, NEST
   applications: Real-time simulation of SNN; HPC
   status:
     announced: true
     released: true
     retired: true
-  announced_date:
-  release_date:
+  announced_date: 27.07.2021
+  release_date: 27.07.2021
 image: spinnaker.jpg
 organization:
-- org_name: University of Manchester
-  org_logo:
-  org_website:
+  org_name: University of Dresden
+  org_logo: tu-dresden.png
+  org_website: https://tu-dresden.de/
   group_name:
   social_media_links:
     linkedin:
     twitter:
-    wikipedia:
-  product_page_link:
+    wikipedia: https://en.wikipedia.org/wiki/SpiNNaker
+  product_page_link: https://tu-dresden.de/ing/elektrotechnik/die-fakultaet/aktuelles/news/spinnaker2-tu-dresden-university-of-manchester-und-globalfoundries-gelingt-durchbruch-bei-ki-cloud-systemen?set_language=en
 draft: false
 ---
 

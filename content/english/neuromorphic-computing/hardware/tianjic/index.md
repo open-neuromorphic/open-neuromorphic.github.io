@@ -1,31 +1,31 @@
 ---
 title: Tianjic
 description: Tianjic supports both spiking and non-spiking models. Its motivation is to enable hybrid networks that blend biological plausibility from neuroscience with predictive accuracy from deep learning. 
-active_product: False
+active_product: true
 product:
   chip_type: Digital
   neurons: 40000
   synapses: 10000000
-  on_chip_learning: False
+  on_chip_learning: false
   power: ~1 W
   software: Custom
   applications: ANN/SNN acceleration
   status:
     announced: true
     released: true
-    retired: true
+    retired: false
   announced_date:
   release_date:
 image: tianjic.jpg
 organization:
-- org_name: Tsinghua University
-  org_logo:
-  org_website:
+  org_name: Tsinghua University
+  org_logo: tsinghua.png
+  org_website: https://www.tsinghua.edu.cn/en/index.htm
   group_name:
   social_media_links:
-    linkedin:
+    linkedin: https://www.linkedin.com/school/tsinghua-university/
     twitter:
-    wikipedia:
+    wikipedia: https://en.wikipedia.org/wiki/Tsinghua_University
   product_page_link:
 draft: false
 ---

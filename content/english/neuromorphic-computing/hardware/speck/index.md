@@ -1,32 +1,32 @@
 ---
 title: Speck
 description: A DynapCNN chip paired with an event-based camera on the same die.
-active_product: False
+active_product: true
 product:
   chip_type: Digital
   neurons: 327000
   synapses: 278000
-  on_chip_learning: False
+  on_chip_learning: false
   power: ~5 mW
   software: Sinabs
   applications: Smart sensing
   status:
     announced: true
     released: true
-    retired: true
-  announced_date:
-  release_date:
+    retired: false
+  announced_date: 02.09.2019 
+  release_date: 02.09.2019
 image: speck.jpg
 organization:
-- org_name: SynSense
-  org_logo:
-  org_website:
+  org_name: SynSense
+  org_logo: ../xylo/synsense.png
+  org_website: https://www.synsense.ai/
   group_name:
   social_media_links:
-    linkedin:
-    twitter:
+    linkedin: https://www.linkedin.com/company/synsense-neuromorphic/
+    twitter: https://twitter.com/SynSenseNeuro
     wikipedia:
-  product_page_link:
+  product_page_link: https://www.synsense.ai/products/speck/
 draft: false
 ---
 
