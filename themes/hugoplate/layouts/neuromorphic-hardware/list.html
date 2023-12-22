@@ -42,6 +42,8 @@
       <div class="lg:col-5">
         <div class="row">
           <div class="pb-4">
+            {{ partial "image" (dict "Src" "image.jpeg" "Context" .Page "Alt" .Title "Class" "bg-white rounded" "Size" "600x"
+          "Command" "Scale") }}
             <h3 class="text-xl pb-4">Current Landscape and Future Prospects (2020s and Beyond)</h3>
             <p>In the current era, neuromorphic hardware continues to evolve rapidly. Various research projects and
               commercial ventures focus on enhancing the efficiency, scalability, and applicability of neuromorphic
@@ -71,7 +73,10 @@
               and
               sensory processing.</p>
           </div>
+
           <div>
+            {{ partial "image" (dict "Src" "past.jpeg" "Context" .Page "Alt" .Title "Class" "bg-white rounded" "Size" "600x"
+          "Command" "Scale") }}
             <h3 class="text-xl pb-4">Early Concepts (1940s-1980s)</h3>
             <p>The roots of neuromorphic hardware can be traced back to early computational neuroscience efforts in the
               1940s.
