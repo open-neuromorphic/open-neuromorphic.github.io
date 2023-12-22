@@ -1,6 +1,6 @@
 ---
 active_product: false
-description: 'Learn about INI''s neuromorphic hardware: ROLLS - INI'
+description: 'Learn about INI''s neuromorphic hardware: ROLLS'
 type: neuromorphic-hardware
 image: rolls.jpg
 organization:
