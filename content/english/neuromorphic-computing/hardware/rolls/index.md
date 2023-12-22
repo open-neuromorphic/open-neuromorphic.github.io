@@ -1,7 +1,7 @@
 ---
 active_product: false
-summary: 'Explore  INI''s neuromorphic hardware: ROLLS'
-draft: false
+description: 'Learn about INI''s neuromorphic hardware: ROLLS - INI'
+type: neuromorphic-hardware
 image: rolls.jpg
 organization:
   group_name: null
@@ -32,7 +32,7 @@ summary: ROLLS is a reconfigurable neuromorphic chip with 256 silicon neurons an
   128K plastic synapses that implements spike-timing learning rules. It allows emulation
   of neural systems with adaptive behaviors using analog neuron/synapse circuits with
   added digital configuration logic for flexibility.
-title: ROLLS - INI
+title: ROLLS - INI - INI
 type: neuromorphic-hardware
 ---
 

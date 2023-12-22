@@ -1,8 +1,8 @@
 ---
 active_product: false
-summary: 'Explore  Universität Heidelberg''s neuromorphic hardware: BrainScaleS
-  2'
-draft: false
+description: 'Learn about Universität Heidelberg''s neuromorphic hardware: BrainScaleS
+  2 - Universität Heidelberg'
+type: neuromorphic-hardware
 image: brainscales-2.jpg
 organization:
   group_name: null
@@ -34,7 +34,7 @@ summary: The BrainScaleS-2 is an accelerated spiking neuromorphic system-on-chip
   and event routing. It enables fast emulation of complex neural dynamics and exploration
   of synaptic plasticity rules. The architecture supports training of deep spiking
   and non-spiking neural networks using hybrid techniques like surrogate gradients.
-title: BrainScaleS 2 - Universität Heidelberg
+title: BrainScaleS 2 - Universität Heidelberg - Universität Heidelberg
 type: neuromorphic-hardware
 ---
 

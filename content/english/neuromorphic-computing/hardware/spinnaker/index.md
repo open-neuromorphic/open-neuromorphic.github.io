@@ -1,10 +1,8 @@
 ---
 active_product: true
-summary: The SpiNNaker 2 chip houses 144 ARM cores with 18MB on-chip SRAM, 8GB
-  DRAM, and dedicated math accelerators. Manufactured in 22nm, it employs body biasing
-  and DVFS for adaptive near-threshold operation down to 0.4V, enabling a 50x increase
-  in neural simulation capacity per watt over SpiNNaker 1.
-draft: false
+description: 'Learn about University of Dresden''s neuromorphic hardware: SpiNNaker
+  2'
+type: neuromorphic-hardware
 image: spinnaker.jpg
 organization:
   group_name: null
@@ -31,7 +29,11 @@ product:
     retired: false
   synapses: 10000
 product_name: SpiNNaker 2
-title: SpiNNaker 2
+summary: The SpiNNaker 2 chip houses 144 ARM cores with 18MB on-chip SRAM, 8GB DRAM,
+  and dedicated math accelerators. Manufactured in 22nm, it employs body biasing and
+  DVFS for adaptive near-threshold operation down to 0.4V, enabling a 50x increase
+  in neural simulation capacity per watt over SpiNNaker 1.
+title: SpiNNaker 2 - University of Dresden
 ---
 
 SpiNNaker 2 is a neuromorphic computing platform designed to simulate spiking neural networks. It is the successor to the SpiNNaker (Spiking Neural Network Architecture) system developed at the University of Manchester. 

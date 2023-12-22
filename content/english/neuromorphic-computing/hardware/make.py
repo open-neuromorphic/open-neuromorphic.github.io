@@ -203,7 +203,7 @@ organization:
     twitter:
     wikipedia:
   product_page_link:
-draft: false
+type: neuromorphic-hardware
 ---
 
 ## Product Description

@@ -1,9 +1,7 @@
 ---
 active_product: true
-summary: Tianjic supports both spiking and non-spiking models. Its motivation
-  is to enable hybrid networks that blend biological plausibility from neuroscience
-  with predictive accuracy from deep learning.
-draft: false
+description: 'Learn about Tsinghua University''s neuromorphic hardware: Tianjic'
+type: neuromorphic-hardware
 image: tianjic.jpg
 organization:
   group_name: null
@@ -30,7 +28,10 @@ product:
     retired: false
   synapses: 10000000
 product_name: Tianjic
-title: Tianjic
+summary: Tianjic supports both spiking and non-spiking models. Its motivation is to
+  enable hybrid networks that blend biological plausibility from neuroscience with
+  predictive accuracy from deep learning.
+title: Tianjic - Tsinghua University
 ---
 
 Tianjic is a unified neural network chip architecture proposed in 2019 that aims to efficiently support both spiking neural networks (SNNs) from the neuromorphic computing field and artificial neural networks (ANNs) commonly used in deep learning. It was unveiled by a team of researchers from Tsinghua University in Beijing, led by Professor Luping Shi.

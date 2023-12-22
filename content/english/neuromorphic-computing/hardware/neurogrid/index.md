@@ -1,10 +1,7 @@
 ---
 active_product: false
-summary: Neurogrid is a specialized neuromorphic hardware system that enables
-  real-time simulation of neural models with up to 1M neurons & 8B synapses using
-  low-power mixed-signal silicon neuron circuits arranged in 16 chips & interconnected
-  via multicast routing.
-draft: false
+description: 'Learn about Stanford''s neuromorphic hardware: NeuroGrid (BrainDrop)'
+type: neuromorphic-hardware
 image: neurogrid.jpg
 organization:
   group_name: Brains in Silicon
@@ -31,7 +28,11 @@ product:
     retired: true
   synapses: 8000000000
 product_name: NeuroGrid (BrainDrop)
-title: NeuroGrid (BrainDrop)
+summary: Neurogrid is a specialized neuromorphic hardware system that enables real-time
+  simulation of neural models with up to 1M neurons & 8B synapses using low-power
+  mixed-signal silicon neuron circuits arranged in 16 chips & interconnected via multicast
+  routing.
+title: NeuroGrid (BrainDrop) - Stanford
 ---
 
 Neurogrid is a specialized hardware platform designed to simulate large-scale functional models of biological neural systems in real time. It was developed by a research team led by Kwabena Boahen at Stanford University seeking to provide neuroscientists an affordable tool to gain insights into neural information processing through modeling.
