@@ -1,33 +1,36 @@
 ---
-title: Tianjic
-description: Tianjic supports both spiking and non-spiking models. Its motivation is to enable hybrid networks that blend biological plausibility from neuroscience with predictive accuracy from deep learning. 
 active_product: true
+summary: Tianjic supports both spiking and non-spiking models. Its motivation
+  is to enable hybrid networks that blend biological plausibility from neuroscience
+  with predictive accuracy from deep learning.
+draft: false
+image: tianjic.jpg
+organization:
+  group_name: null
+  org_logo: tsinghua.png
+  org_name: Tsinghua University
+  org_website: https://www.tsinghua.edu.cn/en/index.htm
+  product_page_link: null
+  social_media_links:
+    linkedin: https://www.linkedin.com/school/tsinghua-university/
+    twitter: null
+    wikipedia: https://en.wikipedia.org/wiki/Tsinghua_University
 product:
+  announced_date: null
+  applications: ANN/SNN acceleration
   chip_type: Digital
   neurons: 40000
-  synapses: 10000000
   on_chip_learning: false
   power: ~1 W
+  release_date: null
   software: Custom
-  applications: ANN/SNN acceleration
   status:
     announced: true
     released: true
     retired: false
-  announced_date:
-  release_date:
-image: tianjic.jpg
-organization:
-  org_name: Tsinghua University
-  org_logo: tsinghua.png
-  org_website: https://www.tsinghua.edu.cn/en/index.htm
-  group_name:
-  social_media_links:
-    linkedin: https://www.linkedin.com/school/tsinghua-university/
-    twitter:
-    wikipedia: https://en.wikipedia.org/wiki/Tsinghua_University
-  product_page_link:
-draft: false
+  synapses: 10000000
+product_name: Tianjic
+title: Tianjic
 ---
 
 Tianjic is a unified neural network chip architecture proposed in 2019 that aims to efficiently support both spiking neural networks (SNNs) from the neuromorphic computing field and artificial neural networks (ANNs) commonly used in deep learning. It was unveiled by a team of researchers from Tsinghua University in Beijing, led by Professor Luping Shi.
@@ -47,4 +50,3 @@ The researchers believe the unified architecture of Tianjic opens up new researc
 | Date | Title | Authors  | Venue/Source |
 |------|-------|----------|------------- |
 | August 2015 | [Tianjic: A Unified and Scalable Chip Bridging Spike-Based and Continuous Neural Computation](https://ieeexplore.ieee.org/document/8998338) | Lei Deng; Guanrui Wang; Guoqi Li; Shuangchen Li; Ling Liang; Maohua Zhu; Yujie Wu; Zheyu Yang; Zhe Zou; Jing Pei; Zhenzhi Wu; Xing Hu; Yufei Ding; Wei He; Yuan Xie; Luping Shi | IEEE Journal of Solid-State Circuits |
-

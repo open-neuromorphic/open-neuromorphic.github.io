@@ -1,33 +1,37 @@
 ---
-title: NeuroGrid (BrainDrop)
-description:  Neurogrid is a specialized neuromorphic hardware system that enables real-time simulation of neural models with up to 1M neurons & 8B synapses using low-power mixed-signal silicon neuron circuits arranged in 16 chips & interconnected via multicast routing.
 active_product: false
+summary: Neurogrid is a specialized neuromorphic hardware system that enables
+  real-time simulation of neural models with up to 1M neurons & 8B synapses using
+  low-power mixed-signal silicon neuron circuits arranged in 16 chips & interconnected
+  via multicast routing.
+draft: false
+image: neurogrid.jpg
+organization:
+  group_name: Brains in Silicon
+  org_logo: null
+  org_name: Stanford
+  org_website: https://web.stanford.edu/group/brainsinsilicon/
+  product_page_link: null
+  social_media_links:
+    linkedin: null
+    twitter: null
+    wikipedia: https://en.wikipedia.org/wiki/Neurogrid
 product:
+  announced_date: null
+  applications: Real-time SNN emulation
   chip_type: Mixed-signal
   neurons: 1000000
-  synapses: 8000000000
   on_chip_learning: false
   power: ~3 W
+  release_date: null
   software: NEF
-  applications: Real-time SNN emulation
   status:
     announced: true
     released: true
     retired: true
-  announced_date:
-  release_date:
-image: neurogrid.jpg
-organization:
-  org_name: Stanford
-  org_logo:
-  org_website: https://web.stanford.edu/group/brainsinsilicon/
-  group_name: Brains in Silicon
-  social_media_links:
-    linkedin:
-    twitter:
-    wikipedia: https://en.wikipedia.org/wiki/Neurogrid
-  product_page_link: 
-draft: false
+  synapses: 8000000000
+product_name: NeuroGrid (BrainDrop)
+title: NeuroGrid (BrainDrop)
 ---
 
 Neurogrid is a specialized hardware platform designed to simulate large-scale functional models of biological neural systems in real time. It was developed by a research team led by Kwabena Boahen at Stanford University seeking to provide neuroscientists an affordable tool to gain insights into neural information processing through modeling.

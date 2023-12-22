@@ -1,33 +1,37 @@
 ---
-title: SNP by Innatera
-description:  The spiking neural processor is Innatera's ultra-low-power neuromorphic chip for real-time edge intelligence. Using spiking neural networks, it achieves under 1mW operation for sensor applications like always-on audio scene detection with 85% accuracy in under 1ms.
 active_product: true
+summary: The spiking neural processor is Innatera's ultra-low-power neuromorphic
+  chip for real-time edge intelligence. Using spiking neural networks, it achieves
+  under 1mW operation for sensor applications like always-on audio scene detection
+  with 85% accuracy in under 1ms.
+draft: false
+image: snp.png
+organization:
+  group_name: null
+  org_logo: innatera.png
+  org_name: Innatera
+  org_website: https://www.innatera.com/
+  product_page_link: https://www.innatera.com/
+  social_media_links:
+    linkedin: https://www.linkedin.com/company/innatera/
+    twitter: null
+    wikipedia: null
 product:
+  announced_date: null
+  applications: Smart sensing
   chip_type: Mixed-signal
   neurons: 256
-  synapses: 64000
   on_chip_learning: false
   power: ~1 mW
+  release_date: null
   software: Talamo
-  applications: Smart sensing
   status:
     announced: true
     released: true
     retired: false
-  announced_date:
-  release_date:
-image: snp.png
-organization:
-  org_name: Innatera
-  org_logo: innatera.png
-  org_website: https://www.innatera.com/
-  group_name:
-  social_media_links:
-    linkedin: https://www.linkedin.com/company/innatera/
-    twitter:
-    wikipedia:
-  product_page_link: https://www.innatera.com/
-draft: false
+  synapses: 64000
+product_name: SNP by Innatera
+title: SNP by Innatera
 ---
 
 The spiking neural processor (SNP) is a neuromorphic chip produced by Innatera, a semiconductor company based in Delft, Netherlands. The SNP is designed for ultra-low power edge intelligence applications where sensors need to process data in real-time under tight latency, power, and cost constraints. 

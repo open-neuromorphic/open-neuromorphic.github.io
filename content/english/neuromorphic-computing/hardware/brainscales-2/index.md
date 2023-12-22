@@ -1,6 +1,6 @@
 ---
 active_product: false
-description: 'Explore  Universität Heidelberg''s neuromorphic hardware: BrainScaleS
+summary: 'Explore  Universität Heidelberg''s neuromorphic hardware: BrainScaleS
   2'
 draft: false
 image: brainscales-2.jpg
@@ -28,7 +28,7 @@ product:
     released: true
     retired: true
   synapses: 130000
-product_name: BrainScaleS 2
+product_name: BrainScaleS 2 - Universität Heidelberg
 summary: The BrainScaleS-2 is an accelerated spiking neuromorphic system-on-chip integrating
   512 adaptive integrate-and-fire neurons, 212k plastic synapses, embedded processors,
   and event routing. It enables fast emulation of complex neural dynamics and exploration
