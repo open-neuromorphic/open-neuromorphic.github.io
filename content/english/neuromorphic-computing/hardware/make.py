@@ -176,7 +176,7 @@ for chip in chips:
     # Create the index.md file with front matter
     index_content = f"""---
 title: "{chip_name}"
-description: {chip["description"]}
+summary: {chip["description"]}
 active_product: {chi["active_product"]}
 product:
   chip_type: {chip["chip_type"]}

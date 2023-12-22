@@ -1,6 +1,6 @@
 ---
 active_product: false
-description: ROLLS is a reconfigurable neuromorphic chip with 256 silicon neurons
+summary: ROLLS is a reconfigurable neuromorphic chip with 256 silicon neurons
   and 128K plastic synapses that implements spike-timing learning rules. It allows
   emulation of neural systems with adaptive behaviors using analog neuron/synapse
   circuits with added digital configuration logic for flexibility.

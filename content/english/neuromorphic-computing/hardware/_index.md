@@ -1,6 +1,6 @@
 ---
 title: Neuromorphic Hardware
-description: Explore a curated collection of academic papers on neuromorphic hardware, addressing ethical considerations, societal impacts, and sustainable frameworks. Delve into cutting-edge research shaping the future of responsible neuromorphic hardware development and governance practices.
+summary: Explore a curated collection of academic papers on neuromorphic hardware, addressing ethical considerations, societal impacts, and sustainable frameworks. Delve into cutting-edge research shaping the future of responsible neuromorphic hardware development and governance practices.
 draft: false
 type: "neuromorphic-hardware"
 image: "images/image.jpeg"

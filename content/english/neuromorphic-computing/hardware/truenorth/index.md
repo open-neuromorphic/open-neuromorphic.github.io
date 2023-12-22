@@ -1,6 +1,6 @@
 ---
 active_product: false
-description: TrueNorth is a 5.4B transistor, 4096 core, 1M neuron, 256M synapse neurosynaptic
+summary: TrueNorth is a 5.4B transistor, 4096 core, 1M neuron, 256M synapse neurosynaptic
   chip implemented in 28nm. Through a mixed async-sync design & custom toolflow, it
   achieves 58GSOPS & 400GSOPS/W efficiency while running neural networks in 65mW real-time.
 draft: false

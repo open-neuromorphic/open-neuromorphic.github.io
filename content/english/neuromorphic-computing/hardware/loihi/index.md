@@ -1,6 +1,6 @@
 ---
 active_product: false
-description: Loihi is Intel's advanced neuromorphic chip, designed to mimic brain-like
+summary: Loihi is Intel's advanced neuromorphic chip, designed to mimic brain-like
   processing, enabling efficient, adaptive machine learning applications.
 draft: false
 image: loihi-nahuku-board.jpg

@@ -1,6 +1,6 @@
 ---
 active_product: false
-description: Tianjic supports both spiking and non-spiking models. Its motivation
+summary: Tianjic supports both spiking and non-spiking models. Its motivation
   is to enable hybrid networks that blend biological plausibility from neuroscience
   with predictive accuracy from deep learning.
 draft: false

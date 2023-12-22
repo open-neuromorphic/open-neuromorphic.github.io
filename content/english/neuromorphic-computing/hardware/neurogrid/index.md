@@ -1,6 +1,6 @@
 ---
 active_product: false
-description: Neurogrid is a specialized neuromorphic hardware system that enables
+summary: Neurogrid is a specialized neuromorphic hardware system that enables
   real-time simulation of neural models with up to 1M neurons & 8B synapses using
   low-power mixed-signal silicon neuron circuits arranged in 16 chips & interconnected
   via multicast routing.

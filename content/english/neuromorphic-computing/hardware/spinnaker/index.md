@@ -1,6 +1,6 @@
 ---
 active_product: true
-description: The SpiNNaker 2 chip houses 144 ARM cores with 18MB on-chip SRAM, 8GB
+summary: The SpiNNaker 2 chip houses 144 ARM cores with 18MB on-chip SRAM, 8GB
   DRAM, and dedicated math accelerators. Manufactured in 22nm, it employs body biasing
   and DVFS for adaptive near-threshold operation down to 0.4V, enabling a 50x increase
   in neural simulation capacity per watt over SpiNNaker 1.

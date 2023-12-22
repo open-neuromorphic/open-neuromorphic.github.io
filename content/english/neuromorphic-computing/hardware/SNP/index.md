@@ -1,6 +1,6 @@
 ---
 active_product: false
-description: The spiking neural processor is Inatera's ultra-low-power neuromorphic
+summary: The spiking neural processor is Inatera's ultra-low-power neuromorphic
   chip for real-time edge intelligence. Using spiking neural networks, it achieves
   under 1mW operation for sensor applications like always-on audio scene detection
   with 85% accuracy in under 1ms.

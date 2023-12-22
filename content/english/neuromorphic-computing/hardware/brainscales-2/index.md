@@ -1,6 +1,6 @@
 ---
 active_product: false
-description: The BrainScaleS-2 is an accelerated spiking neuromorphic system-on-chip
+summary: The BrainScaleS-2 is an accelerated spiking neuromorphic system-on-chip
   integrating 512 adaptive integrate-and-fire neurons, 212k plastic synapses, embedded
   processors, and event routing. It enables fast emulation of complex neural dynamics
   and exploration of synaptic plasticity rules. The architecture supports training

@@ -1,6 +1,6 @@
 ---
 active_product: false
-description: The DynapCNN is an ultra-low power, event-driven neuromorphic processor
+summary: The DynapCNN is an ultra-low power, event-driven neuromorphic processor
   chip for spiking neural networks that achieves sub-milliwatt computation using in-memory
   techniques. With 1M neurons, it can implement convolutional network models like
   LeNet and ResNet, interfacing directly to sensors like DVS cameras for low-latency,

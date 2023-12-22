@@ -1,6 +1,6 @@
 ---
 active_product: true
-description: Xylo is a 28nm 1000 neuron digital spiking neural network inference chip
+summary: Xylo is a 28nm 1000 neuron digital spiking neural network inference chip
   optimized for ultra low power edge deployment of trained SNNs, with flexible architecture
   to map various network topologies.
 draft: false

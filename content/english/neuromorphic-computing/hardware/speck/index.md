@@ -1,6 +1,6 @@
 ---
 active_product: false
-description: A DynapCNN chip paired with an event-based camera on the same die.
+summary: A DynapCNN chip paired with an event-based camera on the same die.
 draft: false
 image: speck.jpg
 organization:

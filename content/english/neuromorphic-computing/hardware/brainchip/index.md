@@ -1,6 +1,6 @@
 ---
 active_product: true
-description: BrainChip's Akida is an ultra-low-power neuromorphic processor inspired
+summary: BrainChip's Akida is an ultra-low-power neuromorphic processor inspired
   by the brain's neural architecture. It accelerates complex AI at the edge through
   event-based processing, on-chip learning abilities, and support for advanced neural
   networks like CNNs, RNNs & custom Temporal Event-based Nets.

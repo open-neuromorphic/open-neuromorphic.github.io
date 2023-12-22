@@ -18,7 +18,7 @@
       </div>
       <article class="{{ if gt (len .TableOfContents) 80 }}lg:col-8{{ else }}lg:col-10{{ end }}">
         <div class="content mb-10">
-                <p class="mb-3">{{ .Description }}</p>
+                <p class="mb-3">{{ .Params.summary }}</p>
 
 
           <div class="bg-theme-light dark:bg-darkmode-theme-light rounded p-6">
