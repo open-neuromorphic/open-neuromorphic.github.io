@@ -28,7 +28,7 @@ product:
     retired: true
   synapses: 278000
 product_name: Speck
-title: Speck
+title: Speck - SynSense
 type: neuromorphic-hardware
 ---
 

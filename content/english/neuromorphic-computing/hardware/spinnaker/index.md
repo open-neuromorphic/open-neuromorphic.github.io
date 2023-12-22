@@ -31,7 +31,7 @@ product:
     retired: true
   synapses: 10000
 product_name: SpiNNaker 2
-title: SpiNNaker 2
+title: SpiNNaker 2 - University of Manchester
 type: neuromorphic-hardware
 ---
 

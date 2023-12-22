@@ -31,7 +31,7 @@ product:
     retired: true
   synapses: 8-Mb SRAM
 product_name: Akida
-title: Akida
+title: Akida - BrainChip
 type: neuromorphic-hardware
 ---
 

@@ -29,7 +29,7 @@ product:
     retired: true
   synapses: 128000000
 product_name: Loihi
-title: Loihi
+title: Loihi - Intel
 type: neuromorphic-hardware
 ---
 

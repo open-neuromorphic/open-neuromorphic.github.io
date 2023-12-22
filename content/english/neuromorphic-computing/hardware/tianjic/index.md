@@ -30,7 +30,7 @@ product:
     retired: true
   synapses: 10000000
 product_name: Tianjic
-title: Tianjic
+title: Tianjic - Tsinghua University
 type: neuromorphic-hardware
 ---
 

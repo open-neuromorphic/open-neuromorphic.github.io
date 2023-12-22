@@ -30,7 +30,7 @@ product:
     retired: true
   synapses: 278000
 product_name: Xylo
-title: Xylo
+title: Xylo - SynSense
 type: neuromorphic-hardware
 ---
 

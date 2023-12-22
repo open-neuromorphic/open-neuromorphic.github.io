@@ -31,7 +31,7 @@ product:
     retired: true
   synapses: null
 product_name: Loihi 2
-title: Loihi 2
+title: Loihi 2 - Intel
 type: neuromorphic-hardware
 ---
 

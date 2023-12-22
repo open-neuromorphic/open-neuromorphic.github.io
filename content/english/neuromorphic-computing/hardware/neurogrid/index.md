@@ -31,7 +31,7 @@ product:
     retired: true
   synapses: 8000000000
 product_name: NeuroGrid (BrainDrop)
-title: NeuroGrid (BrainDrop)
+title: NeuroGrid (BrainDrop) - Stanford
 type: neuromorphic-hardware
 ---
 

@@ -32,7 +32,7 @@ product:
     retired: true
   synapses: 278000
 product_name: Dynap-CNN
-title: Dynap-CNN
+title: Dynap-CNN - SynSense
 type: neuromorphic-hardware
 ---
 

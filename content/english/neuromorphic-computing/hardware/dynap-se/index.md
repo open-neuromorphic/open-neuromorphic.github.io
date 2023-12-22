@@ -31,7 +31,7 @@ product:
     retired: true
   synapses: 4000000
 product_name: DYNAP-SE2
-title: DYNAP-SE2
+title: DYNAP-SE2 - INI
 type: neuromorphic-hardware
 ---
 

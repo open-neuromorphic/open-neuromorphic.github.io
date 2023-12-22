@@ -31,7 +31,7 @@ product:
     retired: true
   synapses: 64000
 product_name: ROLLS
-title: ROLLS
+title: ROLLS - INI
 type: neuromorphic-hardware
 ---
 

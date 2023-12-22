@@ -33,7 +33,7 @@ product:
     retired: true
   synapses: 130000
 product_name: BrainScaleS 2
-title: BrainScaleS 2
+title: BrainScaleS 2 - Universität Heidelberg
 type: neuromorphic-hardware
 ---
 

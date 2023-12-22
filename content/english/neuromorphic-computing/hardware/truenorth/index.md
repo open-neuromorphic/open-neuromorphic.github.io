@@ -30,7 +30,7 @@ product:
     retired: true
   synapses: 256000000
 product_name: TrueNorth
-title: TrueNorth
+title: TrueNorth - IBM
 type: neuromorphic-hardware
 ---
 

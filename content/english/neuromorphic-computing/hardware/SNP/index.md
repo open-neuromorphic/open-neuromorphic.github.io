@@ -31,7 +31,7 @@ product:
     retired: true
   synapses: 64000
 product_name: SNP by Innatera
-title: SNP by Innatera
+title: SNP by Innatera - Innatera
 type: neuromorphic-hardware
 ---
 
