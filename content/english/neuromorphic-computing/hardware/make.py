@@ -176,7 +176,7 @@ for chip in chips:
     # Create the index.md file with front matter
     index_content = f"""---
 title: "{chip_name}"
-description: {chip["description"]}
+summary: {chip["description"]}
 active_product: {chi["active_product"]}
 product:
   chip_type: {chip["chip_type"]}
@@ -194,7 +194,7 @@ product:
   release_date:
 image:
 organization:
-- org_name: {chip["organization"]}
+  org_name: {chip["organization"]}
   org_logo:
   org_website:
   group_name:
@@ -203,7 +203,7 @@ organization:
     twitter:
     wikipedia:
   product_page_link:
-draft: false
+type: neuromorphic-hardware
 ---
 
 ## Product Description

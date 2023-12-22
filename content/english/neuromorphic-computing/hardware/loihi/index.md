@@ -1,33 +1,36 @@
 ---
-title: Loihi
-description: Loihi is Intel's advanced neuromorphic chip, designed to mimic brain-like processing, enabling efficient, adaptive machine learning applications.
 active_product: false
+description: 'Learn about Intel''s neuromorphic hardware: Loihi'
+type: neuromorphic-hardware
+image: loihi-nahuku-board.jpg
+organization:
+  group_name: null
+  org_logo: intel.png
+  org_name: Intel
+  org_website: https://www.intel.com/content/www/us/en/research/neuromorphic-computing.html
+  product_page_link: https://www.intel.com/content/www/us/en/research/neuromorphic-computing.html
+  social_media_links:
+    linkedin: https://www.linkedin.com/company/intel-corporation/
+    twitter: https://twitter.com/intel
+    wikipedia: null
 product:
+  announced_date: 01.12.2018
+  applications: Research
   chip_type: Digital
   neurons: 128000
-  synapses: 128000000
   on_chip_learning: true
   power: <1.5 W
+  release_date: 01.12.2018
   software: nxSDK
-  applications: Research
   status:
     announced: true
     released: true
     retired: true
-  announced_date: 01.12.2018
-  release_date: 01.12.2018
-image: loihi-nahuku-board.jpg
-organization:
-  org_name: Intel
-  org_logo: intel.png
-  org_website: https://www.intel.com/content/www/us/en/research/neuromorphic-computing.html
-  group_name:
-  social_media_links:
-    linkedin: https://www.linkedin.com/company/intel-corporation/
-    twitter: https://twitter.com/intel
-    wikipedia:
-  product_page_link: https://www.intel.com/content/www/us/en/research/neuromorphic-computing.html
-draft: false
+  synapses: 128000000
+product_name: Loihi
+summary: Loihi is Intel's advanced neuromorphic chip, designed to mimic brain-like
+  processing, enabling efficient, adaptive machine learning applications.
+title: Loihi - Intel
 ---
 
 Loihi is an experimental neuromorphic computer chip developed by Intel Labs as a research platform for spike-based neural networks and computational neuroscience. Formally announced in 2017, it represents a significant advancement in neuromorphic hardware capabilities compared to prior academic and industry prototypes. 

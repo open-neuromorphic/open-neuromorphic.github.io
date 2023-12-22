@@ -1,33 +1,37 @@
 ---
-title: Xylo
-description:  Xylo is a 28nm 1000 neuron digital spiking neural network inference chip optimized for ultra low power edge deployment of trained SNNs, with flexible architecture to map various network topologies.
 active_product: true
+description: 'Learn about SynSense''s neuromorphic hardware: Xylo'
+type: neuromorphic-hardware
+image: xylo.png
+organization:
+  group_name: null
+  org_logo: synsense.png
+  org_name: SynSense
+  org_website: https://www.synsense.ai/
+  product_page_link: https://www.synsense.ai/products/xylo/
+  social_media_links:
+    linkedin: https://www.linkedin.com/company/synsense-neuromorphic/
+    twitter: https://twitter.com/SynSenseNeuro
+    wikipedia: null
 product:
+  announced_date: 2022
+  applications: Smart sensing
   chip_type: Digital
   neurons: 327000
-  synapses: 278000
   on_chip_learning: false
   power: ~5 mW
+  release_date: 2022
   software: Rockpool
-  applications: Smart sensing
   status:
     announced: true
     released: true
     retired: false
-  announced_date: 2022
-  release_date: 2022 
-image: xylo.png
-organization:
-- org_name: SynSense
-  org_logo: synsense.png
-  org_website: https://www.synsense.ai/
-  group_name:
-  social_media_links:
-    linkedin: https://www.linkedin.com/company/synsense-neuromorphic/
-    twitter: https://twitter.com/SynSenseNeuro
-    wikipedia:
-  product_page_link: https://www.synsense.ai/products/xylo/
-draft: false
+  synapses: 278000
+product_name: Xylo
+summary: Xylo is a 28nm 1000 neuron digital spiking neural network inference chip
+  optimized for ultra low power edge deployment of trained SNNs, with flexible architecture
+  to map various network topologies.
+title: Xylo - SynSense
 ---
 
 Xylo is a digital spiking neural network (SNN) inference processor developed by SynSense AG. It is designed to efficiently simulate leaky integrate-and-fire (LIF) neurons to implement deep spiking neural networks for edge processing applications.

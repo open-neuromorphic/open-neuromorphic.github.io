@@ -1,33 +1,37 @@
 ---
-title: TrueNorth
-description:  TrueNorth is a 5.4B transistor, 4096 core, 1M neuron, 256M synapse neurosynaptic chip implemented in 28nm. Through a mixed async-sync design & custom toolflow, it achieves 58GSOPS & 400GSOPS/W efficiency while running neural networks in 65mW real-time.
 active_product: false
+description: 'Learn about IBM''s neuromorphic hardware: TrueNorth'
+type: neuromorphic-hardware
+image: truenorth.jpg
+organization:
+  group_name: null
+  org_logo: ibm.jpg
+  org_name: IBM
+  org_website: https://www.ibm.com/
+  product_page_link: null
+  social_media_links:
+    linkedin: https://www.linkedin.com/company/ibm/
+    twitter: null
+    wikipedia: https://en.wikipedia.org/wiki/Cognitive_computer#IBM_TrueNorth_chip
 product:
+  announced_date: 2014
+  applications: DNN acceleration
   chip_type: Digital
   neurons: 1000000
-  synapses: 256000000
   on_chip_learning: false
   power: ~0.3 W
+  release_date: 2014
   software: Custom
-  applications: DNN acceleration
   status:
     announced: true
     released: true
     retired: true
-  announced_date: 2014
-  release_date: 2014
-image: truenorth.jpg
-organization:
-  org_name: IBM
-  org_logo: ibm.jpg
-  org_website: https://www.ibm.com/
-  group_name:
-  social_media_links:
-    linkedin: https://www.linkedin.com/company/ibm/
-    twitter:
-    wikipedia: https://en.wikipedia.org/wiki/Cognitive_computer#IBM_TrueNorth_chip
-  product_page_link:
-draft: false
+  synapses: 256000000
+product_name: TrueNorth
+summary: TrueNorth is a 5.4B transistor, 4096 core, 1M neuron, 256M synapse neurosynaptic
+  chip implemented in 28nm. Through a mixed async-sync design & custom toolflow, it
+  achieves 58GSOPS & 400GSOPS/W efficiency while running neural networks in 65mW real-time.
+title: TrueNorth - IBM
 ---
 
 TrueNorth is a neurosynaptic chip developed by IBM as part of the DARPA SyNAPSE program. It implements a non-von Neumann, parallel, scalable, and low-power brain-inspired chip architecture. The 5.4 billion transistor TrueNorth chip contains 4096 neurosynaptic cores with 1 million spiking neurons and 256 million synapses. It was fabricated in 28nm CMOS technology.

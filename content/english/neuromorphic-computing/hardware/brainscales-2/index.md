@@ -1,33 +1,41 @@
 ---
-title: BrainScaleS 2
-description: The BrainScaleS-2 is an accelerated spiking neuromorphic system-on-chip integrating 512 adaptive integrate-and-fire neurons, 212k plastic synapses, embedded processors, and event routing. It enables fast emulation of complex neural dynamics and exploration of synaptic plasticity rules. The architecture supports training of deep spiking and non-spiking neural networks using hybrid techniques like surrogate gradients.
-active_product: False
+active_product: false
+description: 'Learn about Universität Heidelberg''s neuromorphic hardware: BrainScaleS
+  2 - Universität Heidelberg'
+type: neuromorphic-hardware
+image: brainscales-2.jpg
+organization:
+  group_name: null
+  org_logo: null
+  org_name: Universität Heidelberg
+  org_website: null
+  product_page_link: null
+  social_media_links:
+    linkedin: null
+    twitter: null
+    wikipedia: null
 product:
+  announced_date: null
+  applications: Edge processing, robotics
   chip_type: Mixed-signal
   neurons: 512
-  synapses: 130000
-  on_chip_learning: True
+  on_chip_learning: true
   power: ~1 W
+  release_date: null
   software: BrainScaleS OS
-  applications: Edge processing, robotics
   status:
     announced: true
     released: true
     retired: true
-  announced_date:
-  release_date:
-image: brainscales-2.jpg
-organization:
-- org_name: Universität Heidelberg
-  org_logo:
-  org_website:
-  group_name:
-  social_media_links:
-    linkedin:
-    twitter:
-    wikipedia:
-  product_page_link:
-draft: false
+  synapses: 130000
+product_name: BrainScaleS 2 - Universität Heidelberg
+summary: The BrainScaleS-2 is an accelerated spiking neuromorphic system-on-chip integrating
+  512 adaptive integrate-and-fire neurons, 212k plastic synapses, embedded processors,
+  and event routing. It enables fast emulation of complex neural dynamics and exploration
+  of synaptic plasticity rules. The architecture supports training of deep spiking
+  and non-spiking neural networks using hybrid techniques like surrogate gradients.
+title: BrainScaleS 2 - Universität Heidelberg - Universität Heidelberg
+type: neuromorphic-hardware
 ---
 
 The BrainScaleS-2 accelerated neuromorphic system is an integrated circuit architecture for emulating biologically-inspired spiking neural networks. It was developed by researchers at the Heidelberg University and collaborators. Key features of the BrainScaleS-2 system include:
