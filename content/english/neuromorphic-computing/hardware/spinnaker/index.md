@@ -1,40 +1,33 @@
 ---
+title: SpiNNaker 2
+description: The SpiNNaker 2 chip houses 144 ARM cores with 18MB on-chip SRAM, 8GB DRAM, and dedicated math accelerators. Manufactured in 22nm, it employs body biasing and DVFS for adaptive near-threshold operation down to 0.4V, enabling a 50x increase in neural simulation capacity per watt over SpiNNaker 1.
 active_product: true
-description: 'Explore  University of Manchester''s neuromorphic hardware: SpiNNaker
-  2'
-draft: false
-image: spinnaker.jpg
-organization:
-  group_name: Department of Computer Science
-  org_logo: logo-university-of-manchester.png
-  org_name: University of Manchester
-  org_website: https://www.manchester.ac.uk/
-  product_page_link: http://apt.cs.manchester.ac.uk/projects/SpiNNaker/
-  social_media_links:
-    linkedin: https://www.linkedin.com/school/university-of-manchester/
-    twitter: https://twitter.com/UoMCS
-    wikipedia: https://en.wikipedia.org/wiki/University_of_Manchester_School_of_Computer_Science
 product:
-  announced_date: 2013-01-01
-  applications: Real-time simulation of SNN; HPC
   chip_type: Digital
   neurons: 1000000000
+  synapses: 10000
   on_chip_learning: true
-  power: ~kW
-  release_date: 2021-02-01
+  power: ~50W
   software: PyNN, NEST
+  applications: Real-time simulation of SNN; HPC
   status:
     announced: true
     released: true
-    retired: true
-  synapses: 10000
-product_name: SpiNNaker 2
-summary: The SpiNNaker 2 chip houses 144 ARM cores with 18MB on-chip SRAM, 8GB DRAM,
-  and dedicated math accelerators. Manufactured in 22nm, it employs body biasing and
-  DVFS for adaptive near-threshold operation down to 0.4V, enabling a 50x increase
-  in neural simulation capacity per watt over SpiNNaker 1.
-title: SpiNNaker 2 - University of Manchester
-type: neuromorphic-hardware
+    retired: false
+  announced_date: 27.07.2021
+  release_date: 27.07.2021
+image: spinnaker.jpg
+organization:
+  org_name: University of Dresden
+  org_logo: tu-dresden.png
+  org_website: https://tu-dresden.de/
+  group_name:
+  social_media_links:
+    linkedin:
+    twitter:
+    wikipedia: https://en.wikipedia.org/wiki/SpiNNaker
+  product_page_link: https://tu-dresden.de/ing/elektrotechnik/die-fakultaet/aktuelles/news/spinnaker2-tu-dresden-university-of-manchester-und-globalfoundries-gelingt-durchbruch-bei-ki-cloud-systemen?set_language=en
+draft: false
 ---
 
 SpiNNaker 2 is a neuromorphic computing platform designed to simulate spiking neural networks. It is the successor to the SpiNNaker (Spiking Neural Network Architecture) system developed at the University of Manchester. 

@@ -1,39 +1,33 @@
 ---
+title: NeuroGrid (BrainDrop)
+description:  Neurogrid is a specialized neuromorphic hardware system that enables real-time simulation of neural models with up to 1M neurons & 8B synapses using low-power mixed-signal silicon neuron circuits arranged in 16 chips & interconnected via multicast routing.
 active_product: false
-description: 'Explore  Stanford''s neuromorphic hardware: NeuroGrid (BrainDrop)'
-draft: false
-image: neurogrid.jpg
-organization:
-  group_name: null
-  org_logo: null
-  org_name: Stanford
-  org_website: null
-  product_page_link: null
-  social_media_links:
-    linkedin: null
-    twitter: null
-    wikipedia: null
 product:
-  announced_date: null
-  applications: Real-time SNN emulation
   chip_type: Mixed-signal
   neurons: 1000000
+  synapses: 8000000000
   on_chip_learning: false
   power: ~3 W
-  release_date: null
   software: NEF
+  applications: Real-time SNN emulation
   status:
     announced: true
     released: true
     retired: true
-  synapses: 8000000000
-product_name: NeuroGrid (BrainDrop)
-summary: Neurogrid is a specialized neuromorphic hardware system that enables real-time
-  simulation of neural models with up to 1M neurons & 8B synapses using low-power
-  mixed-signal silicon neuron circuits arranged in 16 chips & interconnected via multicast
-  routing.
-title: NeuroGrid (BrainDrop) - Stanford
-type: neuromorphic-hardware
+  announced_date:
+  release_date:
+image: neurogrid.jpg
+organization:
+  org_name: Stanford
+  org_logo:
+  org_website: https://web.stanford.edu/group/brainsinsilicon/
+  group_name: Brains in Silicon
+  social_media_links:
+    linkedin:
+    twitter:
+    wikipedia: https://en.wikipedia.org/wiki/Neurogrid
+  product_page_link: 
+draft: false
 ---
 
 Neurogrid is a specialized hardware platform designed to simulate large-scale functional models of biological neural systems in real time. It was developed by a research team led by Kwabena Boahen at Stanford University seeking to provide neuroscientists an affordable tool to gain insights into neural information processing through modeling.

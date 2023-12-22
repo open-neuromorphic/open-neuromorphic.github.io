@@ -1,39 +1,33 @@
 ---
-active_product: false
-description: 'Explore  Intel''s neuromorphic hardware: Loihi 2'
-draft: false
-image: loihi2.jpg
-organization:
-  group_name: null
-  org_logo: null
-  org_name: Intel
-  org_website: null
-  product_page_link: null
-  social_media_links:
-    linkedin: null
-    twitter: null
-    wikipedia: null
+title: Loihi 2
+description:  Loihi 2 is Intel's latest neuromorphic research chip, implementing spiking neural networks with programmable dynamics, modular connectivity, and optimizations for scale, speed, and efficiency. Early research demonstrates promise for low-latency intelligent signal processing.
+active_product: true
 product:
-  announced_date: null
-  applications: null
   chip_type: Digital
   neurons: 1000000
+  synapses:
   on_chip_learning: true
   power: ~1 W
-  release_date: null
   software: Lava
+  applications: Research
   status:
     announced: true
     released: true
-    retired: true
-  synapses: null
-product_name: Loihi 2
-summary: Loihi 2 is Intel's latest neuromorphic research chip, implementing spiking
-  neural networks with programmable dynamics, modular connectivity, and optimizations
-  for scale, speed, and efficiency. Early research demonstrates promise for low-latency
-  intelligent signal processing.
-title: Loihi 2 - Intel
-type: neuromorphic-hardware
+    retired: false
+  announced_date: 01.10.2021
+  release_date: 01.10.2021
+image: loihi2.jpg
+organization:
+  org_name: Intel
+  org_logo: ../loihi/intel.png
+  org_website: https://www.intel.com/content/www/us/en/research/neuromorphic-computing.html
+  group_name:
+  social_media_links:
+    linkedin: https://www.linkedin.com/company/intel-corporation/
+    twitter: https://twitter.com/intel
+    wikipedia:
+  product_page_link: https://www.intel.com/content/www/us/en/research/neuromorphic-computing.html
+draft: false
 ---
 
 The Loihi 2 chip by Intel consists of 6 embedded microprocessor cores (Lakemont x86) and 128 fully asynchronous neuron cores (NCs) connected by a network-on-chip. The NCs are optimized for neuromorphic workloads by implementing a group of spiking neurons and including all synapses connected to such neurons. All the communication between NCs is in the form of spike messages. Microprocessor cores are optimized for spike-based communication and execute standard C code to assist with data I/O as well as network configuration, management and monitoring. Some of the new functionalities added in this second version of the Loihi chip are the possibility of implementing custom neuron models using microcode instructions (assembly), the option to generate and transmit graded spikes, and support for three-factor learning rules. A single Loihi 2 chip supports up to 1 million neurons and 120 million synapses.
