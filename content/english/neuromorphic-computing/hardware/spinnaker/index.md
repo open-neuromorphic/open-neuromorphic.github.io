@@ -13,7 +13,7 @@ product:
   status:
     announced: true
     released: true
-    retired: true
+    retired: false
   announced_date: 27.07.2021
   release_date: 27.07.2021
 image: spinnaker.jpg

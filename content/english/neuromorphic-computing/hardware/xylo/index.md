@@ -1,12 +1,12 @@
 ---
 title: Xylo
 description:  Xylo is a 28nm 1000 neuron digital spiking neural network inference chip optimized for ultra low power edge deployment of trained SNNs, with flexible architecture to map various network topologies.
-active_product: True
+active_product: true
 product:
   chip_type: Digital
   neurons: 327000
   synapses: 278000
-  on_chip_learning: False
+  on_chip_learning: false
   power: ~5 mW
   software: Rockpool
   applications: Smart sensing
@@ -14,8 +14,8 @@ product:
     announced: true
     released: true
     retired: false
-  announced_date: 01.01.2022
-  release_date: 01.01.2022 
+  announced_date: 2022
+  release_date: 2022 
 image: xylo.png
 organization:
 - org_name: SynSense
