@@ -1,12 +1,12 @@
 ---
 title: "Hybrid Learning for Event-based Visual Motion Detection and Tracking of Pedestrians"
 author:
-- "Cristian Axiene"
+- "Cristian Axenie"
 date: "2024-01-15"
 start_time: 18:00
 end_time: 19:30
 time_zone: CET
-description: "Revolutionize traffic safety with neuromorphic visual sensing. Explore award-winning solutions for pedestrian detection and tracking, emphasizing sustainability and city-level deployment. Join Dr. Cristian Axiene in this groundbreaking AI exploration"
+description: "Revolutionize traffic safety with neuromorphic visual sensing. Explore award-winning solutions for pedestrian detection and tracking, emphasizing sustainability and city-level deployment. Join Dr. Cristian Axenie in this groundbreaking AI exploration"
 upcoming: true
 image: visual-motion-tracking.png
 speaker_photo: "cristian-axiene.jpeg"
