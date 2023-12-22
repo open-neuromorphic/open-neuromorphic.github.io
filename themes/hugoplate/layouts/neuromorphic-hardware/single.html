@@ -1,23 +1,32 @@
 {{ define "main" }}
-{{ partial "page-header" . }}
-<section class="section pt-14">
+<section>
+  <div class="container">
+    <div
+      class="from-body to-theme-light dark:from-darkmode-body dark:to-darkmode-theme-light rounded-2xl bg-gradient-to-b px-8 py-6">
+      <h1 class="mb-3">{{ .Title | title }}</h1>
+      {{ partial "components/breadcrumb" (dict "Context" . ) }}
+    </div>
+  </div>
+</section>
+<section class="section pt-4">
   <div class="container">
     <div class="row">
+      <div>
+      <div class="bg-theme-light dark:bg-darkmode-theme-light rounded mb-4 p-6">
+        {{ partial "hardware/product-info" .Page }}
+      </div>
+      </div>
       <article class="{{ if gt (len .TableOfContents) 80 }}lg:col-8{{ else }}lg:col-10{{ end }}">
         <div class="content mb-10">
+                <p class="mb-3">{{ .Description }}</p>
+
+
           <div class="bg-theme-light dark:bg-darkmode-theme-light rounded p-6">
-          {{ partial "hardware/product-info" . }}
+
           {{ partial "hardware/company-info" .Page }}
             </div>
           {{ .Content }}
         </div>
-                {{ $image:= .Params.image }}
-        {{ if $image }}
-        <div class="mb-6">
-          {{ partial "image" (dict "Src" $image "Context" .Page "Alt" .Title "Class" "w-full rounded" "Size" "1280x720"
-          "Command" "Crop") }}
-        </div>
-        {{ end }}
         <div class="row items-start justify-between">
           <div class="lg:col-12 flex justify-end">
             {{ partial "override-social-share" (dict "Context" . "Class" "share-icons" "Title" (i18n "share") "Whatsapp"

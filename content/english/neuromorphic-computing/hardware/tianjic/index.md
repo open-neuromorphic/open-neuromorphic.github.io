@@ -1,33 +1,36 @@
 ---
-title: Tianjic
-description: Tianjic supports both spiking and non-spiking models. Its motivation is to enable hybrid networks that blend biological plausibility from neuroscience with predictive accuracy from deep learning. 
-active_product: False
+active_product: false
+description: Tianjic supports both spiking and non-spiking models. Its motivation
+  is to enable hybrid networks that blend biological plausibility from neuroscience
+  with predictive accuracy from deep learning.
+draft: false
+image: tianjic.jpg
+organization:
+  group_name: null
+  org_logo: null
+  org_name: Tsinghua University
+  org_website: null
+  product_page_link: null
+  social_media_links:
+    linkedin: null
+    twitter: null
+    wikipedia: null
 product:
+  announced_date: null
+  applications: ANN/SNN acceleration
   chip_type: Digital
   neurons: 40000
-  synapses: 10000000
-  on_chip_learning: False
+  on_chip_learning: false
   power: ~1 W
+  release_date: null
   software: Custom
-  applications: ANN/SNN acceleration
   status:
     announced: true
     released: true
     retired: true
-  announced_date:
-  release_date:
-image: tianjic.jpg
-organization:
-  org_name: Tsinghua University
-  org_logo:
-  org_website:
-  group_name:
-  social_media_links:
-    linkedin:
-    twitter:
-    wikipedia:
-  product_page_link:
-draft: false
+  synapses: 10000000
+product_name: Tianjic
+title: Tianjic
 type: neuromorphic-hardware
 ---
 
@@ -48,4 +51,3 @@ The researchers believe the unified architecture of Tianjic opens up new researc
 | Date | Title | Authors  | Venue/Source |
 |------|-------|----------|------------- |
 | August 2015 | [Tianjic: A Unified and Scalable Chip Bridging Spike-Based and Continuous Neural Computation](https://ieeexplore.ieee.org/document/8998338) | Lei Deng; Guanrui Wang; Guoqi Li; Shuangchen Li; Ling Liang; Maohua Zhu; Yujie Wu; Zheyu Yang; Zhe Zou; Jing Pei; Zhenzhi Wu; Xing Hu; Yufei Ding; Wei He; Yuan Xie; Luping Shi | IEEE Journal of Solid-State Circuits |
-

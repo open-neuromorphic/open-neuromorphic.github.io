@@ -1,33 +1,37 @@
 ---
-title: SpiNNaker 2
-description: The SpiNNaker 2 chip houses 144 ARM cores with 18MB on-chip SRAM, 8GB DRAM, and dedicated math accelerators. Manufactured in 22nm, it employs body biasing and DVFS for adaptive near-threshold operation down to 0.4V, enabling a 50x increase in neural simulation capacity per watt over SpiNNaker 1.
-active_product: True
-product:
-  chip_type: Digital
-  neurons: 1000000000
-  synapses: 10000
-  on_chip_learning: True
-  power: ~kW
-  software: PyNN, NEST
-  applications: Real-time simulation of SNN; HPC
-  status:
-    announced: true
-    released: true
-    retired: true
-  announced_date: 2013-01-01
-  release_date: 2021-02-01
+active_product: true
+description: The SpiNNaker 2 chip houses 144 ARM cores with 18MB on-chip SRAM, 8GB
+  DRAM, and dedicated math accelerators. Manufactured in 22nm, it employs body biasing
+  and DVFS for adaptive near-threshold operation down to 0.4V, enabling a 50x increase
+  in neural simulation capacity per watt over SpiNNaker 1.
+draft: false
 image: spinnaker.jpg
 organization:
-  org_name: University of Manchester
-  org_logo: logo-university-of-manchester.png
-  org_website: https://www.manchester.ac.uk/
   group_name: Department of Computer Science
+  org_logo: logo-university-of-manchester.png
+  org_name: University of Manchester
+  org_website: https://www.manchester.ac.uk/
+  product_page_link: http://apt.cs.manchester.ac.uk/projects/SpiNNaker/
   social_media_links:
     linkedin: https://www.linkedin.com/school/university-of-manchester/
     twitter: https://twitter.com/UoMCS
     wikipedia: https://en.wikipedia.org/wiki/University_of_Manchester_School_of_Computer_Science
-  product_page_link: http://apt.cs.manchester.ac.uk/projects/SpiNNaker/ 
-draft: false
+product:
+  announced_date: 2013-01-01
+  applications: Real-time simulation of SNN; HPC
+  chip_type: Digital
+  neurons: 1000000000
+  on_chip_learning: true
+  power: ~kW
+  release_date: 2021-02-01
+  software: PyNN, NEST
+  status:
+    announced: true
+    released: true
+    retired: true
+  synapses: 10000
+product_name: SpiNNaker 2
+title: SpiNNaker 2
 type: neuromorphic-hardware
 ---
 
