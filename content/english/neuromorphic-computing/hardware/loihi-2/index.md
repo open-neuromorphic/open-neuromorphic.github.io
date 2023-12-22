@@ -1,9 +1,6 @@
 ---
 active_product: false
-summary: Loihi 2 is Intel's latest neuromorphic research chip, implementing spiking
-  neural networks with programmable dynamics, modular connectivity, and optimizations
-  for scale, speed, and efficiency. Early research demonstrates promise for low-latency
-  intelligent signal processing.
+description: 'Explore  Intel''s neuromorphic hardware: Loihi 2'
 draft: false
 image: loihi2.jpg
 organization:
@@ -31,6 +28,10 @@ product:
     retired: true
   synapses: null
 product_name: Loihi 2
+summary: Loihi 2 is Intel's latest neuromorphic research chip, implementing spiking
+  neural networks with programmable dynamics, modular connectivity, and optimizations
+  for scale, speed, and efficiency. Early research demonstrates promise for low-latency
+  intelligent signal processing.
 title: Loihi 2 - Intel
 type: neuromorphic-hardware
 ---

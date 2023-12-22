@@ -1,7 +1,6 @@
 ---
 active_product: false
-summary: Loihi is Intel's advanced neuromorphic chip, designed to mimic brain-like
-  processing, enabling efficient, adaptive machine learning applications.
+description: 'Explore  Intel''s neuromorphic hardware: Loihi'
 draft: false
 image: loihi-nahuku-board.jpg
 organization:
@@ -29,6 +28,8 @@ product:
     retired: true
   synapses: 128000000
 product_name: Loihi
+summary: Loihi is Intel's advanced neuromorphic chip, designed to mimic brain-like
+  processing, enabling efficient, adaptive machine learning applications.
 title: Loihi - Intel
 type: neuromorphic-hardware
 ---

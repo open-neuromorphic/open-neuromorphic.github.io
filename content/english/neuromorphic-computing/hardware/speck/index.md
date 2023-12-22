@@ -1,6 +1,6 @@
 ---
 active_product: false
-summary: A DynapCNN chip paired with an event-based camera on the same die.
+description: 'Explore  SynSense''s neuromorphic hardware: Speck'
 draft: false
 image: speck.jpg
 organization:
@@ -28,6 +28,7 @@ product:
     retired: true
   synapses: 278000
 product_name: Speck
+summary: A DynapCNN chip paired with an event-based camera on the same die.
 title: Speck - SynSense
 type: neuromorphic-hardware
 ---

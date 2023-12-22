@@ -1,8 +1,6 @@
 ---
 active_product: false
-summary: Tianjic supports both spiking and non-spiking models. Its motivation
-  is to enable hybrid networks that blend biological plausibility from neuroscience
-  with predictive accuracy from deep learning.
+description: 'Explore  Tsinghua University''s neuromorphic hardware: Tianjic'
 draft: false
 image: tianjic.jpg
 organization:
@@ -30,6 +28,9 @@ product:
     retired: true
   synapses: 10000000
 product_name: Tianjic
+summary: Tianjic supports both spiking and non-spiking models. Its motivation is to
+  enable hybrid networks that blend biological plausibility from neuroscience with
+  predictive accuracy from deep learning.
 title: Tianjic - Tsinghua University
 type: neuromorphic-hardware
 ---

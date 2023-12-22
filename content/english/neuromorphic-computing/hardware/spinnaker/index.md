@@ -1,9 +1,7 @@
 ---
 active_product: true
-summary: The SpiNNaker 2 chip houses 144 ARM cores with 18MB on-chip SRAM, 8GB
-  DRAM, and dedicated math accelerators. Manufactured in 22nm, it employs body biasing
-  and DVFS for adaptive near-threshold operation down to 0.4V, enabling a 50x increase
-  in neural simulation capacity per watt over SpiNNaker 1.
+description: 'Explore  University of Manchester''s neuromorphic hardware: SpiNNaker
+  2'
 draft: false
 image: spinnaker.jpg
 organization:
@@ -31,6 +29,10 @@ product:
     retired: true
   synapses: 10000
 product_name: SpiNNaker 2
+summary: The SpiNNaker 2 chip houses 144 ARM cores with 18MB on-chip SRAM, 8GB DRAM,
+  and dedicated math accelerators. Manufactured in 22nm, it employs body biasing and
+  DVFS for adaptive near-threshold operation down to 0.4V, enabling a 50x increase
+  in neural simulation capacity per watt over SpiNNaker 1.
 title: SpiNNaker 2 - University of Manchester
 type: neuromorphic-hardware
 ---

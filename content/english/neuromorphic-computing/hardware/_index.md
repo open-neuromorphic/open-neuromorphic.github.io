@@ -1,6 +1,6 @@
 ---
-title: Neuromorphic Hardware
-summary: Explore a curated collection of academic papers on neuromorphic hardware, addressing ethical considerations, societal impacts, and sustainable frameworks. Delve into cutting-edge research shaping the future of responsible neuromorphic hardware development and governance practices.
+title: Neuromorphic Hardware Guide
+description: Explore cutting-edge neuromorphic hardware projects, featuring innovative designs and advanced neural processing technologies. Discover the future of AI at the intersection of neuroscience and computing.
 draft: false
 type: "neuromorphic-hardware"
 image: "images/image.jpeg"

@@ -1,9 +1,6 @@
 ---
 active_product: false
-summary: The DYNAP-SE2 is a configurable, mixed-signal neuromorphic chip with
-  1024 neurons, 64k plastic synapses, specialized dendrites, low-latency event routing,
-  and multi-timescale adaptation dynamics enabling real-time prototyping of biologically
-  inspired spiking neural networks for ultra-low power edge processing.
+description: 'Explore  INI''s neuromorphic hardware: DYNAP-SE2'
 draft: false
 image: dynap-se2.jpg
 organization:
@@ -31,6 +28,10 @@ product:
     retired: true
   synapses: 4000000
 product_name: DYNAP-SE2
+summary: The DYNAP-SE2 is a configurable, mixed-signal neuromorphic chip with 1024
+  neurons, 64k plastic synapses, specialized dendrites, low-latency event routing,
+  and multi-timescale adaptation dynamics enabling real-time prototyping of biologically
+  inspired spiking neural networks for ultra-low power edge processing.
 title: DYNAP-SE2 - INI
 type: neuromorphic-hardware
 ---

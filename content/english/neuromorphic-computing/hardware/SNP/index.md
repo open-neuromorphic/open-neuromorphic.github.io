@@ -1,9 +1,6 @@
 ---
 active_product: false
-summary: The spiking neural processor is Inatera's ultra-low-power neuromorphic
-  chip for real-time edge intelligence. Using spiking neural networks, it achieves
-  under 1mW operation for sensor applications like always-on audio scene detection
-  with 85% accuracy in under 1ms.
+description: 'Explore  Innatera''s neuromorphic hardware: SNP'
 draft: false
 image: snp.png
 organization:
@@ -30,8 +27,12 @@ product:
     released: true
     retired: true
   synapses: 64000
-product_name: SNP by Innatera
-title: SNP by Innatera - Innatera
+product_name: SNP
+summary: The spiking neural processor is Inatera's ultra-low-power neuromorphic chip
+  for real-time edge intelligence. Using spiking neural networks, it achieves under
+  1mW operation for sensor applications like always-on audio scene detection with
+  85% accuracy in under 1ms.
+title: SNP - Innatera
 type: neuromorphic-hardware
 ---
 
