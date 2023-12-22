@@ -18,7 +18,7 @@ product:
   release_date:
 image: neurogrid.jpg
 organization:
-- org_name: Stanford
+  org_name: Stanford
   org_logo:
   org_website:
   group_name:
@@ -28,6 +28,7 @@ organization:
     wikipedia:
   product_page_link:
 draft: false
+type: neuromorphic-hardware
 ---
 
 Neurogrid is a specialized hardware platform designed to simulate large-scale functional models of biological neural systems in real time. It was developed by a research team led by Kwabena Boahen at Stanford University seeking to provide neuroscientists an affordable tool to gain insights into neural information processing through modeling.

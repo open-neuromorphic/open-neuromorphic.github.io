@@ -194,7 +194,7 @@ product:
   release_date:
 image:
 organization:
-- org_name: {chip["organization"]}
+  org_name: {chip["organization"]}
   org_logo:
   org_website:
   group_name:

@@ -18,7 +18,7 @@ product:
   release_date:
 image: tianjic.jpg
 organization:
-- org_name: Tsinghua University
+  org_name: Tsinghua University
   org_logo:
   org_website:
   group_name:
@@ -28,6 +28,7 @@ organization:
     wikipedia:
   product_page_link:
 draft: false
+type: neuromorphic-hardware
 ---
 
 Tianjic is a unified neural network chip architecture proposed in 2019 that aims to efficiently support both spiking neural networks (SNNs) from the neuromorphic computing field and artificial neural networks (ANNs) commonly used in deep learning. It was unveiled by a team of researchers from Tsinghua University in Beijing, led by Professor Luping Shi.

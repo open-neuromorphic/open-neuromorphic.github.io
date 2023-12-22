@@ -14,20 +14,21 @@ product:
     announced: true
     released: true
     retired: true
-  announced_date:
-  release_date:
+  announced_date: 2013-01-01
+  release_date: 2021-02-01
 image: spinnaker.jpg
 organization:
-- org_name: University of Manchester
-  org_logo:
-  org_website:
-  group_name:
+  org_name: University of Manchester
+  org_logo: logo-university-of-manchester.png
+  org_website: https://www.manchester.ac.uk/
+  group_name: Department of Computer Science
   social_media_links:
-    linkedin:
-    twitter:
-    wikipedia:
-  product_page_link:
+    linkedin: https://www.linkedin.com/school/university-of-manchester/
+    twitter: https://twitter.com/UoMCS
+    wikipedia: https://en.wikipedia.org/wiki/University_of_Manchester_School_of_Computer_Science
+  product_page_link: http://apt.cs.manchester.ac.uk/projects/SpiNNaker/ 
 draft: false
+type: neuromorphic-hardware
 ---
 
 SpiNNaker 2 is a neuromorphic computing platform designed to simulate spiking neural networks. It is the successor to the SpiNNaker (Spiking Neural Network Architecture) system developed at the University of Manchester. 

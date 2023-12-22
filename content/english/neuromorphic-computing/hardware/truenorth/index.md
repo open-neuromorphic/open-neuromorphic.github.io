@@ -18,7 +18,7 @@ product:
   release_date:
 image: truenorth.jpg
 organization:
-- org_name: IBM
+  org_name: IBM
   org_logo:
   org_website:
   group_name:
@@ -28,6 +28,7 @@ organization:
     wikipedia:
   product_page_link:
 draft: false
+type: neuromorphic-hardware
 ---
 
 TrueNorth is a neurosynaptic chip developed by IBM as part of the DARPA SyNAPSE program. It implements a non-von Neumann, parallel, scalable, and low-power brain-inspired chip architecture. The 5.4 billion transistor TrueNorth chip contains 4096 neurosynaptic cores with 1 million spiking neurons and 256 million synapses. It was fabricated in 28nm CMOS technology.

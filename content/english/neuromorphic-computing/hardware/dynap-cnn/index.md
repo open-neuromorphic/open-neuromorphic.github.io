@@ -18,7 +18,7 @@ product:
   release_date:
 image: dynapcnn.png
 organization:
-- org_name: SynSense
+  org_name: SynSense
   org_logo:
   org_website:
   group_name:
@@ -28,6 +28,7 @@ organization:
     wikipedia:
   product_page_link:
 draft: false
+type: neuromorphic-hardware
 ---
 
 The DynapCNN is an ultra-low power event-driven neuromorphic processor chip designed for implementating spiking convolutional neural networks (SCNNs). It was developed by SynSense AG, a neuromorphic engineering startup based in Zurich, Switzerland.

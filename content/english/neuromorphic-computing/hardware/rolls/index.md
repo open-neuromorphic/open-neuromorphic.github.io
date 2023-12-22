@@ -18,7 +18,7 @@ product:
   release_date:
 image: rolls.jpg
 organization:
-- org_name: INI
+  org_name: INI
   org_logo:
   org_website:
   group_name:
@@ -28,6 +28,7 @@ organization:
     wikipedia:
   product_page_link:
 draft: false
+type: neuromorphic-hardware
 ---
 
 The ROLLS chip implements key requirements for online learning and adaptive behavior in neuromorphic systems, with highly flexible digital configuration options.

@@ -18,7 +18,7 @@ product:
   release_date:
 image: dynap-se2.jpg
 organization:
-- org_name: INI
+  org_name: INI
   org_logo:
   org_website:
   group_name:
@@ -28,6 +28,7 @@ organization:
     wikipedia:
   product_page_link:
 draft: false
+type: neuromorphic-hardware
 ---
 
 The DYNAP-SE2 is a mixed-signal neuromorphic processor chip manufactured in 180nm CMOS technology. Occupying 98mm2 silicon area, the chip contains 1024 leaky integrate-and-fire spiking neuron circuits along with 64k reconfigurable synapses. Its architecture allows real-time emulation of neural and synaptic dynamics for processing event-based sensory data.

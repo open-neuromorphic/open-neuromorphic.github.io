@@ -1,0 +1,46 @@
+{{ with .Params.organization }}
+  <div class="company-info mb-6 flex">
+    {{ if .org_logo }}
+      <div class="mr-6">
+        {{ partial "override-image" (dict "Src" .org_logo "Context" $.Page "Alt" .Title "Class" "mb-6 rounded" "Size" "250x") }}
+      </div>
+    {{ end }}
+    <div class="flex-1">
+      {{ if .org_website }}
+        {{ if .group_name }}
+          <p class="text-xl font-bold mb-2"><a href="{{ .org_website }}" target="_blank">{{ .group_name }} at {{ .org_name }}</a></p>
+        {{ else }}
+          <p class="text-xl font-bold mb-2"><a href="{{ .org_website }}" target="_blank">{{ .org_name }}</a></p>
+        {{ end }}
+      {{ else }}
+        {{ if .group_name }}
+          <p class="text-xl font-bold mb-2">{{ .group_name }} at {{ .org_name }}</p>
+        {{ else }}
+          <p class="text-xl font-bold mb-2">{{ .org_name }}</p>
+        {{ end }}
+      {{ end }}
+      <div class="mb-4">
+        {{ with .social_media_links.linkedin }}
+          {{ $fullLinkedinUsername := index (split . "com/") 1 }}
+          {{ $linkedinUsername := $fullLinkedinUsername | truncate 40 }}
+          <a href="{{ . }}" target="_blank" class="block text-blue-500" title="{{ $fullLinkedinUsername }}"><i class="fab fa-linkedin"></i> {{ $linkedinUsername }}</a>
+        {{ end }}
+        {{ with .social_media_links.twitter }}
+          {{ $fullTwitterUsername := index (split . "/") 3 }}
+          {{ $twitterUsername := $fullTwitterUsername | truncate 40 }}
+          <a href="{{ . }}" target="_blank" class="block text-blue-400" title="{{ $fullTwitterUsername }}"><i class="fab fa-twitter"></i> @{{ $twitterUsername }}</a>
+        {{ end }}
+        {{ with .social_media_links.wikipedia }}
+          {{ $fullWikipediaTitle := index (split . "/") (sub (len (split . "/")) 1) }}
+          {{ $wikipediaTitle := $fullWikipediaTitle | truncate 40 }}
+          <a href="{{ . }}" target="_blank" class="block text-gray-600" title="{{ $fullWikipediaTitle }}"><i class="fab fa-wikipedia-w"></i> {{ $wikipediaTitle }}</a>
+        {{ end }}
+      </div>
+      {{ if .product_page_link }}
+        <p class="text-right">
+          <a href="{{ .product_page_link }}" target="_blank" class="text-blue-500">Official Product Page</a>
+        </p>
+      {{ end }}
+    </div>
+  </div>
+{{ end }}

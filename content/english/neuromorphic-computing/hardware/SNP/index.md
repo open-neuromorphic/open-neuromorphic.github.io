@@ -18,7 +18,7 @@ product:
   release_date:
 image: snp.png
 organization:
-- org_name: Innatera
+  org_name: Innatera
   org_logo:
   org_website:
   group_name:
@@ -28,6 +28,7 @@ organization:
     wikipedia:
   product_page_link:
 draft: false
+type: neuromorphic-hardware
 ---
 
 The spiking neural processor (SNP) is a neuromorphic chip produced by Innatera, a semiconductor company based in Delft, Netherlands. The SNP is designed for ultra-low power edge intelligence applications where sensors need to process data in real-time under tight latency, power, and cost constraints. 

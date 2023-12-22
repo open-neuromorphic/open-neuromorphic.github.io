@@ -18,7 +18,7 @@ product:
   release_date:
 image: brainchip.png
 organization:
-- org_name: BrainChip
+  org_name: BrainChip
   org_logo:
   org_website:
   group_name:
@@ -28,6 +28,7 @@ organization:
     wikipedia:
   product_page_link: https://brainchip.com/akida-generations/
 draft: false
+type: neuromorphic-hardware
 ---
 
 ## Overview
