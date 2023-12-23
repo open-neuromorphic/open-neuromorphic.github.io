@@ -1,28 +1,27 @@
 ---
 active_product: false
-description: 'Learn about Universität Heidelberg''s neuromorphic hardware: BrainScaleS
-  2'
+description: 'Learn about Universität Heidelberg''s neuromorphic hardware: BrainScaleS 2'
 type: neuromorphic-hardware
 image: brainscales-2.jpg
 organization:
   group_name: null
-  org_logo: null
+  org_logo: heidelberg.jpg
   org_name: Universität Heidelberg
   org_website: null
-  product_page_link: null
+  product_page_link: https://wiki.ebrains.eu/bin/view/Collabs/neuromorphic/BrainScaleS/
   social_media_links:
-    linkedin: null
-    twitter: null
-    wikipedia: null
+    linkedin: https://www.linkedin.com/company/ebrains-eu/
+    twitter: https://twitter.com/ebrains_eu
+    wikipedia: https://wiki.ebrains.eu/bin/view/Collabs/neuromorphic/BrainScaleS/
 product:
-  announced_date: null
+  announced_date: 2020-03-26
   applications: Edge processing, robotics
   chip_type: Mixed-signal
   neurons: 512
   on_chip_learning: true
   power: ~1 W
-  release_date: null
-  software: BrainScaleS OS
+  release_date: 2022-02-24
+  software: hxtorch
   status:
     announced: true
     released: true

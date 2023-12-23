@@ -5,7 +5,7 @@ type: neuromorphic-hardware
 image: rolls.jpg
 organization:
   group_name: null
-  org_logo: null
+  org_logo: ../dynap-se2-institute-of-neuroinformatics/UZH.jpg
   org_name: INI
   org_website: null
   product_page_link: null
@@ -14,13 +14,13 @@ organization:
     twitter: null
     wikipedia: null
 product:
-  announced_date: null
+  announced_date: 2015-04-01
   applications: Research
   chip_type: Mixed-signal
   neurons: 256
   on_chip_learning: true
   power: ~5 mW
-  release_date: null
+  release_date: 2015-04-01
   software: Custom Python
   status:
     announced: true

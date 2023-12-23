@@ -14,13 +14,13 @@ organization:
     twitter: https://twitter.com/BrainChip_inc
     wikipedia: https://en.wikipedia.org/wiki/BrainChip
 product:
-  announced_date: 29.01.2023
+  announced_date: 2023-01-29
   applications: Smart sensing, one-shot learning
   chip_type: Digital
   neurons: Configurable
   on_chip_learning: true
   power: ~30 mW
-  release_date: 29.01.2023
+  release_date: 2023-01-29
   software: MetaTF
   status:
     announced: true

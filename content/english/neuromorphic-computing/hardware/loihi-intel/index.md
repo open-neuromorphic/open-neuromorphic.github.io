@@ -12,15 +12,15 @@ organization:
   social_media_links:
     linkedin: https://www.linkedin.com/company/intel-corporation/
     twitter: https://twitter.com/intel
-    wikipedia: null
+    wikipedia: https://en.wikipedia.org/wiki/Cognitive_computer#Intel_Loihi_chip
 product:
-  announced_date: 01.12.2018
+  announced_date: 2018-12-01
   applications: Research
   chip_type: Digital
   neurons: 128000
   on_chip_learning: true
   power: <1.5 W
-  release_date: 01.12.2018
+  release_date: 2018-12-01
   software: nxSDK
   status:
     announced: true

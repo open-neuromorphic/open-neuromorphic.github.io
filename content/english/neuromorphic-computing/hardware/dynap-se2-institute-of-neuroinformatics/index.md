@@ -1,7 +1,6 @@
 ---
 active_product: true
-description: 'Learn about Institute of Neuroinformatics''s neuromorphic hardware:
-  DYNAP-SE2'
+description: 'Learn about Institute of Neuroinformatics''s neuromorphic hardware: DYNAP-SE2'
 type: neuromorphic-hardware
 image: dynap-se2.jpg
 organization:
@@ -15,7 +14,7 @@ organization:
     twitter: null
     wikipedia: null
 product:
-  announced_date: 01.08.2023
+  announced_date: 2023-08-01
   applications: Research
   chip_type: Mixed-signal
   neurons: 4000

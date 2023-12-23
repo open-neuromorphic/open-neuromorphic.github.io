@@ -14,13 +14,13 @@ organization:
     twitter: https://twitter.com/SynSenseNeuro
     wikipedia: null
 product:
-  announced_date: 02.09.2019
+  announced_date: 2019-09-02
   applications: Smart sensing
   chip_type: Digital
   neurons: 327000
   on_chip_learning: false
   power: ~5 mW
-  release_date: 02.09.2019
+  release_date: 2019-09-02
   software: Sinabs
   status:
     announced: true

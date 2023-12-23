@@ -14,13 +14,13 @@ organization:
     twitter: null
     wikipedia: https://en.wikipedia.org/wiki/Cognitive_computer#IBM_TrueNorth_chip
 product:
-  announced_date: 2014
+  announced_date: 2014-01-01
   applications: DNN acceleration
   chip_type: Digital
   neurons: 1000000
   on_chip_learning: false
   power: ~0.3 W
-  release_date: 2014
+  release_date: 2014-06-01
   software: Custom
   status:
     announced: true

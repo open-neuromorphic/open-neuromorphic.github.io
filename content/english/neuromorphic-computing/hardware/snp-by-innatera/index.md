@@ -14,13 +14,13 @@ organization:
     twitter: null
     wikipedia: null
 product:
-  announced_date: null
+  announced_date: 2023-01-01
   applications: Smart sensing
   chip_type: Mixed-signal
   neurons: 256
   on_chip_learning: false
   power: ~1 mW
-  release_date: null
+  release_date: 2023-01-01
   software: Talamo
   status:
     announced: true

@@ -15,13 +15,13 @@ organization:
     twitter: null
     wikipedia: https://en.wikipedia.org/wiki/SpiNNaker
 product:
-  announced_date: 27.07.2021
+  announced_date: 2021-07-27
   applications: Real-time simulation of SNN; HPC
   chip_type: Digital
   neurons: 1000000000
   on_chip_learning: true
   power: ~50W
-  release_date: 27.07.2021
+  release_date: 2021-07-27
   software: PyNN, NEST
   status:
     announced: true

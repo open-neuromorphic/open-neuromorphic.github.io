@@ -5,7 +5,7 @@ type: neuromorphic-hardware
 image: neurogrid.jpg
 organization:
   group_name: Brains in Silicon
-  org_logo: null
+  org_logo: stanford.png
   org_name: Stanford
   org_website: https://web.stanford.edu/group/brainsinsilicon/
   product_page_link: null
@@ -14,13 +14,13 @@ organization:
     twitter: null
     wikipedia: https://en.wikipedia.org/wiki/Neurogrid
 product:
-  announced_date: null
+  announced_date: 2014-04-24
   applications: Real-time SNN emulation
   chip_type: Mixed-signal
   neurons: 1000000
   on_chip_learning: false
   power: ~3 W
-  release_date: null
+  release_date: 2014-04-24
   software: NEF
   status:
     announced: true

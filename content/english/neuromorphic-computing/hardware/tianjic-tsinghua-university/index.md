@@ -14,13 +14,13 @@ organization:
     twitter: null
     wikipedia: https://en.wikipedia.org/wiki/Tsinghua_University
 product:
-  announced_date: null
+  announced_date: 2015-08-01
   applications: ANN/SNN acceleration
   chip_type: Digital
   neurons: 40000
   on_chip_learning: false
   power: ~1 W
-  release_date: null
+  release_date: 2015-08-01
   software: Custom
   status:
     announced: true

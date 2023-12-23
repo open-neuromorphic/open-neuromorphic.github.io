@@ -14,13 +14,13 @@ organization:
     twitter: https://twitter.com/intel
     wikipedia: null
 product:
-  announced_date: 01.10.2021
+  announced_date: 2021-10-01
   applications: Research
   chip_type: Digital
   neurons: 1000000
   on_chip_learning: true
   power: ~1 W
-  release_date: 01.10.2021
+  release_date: 2021-10-01
   software: Lava
   status:
     announced: true
