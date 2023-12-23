@@ -172,6 +172,7 @@ for software in software_ml + software_neuroscience:
     index_content = f"""---
 title: "{software_name}"
 description: {software["description"]}
+logo: {slugified_software_name}.png
 website: {software["website"]}
 dependencies: {software["dependencies"]}
 field_of_application: {software["field of application"]}
