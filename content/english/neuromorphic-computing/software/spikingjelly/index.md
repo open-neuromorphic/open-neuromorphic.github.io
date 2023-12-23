@@ -1,7 +1,7 @@
 ---
 title: "SpikingJelly"
 description: Open-source DL framework for SNN based on PyTorch, with documentation in English and Chinese.
-logo: spikingjelly.png
+logo: null
 website: https://spikingjelly.readthedocs.io
 dependencies: PyTorch
 field_of_application: Machine Learning
