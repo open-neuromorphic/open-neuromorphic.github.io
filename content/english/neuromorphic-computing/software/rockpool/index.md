@@ -6,11 +6,14 @@ website: https://rockpool.ai
 dependencies: PyTorch, Jax
 field_of_application: Machine Learning
 source_code: https://gitlab.com/synsense/rockpool
+stars_widget_url: https://img.shields.io/github/stars/synsense/rockpool.svg?style=social
+stars: 37
+version_widget_url: https://img.shields.io/pypi/v/rockpool.svg
 license: AGPL-3.0
 supports_hardware: True
 supports_NIR: True
 language: Python
-version: 2.7
+maintainer: Dylan Muir
 draft: false
 ---
 

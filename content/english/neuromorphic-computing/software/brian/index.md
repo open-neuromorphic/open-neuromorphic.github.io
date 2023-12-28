@@ -1,16 +1,19 @@
 ---
 title: "Brian"
 description: Free, open-source simulator for SNNs, written in Python, focusing on ease of use and flexibility.
-logo: brian.png
+logo: brian.jpg
 website: https://briansimulator.org/
 dependencies: 
 field_of_application: Neuroscience
 source_code: https://github.com/brian-team/brian2
+stars_widget_url: https://img.shields.io/github/stars/brian-team/brian2.svg?style=social
+stars: 835
+version_widget_url: https://img.shields.io/pypi/v/brian2.svg
 license: custom
 supports_hardware: False
 supports_NIR: False
 language: Python
-version: 2.5.4
+maintainer: Romain Brette, Marcel Stimberg, Dan Goodman 
 draft: false
 ---
 

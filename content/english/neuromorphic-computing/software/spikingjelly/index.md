@@ -6,11 +6,14 @@ website: https://spikingjelly.readthedocs.io
 dependencies: PyTorch
 field_of_application: Machine Learning
 source_code: https://github.com/fangwei123456/spikingjelly
+stars_widget_url: https://img.shields.io/github/stars/fangwei123456/spikingjelly.svg?style=social
+stars: 998
+version_widget_url: https://img.shields.io/pypi/v/spikingjelly.svg
 license: unknown
 supports_hardware: False
 supports_NIR: False
 language: Python
-version: 0.0.0.0.14
+maintainer: Wei Fang
 draft: false
 ---
 

@@ -6,11 +6,14 @@ website: https://bindsnet-docs.readthedocs.io/
 dependencies: PyTorch
 field_of_application: Machine Learning
 source_code: https://github.com/bindsnet/bindsnet
+stars_widget_url: https://img.shields.io/github/stars/bindsnet/bindsnet.svg?style=social
+stars: 1375
+version_widget_url: https://img.shields.io/pypi/v/bindsnet.svg
 license: AGPL-3.0
 supports_hardware: False
 supports_NIR: False
 language: Python
-version: 0.3.1
+maintainer: Hananel Hazan 
 draft: false
 ---
 

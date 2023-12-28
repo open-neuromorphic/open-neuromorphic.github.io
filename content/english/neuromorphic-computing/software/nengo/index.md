@@ -6,11 +6,14 @@ website: https://nengo.ai
 dependencies: 
 field_of_application: Machine Learning, Neuroscience
 source_code: https://github.com/nengo/nengo
+stars_widget_url: https://img.shields.io/github/stars/nengo/nengo.svg?style=social
+stars: 781
+version_widget_url: https://img.shields.io/pypi/v/nengo.svg
 license: custom
 supports_hardware: True
 supports_NIR: True
 language: Python
-version: 4.0.0
+maintainer: Trevor Bekolay
 draft: false
 ---
 

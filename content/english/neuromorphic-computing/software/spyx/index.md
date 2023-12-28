@@ -1,16 +1,19 @@
 ---
 title: "Spyx"
 description: Compact SNN package on DeepMind's Haiku library, based on JAX for JIT compilation on GPUs and TPUs.
-logo: null
+logo: spyx.png
 website: https://spyx.readthedocs.io
 dependencies: JAX, Haiku
 field_of_application: Machine Learning
 source_code: https://github.com/kmheckel/spyx
+stars_widget_url: https://img.shields.io/github/stars/kmheckel/spyx.svg?style=social
+stars: 30
+version_widget_url: https://img.shields.io/pypi/v/spyx.svg
 license: MIT
 supports_hardware: False
 supports_NIR: True
 language: Python
-version: 0.1.10
+maintainer: Kade Heckel
 draft: false
 ---
 

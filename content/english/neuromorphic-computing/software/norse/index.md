@@ -6,11 +6,14 @@ website: https://norse.github.io/norse/
 dependencies: PyTorch
 field_of_application: Bio-inspired Neural Networks
 source_code: https://github.com/norse/norse
+stars_widget_url: https://img.shields.io/github/stars/norse/norse.svg?style=social
+stars: 578
+version_widget_url: https://img.shields.io/pypi/v/norse.svg
 license: LGPL-3.0
 supports_hardware: False
 supports_NIR: True
 language: Python
-version: 1.0.0
+maintainer: Jens Egholm Pedersen, Christian Pehle
 draft: false
 ---
 

@@ -6,11 +6,14 @@ website: https://www.nest-simulator.org/
 dependencies: 
 field_of_application: Neuroscience
 source_code: https://github.com/nest/nest-simulator
+stars_widget_url: https://img.shields.io/github/stars/nest/nest-simulator.svg?style=social
+stars: 502
+version_widget_url: https://img.shields.io/github/release/nest/nest-simulator.svg?label=github%20release
 license: GPL-2.0
 supports_hardware: False
 supports_NIR: False
 language: Python
-version: 3.6
+maintainer: Jochen Martin Eppler
 draft: false
 ---
 

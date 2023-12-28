@@ -6,11 +6,14 @@ website: https://sinabs.ai
 dependencies: PyTorch
 field_of_application: Vision Models
 source_code: https://github.com/synsense/sinabs
+stars_widget_url: https://img.shields.io/github/stars/synsense/sinabs.svg?style=social
+stars: 54
+version_widget_url: https://img.shields.io/pypi/v/sinabs.svg
 license: AGPL-3.0
 supports_hardware: True
 supports_NIR: True
 language: Python
-version: 1.2.10
+maintainer: Sadique Sheik
 draft: false
 ---
 
