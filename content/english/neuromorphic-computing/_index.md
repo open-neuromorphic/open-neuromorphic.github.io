@@ -1,10 +1,12 @@
 ---
-title: "Neuromorphic engineering in 10 minutes"
-date: 2023-09-01
-description: "A brief take on neuromorphic computing and the technology involved."
+title: Neuromorphic Computing
+description: Compute
 draft: false
-tags: ["neuromorphic", "computing", "engineering", "overview"]
+image: "images/image.jpeg"
 ---
+
+<a href="hardware">Hardware guide</a>
+<a href="software">Software guide</a>
 
 # Neuromorphic engineering in 10 minutes
 Neuromorphic engineering takes inspiration from biological systems to process information as efficiently as possible. Such systems can be the mammal brain that burns just 20W, a retina that compresses visual information or the navigation system of a bee. We then try to mimic those systems to a certain level of abstraction on another substrate such as silicon. But the von Neumann architecture, which our computers are based on, doesn't work like biological systems! It separates memory from computation and not noisy at all! This brings us to the first important principle of neuromorphic engineering, which is that it relies on new hardware architectures!

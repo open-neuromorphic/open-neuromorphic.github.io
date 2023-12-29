@@ -1,0 +1,44 @@
+{{ define "main" }}
+{{ partial "page-header" . }}
+
+<section class="section pt-14">
+  <div class="container">
+    <div class="row gx-5">
+      <div class="content lg:col-7 mb-10 text-xl">
+        <h2 class="text-2xl/8 font-bold mb-4">Neuromorphic Software: A Comprehensive Guide</h2>
+        <p>Delve into the evolution of neuromorphic hardware, uncovering its rich history, detailed specifications, and the brilliant developers behind groundbreaking projects. Discover key milestones, technical intricacies, and the visionary minds shaping the future of intelligent computing.</p>
+      </div>
+      <div class="lg:col-5">
+        {{ if .Params.image }}
+        {{ partial "image" (dict "Src" "image.jpeg" "Context" .Page "Alt" .Title "Class" "w-full rounded" "Size"
+        "1280x720" "Command" "Crop") }}
+        {{ end }}
+      </div>
+
+      <div class="lg:col-12">
+        <!-- Active Products List -->
+        <h2 class="text-2xl">Open Source Neuromorphic Projects</h2>
+        <div class="bg-purple-100 dark:bg-darkmode-theme-light rounded-lg mb-4">
+          <ul class="p-6">
+            {{ range .RegularPages }}
+            {{ if and (ne .Params.active_product false) }}
+            <li class="pb-4 chip-card">
+              <a href="{{ .Permalink }}">
+                <div class="chip-details">
+                  <h3 class="text-lg">
+                    <span class="chip-icon"><i class="fas fa-microchip"></i></span>
+                    {{ .Params.title }}
+                  </h3>
+                  <p class="pl-6">{{ .Params.summary }}</p>
+                </div>
+              </a>
+            </li>
+            {{ end }}
+            {{ end }}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
