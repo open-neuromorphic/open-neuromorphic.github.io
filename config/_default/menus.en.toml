@@ -7,19 +7,41 @@ url = "/"
 weight = 1
 
 [[main]]
+name = "Resources"
+weight = 2
+
+[[main]]
+parent = "Resources"
+name = "Neuromorphic Computing"
+url = "/neuromorphic-computing/"
+weight = 2
+
+[[main]]
+parent = "Resources"
+name = "Neuromorphic Hardware"
+url = "/neuromorphic-computing/hardware"
+weight = 2
+
+[[main]]
+parent = "Resources"
+name = "Neuromorphic Software"
+url = "/neuromorphic-computing/software"
+weight = 2
+
+[[main]]
 name = "Workshops"
 url = "/workshops/"
-weight = 2
+weight = 3
 
 [[main]]
 name = "Blog"
 url = "/blog/"
-weight = 3
+weight = 4
 
 [[main]]
 name = "About"
 hasChildren = true
-weight = 4
+weight = 5
 
 [[main]]
 parent = "About"
