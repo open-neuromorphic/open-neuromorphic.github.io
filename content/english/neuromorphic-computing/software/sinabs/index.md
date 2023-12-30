@@ -1,5 +1,6 @@
 ---
 title: "Sinabs"
+type: neuromorphic-software
 description: PyTorch-based DL library for SNNs, focusing on simplicity, fast training, extendability, and vision models.
 logo: sinabs.png
 website: https://sinabs.ai

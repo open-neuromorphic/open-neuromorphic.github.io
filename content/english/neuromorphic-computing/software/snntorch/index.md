@@ -1,5 +1,6 @@
 ---
 title: "snnTorch"
+type: neuromorphic-software
 description: Focuses on gradient-based training of SNNs, based on PyTorch for GPU acceleration and gradient computation.
 logo: snntorch.png
 website: https://snntorch.readthedocs.io

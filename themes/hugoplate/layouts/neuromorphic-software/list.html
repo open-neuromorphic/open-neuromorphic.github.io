@@ -17,23 +17,22 @@
 
       <div class="lg:col-12">
         <!-- Active Products List -->
-        <h2 class="text-2xl">Open Source Neuromorphic Projects</h2>
-        <div class="bg-purple-100 dark:bg-darkmode-theme-light rounded-lg mb-4">
+        <h2 class="text-2xl">Open Source Neuromorphic Software</h2>
+        <div class="mb-4">
           <ul class="p-6">
-            {{ range .RegularPages }}
-            {{ if and (ne .Params.active_product false) }}
-            <li class="pb-4 chip-card">
-              <a href="{{ .Permalink }}">
-                <div class="chip-details">
-                  <h3 class="text-lg">
-                    <span class="chip-icon"><i class="fas fa-microchip"></i></span>
-                    {{ .Params.title }}
-                  </h3>
-                  <p class="pl-6">{{ .Params.summary }}</p>
-                </div>
-              </a>
-            </li>
-            {{ end }}
+            {{ $sortedPages := sort .RegularPages "Params.stars" "desc" }}
+            {{ range $sortedPages }}
+              <li class="mb-4 bg-theme-light dark:bg-darkmode-theme-light rounded p-8">
+                <h3 class="text-lg font-semibold mb-2"><a href="{{ .Permalink }}">{{ .Title }}</a> <img class="inline-block" src="{{ .Params.stars_widget_url }}" alt="Stars"></h3>
+                <p>{{ .Params.description }}</p>
+                <ul class="list-disc pl-5">
+                  <li><b>Website:</b> <a href="{{ .Params.website }}" target="_blank">{{ .Params.website }}</a></li>
+                  <li><b>Source Code:</b> <a href="{{ .Params.source_code }}" target="_blank">{{ .Params.source_code }}</a></li>
+                  <li><b>License:</b> {{ .Params.license }}</li>
+                  <li><b>License:</b> {{ .Params.field_of_application }}</li>
+                  <li><b>deps:</b> {{ .Params.dependencies }}</li>
+                </ul>
+              </li>
             {{ end }}
           </ul>
         </div>

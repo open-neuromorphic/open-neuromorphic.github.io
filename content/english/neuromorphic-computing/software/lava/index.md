@@ -1,5 +1,6 @@
 ---
 title: "Lava"
+type: neuromorphic-software
 description: Framework for developing neuro-inspired applications, mapping them to neuromorphic hardware.
 logo: lava.png
 website: https://lava-nc.org/
@@ -7,7 +8,6 @@ dependencies:
 field_of_application: Neuro-inspired Applications
 source_code: https://github.com/lava-nc/lava
 stars_widget_url: https://img.shields.io/github/stars/lava-nc/lava.svg?style=social
-stars: 459
 version_widget_url: https://img.shields.io/pypi/v/lava-nc.svg
 license: custom
 supports_hardware: True
