@@ -1,13 +1,95 @@
 {{ define "main" }}
 {{ partial "page-header" . }}
 
-<section class="section pt-14">
+<section class="section pt-7 pb-2">
   <div class="container">
-    <div class="row gx-5">
-
-          <div class="content">
+    <div class="row justify-center">
+      <article class="lg:col-12">
+        <div class="row">
+          <div class="content lg:col-7 mb-10 text-xl">
             {{ .Content }}
           </div>
+          <div class="lg:col-5 pb-6">
+            {{ if .Params.image }}
+            {{ partial "image" (dict "Src" .Params.image "Context" .Page "Alt" .Title "Class" "w-full rounded" "Size"
+            "1280x720" "Command" "Crop") }}
+            {{ end }}
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section pt-0 mt-0">
+  <div class="container">
+    <div class="row gx-5">
+      <h2 class="pb-4">Topic Overview</h2>
+      {{ range .Params.sections }}
+      <!-- Column {{ .column }} -->
+      <div class="lg:{{ .column }} {{ .align }}">
+        <a href="{{ .url }}">
+          <div
+            class="row mb-4 bg-blue-100 dark:bg-darkmode-theme-light p-4 rounded-lg transition-transform transform hover:scale-105">
+            <div class="dark:bg-black bg-theme-light p-4 rounded-lg">
+              <div class="content-block">
+                <h2 class="col-span-12 text-2xl font-bold">
+                  {{ .title }}
+                </h2>
+                <p class="col-span-12">
+                  {{ .description }}
+                </p>
+              </div>
+            </div>
+            {{ with .subsections }}
+            {{ range . }}
+            <h3 class="col-span-{{ .column }} text-lg font-semibold mt-4">
+              {{ .title }}
+            </h3>
+            <p class="col-span-{{ .column }}">
+              {{ .description }}
+            </p>
+            {{ end }}
+            {{ end }}
+          </div>
+        </a>
+      </div>
+      {{ end }}
+
+    </div>
+  </div>
+</section>
+<section class="section dark:bg-neutral-900 bg-neutral-200">
+  <div class="container">
+    <div class="row gx-5">
+      <div class="lg:col-12">
+        <h2 class="mb-8 text-3xl font-semibold">Frequently Asked Questions (FAQ)</h2>
+      </div>
+      <div class="lg:col-12">
+        <div class="accordion pb-4">
+          {{ if eq .Paginator.PageNumber 1 }}
+          {{ with .File }}
+          {{ $jsonFile := printf "%s.json" (path.Join .Dir .BaseFileName) }}
+          {{ if (fileExists $jsonFile) }}
+          {{ $jsonData := readFile $jsonFile | transform.Unmarshal }}
+          {{ range $index, $faq := $jsonData.mainEntity }}
+          <!-- FAQ Item {{ add $index 1 }} -->
+          <button class="accordion-header" data-accordion>
+            {{ $faq.name }}
+            <svg class="accordion-icon" x="0px" y="0px" viewBox="0 0 512 512" xmlspace="preserve">
+              <path fill="currentColor"
+                    d="M505.755,123.592c-8.341-8.341-21.824-8.341-30.165,0L256.005,343.176L36.421,123.592c-8.341-8.341-21.824-8.341-30.165,0 s-8.341,21.824,0,30.165l234.667,234.667c4.16,4.16,9.621,6.251,15.083,6.251c5.462,0,10.923-2.091,15.083-6.251l234.667-234.667 C514.096,145.416,514.096,131.933,505.755,123.592z"></path>
+            </svg>
+          </button>
+          <div class="accordion-content ml-4">
+            {{ $faq.acceptedAnswer.text | markdownify }}
+          </div>
+          {{ end }}
+          {{ end }}
+          {{ end }}
+          {{ end }}
+        </div>
+      </div>
     </div>
   </div>
 </section>
