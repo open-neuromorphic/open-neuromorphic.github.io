@@ -1,5 +1,6 @@
 ---
 title: "NEST"
+type: neuromorphic-software
 description: Simulator for SNN models focusing on dynamics, size, structure of neural systems, not on individual neuron morphology.
 logo: nest.png
 website: https://www.nest-simulator.org/

@@ -171,6 +171,7 @@ for software in software_ml + software_neuroscience:
     # Create the index.md file with front matter
     index_content = f"""---
 title: "{software_name}"
+type: neuromorphic-software
 description: {software["description"]}
 logo: {slugified_software_name}.png
 website: {software["website"]}
