@@ -23,7 +23,7 @@
             {{ range .RegularPages }}
             {{ if and (ne .Params.active_product false) }}
             <li class="pb-4 chip-card">
-              <a href="{{ .Permalink }}">
+              <a href="{{ .Permalink }}" class="no-underline">
                 <div class="chip-details">
                   <h3 class="text-lg">
                     <span class="chip-icon"><i class="fas fa-microchip"></i></span>
