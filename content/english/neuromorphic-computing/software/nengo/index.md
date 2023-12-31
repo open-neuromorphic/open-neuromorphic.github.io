@@ -1,6 +1,7 @@
 ---
 title: "Nengo"
 type: neuromorphic-software
+category: snn-framework
 description: Python package for building, testing, deploying neural networks, supporting many backends for SNN simulation.
 logo: nengo.jpg
 website: https://nengo.ai

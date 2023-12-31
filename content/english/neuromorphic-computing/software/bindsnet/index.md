@@ -1,6 +1,7 @@
 ---
 title: "BindsNET"
 type: neuromorphic-software
+category: snn-framework
 description: Built on top of PyTorch, used for simulating SNNs, geared towards ML and reinforcement learning.
 logo: bindsnet.jpg
 website: https://bindsnet-docs.readthedocs.io/

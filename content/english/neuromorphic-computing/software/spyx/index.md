@@ -1,6 +1,7 @@
 ---
 title: "Spyx"
 type: neuromorphic-software
+category: snn-framework
 description: Compact SNN package on DeepMind's Haiku library, based on JAX for JIT compilation on GPUs and TPUs.
 logo: spyx.png
 website: https://spyx.readthedocs.io

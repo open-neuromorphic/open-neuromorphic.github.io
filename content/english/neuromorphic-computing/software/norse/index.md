@@ -1,6 +1,7 @@
 ---
 title: "Norse"
 type: neuromorphic-software
+category: snn-framework
 description: Exploits bio-inspired neural components, sparse and event-driven, expands PyTorch with primitives for bio-inspired neural components.
 logo: norse.png
 website: https://norse.github.io/norse/
