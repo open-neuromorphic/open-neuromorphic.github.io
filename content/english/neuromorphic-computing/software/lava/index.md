@@ -9,6 +9,7 @@ dependencies:
 field_of_application: Neuro-inspired Applications
 source_code: https://github.com/lava-nc/lava
 stars_widget_url: https://img.shields.io/github/stars/lava-nc/lava.svg?style=social
+stars: 462
 version_widget_url: https://img.shields.io/pypi/v/lava-nc.svg
 license: custom
 supports_hardware: True
