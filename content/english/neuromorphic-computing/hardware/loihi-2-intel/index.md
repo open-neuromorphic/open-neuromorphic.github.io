@@ -20,6 +20,7 @@ product:
   neurons: 1000000
   on_chip_learning: true
   power: ~1 W
+  release_year: 2021
   release_date: 2021-10-01
   software: Lava
   status:

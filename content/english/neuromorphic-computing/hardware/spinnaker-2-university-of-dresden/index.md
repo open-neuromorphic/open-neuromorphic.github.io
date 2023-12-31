@@ -21,6 +21,7 @@ product:
   neurons: 1000000000
   on_chip_learning: true
   power: ~50W
+  release_year: 2021
   release_date: 2021-07-27
   software: PyNN, NEST
   status:

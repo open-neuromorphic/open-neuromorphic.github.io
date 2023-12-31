@@ -20,6 +20,7 @@ product:
   neurons: Configurable
   on_chip_learning: true
   power: ~30 mW
+  release_year: 2023
   release_date: 2023-01-29
   software: MetaTF
   status:

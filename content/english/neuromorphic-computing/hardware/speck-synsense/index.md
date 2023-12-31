@@ -21,6 +21,7 @@ product:
   on_chip_learning: false
   power: ~5 mW
   release_date: 2019-09-02
+  release_year: 2019
   software: Sinabs
   status:
     announced: true

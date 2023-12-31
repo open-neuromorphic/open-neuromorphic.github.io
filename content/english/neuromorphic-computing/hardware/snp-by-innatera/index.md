@@ -20,6 +20,7 @@ product:
   neurons: 256
   on_chip_learning: false
   power: ~1 mW
+  release_year: 2023
   release_date: 2023-01-01
   software: Talamo
   status:

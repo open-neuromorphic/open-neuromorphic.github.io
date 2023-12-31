@@ -20,6 +20,7 @@ product:
   neurons: 512
   on_chip_learning: true
   power: ~1 W
+  release_year: 2022
   release_date: 2022-02-24
   software: hxtorch
   status:
@@ -33,7 +34,7 @@ summary: The BrainScaleS-2 is an accelerated spiking neuromorphic system-on-chip
   and event routing. It enables fast emulation of complex neural dynamics and exploration
   of synaptic plasticity rules. The architecture supports training of deep spiking
   and non-spiking neural networks using hybrid techniques like surrogate gradients.
-title: BrainScaleS 2 - Universität Heidelberg - Universität Heidelberg
+title: BrainScaleS 2 - Universität Heidelberg
 type: neuromorphic-hardware
 ---
 
