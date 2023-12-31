@@ -39,6 +39,7 @@
   {{/* template "_internal/google_analytics.html" . */}}
 {{/* end */}}
 
+{{ if hugo.IsProduction }}
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WLX91Y92H4"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -47,7 +48,7 @@
 
   gtag('config', 'G-WLX91Y92H4');
 </script>
-
+{{ end }}
 <!-- google tag manager -->
 {{/* partialCached "gtm.html" . */}}
 
