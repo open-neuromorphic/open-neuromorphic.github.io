@@ -1,5 +1,5 @@
 ---
-active_product: false
+active_product: true
 description: 'Learn about Universität Heidelberg''s neuromorphic hardware: BrainScaleS 2'
 type: neuromorphic-hardware
 image: brainscales-2.jpg

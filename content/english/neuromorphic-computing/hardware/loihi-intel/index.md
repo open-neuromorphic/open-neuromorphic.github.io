@@ -17,7 +17,7 @@ product:
   announced_date: 2018-12-01
   applications: Research
   chip_type: Digital
-  neurons: 128000
+  neurons: 128k
   on_chip_learning: true
   power: <1.5 W
   release_date: 2018-12-01
@@ -27,7 +27,7 @@ product:
     announced: true
     released: true
     retired: true
-  synapses: 128000000
+  synapses: 128 million
 product_name: Loihi
 summary: Loihi is Intel's advanced neuromorphic chip, designed to mimic brain-like
   processing, enabling efficient, adaptive machine learning applications.

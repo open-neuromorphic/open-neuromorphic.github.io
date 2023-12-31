@@ -1,5 +1,5 @@
 ---
-active_product: true
+active_product: false
 description: 'Learn about Tsinghua University''s neuromorphic hardware: Tianjic'
 type: neuromorphic-hardware
 image: tianjic.jpg
@@ -17,7 +17,7 @@ product:
   announced_date: 2015-08-01
   applications: ANN/SNN acceleration
   chip_type: Digital
-  neurons: 40000
+  neurons: 40k
   on_chip_learning: false
   power: ~1 W
   release_date: 2015-08-01
@@ -27,7 +27,7 @@ product:
     announced: true
     released: true
     retired: false
-  synapses: 10000000
+  synapses: 10 million
 product_name: Tianjic
 summary: Tianjic supports both spiking and non-spiking models. Its motivation is to
   enable hybrid networks that blend biological plausibility from neuroscience with

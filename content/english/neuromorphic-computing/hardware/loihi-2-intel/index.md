@@ -17,7 +17,7 @@ product:
   announced_date: 2021-10-01
   applications: Research
   chip_type: Digital
-  neurons: 1000000
+  neurons: 1 million
   on_chip_learning: true
   power: ~1 W
   release_year: 2021
