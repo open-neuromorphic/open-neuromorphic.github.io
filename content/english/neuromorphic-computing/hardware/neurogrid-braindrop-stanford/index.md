@@ -21,6 +21,7 @@ product:
   on_chip_learning: false
   power: ~3 W
   release_date: 2014-04-24
+  release_year: 2014
   software: NEF
   status:
     announced: true

@@ -21,6 +21,7 @@ product:
   on_chip_learning: true
   power: ~5 mW
   release_date: 2015-04-01
+  release_year: 2015
   software: Custom Python
   status:
     announced: true
@@ -32,7 +33,7 @@ summary: ROLLS is a reconfigurable neuromorphic chip with 256 silicon neurons an
   128K plastic synapses that implements spike-timing learning rules. It allows emulation
   of neural systems with adaptive behaviors using analog neuron/synapse circuits with
   added digital configuration logic for flexibility.
-title: ROLLS - INI - INI
+title: ROLLS - INI
 type: neuromorphic-hardware
 ---
 

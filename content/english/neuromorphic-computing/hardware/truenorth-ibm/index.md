@@ -21,6 +21,7 @@ product:
   on_chip_learning: false
   power: ~0.3 W
   release_date: 2014-06-01
+  release_year: 2014
   software: Custom
   status:
     announced: true

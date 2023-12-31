@@ -1,12 +1,14 @@
 {{ define "main" }}
 {{ partial "page-header" . }}
 
-<section class="section pt-14">
+<section class="section pt-6">
   <div class="container">
     <div class="row gx-5">
       <div class="content lg:col-7 mb-10 text-xl">
         <h2 class="text-2xl/8 font-bold mb-4">Neuromorphic Hardware: A Comprehensive Guide</h2>
-        <p>Delve into the evolution of neuromorphic hardware, uncovering its rich history, detailed specifications, and the brilliant developers behind groundbreaking projects. Discover key milestones, technical intricacies, and the visionary minds shaping the future of intelligent computing.</p>
+        <p>Delve into the evolution of neuromorphic hardware, uncovering its rich history, detailed specifications, and
+          the brilliant developers behind groundbreaking projects. Discover key milestones, technical intricacies, and
+          the visionary minds shaping the future of intelligent computing.</p>
       </div>
       <div class="lg:col-5">
         {{ if .Params.image }}
@@ -16,34 +18,38 @@
       </div>
 
       <div class="lg:col-12">
-        <!-- Active Products List -->
-        <h2 class="text-2xl">Active Projects</h2>
-        <div class="bg-purple-100 dark:bg-darkmode-theme-light rounded-lg mb-4">
+        <div class="bg-purple-100 dark:bg-darkmode-theme-light rounded-lg mb-4 mt-6">
+                  <h2 class="text-2xl pt-6 mx-6">Active Projects</h2>
           <ul class="p-6">
-            {{ range .RegularPages }}
-            {{ if and (ne .Params.active_product false) }}
-            <li class="pb-4 chip-card">
-              <a href="{{ .Permalink }}">
-                <div class="chip-details">
-                  <h3 class="text-lg">
-                    <span class="chip-icon"><i class="fas fa-microchip"></i></span>
-                    {{ .Params.title }}
-                  </h3>
-                  <p class="pl-6">{{ .Params.summary }}</p>
+    {{ $prev_year := 0}}
+    {{ range sort (where .Site.RegularPages "Params.active_product" true) "Params.product.release_year" "desc" }}
+        <li class="pb-4 chip-card">
+            {{ if ne .Params.product.release_year $prev_year }}
+                {{ $prev_year = .Params.product.release_year }}
+                <div class="font-extrabold pb-2">{{ $prev_year }}</div>
+            {{ end }}
+            <a href="{{ .Permalink }}" class="no-underline">
+                <div class="chip-details pl-4">
+                    <h3 class="text-lg">
+                        <span class="chip-icon"><i class="fas fa-microchip pr-2"></i></span>
+                        {{ .Params.title }}
+                    </h3>
+                    <p class="pl-8">{{ .Params.summary }}</p>
                 </div>
-              </a>
-            </li>
-            {{ end }}
-            {{ end }}
-          </ul>
+            </a>
+        </li>
+    {{ end }}
+</ul>
+
         </div>
       </div>
-            <!-- Column for Chips -->
+      <!-- Column for Chips -->
       <div class="lg:col-5">
         <div class="row">
           <div class="pb-4">
-            {{ partial "image" (dict "Src" "image.jpeg" "Context" .Page "Alt" .Title "Class" "bg-white rounded" "Size" "600x"
-          "Command" "Scale") }}
+            {{ partial "image" (dict "Src" "image.jpeg" "Context" .Page "Alt" .Title "Class" "bg-white rounded" "Size"
+            "600x"
+            "Command" "Scale") }}
             <h3 class="text-xl pb-4">Current Landscape and Future Prospects (2020s and Beyond)</h3>
             <p>In the current era, neuromorphic hardware continues to evolve rapidly. Various research projects and
               commercial ventures focus on enhancing the efficiency, scalability, and applicability of neuromorphic
@@ -75,8 +81,9 @@
           </div>
 
           <div>
-            {{ partial "image" (dict "Src" "past.jpeg" "Context" .Page "Alt" .Title "Class" "bg-white rounded" "Size" "600x"
-          "Command" "Scale") }}
+            {{ partial "image" (dict "Src" "past.jpeg" "Context" .Page "Alt" .Title "Class" "bg-white rounded" "Size"
+            "600x"
+            "Command" "Scale") }}
             <h3 class="text-xl pb-4">Early Concepts (1940s-1980s)</h3>
             <p>The roots of neuromorphic hardware can be traced back to early computational neuroscience efforts in the
               1940s.
@@ -89,14 +96,14 @@
       </div>
 
       <div class="lg:col-7">
-        <h2 class="text-2xl">Neuromorphic Legacy</h2>
         <!-- Inactive Products List -->
         <div class="bg-purple-100 dark:bg-darkmode-theme-light rounded-lg mb-4">
+          <h2 class="text-2xl pt-6 mx-6">Discontinued & Unsupported</h2>
           <ul class="p-6">
             {{ range .RegularPages }}
             {{ if and (eq .Params.active_product false) }}
             <li class="pb-4 chip-card">
-              <a href="{{ .Permalink }}">
+              <a href="{{ .Permalink }}" class="no-underline">
                 <div class="chip-details">
                   <h3 class="text-lg">
                     <span class="chip-icon"><i class="fas fa-microchip"></i></span>

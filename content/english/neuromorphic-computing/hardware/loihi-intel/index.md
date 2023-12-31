@@ -21,6 +21,7 @@ product:
   on_chip_learning: true
   power: <1.5 W
   release_date: 2018-12-01
+  release_year: 2018
   software: nxSDK
   status:
     announced: true

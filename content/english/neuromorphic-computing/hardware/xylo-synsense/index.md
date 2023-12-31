@@ -20,7 +20,8 @@ product:
   neurons: 327000
   on_chip_learning: false
   power: ~5 mW
-  release_date: 2022
+  release_year: 2022
+  release_date: 2022-01-01
   software: Rockpool
   status:
     announced: true
