@@ -1,12 +1,12 @@
 {{ define "main" }}
 {{ partial "page-header" . }}
 
-<section class="section pt-7 pb-2">
+<section class="section pt-6 pb-0">
   <div class="container">
     <div class="row justify-center">
       <article class="lg:col-12">
         <div class="row">
-          <div class="content lg:col-7 mb-10 text-xl">
+          <div class="content lg:col-7 text-xl pb-6">
             {{ .Content }}
           </div>
           <div class="lg:col-5 pb-6">
@@ -25,7 +25,6 @@
   <div class="container">
     <div class="row gx-5">
       {{ range .Params.sections }}
-      <!-- Column {{ .column }} -->
       <div class="lg:{{ .column }} {{ .align }}">
         <a href="{{ .url }}">
           <div
@@ -53,6 +52,7 @@
           </div>
         </a>
       </div>
+
       {{ end }}
 
     </div>

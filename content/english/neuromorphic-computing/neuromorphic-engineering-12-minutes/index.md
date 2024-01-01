@@ -3,61 +3,9 @@ title: "Neuromorphic Engineering"
 description: "Explore the field of neuromorphic engineering, including its history, applications, and future directions. Learn about the latest research and development in neuromorphic hardware and software."
 ---
 
-
-# neuromorphic harware guide
-<a href="hardware">Hardware guide</a>
-
-# neuromorphic software guide
-<a href="software">Software guide</a>
-
 # Neuromorphic engineering in 10 minutes
 Neuromorphic engineering takes inspiration from biological systems to process information as efficiently as possible. Such systems can be the mammal brain that burns just 20W, a retina that compresses visual information or the navigation system of a bee. We then try to mimic those systems to a certain level of abstraction on another substrate such as silicon. But the von Neumann architecture, which our computers are based on, doesn't work like biological systems! It separates memory from computation and not noisy at all! This brings us to the first important principle of neuromorphic engineering, which is that it relies on new hardware architectures!
 
-## Analog vs digital hardware
-Carver Mead pioneered the idea of using analog hardware to closely mimic the parallel processing and continuous signaling of biological neural networks. An example of this is a single transistor that is operated in the sub-threshold domain to imitate a synapse. Analog neuromorphic circuits hold promise for fast, energy-efficient computing, but face challenges with noise, limited precision, and calibration difficulties that can undermine accuracy.
-In contrast, digital neuromorphic systems employ robust, discrete on/off signaling and reliable binary logic gates. They readily scale to larger networks with precise, noise-resistant computation and build on the decades of advancements humanity has made when building digital chips. The deterministic nature of digital hardware also simplifies algorithm exploration and adaptation. However, digital systems tend to be less power-efficient and may have difficulty efficiently simulating certain neural behaviors.
-
-## In-memory computing
-The von Neumann architecture separates computation from memory, which makes it necessary to constantly move data back and forth. This is called the von Neumann bottleneck and is responsible for around 40% of the overall power budget!
-In a brain, the computation and data is co-located. 
-Information is encoded and processed via ion concentrations, membrane potentials, spike rates, synaptic connections and other mechanisms within neurons. 
-Neuromorphic engineering seeks to replicate this in-memory computing so data isn't continuously moved. In digital hardware, cache-level computation and processing-in-memory help mitigate the bottleneck. In analog technology, in-memory computing can be achieved with a new eletrical component called the memristor - resistive devices that retain a memory of their past states. 
-Tiny memristors can be arranged in crossbar arrays, with each node acting as a connection in a neural network. Rather than shuttling discrete numbers between distant logic gates, crossbars use currents and voltages flowing directly through the memristors to efficiently, if somewhat erringly, perform vector-matrix multiplications. The analog approach thus captures key neural design principles while minimizing data transfer. 
-
-## New materials
-Apart from memristors, there's a wide range of new materials that are being incorporated into brain-inspired computing hardware. 
-Phase change materials can switch between crystalline and amorphous states in response to electrical pulses. This switching mimics the firing of biological neurons. 
-Ferroelectric materials have switchable spontaneous electric polarization states that can represent synaptic weights. 
-Organic polymers that conduct ions can be used to mimic neurotransmitter release in synapses. Silicon nanowires and carbon nanotubes act as transistors and synaptic connections in neuromorphic hardware. Their size approaches the scale of biological neurons. Graphene's electrical properties, flexibility, and strength are desirable for neuromorphic circuit elements like transistors and electrodes. 
-
-## Asynchronous computation
-Computer chips are driven by clocks that time the exact executations of computations, which makes it possible to achieve really high throughput for offline and batched computations. The brain does not have such a central clock, instead, every neuron reacts in its own time to the arrival of input. Neuromorphic hardware can implement asynchronous functionality, where neuron cores are only powered up at the presence of input! 
-Neuromorphic sensors like change-detecting cameras and microphones provide the sparse, event-driven data streams needed. For example, when recording a static scene, a neuromorphic camera outputs next to no data, allowing the downstream processing chip to operate energy-efficiently.
-The asynchronous information flow is great for sporadic, transient events, but at some data input rate, the overhead of handshaking every event is higher than simple clocked computation. Asynchronous vs synchronous therefore depends to a large extent on the data rate. 
-
-## Spike-based computation
-Most neuromorphic chips implement spiking neural networks, inspired by the brain's energy-efficient use of discrete spikes for information transmission. This includes chips like IBM's TrueNorth, Intel's Loihi, Stanford's Neurogrid, SpiNNaker, BrainScales, and SynSense Speck. As in biology, computation happens locally in each neuron, integrating inputs from thousands of synaptic connections.
-However, there is debate over the appropriate level of biological detail to model. Options range from incorporating dendritic processing, multicompartment neuron models, diverse ion channels, etc. to more simplified, pragmatic designs. Early neuromorphic systems emphasized biological realism, but lately the field has trended toward simpler neuron models and capabilities like non-binary spikes. This allows greater focus on computational performance versus exhaustive biological mimicry.
-Current spiking neural networks rely heavily on neural architectures developed for deep learning, like convolutional neural networks for vision and recurrence for sequence processing. While the brain uses recurrent connectivity extensively, most deep learning models employ feedforward architectures. Finding spiking neural network architectures tailored to neuromorphic hardware, while drawing inspiration from computational neuroscience, remains a challenge. 
-
-## Training methods
-Not only the neuron models themselves are bio-inspired, but also the way they learn. Inspired from neuroscience, early spiking neural networks were trained using Hebbian learning rules, where the strength of the connection between two neurons is reinforced if there is some form of local causality. This works for very shallow networks, but is hard to steer/control because it lacks a global error signal. The advent of deep learning has made it possible to train SNNs end-to-end in a supervised fashion using backpropagation. Here we can use all the modern deep learning tools available and build on top of them. This has resulted in the most powerful SNNs to date. SNNs can be seen as a special case of RNNs with binary activations, internal states depending on the neuron model and long sequence lengths. That makes them very difficult to train, because we need to balance the trade-off between keeping activation in the network low, but also passing on enough information from layer to layer! If done right, the sparse network activation is the reason why neuromorphic systems can be so energy-efficient. 
-As a single spike in a rate coding regime carries very low information value, multiple of them need to be integrated over time to make meaning of it. 
-
-<!-- Feeding sequential inputs makes SNNs a subclass of RNNs, which have largely been abandonded since the rise of transformers. It remains to be seen if it will be possible to scale SNNs to similar sizes as ANNs.
-Training SNNs is currently difficult and slow because the networks are stateful / rely on time and their activation is extremely sparse. During inference time, this is where we get some power benefits from, but during training time, we also get less of a teaching signal.  -->
-
-## Use cases
-Neuromorphic computing can be selectively integrated with conventional computing methods. For instance, event camera data could feed into standard computer vision models for optimal accuracy, or traditional images could run on neuromorphic hardware while skipping zero values. However, the greatest energy efficiency emerges from unifying the full neuromorphic pipeline - sensors, algorithms, and hardware.
-When considering energy-constrained use cases, numerous edge computing applications come to mind:
-
-* Robotics: navigation, control, planning
-* Sensory integration: vision, audio, touch and olfactory neuromorphic sensors
-* Optimization: resource management and scheduling
-* Biomedical signals such as ECG, EMG, EEG: ultra-low-power monitoring 
-* Brain-machine interfaces: Pre-process brain signals using the spikes directly
-* Anything that needs high frame rate cameras: event cameras do it faster at lower power
-* Any on-board processing on battery-powered systems in remote locations: deep sea, space, deserts
 
 
 ## Summary

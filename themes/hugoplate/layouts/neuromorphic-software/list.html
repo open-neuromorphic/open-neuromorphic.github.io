@@ -1,41 +1,24 @@
 {{ define "main" }}
 {{ partial "page-header" . }}
 
-<section class="section pt-14">
+<section class="section pt-6">
   <div class="container">
     <div class="row gx-5">
-      <div class="content lg:col-7 mb-10 text-xl">
-        <h2 class="text-2xl/8 font-bold mb-4">Neuromorphic Software: A Comprehensive Guide</h2>
-        <p>Delve into the evolution of neuromorphic hardware, uncovering its rich history, detailed specifications, and the brilliant developers behind groundbreaking projects. Discover key milestones, technical intricacies, and the visionary minds shaping the future of intelligent computing.</p>
+      <div class="content lg:col-7 pb-6 mb-10 text-xl">
+        <h2 class="text-2xl/8 font-bold mb-4">{{ .Params.section_title }}</h2>
+        <p>{{ .Params.section_description }}</p>
       </div>
-      <div class="lg:col-5">
+      <div class="lg:col-5 pb-6">
         {{ if .Params.image }}
         {{ partial "image" (dict "Src" "image.jpeg" "Context" .Page "Alt" .Title "Class" "w-full rounded" "Size"
         "1280x720" "Command" "Crop") }}
         {{ end }}
       </div>
-
-      <div class="lg:col-12">
-        <!-- Active Products List -->
-        <h2 class="text-2xl">Open Source Neuromorphic Software</h2>
-        <div class="mb-4">
-          <ul class="p-6">
-            {{ $sortedPages := sort .RegularPages "Params.stars" "desc" }}
-            {{ range $sortedPages }}
-              <li class="mb-4 bg-theme-light dark:bg-darkmode-theme-light rounded p-8">
-                <h3 class="text-lg font-semibold mb-2"><a href="{{ .Permalink }}">{{ .Title }}</a> <img class="inline-block" src="{{ .Params.stars_widget_url }}" alt="Stars">  <img class="inline-block" src="{{ .Params.version_widget_url }}" alt="Version"></h3>
-                <p>{{ .Params.description }}</p>
-                <ul class="list-disc pl-5">
-                  <li><b>Website:</b> <a href="{{ .Params.website }}" target="_blank">{{ .Params.website }}</a></li>
-                  <li><b>Source Code:</b> <a href="{{ .Params.source_code }}" target="_blank">{{ .Params.source_code }}</a></li>
-                  <li><b>License:</b> {{ .Params.license }}</li>
-                  <li><b>Field of application:</b> {{ .Params.field_of_application }}</li>
-                  <li><b>Dependencies:</b> {{ .Params.dependencies }}</li>
-                </ul>
-              </li>
-            {{ end }}
-          </ul>
-        </div>
+      <div class="lg:col-8">
+        {{ partial "components/software-list" . }}
+      </div>
+      <div class="lg:col-4 pl-0">
+        {{ partial "components/software-categories" . }}
       </div>
     </div>
   </div>

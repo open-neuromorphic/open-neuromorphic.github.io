@@ -9,23 +9,20 @@
     </div>
   </div>
 </section>
-<section class="section pt-4">
+<section class="section pt-6">
   <div class="container">
     <div class="row">
       <div>
-      <div class="bg-theme-light dark:bg-darkmode-theme-light rounded mb-4 p-6">
-        {{ partial "hardware/product-info" .Page }}
-      </div>
+        <div class="bg-theme-light dark:bg-darkmode-theme-light rounded p-6">
+          {{ partial "hardware/product-info" .Page }}
+        </div>
       </div>
       <article class="{{ if gt (len .TableOfContents) 80 }}lg:col-8{{ else }}lg:col-10{{ end }}">
         <div class="content mb-10">
-                <p class="mb-3">{{ .Params.summary }}</p>
-
-
+          <p class="mb-6 text-xl">{{ .Params.summary }}</p>
           <div class="bg-theme-light dark:bg-darkmode-theme-light rounded p-6">
-
-          {{ partial "hardware/company-info" .Page }}
-            </div>
+            {{ partial "hardware/company-info" .Page }}
+          </div>
           {{ .Content }}
         </div>
         <div class="row items-start justify-between">
@@ -43,7 +40,7 @@
       </article>
       {{ if gt (len .TableOfContents) 80 }}
       <!-- Use responsive class to hide on medium and smaller screens -->
-      <div class="toc lg:col-4 md:hidden lg:block">
+      <div class="pt-6 toc lg:col-4 md:hidden lg:block">
         <div class="pb-4 text-center">~ Share this Site ~
           {{ partial "override-social-share" (dict "Context" . "Class" "share-icons" "Whatsapp" true "Telegram" false)
           }}

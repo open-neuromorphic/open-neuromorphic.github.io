@@ -9,7 +9,7 @@
     </div>
   </div>
 </section>
-<section class="section pt-4">
+<section class="section pt-6">
   <div class="container">
     <div class="row">
       <article class="{{ if gt (len .TableOfContents) 80 }}lg:col-8{{ else }}lg:col-10{{ end }}">
@@ -37,7 +37,7 @@
         </div>
         {{ end }}
       </article>
-      <div class="{{ if gt (len .TableOfContents) 80 }}lg:col-4{{ else }}lg:col-10{{ end }}">
+      <div class="{{ if gt (len .TableOfContents) 80 }}lg:col-4{{ else }}lg:col-10{{ end }} pl-3">
         <div class="p-6 mb-4 bg-theme-light dark:bg-darkmode-theme-light  rounded">
           <h2 class="text-lg">At a Glance</h2>
           <ul>
@@ -57,7 +57,6 @@
       </div>
     </div>
 
-    <!-- Related posts -->
     {{ $related := (where site.RegularPages "Section" "blog") | intersect (where
     site.RegularPages ".Title" "!=" .Title) | union (site.RegularPages.Related . ) }}
     {{ $related = $related | shuffle | first 3 }}
