@@ -26,7 +26,7 @@ sections:
       - title: "supporting point"
         description: "supporting detail"
   - title: "Analog vs Digital Hardware"
-    url: "analog-vs-digital/"
+    url: "analog-vs-digital-hardware/"
     description: "description"
     column: "col-6"
     subsections:

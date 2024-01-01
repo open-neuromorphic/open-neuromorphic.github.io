@@ -1,0 +1,25 @@
+<!-- Active Products List -->
+<div class="mb-4">
+  <ul>
+    {{ $sortedPages := sort .Site.RegularPages "Params.stars" "desc" }}
+    {{ $neuromorphicPages := where $sortedPages "Params.type" "neuromorphic-software" }}
+
+    {{ range $neuromorphicPages }}
+    <li class="mb-4 bg-theme-light dark:bg-darkmode-theme-light rounded p-8">
+      <h3 class="text-lg font-semibold mb-2"><a href="{{ .Permalink }}">{{ .Title }}</a> <img
+        class="inline-block" src="{{ .Params.stars_widget_url }}" alt="Stars"> <img class="inline-block"
+                                                                                    src="{{ .Params.version_widget_url }}"
+                                                                                    alt="Version"></h3>
+      <p>{{ .Params.description }}</p>
+      <ul class="list-disc pl-5">
+        <li><b>Website:</b> <a href="{{ .Params.website }}" target="_blank">{{ .Params.website }}</a></li>
+        <li><b>Source Code:</b> <a href="{{ .Params.source_code }}" target="_blank">{{ .Params.source_code
+          }}</a></li>
+        <li><b>License:</b> {{ .Params.license }}</li>
+        <li><b>Field of application:</b> {{ .Params.field_of_application }}</li>
+        <li><b>Dependencies:</b> {{ .Params.dependencies }}</li>
+      </ul>
+    </li>
+    {{ end }}
+  </ul>
+</div>

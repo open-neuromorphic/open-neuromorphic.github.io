@@ -9,7 +9,7 @@
       {{ with .status }}
         <div>
           <strong>Status:</strong>
-          {{ if and .announced .released .retired }} End Of Life{{ else if .announced }} Announced{{ else if .released }} Released{{ else if .retired }} End Of Life{{ end }}
+          {{ if .retired }} End Of Life{{ else if .released }} Released{{ else if .announced }} Announced{{ end }}
         </div>
       {{ end }}
       {{ if .chip_type }}<div><strong>Chip Type:</strong> {{ .chip_type }}</div>{{ end }}
