@@ -5,21 +5,43 @@
     {{ $neuromorphicPages := where $sortedPages "Params.type" "neuromorphic-software" }}
 
     {{ range $neuromorphicPages }}
-    <li class="mb-4 bg-theme-light dark:bg-darkmode-theme-light rounded p-8">
-      <h3 class="text-lg font-semibold mb-2"><a href="{{ .Permalink }}">{{ .Title }}</a> <img
-        class="inline-block" src="{{ .Params.stars_widget_url }}" alt="Stars"> <img class="inline-block"
-                                                                                    src="{{ .Params.version_widget_url }}"
-                                                                                    alt="Version"></h3>
-      <p>{{ .Params.description }}</p>
-      <ul class="list-disc pl-5">
-        <li><b>Website:</b> <a href="{{ .Params.website }}" target="_blank">{{ .Params.website }}</a></li>
-        <li><b>Source Code:</b> <a href="{{ .Params.source_code }}" target="_blank">{{ .Params.source_code
-          }}</a></li>
-        <li><b>License:</b> {{ .Params.license }}</li>
-        <li><b>Field of application:</b> {{ .Params.field_of_application }}</li>
-        <li><b>Dependencies:</b> {{ .Params.dependencies }}</li>
-      </ul>
-    </li>
+<li class="mb-4 bg-theme-light dark:bg-darkmode-theme-light rounded p-8">
+  <div class="flex items-center justify-between">
+    <h3 class="text-lg font-semibold mb-2">
+      <a href="{{ .Permalink }}">{{ .Title }}</a>
+    </h3>
+    <div class="flex items-center">
+
+  <img class="inline" style="height: 30px;" src="{{ .Params.version_widget_url }}" alt="Version">
+  <img class="inline pl-2" style="height: 30px;" src="{{ .Params.stars_widget_url }}" alt="Stars">
+</div>
+
+  </div>
+
+  <p class="my-4">{{ .Params.description }}</p>
+  <ul class="list-none pl-5">
+    <li><b>Website:</b> <a href="{{ .Params.website }}" target="_blank">{{ .Params.website }}</a></li>
+    <li><b>Source Code:</b> <a href="{{ .Params.source_code }}" target="_blank">{{ .Params.source_code }}</a></li>
+    <li><b>License:</b> {{ .Params.license }}</li>
+  </ul>
+  <div class="mt-3 flex justify-between">
+  <div class="flex">
+    {{ if .Params.supports_NIR }}
+      <span class="bg-blue-100 text-blue-800 text-normal font-medium me-2 px-2 py-0.5 mt-3 rounded dark:bg-gray-700 dark:text-blue-200 border border-blue-400">NIR Support</span>
+    {{ end }}
+    {{ if .Params.supports_hardware }}
+      <span class="bg-blue-100 text-blue-800 text-normal font-medium me-2 px-2 py-0.5 mt-3 rounded dark:bg-gray-700 dark:text-blue-200 border border-blue-400">Hardware Support</span>
+    {{ end }}
+  </div>
+  <div class="flex items-center">
+    <a href="{{ .Permalink }}" class="btn-outline-primary btn">View Details</a>
+  </div>
+</div>
+
+
+</li>
+
+
     {{ end }}
   </ul>
 </div>
