@@ -1,7 +1,6 @@
 ---
 title: "Tonic"
 type: neuromorphic-software
-category: data-tools
 description: Tonic is a Python package for managing and transforming neuromorphic datasets.
 logo: tonic-logo-black-bg.png
 website: https://tonic.readthedocs.io/

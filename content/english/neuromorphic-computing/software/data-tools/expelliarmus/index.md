@@ -1,7 +1,6 @@
 ---
 title: "Expelliarmus"
 type: neuromorphic-software
-category: data-tools
 description: Expelliarmus decodes event camera data into NumPy arrays, supporting various formats and offering ease of use for researchers and developers.​
 logo: expelliarmus.png
 website: https://expelliarmus.readthedocs.io/

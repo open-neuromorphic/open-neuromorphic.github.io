@@ -1,7 +1,6 @@
 ---
 title: "Rockpool"
 type: neuromorphic-software
-category: snn-framework
 description: Machine learning library for SNN applications, supports GPU, TPU, CPU acceleration, and neuromorphic compute hardware deployment.
 logo: rockpool.png
 website: https://rockpool.ai
