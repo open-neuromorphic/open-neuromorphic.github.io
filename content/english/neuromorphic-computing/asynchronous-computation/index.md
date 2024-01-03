@@ -1,6 +1,6 @@
 ---
-title: "Neuromorphic Engineering"
-description: "Explore the field of neuromorphic engineering, including its history, applications, and future directions. Learn about the latest research and development in neuromorphic hardware and software."
+title: "Asynchronous Computation - Neuromorphic Engineering"
+description: "Asynchronous computation is a key feature of neuromorphic computing. Learn more about asynchronous computation and how it is used in neuromorphic computing."
 ---
 
 

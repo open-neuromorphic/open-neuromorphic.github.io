@@ -1,6 +1,6 @@
 ---
-title: "Neuromorphic Engineering"
-description: "Explore the field of neuromorphic engineering, including its history, applications, and future directions. Learn about the latest research and development in neuromorphic hardware and software."
+title: "Spike-based Computation - Neuromorphic Engineering"
+description: "spike-based computation for neuromorphic engineering"
 ---
 
 
