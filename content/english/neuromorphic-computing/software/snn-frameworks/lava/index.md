@@ -1,7 +1,6 @@
 ---
 title: "Lava"
 type: neuromorphic-software
-category: snn-framework
 description: Framework for developing neuro-inspired applications, mapping them to neuromorphic hardware.
 logo: lava.png
 website: https://lava-nc.org/

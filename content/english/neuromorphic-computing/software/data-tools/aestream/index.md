@@ -1,7 +1,6 @@
 ---
 title: "AEStream"
 type: neuromorphic-software
-category: data-tools
 description: AEStream is a tool for transmitting event data efficiently, supporting diverse inputs/outputs and integrating with Python and C++ libraries.
 logo: aestream.png
 website: https://aestream.github.io/aestream

@@ -1,7 +1,6 @@
 ---
 title: "AEDAT"
 type: neuromorphic-software
-category: data-tools
 description: A Python package to decode AEDAT 4 files from event cameras with a Rust implementation for speed.
 logo: null
 website: https://pypi.org/project/aedat/

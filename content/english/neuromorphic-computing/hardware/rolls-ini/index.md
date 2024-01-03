@@ -28,7 +28,7 @@ product:
     released: true
     retired: true
   synapses: 64000
-product_name: ROLLS - INI
+product_name: ROLLS
 summary: ROLLS is a reconfigurable neuromorphic chip with 256 silicon neurons and
   128K plastic synapses that implements spike-timing learning rules. It allows emulation
   of neural systems with adaptive behaviors using analog neuron/synapse circuits with

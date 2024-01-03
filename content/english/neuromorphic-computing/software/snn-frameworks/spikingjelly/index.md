@@ -1,7 +1,6 @@
 ---
 title: "SpikingJelly"
 type: neuromorphic-software
-category: snn-framework
 description: Open-source DL framework for SNN based on PyTorch, with documentation in English and Chinese.
 logo: null
 website: https://spikingjelly.readthedocs.io
