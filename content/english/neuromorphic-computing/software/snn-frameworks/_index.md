@@ -1,5 +1,5 @@
 ---
-title: "SNN Frameworks"
+title: "Spiking Neural Network (SNN) Frameworks"
 type: "neuromorphic-software"
 image: "image.jpeg"
 section_title: SNN Frameworks

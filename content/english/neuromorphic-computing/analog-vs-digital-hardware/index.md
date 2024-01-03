@@ -1,6 +1,6 @@
 ---
-title: "Neuromorphic Engineering"
-description: "Explore the field of neuromorphic engineering, including its history, applications, and future directions. Learn about the latest research and development in neuromorphic hardware and software."
+title: "Analog vs Digital Hardware - Neuromorphic Engineering"
+description: "about analog vs digital hardware"
 ---
 
 ## Analog vs digital hardware
