@@ -1,6 +1,6 @@
 {{ with .Params.organization }}
   <h2 class="text-xl p-0 m-0 font-bold  col-span-2">Developed By:</h2>
-  <div class="company-info flex">
+  <div class="company-info md:flex">
     {{ if .org_logo }}
       <div class="mr-6">
         {{ partial "override-image" (dict "Src" .org_logo "Context" $.Page "Alt" .Title "Class" "bg-white p-2 mb-6 rounded" "Size" "250x") }}

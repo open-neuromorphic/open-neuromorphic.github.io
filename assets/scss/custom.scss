@@ -8,7 +8,7 @@ div.chart {
   overflow-x: auto;
 
   svg {
-      display: inherit;
+    display: inherit;
   }
 }
 
@@ -38,9 +38,11 @@ section.section-sm.hero {
   top: 7rem;
   align-self: start;
 }
+
 h1.homepage {
   font-size: 1.7em;
 }
+
 #tableOfContentContainer {
   max-height: 65vh; /* Adjust the percentage as needed */
   overflow-y: auto;
@@ -66,9 +68,11 @@ nav#TableOfContents {
     font-size: 2rem;
   }
 }
+
 .content img {
- margin-bottom: 0;
+  margin-bottom: 0;
 }
+
 .nav-dropdown-list {
   min-width: 300px;
   border-radius: 10px;
@@ -79,19 +83,23 @@ code {
   overflow-x: auto;
   white-space: pre-wrap;
 }
+
 .code span {
   color: #000;
 }
+
 .gslider img {
   background: #fbfbfb;
   padding: 20px;
 }
+
 .gdesc-inner {
   background: #474747;
   text-align: center;
   font-size: 1.2em;
   font-weight: 400;
 }
+
 .content :is(:where(pre):not(:where([class~="not-prose"], [class~="not-prose"] *))) {
   border-radius: 0.5rem;
   --tw-bg-opacity: 1;
@@ -235,16 +243,17 @@ header .btn-outline-primary {
     color: #FFF;
   }
 
-.content :is(:where(a):not(:where([class~="not-prose"], [class~="not-prose"] *))),
-section a {
-  color: #bcfbff !important;
-  text-decoration-color: #288b8c;
-}
+  .content :is(:where(a):not(:where([class~="not-prose"], [class~="btn"], [class~="not-prose"] *))),
+  section a {
+    color: #bcfbff !important;
+    text-decoration-color: #288b8c;
+  }
 
-.content :is(:where(a):not(:where([class~="not-prose"], [class~="not-prose"] *)):hover),
-section a:hover {
-  text-decoration-color: #bcfbff; /* Change text-decoration-color on hover */
-}
+  .content :is(:where(a):not(:where([class~="not-prose"], [class~="not-prose"] *)):hover),
+  section a:hover {
+    text-decoration-color: #bcfbff !important; /* Change text-decoration-color on hover */
+  }
+
 
   h1 a, h2 a, h3 a, h4 a, h5 a {
     color: #ffffff !important;
@@ -256,6 +265,7 @@ section a:hover {
       font-weight: 600 !important;
     }
   }
+
   :is(.dark .btn-primary) {
     --tw-border-opacity: 1;
     border-color: #bcfbff;
