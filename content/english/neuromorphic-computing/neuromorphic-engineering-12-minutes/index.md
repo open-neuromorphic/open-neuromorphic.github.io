@@ -1,5 +1,5 @@
 ---
-title: "Neuromorphic engineering in 10 minutes"
+title: "Neuromorphic engineering in 12 minutes"
 description: "Neuromorphic engineering is a branch of engineering that takes inspiration from biology to build efficient computing systems. This article gives a brief overview of the field and its history."
 ---
 
