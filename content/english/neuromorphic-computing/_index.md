@@ -1,6 +1,6 @@
 ---
 title: Neuromorphic Computing
-description: Unlock the future of Neuromorphic Computing. Dive into guides on hardware, software, and more. Explore the convergence of biology-inspired principles and cutting-edge technology.
+description: Dive into neuromorphic hardware and software guides, and more. Explore the convergence of biology-inspired principles and cutting-edge technology.
 draft: false
 image: "image.jpeg"
 sections:
