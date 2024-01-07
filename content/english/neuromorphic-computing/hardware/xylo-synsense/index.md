@@ -17,7 +17,9 @@ product:
   announced_date: 2022
   applications: Smart sensing
   chip_type: Digital
-  neurons: 327000
+  neurons: null
+  weight_bits: null
+  activation_bits: null
   on_chip_learning: false
   power: ~5 mW
   release_year: 2022

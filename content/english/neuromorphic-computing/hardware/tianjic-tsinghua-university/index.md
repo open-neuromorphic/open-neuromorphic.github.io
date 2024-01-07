@@ -18,6 +18,8 @@ product:
   applications: ANN/SNN acceleration
   chip_type: Digital
   neurons: 40k
+  weight_bits: null
+  activation_bits: null
   on_chip_learning: false
   power: ~1 W
   release_date: 2015-08-01

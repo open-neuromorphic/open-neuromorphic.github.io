@@ -18,6 +18,8 @@ product:
   applications: Research
   chip_type: Mixed-signal
   neurons: 256
+  weight_bits: null
+  activation_bits: null
   on_chip_learning: true
   power: ~5 mW
   release_date: 2015-04-01

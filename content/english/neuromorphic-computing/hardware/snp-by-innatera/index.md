@@ -18,6 +18,8 @@ product:
   applications: Smart sensing
   chip_type: Mixed-signal
   neurons: 256
+  weight_bits: null
+  activation_bits: null
   on_chip_learning: false
   power: ~1 mW
   release_year: 2023

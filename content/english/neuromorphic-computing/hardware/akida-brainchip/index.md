@@ -18,6 +18,8 @@ product:
   applications: Smart sensing, one-shot learning
   chip_type: Digital
   neurons: Configurable
+  weight_bits: null
+  activation_bits: null
   on_chip_learning: true
   power: ~30 mW
   release_year: 2023

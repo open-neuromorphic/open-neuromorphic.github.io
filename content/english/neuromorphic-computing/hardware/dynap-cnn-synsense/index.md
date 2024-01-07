@@ -18,6 +18,8 @@ product:
   applications: Smart sensing
   chip_type: Digital
   neurons: 327000
+  weight_bits: 8bit ints
+  activation_bits: Single bit
   on_chip_learning: false
   power: ~5 mW
   release_date: 2019-04-20

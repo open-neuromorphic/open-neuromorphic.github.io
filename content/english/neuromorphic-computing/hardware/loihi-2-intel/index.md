@@ -18,6 +18,8 @@ product:
   applications: Research
   chip_type: Digital
   neurons: 1 million
+  weight_bits: null
+  activation_bits: null
   on_chip_learning: true
   power: ~1 W
   release_year: 2021

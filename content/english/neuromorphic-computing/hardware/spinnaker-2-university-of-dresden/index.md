@@ -18,7 +18,9 @@ product:
   announced_date: 2021-07-27
   applications: Real-time simulation of SNN; HPC
   chip_type: Digital
-  neurons: 1000000000
+  neurons: 1 billion
+  weight_bits: null
+  activation_bits: null
   on_chip_learning: true
   power: ~50W
   release_year: 2021

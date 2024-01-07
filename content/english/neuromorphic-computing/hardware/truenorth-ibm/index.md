@@ -17,7 +17,9 @@ product:
   announced_date: 2014-01-01
   applications: DNN acceleration
   chip_type: Digital
-  neurons: 1000000
+  neurons: 1 million
+  weight_bits: null
+  activation_bits: null
   on_chip_learning: false
   power: ~0.3 W
   release_date: 2014-06-01

@@ -17,7 +17,9 @@ product:
   announced_date: 2014-04-24
   applications: Real-time SNN emulation
   chip_type: Mixed-signal
-  neurons: 1000000
+  neurons: 1 million
+  weight_bits: null
+  activation_bits: null
   on_chip_learning: false
   power: ~3 W
   release_date: 2014-04-24

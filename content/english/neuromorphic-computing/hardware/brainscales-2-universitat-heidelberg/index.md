@@ -18,6 +18,8 @@ product:
   applications: Edge processing, robotics
   chip_type: Mixed-signal
   neurons: 512
+  weight_bits: null
+  activation_bits: null
   on_chip_learning: true
   power: ~1 W
   release_year: 2022

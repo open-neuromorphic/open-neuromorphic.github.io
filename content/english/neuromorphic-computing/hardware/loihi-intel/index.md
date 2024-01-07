@@ -18,6 +18,8 @@ product:
   applications: Research
   chip_type: Digital
   neurons: 128k
+  weight_bits: null
+  activation_bits: null
   on_chip_learning: true
   power: <1.5 W
   release_date: 2018-12-01
