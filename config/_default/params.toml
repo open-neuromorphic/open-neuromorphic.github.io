@@ -40,7 +40,7 @@ preloader = "" # use jpg, png, svg or gif format.
 # Navigation button
 [navigation_button]
 enable = true
-label = "Join Discord"
+label = "Join Discord (790 joined)"
 link = "https://discord.gg/C9bzWgNmqk"
 
 # search
