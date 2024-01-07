@@ -1,12 +1,9 @@
 ---
-title: "Neuromorphic Engineering"
-description: "Explore the field of neuromorphic engineering, including its history, applications, and future directions. Learn about the latest research and development in neuromorphic hardware and software."
+title: "Neuromorphic engineering in 10 minutes"
+description: "Neuromorphic engineering is a branch of engineering that takes inspiration from biology to build efficient computing systems. This article gives a brief overview of the field and its history."
 ---
 
-# Neuromorphic engineering in 10 minutes
 Neuromorphic engineering takes inspiration from biological systems to process information as efficiently as possible. Such systems can be the mammal brain that burns just 20W, a retina that compresses visual information or the navigation system of a bee. We then try to mimic those systems to a certain level of abstraction on another substrate such as silicon. But the von Neumann architecture, which our computers are based on, doesn't work like biological systems! It separates memory from computation and not noisy at all! This brings us to the first important principle of neuromorphic engineering, which is that it relies on new hardware architectures!
-
-
 
 ## Summary
 Neuromorphic is not going to replace conventional computing completely. Rather, it will be another strand in an increasingly heterogenous computing landscape.Neuromorphic tech is going to unlock extra capabilities of edge computation for always-on monitoring, speech recognition and large-scale data integration. It won't compete with high-throughput tasks such as image classification.
