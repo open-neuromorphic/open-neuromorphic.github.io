@@ -22,6 +22,7 @@ The current study introduces an award-winning low-power solution employing neuro
 We provide a deployment-ready evaluation of the detection performance along with robustness, energy footprint, and weatherization while emphasizing the advantages of the neuro-statistical edge solution and its city-level scaling capabilities.
 
 ### Links from the talk
+* [Research group on Antifragility](https://www.antifragility.science/)
 * [Code on EdgeImpulse](https://studio.edgeimpulse.com/public/265655/latest)
 * [Slides](https://drive.google.com/file/d/1ftEtZ9SQ_4gIYwRWwU-ncnBJQO_zZwM_/view)
 * Paper: [OBELISC: Oscillator-Based Modelling and Control using Efficient Neural Learning for Intelligent Road Traffic Signal Calculation, Axenie et al.](https://2021.ecmlpkdd.org/wp-content/uploads/2021/07/sub_394.pdf)
