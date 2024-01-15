@@ -1,6 +1,7 @@
 ---
 title: "Spike-based Computation - Neuromorphic Engineering"
 description: "spike-based computation for neuromorphic engineering"
+draft: true
 ---
 
 
