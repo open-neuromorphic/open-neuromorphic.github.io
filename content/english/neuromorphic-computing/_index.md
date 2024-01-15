@@ -1,23 +1,24 @@
 ---
 title: Neuromorphic Computing
-description: Unlock the future of Neuromorphic Computing. Dive into guides on hardware, software, and more. Explore the convergence of biology-inspired principles and cutting-edge technology.
+description: Dive into neuromorphic hardware and software guides, and more. Explore the convergence of biology-inspired principles and cutting-edge technology.
 draft: false
 image: "image.jpeg"
 sections:
   - title: "Neuromorphic Hardware Guide"
     url: "hardware/"
-    description: "description"
+    description: "Listing of neuromorphic hardware"
     column: "col-6"
     subsections:
-      - title: "supporting point"
-        description: "supporting detail"
+      - title: "Learn"
+        description: "Find specifications, papers, and development status"
   - title: "Neuromorphic Software Guide"
     url: "software/"
-    description: "description"
+    description: "Collection of neuromorphic software"
     column: "col-6"
     subsections:
-      - title: "supporting point"
-        description: "supporting detail"
+      - title: "Learn"
+        description: "Curated list of SNN Frameworks and Data tools"  
+sections_disabled:
   - title: "Neuromorphic Engineering in 12 Minutes"
     url: "neuromorphic-engineering-12-minutes/"
     description: "description"

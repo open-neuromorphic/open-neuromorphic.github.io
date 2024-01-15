@@ -1,6 +1,7 @@
 ---
 title: "Use Cases - Neuromorphic Engineering"
 description: "use cases for neuromorphic engineering"
+draft: true
 ---
 
 ## Use cases

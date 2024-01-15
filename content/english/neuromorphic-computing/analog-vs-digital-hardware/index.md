@@ -1,6 +1,7 @@
 ---
 title: "Analog vs Digital Hardware - Neuromorphic Engineering"
 description: "about analog vs digital hardware"
+draft: true
 ---
 
 ## Analog vs digital hardware

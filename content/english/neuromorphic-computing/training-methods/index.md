@@ -1,6 +1,7 @@
 ---
 title: "Training Methods - Neuromorphic Engineering"
 description: "training methods for neuromorphic engineering"
+draft: true
 ---
 
 ## Training methods
