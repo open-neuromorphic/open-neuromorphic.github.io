@@ -8,8 +8,10 @@ end_time: 19:30
 time_zone: CET
 description: "Revolutionize traffic safety with neuromorphic visual sensing. Explore award-winning solutions for pedestrian detection and tracking, emphasizing sustainability and city-level deployment. Join Dr. Cristian Axenie in this groundbreaking AI exploration"
 image: visual-motion-tracking.png
-speaker_code: https://www.youtube.com/watch?v=W9JTcTJ4eBU
+video: W9JTcTJ4eBU
+speaker_code: https://studio.edgeimpulse.com/public/265655/latest
 speaker_photo: "cristian-axiene.jpeg"
+speaker_slides: SPICES_Lab_Hybrid_Learning_VisionZero_THN.pdf
 speaker_bio: "Dr. Axenie is Professor of Artificial Intelligence and Research Group Leader in Cognitive Neurocomputing at the Technische Hochschule Nürnberg Georg Simon Ohm in Germany. <br><br>
 After earning a Dr. Eng. Sc. in Neuroscience and Robotics from the Technical University of Munich in 2016, Dr. Axenie joined the Huawei Research Center in Munich. Between 2017 and 2023 Dr. Axenie was Staff Research Engineer with Huawei Research Center. At the same time, Dr. Axenie was the Principal Investigator and Head of the Audi Konfuzius-Institut Ingolstadt Laboratory at the Technische Hochschule Ingolstadt. <br><br>
 Dr. Axenie is a seasoned researcher with more than 15 years of academic research and more than 10 years of industrial research experience. His research was disseminated in more than 50 peer-reviewed publications and more than 10 patents. Currently Dr. Axenie focuses on sustainable and efficient deployment of intelligent algorithms for sensor fusion and closed-loop control."
