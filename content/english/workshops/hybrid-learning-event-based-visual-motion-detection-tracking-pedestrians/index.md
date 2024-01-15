@@ -20,3 +20,8 @@ The Vision Zero Program’s purpose is to reduce traffic-related fatalities and 
 The current study introduces an award-winning low-power solution employing neuromorphic visual sensing and hybrid neuro-statistical processing developed by the Technische Hochschule Nürnberg team for the TinyML Vision Zero San Jose Competition. The solution proposes a novel neuromorphic edge fusion of spiking neural networks and event-based expectation maximization for the detection and tracking of pedestrians and bicyclists. 
 
 We provide a deployment-ready evaluation of the detection performance along with robustness, energy footprint, and weatherization while emphasizing the advantages of the neuro-statistical edge solution and its city-level scaling capabilities.
+
+### Links from the talk
+* [Code on EdgeImpulse](https://studio.edgeimpulse.com/public/265655/latest)
+* [Slides](https://drive.google.com/file/d/1ftEtZ9SQ_4gIYwRWwU-ncnBJQO_zZwM_/view)
+* Paper: [OBELISC: Oscillator-Based Modelling and Control using Efficient Neural Learning for Intelligent Road Traffic Signal Calculation, Axenie et al.](https://2021.ecmlpkdd.org/wp-content/uploads/2021/07/sub_394.pdf)
