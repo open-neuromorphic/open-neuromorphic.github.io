@@ -13,3 +13,4 @@ speaker_bio: 'Maxence Ernoult graduated from Ecole Polytechnique and the Univers
 draft: true 
 ---
 
+Maxence will present us Rain's vision and technological roadmap to build hardware optimized for inference and training at the edge including both the hardware and algorithm aspects with an emphasis on why physical and mathematical principles matter more to him than biological inspiration. 
