@@ -6,8 +6,8 @@ date: 2024-02-05
 start_time: 18:00 
 end_time: 20:00
 speaker_photo: speaker.jpeg
-speaker_bio: "Jens is a computer scientist studying his PhD in neuromorphic computing at the KTH Royal Institute of Technology. Jens co-authored the [Norse](https://github.com/norse/norse) simulator and the [AEStream](https://github.com/aestream/aestream) event-based streaming library."
-speaker_code: "https://github.com/jegp"
+speaker_bio: "This talk will be given jointly by Felix Bauer, Jason Eshraghian, Jens E. Pedersen, and Bernhard Vogginger"
+speaker_code: "https://github.com/neuromorphs/nir"
 time_zone: CET
 image: neuromorphic-intermediate-representation.png
 upcoming: true
@@ -39,6 +39,13 @@ All it requires is a computer and a bit of Python knowledge.
   - Q&A and collaborative discussions
 
 **Speakers:**
-- [Jens E. Pedersen](https://jepedersen.dk), PhD at the [Neurocomputing Systems lab](https://neurocomputing.systems) at KTH Royal Institute of Technology, Sweden
+- [Felix Bauer](https://github.com/bauerfe)
+    * Felix Bauer is a neuromorphic engineer working on cutting-edge algorithms and chips at [SynSense](https://www.synsense.ai/). He co-authored the [Neuromorphic Intermediate Representation](https://github.com/neuromorphs/nir) and has published work on GPU-accelerated spiking neural networks via the [Sinabs](https://sinabs.readthedocs.io/) simulator, neuromorphic control and brain-machine interfaces.
+- [Jason Eshraghian](https://ncg.ucsc.edu/jason-eshraghian-bio/)
+    * Json is an Assistant Professor with the Department of Electrical and Computer Engineering, University of California, Santa Cruz. Jason is researching neuromorphic computing, spiking neural networks, and memory circuits. He is the main developer of [snnTorch](https://github.com/jeshraghian/snntorch) and co-authored the co-authored the [Neuromorphic Intermediate Representation](https://github.com/neuromorphs/nir).
+- [Jens E. Pedersen](https://jepedersen.dk)
+    * Jens is a computer scientist studying his PhD in neuromorphic computing at the KTH Royal Institute of Technology. Jens co-authored the [Neuromorphic Intermediate Representation](https://github.com/neuromorphs/nir), the [Norse](https://github.com/norse/norse) spiking neural network simulator and the [AEStream](https://github.com/aestream/aestream) event-based streaming library.
+- [Bernhard Vogginger](https://tu-dresden.de/ing/elektrotechnik/iee/hpsn)
+    * Bernhard Vogginger is a research associate at TU Dresden working on neuromorphic computing software and applications in the lab of Prof. Christian Mayr. He currently leads the software development for the SpiNNaker2 neuromorphic system and has co-authored the [Neuromorphic Intermediate Representation](https://github.com/neuromorphs/nir). Further research interests include radar processing and sustainability of AI and data centers.
 
 **Note:** The event will be hosted virtually. Stay tuned for the video link and further updates.
