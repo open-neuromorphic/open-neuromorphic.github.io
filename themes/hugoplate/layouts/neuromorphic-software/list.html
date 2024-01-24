@@ -1,0 +1,26 @@
+{{ define "main" }}
+{{ partial "page-header" . }}
+
+<section class="section pt-6">
+  <div class="container">
+    <div class="row gx-5">
+      <div class="content lg:col-7 pb-6 mb-10 text-xl">
+        <h2 class="text-2xl/8 font-bold mb-4">{{ .Params.section_title }}</h2>
+        <p>{{ .Params.section_description }}</p>
+      </div>
+      <div class="lg:col-5 pb-6">
+        {{ if .Params.image }}
+        {{ partial "image" (dict "Src" "image.jpeg" "Context" .Page "Alt" .Title "Class" "w-full rounded" "Size"
+        "1280x720" "Command" "Crop") }}
+        {{ end }}
+      </div>
+      <div class="lg:col-8">
+        {{ partial "components/software-list" . }}
+      </div>
+      <div class="lg:col-4 pl-0">
+        {{ partial "components/software-categories" . }}
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
