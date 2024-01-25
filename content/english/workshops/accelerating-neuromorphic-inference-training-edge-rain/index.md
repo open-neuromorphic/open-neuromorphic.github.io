@@ -10,6 +10,7 @@ description: "Join us for a talk by Maxence Ernoult, Research Scientist at Rain,
 upcoming: true
 speaker_photo: maxence-ernoult.jpeg
 speaker_bio: 'Maxence Ernoult graduated from Ecole Polytechnique and the University of Cambridge in 2016, specializing in applied mathematics and theoretical physics. His PhD research was conducted in neuromorphic computing at Sorbonne University, in collaboration with Mila. During this time, he specialized in developing hardware-friendly alternatives to backpropagation and played a significant role in scaling up several of these alternatives, including Equilibrium Propagation and Difference Target Propagation. This work was undertaken alongside notable figures such as Ben Scellier, Blake Richards, and Yoshua Bengio. In 2021, Maxence joined IBM Research, focusing on AI safety. Subsequently, in 2022, he began a new position at Rain.'
-draft: true 
 ---
 
+Maxence will present Rain's vision and technological roadmap to build hardware optimized for inference and training at the edge, from hardware to algorithms. He will furthermore try to convey why physical and mathematical principles matter more in my eyes than biological inspiration.
+Bio: Maxence graduated from Ecole Polytechnique and the University of Cambridge in 2016 in applied mathematics and theoretical physics. He did his PhD in "neuromorphic computing" at Sorbonne University in collaboration with Mila where he specialized in hardware-friendly alternatives to backprop and helped to scale some of them up, including Equilibrium Propagation and Difference Target Propagation, alongside Ben Scellier, Blake Richards and Yoshua Bengio. He joined IBM Research in 2021 to work on AI safety, then started at Rain in 2022

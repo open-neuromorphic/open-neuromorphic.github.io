@@ -1,12 +1,12 @@
 {{ define "main" }}
   {{ partial "page-header" . }}
 
-  <section class="section pt-14">
+  <section class="section pt-6">
     <div class="container">
       <div class="row">
         {{ $sortedMembers := sort .Params.members "member_id" "asc" }}
         {{ range $sortedMembers }}
-          <div class="md:col-12 lg:col-12 mb-14">
+          <div class="md:col-12 lg:col-12 mb-6">
             {{ partial "components/team-card" . }}
           </div>
         {{ end }}
