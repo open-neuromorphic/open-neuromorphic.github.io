@@ -1,0 +1,32 @@
+{{ $product := .Params.product_name }}
+{{ $image := .Params.image}}
+{{ with .Params.product }}
+  <div class="product-info mb-6 lg:grid grid-cols-1 grid-cols-3 gap-1">
+    <h2 class="text-2xl font-bold mb-4 col-span-3">{{ $product }} At A Glance</h2>
+    <div class="pb-4 lg:pb-0">
+      {{ with .announced_date }}<div><strong>Announced Date:</strong> {{ . }}</div>{{ end }}
+      {{ with .release_date }}<div><strong>Release Date:</strong> {{ . }}</div>{{ end }}
+      {{ with .status }}
+        <div>
+          <strong>Status:</strong>
+          {{ if .retired }} End Of Life{{ else if .released }} Released{{ else if .announced }} Announced{{ end }}
+        </div>
+      {{ end }}
+      {{ if .chip_type }}<div><strong>Chip Type:</strong> {{ .chip_type }}</div>{{ end }}
+    </div>
+    <div class="pb-4 lg:pb-0">
+      {{ if .neurons }}<div><strong>Neurons:</strong> {{ .neurons }}</div>{{ end }}
+      {{ if .synapses }}<div><strong>Synapses:</strong> {{ .synapses }}</div>{{ end }}
+      {{ if .on_chip_learning }}<div><strong>On-Chip Learning:</strong> {{ .on_chip_learning }}</div>{{ end }}
+      {{ if .power }}<div><strong>Power:</strong> {{ .power }}</div>{{ end }}
+      {{ if .software }}<div><strong>Software:</strong> {{ .software }}</div>{{ end }}
+      {{ if .applications }}<div><strong>Applications:</strong> {{ .applications }}</div>{{ end }}
+    </div>
+    <div class="flex justify-center items-center">
+        {{ if $image }}
+          {{ partial "image" (dict "Src" $image "Context" $.Page "Alt" .Title "Class" "bg-white rounded" "Size" "x200"
+          "Command" "Scale") }}
+        {{ end }}
+    </div>
+  </div>
+{{ end }}
