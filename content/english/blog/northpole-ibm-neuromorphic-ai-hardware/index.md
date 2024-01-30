@@ -238,63 +238,6 @@ function, like in deep convolutional neural networks: the first layers extract
 high level features (_e.g._, edges), while the deep layers combine this
 information to get something useful out of it.
 
-What the heck does this have to do with hardware, you might ask? Well, since
-NorthPole hosts all the layers on chip, it is likely that the activation from
-one layer are passed to the next layer. Each layer has a set of cores mapped to
-it, hence you have groups of cores that exchange data: here's your cortex!
-
-One can do a more formal description of such architecture. In deep learning
-accelerators, one can distinguish among _overlay_ and _layer-fuse_ architectures
-[[Gilbert et
-al.](https://eems.mit.edu/wp-content/uploads/2023/07/2023_ispass_looptree.pdf)].
-We will use a matrix multiplication example to wrap your head around it.
-
-{{<
-fig
-src="overlay.png"
-width=760px
-caption="An example of overlay architecture."
->}}
-
-Suppose you want to multiply 3 matrices, A, B and C. Your goal is to maximize
-the number of processing engines (PEs) being used in your architecture at any
-time. A PE in nothing but a MAC unit with a bunch of registers and memories
-around. In an overlay accelerator, you would map as many PEs as possible to
-compute A\*B, store this partial matrix off-chip (or somewhere else with a
-fancier memory hierarchy), retrieve it later and use it to compute the final
-product (A\*B)\*C. Cool, but you need to store a (possibly) huge matrix off-chip
-and then retrieve it, which costs a lot of time and energy!
-
-{{<
-fig
-src="layer-fused.png"
-width=760px
-caption="An example of layer-fuse architecture."
->}}
-
-In layer-fuse architectures (also called _dataflow_, which also means another
-thing in hardware accelerators just to mess with you), instead, the PEs work on
-all the operands at once. The secret is that, when the operands are too big to
-fit on the available PEs, you perform part of the computations in an iteration,
-and the remaning part in another, as it is shown in the figure above for the
-matrix multiplication example. It has to be remarked that the intermediate 
-results are kept among the PEs, that exchange them to finish the computation.
-Ideally, there are no off-chip memory accesses, or it is strongly reduced when 
-compared to an overlay architecture
-
-{{<
-fig
-src="fabrizio-energy.png"
-width=760px
-caption="Energy cost associated to different operations in hardware [[Chen et al.](https://ieeexplore.ieee.org/abstract/document/7948671)]."
->}}
-
-The graph above explains why it is a good idea to keep data among the PEs: to 
-retrieve activations from off-chip memory, one has to employ **200x** the energy
-needed to execute a MAC! Instead, if the MAC unit accesses the data in the PE
-itself (the PE register file bar) or from another PE (the NoC bar), the energy
-drawback is bearable. 
-
 ### Axiom 4 - Efficiency in distribution
 
 > NorthPole distributes memory among cores (Figs. 1B and 2F) and, within a core,
