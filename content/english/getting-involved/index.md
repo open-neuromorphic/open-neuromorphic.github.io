@@ -25,9 +25,15 @@ One quick and easy way to support our community is by sharing our [website](http
 
 ##### Support Workshop Events
 
-- **Newsletter**: Help promote our workshops, events, and news through newsletters.
+- **Event Coordinator**: Help organize and coordinate our workshops and events.
+  - Website: Add new events to our website, and update after the event.
+    - https://github.com/open-neuromorphic/open-neuromorphic.github.io/blob/main/content.md
+    - https://github.com/open-neuromorphic/open-neuromorphic.github.io/tree/main/content/english/workshops
+  - YouTube (highlight recent video, add to playlist, etc.)
+  - Thumbnails creation for events
+  - Promote Events: Share upcoming events on social media and other platforms.
 - **Summaries**: Create summaries of events to help the community catch up on what they missed.
-- **Talk Transcripts**: Consider transcribing workshop talks to reach a wider audience.
+
 
 ##### Neuromorphic Projects
 
