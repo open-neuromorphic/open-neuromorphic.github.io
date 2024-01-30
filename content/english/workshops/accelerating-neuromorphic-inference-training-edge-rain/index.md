@@ -2,7 +2,7 @@
 title: "Accelerating Neuromorphic Inference and Training at the Edge - Rain"
 author:
 - "Maxence Ernoult"
-date: "2024-03-25"
+date: "2024-03-05"
 start_time: 18:00
 end_time: 19:30
 time_zone: CET
