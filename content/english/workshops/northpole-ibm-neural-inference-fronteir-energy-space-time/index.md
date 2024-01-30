@@ -7,7 +7,7 @@ start_time: 18:00
 end_time: 19:30
 time_zone: CET
 description: "NorthPole outperforms all prevalent architectures, even those that use more-advanced technology processes."
-upcoming: true
+video: 7s1M09z_ql8
 image: ibm-northpole-workshop.png
 speaker_photo: "carlos.webp"
 speaker_bio: "Dr. Carlos Ortega-Otero is an Sr. Research Staff Member at IBM driven by a passion in Circuit Design, Neuromorphic Chip Architectures, Low-Power Circuits and Physical Design optimizations.  He earned his Ph.D. from Cornell University under the guidance of Prof. Rajit Manohar.  
