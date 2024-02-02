@@ -1,6 +1,6 @@
 ---
 title: Neuromorphic Hardware Guide
-description: Explore cutting-edge neuromorphic hardware projects, featuring innovative designs and advanced neural processing technologies. Discover the future of AI at the intersection of neuroscience and computing.
+description: Explore cutting-edge neuromorphic chips and architectures, featuring innovative designs and advanced neural processing technologies.
 type: "neuromorphic-hardware"
 image: "images/image.jpeg"
 glossary:
