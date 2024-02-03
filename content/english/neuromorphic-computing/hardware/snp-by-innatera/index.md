@@ -1,6 +1,6 @@
 ---
 active_product: true
-description: 'Learn about Innatera''s neuromorphic hardware: Spiking Neural Processor T1 by Innatera'
+description: 'Learn about Innatera''s neuromorphic hardware: Spiking Neural Processor T1'
 type: neuromorphic-hardware
 image: snp.png
 organization:
