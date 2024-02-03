@@ -1,6 +1,6 @@
 ---
 active_product: true
-description: 'Learn about Innatera''s neuromorphic hardware: SNP by Innatera'
+description: 'Learn about Innatera''s neuromorphic hardware: Spiking Neural Processor T1 by Innatera'
 type: neuromorphic-hardware
 image: snp.png
 organization:
@@ -37,7 +37,7 @@ title: SNP T1 by Innatera
 ---
 
 ## Overview
-The spiking neural processor (SNP) T1 is a neuromorphic chip produced by Innatera, a semiconductor company based in Delft, Netherlands. The SNP is positioned as a single-chip solution for always-on sensing applications where tight constraints on power, latency, and cost are critical. Example applications include hearables/wearables, smart-home and other battery-powered IoT and edge devices.
+The Spiking Neural Processor (SNP) T1 is a neuromorphic chip produced by Innatera, a semiconductor company based in Delft, Netherlands. The SNP is positioned as a single-chip solution for always-on sensing applications where tight constraints on power, latency, and cost are critical. Example applications include hearables/wearables, smart-home and other battery-powered IoT and edge devices.
 
 - Power consumption in sub-mW or mW range
 - Millisecond latency for real-time inference
