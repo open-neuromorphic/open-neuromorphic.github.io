@@ -33,7 +33,7 @@ product:
   synapses: ~60000
 product_name: SNP T1
 summary: The spiking neural processor T1 is Innatera's ultra-low-power neuromorphic microcontroller SoC for real-time intelligence close to the sensor. It integrates a spiking neural network accelerator, a convolutional neural network accelerator and a RISCV core. T1 targets applications in battery-powered, power-limited and latency-critical devices.
-title: SNP T1 by Innatera
+title: Spiking Neural Processor T1 by Innatera
 ---
 
 ## Overview
