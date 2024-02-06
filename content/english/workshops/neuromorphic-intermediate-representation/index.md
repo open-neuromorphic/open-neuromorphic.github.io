@@ -6,6 +6,7 @@ date: 2024-02-05
 start_time: 18:00 
 end_time: 20:00
 speaker_photo: speaker.jpeg
+video: A96rInDg8zo
 speaker_bio: "This talk will be given jointly by Felix Bauer, Jason Eshraghian, Jens E. Pedersen, and Bernhard Vogginger"
 speaker_code: "https://github.com/neuromorphs/nir"
 time_zone: CET
