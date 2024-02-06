@@ -30,7 +30,7 @@ The TrueNorth design has been driven by seven principles.
 The architecture is a **purely event-driven one**, being Globally Asynchronous Locally Synchronous (GALS), with a **completely asynchronous** interconnection fabric among the **synchronous** cores. What does this actually mean? 
 
 {{< override-image
-    src="https://d3i71xaburhd42.cloudfront.net/df3434c56233f707da2383620667d57632eaff72/2-Figure1-1.png"
+    src="2-Figure1-1.png"
     alt="A Globally Asynchronous Locally Synchronous architecture."
     caption="A Globally Asynchronous Locally Synchronous architecture. <a href='https://d3i71xaburhd42.cloudfront.net/df3434c56233f707da2383620667d57632eaff72/2-Figure1-1.png' target='_blank'>Source</a>"
     position="center"
@@ -75,7 +75,7 @@ Designing an asynchronous circuit is a very difficult task, since no VLSI EDAs a
 The TrueNorth chip is not a Von Neumann machine! But what does this mean?
 
 {{< override-image
-    src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Von_Neumann_Architecture.svg/1920px-Von_Neumann_Architecture.svg.png"
+    src="1920px-Von_Neumann_Architecture.svg.png"
     alt="The Von Neumann architecture."
     caption="The Von Neumann architecture. <a href='https://en.wikipedia.org/wiki/Von_Neumann_architecture' target='_blank'>Source</a>"
     position="center"
@@ -110,7 +110,7 @@ In a Von Neumann architecture, the **memory density** is **higher**: in VLSI cir
 In TrueNorth, a mixed approach has been adopted: a neurosynaptic core packs 256 neurons in memory, which share the same PE; 4096 cores are arranged in an in-memory computing fashion for the advantages cited before. However, what is a neuron?
 
 {{< override-image
-    src="https://openbooks.lib.msu.edu/app/uploads/sites/6/2020/11/Neuron.jpg"
+    src="Neuron.jpg"
     alt="A typical neuron."
     caption="A typical neuron. <a href='https://openbooks.lib.msu.edu/neuroscience/chapter/the-neuron/' target='_blank'>Source</a>"
     position="center"
@@ -121,7 +121,7 @@ In TrueNorth, a mixed approach has been adopted: a neurosynaptic core packs 256 
 A neuron is made of different parts, that are shown in the figure above. **Dendrites** branch out from the cell body, also called **soma**, where the nucleus is located. Then, there is a long communication channel called **axon**, which ends in the **pre-synaptic** terminal, which can have multiple branches.
 
 {{< override-image
-    src="https://openbooks.lib.msu.edu/app/uploads/sites/6/2020/11/Dendrites.jpg"
+    src="Dendrites.jpg"
     alt="The neuron dendrites."
     caption="The neuron dendrites. [<a href='https://openbooks.lib.msu.edu/neuroscience/chapter/the-neuron/' target='_blank'>Source</a>]"
     position="center"
@@ -132,7 +132,7 @@ A neuron is made of different parts, that are shown in the figure above. **Dendr
 Dendrites branch out from the soma. Their function is to **receive information** from other neurons. Some dendrites have small protrusions called **spines** that are important for communicating with other neurons.
 
 {{< override-image
-    src="https://openbooks.lib.msu.edu/app/uploads/sites/6/2020/11/Soma.jpg"
+    src="Soma.jpg"
     alt="The neuron soma."
     caption="The neuron soma. [Source](https://openbooks.lib.msu.edu/neuroscience/chapter/the-neuron/)"
     position="center"
@@ -143,7 +143,7 @@ Dendrites branch out from the soma. Their function is to **receive information**
 The soma is where the **computation** happens. This is where the membrane potential is built up, by ions exchange with the environment and other neurons.
 
 {{< override-image
-    src="https://openbooks.lib.msu.edu/app/uploads/sites/6/2020/11/Axon.jpg"
+    src="Axon.jpg"
     alt="The neuron axon."
     caption="The neuron axon. [Source](https://openbooks.lib.msu.edu/neuroscience/chapter/the-neuron/)"
     position="center"
@@ -155,7 +155,7 @@ The soma is where the **computation** happens. This is where the membrane potent
 The axon is the communication channel of the neuron. It is attached to the neuron through the **axon hillock**; at the end of the axon, we find the pre-synaptic terminals, which are the "pins" used to connect to the **post-synaptic** terminal of other neurons. These connections are called **synapses**.
 
 {{< override-image
-    src="https://openbooks.lib.msu.edu/app/uploads/sites/6/2020/11/Presynaptic-Terminal.jpg"
+    src="Presynaptic-Terminal.jpg"
     alt="Synaptic connection among neurons."
     caption="Synaptic connection among neurons. [Source](https://openbooks.lib.msu.edu/neuroscience/chapter/the-neuron/)"
     position="center"
@@ -172,7 +172,7 @@ The axon transmit an **action potential**, which is the famous spike! This resul
 
 {{< 
     video
-    src="https://openbooks.lib.msu.edu/app/uploads/sites/6/2020/11/ActionPotentialPropagation.mp4?_=1"
+    src="https://openbooks.lib.msu.edu/app/uploads/sites/6/2020/11/ActionPotentialPropagation.mp4"
     preload="auto"
     type="video/mp4"
     width="1024"
