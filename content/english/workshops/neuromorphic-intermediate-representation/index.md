@@ -11,7 +11,6 @@ speaker_bio: "This talk will be given jointly by Felix Bauer, Jason Eshraghian, 
 speaker_code: "https://github.com/neuromorphs/nir"
 time_zone: CET
 image: neuromorphic-intermediate-representation.png
-upcoming: true
 description: "We show how to use the Neuromorphic Intermediate Representation to migrate your spiking model onto neuromorphic hardware."
 ---
 
