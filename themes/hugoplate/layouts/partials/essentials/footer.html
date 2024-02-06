@@ -75,6 +75,13 @@
           {{ end }}
           {{ end }}
         </ul>
+          {{ if .IsPage }}
+            {{ with .File }}
+              {{ with .Path }}
+                <a href='https://github.com/open-neuromorphic/open-neuromorphic.github.io/tree/main/content/english/{{ . }}' target="_blank" rel="noopener">Edit this Page <i class="fab fa-github mr-2"></i></a>
+              {{ end }}
+            {{ end }}
+          {{ end }}
       </div>
       <div class="lg:col-6 mb-8 text-right lg:text-right">
         <div class="footer-menu-item frontiers-section">

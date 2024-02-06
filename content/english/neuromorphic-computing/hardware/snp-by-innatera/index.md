@@ -1,6 +1,6 @@
 ---
 active_product: true
-description: 'Learn about Innatera''s neuromorphic hardware: SNP by Innatera'
+description: 'Learn about Innatera''s neuromorphic hardware: Spiking Neural Processor T1'
 type: neuromorphic-hardware
 image: snp.png
 organization:
@@ -8,47 +8,50 @@ organization:
   org_logo: innatera.png
   org_name: Innatera
   org_website: https://www.innatera.com/
-  product_page_link: https://www.innatera.com/
+  product_page_link: https://innatera.com/products/spiking-neural-processor-t1
   social_media_links:
     linkedin: https://www.linkedin.com/company/innatera/
     twitter: null
     wikipedia: null
 product:
-  announced_date: 2023-01-01
-  applications: Smart sensing
+  applications: Smart-sensing, wearables, IoT
   chip_type: Mixed-signal
-  neurons: 256
-  weight_bits: null
-  activation_bits: null
+  neurons: ~500
+  weight_bits: 6
+  memory: 384 KB
   on_chip_learning: false
   power: ~1 mW
-  release_year: 2023
-  release_date: 2023-01-01
+  release_year: 2024
+  release_date: 2024-01-10
   software: Talamo
+  interfaces: QSPI, I2C, UART, JTAG, GPIO, front end ADC
+  package: 2.16mm x 3mm, 35-pin WLCSP package
   status:
     announced: true
     released: true
     retired: false
-  synapses: 64000
-product_name: SNP
-summary: The spiking neural processor is Innatera's ultra-low-power neuromorphic chip
-  for real-time edge intelligence. Using spiking neural networks, it achieves under
-  1mW operation for sensor applications like always-on audio scene detection with
-  85% accuracy in under 1ms.
-title: SNP by Innatera
+  synapses: ~60000
+product_name: Spiking Neural Processor T1
+summary: The Spiking Neural Processor T1 is Innatera's ultra-low-power neuromorphic microcontroller SoC for real-time intelligence close to the sensor. It integrates a spiking neural network accelerator, a convolutional neural network accelerator and a RISCV core. T1 targets applications in battery-powered, power-limited and latency-critical devices.
+title: Spiking Neural Processor T1 by Innatera
 ---
 
-The spiking neural processor (SNP) is a neuromorphic chip produced by Innatera, a semiconductor company based in Delft, Netherlands. The SNP is designed for ultra-low power edge intelligence applications where sensors need to process data in real-time under tight latency, power, and cost constraints. 
+## Overview
+The Spiking Neural Processor (SNP) T1 is a neuromorphic chip produced by Innatera, a semiconductor company based in Delft, Netherlands. The SNP is positioned as a single-chip solution for always-on sensing applications where tight constraints on power, latency, and cost are critical. Example applications include hearables/wearables, smart-home and other battery-powered IoT and edge devices.
 
-The SNP contains interfaces to connect various sensors such as radar, microphones, and ECGs. The analog/mixed-signal core of the SNP is a programmable multi-core crossbar array of spiking neurons and synapses that can be configured into customizable neural network topologies. This array provides the computation capability to run spiking neural networks (SNNs). SNNs differ from traditional neural networks in that their inputs and outputs are binary spike events over time rather than continuous values. 
-
-To program the SNP, Innatera provides an SDK called Talamo that uses the PyTorch deep learning framework. This allows developers to build and train SNN models without needing specialized knowledge of neuromorphic hardware or SNN concepts. Talamo handles the translation of models into a format that can be deployed on the SNP while minimizing accuracy loss.
-
-Key capabilities and specifications of the SNP include:
-- Peak power consumption of ~1mW
+- Power consumption in sub-mW or mW range
 - Millisecond latency for real-time inference
-- On-chip MCU for data acquisition and pre-processing
-- Model size up to 3KB
-- Up to 85% accuracy demonstrated on audio scene classification 
+- SNNs, CNNs, and CPU on one SoC
+- Diverse interfaces: QSPI, I2C, UART, JTAG, GPIO, front end ADC
+- Tiny form-factor: 2.16mm x 3mm, 35-pin WLCSP package
 
-The SNP is positioned as a single-chip solution for always-on sensing applications where tight constraints on power, latency, and cost are critical. Example applications include hearables/wearables and other battery-powered edge devices.
+## Architecture
+The SNP T1 is designed to be the only SoC a sensor needs to be interfaced with and comes with a CPU and general purpose I/O included. The mixed-signal core of the SNP is a programmable multi-core pseudo-crossbar array of spiking neurons and synapses that can be configured into parallel and customizable neural network topologies. This array provides the capability to accelerate spiking neural networks (SNNs). SNNs differ from traditional neural networks in that their inputs and outputs are binary spike events over time rather than continuous values. 
+
+In addition to the SNN accelerator, T1 also includes a CNN accelerator and a 32-bit RISCV core with 384 KB of memory for more conventional workloads. 
+
+## Interfacing
+The SNP contains front-end interfaces to connect various sensors such as radar, microphones, and physiological sensors through standard digital interfaces or using direct analog interfacing using the included front-end ADC. 
+
+## Software
+To program the SNP, Innatera provides an SDK called Talamo that uses the PyTorch deep learning framework. This allows developers to build and train SNN models without needing specialized knowledge of neuromorphic hardware or SNN expertise. Talamo includes a model/topology zoo as well as reference implementations to allow non-SNN experts to quickly run models on the platform. A compiler, simulator, and integration into MLOps tooling are also available.

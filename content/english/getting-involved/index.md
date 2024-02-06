@@ -11,6 +11,8 @@ Welcome to the Open Neuromorphic (ONM) community! We're thrilled that you're con
 
 At ONM, we value and encourage contributions from individuals with diverse skills and backgrounds. There are several ways to get involved:
 
+If you're new to the community, we recommend joining our [Discord](https://discord.gg/C9bzWgNmqk) to connect with other members and learn more about our ongoing projects and initiatives. Leave a message in the `#welcome` channel to introduce yourself and let us know how you'd like to contribute!
+
 One quick and easy way to support our community is by sharing our [website](https://open-neuromorphic.org/) and [Discord](https://discord.gg/C9bzWgNmqk) with your friends and colleagues. We're always looking for new members to join our community. Also, linking to our website helps boost our search engine rankings, which makes it easier for others to find us.
 
 #### Content
@@ -18,21 +20,24 @@ One quick and easy way to support our community is by sharing our [website](http
 ##### Blog Posts
 
 - **Share Your Knowledge**: Contribute by writing insightful blog posts.
-- **Seek Feedback**: Collaborate with the community and gather feedback on your drafts.
-- **Inspiration**: Explore our [existing blog posts](https://github.com/open-neuromorphic/open-neuromorphic.github.io/tree/main/content/english/blog) for inspiration.
 - **Open a PR**: Consider opening a pull request for a new blog post.
 - **Topic Ideas**: Find interesting topics in our [issues](https://github.com/open-neuromorphic/open-neuromorphic.github.io/issues) if you need inspiration.
 
 ##### Support Workshop Events
 
-- **Newsletter**: Help promote our workshops, events, and news through newsletters.
+- **Event Coordinator**: Help organize and coordinate our workshops and events.
+  - Website: Add new events to our website, and update after the event.
+    - https://github.com/open-neuromorphic/open-neuromorphic.github.io/blob/main/content.md
+    - https://github.com/open-neuromorphic/open-neuromorphic.github.io/tree/main/content/english/workshops
+  - YouTube (highlight recent video, add to playlist, etc.)
+  - Thumbnails creation for events
+  - Promote Events: Share upcoming events on social media and other platforms.
 - **Summaries**: Create summaries of events to help the community catch up on what they missed.
-- **Talk Transcripts**: Consider transcribing workshop talks to reach a wider audience.
+
 
 ##### Neuromorphic Projects
 
-- **Curated List**: Enhance our [curated list of Neuromorphic Projects](https://github.com/open-neuromorphic/open-neuromorphic) to showcase the latest developments in the field.
-- **Share Repositories**: Share open source repositories related to neuromorphic computing.
+- **Curated List**: Enhance our [curated list of Neuromorphic Projects](/neuromorphic-computing/hardware/) to  showcase the latest developments in the field.
 
 #### Workshop
 
@@ -55,5 +60,3 @@ One quick and easy way to support our community is by sharing our [website](http
 ### Join the Conversation
 
 The easiest way to connect with us is through [Discord](https://discord.gg/C9bzWgNmqk). Join discussions on various topics, including research, job opportunities, open hardware, spiking neural networks, and much more. We're excited to have you on board!
-
-Ready to make your mark in the neuromorphic world? Choose a contribution path that suits your interests and expertise, and let's build a brighter future together.
