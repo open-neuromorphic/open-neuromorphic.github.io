@@ -11,7 +11,7 @@ upcoming: true
 speaker_photo: speaker.jpeg
 image: elm-neuron-expressive-leaky-memory.png
 speaker_bio: "Aaron Spieler is a computational neuroscientist passionate about exploring the intersection of deep learning and neuroscience. After earning his Bachelor's in Computer Science from the University of Potsdam, he undertook an extended internship at Amazon Web Services working in deep learning based forecasting, before further specializing with a Master's in Computational Neuroscience at the University of Tübingen. Throughout his Master's thesis and a subsequent internship at the Max Planck Institute for Intelligent Systems, Aaron focused on phenomenological neuron modeling with applications to long-range prediction tasks. Pursuing this work allowed him to collaborate with excellent researchers from diverse backgrounds, including Prof. Bernhard Schölkopf and Prof. Anna Levina."
-description: "Aaron tells us about the Expressive Leaky Memory (ELM) neuron model, a biologically inspired phenomenological model of a cortical neuron. The ELM neuron reliably outperforms the classic Transformer or Chrono-LSTM architectures on some temporal tasks, even solving the Pathfinder-X task with over 70% accuracy (16k context length)."
+description: "Aaron tells us about the Expressive Leaky Memory (ELM) neuron model, a biologically inspired phenomenological model of a cortical neuron."
 ---
 
 Biological cortical neurons are remarkably sophisticated computational devices, temporally integrating their vast synaptic input over an intricate dendritic tree, subject to complex, nonlinearly interacting internal biological processes. 
