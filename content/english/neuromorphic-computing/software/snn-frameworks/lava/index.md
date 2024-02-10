@@ -19,12 +19,16 @@ draft: false
 ---
 
 ## Overview
-**Lava** is an open-source software framework designed for neuromorphic computing, aiming to facilitate the development of neuro-inspired applications and their mapping to neuromorphic hardware. It offers developers and researchers tools and abstractions to develop applications that fully utilize neural computation. As well as, providing neuromorphic platforms to intelligently, learn from, and respond to real-world data with great gains in energy efficency and speed.
+**Lava** is an open-source software framework designed for neuromorphic computing, aiming to develop neuro-inspired applications and their mapping to neuromophic
+hardware. Developed and maintained by Intel Neuromorphic Computing Team, Lava offers developers and researchers tools and abstractions to develop applications that fully utilize the
+benefits of neural computation. As well as, providing neuromorphic hardware to intelligently, learn from, and respond to real-world data with great gains in energy efficiency and speed.
 
-Lava is developed with the aim of supporting collaborative, open-source development, fostering a community around neuromorphic engineering and research. While its focus on neuromorphic computing is a significant strength, enabling cutting-edge research in this area, it also means that Lava is somewhat specialized. Its specific alignment with neuromorphic hardware can be a limiting factor for those without access to such resources. Moreover, given its emerging status, the user community and available resources might not be as extensive as those for more established neural network frameworks.
+With its specific alignment with neuromorphic hardware can be a limitation for those who lack the resources to acquire neuromorphic hardware, but due to the alignment with neuromorphic
+hardware Lava has many interesting features and capabilities. The library offers a modular structure for integrating algorithms and supports a wide variety of neuron models,
+network topologies, and training tools. Making the project very flexible and versatile, enabling users to define individual neurons, neural networks, interfaces to third-party 
+devices, and compatibility to other software frameworks.
 
-Lava offers a modular, composable, and extensible structure for integrating diverse algorithms and supports a wide range of neuron models, network topologies, and training tools. Allowing the project to be very flexible and versatile, enabling users to define processes such as individual neurons, neural networks,  conventionally coded programs, interfaces to peripheral devices, and bridges to other software frameworks.
-
-The framework is platform-agnostic, allowing prototyping on CPUs/GPUs and deployment to various neuromorphic chips, and integrates with third-party frameworks. Some of Lava's best functionalities include hyper-granular parallelism, tools for building dynamic neural networks, forward connectivity to connect multiple neural networks, aiming for high energy efficiency and speed. 
-
-In summary, Lava is an innovative framework designed to push the boundaries of neuromorphic computing, offering unique capabilities for real-time, scalable neural network simulations. Its suitability for advanced research in this field makes it a valuable tool for those exploring the intersection of neuroscience, artificial intelligence, and hardware engineering.
+Also, it is platform-agnostic, meaning Lava is capable of running on any combination of operating systems and underlying architectures, allowing for prototyping on different CPUs/GPUs
+and deployment on various neuromorphic chips. Lava's best features include hyper-granular parallelism, functions and tools for building dynamic neural network, forward connectivity 
+to connect multiple neural network models, and aiming for high energy efficiency and speed. Lava is comprehensive and innovative library, with its focus on advanced research it is a
+valuable tool for understanding the intersection of neuroscience and hardware engineering.
