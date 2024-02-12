@@ -19,18 +19,16 @@ draft: false
 ---
 
 ## Overview
-**Brian2** is an open-source Python library for the simulation of spiking neural networks (SNNs) notable for its user-friendly syntax and flexible approach to the design and
-simulation of neural models. Brian2 is continually maintained by Romain Brette, Marcel Stimberg, and Dan Goodman since 2012, and they heavily encourage and support community
-contributions and involvement. The project has been publicly available for 12 years positioning themselves as the pillar of the neuromorphic community. 
+**Brian2** is an open-source Python library for the simulation of spiking neural networks (SNNs), notable for its user-friendly syntax and flexible approach to the design and
+simulation of neural models. Brian2 has been continually maintained by Romain Brette, Marcel Stimberg, and Dan Goodman since 2012. They heavily encourage and support community
+contributions and involvement. Having been publicly available for 12 years, Brian2 positions itself as the pillar of the neuromorphic community.
 
-Being one of the first to provide a user-friendly and flexible library for researchers and practitioners interested in understanding and furthering the field of SNNs. 
-Also, Brian2 has a robust community, comprehensive documentation, and follows the latest advancements in neural network simulations make Brian 2 a powerful tool in the field of 
-teaching and research.
+It was one of the first to provide a user-friendly and flexible library for researchers and practitioners interested in understanding and advancing the field of SNNs. Brian2 has a 
+robust community, comprehensive documentation, and stays competitive with the latest advancements in neural network simulations, making it a powerful tool in both teaching and research.
 
-The framework emphasizes simplicity, efficiency and extensibility, making it a popular choice for both teaching and research. The neural models are defined using equations directly,
-making the translation from theoretical models to simulation code more streamlined and straightforward. This feature lowers the barriers to entry for those who are new to
-computational modeling.
+The framework emphasizes simplicity, efficiency, and extensibility, making it a popular choice for both teaching and research. The neural models in Brian2 are defined using equations
+directly, streamlining the transition from theoretical models to simulation code. This feature significantly lowers the barriers to entry for those who are new to computational modeling.
 
-The models have many parameters that allow for interesting network architectures like specifying the pre-synaptic source, and the post-synaptic source. With neuron models being
-defined by equations and the fact that you can specify you're synaptic connections, the topology and construction of the network has a very low level of abstraction. Making the
-library give the user a lot of creative freedom to design their networks and a good way to learn the principles of spiking and non-spiking neural networks.
+The models in Brian2 offer many parameters that facilitate the creation of intriguing network architectures, such as specifying the pre- and post-synaptic sources. With neuron models
+defined by equations and the ability to specify synaptic connections, the network's topology and construction have a very low level of abstraction. This design allows users to have
+creative freedom in designing their networks and serves as an effective way to learn the principles of both spiking and non-spiking neural networks.

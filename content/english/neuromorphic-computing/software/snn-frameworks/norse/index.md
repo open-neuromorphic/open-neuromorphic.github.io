@@ -19,15 +19,15 @@ draft: false
 ---
 
 ## Overview
-**Norse** is deep learning Python library used for the simulation of spiking neural networks (SNN)s that takes advantage of PyTorch with bio-inspired neural networks. Norse is
-maintained and developed by Christian Pehle and Jens Egholm Pedersen, this is possible due to the EC Horizon 2020 Framework Programme funding and the DFG, German Research Foundation.
-Moreover, Norse is a community-driven project, encouraging community contributions and development. 
+**Norse** is a deep learning Python library used for simulating spiking neural networks (SNN)s that leverages PyTorch with bio-inspired neural networks. Norse is maintained 
+and developed by Christian Pehle and Jens Egholm Pedersen, with funding from the EC Horizon 2020 Framework Programme and the DFG, German Research Foundation. Additionally, Norse is
+a community-driven project, encouraging community contributions and development. 
 
-Additionally, Norse is accompanied by extensive documentation, including tutorials on running classification tasks on datasets like MNIST, CIFAR, and cartpole balancing with policy
-gradients. Showcasing Norse's compatibility with PyTorch Lightning. While utilizing the PyTorch library for its CPU/GPU acceleration, Norse expands it by adding their own spiking
-neuron models. Taking advantage of the sparse and even-driven nature of biological neural networks to create energy efficient computational models. The framework provides a variety
-of different neuron models, and it is designed to be adaptable, allowing for custom neuron model creation and integration with existing deep learning models.
+Norse is accompanied by extensive documentation, including tutorials on running classification tasks on datasets like MNIST, CIFAR, and cartpole balancing with policy
+gradients, showcasing Norse's compatibility with PyTorch Lightning. While utilizing the PyTorch library for CPU/GPU acceleration, Norse expands it by adding their own spiking
+neuron models. This approach leverages the sparse and event-driven nature of biological neural networks to create energy efficient computational models. The framework 
+provides a variety of different neuron models and is designed to be adaptable, allowing for custom neuron model creation and integration with existing deep learning models.
 
-Norse aims to be a foundational tool for understanding the transition between standard deep learning models to spiking models. Allowing for new neural network models and adapting
-existing models with spiking capabilities. It also acknowledges the resource-intensive nature of spiking neural networks and provides guidance on hardware acceleration to optimize
-simulation performance.
+Norse aims to be a foundational tool for understanding the transition from standard deep learning models to spiking models. It enables the creation of new neural network models 
+and the adaptation of existing models with spiking capabilities. Norse also acknowledges the resource-intensive nature of spiking neural networks and provides guidance on hardware 
+acceleration to optimize simulation performance.
