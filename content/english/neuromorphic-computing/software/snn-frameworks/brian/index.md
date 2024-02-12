@@ -29,6 +29,5 @@ robust community, comprehensive documentation, and stays competitive with the la
 The framework emphasizes simplicity, efficiency, and extensibility, making it a popular choice for both teaching and research. The neural models in Brian2 are defined using equations
 directly, streamlining the transition from theoretical models to simulation code. This feature significantly lowers the barriers to entry for those who are new to computational modeling.
 
-The models in Brian2 offer many parameters that facilitate the creation of intriguing network architectures, such as specifying the pre- and post-synaptic sources. With neuron models
-defined by equations and the ability to specify synaptic connections, the network's topology and construction have a very low level of abstraction. This design allows users to have
-creative freedom in designing their networks and serves as an effective way to learn the principles of both spiking and non-spiking neural networks.
+With neuron models defined by equations and the ability to specify synaptic connections, the network's topology and construction have a very low level of abstraction. This design
+allows users to have creative freedom in designing their networks and serves as an effective way to learn the principles of both spiking and non-spiking neural networks.
