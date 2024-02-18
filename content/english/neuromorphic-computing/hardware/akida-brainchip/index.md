@@ -14,22 +14,23 @@ organization:
     twitter: https://twitter.com/BrainChip_inc
     wikipedia: https://en.wikipedia.org/wiki/BrainChip
 product:
-  announced_date: 2023-01-29
+  announced_date: 2023-01
   applications: Smart sensing, one-shot learning
   chip_type: Digital
-  neurons: Configurable
-  weight_bits: null
-  activation_bits: null
+  synapses: Uses novel Temporal Event-Based Neural Net (TENN) technology to propogate time-encoded 2D data.
+  neurons: 256, Configurable
+  weight_bits: 1,2,4,8
+  activation_bits: 1,2,4,8
   on_chip_learning: true
   power: ~30 mW
   release_year: 2023
-  release_date: 2023-01-29
+  release_date: 2023-10
   software: MetaTF
   status:
     announced: true
     released: true
     retired: false
-  synapses: 8-Mb SRAM
+  synapse hardware: 8-Mb SRAM.  
 product_name: Akida
 summary: BrainChip's Akida is an ultra-low-power neuromorphic processor inspired by
   the brain's neural architecture. It accelerates complex AI at the edge through event-based
