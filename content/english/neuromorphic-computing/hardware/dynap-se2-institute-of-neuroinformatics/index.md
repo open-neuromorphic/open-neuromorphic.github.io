@@ -31,10 +31,7 @@ product:
   synapses: 65K, maximum synapses per neuron are 256
   
 product_name: DYNAP-SE2
-summary: The DYNAP-SE2 is a configurable, mixed-signal neuromorphic chip featuring 1024 
-neurons, 65k plastic synapses, specialized dendrites, low-latency event routing, and 
-multi-timescale adaptation dynamics. This enables real-time prototyping of biologically 
-inspired spiking neural networks for ultra-low power edge processing.
+summary: "The DYNAP-SE2 is a configurable, mixed-signal neuromorphic chip featuring 1024 neurons, 65k plastic synapses, specialized dendrites, low-latency event routing, and multi-timescale adaptation dynamics. This enables real-time prototyping of biologically inspired spiking neural networks for ultra-low power edge processing."
 title: DYNAP-SE2 - Institute of Neuroinformatics
 ---
 
