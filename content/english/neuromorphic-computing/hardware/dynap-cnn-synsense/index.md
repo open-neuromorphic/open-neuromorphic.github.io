@@ -1,6 +1,6 @@
 ---
 active_product: true
-description: 'Learn about SynSense''s neuromorphic hardware: DynapCNN'
+description: "Learn about SynSense's neuromorphic hardware: DynapCNN"
 type: neuromorphic-hardware
 image: dynapcnn.png
 organization:
@@ -21,7 +21,7 @@ product:
   weight_bits: 8bit ints
   activation_bits: 1 bit spikes, 16bit neurons
   on_chip_learning: false
-  power: ~5 mW
+  power: "~5 mW"
   release_date: 2019-04-20
   release_year: 2019
   software: Sinabs, Samna
@@ -29,10 +29,10 @@ product:
     announced: true
     released: true
     retired: false
-  synapses: >50G CNN, ~2M fully-connected
-product_name: DynapCNN
-summary: The DynapCNN is an ultra-low power, event-driven neuromorphic processor chip for spiking neural networks that achieves sub-milliwatt computation using in-memory techniques. With 1M neurons, it can implement convolutional network models like LeNet and ResNet, interfacing directly to sensors like DVS cameras for low-latency, always-on vision applications.
+  synapses: ">50G CNN, ~2M fully-connected"
+product_name: "DynapCNN"
 title: DynapCNN - SynSense
+summary: "The DynapCNN is an ultra-low power, event-driven neuromorphic processor chip for spiking neural networks that achieves sub-milliwatt computation using in-memory techniques. With 1M neurons, it can implement convolutional network models like LeNet and ResNet, interfacing directly to sensors like DVS cameras for low-latency, always-on vision applications."
 ---
 
 The DynapCNN is an ultra-low power event-driven neuromorphic processor chip designed for implementing spiking convolutional neural networks (SCNNs). It was developed by SynSense AG, a neuromorphic engineering startup based in Zurich, Switzerland.
