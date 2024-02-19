@@ -9,6 +9,7 @@ author:
 - "Kade Heckel"
 - "Sumit Bam Shrestha"
 - "Cameron Barker"
+- "Jens Egholm Pedersen"
 image: neurons-race.png
 tags: ["snn", "framework", "library", "pytorch", "JAX"]
 ---
@@ -41,6 +42,8 @@ The ideal library will often depend on a multitude of factors, such as accessibl
 
 **07/11/2023**: Cameron Barker containerised the benchmark suite and added the memory utilisation benchmark. The updated benchmarks were run on a RTX 3090 with a batchsize of 16.
 
+**19/2/2024**: Jens Pedersen updated the benchmark for Norse to use the correct neuron model and `torch.compile`.
+
 ## Code and comments
 The code for this benchmark is available [here](https://github.com/open-neuromorphic/open-neuromorphic.github.io/blob/main/content/english/blog/spiking-neural-network-framework-benchmarking/). The order of dimensions in the input tensor and how it is fed to the respective models differs between libraries.
 Benchmarks were run on a NVIDIA RTX 3090 with 24GB of VRAM. Frameworks use full precision computation unless stated otherwise.
@@ -50,6 +53,7 @@ Some things that would be interesting to add:
 
 * multilayer scalability and benchmarking
 * evaluation of PyTorch frameworks when using torch.compile and with automatic mixed precision
+    * ✔ Done for Norse
 * check that forward dynamics are roughly equal in each case
 * given equivalent forward dynamics, check gradient correlations and magnitudes
 * ✔ memory consumption of different libraries
@@ -60,3 +64,4 @@ Some things that would be interesting to add:
 * [Kade Heckel](https://github.com/kmheckel/spyx) is a Marshall Scholar and a current MPhil student at the Univeristy of Cambridge. He authored the library Spyx as part of the dissertation for an MSc at the University of Sussex under the supervision of Thomas Nowotny.
 * [Sumit Bam Shrestha](https://www.intel.com/content/www/us/en/research/featured-researchers/sumit-bam-shrestha.html) is a research scientist in neuromorphic computing at Intel Labs, where he focuses on deep spiking neural networks.
 * [Cameron Barker](https://github.com/cameron-git) is a Neuromorphic Engineer at Ripga ltd.
+* [Jens Egholm Pedersen](https://jepedersen.dk) is a PhD student at KTH Royal Institute of Technology

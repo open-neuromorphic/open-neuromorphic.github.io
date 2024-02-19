@@ -4,6 +4,7 @@ source ./.venv/bin/activate
 
 pip3 install sinabs-exodus
 pip3 install git+https://github.com/fangwei123456/spikingjelly.git
+pip3 install lava-dl
 
 echo "running benchmarks with batch size $1"
 

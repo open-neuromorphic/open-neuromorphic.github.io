@@ -1,7 +1,7 @@
 torch>=2.0.0
 sinabs
 # sinabs-exodus
-norse
+git+https://github.com/norse/norse
 # spikingjelly
 # lava-dl
 spyx
