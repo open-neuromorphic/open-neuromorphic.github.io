@@ -1,5 +1,5 @@
 ---
-description: Meet the organizers behind Open Neuromorphic. Our team ensures the thriving community of neuromorphic computing, digital hardware, and AI enthusiasts.
+description: Meet the original founders of Open Neuromorphic. Our team ensures the thriving community of neuromorphic computing, digital hardware, and AI enthusiasts.
 members:
 - description: 'Fabrizio Ottati completed his Ph.D. in the Department of Electronics
     and Communications of Politecnico di Torino, under the supervision of professor
@@ -210,5 +210,5 @@ members_advisers:
   image: /images/team/alexander-henkes.jpg
   name: Alexander Henkes
   member_id: 7
-title: Organizers
+title: Founders
 ---
