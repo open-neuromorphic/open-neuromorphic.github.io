@@ -2,7 +2,7 @@ import pandas as pd
 import os
 import argparse
 
-df = pd.read_csv("../data.csv")
+df = pd.read_csv("data.csv")
 
 os.makedirs("./fig", exist_ok=True)
 

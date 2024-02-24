@@ -2,7 +2,16 @@
 
 In data-generation.ipynb we benchmark forward and backward calls of different libraries. 
 
-# Installation
+# Installation (using Docker)
+
+1. Ensure you have Docker installed with NVIDIA runtime support
+2. Build the docker container by running `./build.sh`
+3. Run `./bench.sh` to do the benchmark
+    * Plots should automatically be generated in the present directory
+
+If something goes wrong, follow the steps in the docker container and the `docker/run_benchmarks.sh` manually
+
+# Installation (DEPRECATED)
 Start with creating a new Conda environment. Use Python 3.10 in order to use torch.compile (3.11 not supported in Aug 2023)
 ```
 conda create -n frameworks python=3.10 pip

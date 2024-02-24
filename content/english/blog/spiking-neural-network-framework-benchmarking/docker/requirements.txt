@@ -1,9 +1,8 @@
 torch>=2.0.0
 sinabs
-# sinabs-exodus
-norse
-# spikingjelly
-# lava-dl
+sinabs-exodus
+git+https://github.com/norse/norse
+git+https://github.com/fangwei123456/spikingjelly.git
 spyx
 tonic
 snntorch

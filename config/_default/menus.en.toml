@@ -52,7 +52,7 @@ weight = 2
 
 [[main]]
 parent = "About"
-name = "Organizers"
+name = "Founders"
 url = "/team/"
 weight = 3
 

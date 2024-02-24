@@ -146,18 +146,25 @@ def norse():
     from torch import nn
 
     torch.cuda.set_per_process_memory_fraction(0.7, device=None)
-    from norse.torch.module.lif import LIF
+    from norse.torch.module import LIFBoxCell, LIFBoxParameters
     from norse.torch import SequentialState
     import norse
 
     benchmark_title = f"Norse<br>v{norse.__version__}"
 
     def prepare_fn(batch_size, n_steps, n_neurons, n_layers, device):
+        p = LIFBoxParameters(
+            tau_mem_inv=torch.tensor([100.0], device="cuda"),
+            v_leak=torch.tensor([0.0], device="cuda"),
+            v_th=torch.tensor([1.0], device="cuda"),
+            v_reset=torch.tensor([0.0], device="cuda"),
+            alpha=torch.tensor([100.0], device="cuda"),
+        )
         model = SequentialState(
             nn.Linear(n_neurons, n_neurons),
-            LIF(),
+            LIFBoxCell(p),
         )
-        # model = torch.compile(model, mode="max-autotune")
+        model = torch.compile(model, mode="reduce-overhead")
         model = model.to(device)
         input_static = torch.randn(n_steps, batch_size, n_neurons).to(device)
         with torch.no_grad():
@@ -166,6 +173,7 @@ def norse():
         return dict(model=model, input=input_static, n_neurons=n_neurons)
 
     def forward_fn(bench_dict):
+        torch.compiler.cudagraph_mark_step_begin()
         model, input_static = bench_dict["model"], bench_dict["input"]
         bench_dict["output"] = model(input_static)[0]
         return bench_dict

@@ -16,8 +16,12 @@
                         <a href="{{ .Permalink }}">{{ .Title }}</a>
                     </h3>
                     <div class="flex items-center">
-                        <img class="inline" style="height: 30px;" src="{{ .Params.version_widget_url }}" alt="Version">
-                        <img class="inline pl-2" style="height: 30px;" src="{{ .Params.stars_widget_url }}" alt="Stars">
+                        {{ if .Params.version_widget_url }}
+                            <img class="inline" style="height: 30px;" src="{{ .Params.version_widget_url }}" alt="Version">
+                        {{ end }}
+                        {{ if .Params.stars_widget_url }}
+                            <img class="inline pl-2" style="height: 30px;" src="{{ .Params.stars_widget_url }}" alt="Stars">
+                        {{ end }}
                     </div>
                 </div>
                 <p class="my-4">{{ .Params.description }}</p>

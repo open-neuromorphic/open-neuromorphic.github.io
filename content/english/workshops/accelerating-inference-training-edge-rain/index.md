@@ -1,12 +1,12 @@
 ---
-title: "Accelerating Neuromorphic Inference and Training at the Edge - Rain"
+title: "Accelerating Inference and Training at the Edge"
 author:
 - "Maxence Ernoult"
 date: "2024-03-05"
 start_time: 18:00
 end_time: 19:30
 time_zone: CET
-description: "Join us for a talk by Maxence Ernoult, Research Scientist at Rain, on accelerating neuromorphic inference and training at the edge."
+description: "Join us for a talk by Maxence Ernoult, Research Scientist at Rain, on accelerating inference and training at the edge."
 upcoming: true
 speaker_photo: maxence-ernoult.jpeg
 image: rain-ai-workshop-inference.png

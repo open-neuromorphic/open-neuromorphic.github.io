@@ -1,9 +1,6 @@
 #!/bin/bash
 
-source ./.venv/bin/activate
-
-pip3 install sinabs-exodus
-pip3 install git+https://github.com/fangwei123456/spikingjelly.git
+source /app/lava-dl/.venv/bin/activate
 
 echo "running benchmarks with batch size $1"
 
