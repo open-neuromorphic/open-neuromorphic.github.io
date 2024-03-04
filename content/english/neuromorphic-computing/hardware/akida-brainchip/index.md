@@ -47,6 +47,14 @@ Akida employs an event-based processing approach where computations are only per
 
 The second generation Akida platform adds capabilities such as support for 8-bit weights/activations, improved vision transformer acceleration, multi-pass sequential processing, and configurable local scratchpads to optimize memory access. It is designed to run larger neural networks across multiple chips while minimizing latency.
 
+The AKD1000 version was released in January 2022 and can be purchased online [directly from BrainChip](https://shop.brainchipinc.com/). As yet, the subsequent versions AKD1500 and AKD2000 are not available for purchase, however, the MetaTF SDK has already been updated to reflect the additional capabilities of the AKD2000 chip. This can lead to confusion when training models that will be mapped to the AKD1000 chip due to certain incompatibilities in the API and deprecated functions.
+
+### Neurons and synapses
+
+Akida does not support LIF neurons. Instead, it operates similarly to an event camera, converting pixels to events and using Rank Order Coding (ROC) to encode the input. An Akida core can contain tens of thousands of neurons, although the total number of neurons that can be mapped to the hardware varies with the model type.
+
+Synaptic weights can have a width of `1`, `2`, `4` or `8` bits. However, when creating quantised models, care should be taken that the input layer have the same number of bits as the input data (cf. notes about training below).
+
 ### Training
 
 Akida leverages standard machine learning frameworks like TensorFlow and development platforms like Edge Impulse for model training and deployment. BrainChip also provides complementary software tools like [MetaTF](https://doc.brainchipinc.com/index.html#) to optimize models for the Akida hardware. Pre-built Akida-compatible models are also offered through a [model zoo](https://doc.brainchipinc.com/model_zoo_performance.html).
@@ -85,3 +93,4 @@ Akida targets applications spanning industrial automation, automotive, healthcar
 | August 2023 | [Low Power & Low Latency Cloud Cover Detection in Small Satellites Using On-board Neuromorphic Processors](https://ieeexplore.ieee.org/abstract/document/10191569) | Chetan Kadway; Sounak Dey; Arijit Mukherjee; Arpan Pal; Gilles Bézard | IJCNN 2023 |
 | August 2023 | [Neuromorphic Medical Image Analysis at the Edge](http://www.diva-portal.org/smash/record.jsf?pid=diva2%3A1779206&dswid=-6143) | Ebba Bratman, Lucas Dow | Master's course project |
 | October 2022 | [Detection of facial emotions using neuromorphic computation](https://www.spiedigitallibrary.org/conference-proceedings-of-spie/12226/122260E/Detection-of-facial-emotions-using-neuromorphic-computation/10.1117/12.2633707.short) | Teodoro Álvarez-Sánchez, Jesús A. Álvarez-Cedillo, Roberto Herrera-Charles | Applications of Digital Image Processing XLV |
+| 1998 | [Rank Order Coding](https://doi.org/10.1007/978-1-4615-4831-7_19) | S. Thorpe and J. Gautrais | *Computational Neuroscience*
