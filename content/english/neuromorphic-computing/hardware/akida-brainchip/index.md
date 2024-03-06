@@ -55,6 +55,8 @@ Akida does not support LIF neurons. Instead, it operates similarly to an event c
 
 Synaptic weights can have a width of `1`, `2`, `4` or `8` bits. However, when creating quantised models, care should be taken that the input layer have the same number of bits as the input data (cf. notes about training below).
 
+The AKD1000 device supports on-chip continual learning for the last layer only. The layer must be FullyConnected, it must have binary weights, and receive binary inputs. As the FullyConnected layer type only exists for Akida 1.0, at this stage it is unclear whether the AKD2000 device would support on-chip learning.
+
 ### Training
 
 Akida leverages standard machine learning frameworks like TensorFlow and development platforms like Edge Impulse for model training and deployment. BrainChip also provides complementary software tools like [MetaTF](https://doc.brainchipinc.com/index.html#) to optimize models for the Akida hardware. Pre-built Akida-compatible models are also offered through a [model zoo](https://doc.brainchipinc.com/model_zoo_performance.html).
