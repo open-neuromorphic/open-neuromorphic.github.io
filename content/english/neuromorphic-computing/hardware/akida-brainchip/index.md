@@ -14,17 +14,17 @@ organization:
     twitter: https://twitter.com/BrainChip_inc
     wikipedia: https://en.wikipedia.org/wiki/BrainChip
 product:
-  announced_date: 2023-01
+  announced_date: 2023-01-01
   applications: Smart sensing, one-shot learning
   chip_type: Digital
-  synapses: Uses novel Temporal Event-Based Neural Net (TENN) technology to propogate time-encoded 2D data.
+  synapses: Configurable
   neurons: 256, Configurable
   weight_bits: 1,2,4,8
   activation_bits: 1,2,4,8
   on_chip_learning: true
   power: ~30 mW
   release_year: 2023
-  release_date: 2023-10
+  release_date: 2023-10-01
   software: MetaTF
   status:
     announced: true
@@ -54,7 +54,7 @@ The AKD1000 version was released in January 2022 and can be purchased online [di
 
 Akida does not support LIF neurons. Instead, it operates similarly to an event camera, converting pixels to events and using Rank Order Coding (ROC) to encode the input. An Akida core can contain tens of thousands of neurons, although the total number of neurons that can be mapped to the hardware varies with the model type.
 
-Synaptic weights can have a width of `1`, `2`, `4` or `8` bits. However, when creating quantised models, care should be taken that the input layer have the same number of bits as the input data (cf. notes about training below).
+Synaptic weights can have a width of 1, 2, 4 or 8 bits. However, when creating quantised models, care should be taken that the input layer have the same number of bits as the input data (cf. notes about training below).
 
 The AKD1000 device supports on-chip continual learning for the last layer only. The layer must be FullyConnected, it must have binary weights, and receive binary inputs. As the FullyConnected layer type only exists for Akida 1.0, at this stage it is unclear whether the AKD2000 device would support on-chip learning.
 
