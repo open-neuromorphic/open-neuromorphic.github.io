@@ -18,6 +18,7 @@ product:
   applications: Research
   chip_type: Mixed-signal
   neurons: 256
+  synapses: 64000
   weight_bits: null
   activation_bits: null
   on_chip_learning: true
@@ -29,7 +30,6 @@ product:
     announced: true
     released: true
     retired: true
-  synapses: 64000
 product_name: ROLLS
 summary: ROLLS is a reconfigurable neuromorphic chip with 256 silicon neurons and
   128K plastic synapses that implements spike-timing learning rules. It allows emulation

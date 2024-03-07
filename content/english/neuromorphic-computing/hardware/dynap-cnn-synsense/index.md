@@ -18,6 +18,7 @@ product:
   applications: Smart vision processing
   chip_type: Digital
   neurons: 1M
+  synapses: ">50G CNN, ~2M fully-connected"
   weight_bits: 8bit ints
   activation_bits: 1 bit spikes, 16bit neurons
   on_chip_learning: false
@@ -29,7 +30,6 @@ product:
     announced: true
     released: true
     retired: false
-  synapses: ">50G CNN, ~2M fully-connected"
 product_name: "DynapCNN"
 title: DynapCNN - SynSense
 summary: "The DynapCNN is an ultra-low power, event-driven neuromorphic processor chip for spiking neural networks that achieves sub-milliwatt computation using in-memory techniques. With 1M neurons, it can implement convolutional network models like LeNet and ResNet, interfacing directly to sensors like DVS cameras for low-latency, always-on vision applications."

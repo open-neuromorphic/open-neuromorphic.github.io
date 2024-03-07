@@ -18,6 +18,7 @@ product:
   applications: Real-time SNN emulation
   chip_type: Mixed-signal
   neurons: 1 million
+  synapses: 8 billion
   weight_bits: null
   activation_bits: null
   on_chip_learning: false
@@ -29,7 +30,6 @@ product:
     announced: true
     released: true
     retired: true
-  synapses: 8000000000
 product_name: NeuroGrid (BrainDrop)
 summary: Neurogrid is a specialized neuromorphic hardware system that enables real-time
   simulation of neural models with up to 1M neurons & 8B synapses using low-power

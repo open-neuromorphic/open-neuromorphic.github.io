@@ -18,6 +18,7 @@ product:
   applications: Smart sensing
   chip_type: Digital, with analog sensor
   neurons: 328K
+  synapses: '>6.16G CNN, ~278K fully-connected'
   weight_bits: 8bit ints
   activation_bits: 16bit (neuron)
   on_chip_learning: false
@@ -29,7 +30,6 @@ product:
     announced: true
     released: true
     retired: false
-  synapses: '>6.16G CNN, ~278K "fully-connected"'
 product_name: Speck
 summary: Speck is a fully event-driven neuromorphic vision SoC. Speck is able to support large-scale spiking convolutional neural network (sCNN) with a fully asynchronous chip architecture. Speck is fully configurable with the spiking neuron capacity of 328K. Furthermore, it integrates the state-of-art dynamic vision sensor (DVS) that enables fully event-driven based, real-time, highly integrated solution for varies dynamic visual scene. For classical applications, Speck can provide intelligence upon the scene at only mWs with a latency of 3.36us for a single event processed by a 9 layer network.
 title: Speck - SynSense

@@ -18,6 +18,7 @@ product:
   applications: DNN acceleration
   chip_type: Digital
   neurons: 1 million
+  synapses: 256 million
   weight_bits: null
   activation_bits: null
   on_chip_learning: false
@@ -29,7 +30,6 @@ product:
     announced: true
     released: true
     retired: true
-  synapses: 256000000
 product_name: TrueNorth
 summary: TrueNorth is a 5.4B transistor, 4096 core, 1M neuron, 256M synapse neurosynaptic
   chip implemented in 28nm. Through a mixed async-sync design & custom toolflow, it

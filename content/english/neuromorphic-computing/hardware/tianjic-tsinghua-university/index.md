@@ -18,6 +18,7 @@ product:
   applications: ANN/SNN acceleration
   chip_type: Digital
   neurons: 40k
+  synapses: 10 million
   weight_bits: null
   activation_bits: null
   on_chip_learning: false
@@ -29,7 +30,6 @@ product:
     announced: true
     released: true
     retired: false
-  synapses: 10 million
 product_name: Tianjic
 summary: Tianjic supports both spiking and non-spiking models. Its motivation is to
   enable hybrid networks that blend biological plausibility from neuroscience with

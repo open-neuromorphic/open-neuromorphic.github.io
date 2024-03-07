@@ -18,6 +18,7 @@ product:
   applications: Real-time simulation of SNN; DNN; Symbolic; HPC
   chip_type: Digital
   neurons: 1 million
+  synapses: 10000
   weight_bits: null
   activation_bits: null
   on_chip_learning: true
@@ -29,7 +30,6 @@ product:
     announced: true
     released: true
     retired: false
-  synapses: 10000
 product_name: SpiNNaker2
 summary: The SpiNNaker2 chip houses 153 ARM cores with 19MB on-chip SRAM, 2GB DRAM,
   and dedicated Machine Learning (e.g., MAC) and Neuromorphic (e.g., Exp/Log) 

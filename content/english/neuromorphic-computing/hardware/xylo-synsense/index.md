@@ -18,6 +18,7 @@ product:
   applications: Smart sensing
   chip_type: Digital
   neurons: null
+  synapses: 278000
   weight_bits: null
   activation_bits: null
   on_chip_learning: false
@@ -29,7 +30,6 @@ product:
     announced: true
     released: true
     retired: false
-  synapses: 278000
 product_name: Xylo
 summary: Xylo is a 28nm 1000 neuron digital spiking neural network inference chip
   optimized for ultra low power edge deployment of trained SNNs, with flexible architecture

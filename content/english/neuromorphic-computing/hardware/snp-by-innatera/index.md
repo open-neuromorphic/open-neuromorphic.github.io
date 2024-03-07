@@ -17,6 +17,7 @@ product:
   applications: Smart-sensing, wearables, IoT
   chip_type: Mixed-signal
   neurons: ~500
+  synapses: ~60000
   weight_bits: 6
   memory: 384 KB
   on_chip_learning: false
@@ -30,7 +31,6 @@ product:
     announced: true
     released: true
     retired: false
-  synapses: ~60000
 product_name: Spiking Neural Processor T1
 summary: The Spiking Neural Processor T1 is Innatera's ultra-low-power neuromorphic microcontroller SoC for real-time intelligence close to the sensor. It integrates a spiking neural network accelerator, a convolutional neural network accelerator and a RISCV core. T1 targets applications in battery-powered, power-limited and latency-critical devices.
 title: Spiking Neural Processor T1 by Innatera

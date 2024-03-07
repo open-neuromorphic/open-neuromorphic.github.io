@@ -18,6 +18,7 @@ product:
   applications: Edge processing, robotics
   chip_type: Mixed-signal
   neurons: 512
+  synapses: 130000
   weight_bits: null
   activation_bits: null
   on_chip_learning: true
@@ -29,7 +30,6 @@ product:
     announced: true
     released: true
     retired: true
-  synapses: 130000
 product_name: BrainScaleS 2
 summary: The BrainScaleS-2 is an accelerated spiking neuromorphic system-on-chip integrating
   512 adaptive integrate-and-fire neurons, 212k plastic synapses, embedded processors,

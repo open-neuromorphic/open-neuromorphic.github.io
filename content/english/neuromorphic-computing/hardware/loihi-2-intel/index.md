@@ -18,6 +18,7 @@ product:
   applications: Research
   chip_type: Digital
   neurons: 1 million
+  synapses: 120 million max
   weight_bits: <= 32-bit
   activation_bits: null
   on_chip_learning: true
@@ -29,7 +30,6 @@ product:
     announced: true
     released: true
     retired: false
-  synapses: 120 million max
 product_name: Loihi 2
 summary: Loihi 2 is Intel's latest neuromorphic research chip, implementing spiking
   neural networks with programmable dynamics, modular connectivity, and optimizations
