@@ -44,9 +44,9 @@ members:
     name: github
   member_id: 3
 
-- description: 'Gregor Lenz graduated with a Ph.D. in neuromorphic engineering from
-    Sorbonne University. He thinks that technology can learn a thing or two from how
-    biological systems process information.
+- description: 'Gregor Lenz, Co-Founder and CTO at [Neurobus](https://neurobus.space), 
+    graduated with a Ph.D. in neuromorphic engineering from Sorbonne University. He 
+    thinks that technology can learn a thing or two from how biological systems process information.
 
 
     His main interests are event cameras that are inspired by the human retina and
