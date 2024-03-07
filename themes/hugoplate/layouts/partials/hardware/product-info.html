@@ -18,6 +18,8 @@
     <div class="pb-4 lg:pb-0">
       {{ if .neurons }}<div><strong>Neurons:</strong> {{ .neurons }}</div>{{ end }}
       {{ if .synapses }}<div><strong>Synapses:</strong> {{ .synapses }}</div>{{ end }}
+      {{ if .weight_bits }}<div><strong>Weight bits:</strong> {{ .weight_bits }}</div>{{ end }}
+      {{ if .activation_bits }}<div><strong>Activation bits:</strong> {{ .activation_bits }}</div>{{ end }}
       {{ if .on_chip_learning }}<div><strong>On-Chip Learning:</strong> {{ .on_chip_learning }}</div>{{ end }}
       {{ if .power }}<div><strong>Power:</strong> {{ .power }}</div>{{ end }}
       {{ if .software }}<div><strong>Software:</strong> {{ .software }}</div>{{ end }}
