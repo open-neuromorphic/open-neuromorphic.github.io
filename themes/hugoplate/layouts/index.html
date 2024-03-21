@@ -8,14 +8,17 @@
         </h1>
         <ul class="list-disc pl-6 ml-3 mb-8 text-lg">
           <li class="relative mb-4 pl-3">
-            <a href="/neuromorphic-computing/">Educational content</a> to get you started with the neuromorphic engineering.
+            <a href="/neuromorphic-computing/">Educational content</a> to get you started with the neuromorphic
+            engineering.
           </li>
           <li class="relative mb-4 pl-3">
             <a href="/workshops/">Events about neuromorphic research and software</a>, with contributions from both
             academia and industry.
           </li>
           <li class="relative mb-4 pl-3">
-            A curated list of neuromorphc open source <a href="/neuromorphic-computing/software/">software</a> and <a href="/neuromorphic-computing/hardware/">hardware</a> to make it easier to find <strong>the tool you need</strong>.
+            A curated list of neuromorphc open source <a href="/neuromorphic-computing/software/">software</a> and <a
+            href="/neuromorphic-computing/hardware/">hardware</a> to make it easier to find <strong>the tool you
+            need</strong>.
           </li>
           <li class="relative mb-4 pl-3">
             <a href="https://github.com/open-neuromorphic" target="_blank">A platform for your code</a>. If you wish to
@@ -23,39 +26,40 @@
           </li>
         </ul>
         <p class="text-xl pb-3">Ways to Get Involved</p>
-<div class="grid grid-cols-2 gap-4">
-    <!-- Content Team Card -->
-    <a href="/getting-involved#content" class="bg-blue-100 dark:bg-darkmode-theme-light p-4 rounded-lg">
-        <h2 class="text-xl font-semibold mb-2">Blogs & Writing</h2>
-        <p>Contribute to website content, blogs, newsletters, and technical guides.</p>
-    </a>
+        <div class="grid grid-cols-2 gap-4">
+          <!-- Content Team Card -->
+          <a href="/getting-involved#content" class="bg-blue-100 dark:bg-darkmode-theme-light p-4 rounded-lg">
+            <h2 class="text-xl font-semibold mb-2">Blogs & Writing</h2>
+            <p>Contribute to website content, blogs, newsletters, and technical guides.</p>
+          </a>
 
-    <!-- Workshop Card -->
-    <a href="/getting-involved#workshop" class="bg-blue-100 dark:bg-darkmode-theme-light p-4 rounded-lg">
-        <h2 class="text-xl font-semibold mb-2">Workshop</h2>
-        <p>Participate in workshops to share your expertise and insights.</p>
-    </a>
+          <!-- Workshop Card -->
+          <a href="/getting-involved#workshop" class="bg-blue-100 dark:bg-darkmode-theme-light p-4 rounded-lg">
+            <h2 class="text-xl font-semibold mb-2">Workshop</h2>
+            <p>Participate in workshops to share your expertise and insights.</p>
+          </a>
 
-    <!-- Code Card -->
-    <a href="/getting-involved#code" class="bg-blue-100 dark:bg-darkmode-theme-light p-4 rounded-lg">
-        <h2 class="text-xl font-semibold mb-2">Code</h2>
-        <p>Contribute to ONM projects or host your own project with ONM.</p>
-    </a>
+          <!-- Code Card -->
+          <a href="/getting-involved#code" class="bg-blue-100 dark:bg-darkmode-theme-light p-4 rounded-lg">
+            <h2 class="text-xl font-semibold mb-2">Code</h2>
+            <p>Contribute to ONM projects or host your own project with ONM.</p>
+          </a>
 
-    <!-- Discord Card -->
-    <a href="#discord" class="bg-blue-100 dark:bg-darkmode-theme-light p-4 rounded-lg">
-        <h2 class="text-xl font-semibold mb-2">Discord</h2>
-        <p>Join our welcoming and collaborative community on Discord.</p>
-    </a>
-</div>
+          <!-- Discord Card -->
+          <a href="#discord" class="bg-blue-100 dark:bg-darkmode-theme-light p-4 rounded-lg">
+            <h2 class="text-xl font-semibold mb-2">Discord</h2>
+            <p>Join our welcoming and collaborative community on Discord.</p>
+          </a>
+        </div>
 
 
       </div>
       <div class="mb:md-0 md:col-5 lg:col-4 mb-6">
+{{ $events := where .Site.RegularPages "Section" "workshops" }}
+{{ $upcomingEvents := where $events "Params.upcoming" true }}
+{{ if $upcomingEvents }}
         <div class="bg-theme-light dark:bg-darkmode-theme-light rounded p-7">
           <h3 class="pb-5 text-xl">Next Workshop</h3>
-          {{ $events := where .Site.RegularPages "Section" "workshops" }}
-          {{ $upcomingEvents := where $events "Params.upcoming" true }}
           {{ $sortedUpcomingEvents := sort $upcomingEvents "Params.date" }}
           {{ with index $sortedUpcomingEvents 0 }}
           <!-- Display the nearest upcoming event -->
@@ -64,11 +68,15 @@
           </div>
           {{ end }}
         </div>
+{{ end }}
       </div>
       <div class="pt-2 pb-0">
-      <div class="bg-theme-light dark:bg-darkmode-theme-light rounded p-5">
-      {{ partial "components/upcoming-wide" . }}
-        </div></div>
+    {{ if gt (len $upcomingEvents) 1}}  <div class="bg-theme-light dark:bg-darkmode-theme-light rounded mt-3 p-5">
+        {{ partial "components/upcoming-wide" . }}
+      </div>
+    {{ end }}
+
+      </div>
     </div>
   </div>
   </div>

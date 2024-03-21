@@ -22,7 +22,7 @@
             <i class="fa-regular fa-clock mr-2"></i>
             {{ time.Format ":date_long" .PublishDate }}
             {{ if .Params.upcoming }}
-            {{ partial "timeConv" .Params.start_time }} - {{ partial "timeConv" .Params.end_time }} {{ .Params.time_zone }}
+            {{ .Params.start_time }} - {{ .Params.end_time }} {{ .Params.time_zone }}
             {{ end }}
           </li>
           <li class=" mr-4 inline-block">
