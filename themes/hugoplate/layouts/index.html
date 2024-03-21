@@ -93,7 +93,7 @@
       {{ $events := where .Site.RegularPages "Section" "workshops" }}
       {{ $recentRecordings := slice }}
       {{ $sortedRecentRecordings := sort $events "Params.date" "desc" }}
-      {{ range first 3 (where $sortedRecentRecordings "Params.upcoming" "ne" "true") }}
+      {{ range first 3 (where $sortedRecentRecordings "Params.upcoming" "ne" true) }}
       <div class="md:col-12 lg:col-4 mb-14">
         {{ partial "components/session-card" . }}
       </div>
