@@ -18,7 +18,7 @@
     </a>
     <i class="fa-regular dark:text-gray-300 text-gray-600 fa-circle-user mr-2"></i>{{delimit .Params.author ", "}}<br>
     <i class="fa-regular dark:text-gray-300 text-gray-600 fa-calendar mr-2"></i>{{ dateFormat "2006, Jan 2" $event.Params.Date }}&nbsp;&nbsp;&nbsp;
-    <i class="fa-regular dark:text-gray-300 text-gray-600 fa-clock mr-2"></i>{{ partial "timeConv" $event.Params.start_time }}- {{ partial "timeConv" $event.Params.end_time}} {{ $event.Params.time_zone }}
+    <i class="fa-regular dark:text-gray-300 text-gray-600 fa-clock mr-2"></i>{{ .Params.start_time }} - {{ .Params.end_time}} {{ $event.Params.time_zone }}
   </div>
 
 </div>

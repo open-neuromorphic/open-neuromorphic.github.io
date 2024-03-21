@@ -3,15 +3,16 @@
 {{ if .IsHome }}
   {{ $title = printf "%s" .Site.Params.homepageTitle }}
 {{ else }}
-  {{ $pathParts := split .File.Dir "/" }}
-  {{ $numParts := len $pathParts }}
+  {{ $type := .Type }}
+  {{ $product := .Params.product }}
 
-  {{ if and (eq (index $pathParts 1) "hardware") (gt $numParts 2) (ne (index $pathParts 2) "") }}
-    {{ $title = printf "A Look at %s - %s - %s" .Title "Neuromorphic Chip" .Site.Title}}
+  {{ if (and (eq $type "neuromorphic-hardware") $product) }}
+    {{ $title = printf "A Look at %s - %s - %s" .Page.Title "Neuromorphic Chip" .Site.Title}}
   {{ else }}
-    {{ $title = printf "%s - %s" .Title .Site.Title }}
+    {{ $title = printf "%s - %s" .Page.Title .Site.Title }}
   {{ end }}
 {{ end }}
+
 
 <title>{{ $title }}</title>
 
