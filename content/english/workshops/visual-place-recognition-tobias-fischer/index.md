@@ -5,7 +5,7 @@ author:
 date: 2024-03-28
 start_time: 11:00
 description: "Tobias Fischer shares advances in neuromorphic visual place recognition."
-end_time: 11:30
+end_time: 12:30
 time_zone: CET
 draft: false
 upcoming: true
