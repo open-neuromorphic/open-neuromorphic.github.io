@@ -2,7 +2,7 @@
 title: "Advances in Neuromorphic Visual Place Recognition"
 author: 
 - Tobias Fischer
-date: 2024-03-28
+date: 2024-04-18
 start_time: 23:00
 description: "Tobias Fischer shares advances in neuromorphic visual place recognition."
 end_time: 00:30
