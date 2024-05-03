@@ -13,6 +13,8 @@
       {{ end }}
       {{ if .chip_type }}<div><strong>Chip Type:</strong> {{ .chip_type }}</div>{{ end }}
       {{ if .interfaces }}<div><strong>Interface:</strong> {{ .interfaces }}</div>{{ end }}
+      {{ if .software }}<div><strong>Software:</strong> {{ .software }}</div>{{ end }}
+      {{ if .applications }}<div><strong>Applications:</strong> {{ .applications }}</div>{{ end }}
     </div>
     <div class="pb-4 lg:pb-0">
       {{ if .neurons }}<div><strong>Neurons:</strong> {{ .neurons }}</div>{{ end }}
@@ -21,8 +23,6 @@
       {{ if .activation_bits }}<div><strong>Activation bits:</strong> {{ .activation_bits }}</div>{{ end }}
       {{ if .on_chip_learning }}<div><strong>On-Chip Learning:</strong> {{ .on_chip_learning }}</div>{{ end }}
       {{ if .power }}<div><strong>Power:</strong> {{ .power }}</div>{{ end }}
-      {{ if .software }}<div><strong>Software:</strong> {{ .software }}</div>{{ end }}
-      {{ if .applications }}<div><strong>Applications:</strong> {{ .applications }}</div>{{ end }}
     </div>
     <div class="flex justify-center items-center">
         {{ if $image }}
