@@ -17,10 +17,10 @@ product:
   announced_date: 2022
   applications: Smart sensing
   chip_type: Digital
-  neurons: null
+  neurons: 1000
   synapses: 278000
-  weight_bits: null
-  activation_bits: null
+  weight_bits: 8
+  activation_bits: 8
   on_chip_learning: false
   power: ~5 mW
   release_year: 2022
@@ -32,7 +32,7 @@ product:
     retired: false
 product_name: Xylo
 summary: Xylo is a 28nm 1000 neuron digital spiking neural network inference chip
-  optimized for ultra low power edge deployment of trained SNNs, with flexible architecture
+  optimized for ultra-low power edge deployment of trained SNNs, with a flexible architecture
   to map various network topologies.
 title: Xylo - SynSense
 ---
@@ -41,19 +41,19 @@ Xylo is a digital spiking neural network (SNN) inference processor developed by 
 
 Xylo is a series of ultra-low-power devices for sensory inference, featuring a digital SNN core adaptable to various sensory inputs like audio and bio-signals. Its SNN core uses an integer-logic CuBa-LIF neuron model with customizable parameters for each synapse and neuron, supporting a wide range of network architectures. The Xylo Audio 2 model (SYNS61201) specifically includes 8-bit synaptic weights, 16-bit synaptic and membrane states, two synaptic states per neuron, 16 input channels, 1000 hidden neurons, 8 output neurons with 8 output channels, a maximum fan-in of 63, and a total of 64,000 synaptic weights.
 For more detailed technical information, see https://rockpool.ai/devices/xylo-overview.html.
-The Rockpool toolchain contains quantizaton methods designed for Xylo, as well as bit-accurate simulations of Xylo devices.
+The Rockpool toolchain contains quantization methods designed for Xylo and bit-accurate simulations of Xylo devices.
 
 ## Overview
 
 Xylo is an application-specific integrated circuit (ASIC) chip optimized specifically for SNN inference. Key features include:
 
 - All-digital design using integer arithmetic for efficient simulation of LIF neuron dynamics 
-- Supports up to 1000 LIF neurons with configurable synaptic and membrane time constants, thresholds and biases for each neuron
+- Supports up to 1000 LIF neurons with configurable synaptic and membrane time constants, thresholds, and biases for each neuron
 - 16 input channels and 8 output channels using asynchronous spiking events  
 - Flexible network architecture including support for recurrent connectivity to map deep networks
-- Ultra low power consumption, with 219 μW idle power and 93 μW dynamic inference power measured on audio classification application
+- Ultra-low power consumption, with 219 μW idle power and 93 μW dynamic inference power measured on audio classification application
 
-The chip is fabricated in a 28nm CMOS process and occupies 6.5 mm2 die area. It can operate at clock frequencies up to 250 MHz.
+The chip is fabricated in a 28nm CMOS process and occupies a 6.5 mm2 die area. It can operate at clock frequencies up to 250 MHz.
 
 ## Architecture
 
@@ -63,11 +63,11 @@ The input and output layers use asynchronous events to communicate spikes, avoid
 
 ## Software Tools
 
-Xylo leverages the Rockpool ecosystem for mapping and deploying SNNs. The Rockpool library and Python API abstract the SNN programming to high levels, enabling machine learning engineers to easily train networks using standard methods like backpropagation. A compiler handles mapping optimized networks onto the Xylo substrate. 
+Xylo leverages the Rockpool ecosystem for mapping and deploying SNNs. The Rockpool library and Python API abstract the SNN programming to high levels, enabling machine learning engineers to train networks easily using standard methods like backpropagation. A compiler handles mapping optimized networks onto the Xylo substrate. 
 
 ## Applications
 
-The flexibility to implement generic deep network topologies makes Xylo suitable for a variety of edge deployments in domains such as audio, time series, and control. Example applications demonstrated include low power keyword spotting, biosignal classification, and robotic control. Ultra low idle and dynamic power consumption enables continuous background processing in power constrained environments.
+The flexibility to implement generic deep network topologies makes Xylo suitable for a variety of edge deployments across domains such as audio, time series, and control. Example applications demonstrated include low-power keyword spotting, biosignal classification, and robotic control. Ultra-low idle and dynamic power consumption enables continuous background processing in power-constrained environments.
 
 ## Related publications
 | Date | Title | Authors  | Venue/Source |
