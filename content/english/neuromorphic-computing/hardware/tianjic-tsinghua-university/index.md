@@ -14,7 +14,7 @@ organization:
     twitter: null
     wikipedia: https://en.wikipedia.org/wiki/Tsinghua_University
 product:
-  announced_date: 2015-08-01
+  announced_date: 2019-08-01
   applications: ANN/SNN acceleration
   chip_type: Digital
   neurons: 40k
@@ -23,8 +23,8 @@ product:
   activation_bits: null
   on_chip_learning: false
   power: ~1 W
-  release_date: 2015-08-01
-  release_year: 2015
+  release_date: 2020-02-13
+  release_year: 2020
   software: Custom
   status:
     announced: true
@@ -53,4 +53,4 @@ The researchers believe the unified architecture of Tianjic opens up new researc
 ## Related publications
 | Date | Title | Authors  | Venue/Source |
 |------|-------|----------|------------- |
-| August 2015 | [Tianjic: A Unified and Scalable Chip Bridging Spike-Based and Continuous Neural Computation](https://ieeexplore.ieee.org/document/8998338) | Lei Deng; Guanrui Wang; Guoqi Li; Shuangchen Li; Ling Liang; Maohua Zhu; Yujie Wu; Zheyu Yang; Zhe Zou; Jing Pei; Zhenzhi Wu; Xing Hu; Yufei Ding; Wei He; Yuan Xie; Luping Shi | IEEE Journal of Solid-State Circuits |
+| February 2020 | [Tianjic: A Unified and Scalable Chip Bridging Spike-Based and Continuous Neural Computation](https://ieeexplore.ieee.org/document/8998338) | Lei Deng; Guanrui Wang; Guoqi Li; Shuangchen Li; Ling Liang; Maohua Zhu; Yujie Wu; Zheyu Yang; Zhe Zou; Jing Pei; Zhenzhi Wu; Xing Hu; Yufei Ding; Wei He; Yuan Xie; Luping Shi | IEEE Journal of Solid-State Circuits |
