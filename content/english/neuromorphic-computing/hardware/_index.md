@@ -4,8 +4,6 @@ description: Explore cutting-edge neuromorphic chips and architectures, featurin
 type: "neuromorphic-hardware"
 image: "images/image.jpeg"
 glossary:
-- term: Neuromorphic Hardware
-  definition: A type of computer architecture designed to mimic the structure and function of the human brain, emphasizing low power consumption, parallel processing, and event-driven computation.
 - term: Spiking Neural Network (SNN)
   definition: A type of artificial neural network that closely models the spiking behavior of biological neurons, utilizing discrete spikes or pulses of activity for information processing.
 - term: Event-Driven Computation
