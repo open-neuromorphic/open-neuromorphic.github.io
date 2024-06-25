@@ -29,7 +29,7 @@ product:
   status:
     announced: true
     released: true
-    retired: true
+    retired: false
 product_name: BrainScaleS 2
 summary: The BrainScaleS-2 is an accelerated spiking neuromorphic system-on-chip integrating
   512 adaptive integrate-and-fire neurons, 212k plastic synapses, embedded processors,
