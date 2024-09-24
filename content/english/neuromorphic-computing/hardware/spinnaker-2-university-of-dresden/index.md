@@ -17,8 +17,8 @@ product:
   announced_date: 2021-07-27
   applications: Real-time simulation of SNN; DNN; Symbolic; HPC
   chip_type: Digital
-  neurons: 1 million
-  synapses: 10000
+  neurons: 152k
+  synapses: 152m
   weight_bits: null
   activation_bits: null
   on_chip_learning: true
@@ -44,7 +44,7 @@ SpiNNaker2 is the successor of the SpiNNaker (Spiking Neural Network Architectur
 
 ## Overview
 
-SpiNNaker2 aims to achieve a 10x increase in core count over SpiNNaker1, with a target of 10 million ARM processor cores on a single machine. Along with architectural improvements, the shift to a 22nm manufacturing process is expected to provide over 10x more neural simulation capacity while staying within a comparable power envelope.
+SpiNNaker2 aims to achieve a 10x increase in core count over SpiNNaker1, with a target of 10 million ARM processor cores on a single machine. One SpiNNaker2 chip contains 152 thousand neurons and 152 million synapses across its 152 cores. Along with architectural improvements, the shift to a 22nm manufacturing process is expected to provide over 10x more neural simulation capacity while staying within a comparable power envelope.
 
 The system retains the flexible, software-based approach of SpiNNaker1, using independent ARM cores arranged in a Globally Asynchronous Locally Synchronous (GALS) configuration to model groups of neurons in parallel. Additional dedicated hardware has been added to accelerate common mathematical operations involved in synapse modeling and neural simulation. Dynamic voltage and frequency scaling techniques allow each core to scale its performance to match instantaneous load, optimizing the power efficiency.
 
