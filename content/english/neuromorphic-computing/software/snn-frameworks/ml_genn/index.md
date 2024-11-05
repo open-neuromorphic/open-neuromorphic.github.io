@@ -1,10 +1,10 @@
 ---
 title: "mlGeNN"
 type: neuromorphic-software
-description: Simulator for SNN models focusing on dynamics, size, structure of neural systems, not on individual neuron morphology.
-logo: nest.png
+description: Framework for machine learning with SNNs built on the GeNN simulator. Focused on ease of use in combination with computational efficiency derived from GeNN.
+logo: 
 website: https://ml-genn.readthedocs.io/en/latest/
-dependencies: 
+dependencies: GeNN
 field_of_application: Machine learning
 source_code: https://github.com/genn-team/ml_genn
 stars_widget_url: https://img.shields.io/github/stars/genn-team/ml_genn.svg?style=social
@@ -19,6 +19,8 @@ draft: false
 ---
 
 ## Overview
-**mlGeNN** is a new library for machine learning with Spiking Neural Networks (SNNs), built on the efficient foundation provided by our GeNN simulator. mlGeNN expose the constructs required to build SNNs using an API, inspired by modern ML libraries like Keras, which aims to reduce cognitive load by automatically calculating layer sizes, default hyperparameter values etc to enable rapid prototyping of SNN models.
+**mlGeNN** is a library for machine learning with Spiking Neural Networks (SNNs), built on the efficient foundation of the GeNN simulator. 
 
-mlGeNN provides user friendly implementations of novel SNN training algorithms such as e-prop and EventProp  to enable spike-based ML on top of GeNN’s GPU-optimised sparse data structures and algorithms.
+mlGeNN exposes the constructs required to build SNNs using an API, inspired by modern ML libraries like Keras, which aims to reduce cognitive load by automatically calculating layer sizes, default hyperparameter values etc to enable rapid prototyping of SNN models.
+
+mlGeNN provides user friendly implementations of novel SNN training algorithms such as e-prop and EventProp to enable spike-based ML on top of GeNN’s GPU-optimised sparse data structures and algorithms. This allows better scaling and hence using EventProp at high temporal resolution with thousands of time steps. mlGeNN provides extensive documentation and tutorials.
