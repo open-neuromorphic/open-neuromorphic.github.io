@@ -20,7 +20,7 @@ draft: false
 
 ## Overview
 **GeNN** is a software package to accelerate Spiking Neural Network simulations 
-on hardware including NVIDIA GPUs. GeNN uses code generation to ``computational backends'' to build simulations. The main backends are curerently C++/CUDA for NVIDIA GPUs or C++ for CPU-only mode. GenNN is available on Linux, Windows, MacOS.
+on hardware including NVIDIA GPUs. GeNN uses code generation with various 'backends' to run simulations. The main backends are currently C++/CUDA for NVIDIA GPUs or C++ for CPU-only mode. GeNN is available on Linux, Windows, MacOS.
 
 Networks are described using a simple Python API and built out of model components that can be fully customized. The behaviour of neurons, synapses, plasticity mechanisms, initialisation methods and connectivity construction are defined using Python strings containing a C-like language called GeNNCode. Users can fully customise these components. GeNN provides extensive documentation and tutorials.
 
