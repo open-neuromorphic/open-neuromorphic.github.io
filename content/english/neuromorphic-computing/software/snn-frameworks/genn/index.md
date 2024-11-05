@@ -5,7 +5,7 @@ description: Simulator for SNN models focusing on dynamics, size, structure of n
 logo: nest.png
 website: https://genn-team.github.io/
 dependencies: 
-field_of_application: Neuroscience
+field_of_application: Neuroscience, Machine learning
 source_code: https://github.com/genn-team/genn
 stars_widget_url: https://img.shields.io/github/stars/genn-team/genn.svg?style=social
 stars: 233
