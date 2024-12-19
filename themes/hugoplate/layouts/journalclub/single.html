@@ -1,0 +1,110 @@
+{{ define "main" }}
+{{ partial "page-header" . }}
+<section class="section pt-6">
+  <div class="container">
+    <article class="row justify-center">
+      <div class="lg:col-8 mb-7">
+        <div class="mb-4">
+        {{ $image:= .Params.image }}
+        {{ if .Params.video }}
+           {{ partial "youtube-lite.html" (dict "Id" .Params.video ) }}
+        {{ else if $image }}
+          {{ partial "override-image" (dict "Src" $image "Context" .Page "Alt" .Title "Class" "w-full rounded") }}
+        {{ else }}
+          {{ partial "override-image" (dict "Src" "images/workshop-thumbnail-default.png" "Alt" .Title "Class" "w-full rounded") }}
+        {{ end }}
+        </div>
+        <ul class="mb-5">
+          <li class="mr-2 inline-block">
+            <i class="fa-regular fa-circle-user mr-2"></i>{{delimit .Params.author ", "}}
+          </li>
+          <li class="inline-block">
+            <i class="fa-regular fa-clock mr-2"></i>
+            {{ time.Format ":date_long" .PublishDate }}
+            {{ if .Params.upcoming }}
+            {{ .Params.start_time }} - {{ .Params.end_time }} {{ .Params.time_zone }}
+            {{ end }}
+          </li>
+          <li class=" mr-4 inline-block">
+            {{ $slides := .Params.speaker_slides }}
+            {{ if $slides }}
+            <a href="{{ $slides }}" target="_blank" class="ms-1 btn btn-sm btn-primary">
+              <i class="fa-regular fa-images mr-2"></i>Slides</a>
+            {{ end }}
+
+            {{ $notebook := .Params.speaker_notebook }}
+            {{ if $notebook }}
+            <a href="{{ $notebook }}" target="_blank" class="ms-1 btn btn-sm btn-primary">
+              <i class="fa-regular fa-folder mr-2"></i>Notebook</a>
+            {{ end }}
+
+            {{ $code := .Params.speaker_code }}
+            {{ if $code }}
+            <a href="{{ $code }}" target="_blank" class="ms-1 btn btn-sm btn-primary">
+              <i class="fa-brands fa-github mr-2"></i>Code</a>
+            {{ end }}
+
+            {{ if .Params.upcoming }}
+              {{ if .Params.upcoming_url }}
+              <a href="{{ .Params.upcoming_url }}" target="_blank" class="ms-1 btn btn-sm btn-primary">
+                <i class="fa-regular fa-calendar mr-2"></i>Event</a>
+              {{ else }}
+            <a href="https://www.youtube.com/@openneuromorphic" target="_blank" class="ms-1 btn btn-sm btn-primary">
+              <i class="fa-brands fa-youtube mr-2"></i>Event</a>
+              {{ end }}
+            {{ end }}
+          </li>
+        </ul>
+        <div class="content">
+          {{ .Content }}
+        </div>
+      </div>
+      <div class="lg:col-4 mb-14">
+        <div class="pb-4 text-center">~ Share this Site ~
+        {{ partial "override-social-share" (dict "Context" . "Class" "share-icons" "Whatsapp" true
+        "Telegram" false) }}
+        </div>
+        <div class="px-7 pt-7 bg-theme-light dark:bg-darkmode-theme-light rounded">
+          <div class="text-right pb-5"> <!-- Right-align the button -->
+            <a href="/getting-involved/" class="btn-primary btn-sm btn">Join our journal club</a>
+          </div>
+        </div>
+      </div>
+      <div class="lg:col-3">
+        {{ if .Params.speaker_photo }}
+        {{ partial "override-image" (dict "Src" .Params.speaker_photo "Context" .Page "Alt" .Title "Class" "mb-6 rounded"
+        "Size" "300x300" "Command" "Fit")}}
+        {{ end }}
+      </div>
+      {{ if .Params.speaker_bio}}
+      <div class="lg:col-8">
+        <h3 class="pb-5 pt-5 text-xl">About the Speaker</h3>
+        <p>{{ .Params.speaker_bio | markdownify }}</p>
+      </div>
+      {{ end }}
+      <!-- comments -->
+      {{ if site.DisqusShortname }}
+      <div class="mt-20">
+        {{ template "_internal/disqus.html" . }}
+      </div>
+      {{ end }}
+    </article>
+
+    <!-- Related posts -->
+    {{ $related := (where site.RegularPages "Section" "journalclub") }}
+    {{ $filteredRelated := (where $related "Params.upcoming" "ne" true) }}
+    {{ $filteredRelated = $filteredRelated | shuffle | first 3 }}
+    {{ with $filteredRelated }}
+    <div class="section pb-0">
+      <div class="row">
+        {{ range . }}
+        <div class="lg:col-4">
+          {{ partial "components/session-card" . }}
+        </div>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

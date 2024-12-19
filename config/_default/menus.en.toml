@@ -24,6 +24,12 @@ url = "/neuromorphic-computing/software"
 weight = 2
 
 [[main]]
+parent = "Resources"
+name = "Neuromorphic Journal Club"
+url = "/journalclub"
+weight = 2
+
+[[main]]
 name = "Workshops"
 url = "/workshops/"
 weight = 3
