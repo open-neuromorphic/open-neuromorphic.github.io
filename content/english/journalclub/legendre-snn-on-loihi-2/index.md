@@ -6,10 +6,10 @@ date: "2024-12-20"
 start_time: 18:00
 end_time: 19:30
 time_zone: CET
-description: "Join us for a talk by Maxence Ernoult, Research Scientist at Rain, on accelerating inference and training at the edge."
+description: "Join us for a talk by Ramashish Guarav, PhD student at Virginia Tech."
 upcoming: false
-speaker_photo: maxence-ernoult.jpeg
-image: rain-ai-workshop-inference.png
+speaker_photo: ramashish.jpeg
+image: poster.png
 speaker_bio: 'Ramashish Gaurav (Ram) is a 3rd year Ph.D. student at Virginia Tech, USA. He is supervised by Prof. Yang (Cindy) Yi in her BRICC Lab, ECE @ VT. Of late, Ram has been working on reservoir-based spiking models
 for Time Series Classification (TSC). Reservoir Computing is a well-established domain for time-series
 processing where a reservoir of statically (and recurrently) connected neurons compute high
