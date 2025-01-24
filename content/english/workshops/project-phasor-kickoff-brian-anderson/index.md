@@ -2,7 +2,7 @@
 title: "Project Phasor - Kickoff"
 author: 
   - "Brian Anderson"
-date: 2025-01-25
+date: 2025-01-28
 start_time: 19:00
 end_time: 20:00
 time_zone: CET
