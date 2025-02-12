@@ -2,7 +2,7 @@
 active_product: true
 description: 'Learn about Intel''s neuromorphic hardware: Loihi 2'
 type: neuromorphic-hardware
-image: loihi2.jpg
+image: loihi2.png
 organization:
   group_name: null
   org_logo: ../loihi/intel.png

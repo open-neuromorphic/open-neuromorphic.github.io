@@ -32,7 +32,7 @@ product:
     retired: false
 product_name: ODIN
 summary: The ODIN 256-neuron 64k-synapse neuromorphic processor highlights how design constraints on the synapses can be released by offloading most synaptic computations at the neuron level. All synapses embed spike-driven synaptic plasticity (SDSP), while neurons are able to phenomenologically reproduce the 20 Izhikevich behaviors of cortical spiking neurons. At the time of publication, ODIN demonstrated the highest synaptic density, and the lowest energy per synaptic operation among digital designs. ODIN was fabricated in 28nm CMOS and can be prototyped in small FPGAs.
-title: Odin - Charlotte Frenkel
+title: Odin by Charlotte Frenkel
 ---
 
 ## Overview

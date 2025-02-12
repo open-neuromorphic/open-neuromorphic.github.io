@@ -27,7 +27,7 @@ google_adsense = ""     # example: ca-pub-xxxxxxxxxxxxxxxx
 # custom script on header, example: custom_script= "<script>console.log(\"Hello World\")</script>"
 custom_script = ""
 # copyright
-copyright = "© 2022 - 2024 Open Neuromorphic<br>Website Dev: AI Models in support of [Open Source AI](https://aimodels.org/responsible-open-source-ai/)"
+copyright = "© 2022 - 2024 Open Neuromorphic<br>Website Dev: AI Models in support of [Open Source AI](https://aimodels.org/open-source-ai/)"
 
 homepageTitle = "Explore Neuromorphic Computing: Community, Education, and Research"
 
@@ -40,7 +40,7 @@ preloader = "" # use jpg, png, svg or gif format.
 # Navigation button
 [navigation_button]
 enable = true
-label = "Join Discord (900+ joined)"
+label = "Join Discord (1200+ joined)"
 link = "https://discord.gg/C9bzWgNmqk"
 
 # search
