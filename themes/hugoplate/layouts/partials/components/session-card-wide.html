@@ -5,6 +5,11 @@
       <a href="{{ .RelPermalink }}" class="pb-4">
         {{ partial "override-image" (dict "Src" $image "Context" .Page "Alt" .Title "Class" "w-full rounded" "Size" "500x") }}
       </a>
+    {{ else }}
+    <a href="{{ .RelPermalink }}" class="pb-4">
+
+    {{ partial "override-image" (dict "Src" "images/workshop-thumbnail-default.png" "Alt" .Title "Class" "w-full rounded") }}
+    </a>
     {{ end }}
   </div>
   <div class="lg:col-8 md:col-12">

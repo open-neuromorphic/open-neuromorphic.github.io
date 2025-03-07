@@ -8,6 +8,10 @@
     <a href="{{ .RelPermalink }}">
       {{ partial "override-image" (dict "Src" $image "Context" .Page "Alt" .Title "Class" "mb-6 w-full rounded") }}
     </a>
+
+  {{ else }}
+  {{ partial "override-image" (dict "Src" "images/workshop-thumbnail-default.png" "Alt" .Title "Class" "w-full rounded") }}
+
   {{ end }}
   <h4 class="mb-3">
     <a href="{{ .RelPermalink }}">
