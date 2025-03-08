@@ -7,6 +7,7 @@ start_time: 19:00
 end_time: 20:00
 time_zone: CET
 upcoming: false
+video: vZ0mlHpSeD0
 image: project-phasor-kickoff.png
 description: "Brian Anderson and others will talk about the newly launched Project Phasor that aims to organize efforts towards neuromorphic and NeuroAI virtualization and compilation."
 speaker_photo: brian.jpg
@@ -14,8 +15,6 @@ speaker_bio: "Brian Anderson is a Neuromorphic Engineer with experience from ind
 ---
 
 **Speakers**: Brian Anderson, Jamie Knight, Jens E. Pedersen, Florence Lee, Effiong Blessing, Dylan Muir
-
-**Meeting link (now expired) **: https://meet.google.com/xaq-bijv-smf 
 
 Project Phasor aims to prioritize the neuromorphic and NeuroAI issues best solved together. Anchoring the proposed efforts will be a set of neuromorphic virtual machines and a shared production-quality compiler. Development will be within an open governance body. Special focus will be on datacenter-scale training, solving heterogeneous integration, and making architecture search easy.
 
