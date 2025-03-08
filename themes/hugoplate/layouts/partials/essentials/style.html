@@ -37,7 +37,7 @@
       crossorigin="anonymous"
       media="all"
       rel="stylesheet"
-      href="{{ .link | relURL }}"
+      href="{{ .link }}"
       {{ .attributes | safeHTMLAttr }} />
   {{ else }}
     {{ $styles = $styles | append (resources.Get .link) }}
