@@ -1,7 +1,7 @@
 ---
 title: "Descriptive Title (around 60 chars)"
 description: "120-160 characters, Value proposition / What is this article about? What will I learn? What will I gain from reading?"
-image: og-image.png  
+image: og-c-dnnandc-transformer.png  
 draft: true
 date: 2023-03-27
 author: 

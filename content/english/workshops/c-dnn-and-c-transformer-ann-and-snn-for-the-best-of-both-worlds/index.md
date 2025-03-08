@@ -9,6 +9,7 @@ time_zone: CEST
 description: "Join us for a talk by Sangyeob Kim, Postdoctoral researcher at KAIST, on designing efficient accelerators that mix SNNs and ANNs."
 upcoming: false
 video: lEl9DPgBqvA
+image: c-dnnandc-transformer.png
 speaker_photo: sangyeob-kim.jpeg
 speaker_bio: 'Sangyeob Kim (Student Member, IEEE) received the B.S., M.S. and Ph.D. degrees from the School of Electrical Engineering, Korea Advanced Institute of Science and Technology (KAIST), Daejeon, South Korea, in 2018, 2020 and 2023, respectively. He is currently a Post-Doctoral Associate with the KAIST. His current research interests include energy-efficient system-on-chip design, especially focused on deep neural network accelerators, neuromorphic hardware, and computing-in-memory accelerators.'
 ---
