@@ -2,7 +2,7 @@
 # The base URL of your site (required). This will be prepended to all relative URLs.
 #baseURL = "https://open-neuromorphic.org"
 
-baseURL = "/"
+baseURL = "https://neural-loop.github.io/open-neuromorphic.github.io/"
 
 # Title of your website (required).
 title = "Open Neuromorphic"
