@@ -8,7 +8,7 @@ end_time: 20:00
 time_zone: CET
 upcoming: false
 description: "Brian Anderson and others will talk about the newly launched Project Phasor that aims to organize efforts towards neuromorphic and NeuroAI virtualization and compilation."
-speaker_photo: brian.png
+speaker_photo: brian.jpg
 speaker_bio: "Brian Anderson is a Neuromorphic Engineer with experience from industry heavy-hitters such as ML Commons, Intel Labs, Google, and NVIDIA. He has pioneered neuromorphic engineering methods and championed neuromorphic technologies in the industry and academia alike. A position he is well suited for, given his degrees in Electrical Engineering and Computer Science from MIT."
 ---
 
