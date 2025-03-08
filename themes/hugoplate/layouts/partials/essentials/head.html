@@ -27,26 +27,6 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 
-<!-- manifest -->
-
-
-<!-- site verifications -->
-{{/* partialCached "site-verifications.html" . */}}
-
-
-<!-- opengraph and twitter card -->
-{{ partial "basic-seo.html" . }}
-
-
-<!-- custom script -->
-{{ partialCached "custom-script.html" . }}
-
-
-<!-- google analytics -->
-{{/* if and site.Config.Services.GoogleAnalytics.ID (ne site.Config.Services.GoogleAnalytics.ID "G-MEASUREMENT_ID") */}}
-  {{/* template "_internal/google_analytics.html" . */}}
-{{/* end */}}
-
 {{ if hugo.IsProduction }}
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WLX91Y92H4"></script>
 <script>
