@@ -26,7 +26,7 @@ Get in touch with us if you wish to give a talk, write an article or to know mor
 
 {{< accordion "Site Dev Credits" >}}
 
-- October 2023 Website redesign & custom development by Justin Riddiough at [AI Models](https://www.aimodels.org/)
+- October 2023 Website redesign & custom development by Justin Riddiough)
 - Starter Theme used [Hugoplate](https://github.com/zeon-studio/hugoplate)
 - Built with [Hugo](https://gohugo.io/)
 
