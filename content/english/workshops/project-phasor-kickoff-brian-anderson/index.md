@@ -7,6 +7,7 @@ start_time: 19:00
 end_time: 20:00
 time_zone: CET
 upcoming: false
+video: vZ0mlHpSeD0
 image: project-phasor-kickoff.png
 description: "Brian Anderson and others will talk about the newly launched Project Phasor that aims to organize efforts towards neuromorphic and NeuroAI virtualization and compilation."
 speaker_photo: brian.jpg
