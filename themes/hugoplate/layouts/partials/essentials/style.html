@@ -43,13 +43,13 @@
     {{ $styles = $styles | append (resources.Get .link) }}
   {{ end }}
 {{ end }}
-{{ $styles := $styles | append (resources.Get "scss/main.scss" | toCSS) }}
-{{ $styles := $styles | resources.Concat "css/style.css" }}
+{{ $styles := $styles | append (resources.Get "/scss/main.scss" | toCSS) }}
+{{ $styles := $styles | resources.Concat "/css/style.css" }}
 {{ $styles = $styles | resources.PostCSS }}
 {{ if hugo.IsProduction }}
-  {{ $styles = $styles | resources.ExecuteAsTemplate "css/style.css" . | minify | fingerprint | resources.PostProcess }}
+  {{ $styles = $styles | resources.ExecuteAsTemplate "/css/style.css" . | minify | fingerprint | resources.PostProcess }}
 {{ else }}
-  {{ $styles = $styles | resources.ExecuteAsTemplate "css/style.css" . }}
+  {{ $styles = $styles | resources.ExecuteAsTemplate "/css/style.css" . }}
 {{ end }}
 <style>
   a[target='_blank']::after {
