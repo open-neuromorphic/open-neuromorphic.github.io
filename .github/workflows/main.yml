@@ -18,8 +18,6 @@ env:
   HUGO_VERSION: "0.118.2"
   GO_VERSION: "1.20.5"
   NODE_VERSION: "18.15.0"
-  TINA_CLIENT_ID: ${{ vars.TINA_CLIENT_ID }}
-  TINA_TOKEN: ${{ vars.TINA_TOKEN }}
 
 jobs:
   # Build job
