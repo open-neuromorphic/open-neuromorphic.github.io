@@ -1,18 +1,14 @@
-# Sample workflow for building and deploying a Hugo site to GitHub Pages
 name: Deploy Hugo site to Pages
 
 on:
-  # Runs on pushes targeting the default branch
   push:
     branches: ["main"]
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Environment variables available to all jobs and steps in this workflow
 env:
   HUGO_ENV: production
   HUGO_VERSION: "0.118.2"
@@ -20,7 +16,6 @@ env:
   NODE_VERSION: "18.15.0"
 
 jobs:
-  # Build job
   build:
     runs-on: ubuntu-24.04-arm
     steps:
@@ -50,6 +45,20 @@ jobs:
       - name: Install npm dependencies
         run: npm install
 
+      - name: Determine Base URL
+        id: base_url
+        run: |
+          REPO_NAME=$(echo "${{ github.repository }}" | cut -d '/' -f 2)
+          if [[ "${{ github.repository_owner }}" == "${{ github.repository_owner }}" ]]; then
+            BASE_URL="https://${{ github.repository_owner }}.github.io/${REPO_NAME}/"
+          else
+            BASE_URL="https://${{ github.repository_owner }}.github.io/"
+          fi
+          echo "BASE_URL=$BASE_URL" >> $GITHUB_ENV
+
+      - name: Modify hugo.toml
+        run: sed -i "s|baseURL = .*|baseURL = \"$BASE_URL\"|" hugo.toml
+
       - name: Build site
         run: npm run build
 
@@ -58,7 +67,6 @@ jobs:
         with:
           path: ./public
 
-  # Deployment job
   deploy:
     environment:
       name: github-pages
