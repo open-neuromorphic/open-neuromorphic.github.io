@@ -63,14 +63,15 @@ jobs:
       - name: Modify hugo.toml
         run: sed -i "s|baseURL = .*|baseURL = \"$BASE_URL\"|" hugo.toml
 
+
+      - name: Build site
+        run: npm run build
+
       - name: Modify .htaccess (Prevent Indexing)
         run: |
           if [[ "$BASE_URL" != "https://open-neuromorphic.org/" ]]; then
             echo "Header set X-Robots-Tag \"noindex, nofollow\"" >> public/.htaccess
           fi
-
-      - name: Build site
-        run: npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3.0.1
