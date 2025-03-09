@@ -8,6 +8,7 @@ description: "Tobias Fischer shares advances in neuromorphic visual place recogn
 end_time: 00:30
 time_zone: CET
 draft: false
+video: dTE6eDzwSJU
 upcoming: false
 image: advances-in-neuromorphic-visual-place-rec.png
 speaker_photo: speaker.jpeg
