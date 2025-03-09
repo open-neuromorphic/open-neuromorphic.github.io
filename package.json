@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "hugo serve --buildFuture",
     "build": "rm public -fr && hugo --gc --minify --buildFuture --templateMetrics --templateMetricsHints --forceSyncStatic",
-    "build-test": "hugo server --disableFastRender --navigateToChanged --templateMetrics --templateMetricsHints  --forceSyncStatic -e production --minify",
+    "build-preview": "hugo server --disableFastRender --buildFuture --navigateToChanged --templateMetrics --templateMetricsHints  --forceSyncStatic -e production --minify",
     "update-modules": "node ./scripts/clearModules.js && hugo mod clean --all && hugo mod get -u ./... && hugo mod tidy",
     "remove-darkmode": "node ./scripts/removeDarkmode.js && yarn format",
     "project-setup": "node ./scripts/projectSetup.js",
