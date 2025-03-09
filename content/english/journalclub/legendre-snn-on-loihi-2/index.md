@@ -1,14 +1,15 @@
 ---
 title: "Legendre-SNN on Loihi-2"
 author:
-- "Ramashish Guarav"
+- "Ramashish Gaurav"
 date: "2024-12-20"
 start_time: 18:00
 end_time: 19:30
 time_zone: CET
-description: "Join us for a talk by Ramashish Guarav, PhD student at Virginia Tech."
+description: "Join us for a talk by Ramashish Gaurav, PhD student at Virginia Tech."
 upcoming: false
-speaker_photo: ramashish.jpeg
+video: A1egFLRw12c
+speaker_photo: ramashish.jpg
 image: poster.png
 speaker_bio: 'Ramashish Gaurav (Ram) is a 3rd year Ph.D. student at Virginia Tech, USA. He is supervised by Prof. Yang (Cindy) Yi in her BRICC Lab, ECE @ VT. Of late, Ram has been working on reservoir-based spiking models
 for Time Series Classification (TSC). Reservoir Computing is a well-established domain for time-series
