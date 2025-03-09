@@ -63,6 +63,9 @@ jobs:
       - name: Modify hugo.toml
         run: sed -i "s|baseURL = .*|baseURL = \"$BASE_URL\"|" hugo.toml
 
+      - name: Create public directory
+        run: mkdir -p public
+
       - name: Create .htaccess (if needed)
         run: touch public/.htaccess
 
