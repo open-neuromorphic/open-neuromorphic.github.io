@@ -9,6 +9,9 @@ members:
   - icon: fa-brands fa-github
     link: https://github.com/neural-loop
     name: github
+  - icon: fa-brands fa-linkedin
+    link: https://www.linkedin.com/in/riddiough/
+    name: linkedin
   member_id: 1
 
 - description: 'Giulia D’Angelo is a Researcher with a PhD in visual attention neuromorphic algorithms for online robotic applications at the Italian Institute of Technology. 
