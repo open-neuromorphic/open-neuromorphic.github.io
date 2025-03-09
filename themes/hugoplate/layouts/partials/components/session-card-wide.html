@@ -2,9 +2,16 @@
   <div class="lg:col-4 md:col-12">
     {{ $image := .Params.image }}
     {{ if $image }}
-      <a href="{{ .RelPermalink }}" class="pb-4">
+    <div class="relative group">
+      <a href="{{ .RelPermalink }}" class="pb-4 block">
         {{ partial "override-image" (dict "Src" $image "Context" .Page "Alt" .Title "Class" "w-full rounded" "Size" "500x") }}
       </a>
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-white" fill="currentColor" viewBox="0 0 24 24">
+          <path fill-rule="evenodd" d="M4.5 5.653c0-1.426 1.516-2.653 2.937-2.321 1.235.294 1.977 1.522 1.977 2.898v8.642c0 1.376-.742 2.604-1.977 2.898C6.016 18.373 4.5 17.146 4.5 15.72v-10.067zM18 12a6 6 0 11-12 0 6 6 0 0112 0z" clip-rule="evenodd" />
+        </svg>
+      </div>
+    </div>
     {{ else }}
     <a href="{{ .RelPermalink }}" class="pb-4">
 
