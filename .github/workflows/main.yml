@@ -75,6 +75,7 @@ jobs:
       - name: Modify .htaccess (Prevent Indexing)
         run: |
           if [[ "$BASE_URL" != "https://open-neuromorphic.org/" ]]; then
+            sudo chmod 666 public/.htaccess # Make file fully writeable.
             echo "Header set X-Robots-Tag \"noindex, nofollow\"" >> public/.htaccess
           fi
 
