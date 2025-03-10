@@ -3,7 +3,7 @@ description: People who have written code, contributed to blog posts, designed a
 
 members:
 - description: 'With over two decades of experience, Justin brings a wealth of knowledge in collaborating with in-house developers, technologists, and strategists. His expertise extends to crafting and deploying robust, scalable web applications and strategically coordinating growth across various Open Source initiatives.'
-  image: /images/team/justin-riddiough.jpg
+  image: /images/team/justin-riddiough.png
   name: Justin Riddiough
   social:
   - icon: fa-brands fa-github
