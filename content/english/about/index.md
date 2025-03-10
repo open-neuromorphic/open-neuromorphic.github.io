@@ -1,7 +1,7 @@
 ---
 title: "About"
 image: ONM.png
-description: "Discover Open Neuromorphic (ONM), a collaborative community for neuromorphic computing enthusiasts. Explore tools, frameworks, and educational content to fuel your passion."
+description: "Discover Open Neuromorphic, a collaborative community for neuromorphic computing enthusiasts. Explore tools, frameworks, and educational content to fuel your passion."
 ---
 
 Open Neuromorphic is created by a loose collective of **open source** collaborators across academia, industry and individual contributors. Most of us have never met in person before but have started contributing to a common or each other's projects! 
@@ -23,11 +23,3 @@ Projects that we list here can fall into this non-exclusive list of categories:
 - **Mixed-signal** hardware designs for neuromorphic applications.
 
 Get in touch with us if you wish to give a talk, write an article or to know more about the neuromorphic world.
-
-{{< accordion "Site Dev Credits" >}}
-
-- October 2023 Website redesign & custom development by Justin Riddiough)
-- Starter Theme used [Hugoplate](https://github.com/zeon-studio/hugoplate)
-- Built with [Hugo](https://gohugo.io/)
-
-{{< /accordion >}}
