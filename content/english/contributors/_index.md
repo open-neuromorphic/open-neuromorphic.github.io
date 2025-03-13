@@ -13,6 +13,9 @@ prior to AI Models acquisition in late 2024. He remains an active supporter of t
   - icon: fa-brands fa-linkedin
     link: https://www.linkedin.com/in/riddiough/
     name: linkedin
+  - icon: fa fa-home
+    link: https://visioninit.dev
+    name: website
   member_id: 1
 
 - description: 'Giulia D’Angelo is a Researcher with a PhD in visual attention neuromorphic algorithms for online robotic applications at the Italian Institute of Technology. 
