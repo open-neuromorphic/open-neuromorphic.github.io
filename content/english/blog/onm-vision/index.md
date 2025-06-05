@@ -30,7 +30,7 @@ The good news is that we can change this and that we are going to.
 With the amount of leverage in the Open Neuromorphic community, this is exactly the right place to start.
 This post explains the grand vision, our hopes for where Open Neuromorphic will be in 5 years from now.
 
-## Why does *open* softare and *open* science matter?
+## Why does *open* software and *open* science matter?
 
 ```
 The Open Neuromorphic Principles:
@@ -47,11 +47,11 @@ It’s a time sink, something to rush past in the pursuit of what really matters
 Publish or perish.
 
 Well. We think software matters. And we are not alone.
-Open source software is **estimated to provide [billions](https://opensourcefundingsurvey2024.com/), if not [trillions](https://www.hbs.edu/ris/Publication%20Files/24-038_51f8444f-502c-4139-8bf2-56eb4b65c58a.pdf)** of value *anually*.
+Open source software is **estimated to provide [billions](https://opensourcefundingsurvey2024.com/), if not [trillions](https://www.hbs.edu/ris/Publication%20Files/24-038_51f8444f-502c-4139-8bf2-56eb4b65c58a.pdf)** of value *annually*.
 This is an absolutely incredible number that should be celebrated much much more.
 Most value is derived from programming languages (JavaScript, Go, Java, C/C++, ...), web servers (Apache, Nginx), research software (Numpy, PyTorch, ...), and hardware platforms (Arduino, 3D printing).
 
-The value of open source is most felt in its absense.
+The value of open source is most felt in its absence.
 If we look to the domain of machine learning, NVIDIA sits on a ridiculously large part of the hardware accelerator market.
 This kind of monopoly is known to hurt progress.
 And if neuromorphics have any future at all, we should be eager to learn from history and work hard to avoid monopolies.
@@ -92,15 +92,15 @@ This is why computational reproducibility matters--software is how we encode and
 
 ## What is reproducibility?
 Recall that according to Wikipedia, it is *not* enough to demonstrate results alone.
-Results have to be (1) systematic and they have to be (2) testable.
+Results have to be (1) systematic, and they have to be (2) testable.
 Can you test everything in the papers you read? Do you know how?
 
-It is entirely possible that the given paper is too hard to understand or unaccessible to the audience for other reasons.
+It is entirely possible that the given paper is too hard to understand or inaccessible to the audience for other reasons.
 That does not mean that there are no scientific insights to find---readers may find ways to systematize them on their second or third reading.
 No, it means that <i>you specifically</i> cannot take the idea as your own, test it, and use it to improve your world model.
 
 Reproducibility, in this context, is not only the duplication of results.
-It is the ability to take the scientific idea, embed it into your own inner model, adapt it, and build upon it---or discard it because it reduces predictabilitly.
+It is the ability to take the scientific idea, embed it into your own inner model, adapt it, and build upon it---or discard it because it reduces predictability.
 
 If an idea is not reproducible, the findings cannot be expanded.
 And are, therefore, useless.
