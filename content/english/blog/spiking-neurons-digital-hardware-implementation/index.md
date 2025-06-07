@@ -112,7 +112,7 @@ If we choose $\beta$ as a power of $\frac{1}{2}$, such as $2^{-n}$, the multipli
 
 {{< image src="leak.png" alt="Leakage circuit." position="center" caption="Leakage circuit." zoomable="true"  >}}
 
-In this circuit, an $n$-positions righ-shift block, denoted with the symbol `>>`, is placed on one of the adder inputs to obtain $\beta \cdot v_{i}[t]$ from $v_{i}[t]$. A **multiplexer** is introduced to choose among the synapse weight $w_{ij}$ and the leakage contribution $\beta \cdot v_{i}[t]$ as input to the adder.
+In this circuit, an $n$-positions right-shift block, denoted with the symbol `>>`, is placed on one of the adder inputs to obtain $\beta \cdot v_{i}[t]$ from $v_{i}[t]$. A **multiplexer** is introduced to choose among the synapse weight $w_{ij}$ and the leakage contribution $\beta \cdot v_{i}[t]$ as input to the adder.
 
 Notice that **the leakage has to be always subtracted** from the membrane potential; hence, we cannot use $e_{j}$ directly to control the adder but we must modify the circuit so that a subtraction is performed during a leakage operation, regardless of the value of $e_{j}$. A possible solution is to use a signal from the FSM and a **logic AND gate** to force the adder control signal to 0 during a leakage operation.
 
@@ -138,7 +138,7 @@ The membrane has to be **reset to a rest potential** when the neuron spikes; hen
 
 This circuit can be simplified:
 - by choosing $\theta = 2^m-1$, where $m$ is the **bitwidth of the membrane register and the adder**, having $v_{i}[t] \gt \theta$ is **equivalent to having an overflow in the addition**; hence, the comparison result is equal to the **overflow flag** of the adder, which can be **provided directly in output as spike bit**.
-- instead of subtracting $\theta$ from the membrane register, we can **reset** $v_{i}[t]$ to 0 when a spike occurs by forcing the membrane register content to 0 with a control signal; this is equivalent to using the oveflow flag of the adder as **reset signal for the membrane register**. This should not be done in an actual implementation: at least a **register** should be added on the reset signal of the membrane register to prevent glitches in the adder circuit from resetting it when it should not be.
+- instead of subtracting $\theta$ from the membrane register, we can **reset** $v_{i}[t]$ to 0 when a spike occurs by forcing the membrane register content to 0 with a control signal; this is equivalent to using the overflow flag of the adder as **reset signal for the membrane register**. This should not be done in an actual implementation: at least a **register** should be added on the reset signal of the membrane register to prevent glitches in the adder circuit from resetting it when it should not be.
 
 The resulting circuit is the following.
 

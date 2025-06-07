@@ -38,7 +38,7 @@ Striking a balance between flexibility/extensibility and efficiency from compila
 {{< chart data="framework-benchmarking-mem-16k" caption="Comparison of peak memory usage when computing forward and backward passes in different frameworks, for 16k neurons." mobile="framework-benchmarking-mem-16k.png">}}
 
 The second figure shows the maximum memory usage during forward and backward pass for the same networks. The compiled Norse model comes out on top, which is interesting because it is being built in pure Python.
-This is most likely due to compiler techinques such as kernel fusion, where subsequent PyTorch layers are fused into single operations to avoid device bottleneck and to leverage the single instruction, multiple data (SIMD) architectures of GPUs.
+This is most likely due to compiler techniques such as kernel fusion, where subsequent PyTorch layers are fused into single operations to avoid device bottleneck and to leverage the single instruction, multiple data (SIMD) architectures of GPUs.
 The memory usage benchmarks were collected using PyTorch's [max_memory_allocated()](https://pytorch.org/docs/stable/generated/torch.cuda.max_memory_allocated.html) function, unfortunately JAX does not have a similar function so for now Spyx is not included in the memory benchmark.
 
 ## Summary
@@ -70,7 +70,7 @@ Some things that would be interesting to add:
 
 ## Authors
 * [Gregor Lenz](https://lenzgregor.com) holds a PhD in neuromorphic engineering from Sorbonne University and has been training SNNs for a little while now!
-* [Kade Heckel](https://github.com/kmheckel/spyx) is a Marshall Scholar and a current MPhil student at the Univeristy of Cambridge. He authored the library Spyx as part of the dissertation for an MSc at the University of Sussex under the supervision of Thomas Nowotny.
+* [Kade Heckel](https://github.com/kmheckel/spyx) is a Marshall Scholar and a current MPhil student at the University of Cambridge. He authored the library Spyx as part of the dissertation for an MSc at the University of Sussex under the supervision of Thomas Nowotny.
 * [Sumit Bam Shrestha](https://www.intel.com/content/www/us/en/research/featured-researchers/sumit-bam-shrestha.html) is a research scientist in neuromorphic computing at Intel Labs, where he focuses on deep spiking neural networks.
 * [Cameron Barker](https://github.com/cameron-git) is a Neuromorphic Engineer at Ripga ltd.
 * [Jens Egholm Pedersen](https://jepedersen.dk) is a PhD student at KTH Royal Institute of Technology

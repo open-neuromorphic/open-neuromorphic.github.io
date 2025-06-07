@@ -144,7 +144,7 @@ instance, the number 1.2345 would become 1 as an integer. This means that you
 would degrade the information encoded in the data, and the network would not 
 perform as expected, showing a large loss in accuracy. For this reason,
 researchers have come up with _quantization_ algorithms: these allow to convert
-floating point values to integer ones while loosing as few information as 
+floating point values to integer ones while losing as few information as 
 possible in the process. Since some information is lost in any case, the DNN 
 usually needs to be retrained a bit using its integer version in order to 
 recover the loss in performance.
@@ -285,7 +285,7 @@ organic biochemical substrate is suitable for supporting many slow analog
 neurons, where each neuron is hardwired to a fixed set of synaptic weights.
 Directly following this architectural construct leads to an inefficient use of
 inorganic silicon, which is suitable for fewer and faster digital neurons.
-Reconfigurability resolves this key dilem- ma by storing weights and programs
+Reconfigurability resolves this key dilemma by storing weights and programs
 just once in the distributed memory and reconfiguring the weights during the
 execution of each layer using one NoC and reconfiguring the programs before the
 start of the layer using another NoC. Stated differently, these two NoCs serve
@@ -318,7 +318,7 @@ NoCs are highlighted: the partial sums NoC distributes the partial results among
 cores (refer to the layer-fuse architecture); the activation NoC carries inputs
 and layers outputs; the instruction NoC is used to tell the sequence of
 instructions to be carried out by the core; the model NoC is the one that
-trasnfers the layers weights to the computational cores.
+transfers the layers weights to the computational cores.
 
 In my opinion, the instruction core plays an important role. Having a
 specialized instruction set architecture (ISA) has a large impact on
@@ -582,7 +582,7 @@ I would like to thank [Jascha Achterberg](https://www.jachterberg.com) for
 reviewing this blog post and the super-useful discussion about the 
 brain-inspired traits of NorthPole: he convinced me that the way in which the 
 authors claim biology inspiration actually proves useful (_e.g._, distributed 
-memory hierarchy), differently from other approaches that severly compromise
+memory hierarchy), differently from other approaches that severely compromise
 performance (_e.g._, accuracy), with negligible efficiency improvements.
 
 I would also like to thank [Siddharth Joshi](https://siddharth-joshi.com) for pointing out that Keller et al.

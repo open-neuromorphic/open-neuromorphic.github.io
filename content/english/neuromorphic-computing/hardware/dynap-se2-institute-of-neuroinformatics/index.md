@@ -27,7 +27,7 @@ product:
   software: Rockpool, Samna
   status:
     announced: true
-    released: limited availibility
+    released: limited availability
     retired: false
   
 product_name: DYNAP-SE2

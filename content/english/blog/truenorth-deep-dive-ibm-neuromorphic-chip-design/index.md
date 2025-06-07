@@ -17,7 +17,7 @@ If you have ever read an article on neuromorphic computing, you might have notic
 
 How can the brain do all this? There are several reasons (or hypotheses, I should say): 
 * the **3D connectivity** among neurons. While in nowadays chip we can place connections among logic gates and circuits only in the 2D space, in the brain we have the whole 3D space at our disposal; this allows the mammalian brain to reach a fanout in the order or **10 thousand connections** per neuron.
-* **extremely low power operation**. Trough thousands of years of evolution, the most power efficient "brain implementation" has won, since the ones that consume less energy to live are the ones that turn out to survive when there is no food (not entirely correct but I hope that true scientists won't kill me). The power density in the brain is estimated to be **10mW per squared centimeter**, while in a modern digital processor we easily reach **100W per squared centimeter**.
+* **extremely low power operation**. Through thousands of years of evolution, the most power efficient "brain implementation" has won, since the ones that consume less energy to live are the ones that turn out to survive when there is no food (not entirely correct but I hope that true scientists won't kill me). The power density in the brain is estimated to be **10mW per squared centimeter**, while in a modern digital processor we easily reach **100W per squared centimeter**.
 
 Hence, IBM decide to try to emulate the brain with **TrueNorth**, a **4096 cores** chip packing **1 million neurons** and **256 million synapses**. Let's dive into its design!
 

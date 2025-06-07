@@ -45,7 +45,7 @@ The Loihi chip employs **128 neuromorphic cores**, each of which consisting of *
 
 In this paper, a digital neuromorphic processor is presented. The Verilog is also [open source](https://github.com/ChFrenkel/ODIN)!
 
-The neurons states and the synapses weights are stored in two foundry SRAMs on chip. In order to emulate a crossbar, **time-multiplexing** is adopted: the synapses weights and neurons states are updated in a sequential manner instead of in parallel. On the core, **256 neurons (4kB SRAM)** and **256x256 synapses (64kB SRAM)** are embedded. This allows to get a very high synapses and neuron densities: **741k synapses per squared millimiters** and **3k neurons per squared millimeters**, using a **28nm CMOS FDSOI** process. 
+The neurons states and the synapses weights are stored in two foundry SRAMs on chip. In order to emulate a crossbar, **time-multiplexing** is adopted: the synapses weights and neurons states are updated in a sequential manner instead of in parallel. On the core, **256 neurons (4kB SRAM)** and **256x256 synapses (64kB SRAM)** are embedded. This allows to get a very high synapses and neuron densities: **741k synapses per squared millimeters** and **3k neurons per squared millimeters**, using a **28nm CMOS FDSOI** process. 
 
 The neuron model is programmable through an SPI interface: the user can choose among a **LIF** model (**8 bits** for the state of each neuron) and **Izhikevic** one (**55 bits** for the state of each neuron). Online-learning capabilities are allowed with an hardware-efficient implementation of the **Spike-Driven Synaptic Plasticity (SDSP)** rule.
 
