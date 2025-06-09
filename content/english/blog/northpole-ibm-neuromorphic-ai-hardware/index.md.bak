@@ -44,7 +44,7 @@ that have to deal with any possible code being compiled for them. For more
 information on this, the reader is referred to [Computer
 architecture](https://books.google.it/books/about/Computer_Architecture.html?id=v3-1hVwHnHwC&redir_esc=y),
 by Hennessy, Patterson and Asanovic. If the code being run does not contain
-any of these conditional statements, there is no need for supporting them in 
+any of these conditional statements, there is no need for supporting them in
 hardware, which gives a lot of space to optimizations.
 
 Moreover, NorthPole is an inference-only accelerator, _i.e._, you cannot train a
@@ -81,8 +81,8 @@ def dummy_sparse_dot_prod(a: torch.Tensor, b: torch.Tensor) -> torch.Tensor:
 It seems easy, isn't it? Well, it is not. The `if` in `dummy_sparse_dot_prod` is
 a mess. Why so?  Well, the problem is that when this code is running in
 hardware, the line `a_i, b_i = a[i], b[i]` is much more costly (_i.e._, it takes
-more _energy_ to execute it) than `a_i * b_i` 
-[[Horowitz](https://ieeexplore.ieee.org/document/6757323)]! This is due to how 
+more _energy_ to execute it) than `a_i * b_i`
+[[Horowitz](https://ieeexplore.ieee.org/document/6757323)]! This is due to how
 we design our digital circuits to perform these operations. Hence, what you
 would like to avoid is to _read_ the inputs, more than to multiply them! And if
 to check that these are not zero you need to read them, well, you have lost the
@@ -97,7 +97,7 @@ processing units (GPUs) support 2:4 sparsity, which means that every 4 elements
 in a matrix, 2 are zeros (more or less, I am not being extremely precise on
 this).
 
-### Axiom 2 - Getting inspired by biological neurons 
+### Axiom 2 - Getting inspired by biological neurons
 
 > Inspired by biological precision, NorthPole is optimized for 8, 4, and 2-bit
 low-precision. This is sufficient to achieve state-of-the-art inference accuracy
@@ -105,8 +105,8 @@ on many neural networks while dispensing with the high-precision required for
 training.
 
 Neurons in biology communicate by means of voltage spikes. This can interpreted
-as binary signals: if I have a spike, I have a logic one; if there is no spike, 
-I have a logic zero. This information encoding, if implemented in hardware, 
+as binary signals: if I have a spike, I have a logic one; if there is no spike,
+I have a logic zero. This information encoding, if implemented in hardware,
 requires a single bit. This is the analogy the authors are referring to.
 
 Why should I care about the precision of the data in my neural
@@ -116,36 +116,36 @@ By _precision_ it is meant the number of bits to which your data is encoded. The
 larger this number is, the larger numbers you can describe with your bit word,
 but also smaller since some of those bits are used to encode the decimals.
 However, you cannot use a large number of bits for each datum: first, because
-it would require much more memory to host these data; second, it requires much 
-more energy to process them! 
+it would require much more memory to host these data; second, it requires much
+more energy to process them!
 
 |    Operation   | Floating point energy [pJ] |   Integer energy [pJ]   |               Energy ratio FP/INT              |
 |:--------------:|:--------------------------:|:-----------------------:|:----------------------------------------------:|
 |    Addition    |   0.4 (16 b), 0.9 (32 b)   | 0.03 (8 b), 0.1 (32 b)  |  **~13.3x** (16 b / 8 b), **9x** (32 b / 32 b) |
 | Multiplication |   1.1 (16 b), 3.7 (32 b)   |  0.2 (8 b), 3.1 (32 b)  | **5.5x** (16 b / 8 b), **~1.2x** (32 b / 32 b) |
 
-In the table above [[Horowitz](https://ieeexplore.ieee.org/document/6757323)], 
+In the table above [[Horowitz](https://ieeexplore.ieee.org/document/6757323)],
 the energy required to perform addition on `int`s and `float`s is provided. You
 could notice that it is much more convenient to work with `int`s! This is due to
-the fact that the physical hardware required to perform floating point 
-arithmetic is _much_ more complex that the corresponding integer one. That is 
+the fact that the physical hardware required to perform floating point
+arithmetic is _much_ more complex that the corresponding integer one. That is
 why we want to represent our DNNs weights and activations with integers!
 
-However, you cannot simply convert an integer to a floating point value. For 
+However, you cannot simply convert an integer to a floating point value. For
 instance, the number 1.2345 would become 1 as an integer. This means that you
-would degrade the information encoded in the data, and the network would not 
+would degrade the information encoded in the data, and the network would not
 perform as expected, showing a large loss in accuracy. For this reason,
 researchers have come up with _quantization_ algorithms: these allow to convert
-floating point values to integer ones while loosing as few information as 
-possible in the process. Since some information is lost in any case, the DNN 
-usually needs to be retrained a bit using its integer version in order to 
+floating point values to integer ones while losing as few information as
+possible in the process. Since some information is lost in any case, the DNN
+usually needs to be retrained a bit using its integer version in order to
 recover the loss in performance.
 
 We have been running DNNs using INT8 since ~2017 without claiming
 biological inspiration. Recently, however, progress has been made and we can use
 INT4 quantization (only 4 bits to represent a number) with marginal loss in
 performance compared to the 32-bit
-floating point (FP32) baseline that you trained on your GPU 
+floating point (FP32) baseline that you trained on your GPU
 [[Keller et
 al.](https://ieeexplore.ieee.org/abstract/document/10019275?casa_token=fmLtbZfys2cAAAAA:UQvvJ3LWrATwWYtBQZ7HSAZigZdRe-k06Z9rOcKVc4c1LrrqXCe49E5IFgKRyC952n0Fmp_9UQ)].
 
@@ -158,12 +158,12 @@ GPU Architecture](https://resources.nvidia.com/en-us-tensor-core)].
 > NorthPole has a distributed, modular core array (16-by-16), with each core
 capable of massive parallelism (8192 2-bit operations per cycle) (Fig. 2F).
 
-When claiming 8192 operations per clock cycle, using INT2 operands, it 
+When claiming 8192 operations per clock cycle, using INT2 operands, it
 means that NorthPole has 2048 multiply-and-accumulate (MAC) units that work on
 INT8 precision operands. Why do we care about MACs?
 
-DNNs are basically matrix multipliers: a neural network receives a vector in 
-input and multiplies it by a matrix of weights, producing in output another 
+DNNs are basically matrix multipliers: a neural network receives a vector in
+input and multiplies it by a matrix of weights, producing in output another
 vector. Let us consider a _naive_ matrix-vector multiplication.
 
 ```python
@@ -172,8 +172,8 @@ def naive_mat_vec_mul(v: torch.Tensor, m: torch.Tensor) -> torch.Tensor:
     assert m_cols == len(v)
     res = torch.zeros((m_rows,))
     for r in range(m_rows):
-        for c in range(m_cols): 
-            res[r] += v[c] * m[r, c] # Hey, this is multiplication and 
+        for c in range(m_cols):
+            res[r] += v[c] * m[r, c] # Hey, this is multiplication and
                                      # accumulation! Here's our MAC!
     return r
 ```
@@ -183,7 +183,7 @@ product. That's why we care about it.
 
 These MACs can be configured in single-instruction-multiple-data (SIMD)
 mode, _i.e._, you can "glue" together 4 INT2 operands to form an INT8 word and
-work on these in parallel. 
+work on these in parallel.
 
 {{<
 figure
@@ -248,21 +248,21 @@ In layer-fuse architectures (also called _dataflow_, which also means another
 thing in hardware accelerators just to mess with you), instead, the PEs work on
 all the operands at once. The secret is that, when the operands are too big to
 fit on the available PEs, you perform part of the computations in an iteration,
-and the remaning part in another, as it is shown in the figure above for the
-matrix multiplication example. It has to be remarked that the intermediate 
+and the remaining part in another, as it is shown in the figure above for the
+matrix multiplication example. It has to be remarked that the intermediate
 results are kept among the PEs, that exchange them to finish the computation.
-Ideally, there are no off-chip memory accesses, or it is strongly reduced when 
+Ideally, there are no off-chip memory accesses, or it is strongly reduced when
 compared to an overlay architecture
 
-{{< 
+{{<
 figure src="memory-energy.png" caption="Stolen from my thesis." width=600px
 >}}
 
-The graph above explains why it is a good idea to keep data among the PEs: to 
+The graph above explains why it is a good idea to keep data among the PEs: to
 retrieve activations from off-chip memory, one has to employ **200x** the energy
 needed to execute a MAC! Instead, if the MAC unit accesses the data in the PE
 itself (the PE register file bar) or from another PE (the NoC bar), the energy
-drawback is bearable. 
+drawback is bearable.
 
 ### Axiom 4 - Efficiency in distribution
 
@@ -361,8 +361,8 @@ each layer enables optimal use of on-chip resources without compromising
 inference accuracy (supplementary texts S9 and S10).
 
 In short: IBM will provide a quantization aware training (QAT) toolchain with
-the NorthPole system. QAT starts, usually, from a full precision FP32 
-model and converts all the weights and activations to integers, in order to 
+the NorthPole system. QAT starts, usually, from a full precision FP32
+model and converts all the weights and activations to integers, in order to
 reduce their precision. This leads to information loss that worsens the accuracy
 of the network: to recover this, the DNN is trained for few more epochs to use
 backprop to tune the network taking into account the approximations brought by
@@ -491,10 +491,10 @@ substantially higher instantaneous parallelism (through high utilization of many
 highly parallel compute units specialized for neural inference) and
 substantially lower transistor count owing to low precision (Fig. 4B).
 
-NorthPole runs at 400 MHz while an A100 GPU can run up to 1.4 GHz. Of 
-course, GPUs have much more "redundant" hardware to be programmable for more 
+NorthPole runs at 400 MHz while an A100 GPU can run up to 1.4 GHz. Of
+course, GPUs have much more "redundant" hardware to be programmable for more
 tasks. Hence, is it fair this comparison with general purpose hardware? Sure.
-However, shall we call in a 
+However, shall we call in a
 [fairer competitor](https://ieeexplore.ieee.org/abstract/document/10019275)? :)
 
 |  Accelerator  | Power [W] | Throughput (FPS) | Efficiency [inferences / J] |   Data format   | Only DNNs? | Training? |
@@ -513,7 +513,7 @@ accelerator like NorthPole. This explains why the throughput is so low and the
 efficiency so high.
 
 The Nvidia accelerator is meant for inference only, just like NorthPole, and it
-uses a very fancy quantization technique 
+uses a very fancy quantization technique
 [[Dai et al.](https://proceedings.mlsys.org/paper_files/paper/2021/file/48a6431f04545e11919887748ec5cb52-Paper.pdf)]
 to use INT4 precision without compromising accuracy. Moreover, the accelerator
 is designed to run large Transformers on it, but I have used their ResNet50 data
@@ -530,7 +530,7 @@ In conclusion, the following statement
 >  Inspired by the brain, which has no off-chip memory, NorthPole is optimized
 for on-chip networks [...]
 
-will make me sleep better tonight, knowing that I do not have a DDR4 stick 
+will make me sleep better tonight, knowing that I do not have a DDR4 stick
 on top of my head. Sigh.
 
 NorthPole is an interesting experiment: it is an extremely large accelerator,
@@ -541,14 +541,14 @@ biological inspiration.  In my opinion, NorthPole is "just" an excellent
 engineering work, that takes into account key factors:
 * reduced precision operations are much more efficient that high-precision ones.
 An FP32 multiplication costs _much_ more than an INT8 one.
-* DNNs are extremely robust to quantization, and with INT8 precision there is 
+* DNNs are extremely robust to quantization, and with INT8 precision there is
 basically no accuracy degradation.
-* memory accesses are much more costly than computations when going up the 
+* memory accesses are much more costly than computations when going up the
 memory hierarchy (_i.e._, external DRAMs and so on).
 
 However, this brain-inspired approach seems to prove more useful than other ones
-at the moment, such as spiking network: the distributed memory hierarchy leads to 
-great improvement in processing efficiency, without compromising network 
+at the moment, such as spiking network: the distributed memory hierarchy leads to
+great improvement in processing efficiency, without compromising network
 performance.
 
 I can see clusters of NorthPole being stacked in servers to improve inference
@@ -559,11 +559,11 @@ chose an IEEE journal instead of Science, where hardware is not really common.
 
 ## Acknowledgements
 
-I would like to thank [Jascha Achterberg](https://www.jachterberg.com) for 
-reviewing this blog post and the super-useful discussion about the 
-brain-inspired traits of NorthPole: he convinced me that the way in which the 
-authors claim biology inspiration actually proves useful (_e.g._, distributed 
-memory hierarchy), differently from other approaches that severly compromise
+I would like to thank [Jascha Achterberg](https://www.jachterberg.com) for
+reviewing this blog post and the super-useful discussion about the
+brain-inspired traits of NorthPole: he convinced me that the way in which the
+authors claim biology inspiration actually proves useful (_e.g._, distributed
+memory hierarchy), differently from other approaches that severely compromise
 performance (_e.g._, accuracy), with negligible efficiency improvements.
 
 ## Bibliography
