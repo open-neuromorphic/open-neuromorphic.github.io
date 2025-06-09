@@ -22,31 +22,31 @@ Join the discussion [on Discord](https://discord.gg/C9bzWgNmqk), star us [on Git
 
 Open Neuromorphic is almost 4 years old.
 We set out to make the field of neuromorphic engineering more transparent, open, and accessible to newcomers.
-It's been a tremendous success: Open Neuromorphic is the biggest online neuromorphic community *in the world*, our videos are seen by thousands of researchers, our material is reaching even further, and the 2000+ academics and students on our Discord server is actively and happily collaborating to further the scientific vision of neuromorphic engineering.
+It's been a tremendous success: Open Neuromorphic is the biggest online neuromorphic community *in the world*, our videos are seen by thousands of researchers, our material is reaching even further, and the 2000+ academics and students on our Discord server are actively and happily collaborating to further the scientific vision of neuromorphic engineering.
 
-But, let's face is: we still have a long way to go.
+But, let's face it: we still have a long way to go.
 Neuromorphic engineering is a niche field that's occupied by a frustratingly wide variety of disciplines (that sometimes don't relate to each other), and the tooling is nowhere near as accessible as the deep learning ecosystem.
-The good news is that we can change this and that we are going to.
+The good news is that we can change this and we are going to do that.
 With the amount of leverage in the Open Neuromorphic community, this is exactly the right place to start.
 This post explains the grand vision, our hopes for where Open Neuromorphic will be in 5 years from now.
 
 ## Why does *open* software and *open* science matter?
 
-```
+<blockquote>
 The Open Neuromorphic Principles:
 🔬 Science = Shareable + Testable + Modifiable
 ⚡ Software = Digital embodiment of scientific models  
 🌐 Open Source = Scientific method applied to code
 🧠 Neuromorphics = Perfect testbed for open computational science
-```
+</blockquote>
 
 When presenting the efforts at Open Neuromorphic, we have often been met with scepticism.
 Why does "open software" matter?
 Software is, people say, not science.
 It’s a time sink, something to rush past in the pursuit of what really matters: results (and papers if you’re in academia).
-Publish or perish.
+I.e. publish or perish.
 
-Well. We think software matters. And we are not alone.
+Well. We think software matters; and we are not alone.
 Open source software is **estimated to provide [billions](https://opensourcefundingsurvey2024.com/), if not [trillions](https://www.hbs.edu/ris/Publication%20Files/24-038_51f8444f-502c-4139-8bf2-56eb4b65c58a.pdf)** of value *annually*.
 This is an absolutely incredible number that should be celebrated much much more.
 Most value is derived from programming languages (JavaScript, Go, Java, C/C++, ...), web servers (Apache, Nginx), research software (Numpy, PyTorch, ...), and hardware platforms (Arduino, 3D printing).
@@ -60,8 +60,7 @@ But value generation is not the only reason we should care for open software.
 We believe it is vital for the scientific progress.
 In fact, we believe open source software *is science*.
 Or, at least computational science.
-Here is why.
-Let's start by defining what we mean by "science" in a modern, computerized, world.
+Here is why - let's start by defining what we mean by "science" in a modern, computerized world.
 
 ### What is science?
 If you look up <q>science</q> on Wikipedia, here's what hits you:
@@ -86,7 +85,7 @@ In his *excellent* book <q><a href="https://en.wikipedia.org/wiki/Kenneth_Craik#
 </blockquote>
 
 This point seems obvious today, but it highlights the goal of pursuing science in the first place:
-you, as an acting entity, improves your **inner model** to the point that you can make *better* predictions than before.
+you, as an acting entity, improve your **inner model** to the point that you can make *better* predictions than before.
 The **inner model** here is critical: if the arXiv paper does not help their readers predict the world, it is not science.
 This is why computational reproducibility matters--software is how we encode and share predictive models.
 
@@ -155,12 +154,12 @@ When you read a paper claiming that a new drug reduces symptoms by 30%, you clic
 **Scientific software evolves like Wikipedia.**
 Climate models aren't developed in isolation by single labs, but maintained by global communities. When a researcher in Kenya discovers a bug in atmospheric turbulence calculations, the fix propagates instantly to climate simulations worldwide. Models improve continuously rather than languishing in academic silos.
 
-**The pace of discovery accelerates.** Instead of each researcher building from scratch, we stand on shoulders of giants whose work is not just readable, but runnable and modifiable. Scientific progress compounds at an unprecedented rate.
+**The pace of discovery accelerates.** Instead of each researcher building from scratch, we stand on shoulders of giants whose work is not only readable, but runnable and modifiable. Scientific progress compounds at an unprecedented rate.
 
-**Trust in science strengthens.** When climate models, economic forecasts, and medical recommendations are built on transparent, auditable code, public confidence grows. Science communication improves because the models themselves become part of the conversation—not just their conclusions.
+**Trust in science strengthens.** When climate models, economic forecasts, and medical recommendations are built on transparent and auditable code, public confidence grows. Science communication improves because the models themselves become part of the conversation—not just their conclusions.
 
-This isn't utopian fantasy.
-Every piece already exists---open source communities, reproducible environments, collaborative development platforms.
+This isn't a utopian fantasy.
+Every piece already exists---open source communities, reproducible environments, and collaborative development platforms.
 We just need to shape them into a coherent vision for how science should work in the digital age.
 
 The question isn't whether this future is possible. The question is: how quickly can we build it?
@@ -170,25 +169,25 @@ We posit that open source software is a necessary condition if we are [to scienc
 Software is <q>executable mathematical models</q> that we should prioritize much higher.
 We believe Open Neuromorphic is in an excellent position to push this agenda, and by rolling out our strategic initiative in the subsequent blog posts, we will reveal how.
 The brief headline is that we want to make neuromorphics much more accessible, transparent, and reproducible.
-And we can't wait to get started.
+And we can't wait to get started!
 
 We are entering a world where science is increasingly done by machines.
 This is particular true in the computation sciences, where humans rarely understand every instruction executed in the process that lead to new findings.
 We have a narrow window of opportunity.
 As neuromorphic computing moves toward commercialization, the risk of vendor lock-in grows daily.
-If we don't establish open standards and tools now, we'll spend the next decade debugging proprietary black boxes instead of advancing the science.
+**If we don't establish open standards and tools now, we'll spend the next decade debugging proprietary black boxes instead of advancing science.**
 
 Admittedly, there is a lot of work that needs to be done.
 We're already starting and and here is how you can help:
 
 - **Share and document your code**
-  - Papers without code is less scientific because it is harder to build on the insights. In the ideal world any claim should be backed up by *reproducible* code. Always use code from day 1 and always share it.
+  - Papers without code is less scientific because it is harder to build on the insights. In the ideal world any claim should be backed up by *reproducible* code. Always use and properly document code from day 1 and always share it.
 - **Write stable code, use [NixOS](https://nixos.org/)**
   - Code should be reliable and work in perpetuity. That means making sure dependencies and environments are kept constant. The best way to do that is to use *reproducible environments*. NixOS is quickly becomming the biggest and best tool there is. It will guarantee that your code will run *exactly the same way*, even 100 years in the future. Docker, Conda, and similar tools are better, but NixOS gives more comprehensive guarantees.
 - **Build on existing tools instead of creating your own**
-  - For the common scientific knowledgebase to improve, we need cross-platform tools. This is particularly true for small fields such as neuromorphics, where [a recent Nature paper pointed out that open source software is key to scaling](https://www.nature.com/articles/s41586-024-08253-8). Go check out the [Open Neuromorphic software guide](https://open-neuromorphic.org/neuromorphic-computing/software/) and see if you can't find libraries close to your work.
+  - For the common scientific knowledgebase to improve, we need cross-platform tools. This is particularly true for small fields such as neuromorphics, where [a recent Nature paper pointed out that open source software is key to scaling](https://www.nature.com/articles/s41586-024-08253-8). Go check out the [Open Neuromorphic software guide](https://open-neuromorphic.org/neuromorphic-computing/software/) and look for libraries similar to your work/approach.
 - **Promote academics that work on software**
-  - Given the huge importance of code, Academic promotions should value software contributions
+  - Given the huge importance of code, Academic promotions should value open-source software contributions
 
 The scientific revolution succeeded because it insisted on transparency, reproducibility, and constant scrutiny.
 The open source movement embodies these same principles for software, but there is much more work to be done.
