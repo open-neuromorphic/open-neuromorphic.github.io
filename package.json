@@ -8,7 +8,7 @@
     "dev": "hugo serve --buildFuture",
     "build": "npm run og-images && rm public -fr && hugo --gc --minify --buildFuture --templateMetrics --templateMetricsHints --forceSyncStatic -e production",
     "build-preview": "hugo server --disableFastRender --buildFuture --navigateToChanged --templateMetrics --templateMetricsHints  --forceSyncStatic -e production --minify",
-    "og-images": "node ../../Projects/WebstormProjects/open-neuromorphic.github.io/scripts/collectOgData.js && node scripts/generateImagesFromData.js"
+    "og-images": "node scripts/collectOgData.js && node scripts/generateImagesFromData.js"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^5.0.0",
