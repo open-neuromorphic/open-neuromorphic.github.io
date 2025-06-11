@@ -4,8 +4,9 @@ from csv import writer
 
 from time import time
 
+
 def log_result(framework, neurons, forward, backward, memory):
-    with open('data.csv', 'a') as f:
+    with open("data.csv", "a") as f:
         w = writer(f)
         w.writerow([framework, neurons, forward, backward, memory])
 
@@ -57,26 +58,28 @@ def benchmark_framework(
     try:
         # - Prepare benchmark
         bench_dict = prepare_fn(
-            batch_size=batch_size, 
-            n_steps=n_steps, 
+            batch_size=batch_size,
+            n_steps=n_steps,
             n_neurons=n_neurons,
-            n_layers=n_layers, 
-            device=device
+            n_layers=n_layers,
+            device=device,
         )
 
         # - Forward pass
         forward_times.append(timeit(lambda: forward_fn(bench_dict)))
         bench_dict = forward_fn(bench_dict)
-        assert bench_dict["output"].shape == bench_dict["input"].shape
+        shape_out = bench_dict["output"].shape
+        shape_in = bench_dict["input"].shape
+        assert (
+            shape_out == shape_in
+        ), f"Output shape {shape_out} != input shape {shape_in}"
 
         # - Backward pass
         backward_times.append(timeit(lambda: backward_fn(bench_dict)))
 
     except Exception as e:
         # - Fail nicely with a warning if a benchmark dies
-        warnings.warn(
-        f"Benchmark {benchmark_desc} failed with error {str(e)}."
-        )
+        warnings.warn(f"Benchmark {benchmark_desc} failed with error {str(e)}.")
 
         # - No results for this run
         forward_times.append([])
