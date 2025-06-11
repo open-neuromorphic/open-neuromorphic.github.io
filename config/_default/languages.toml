@@ -2,5 +2,5 @@
 [en]
 languageName = "En"
 languageCode = "en-us"
-contentDir = "content/english"
+contentDir = "content"
 weight = 1

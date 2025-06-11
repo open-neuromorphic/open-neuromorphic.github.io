@@ -1,0 +1,48 @@
+{{ define "main" }}
+  {{ partial "page-header" . }}
+  <section class="section pt-6">
+    <div class="container">
+      <div class="row lg:gx-8">
+        {{/* Main Content Column */}}
+        <div class="lg:col-8">
+          <article class="content mb-10">
+            {{ .Content }}
+          </article>
+          
+          <blockquote class="p-4 border-l-4 border-[var(--color-primary-new)] bg-blue-50 dark:bg-darkmode-theme-dark">
+            <h3 class="text-lg font-semibold !mt-0 !mb-2">Want to contribute to this entry?</h3>
+            <p class="!mb-0">
+              Help us keep this guide up-to-date! You can submit tutorials, case studies, or corrections by
+              <a href="https://github.com/open-neuromorphic/open-neuromorphic.github.io/issues" target="_blank">opening an issue on GitHub</a> or joining the discussion on our <a href="https://discord.gg/C9bzWgNmqk" target="_blank">Discord server</a>.
+            </p>
+          </blockquote>
+
+          <div class="mt-8 flex justify-end">
+            {{ partial "override-social-share" (dict "Context" . "Class" "share-icons" "Title" (i18n "share") "Whatsapp" true "Telegram" false) }}
+          </div>
+        </div>
+        
+        {{/* Sidebar Column */}}
+        <aside class="lg:col-4">
+          {{ partial "software/at-a-glance.html" . }}
+        </aside>
+      </div>
+
+      {{/* Related Posts Section (Optional, but good to keep) */}}
+      {{ $related := where site.RegularPages "Section" "blog" | intersect (where site.RegularPages ".Title" "!=" .Title) | union (site.RegularPages.Related . ) }}
+      {{ $related = $related | shuffle | first 3 }}
+      {{ with $related }}
+      <div class="section pb-0 mt-12">
+        <h2 class="h3 mb-6 text-center">Related Blog Posts</h2>
+        <div class="row">
+          {{ range . }}
+            <div class="lg:col-4">
+              {{ partial "components/blog-card" . }}
+            </div>
+          {{ end }}
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </section>
+{{ end }}

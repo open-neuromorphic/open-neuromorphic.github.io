@@ -1,0 +1,16 @@
+{{ $socialLinks := slice }}
+{{ range site.Data.social.main }}
+  {{ $socialLinks = $socialLinks | append .link }}
+{{ end }}
+
+{{ $homepageLD := dict
+  "@context" "https://schema.org"
+  "@type" "Organization"
+  "url" (absLangURL "/")
+  "sameAs" $socialLinks
+  "logo" (absLangURL "ONM-logo.png")
+  "name" site.Title
+  "description" site.Params.metadata.description
+}}
+
+{{ return $homepageLD }}

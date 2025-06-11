@@ -1,0 +1,91 @@
+{{/* layouts/partials/logo.html */}}
+{{ $logoPath:= .Src | default site.Params.logo }}
+{{ $logoDarkPath:= .DarkSrc | default site.Params.logo_darkmode }}
+{{ $logoText:= .LogoText | default site.Params.logo_text }}
+{{ $logoWebp:= site.Params.logo_webp | default true }}
+{{ $logoWidth:= site.Params.logo_width | replaceRE "px|x" "" }}
+{{ $logoHeight:= site.Params.logo_height | replaceRE "px|x" "" }}
+{{ $logoDefaultWidth:= "" }}
+{{ $logoDefaultHeight:= "" }}
+{{ $force_dark_logo := .force_dark_logo | default false }}
+
+{{ $assetImage:= false }}
+{{ $staticImage:= false }}
+{{ $scratch:= newScratch }}
+
+<!-- check asset image -->
+{{ if and $logoPath (fileExists (add `assets/` (string $logoPath))) }}
+  {{ $assetImage = true }}
+{{ end }}
+<!-- /check asset image -->
+
+<!-- check static/CDN image -->
+{{ if and $logoPath (or (hasPrefix $logoPath "http") (fileExists (add `static/` (string $logoPath)))) }}
+  {{ $staticImage = true }}
+{{ end }}
+<!-- /check static/CDN image -->
+
+{{ if $staticImage }}
+  <!-- image static/CDN -->
+  {{ if and $logoDarkPath (not $force_dark_logo) }}
+    <img fetchpriority="high" decoding="async" src="{{ $logoPath | absURL }}" alt="{{ $logoText }}" class="img logo-light" height="{{ $logoHeight | default `auto` }}" width="{{ $logoWidth | default `auto` }}" />
+    <img fetchpriority="high" decoding="async" src="{{ $logoDarkPath | absURL }}" alt="{{ $logoText }}" class="img logo-dark" height="{{ $logoHeight | default `auto` }}" width="{{ $logoWidth | default `auto` }}" />
+  {{ else if $logoDarkPath }}
+    <img fetchpriority="high" decoding="async" src="{{ $logoDarkPath | absURL }}" alt="{{ $logoText }}" class="img" height="{{ $logoHeight | default `auto` }}" width="{{ $logoWidth | default `auto` }}" />
+  {{ else }}
+    <img fetchpriority="high" decoding="async" src="{{ $logoPath | absURL }}" alt="{{ $logoText }}" class="img" height="{{ $logoHeight | default `auto` }}" width="{{ $logoWidth | default `auto` }}" />
+  {{ end }}
+
+{{ else if $assetImage }}
+  <!-- asset image logic -->
+  {{ $logo:= resources.Get $logoPath }}
+  {{ $logoExt := path.Ext $logo }}
+  {{ if ne $logoExt `.svg` }}{{ $logoDefaultWidth = $logo.Width }}{{ $logoDefaultHeight = $logo.Height }}{{ end }}
+
+  {{ if or (eq $logoExt ".gif") (eq $logoExt ".svg") }}
+    {{ $scratch.Set "logo" $logo.RelPermalink }}
+  {{ else }}
+    {{ $logoWidth2x:= add (string (mul (int $logoWidth | default $logoDefaultWidth) 2)) `x` }}
+    {{ $options:= add (string $logoWidth2x) (cond $logoWebp " webp" " ") }}
+    {{ $scratch.Set "logo" ($logo.Resize $options).RelPermalink }}
+    {{ $scratch.Set "logo_fallback" ($logo.Resize $logoWidth2x).RelPermalink }}
+  {{ end }}
+
+  {{ if $logoDarkPath }}
+    {{ if fileExists (add `assets/` (string $logoDarkPath)) }}
+      {{ $logoDark:= resources.Get $logoDarkPath }}
+      {{ $logoDarkExt := path.Ext $logoDark }}
+      {{ if or (eq $logoDarkExt ".gif") (eq $logoDarkExt ".svg") }}
+        {{ $scratch.Set "logo_dark" $logoDark.RelPermalink }}
+      {{ else }}
+        {{ $logoWidth2x:= add (string (mul (int $logoWidth | default $logoDefaultWidth) 2)) `x` }}
+        {{ $options:= add (string $logoWidth2x) (cond $logoWebp " webp" " ") }}
+        {{ $scratch.Set "logo_dark" ($logoDark.Resize $options).RelPermalink }}
+        {{ $scratch.Set "logo_dark_fallback" ($logoDark.Resize $logoWidth2x).RelPermalink }}
+      {{ end }}
+    {{ else }}
+      {{ warnf "%q not found" $logoDarkPath }}{{ $logoDarkPath = false }}
+    {{ end }}
+  {{ end }}
+
+  {{ if $force_dark_logo }}
+    {{/* --- NEW LOGIC: Force dark logo --- */}}
+    {{ if $logoDarkPath }}
+      <img fetchpriority="high" decoding="async" class="img" width="{{ $logoWidth | default $logoDefaultWidth }}" height="{{ $logoHeight | default $logoDefaultHeight }}" src="{{ $scratch.Get `logo_dark` }}" alt="{{ $logoText }}" onerror="this.onerror=null;this.src='{{ $scratch.Get `logo_dark_fallback` }}';" />
+    {{ else }}
+      {{/* Fallback to light logo if dark is not provided, but log a warning */}}
+      {{ warnf "force_dark_logo is true, but site.Params.logo_darkmode is not defined. Falling back to default logo." }}
+      <img fetchpriority="high" decoding="async" class="img" width="{{ $logoWidth | default $logoDefaultWidth }}" height="{{ $logoHeight | default $logoDefaultHeight }}" src="{{ $scratch.Get `logo` }}" alt="{{ $logoText }}" onerror="this.onerror=null;this.src='{{ $scratch.Get `logo_fallback` }}';" />
+    {{ end }}
+  {{ else if $logoDarkPath }}
+    {{/* --- Original logic for theme switching --- */}}
+    <img fetchpriority="high" decoding="async" class="img logo-light" width="{{ $logoWidth | default $logoDefaultWidth }}" height="{{ $logoHeight | default $logoDefaultHeight }}" src="{{ $scratch.Get `logo` }}" alt="{{ $logoText }}" onerror="this.onerror=null;this.src='{{ $scratch.Get `logo_fallback` }}';" />
+    <img fetchpriority="high" decoding="async" class="img logo-dark" width="{{ $logoWidth | default $logoDefaultWidth }}" height="{{ $logoHeight | default $logoDefaultHeight }}" src="{{ $scratch.Get `logo_dark` }}" alt="{{ $logoText }}" onerror="this.onerror=null;this.src='{{ $scratch.Get `logo_dark_fallback` }}';" />
+  {{ else }}
+    <img fetchpriority="high" decoding="async" class="img" width="{{ $logoWidth | default $logoDefaultWidth }}" height="{{ $logoHeight | default $logoDefaultHeight }}" src="{{ $scratch.Get `logo` }}" alt="{{ $logoText }}" onerror="this.onerror=null;this.src='{{ $scratch.Get `logo_fallback` }}'" />
+  {{ end }}
+{{ else if $logoText }}
+  {{ $logoText }}
+{{ else }}
+  {{ site.Title }}
+{{ end }}

@@ -1,0 +1,57 @@
+{{ $allUpcomingEvents := slice }}
+{{ $now := now }}
+{{ $daysMap := dict "Sunday" 0 "Monday" 1 "Tuesday" 2 "Wednesday" 3 "Thursday" 4 "Friday" 5 "Saturday" 6 }}
+
+{{ $fmUpcomingEvents := where site.RegularPages "Params.upcoming" true }}
+{{ range $fmUpcomingEvents }}
+  {{ $allUpcomingEvents = $allUpcomingEvents | append (dict
+      "Title" .Title
+      "Description" .Description
+      "Date" .Date
+      "StartTime" .Params.start_time
+      "EndTime" .Params.end_time
+      "TimeZone" .Params.time_zone
+      "Permalink" .RelPermalink
+      "IsRecurring" false
+      "Authors" .Params.author
+      "Image" .Params.image
+  )}}
+{{ end }}
+
+{{ $recurringEventData := site.Data.recurring_events.events }}
+{{ range $recurringEventData }}
+  {{ if .active }}
+    {{ $targetDayKey := .day_of_week | default "Monday" }}
+    {{ $targetDayIndex := index $daysMap $targetDayKey | default 1 }}
+    {{ $currentDayIndex := int $now.Weekday }}
+    {{ $daysToAdd := sub $targetDayIndex $currentDayIndex }}
+    {{ if lt $daysToAdd 0 }}{{ $daysToAdd = add $daysToAdd 7 }}{{ end }}
+    {{/* Further logic to adjust daysToAdd if event is today but already passed */}}
+     {{ if eq $daysToAdd 0 }}
+        {{ $eventStartHour := int (substr .start_time 0 2) }}
+        {{ $eventStartMinute := int (substr .start_time 3 2) }}
+        {{ $nowHour := $now.Hour }}
+        {{ $nowMinute := $now.Minute }}
+        {{ if or (gt $nowHour $eventStartHour) (and (eq $nowHour $eventStartHour) (ge $nowMinute $eventStartMinute)) }}
+          {{ $daysToAdd = 7 }}
+        {{ end }}
+      {{ end }}
+    {{ $nextOccurrenceDate := $now.AddDate 0 0 (int $daysToAdd) }}
+    {{ $allUpcomingEvents = $allUpcomingEvents | append (dict
+        "Title" .title
+        "Description" .description
+        "Date" $nextOccurrenceDate
+        "StartTime" .start_time
+        "EndTime" .end_time
+        "TimeZone" .time_zone
+        "Permalink" (.details_page_link | relLangURL)
+        "IsRecurring" true
+        "Host" .host
+        "LocationName" .location_name
+        "LocationURL" .location_url
+        "Image" .image
+    )}}
+  {{ end }}
+{{ end }}
+{{ $sortedAllUpcomingEvents := sort $allUpcomingEvents "Date" "asc" }}
+{{ return $sortedAllUpcomingEvents }}

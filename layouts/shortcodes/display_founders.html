@@ -1,0 +1,30 @@
+{{ $founders_initial_data := .Page.Params.founders }}
+{{ if $founders_initial_data }}
+    <div class="founders-list my-8 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {{ $sortedFounders := sort $founders_initial_data "member_id" "asc" }}
+        {{ range $sortedFounders }}
+            {{ $name_for_slug := .name | replaceRE "[.]" "" }}
+            {{ $contributor_slug := .contributor_slug | default ($name_for_slug | urlize) }}
+            {{ $contributorPage := "" }}
+            {{ if $contributor_slug }}
+                {{ $contributorPagePath := printf "contributors/%s" $contributor_slug }}
+                {{ $contributorPage = site.GetPage $contributorPagePath }}
+            {{ end }}
+
+            {{ if $contributorPage }}
+                {{ partial "components/author-card.html" (dict "context" $contributorPage "variant" "compact" "role_override" "Founder" "hide_contributions_info" true) }}
+            {{ else }}
+                <div class="author-card-compact">
+                    <div class="mx-auto mb-2 rounded-full object-cover bg-gray-200 dark:bg-darkmode-theme-dark flex items-center justify-center" style="width: 100px; height: 100px;">
+                       <i class="fas fa-user text-3xl text-gray-400 dark:text-gray-500"></i>
+                    </div>
+                    <h4 class="mb-1 text-lg font-semibold">{{ .name }}</h4>
+                    <p class="role-compact text-sm text-text dark:text-darkmode-light mt-1">Founder</p>
+                    <p class="text-xs text-red-500 mt-1 italic">(Contributor profile for '{{ $contributor_slug }}' not found)</p>
+                </div>
+            {{ end }}
+        {{ end }}
+    </div>
+{{ else }}
+    <p class="text-center italic text-gray-600 dark:text-gray-400">Founders information will be displayed here (expected in page frontmatter).</p>
+{{ end }}

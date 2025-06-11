@@ -20,7 +20,7 @@
         "body": "#333",
         "border": "#b86dbc",
         "theme_light": "#222222",
-        "theme_dark": ""
+        "theme_dark": "#222222"
       },
       "text_color": {
         "default": "#f9f4fa",
@@ -31,10 +31,10 @@
   },
   "fonts": {
     "font_family": {
-      "primary": "Open Sans:wght@400;600",
+      "primary": "Inter",
       "primary_type": "sans-serif",
-      "secondary": "Muli:wght@500;700",
-      "secondary_type": "sans-serif"
+      "secondary": "Roboto Slab",
+      "secondary_type": "serif"
     },
     "font_size": {
       "base": "18",

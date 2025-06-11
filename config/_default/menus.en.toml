@@ -1,48 +1,118 @@
 ############# English navigation ##############
 
 # main menu
-[[main]]
-name = "Resources"
-weight = 1
 
+# Explore Resources - New Top-Level Parent
 [[main]]
-parent = "Resources"
-name = "Neuromorphic Computing"
+name = "Explore Resources"
 url = "/neuromorphic-computing/"
-weight = 2
+weight = 1
+hasChildren = true
+identifier = "explore-resources" # Add this identifier
 
 [[main]]
-parent = "Resources"
-name = "Neuromorphic Hardware"
-url = "/neuromorphic-computing/hardware"
-weight = 2
+parent = "explore-resources" # Match the identifier
+name = "Computing Hub"
+url = "/neuromorphic-computing/"
+weight = 1
+[main.params]
+  icon = "fas fa-brain"
+  description = "Your central guide to the world of neuromorphic computing."
 
 [[main]]
-parent = "Resources"
-name = "Neuromorphic Software"
-url = "/neuromorphic-computing/software"
+parent = "explore-resources" # Match the identifier
+name = "Hardware Guide"
+url = "/neuromorphic-computing/hardware/"
 weight = 2
+[main.params]
+  icon = "fas fa-microchip"
+  description = "Explore specs and papers for cutting-edge neuromorphic hardware."
 
 [[main]]
-parent = "Resources"
-name = "Neuromorphic Journal Club"
-url = "/journalclub"
-weight = 2
+parent = "explore-resources" # Match the identifier
+name = "Software Guide"
+url = "/neuromorphic-computing/software/"
+weight = 3
+[main.params]
+  icon = "fas fa-code"
+  description = "Discover SNN frameworks and event-based data tools."
 
 [[main]]
+parent = "explore-resources" # Match the identifier
+name = "ONM Initiatives"
+url = "/neuromorphic-computing/initiatives/"
+weight = 4
+[main.params]
+icon = "fas fa-rocket"
+description = "Discover community-driven projects and how to get involved."
+
+[[main]]
+parent = "explore-resources" # Match the identifier
+name = "Hacking Hours"
+url = "/neuromorphic-computing/software/hacking-hours/"
+weight = 5
+[main.params]
+  icon = "fas fa-terminal"
+  description = "Live coding sessions exploring neuromorphic software."
+
+
+[[main]]
+parent = "explore-resources" # Match the identifier
+name = "Student Talks"
+url = "/neuromorphic-computing/student-talks/"
+weight = 6
+[main.params]
+  icon = "fas fa-graduation-cap"
+  description = "Presentations by students and early-career researchers."
+
+
+[[main]]
+parent = "explore-resources" # Match the identifier
 name = "Workshops"
 url = "/workshops/"
-weight = 3
+weight = 7
+[main.params]
+  icon = "fas fa-chalkboard-user"
+  description = "Expert-led workshops on key neuromorphic topics."
+
+[[main]]
+parent = "explore-resources" # Add this new entry
+name = "Contributors"
+url = "/contributors/"
+weight = 8
+[main.params]
+  icon = "fas fa-user-group"
+  description = "Meet the people building the Open Neuromorphic community."
+
+
+[[main]]
+parent = "explore-resources" # Add this new entry
+name = "Contributors"
+url = "/contributors/"
+weight = 8
+[main.params]
+  icon = "fas fa-user-group"
+  description = "Meet the people building the Open Neuromorphic community."
+
+
+[[main]]
+parent = "explore-resources" # Add this new entry
+name = "Contributors"
+url = "/contributors/"
+weight = 8
+[main.params]
+  icon = "fas fa-user-group"
+  description = "Meet the people building the Open Neuromorphic community."
 
 [[main]]
 name = "Blog"
 url = "/blog/"
-weight = 4
+weight = 2
 
 [[main]]
 name = "About"
 hasChildren = true
-weight = 5
+weight = 4 # No change needed
 
 [[main]]
 parent = "About"
@@ -56,52 +126,71 @@ name = "Getting Involved"
 url = "/getting-involved/"
 weight = 2
 
-[[main]]
-parent = "About"
-name = "Founders"
-url = "/team/"
-weight = 3
 
-[[main]]
-parent = "About"
-name = "Contributors"
-url = "/contributors/"
-weight = 5
+# --- New Footer Menus (replace the old [[footer]], [[footer_explore]], [[footer_legal]]) ---
 
-# [[main]]
-# parent = "About"
-# name = "Advisers"
-# url = "/advisers/"
-# weight = 6
+# Explore Column
+[[footer_explore_new]]
+  name = "Neuromorphic Computing Hub"
+  url = "/neuromorphic-computing/"
+  weight = 1 # Set to 1
+[[footer_explore_new]]
+  name = "Hardware Guide"
+  url = "/neuromorphic-computing/hardware/"
+  weight = 2 # Incremented from 1
+[[footer_explore_new]]
+  name = "Software Guide"
+  url = "/neuromorphic-computing/software/"
+  weight = 3 # Incremented from 2
+[[footer_explore_new]]
+  name = "ONM Blog"
+  url = "/blog/"
+  weight = 4 # Incremented from 3
+[[footer_explore_new]]
+  name = "ONM Initiatives"
+  url = "/neuromorphic-computing/initiatives/"
+  weight = 5 # Incremented from 4
 
-# footer menu
-[[footer]]
-name = "Quick Links"
-hasChildren = true
+# Community Column
+[[footer_community]]
+  name = "Get Involved"
+  url = "/getting-involved/"
+  weight = 1
+[[footer_community]]
+  name = "Workshops"
+  url = "/workshops/"
+  weight = 2
+[[footer_community]]
+  name = "Student Talks"
+  url = "/neuromorphic-computing/student-talks/"
+  weight = 3
+[[footer_community]]
+  name = "Hacking Hours"
+  url = "/neuromorphic-computing/software/hacking-hours/"
+  weight = 4
+[[footer_community]]
+  name = "Contributors"
+  url = "/contributors/"
+  weight = 5
+[[footer_community]]
+  name = "Join Our Discord"
+  url = "https://discord.gg/C9bzWgNmqk"
+  weight = 6
 
-[[footer]]
-parent = "Quick Links"
-name = "Organizers"
-url = "/team/"
-weight = 2
-
-[[footer]]
-parent = "Quick Links"
-name = "Contributors"
-url = "/contributors/"
-weight = 3
-
-[[footer]]
-parent = "Quick Links"
-name = "Join Our Discord"
-url = "https://discord.gg/C9bzWgNmqk"
-weight = 4
-
-[[footer]]
-parent = "Quick Links"
-name = "How to Get Involved"
-url = "/getting-involved/"
-weight = 1
-
-
-
+# About & Legal Column
+[[footer_legal_new]]
+  name = "About Open Neuromorphic"
+  url = "/about/"
+  weight = 1
+[[footer_legal_new]]
+  name = "Code of Conduct"
+  url = "/code-of-conduct/"
+  weight = 2
+[[footer_legal_new]]
+  name = "Privacy Policy"
+  url = "/privacy/"
+  weight = 3
+[[footer_legal_new]]
+  name = "Terms & Conditions"
+  url = "/terms-conditions/"
+  weight = 4

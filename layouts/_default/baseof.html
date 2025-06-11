@@ -1,0 +1,48 @@
+<!doctype html>
+<html
+  itemscope
+  lang="{{ site.LanguageCode | default `en-US` }}"
+  itemtype="http://schema.org/WebPage">
+  <head>
+
+    <!-- head (don't cache it) -->
+    {{ partial "essentials/head.html" . }}
+
+    {{ partial "structured-markup/jsonld.html" . }}
+
+  {{ if .HasShortcode "chart" }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.27.0/plotly-basic.min.js" integrity="sha512-TiY/d3GpuSKgQYgnqegSfdqlXp6ebBvi6A47mFTMSpZM7BMbvfkkvU/SlDzZHs9lWqF+BteevHlqgauHhLLbIA==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+  {{ end }}
+
+    <!-- style (always cache it) -->
+    {{ partialCached "essentials/style.html" . }}
+  </head>
+
+  <body>
+    {{ partial "components/svg-sprite.html" . }}
+    <!-- cache partial only in production -->
+    {{ if hugo.IsProduction }}
+    {{ else }}
+      <!-- tailwind size indicator -->
+      {{ partial "components/tw-size-indicator.html" . }}
+    {{ end }}
+
+
+    <!-- header (don't cache it) -->
+    {{ partial "essentials/header.html" . }}
+
+
+    <main>
+      {{ block "main" . }}{{ end }}
+    </main>
+
+    <!-- cache partial only in production -->
+    {{ if hugo.IsProduction }}
+      {{ partial "essentials/footer.html" . }}
+      {{ partialCached "essentials/script.html" . }}
+    {{ else }}
+      {{ partial "essentials/footer.html" . }}
+      {{ partial "essentials/script.html" . }}
+    {{ end }}
+  </body>
+</html>

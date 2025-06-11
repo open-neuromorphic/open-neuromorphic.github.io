@@ -29,7 +29,7 @@ custom_script = ""
 # copyright
 copyright = "© 2022 - 2025 Open Neuromorphic"
 
-homepageTitle = "Explore Neuromorphic Computing: Community, Education, and Research"
+homepageTitle = "Open Neuromorphic is a global community fostering education, research, and open-source collaboration in brain-inspired AI and hardware. "
 
 # Preloader
 # preloader module: https://github.com/gethugothemes/hugo-modules/tree/master/components/preloader
@@ -40,13 +40,13 @@ preloader = "" # use jpg, png, svg or gif format.
 # Navigation button
 [navigation_button]
 enable = true
-label = "Join Discord (1900+ joined)"
+label = "Join Discord (2100+ joined)"
 link = "https://discord.gg/C9bzWgNmqk"
 
 # search
 # search module: https://github.com/gethugothemes/hugo-modules/tree/master/search
 [search]
-enable = true
+enable = false
 primary_color = "#121212"
 include_sections = ["blog"]
 show_image = true
@@ -81,23 +81,20 @@ expire_days = 60
 content = "This site uses cookies & analytics. By continuing to use this website, you agree to their use."
 button = "I Accept"
 
+
+[[params.plugins.js]]
+link = "plugins/lazy-loader.js"
+#[[params.plugins.js]]
+#link = "plugins/cookie.js"
+[[params.plugins.js]]
+link = "plugins/youtube-lite.js"
 ######################## sidebar widgets #########################
 [widgets]
 sidebar = []
-
-
-# google map
-[google_map]
-enable = false
-map_api_key = "AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU"
-map_latitude = "51.5223477"
-map_longitude = "-0.1622023"
-map_marker = "images/marker.png"
-
 
 # Subscription
 [subscription]
 enable = false
 # mailchimp subsciption
-#mailchimp_form_action = "https://gmail.us4.list-manage.com/subscribe/post?u=463ee871f45d2d93748e77cad&amp;id=a0a2c6d074" # replace this url with yours
+#mailchimp_form_action = "https://gmail.us4.list-manage.com/subscribe/post?u=463ee871f45d2d93748e77cad&id=a0a2c6d074" # replace this url with yours
 #mailchimp_form_name = "b_463ee871f45d2d93748e77cad_a0a2c6d074"

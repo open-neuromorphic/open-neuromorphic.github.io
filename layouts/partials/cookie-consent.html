@@ -1,0 +1,37 @@
+{{- /* layouts/partials/cookie-consent.html */ -}}
+{{ with site.Params.cookies }}
+  {{ if .enable }}
+    <div id="cookie-box" class="cookie-box cookie-box-hide">
+      {{ .content | markdownify }}
+      <button
+        id="cookie-button"
+        class="cookie-box-button btn btn-sm btn-outline-primary"
+        data-cookie-expire="{{ .expire_days }}">
+        {{ .button }}
+      </button>
+    </div>
+
+    <script type="application/javascript">
+      document.addEventListener("DOMContentLoaded", function() {
+        const cookieBox = document.getElementById('cookie-box');
+        const cookieButton = document.getElementById('cookie-button');
+
+        if (typeof Cookies === 'function' || typeof Cookies === 'object') {
+          if (!Cookies.get('cookie-consent')) {
+            cookieBox.classList.remove('cookie-box-hide');
+            cookieButton.onclick = function () {
+              const expireDays = cookieButton.dataset.cookieExpire;
+              Cookies.set('cookie-consent', true, {
+                expires: parseInt(expireDays, 10)
+              });
+              cookieBox.classList.add('cookie-box-hide');
+            };
+          }
+        } else {
+          console.error("Cookies library (js-cookie) is not defined. Cookie consent functionality will not work.");
+          
+        }
+      });
+    </script>
+  {{ end }}
+{{ end }}

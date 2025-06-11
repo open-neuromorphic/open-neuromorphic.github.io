@@ -1,0 +1,118 @@
+{{ $ctx := .context | default . }}
+{{ $variant := .variant | default "" }}
+{{ $is_compact := eq $variant "compact" }}
+
+{{ $role_override := .role_override | default "" }}
+{{ $contribution_badges := .contribution_badges }}
+{{ $initiatives_led := .initiatives_led }}
+{{ $total_contributions := .total_contributions | default 0 }}
+{{ $hide_contributions_info := .hide_contributions_info | default false }}
+
+
+{{ $image_filename_in_frontmatter := $ctx.Params.image | default "" }}
+{{ $author_email := $ctx.Params.Email | default "" }}
+{{ $author_title := $ctx.Title | default "Contributor" }}
+
+
+<div class="author-card {{ if $is_compact }}author-card-compact{{ else }}p-8 text-center rounded bg-theme-light dark:bg-darkmode-theme-light shadow{{ end }} {{ if $is_compact }}flex-grow{{ end }}">
+  
+  {{ $img_alt := $author_title }}
+  {{ $img_command := "Fill" }}
+  {{ $base_img_class := "" }}
+  {{ $img_size := "" }}
+
+  {{ if $is_compact }}
+    {{ $base_img_class = "mx-auto rounded-full object-cover image-100" }}
+    {{ $img_size = "100x100" }}
+  {{ else }}
+    {{ $base_img_class = "mx-auto rounded" }}
+    {{ $img_size = "120x120" }}
+  {{ end }}
+
+  {{ $final_img_class := print $base_img_class " author-card__image" (cond $is_compact " author-card__image--compact" " author-card__image--default") }}
+
+  {{ if $image_filename_in_frontmatter }}
+    {{ $image_partial_params := dict 
+        "Src" $image_filename_in_frontmatter 
+        "Context" $ctx 
+        "Alt" $img_alt 
+        "Class" $final_img_class 
+        "Size" $img_size 
+        "Command" $img_command
+    }}
+    <div class="author-card__image-wrapper">
+      {{ partial "image" $image_partial_params }}
+    </div>
+  {{ else if $author_email }}
+    <div class="author-card__image-wrapper">
+      <img
+        class="{{ $final_img_class }}"
+        alt="{{ $img_alt }}"
+        height="{{ if $is_compact }}100{{ else }}120{{ end }}"
+        width="{{ if $is_compact }}100{{ else }}120{{ end }}"
+        src="https://www.gravatar.com/avatar/{{ md5 $author_email }}?s={{ if $is_compact }}100{{ else }}128{{ end }}&pg&d=identicon" />
+    </div>
+  {{ else }}
+    <div class="author-card__image-wrapper">
+      <div class="{{ $final_img_class }} author-card__image-placeholder">
+        {{ partial "icon.html" (dict "style" "solid" "name" "user" "class" "text-3xl text-gray-400 dark:text-gray-500") }}
+      </div>
+    </div>
+  {{ end }}
+
+  <h4 class="author-card__title {{ cond $is_compact "author-card__title--compact" "author-card__title--default" }}">
+    <a href="{{ $ctx.RelPermalink }}">{{ $author_title }}</a>
+  </h4>
+
+  {{ if $is_compact }}
+    {{ if $role_override }}
+      <p class="author-card__role author-card__role--compact">{{ $role_override }}</p>
+    {{ end }}
+
+    {{ if not $hide_contributions_info }}
+      {{ if $initiatives_led }}
+        <div class="author-card__initiatives-container">
+          <p class="author-card__initiatives-heading">Initiatives:</p>
+          <ul class="author-card__initiatives-list">
+            {{ range $initiatives_led }}
+              <li class="author-card__initiative-item">
+                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+              </li>
+            {{ end }}
+          </ul>
+        </div>
+      {{ end }}
+
+      {{ if $contribution_badges }}
+        <div class="author-card__badges-container">
+          {{ range $badge_title, $badge_count := $contribution_badges }}
+            <span class="author-card__badge">
+              {{ $badge_title }}: {{ $badge_count }}
+            </span>
+          {{ end }}
+        </div>
+      {{ end }}
+      
+      {{ if and (not $initiatives_led) (not $contribution_badges) (eq $total_contributions 0) }}
+          <p class="author-card__no-contributions-message">No categorized contributions found.</p>
+      {{ end }}
+    {{ end }}
+
+  {{ else }}
+    <div class="author-card__description prose prose-sm dark:prose-invert max-w-none">
+      {{ $ctx.Content | plainify | truncate 150 }}
+    </div>
+    {{ with $ctx.Params.social }}
+    <ul class="social-icons author-card__social-icons mt-4">
+      {{ range . }}
+      <li>
+        <a href="{{ .link | safeURL }}" target="_blank" rel="noopener nofollow" title="{{ .title }}">
+          <span class="sr-only">{{ .title }}</span>
+          <i class="{{ .icon }}"></i>
+        </a>
+      </li>
+      {{ end }}
+    </ul>
+    {{ end }}
+  {{ end }}
+</div>

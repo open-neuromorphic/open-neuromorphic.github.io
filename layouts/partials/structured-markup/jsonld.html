@@ -1,0 +1,39 @@
+{{ $jsonLDs := slice }}
+{{ $event_types := slice "workshops" "student-talks" "hacking-hours" }}
+
+{{ if .IsHome }}
+  {{ with partial "structured-markup/homepage.html" . }}
+    {{ $jsonLDs = $jsonLDs | append . }}
+  {{ end }}
+{{ else if .IsPage }}
+  {{ if in $event_types .Type }}
+    {{ with partial "structured-markup/event.html" . }}
+      {{ $jsonLDs = $jsonLDs | append . }}
+    {{ end }}
+  {{ else if eq .Section "blog" }}
+    {{ with partial "structured-markup/blog.html" . }}
+      {{ $jsonLDs = $jsonLDs | append . }}
+    {{ end }}
+  {{ else if eq .Type "contributors" }}
+    {{ with partial "structured-markup/contributor.html" . }}
+      {{ $jsonLDs = $jsonLDs | append . }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{ if not .IsHome }}
+  {{ with partial "structured-markup/breadcrumb.html" . }}
+    {{ $jsonLDs = $jsonLDs | append . }}
+  {{ end }}
+{{ end }}
+
+
+{{ if gt (len $jsonLDs) 0 }}
+<script type="application/ld+json">
+  {{ if eq (len $jsonLDs) 1 }}
+    {{ index $jsonLDs 0 | jsonify (dict "indent" "  ") | safeJS }}
+  {{ else }}
+    {{ $jsonLDs | jsonify (dict "indent" "  ") | safeJS }}
+  {{ end }}
+</script>
+{{ end }}

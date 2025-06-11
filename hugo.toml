@@ -1,31 +1,21 @@
 ###################### default configuration ####################
 # The base URL of your site (required). This will be prepended to all relative URLs.
 # baseURL = "https://open-neuromorphic.org"
-baseURL = "/"
+baseURL = "https://onm-dev.visioninit.dev/"
 # Title of your website (required).
 title = "Open Neuromorphic"
 
-# Your theme name
-theme = "hugoplate"
 # Default time zone for time stamps; use any valid tz database name: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List
 timeZone = "America/New_York"
 # post pagination
-paginate = 12 # see https://gohugo.io/extras/pagination/
+pagerSize = 12 # see https://gohugo.io/extras/pagination/
 # post excerpt
 summaryLength = 10 # see https://gohugo.io/content-management/excerpts/
-# google analytics
-#googleAnalytics = "G-MEASUREMENT_ID" # see https://gohugo.io/templates/internal/#configure-google-analytics
-# disqus short name
-#disqusShortname = "themefisher-template" # we use disqus to show comments in blog posts . To install disqus please follow this tutorial https://portfolio.peter-baumgartner.net/2017/09/10/how-to-install-disqus-on-hugo/
-# disable language
-disableLanguages = [
-] # example: ["fr"] for disable french language. see https://gohugo.io/content-management/multilingual/
 hasCJKLanguage = false #  If hasCJKLanguage true, auto-detect Chinese/Japanese/Korean Languages in the content. see: https://gohugo.io/getting-started/configuration/#hascjklanguage
-
 
 ########################## Permalinks ############################
 [permalinks.page]
-"pages" = "/:slugorfilename/"
+"pages" = "/:slugorcontentbasename/"
 
 
 ############################# Modules ############################
@@ -44,9 +34,9 @@ noJSConfigInAssets = false
 useResourceCacheWhen = 'fallback'
 [build.buildStats]
 enable = true
-[[build.cachebusters]]
-source = 'assets/watching/hugo_stats\.json'
-target = 'style\.css'
+#[[build.cachebusters]]
+#source = 'assets/watching/hugo_stats\.json'
+#target = 'style\.css'
 [[build.cachebusters]]
 source = '(postcss|tailwind)\.config\.js'
 target = 'css'
@@ -66,7 +56,7 @@ target = '$1'
 
 ############################# Outputs ############################
 [outputs]
-home = ["HTML", "RSS", "SearchIndex"]
+home = ["HTML", "RSS"]
 
 ############################# Imaging ############################
 [imaging]
@@ -90,6 +80,7 @@ maxAge = "720h"
 [markup]
 [markup.goldmark.renderer]
 unsafe = true
+hardWraps = true
 
 [markup.highlight]
 style = 'github-dark' # see https://xyproto.github.io/splash/docs/all.html
@@ -121,43 +112,14 @@ notAlternative = true
 
 ############################# Plugins ##############################
 
-# CSS Plugins
-[[params.plugins.css]]
-link = "plugins/swiper/swiper-bundle.css"
-[[params.plugins.css]]
-link = "plugins/glightbox/glightbox.css"
-[[params.plugins.css]]
-link = "plugins/font-awesome/v6/brands.css"
-[[params.plugins.css]]
-link = "plugins/font-awesome/v6/solid.css"
-[[params.plugins.css]]
-link = "plugins/font-awesome/v6/icons.css"
-
 # JS Plugins
-[[params.plugins.js]]
-link = "js/search.js"
-[[params.plugins.js]]
-link = "plugins/swiper/swiper-bundle.js"
-[[params.plugins.js]]
-link = "plugins/glightbox/glightbox.js"
-[[params.plugins.js]]
-link = "js/gallery-slider.js"
-[[params.plugins.js]]
-link = "js/accordion.js"
-[[params.plugins.js]]
-link = "js/tab.js"
-[[params.plugins.js]]
-link = "js/modal.js"
-[[params.plugins.js]]
-link = "plugins/cookie.js"
 [[params.plugins.js]]
 link = "plugins/youtube-lite.js"
 
 [sitemap]
-changeFreq = ''
 filename = 'sitemap.xml'
-priority = -1
-
-disableKinds = ['homepage']
+priority = 0
 
 [Taxonomies]
+category = "categories"
+author = "authors"

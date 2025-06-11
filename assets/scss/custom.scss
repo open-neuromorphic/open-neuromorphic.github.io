@@ -1,3 +1,29 @@
+// Add new CSS variables from the mockup
+:root {
+    --color-primary-new: #667eea; /* Indigo */
+    --color-secondary-new: #764ba2; /* Purple */
+    --color-accent-new: #f093fb; /* Pink */
+    --color-text-new: #1f2937; /* Gray-800 */
+    --color-text-muted-new: #4b5563; /* Gray-600 */
+    --color-background-new: #f9fafb; /* Gray-50 */
+    --color-card-bg-new: #ffffff;
+
+    /* Shadows from mockup, if needed elsewhere, or use Tailwind classes directly */
+    --shadow-lg-new: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-md-new: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+// Ensure dropdowns in new navbar style are consistent
+.nav-dropdown.active .nav-dropdown-list {
+  // Mockup implies a simple dropdown, existing style might need slight tweaks if complex
+  // Keeping existing dark mode behavior for dropdown for now
+  @apply lg:bg-white dark:lg:bg-darkmode-theme-dark;
+}
+.nav-dropdown-list {
+   @apply lg:bg-white dark:lg:bg-darkmode-theme-dark; // ensure consistency
+}
+
+
 div.chart {
   max-width: 100%;
   margin-left: auto;
@@ -39,10 +65,6 @@ section.section-sm.hero {
   align-self: start;
 }
 
-h1.homepage {
-  font-size: 1.7em;
-}
-
 #tableOfContentContainer {
   max-height: 65vh; /* Adjust the percentage as needed */
   overflow-y: auto;
@@ -51,21 +73,9 @@ h1.homepage {
 nav#TableOfContents {
   background-color: transparent !important;
 
-  li.active a {
-    color: #022b4a !important;
-    text-decoration: none !important;
-    font-weight: 550 !important;
-  }
-
   ol ol li {
     margin-left: 10px;
     margin-bottom: 10px;
-  }
-}
-
-@media (min-width: 768px) {
-  h1, .h1 {
-    font-size: 2rem;
   }
 }
 
@@ -82,10 +92,6 @@ code {
   color: #cdf3f5;
   overflow-x: auto;
   white-space: pre-wrap;
-}
-
-.code span {
-  color: #000;
 }
 
 .gslider img {
@@ -112,106 +118,6 @@ code {
   font-size: 1.2em;
 }
 
-//Links & Buttons
-
-a {
-  overflow-wrap: break-word;
-}
-
-.content :is(:where(a):not(:where([class~="not-prose"], [class~="not-prose"] *))),
-section a {
-  color: #200435 !important;
-  text-decoration-color: #d7c7e3;
-  text-decoration-thickness: 0.115em;
-  text-underline-offset: 2.6px;
-  text-decoration-line: underline;
-  font-weight: 550 !important;
-  transition: text-decoration-color 0.3s ease-in-out; /* Add transition for a smooth hover effect */
-}
-
-.content :is(:where(a):not(:where([class~="not-prose"], [class~="not-prose"] *)):hover),
-section a:hover {
-  text-decoration-color: #200435; /* Change text-decoration-color on hover */
-}
-
-
-h1 a, h2 a, h3 a, h4 a, h5 a {
-  text-decoration: none !important;
-  font-weight: 550 !important;
-}
-
-.social-icons a {
-  color: #FFF !important;
-}
-
-.btn-primary {
-  --tw-border-opacity: 1;
-  border-color: #000000;
-  --tw-bg-opacity: 1;
-  background-color: #FFF;
-  --tw-text-opacity: 1;
-  color: #FFF;
-}
-
-section .btn {
-  text-decoration-line: none !important;
-}
-
-figcaption {
-  color: #000;
-  margin-top: 0 !important;
-}
-
-.authorContent {
-  ul li {
-    list-style: disc;
-    margin-left: 25px;
-    padding: 10px 30px 10px 0;
-  }
-
-  p {
-    margin-bottom: 10px;
-  }
-}
-
-.footer-menu-item {
-  margin-bottom: 10px;
-  font-weight: 550;
-  font-size: 1.1em;
-  line-height: 2em;
-}
-
-.footer-menu-item p,
-.footer-menu-item > a {
-  text-decoration: underline;
-}
-
-.footer-menu-subitem {
-  display: block;
-  font-weight: 400;
-  font-size: 0.9em;
-}
-
-.frontiers-section a {
-  max-width: 450px;
-  display: inline-block;
-}
-
-.content {
-  --tw-prose-bullets: #000 !important;
-}
-
-header .btn-outline-primary {
-  border-color: transparent;
-  color: #000000;
-  background-color: #FFF;
-  font-weight: 550;
-  border-width: 2px;
-  border-color: #8b2eaf;
-  transition: box-shadow 0.3s ease-in-out;
-  box-shadow: 0 0 39px 0px rgba(95, 32, 135, 0.5);
-}
-
 .dark {
   code {
     color: #cdf3f5;
@@ -223,61 +129,57 @@ header .btn-outline-primary {
     --tw-prose-body: #FFF;
   }
 
-
-  header .btn-outline-primary {
-    border-color: transparent;
-    color: #ffffff;
-    background-color: #000;
-    font-weight: 550;
-    border-width: 2px;
-    border-color: #e8b7fb;
-    transition: box-shadow 0.3s ease-in-out;
-    box-shadow: 0 0 39px 0px rgba(228, 218, 234, 0.5);
-  }
-
   .nav-dropdown-list {
     background: #000 !important;
   }
-
-  figcaption {
-    color: #FFF;
-  }
-
-  .content :is(:where(a):not(:where([class~="not-prose"], [class~="btn"], [class~="not-prose"] *))),
-  section a {
-    color: #bcfbff !important;
-    text-decoration-color: #288b8c;
-  }
-
-  .content :is(:where(a):not(:where([class~="not-prose"], [class~="not-prose"] *)):hover),
-  section a:hover {
-    text-decoration-color: #bcfbff !important; /* Change text-decoration-color on hover */
-  }
+}
 
 
-  h1 a, h2 a, h3 a, h4 a, h5 a {
-    color: #ffffff !important;
-  }
+.content-panel {
+  @apply bg-theme-light dark:bg-darkmode-theme-light rounded-lg shadow-md;
+}
 
-  nav#TableOfContents {
-    li.active a {
-      color: #bcfbff !important;
-      font-weight: 600 !important;
+.support-badge {
+  @apply bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300 border border-blue-400;
+}
+
+.meta-icon-img {
+  @apply inline h-[30px];
+}
+
+.author-card-compact {
+  @apply bg-theme-light dark:bg-darkmode-theme-light rounded-lg p-4 text-center shadow;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+}
+
+.author-card-compact .image-80 {
+  width: 80px;
+  height: 80px;
+}
+
+.author-card-compact .image-100 {
+  width: 100px;
+  height: 100px;
+}
+
+.software-hacking-hours-promo {
+  .past-event-promo {
+    .flex {
+      img {
+        flex-shrink: 0;
+      }
     }
-  }
-
-  :is(.dark .btn-primary) {
-    --tw-border-opacity: 1;
-    border-color: #bcfbff;
-    --tw-bg-opacity: 1;
-    background-color: #000;
-    --tw-text-opacity: 1;
-    color: #FFF;
-
-  }
-
-  .social-icons a {
-    color: #000 !important;
   }
 }
 
+.section-title {
+  @apply text-center mb-4;
+}
+
+.section-subtitle {
+  @apply text-center text-lg text-gray-600 dark:text-gray-400 mb-12 mx-auto;
+}

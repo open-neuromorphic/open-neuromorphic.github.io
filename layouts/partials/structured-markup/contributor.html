@@ -1,0 +1,45 @@
+{{ $page_context := . }}
+{{ $profilePageLD := dict
+  "@context" "https://schema.org"
+  "@type" "ProfilePage"
+  "dateCreated" ($page_context.Date.Format "2006-01-02T15:04:05Z07:00")
+}}
+{{ if $page_context.Lastmod }}
+  {{ $profilePageLD = merge $profilePageLD (dict "dateModified" ($page_context.Lastmod.Format "2006-01-02T15:04:05Z07:00")) }}
+{{ end }}
+
+{{ $contributorName := $page_context.Title }}
+{{ $authoredPages := where site.RegularPages "Params.author" "intersect" (slice $contributorName) }}
+{{ $postCount := len $authoredPages }}
+
+{{ $mainEntity := dict
+  "@type" "Person"
+  "name" $page_context.Title
+  "description" ($page_context.Content | plainify | truncate 250)
+  "identifier" (path.Base $page_context.File.Dir)
+}}
+
+{{ with $page_context.Params.image }}
+  {{ with $page_context.Resources.GetMatch . }}
+    {{ $mainEntity = merge $mainEntity (dict "image" .Permalink) }}
+  {{ end }}
+{{ end }}
+
+{{ with $page_context.Params.social }}
+  {{ $socialLinks := slice }}
+  {{ range . }}{{ $socialLinks = $socialLinks | append .link }}{{ end }}
+  {{ if $socialLinks }}{{ $mainEntity = merge $mainEntity (dict "sameAs" $socialLinks) }}{{ end }}
+{{ end }}
+
+{{ if gt $postCount 0 }}
+  {{ $agentStats := dict
+    "@type" "InteractionCounter"
+    "interactionType" "https://schema.org/WriteAction"
+    "userInteractionCount" $postCount
+  }}
+  {{ $mainEntity = merge $mainEntity (dict "agentInteractionStatistic" $agentStats) }}
+{{ end }}
+
+{{ $profilePageLD = merge $profilePageLD (dict "mainEntity" $mainEntity) }}
+
+{{ return $profilePageLD }}

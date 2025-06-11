@@ -1,0 +1,23 @@
+.cookie-box {
+  position: fixed;
+  left: 2rem;
+  bottom: 2rem;
+  z-index: 9999;
+  padding: 1.5rem;
+  background-color: #fff; // Consider using theme variables: var(--theme-light-bg, #fff);
+  max-width: calc(100% - 4rem);
+  width: 25rem;
+  box-shadow: 1px 0px 10px 7px rgba(154, 154, 154, 0.11);
+  border-radius: inherit; // Or a specific value like var(--rounded-lg, 12px);
+}
+.cookie-box-hide {
+  display: none;
+}
+.cookie-box-button {
+  display: block;
+  margin-top: 1rem;
+}
+
+.dark .cookie-box {
+  background-color: #222; // Consider using theme variables: var(--dark-theme-light-bg, #222);
+}

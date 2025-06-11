@@ -1,0 +1,195 @@
+{{ if or (eq site.BaseURL "/") (eq site.BaseURL "http://localhost:1313/") }}
+{{ else }}
+<base href="{{ .Permalink }}" />
+{{ end }}
+
+{{ $title := site.Title }}
+{{ if .Params.meta_title }}
+{{ $title = .Params.meta_title }}
+{{ else if .Params.title }}
+{{ $title = .Params.title }}
+{{ end }}
+
+<title>{{ $title }}</title>
+
+{{ if .Params.noindex }}
+<meta name="robots" content="noindex,nofollow" />
+{{ end }}
+
+{{ with .Params.canonical }}
+<link rel="canonical" href="{{ . }}" itemprop="url" />
+{{ end }}
+
+{{ if .IsTranslated }}
+{{ range .AllTranslations }}
+<link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}" />
+{{ end }}
+<link rel="alternate" hreflang="x-default" href="{{ .Permalink }}" />
+{{ end }}
+
+{{ if .Params.keywords }}
+<meta name="keywords" content="{{ delimit .Params.keywords `, ` }}" />
+{{ else if site.Params.metadata.keywords }}
+<meta name="keywords" content="{{ delimit site.Params.metadata.keywords `, ` }}" />
+{{ end }}
+
+<meta name="description" content="{{ .Params.description | default site.Params.metadata.description }}" />
+
+{{ with site.Params.metadata.author }}
+<meta name="author" content="{{ . }}" />
+{{ end }}
+
+<meta property="og:type" content="website" />
+<meta property="og:url" content="{{ .Permalink }}" />
+<meta property="og:title" content="{{ if .Params.title }}{{ .Params.title }}{{ else }}Open Neuromorphic{{ end }}" />
+<meta property="og:description" content="{{ if .Params.description }}{{ .Params.description }}{{ else }}Explore the world of Neuromorphic Computing, AI, and Devices in an open-source community. Join us for educational content, and collaborative innovation{{ end }}" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:domain" content="open-neuromorphic.org" />
+<meta property="twitter:url" content="{{ .Permalink }}" />
+<meta name="twitter:title" content="{{ if .Params.title }}{{ .Params.title }}{{ else }}Open Neuromorphic{{ end }}" />
+<meta name="twitter:description" content="{{ if .Params.description }}{{ .Params.description }}{{ else }}Explore the world of Neuromorphic Computing, AI, and Devices in an open-source community. Join us for educational content, and collaborative innovation{{ end }}" />
+
+{{ $finalOgImageAbsURL := "" }}
+{{ $ogImageSourceDebug := "Initial value" }}
+
+{{ $ogImageNameWithExt := "" }}
+{{ if .IsHome }}
+{{ $ogImageNameWithExt = "og-image.jpg" }}
+{{/* Homepage OG image is expected at static/images/og-image.jpg by the Node script */}}
+{{ $homeOgStaticPath := printf "images/%s" $ogImageNameWithExt }}
+{{ if fileExists (printf "static/%s" $homeOgStaticPath) }}
+{{ $finalOgImageAbsURL = ($homeOgStaticPath | absURL) }}
+{{ $ogImageSourceDebug = printf "Homepage OG (found in static/images): %s" $homeOgStaticPath }}
+{{ else }}
+{{ $ogImageSourceDebug = printf "Homepage OG (NOT found in static/images): %s" $homeOgStaticPath }}
+{{ end }}
+{{ else if .File }} {{/* Check if .File is available (typical for content pages) */}}
+{{ $pageSlug := "" }}
+{{ if .File.Dir }}
+{{ $pageSlug = path.Base .File.Dir }}
+{{/* For a page bundle content/section/my-page/index.md, .File.Dir is content/section/my-page. path.Base gives 'my-page'. */}}
+{{/* For a section _index.md content/section/_index.md, .File.Dir is content/section. path.Base gives 'section'. */}}
+{{ else }}
+{{ $pageSlug = .Title | urlize }} {{/* Fallback, less likely for actual content pages */}}
+{{ warnf "Page %s: .File.Dir not available, falling back to title-based slug '%s' for OG image name." (.RelPermalink | default .Path) $pageSlug }}
+{{ end }}
+{{ $ogImageNameWithExt = printf "%s-og.jpg" $pageSlug }}
+{{ $ogImageSourceDebug = printf "Content Page: derived OG name '%s' from dir slug '%s'" $ogImageNameWithExt $pageSlug }}
+{{ else }}
+{{/* Fallback for pages without .File (e.g., some list pages, 404, etc.) */}}
+{{ $pageSlug := .Title | urlize }}
+{{ $ogImageNameWithExt = printf "%s-og.jpg" $pageSlug }}
+{{ $ogImageSourceDebug = printf "Fallback Page (no .File): derived OG name '%s' from title slug '%s'" $ogImageNameWithExt $pageSlug }}
+{{ end }}
+
+
+{{/* Try to find the image based on $ogImageNameWithExt */}}
+{{/* 1. Page Bundle check for [slug]-og.jpg (for content pages) */}}
+{{ if not $finalOgImageAbsURL }} {{/* Only if homepage check didn't set it */}}
+{{ if and (not .IsHome) .File }} {{/* For content pages, prioritize page bundle */}}
+{{ $pageBundleOG := .Resources.GetMatch $ogImageNameWithExt }}
+{{ if $pageBundleOG }}
+{{ $finalOgImageAbsURL = $pageBundleOG.Permalink }}
+{{ $ogImageSourceDebug = printf "%s (found in Page Bundle)" $ogImageSourceDebug }}
+{{ else }}
+{{ $ogImageSourceDebug = printf "%s (NOT found in Page Bundle)" $ogImageSourceDebug }}
+{{ end }}
+{{ end }}
+{{ end }}
+
+{{/* ------------------------- NEW/MODIFIED SECTION START ------------------------- */}}
+{{/* 2. Static /images/[slug]-og.jpg check (if not found above and not homepage) */}}
+{{ if and (not $finalOgImageAbsURL) (not .IsHome) }}
+{{ $staticOgPathForSlug := printf "images/%s" $ogImageNameWithExt }}
+{{ if fileExists (printf "static/%s" $staticOgPathForSlug) }}
+{{ $finalOgImageAbsURL = ($staticOgPathForSlug | absURL) }}
+{{/* $ogImageSourceDebug already contains info about derivation and possibly page bundle attempt */}}
+{{ $ogImageSourceDebug = printf "%s (then found in static/images as %s)" $ogImageSourceDebug $staticOgPathForSlug }}
+{{ else }}
+{{/* Append to existing debug message that it was also not found in static/images */}}
+{{ $ogImageSourceDebug = printf "%s (and NOT found in static/images as %s)" $ogImageSourceDebug $staticOgPathForSlug }}
+{{ end }}
+{{ end }}
+{{/* ------------------------- NEW/MODIFIED SECTION END --------------------------- */}}
+
+
+{{/* Standard fallbacks if specific image not found yet */}}
+{{/* 3. Front Matter .Params.image */}}
+{{ if not $finalOgImageAbsURL }}
+{{ if .Params.image }}
+{{ $fmImage := .Params.image }}
+{{ $fmImageRes := .Resources.GetMatch $fmImage }}
+{{ if $fmImageRes }}
+{{ $finalOgImageAbsURL = $fmImageRes.Permalink }}
+{{ $ogImageSourceDebug = printf "Fallback to Front Matter image (bundle): %s" $fmImage }}
+{{ else }}
+{{ $staticPath := "" }}
+{{ if hasPrefix $fmImage "/" }}
+{{ $staticPath = strings.TrimPrefix "/" $fmImage }}
+{{ else }}
+{{ $staticPath = $fmImage }}
+{{ end }}
+{{ if fileExists (printf "static/%s" $staticPath) }}
+{{ $finalOgImageAbsURL = ($fmImage | absURL) }}
+{{ $ogImageSourceDebug = printf "Fallback to Front Matter image (static): %s" $fmImage }}
+{{ else if (resources.Get $fmImage) }}
+{{ $finalOgImageAbsURL = (resources.Get $fmImage).Permalink }}
+{{ $ogImageSourceDebug = printf "Fallback to Front Matter image (assets): %s" $fmImage }}
+{{ else }}
+{{ $ogImageSourceDebug = printf "Fallback to Front Matter image (%s) specified, but NOT FOUND anywhere (bundle, static, assets)" $fmImage }}
+{{ end }}
+{{ end }}
+{{ end }}
+{{ end }}
+
+{{/* 4. Site config metadata image */}}
+{{ if not $finalOgImageAbsURL }}
+{{ with site.Params.metadata.image }}
+{{ $siteMetaImage := . }}
+{{ $staticSiteMetaPath := strings.TrimPrefix "/" $siteMetaImage }}
+{{ if fileExists (printf "static/%s" $staticSiteMetaPath) }}
+{{ $finalOgImageAbsURL = ($siteMetaImage | absURL) }}
+{{ $ogImageSourceDebug = printf "Fallback to site.Params.metadata.image (static): %s" $siteMetaImage }}
+{{ else if resources.Get $siteMetaImage }}
+{{ $finalOgImageAbsURL = (resources.Get $siteMetaImage).Permalink }}
+{{ $ogImageSourceDebug = printf "Fallback to site.Params.metadata.image (assets): %s" $siteMetaImage }}
+{{ else }}
+{{ $ogImageSourceDebug = printf "Fallback to site.Params.metadata.image (%s) specified, but NOT FOUND (static, assets)" $siteMetaImage }}
+{{ end }}
+{{ end }}
+{{ end }}
+
+{{/* 5. Site config logo (if image type) */}}
+{{ if not $finalOgImageAbsURL }}
+{{ with site.Params.logo }}
+{{ $logoPath := . }}
+{{ if or (strings.HasSuffix $logoPath ".png") (strings.HasSuffix $logoPath ".jpg") (strings.HasSuffix $logoPath ".jpeg") }}
+{{ $staticLogoPath := strings.TrimPrefix "/" $logoPath }}
+{{ if fileExists (printf "static/%s" $staticLogoPath) }}
+{{ $finalOgImageAbsURL = ($logoPath | absURL) }}
+{{ $ogImageSourceDebug = printf "Fallback to site.Params.logo (static image): %s" $logoPath }}
+{{ else if resources.Get $logoPath }}
+{{ $finalOgImageAbsURL = (resources.Get $logoPath).Permalink }}
+{{ $ogImageSourceDebug = printf "Fallback to site.Params.logo (assets image): %s" $logoPath }}
+{{ else }}
+{{ $ogImageSourceDebug = printf "Fallback to site.Params.logo (%s) specified, but NOT FOUND (static, assets)" $logoPath }}
+{{ end }}
+{{ end }}
+{{ end }}
+{{ end }}
+
+{{/* 6. Ultimate fallback */}}
+{{ if not $finalOgImageAbsURL }}
+{{ $finalOgImageAbsURL = "https://open-neuromorphic.org/images/og-image.png" }} {{/* Ultimate fallback */}}
+{{ $ogImageSourceDebug = "Ultimate Fallback to hardcoded URL" }}
+{{ end }}
+
+<!-- OG Image Debug: Source: {{ $ogImageSourceDebug }}, Name: {{ $ogImageNameWithExt }}, URL: {{ $finalOgImageAbsURL }} -->
+
+{{ if $finalOgImageAbsURL }}
+<meta property="og:image" content="{{ $finalOgImageAbsURL }}">
+<meta name="twitter:image" content="{{ $finalOgImageAbsURL }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+{{ end }}

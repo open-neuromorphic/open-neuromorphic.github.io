@@ -1,0 +1,15 @@
+{{ $item := . }}
+<div class="p-6 rounded bg-theme-light dark:bg-darkmode-theme-light shadow-lg h-full flex flex-col {{ if $item.Params.legacy }}opacity-80{{ end }}">
+  <h3 class="text-2xl font-semibold mb-2">
+    <a href="{{ $item.RelPermalink }}" class="text-primary dark:text-darkmode-primary hover:underline">
+      {{ $item.Title }}
+    </a>
+  </h3>
+  {{ if $item.Params.author }}
+    <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
+      Led by: {{ partial "components/author-links.html" $item }}
+    </p>
+  {{ end }}
+  <p class="mb-3 text-text dark:text-darkmode-text flex-grow">{{ $item.Description | truncate 150 }}</p>
+  <a href="{{ $item.RelPermalink }}" class="btn btn-sm btn-outline-primary mt-auto">Learn More</a>
+</div>

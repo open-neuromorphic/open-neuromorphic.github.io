@@ -1,0 +1,95 @@
+{{ $initial_data := .person_data }}
+
+{{ $final_person_data := dict }}
+{{ $contributor_page := "" }}
+
+{{/* Define the variable for slug processing first */}}
+{{ $name_for_slug_processing := $initial_data.name | replaceRE "[.]" "" }}
+
+{{/* Now use it in the default for contributor_slug */}}
+{{ $contributor_slug := $initial_data.contributor_slug | default ($name_for_slug_processing | anchorize) }}
+
+
+{{ if $contributor_slug }}
+    {{ $contributor_page_path := printf "contributors/%s" $contributor_slug }}
+    {{ $contributor_page = site.GetPage $contributor_page_path }}
+{{ end }}
+
+{{ if $contributor_page }}
+    {{ $final_person_data = dict
+        "name" $initial_data.name
+        "role" ($initial_data.role | default "")
+        "image_filename" $contributor_page.Params.image
+        "description" $contributor_page.Content
+        "social" $contributor_page.Params.social
+        "contributor_page_exists" true
+        "contributor_page_context" $contributor_page
+    }}
+{{ else }}
+    {{/* If contributor page doesn't exist, description might be passed directly (and could be markdown) */}}
+    {{ $final_person_data = dict
+        "name" $initial_data.name
+        "role" ($initial_data.role | default "")
+        "image_filename" ($initial_data.image | default "")
+        "description" ($initial_data.description | default (printf "Profile details for %s can be found on their contributor page (if one exists with slug '%s')." $initial_data.name $contributor_slug))
+        "social" ($initial_data.social | default slice)
+        "contributor_page_exists" false
+        "description_is_markdown" (not (eq ($initial_data.description | default "") ($contributor_page.Content | default "")))
+    }}
+{{ end }}
+
+{{ $person := $final_person_data }}
+{{ $image_filename := $person.image_filename }}
+
+<div class="mb-8 p-6 content-panel rounded-lg shadow-lg flex flex-col md:flex-row items-start text-center md:text-left">
+    {{ if $image_filename }}
+        <div class="md:w-1/4 mb-4 md:mb-0 md:mr-6 flex-shrink-0 mx-auto md:mx-0">
+            {{ if $person.contributor_page_exists }}
+                {{ partial "image" (dict "Src" $image_filename "Context" $person.contributor_page_context "Alt" $person.name "Class" "w-32 h-32 md:w-36 md:h-36 object-cover rounded-full shadow-md mx-auto" "Command" "Fill" "Size" "144x144") }}
+            {{ else if hasPrefix $image_filename "/" }}
+                 <img src="{{ $image_filename | absURL }}" alt="{{ $person.name }}" class="w-32 h-32 md:w-36 md:h-36 object-cover rounded-full shadow-md mx-auto">
+            {{ else if $image_filename }}
+                 <div class="w-32 h-32 md:w-36 md:h-36 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center mx-auto">
+                     <span class="text-xs text-gray-500 dark:text-gray-400 text-center">Img '{{ $image_filename }}'. Contributor page for slug '{{ $contributor_slug }}' not found or image missing in bundle.</span>
+                 </div>
+            {{ end }}
+        </div>
+    {{ else }}
+         <div class="md:w-1/4 mb-4 md:mb-0 md:mr-6 flex-shrink-0 mx-auto md:mx-0">
+            <div class="w-32 h-32 md:w-36 md:h-36 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center mx-auto">
+                <span class="text-xs text-gray-500 dark:text-gray-400 text-center">
+                    {{ if $person.contributor_page_exists }} No image in profile {{ else }} Contributor profile for slug '{{ $contributor_slug }}' not found {{ end }}
+                </span>
+            </div>
+        </div>
+    {{ end }}
+
+    <div class="md:w-3/4">
+        <h4 class="text-2xl font-semibold mb-1">{{ $person.name }}</h4>
+        {{ with $person.role }}
+            <p class="text-primary dark:text-darkmode-primary font-medium mb-2">{{ . }}</p>
+        {{ end }}
+        {{ with $person.description }}
+            <div class="text-sm text-text dark:text-darkmode-text prose prose-sm dark:prose-invert max-w-none mb-3">
+                {{ if $person.contributor_page_exists }}
+                    {{ . | safeHTML }}
+                {{ else if $person.description_is_markdown }}
+                    {{ . | markdownify }}
+                {{ else }}
+                    {{ . }} 
+                {{ end }}
+            </div>
+        {{ end }}
+        {{ if $person.social }}
+            <ul class="social-icons flex justify-center md:justify-start space-x-2 mt-3">
+                {{ range $person.social }}
+                    <li>
+                        <a href="{{ .link | safeURL }}" target="_blank" rel="noopener noreferrer" aria-label="{{ .name | default .title }}" class="text-xl">
+                            <i class="{{ .icon }}"></i>
+                        </a>
+                    </li>
+                {{ end }}
+            </ul>
+        {{ end }}
+    </div>
+</div>

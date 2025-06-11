@@ -1,0 +1,11 @@
+<div class="lg:col-3">
+  {{ if .Params.speaker_photo }}
+  {{ partial "image" (dict "Src" .Params.speaker_photo "Context" .Page "Alt" .Title "Class" "mb-6 rounded" "Size" "300x300" "Command" "Fit")}}
+  {{ end }}
+</div>
+{{ if .Params.speaker_bio}}
+<div class="lg:col-8">
+  <h3 class="pb-5 pt-5 text-xl">About the Speaker</h3>
+  <p>{{ .Params.speaker_bio | markdownify }}</p>
+</div>
+{{ end }}

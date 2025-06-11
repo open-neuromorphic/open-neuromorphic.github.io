@@ -1,0 +1,20 @@
+{{ define "main" }}
+  {{ partial "page-header" . }}
+  <section class="section pt-7">
+    <div class="container">
+      <div class="row justify-center">
+        <div class="lg:col-10">
+          {{ if .Params.image }}
+            <div class="mb-6">
+              {{ partial "image" (dict "Src" .Params.image "Context" .Page "Alt" .Title "Class" "w-full rounded" "Size" "1280x720" "Command" "Crop") }}
+            </div>
+          {{ end }}
+           {{ partial "components/metadata-bar.html" (dict "context" . "type" "general") }}
+          <div class="content">
+            {{ .Content }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{{ end }}

@@ -17,3 +17,6 @@ go.sum
 yarn.lock
 /content/english/.idea/
 .idea
+/tmp/ogImageData.json
+/tmp/output_full.txt
+/tmp/

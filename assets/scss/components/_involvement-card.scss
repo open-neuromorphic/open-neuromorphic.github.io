@@ -1,0 +1,31 @@
+// assets/scss/components/_involvement-card.scss
+
+.involvement-card {
+  @apply relative flex h-full flex-col bg-theme-light dark:bg-darkmode-theme-light p-8 rounded-xl shadow-md;
+  @apply text-center transition-all duration-300 ease-in-out;
+
+  &:hover {
+    @apply transform -translate-y-1 shadow-lg;
+  }
+
+  &__icon {
+    @apply mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full;
+    background: linear-gradient(135deg, var(--color-primary-new) 0%, var(--color-secondary-new) 100%);
+    
+    i {
+      @apply text-3xl text-white;
+    }
+  }
+
+  &__title {
+    @apply text-2xl font-bold text-dark dark:text-darkmode-dark mb-3;
+  }
+
+  &__description {
+    @apply text-text dark:text-darkmode-text mb-6 flex-grow;
+  }
+  
+  &__cta {
+    @apply font-semibold text-primary dark:text-darkmode-primary;
+  }
+}

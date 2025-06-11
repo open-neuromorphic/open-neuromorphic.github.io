@@ -1,7 +1,0 @@
-{{ if eq .RelPermalink "/" }}
-  {{ partial "structured-markup/homepage.html" . }}
-{{ else if and (in .RelPermalink "/workshops/") (not (eq .RelPermalink "/workshops/")) }}
-    {{ partial "structured-markup/workshop-entry.html" . }}
-{{ else if and (in .RelPermalink "/blog/") (not (eq .RelPermalink "/blog/")) }}
-    {{ partial "structured-markup/blog-entry.html" . }}
-{{ end }}

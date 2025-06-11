@@ -1,0 +1,25 @@
+// assets/scss/components/_mega-menu.scss
+
+.mega-menu {
+  @apply absolute left-0 top-full w-full bg-white dark:bg-darkmode-theme-dark shadow-lg rounded-b-lg border-t border-border dark:border-darkmode-border;
+  @apply invisible opacity-0 transition-all duration-300 ease-in-out;
+  
+  z-index: 20;
+  padding: 2.5rem 2rem;
+  transform: translateY(10px); // Starts slightly lower for a nice drop-in animation
+
+  // Group-hover logic for visibility and animation
+  .lg.group-hover\:visible:hover &, .lg.group-hover\:visible & {
+    @apply visible opacity-100;
+    transform: translateY(0);
+  }
+}
+
+.mega-menu-item {
+  @apply block p-4 rounded-lg transition-colors duration-200;
+  text-decoration: none !important;
+
+  &:hover {
+    @apply bg-gray-100 dark:bg-darkmode-theme-light;
+  }
+}

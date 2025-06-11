@@ -1,0 +1,16 @@
+.news-card {
+  @apply bg-white dark:bg-darkmode-theme-light rounded-xl p-6 shadow-md transition-all duration-300 ease-in-out;
+  border-left: 4px solid var(--color-accent-new); // using the new pink color
+}
+.news-card:hover {
+  @apply shadow-lg;
+}
+.news-card h4 a:hover {
+  color: var(--color-primary-new); // hover color for news card title
+}
+.news-card .news-meta {
+  @apply text-xs text-gray-500 dark:text-gray-400 mb-2;
+}
+.news-card .news-summary {
+  @apply text-sm text-gray-600 dark:text-gray-400;
+}

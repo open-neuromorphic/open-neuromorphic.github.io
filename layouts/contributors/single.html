@@ -1,0 +1,127 @@
+{{ define "main" }}
+  {{ partial "page-header" . }}
+
+  <section class="section pt-6">
+    <div class="container">
+      <div class="row justify-center">
+        {{/* Contributor Details Column */}}
+        <div class="lg:col-4 mb-8">
+          <div class="p-6 rounded bg-theme-light dark:bg-darkmode-theme-light shadow-lg">
+            {{ if .Params.image }}
+              {{ partial "image" (dict "Src" .Params.image "Context" . "Alt" .Title "Class" "mx-auto mb-6 rounded-full" "Size" "150x150" "Command" "Fill") }}
+            {{ end }}
+            <h2 class="text-3xl font-bold text-center mb-3">{{ .Title }}</h2>
+            {{ if .Params.social }}
+              <ul class="contributor-socials flex justify-center space-x-3 mb-6">
+                {{ range .Params.social }}
+                  <li>
+                    <a href="{{ .link | safeURL }}" target="_blank" rel="noopener noreferrer" aria-label="{{ .title }}" class="text-xl">
+                      {{ $iconData := partial "helpers/parse-fa-class.html" .icon }}
+                      {{ partial "icon.html" (dict "style" $iconData.style "name" $iconData.name "class" "") }}
+                    </a>
+                  </li>
+                {{ end }}
+              </ul>
+            {{ end }}
+            <div class="content prose dark:prose-invert max-w-none dark:text-darkmode-light text-text text-sm">
+              {{ .Content }}
+            </div>
+          </div>
+        </div>
+
+        {{/* Contributions Column */}}
+        <div class="lg:col-8">
+          <h2 class="text-3xl font-semibold mb-8 text-center lg:text-left">Contributions</h2>
+
+          {{ $contributorName := .Title }}
+          {{ $authoredPages := slice }}
+
+          {{ range site.RegularPages }}
+            {{ $isAuthor := false }}
+            {{ if .Params.author }}
+              {{ if reflect.IsSlice .Params.author }}
+                {{ if in .Params.author $contributorName }}{{ $isAuthor = true }}{{ end }}
+              {{ else }}
+                {{ if eq .Params.author $contributorName }}{{ $isAuthor = true }}{{ end }}
+              {{ end }}
+            {{ end }}
+            {{ if $isAuthor }}
+              {{ $authoredPages = $authoredPages | append . }}
+            {{ end }}
+          {{ end }}
+
+          {{ $contributionSections := slice
+            (dict "key" "initiatives" "title" "Initiatives" "matchField" "ParentType")
+            (dict "key" "blog" "title" "Blog Posts" "matchField" "Section")
+            (dict "key" "workshops" "title" "Workshops" "matchField" "Section")
+            (dict "key" "student-talks" "title" "Student Talks Sessions" "matchField" "Section")
+            (dict "key" "hacking-hours" "title" "Hacking Hour Sessions" "matchField" "Type")
+          }}
+
+          {{ $hasContributions := false }}
+
+          {{ range $contributionSections }}
+            {{ $sectionKey := .key }}
+            {{ $sectionTitle := .title }}
+            {{ $matchField := .matchField }}
+            {{ $pagesForThisSection := slice }}
+
+            {{ range $authoredPages }}
+              {{ $matchValue := "" }}
+              {{ if eq $matchField "Section" }}{{ $matchValue = .Section }}{{ end }}
+              {{ if eq $matchField "Type" }}{{ $matchValue = .Type }}{{ end }}
+              {{ if eq $matchField "ParentType" }}{{ with .Parent }}{{ $matchValue = .Type }}{{ end }}{{ end }}
+
+
+              {{ if eq (lower $matchValue) (lower $sectionKey) }}
+                {{ $pagesForThisSection = $pagesForThisSection | append . }}
+              {{ end }}
+            {{ end }}
+
+            {{ if $pagesForThisSection }}
+              {{ $hasContributions = true }}
+              <div class="mb-10">
+                <h3 class="text-2xl font-semibold mb-5 border-b-2 border-primary dark:border-darkmode-primary pb-2">{{ $sectionTitle }}</h3>
+                <ul class="space-y-4">
+                  {{ $sortedPagesForThisSection := $pagesForThisSection }}
+                  {{ if eq $sectionKey "initiatives" }}
+                    {{ $sortedPagesForThisSection = sort $pagesForThisSection "Title" "asc" }}
+                  {{ else }}
+                    {{ $sortedPagesForThisSection = sort $pagesForThisSection "Date" "desc" }}
+                  {{ end }}
+
+                  {{ range $sortedPagesForThisSection }}
+                    <li>
+                      <div class="p-5 rounded bg-theme-light dark:bg-darkmode-theme-light shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                        <a href="{{ .RelPermalink }}" class="text-xl font-semibold text-primary dark:text-darkmode-primary hover:underline">{{ .Title }}</a>
+                        {{ if and .Date (ne $sectionKey "initiatives") }}
+                        <p class="text-sm text-text dark:text-darkmode-light mt-1">
+                          {{ .Date.Format "January 2, 2006" }}
+                          {{ if .Params.start_time }}
+                           at {{ .Params.start_time }}{{ if .Params.end_time }} - {{ .Params.end_time }}{{ end }}{{ if .Params.time_zone }} {{ .Params.time_zone }}{{ end }}
+                          {{ end }}
+                        </p>
+                        {{ end }}
+                        {{ if .Description }}
+                          <p class="text-gray-600 dark:text-gray-400 mt-2 text-sm">{{ .Description }}</p>
+                        {{ end }}
+                      </div>
+                    </li>
+                  {{ end }}
+                </ul>
+              </div>
+            {{ end }}
+          {{ end }}
+
+          {{ if not $hasContributions }}
+            <div class="p-6 rounded bg-theme-light dark:bg-darkmode-theme-light shadow text-center">
+              <p class="text-lg text-gray-600 dark:text-gray-400">No specific contributions (blog posts, workshops, initiatives, etc.) found for this individual on the site yet.</p>
+              <p class="text-sm text-gray-500 dark:text-gray-500 mt-2">They might be active in other ways or their contributions are not yet categorized here.</p>
+            </div>
+          {{ end }}
+
+        </div>
+      </div>
+    </div>
+  </section>
+{{ end }}

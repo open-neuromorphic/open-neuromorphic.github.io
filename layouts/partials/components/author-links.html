@@ -1,0 +1,22 @@
+{{ with .Params.author }}
+  {{ $numAuthors := len . }}
+  {{ range $index, $authorNameFromFrontmatter := . }}
+    {{ $nameForProcessing := $authorNameFromFrontmatter | replaceRE "[.]" "" }}
+    {{ $nameForProcessing = $nameForProcessing | replaceRE "ć" "c" | replaceRE "Ć" "C" }}
+    {{ $contributorSlug := $nameForProcessing | anchorize }}
+    {{ $contributorPagePath := printf "contributors/%s" $contributorSlug }}
+    {{ $contributorPage := site.GetPage $contributorPagePath }}
+
+    {{- /* Output author name or link */ -}}
+    {{- if $contributorPage -}}
+      <a href="{{ $contributorPage.RelPermalink }}">{{ $authorNameFromFrontmatter }}</a>
+    {{- else -}}
+      {{- $authorNameFromFrontmatter -}}
+    {{- end -}}
+
+    {{- /* Add comma and space if not the last author. Ensure no leading space before comma. */ -}}
+    {{- if lt $index (sub $numAuthors 1) -}}, {{ end -}}
+  {{ end }}
+{{ else }}
+  Anonymous
+{{ end }}

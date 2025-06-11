@@ -1,0 +1,48 @@
+{{ $context := .Context }}
+{{ $class := .Class }}
+{{ $base := site.BaseURL }}
+
+{{/* Visual breadcrumb rendering */}}
+<nav aria-label="Breadcrumb" class="{{ $class }} md:inline-flex sm:hidden">
+  <ol class="flex flex-wrap space-x-1 capitalize">
+    <li>
+      <div class="flex items-center">
+        <a class="breadcrumb-link-parent text-primary dark:text-darkmode-primary" href="{{ $base | relLangURL }}">
+          <span class="breadcrumb-link-text">{{ i18n "home" | default "Home" }}</span>
+        </a>
+        <span class="px-1 text-gray-500 dark:text-gray-400" aria-hidden="true">/</span>
+      </div>
+    </li>
+
+    {{ if or (eq $context.Section "workshops") (eq $context.Section "contributors") }}
+      {{ $ncPage := site.GetPage "neuromorphic-computing" }}
+      <li>
+        <div class="flex items-center">
+          <a class="breadcrumb-link-parent text-primary dark:text-darkmode-primary" href="{{ ($ncPage.RelPermalink | default "/neuromorphic-computing/") | relLangURL }}">
+            <span class="breadcrumb-link-text">{{ $ncPage.Title | default "Neuromorphic Computing" }}</span>
+          </a>
+          <span class="px-1 text-gray-500 dark:text-gray-400" aria-hidden="true">/</span>
+        </div>
+      </li>
+    {{ end }}
+
+    {{ range $context.Ancestors.Reverse }}
+      {{ if and (not .IsHome) (ne .Title "Pages") (ne .Title "") }}
+        <li>
+          <div class="flex items-center">
+            <a class="breadcrumb-link-parent text-primary dark:text-darkmode-primary" href="{{ .RelPermalink }}">
+              <span class="breadcrumb-link-text">{{ .Title }}</span>
+            </a>
+            <span class="px-1 text-gray-500 dark:text-gray-400" aria-hidden="true">/</span>
+          </div>
+        </li>
+      {{ end }}
+    {{ end }}
+
+    <li aria-current="page">
+      <div class="flex items-center">
+        <span class="text-text dark:text-darkmode-text">{{ $context.Title }}</span>
+      </div>
+    </li>
+  </ol>
+</nav>

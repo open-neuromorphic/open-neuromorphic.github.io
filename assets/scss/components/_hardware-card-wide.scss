@@ -1,0 +1,44 @@
+// This class is on the <a> wrapper of the card.
+.hardware-card-wide-link {
+  // Remove the default text-decoration from the entire card link.
+  text-decoration: none !important;
+  
+  // Apply a subtle transition to the card for transform and shadow changes.
+  // This addresses the "gradual and subtle" hover effect.
+  @apply transition-all duration-300 ease-in-out;
+  
+  // On hover, lift the card slightly and increase its shadow for a modern feel.
+  &:hover {
+    @apply transform shadow-lg;
+  }
+
+  // Target the h3 title specifically.
+  h3 {
+    // Apply the site's default underline style.
+    text-decoration-line: underline;
+    text-decoration-color: #d7c7e3; // Initial underline color
+    text-decoration-thickness: 0.115em;
+    text-underline-offset: 2.6px;
+    
+    // Animate ONLY the underline color for a smooth transition.
+    transition: text-decoration-color 0.3s ease-in-out;
+  }
+
+  // When the card is hovered, change the h3's underline color.
+  &:hover h3 {
+    text-decoration-color: #200435; // Hover underline color
+  }
+}
+
+// Dark mode styles for the card's hover state.
+.dark .hardware-card-wide-link {
+  // On hover in dark mode...
+  &:hover h3 {
+    text-decoration-color: #bcfbff !important; // Dark mode hover underline color
+  }
+
+  // Define the base underline color for the title in dark mode.
+  h3 {
+    text-decoration-color: #288b8c;
+  }
+}

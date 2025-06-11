@@ -1,0 +1,47 @@
+{{ if site.Params.theme_switcher }}
+<button
+id="theme-switcher-btn"
+aria-label="Toggle light/dark mode"
+title="Toggle light/dark mode"
+type="button"
+class="theme-switcher {{ .Class }} flex items-center justify-center h-10 w-10 rounded-full transition-colors duration-300">
+<span class="sr-only">Toggle light/dark mode</span>
+<!-- Sun Icon (Solid style) -->
+{{ partial "icon.html" (dict "style" "solid" "name" "sun" "class" "sun-icon h-5 w-5 block dark:hidden") }}
+<!-- Moon Icon (Solid style) -->
+{{ partial "icon.html" (dict "style" "solid" "name" "moon" "class" "moon-icon h-5 w-5 hidden dark:block") }}
+</button>
+<script>
+(function() {
+const themeSwitcherBtn = document.getElementById('theme-switcher-btn');
+if (!themeSwitcherBtn) {
+return;
+}
+
+const applyTheme = (theme) => {
+if (theme === 'dark') {
+document.documentElement.classList.add('dark');
+} else {
+document.documentElement.classList.remove('dark');
+}
+};
+
+const toggleTheme = () => {
+const isDark = document.documentElement.classList.toggle('dark');
+localStorage.setItem('theme', isDark ? 'dark' : 'light');
+};
+
+// Set initial theme based on system preference or localStorage
+// This part runs immediately, without waiting for DOMContentLoaded, to prevent FOUC
+let initialTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+applyTheme(initialTheme);
+
+// Add event listener after DOM is ready
+document.addEventListener("DOMContentLoaded", () => {
+themeSwitcherBtn.addEventListener('click', () => {
+toggleTheme();
+});
+});
+})();
+</script>
+{{ end }}

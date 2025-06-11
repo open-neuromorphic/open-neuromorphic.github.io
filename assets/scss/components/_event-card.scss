@@ -1,0 +1,80 @@
+.event-card {
+  // Base styles for the card
+  &__media-container {
+    @apply relative; // For play icon positioning
+    // Specific styles for different variants can be added
+    // e.g. .event-card--grid &__media-container {}
+  }
+
+  &__image-link {
+    @apply block;
+    // For grid/featured, image might have pb-4 if text is below.
+    // For wide, image and text are side-by-side, so pb might not be needed here.
+    .event-card--grid &, .event-card--featured & {
+      @apply pb-4;
+    }
+  }
+
+  &__image {
+    @apply w-full rounded;
+    // Specific margins based on variant
+    .event-card--grid &, .event-card--featured & {
+       @apply mb-0; // Margin is handled by __image-link or __media-container
+    }
+     .event-card--wide & {
+       @apply mb-0; // No bottom margin when side-by-side
+    }
+  }
+
+  &__image--default {
+    // Default image specific styles if any
+  }
+
+  &__play-icon-overlay {
+    @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-40 group-hover:opacity-100 transition-opacity duration-300;
+    svg {
+      @apply h-12 w-12 text-gray-300;
+    }
+  }
+
+  &__content-container {
+    // Styles for the text content block
+    .event-card--wide & {
+      @apply pl-0 lg:pl-4; // Add padding if it's a wide card and on larger screens
+    }
+  }
+
+  &__title {
+    @apply mb-3;
+    // For wide variant, adjust top padding if image is on left
+    .event-card--wide & {
+      @apply md:pt-4 lg:pt-0;
+    }
+  }
+
+  &__meta-list {
+    @apply mb-4;
+  }
+
+  &__meta-item {
+    @apply mr-4 inline-block;
+    i {
+      @apply mr-2;
+    }
+  }
+
+  &__description {
+    // Margin adjustments based on variant
+     .event-card--grid &, .event-card--featured & {
+       @apply mb-6;
+    }
+     .event-card--wide & {
+       @apply mb-2;
+    }
+  }
+}
+
+// Styles for specific variants if needed outside BEM blocks
+.event-card--wide {
+  // container specific styles for wide, e.g. if it needs to be flex
+}

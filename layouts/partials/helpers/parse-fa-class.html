@@ -1,0 +1,12 @@
+{{- $classString := . -}}
+{{- $parts := split $classString " " -}}
+{{- $style := "solid" -}}
+{{- $name := "" -}}
+{{- range $part := $parts -}}
+  {{- if or (eq $part "fas") (eq $part "fa-solid") -}}{{- $style = "solid" -}}
+  {{- else if or (eq $part "far") (eq $part "fa-regular") -}}{{- $style = "regular" -}}
+  {{- else if or (eq $part "fab") (eq $part "fa-brands") -}}{{- $style = "brands" -}}
+  {{- else if hasPrefix $part "fa-" -}}{{- $name = strings.TrimPrefix "fa-" $part -}}
+  {{- end -}}
+{{- end -}}
+{{- return (dict "style" $style "name" $name) -}}

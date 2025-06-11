@@ -1,0 +1,24 @@
+{{/* layouts/partials/components/involvement-card.html */}}
+{{ $icon := .icon }}
+{{ $title := .title }}
+{{ $description := .description }}
+{{ $link := .link }}
+
+<div class="involvement-card group social-icons">
+  <div class="involvement-card__icon">
+    {{ $iconData := partial "helpers/parse-fa-class.html" $icon }}{{ partial "icon.html" (dict "style" $iconData.style "name" $iconData.name "class" "text-3xl text-white") }}
+  </div>
+  <h3 class="involvement-card__title">
+    {{ $title }}
+  </h3>
+  <p class="involvement-card__description">
+    {{ $description }}
+  </p>
+  <span class="involvement-card__cta">
+    Learn More {{ partial "icon.html" (dict "style" "solid" "name" "arrow-right" "class" "transform transition-transform duration-200 group-hover:translate-x-1") }}
+  </span>
+
+  <a href="{{ $link | relLangURL }}" {{ if findRE `^http` $link }}target="_blank" rel="noopener"{{ end }} class="absolute inset-0 z-10" aria-label="Learn more about {{ $title }}">
+    <span class="sr-only">Learn more about {{ $title }}</span>
+  </a>
+</div>
