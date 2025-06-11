@@ -1,0 +1,190 @@
+{{ define "main" }}
+{{ partial "page-header" . }}
+
+<section class="section pt-6 contributors-list-section">
+  <div class="container">
+    {{/* 1. Get all contributor profile pages, sorted by title (name) */}}
+    {{ $allContributorProfiles := where site.RegularPages "Section" "contributors"  }}
+
+    {{/* 2. Collect all relevant content pages that can be authored and have a date */}}
+    {{ $relevantContent := slice }}
+    {{ $contentSectionsToScan := slice "blog" "workshops" "student-talks" }}
+    {{ $contentTypesToScan := slice "hacking-hours" "initiatives" }}
+
+    {{ range site.RegularPages }}
+    {{ if and .Date (not .Date.IsZero) .Params.author }}
+    {{ $isRelevantPage := false }}
+    {{ if in $contentSectionsToScan .Section }}{{ $isRelevantPage = true }}{{ end }}
+    {{ if in $contentTypesToScan .Type }}{{ $isRelevantPage = true }}{{ end }}
+
+    {{ if $isRelevantPage }}
+    {{ $relevantContent = $relevantContent | append . }}
+    {{ end }}
+    {{ end }}
+    {{ end }}
+
+    {{/* 3. Determine all unique contribution years from relevant content dates */}}
+    {{ $allYearsSlice := slice }}
+    {{ range $relevantContent }}
+      {{ $year := .Date.Format "2006" }}
+      {{ $allYearsSlice = $allYearsSlice | append $year }}
+      {{ $dateEndParamValue := "" }}
+      {{ if isset .Params "date_end" }}
+        {{ $dateEndParamValue = index .Params "date_end" }} {{/* Corrected: index .Params "key" */}}
+      {{ else if isset .Params "date-end" }}
+        {{ $dateEndParamValue = index .Params "date-end" }} {{/* Corrected: index .Params "key" */}}
+      {{ end }}
+      {{ if and (eq (lower .Type) "initiatives") .Params.legacy $dateEndParamValue }}
+        {{ $startYear := .Date.Format "2006" | int }}
+        {{ with $dateEndParamValue }}
+            {{ $parsedEndDate := time.AsTime . }}
+            {{ if $parsedEndDate.IsZero }}
+                {{ warnf "Initiative %s has invalid date-end value: %s" $.File.Path . }}
+            {{ else }}
+                {{ $endYear := $parsedEndDate.Format "2006" | int }}
+                {{ range seq $startYear $endYear }}
+                    {{ $allYearsSlice = $allYearsSlice | append (string .) }}
+                {{ end }}
+            {{ end }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+    {{ $uniqueYearsSorted := $allYearsSlice | uniq | sort | collections.Reverse }}
+
+    {{/* 4. Define contribution types (excluding initiatives here as they are handled separately) */}}
+    {{ $contributionSectionDefs := slice
+      (dict "id" "blog"          "plural" "Blog Posts"      "matchField" "Section")
+      (dict "id" "workshops"     "plural" "Workshops"       "matchField" "Section")
+      (dict "id" "student-talks" "plural" "Student Talks" "matchField" "Section")
+      (dict "id" "hacking-hours" "plural" "Hacking Hours"   "matchField" "Type")
+    }}
+
+    {{ range $year_str := $uniqueYearsSorted }}
+    {{ $current_loop_year := int $year_str }}
+    <div class="year-section mb-12">
+      <h2 class="text-3xl font-bold mb-6 pb-2 border-b border-border dark:border-darkmode-border">{{ $year_str }}</h2>
+
+      {{ $contributorsInThisYear := slice }}
+
+      {{ range $contributorProfilePage := $allContributorProfiles }}
+      {{ $contributorName := $contributorProfilePage.Title }}
+      {{ $contributionsThisYearBadges := dict }}
+      {{ $initiativesLedThisYear := slice }}
+      {{ $totalContributionsThisYear := 0 }}
+
+      {{ range $contentPage := $relevantContent }}
+      {{ $isAuthorOfThisContent := false }}
+      {{ if $contentPage.Params.author }}
+        {{ if reflect.IsSlice $contentPage.Params.author }}
+          {{ if in $contentPage.Params.author $contributorName }}{{ $isAuthorOfThisContent = true }}{{ end }}
+        {{ else }}
+          {{ if eq $contentPage.Params.author $contributorName }}{{ $isAuthorOfThisContent = true }}{{ end }}
+        {{ end }}
+      {{ end }}
+
+      {{ if $isAuthorOfThisContent }}
+        {{ $contentItemStartYear := $contentPage.Date.Format "2006" | int }}
+        {{ $isActualInitiativePage := eq (lower $contentPage.Type) "initiatives" }}
+        {{ $isLegacyInitiative := $contentPage.Params.legacy | default false }}
+
+        {{ $countThisItemForThisYearLoop := false }}
+
+        {{ if $isActualInitiativePage }}
+          {{ $dateEndParamValue := "" }}
+          {{ if isset $contentPage.Params "date_end" }}
+            {{ $dateEndParamValue = index $contentPage.Params "date_end" }} {{/* Corrected: index .Params "key" */}}
+          {{ else if isset $contentPage.Params "date-end" }}
+            {{ $dateEndParamValue = index $contentPage.Params "date-end" }} {{/* Corrected: index .Params "key" */}}
+          {{ end }}
+
+          {{ if $isLegacyInitiative }}
+            {{ if $dateEndParamValue }}
+                {{ with $dateEndParamValue }}
+                    {{ $parsedEndDate := time.AsTime . }}
+                    {{ if $parsedEndDate.IsZero }}
+                        {{ warnf "Initiative %s has invalid date-end value: %s" $contentPage.File.Path . }}
+                        {{/* Fallback to start year only if end date is invalid */}}
+                        {{ if eq $current_loop_year $contentItemStartYear }}{{ $countThisItemForThisYearLoop = true }}{{ end }}
+                    {{ else }}
+                        {{ $contentItemEndYear := $parsedEndDate.Format "2006" | int }}
+                        {{ if and (ge $current_loop_year $contentItemStartYear) (le $current_loop_year $contentItemEndYear) }}
+                            {{ $countThisItemForThisYearLoop = true }}
+                        {{ end }}
+                    {{ end }}
+                {{ end }}
+            {{ else }} {{/* No end date for legacy, count only for start year */}}
+              {{ if eq $current_loop_year $contentItemStartYear }}{{ $countThisItemForThisYearLoop = true }}{{ end }}
+            {{ end }}
+          {{ else }} {{/* Ongoing initiative */}}
+            {{ if ge $current_loop_year $contentItemStartYear }}{{ $countThisItemForThisYearLoop = true }}{{ end }}
+          {{ end }}
+        {{ else }} {{/* Not an initiative page */}}
+          {{ if eq $current_loop_year $contentItemStartYear }}{{ $countThisItemForThisYearLoop = true }}{{ end }}
+        {{ end }}
+
+
+        {{ if $countThisItemForThisYearLoop }}
+          {{ if $isActualInitiativePage }}
+            {{ $initiativesLedThisYear = $initiativesLedThisYear | append $contentPage }}
+          {{ else }}
+            {{ range $sectionDef := $contributionSectionDefs }}
+              {{ $sectionID := $sectionDef.id }}
+              {{ $isMatchForBadge := false }}
+              {{ if eq $sectionDef.matchField "Type" }}
+                {{ if eq (lower $contentPage.Type) (lower $sectionID) }}{{ $isMatchForBadge = true }}{{ end }}
+              {{ else if eq $sectionDef.matchField "Section" }}
+                {{ if eq (lower $contentPage.Section) (lower $sectionID) }}{{ $isMatchForBadge = true }}{{ end }}
+              {{ end }}
+
+              {{ if $isMatchForBadge }}
+                {{ $currentCount := index $contributionsThisYearBadges $sectionDef.plural | default 0 }}
+                {{ $contributionsThisYearBadges = merge $contributionsThisYearBadges (dict $sectionDef.plural (add $currentCount 1)) }}
+              {{ end }}
+            {{ end }}
+          {{ end }}
+          {{ $totalContributionsThisYear = add $totalContributionsThisYear 1 }}
+        {{ end }}
+      {{ end }}
+      {{ end }}
+
+      {{ if gt $totalContributionsThisYear 0 }}
+        {{ $has_initiatives_this_year_flag := gt (len $initiativesLedThisYear) 0 }}
+        {{ $contributorsInThisYear = $contributorsInThisYear | append (dict
+          "profile" $contributorProfilePage
+          "badges" $contributionsThisYearBadges
+          "initiatives_led" $initiativesLedThisYear
+          "has_initiatives_this_year" $has_initiatives_this_year_flag
+          "total" $totalContributionsThisYear
+        ) }}
+      {{ end }}
+      {{ end }}
+
+      {{ $sortedContributorsInThisYear := sort $contributorsInThisYear "has_initiatives_this_year" "desc" "total" "desc" }}
+
+      {{ if $sortedContributorsInThisYear }}
+      <div class="row">
+        {{ range $contribData := $sortedContributorsInThisYear }}
+        <div class="md:col-6 lg:col-4 mb-8 flex flex-col">
+          {{ partial "components/author-card" (dict
+            "context" $contribData.profile
+            "variant" "compact"
+            "contribution_badges" $contribData.badges
+            "initiatives_led" $contribData.initiatives_led
+            "total_contributions" $contribData.total
+            )
+          }}
+        </div>
+        {{ end }}
+      </div>
+      {{ else }}
+      <p class="italic text-gray-600 dark:text-darkmode-light/80">No contributors with categorized content found for {{ $year_str }}.</p>
+      {{ end }}
+    </div>
+    {{ end }}
+
+    {{ if not $uniqueYearsSorted }}
+    <p class="text-center text-xl">No contributions found with yearly data.</p>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

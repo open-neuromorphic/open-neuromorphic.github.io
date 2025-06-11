@@ -2,7 +2,7 @@ name: Deploy Hugo site to Pages
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main", "refactor-merge"]
 
 permissions:
   contents: read
@@ -11,9 +11,9 @@ permissions:
 
 env:
   HUGO_ENV: production
-  HUGO_VERSION: "0.118.2"
-  GO_VERSION: "1.20.5"
-  NODE_VERSION: "18.15.0"
+  HUGO_VERSION: "0.147.7"
+  GO_VERSION: "1.24.3"
+  NODE_VERSION: "22.16.0"
 
 jobs:
   build:
@@ -26,8 +26,15 @@ jobs:
 
       - name: Install Go
         run: |
-          wget -O ${{ runner.temp }}/go.deb https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz \
-          && sudo tar -C /usr/local -xzf ${{ runner.temp }}/go.deb
+          # Corrected to download linux-arm64 for ARM runner
+          wget -O ${{ runner.temp }}/go.tar.gz https://go.dev/dl/go${GO_VERSION}.linux-arm64.tar.gz \
+          && sudo tar -C /usr/local -xzf ${{ runner.temp }}/go.tar.gz \
+          && sudo ln -s /usr/local/go/bin/go /usr/local/bin/go # Ensure go is in PATH
+
+      - name: Install wkhtmltopdf
+        run: |
+          sudo apt update
+          sudo apt install wkhtmltopdf imagemagick -y
 
       - name: Checkout
         uses: actions/checkout@v4.2.2
@@ -39,51 +46,79 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
 
-      - name: Setup Project
-        run: npm run project-setup
-
       - name: Install npm dependencies
         run: npm install
 
       - name: Determine Base URL
         id: base_url
         run: |
-          if [[ "${{ github.repository_owner }}.github.io" == "open-neuromorphic.github.io" ]]; then
+          if [[ "${{ github.repository_owner }}.github.io" == "open-neuromorphic.github.io" && "${{ github.ref_name }}" == "main" ]]; then
             BASE_URL="https://open-neuromorphic.org/"
+          elif [[ "${{ github.repository_owner }}.github.io" == "open-neuromorphic.github.io" && "${{ github.ref_name }}" == "refactor" ]]; then
+            BASE_URL="https://open-neuromorphic.github.io/refactor-preview/" # Example preview URL
           else
             REPO_NAME=$(echo "${{ github.repository }}" | cut -d '/' -f 2)
-            if [[ "${{ github.repository_owner }}" == "${{ github.repository_owner }}" ]]; then
-              BASE_URL="https://${{ github.repository_owner }}.github.io/${REPO_NAME}/"
-            else
-              BASE_URL="https://${{ github.repository_owner }}.github.io/"
-            fi
+            # For forks or other repositories, adjust as needed
+            BASE_URL="https://${{ github.repository_owner }}.github.io/${REPO_NAME}/"
           fi
           echo "BASE_URL=$BASE_URL" >> $GITHUB_ENV
+          echo "Determined BASE_URL: $BASE_URL"
 
       - name: Modify hugo.toml
-        run: sed -i "s|baseURL = .*|baseURL = \"$BASE_URL\"|" hugo.toml
-
-      - name: Create public directory
-        run: mkdir -p public
-
-      - name: Create .htaccess (if needed)
-        run: touch public/.htaccess
+        run: |
+          echo "Attempting to set baseURL to $BASE_URL in hugo.toml"
+          sed -i "s|baseURL = .*|baseURL = \"$BASE_URL\"|" hugo.toml
+          echo "hugo.toml after modification:"
+          cat hugo.toml
 
       - name: Build site
-        run: npm run build
-
-      - name: Modify .htaccess (Prevent Indexing)
         run: |
+          echo "Starting site build..."
+          npm run build
+          echo "Site build completed."
+          echo "Contents of public directory after build:"
+          ls -la public
+
+      - name: Create and Populate .htaccess
+        run: |
+          echo "Creating and populating .htaccess in public directory"
+          # Ensure public directory exists (though npm run build should create it)
+          mkdir -p public
+          cat .github/config/htaccess.template > public/.htaccess
+          echo ".htaccess created and populated."
+          echo "Contents of public/.htaccess:"
+          cat public/.htaccess
+
+      - name: Modify .htaccess (Prevent Indexing if not production Open Neuromorphic)
+        run: |
+          echo "Current BASE_URL for .htaccess modification: $BASE_URL"
           if [[ "$BASE_URL" != "https://open-neuromorphic.org/" ]]; then
-            sudo chmod 666 public/.htaccess
+            echo "Modifying .htaccess to prevent indexing for $BASE_URL"
+            # The file is created by the workflow user, sudo likely not needed for chmod.
+            # If issues persist, can use sudo, but check file ownership first.
+            chmod u+w public/.htaccess # Ensure user has write permission
+            echo "" >> public/.htaccess # Add a newline for separation
+            echo "# Rules to prevent indexing on non-production deployments" >> public/.htaccess
             echo "Header set X-Robots-Tag \"noindex, nofollow\"" >> public/.htaccess
+            echo ".htaccess modified."
+            echo "Final contents of public/.htaccess:"
+            cat public/.htaccess
+          else
+            echo ".htaccess modification skipped for production URL."
           fi
 
-      - name: Create robots.txt (Prevent Indexing)
+      - name: Create robots.txt (Prevent Indexing if not production)
         run: |
+          echo "Current BASE_URL for robots.txt creation: $BASE_URL"
           if [[ "$BASE_URL" != "https://open-neuromorphic.org/" ]]; then
+            echo "Creating robots.txt to prevent indexing for $BASE_URL"
             echo "User-agent: *" > public/robots.txt
             echo "Disallow: /" >> public/robots.txt
+            echo "robots.txt created."
+            echo "Contents of public/robots.txt:"
+            cat public/robots.txt
+          else
+            echo "robots.txt creation skipped for production URL."
           fi
 
       - name: Upload artifact

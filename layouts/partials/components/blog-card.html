@@ -1,0 +1,30 @@
+<div class="bg-body dark:bg-darkmode-body">
+  {{ $image := .Params.image }}
+  {{ if $image }}
+    <a href="{{ .RelPermalink }}">
+      {{ partial "image" (dict "Src" $image "Alt" .Title "Class" "mb-6 w-full rounded" "Context" .Page  "Size" "504x280" "Command" "Fill") }}
+    </a>
+  {{ end }}
+  <h4 class="mb-3">
+    <a href="{{ .RelPermalink }}">
+      {{ .Title }}
+    </a>
+  </h4>
+  <ul class="mb-4 flex flex-wrap items-center leading-tight text-sm">
+    <li class="mr-4 flex items-center">
+      {{ partial "icon.html" (dict "style" "regular" "name" "calendar" "class" "mr-2") }}
+      <span>{{ .Date.Format "January 2, 2006" }}</span>
+    </li>
+    {{ if .Params.author }}
+    <li class="flex items-start">
+      <span class="flex-shrink-0 mt-px">
+          {{ partial "icon.html" (dict "style" "regular" "name" "circle-user" "class" "mr-2") }}
+      </span>
+      <span>
+          {{ partial "components/author-links.html" . }}
+      </span>
+    </li>
+    {{ end }}
+  </ul>
+  <p class="mb-6">{{ .Description }}</p>
+</div>

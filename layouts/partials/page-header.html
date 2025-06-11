@@ -1,0 +1,9 @@
+<section class="from-body to-theme-light dark:from-darkmode-body dark:to-darkmode-theme-light bg-gradient-to-b py-6">
+  <div class="container">
+    <div>
+      <h1 class="mb-3">{{ .Title | title }}</h1>
+      <p class="mb-3">{{ .Description }}</p>
+      {{ partial "components/breadcrumb" (dict "Context" . ) }}
+    </div>
+  </div>
+</section>

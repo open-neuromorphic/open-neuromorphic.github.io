@@ -1,0 +1,35 @@
+{{ $page_context := . }}
+{{ $itemListElements := slice }}
+
+{{ $breadcrumbItemsForLD := slice }}
+{{ $positionLD := 1 }}
+
+{{ $breadcrumbItemsForLD = $breadcrumbItemsForLD | append (dict "name" (i18n "home" | default "Home") "url" (site.BaseURL | absLangURL) "position" $positionLD) }}
+{{ $positionLD = add $positionLD 1 }}
+
+{{ if or (eq $page_context.Section "workshops") (eq $page_context.Section "contributors") }}
+  {{ $ncPage := site.GetPage "neuromorphic-computing" }}
+  {{ $breadcrumbItemsForLD = $breadcrumbItemsForLD | append (dict "name" ($ncPage.Title | default "Neuromorphic Computing") "url" (("/neuromorphic-computing/" | relLangURL) | absLangURL) "position" $positionLD) }}
+  {{ $positionLD = add $positionLD 1 }}
+{{ end }}
+
+{{ range $page_context.Ancestors.Reverse }}
+  {{ if and (not .IsHome) (ne .Title "Pages") (ne .Title "") }}
+    {{ $breadcrumbItemsForLD = $breadcrumbItemsForLD | append (dict "name" .Title "url" (.RelPermalink | absLangURL) "position" $positionLD) }}
+    {{ $positionLD = add $positionLD 1 }}
+  {{ end }}
+{{ end }}
+
+{{ if and (not .IsHome) (ne .Title "") }}
+  {{ $breadcrumbItemsForLD = $breadcrumbItemsForLD | append (dict "name" $page_context.Title "position" $positionLD) }}
+{{ end }}
+
+{{ if gt (len $breadcrumbItemsForLD) 1 }}
+  {{ range $breadcrumbItemsForLD }}
+    {{ $listItem := dict "@type" "ListItem" "position" .position "name" .name }}
+    {{ with .url }}{{ $listItem = merge $listItem (dict "item" (. | absLangURL)) }}{{ end }}
+    {{ $itemListElements = $itemListElements | append $listItem }}
+  {{ end }}
+  
+  {{ return (dict "@context" "https://schema.org" "@type" "BreadcrumbList" "itemListElement" $itemListElements) }}
+{{ end }}

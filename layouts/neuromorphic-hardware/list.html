@@ -1,0 +1,71 @@
+{{ define "main" }}
+  {{ partial "page-header" . }}
+
+  <section class="section pt-8">
+    <div class="container">
+      <div class="prose dark:prose-invert max-w-none mx-auto text-center mb-12">
+        <p class="text-lg">
+          Welcome to the Open Neuromorphic Hardware Guide. This directory provides a comprehensive overview of neuromorphic hardware, from pioneering past projects to the latest commercial and research chips. Each entry includes key specifications, architectural details, and links to relevant publications.
+          For definitions of common terms, please see the <a href="#glossary">glossary</a> below.
+        </p>
+      </div>
+
+      {{ $all_hardware := where .Site.RegularPages "Type" "neuromorphic-hardware" }}
+      {{ $grouped_by_year := $all_hardware.GroupByParam "product.release_year" }}
+      {{ $sorted_groups := sort $grouped_by_year "Key" "desc" }}
+
+      <ul class="max-w-4xl mx-auto list-none p-0">
+        {{ range $sorted_groups }}
+          <li class="year-section mb-12 text-center">
+            <h2 class="text-3xl font-bold mb-6 pb-2 border-primary dark:border-darkmode-primary">{{ .Key }}</h2>
+            <ul class="text-left space-y-6 list-none p-0">
+              {{ $sorted_pages_in_year := sort .Pages "Title" "asc" }}
+              {{ range $sorted_pages_in_year }}
+                <li>
+                  {{ partial "components/hardware-card-wide.html" . }}
+                </li>
+              {{ end }}
+            </ul>
+          </li>
+        {{ end }}
+      </ul>
+
+      <div id="glossary" class="pt-12 max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-8">Glossary of Terms</h2>
+        <details class="bg-theme-light dark:bg-darkmode-theme-light rounded-lg shadow-md p-6 cursor-pointer">
+          <summary class="font-semibold text-xl text-dark dark:text-darkmode-dark list-none">
+            <span class="summary-title">Click to expand/collapse glossary</span>
+            <span class="float-right transition-transform duration-300 transform group-open:rotate-180">+</span>
+          </summary>
+          <div class="mt-4 grid md:grid-cols-2 gap-x-8 gap-y-4 prose dark:prose-invert max-w-none">
+            {{ with .Params.glossary }}
+              {{ range . }}
+                <div class="glossary-item">
+                  <p><strong>{{ .term }}:</strong> {{ .definition | markdownify }}</p>
+                </div>
+              {{ end }}
+            {{ end }}
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const details = document.querySelector('#glossary details');
+      const summary = details.querySelector('summary');
+      const icon = summary.querySelector('.float-right');
+      
+      details.addEventListener('toggle', function() {
+        if (details.open) {
+          icon.textContent = '−';
+          icon.style.transform = 'rotate(0deg)';
+        } else {
+          icon.textContent = '+';
+          icon.style.transform = 'rotate(0deg)';
+        }
+      });
+    });
+  </script>
+{{ end }}

@@ -1,0 +1,42 @@
+{{ define "main" }}
+  {{ partial "page-header" . }}
+
+  <section class="section pt-6">
+    <div class="container">
+      <div class="content mb-8">
+        {{ .Content }} {{/* Content from _index.md */}}
+      </div>
+
+      {{ $all_initiatives := .RegularPages.ByTitle }}
+      {{ $active_initiatives := where $all_initiatives "Params.legacy" "ne" true }}
+      {{ $legacy_initiatives := where $all_initiatives "Params.legacy" true }}
+
+      {{ if $active_initiatives }}
+        <h2 class="text-3xl font-semibold mb-6">Current Initiatives</h2>
+        <div class="row">
+          {{ $paginator := .Paginate $active_initiatives }}
+          {{ range $paginator.Pages }}
+            <div class="md:col-6 lg:col-4 mb-8">
+              {{ partial "components/initiative-card.html" . }}
+            </div>
+          {{ end }}
+        </div>
+        {{ partial "components/pagination.html" . }}
+      {{ end }}
+
+      {{ if $legacy_initiatives }}
+        <div class="mt-12">
+          <h2 class="text-3xl font-semibold mb-6 border-t border-border dark:border-darkmode-border pt-8">Finalized / Past Contribution Efforts</h2>
+          <div class="row">
+            {{ range $legacy_initiatives }}
+              <div class="md:col-6 lg:col-4 mb-8">
+              {{ partial "components/initiative-card.html" . }}
+              </div>
+            {{ end }}
+          </div>
+        </div>
+      {{ end }}
+
+    </div>
+  </section>
+{{ end }}

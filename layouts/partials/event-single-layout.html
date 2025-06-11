@@ -1,0 +1,48 @@
+{{ $page_context := . }}
+{{ $related_section_name := .Scratch.Get "relatedSection" }}
+{{ $sidebar_content_partial := .Scratch.Get "sidebarContentPartial" }}
+
+{{ partial "page-header" $page_context }}
+<section class="section pt-6">
+  <div class="container">
+    <article class="row justify-center">
+      <div class="lg:col-8 mb-7">
+        <div class="mb-4">
+        {{ $image := $page_context.Params.image }}
+        {{ if $page_context.Params.video }}
+           {{ partial "youtube-lite.html" (dict "Id" $page_context.Params.video ) }}
+        {{ else if $image }}
+          {{ partial "image" (dict "Src" $image "Context" $page_context "Alt" $page_context.Title "Class" "w-full rounded") }}
+        {{ else }}
+          {{ partial "image" (dict "Src" "images/workshop-thumbnail-default.png" "Alt" $page_context.Title "Class" "w-full rounded") }}
+        {{ end }}
+        </div>
+        {{ partial "components/metadata-bar.html" (dict "context" $page_context "type" "event") }}
+        <div class="content">
+          {{ $page_context.Content }}
+        </div>
+      </div>
+      <div class="lg:col-4 mb-14">
+        {{ partial $sidebar_content_partial $page_context }}
+      </div>
+      {{ partial "components/speaker-details.html" $page_context }}
+    </article>
+
+    {{ $related := (where site.RegularPages "Section" $related_section_name) }}
+    {{ $related = (where $related ".Permalink" "!=" $page_context.Permalink) }}
+    {{ $filteredRelated := (where $related "Params.upcoming" "ne" true) }}
+    {{ $filteredRelated = $filteredRelated | shuffle | first 3 }}
+    {{ with $filteredRelated }}
+    <div class="section pb-0">
+      <h2 class="h3 mb-4">Related {{ $related_section_name | humanize }}</h2>
+      <div class="row">
+        {{ range . }}
+        <div class="lg:col-4">
+          {{ partial "components/event-card.html" (dict "Context" . "variant" "grid") }}
+        </div>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
+  </div>
+</section>

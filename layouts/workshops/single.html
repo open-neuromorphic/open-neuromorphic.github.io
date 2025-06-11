@@ -1,0 +1,5 @@
+{{ define "main" }}
+  {{ .Scratch.Set "relatedSection" "workshops" }}
+  {{ .Scratch.Set "sidebarContentPartial" "workshops-sidebar.html" }}
+  {{ partial "event-single-layout.html" . }}
+{{ end }}

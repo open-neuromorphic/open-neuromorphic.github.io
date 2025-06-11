@@ -1,0 +1,20 @@
+<div class="mb-8">
+  <div class="content-panel p-6">
+    <ul class="space-y-4">
+      {{ $softwareSectionPage := site.GetPage "neuromorphic-computing/software" }}
+      {{ range $softwareSectionPage.Pages }}
+      {{ if eq .Params.section "software-list" }}
+      <li>
+        <a
+          class="hover:text-primary dark:hover:text-darkmode-primary {{ if eq $.Page.Title .Title }} active {{ end }} flex justify-between items-center"
+          href="{{ .Permalink }}"
+          style="min-width: 150px;">
+          <span class="text-xl font-semibold">{{ .Params.section_title }}</span>
+          <span class="dark:bg-gray-500 dark:text-white bg-gray-300 font-bold text-black px-2 py-1 rounded-lg">{{ .Pages | len }}</span>
+        </a>
+      </li>
+      {{ end }}
+      {{ end }}
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,93 @@
+{{ $page := . }}
+{{ with $page.Params }}
+<div class="p-6 rounded-lg bg-theme-light dark:bg-darkmode-theme-light shadow-lg sticky top-28">
+  {{ with .logo }}
+    {{ $logoRes := $page.Resources.GetMatch . }}
+    {{ if $logoRes }}
+      {{ $thumb := $logoRes.Fit "200x200" }}
+      <div class="p-2 bg-white dark:bg-gray-800 rounded-lg mb-4 flex justify-center">
+        <img src="{{ $thumb.RelPermalink }}" alt="{{ $page.Title }} logo" class="max-h-24 w-auto">
+      </div>
+    {{ end }}
+  {{ end }}
+
+  <h2 class="text-2xl font-bold text-center mb-4">{{ $page.Title }}</h2>
+
+  <div class="grid grid-cols-2 gap-2 mb-4">
+    <a href="{{ .website }}" target="_blank" rel="noopener" class="btn btn-new-primary text-sm text-center">Website</a>
+    <a href="{{ .source_code }}" target="_blank" rel="noopener" class="btn btn-new-outline text-sm text-center">Source Code</a>
+  </div>
+
+  <div class="flex justify-center items-center space-x-2 mb-4">
+    {{ with .version_widget_url }}
+      <img src="{{ . }}" alt="Version Badge" class="inline-block h-5">
+    {{ end }}
+    {{ with .stars_widget_url }}
+      <img src="{{ . }}" alt="GitHub Stars" class="inline-block h-5">
+    {{ end }}
+  </div>
+
+  <div class="border-t border-border dark:border-darkmode-border pt-4">
+    <dl class="text-sm text-text dark:text-darkmode-text">
+      <div class="flex justify-between py-1">
+        <dt class="font-semibold">Maintainer(s):</dt>
+        <dd class="text-right">
+          {{ with .maintainer }}
+            {{ $maintainerList := . }}
+            {{ if reflect.IsSlice $maintainerList }}
+              {{ $links := slice }}
+              {{ range $maintainerList }}
+                {{ $nameForProcessing := . | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" }}
+                {{ $contributorSlug := $nameForProcessing | anchorize }}
+                {{ $contributorPage := $page.Site.GetPage (printf "contributors/%s" $contributorSlug) }}
+                {{ if $contributorPage }}
+                  {{ $links = $links | append (printf `<a href="%s" class="text-primary dark:text-darkmode-primary hover:underline">%s</a>` $contributorPage.RelPermalink .) }}
+                {{ else }}
+                  {{ $links = $links | append . }}
+                {{ end }}
+              {{ end }}
+              {{ delimit $links ", " | safeHTML }}
+            {{ else }}
+              {{ $nameForProcessing := . | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" }}
+              {{ $contributorSlug := $nameForProcessing | anchorize }}
+              {{ $contributorPage := $page.Site.GetPage (printf "contributors/%s" $contributorSlug) }}
+              {{ if $contributorPage }}
+                <a href="{{ $contributorPage.RelPermalink }}" class="text-primary dark:text-darkmode-primary hover:underline">{{ . }}</a>
+              {{ else }}
+                {{ . }}
+              {{ end }}
+            {{ end }}
+          {{ else }}
+            N/A
+          {{ end }}
+        </dd>
+      </div>
+      <div class="flex justify-between py-1">
+        <dt class="font-semibold">Language:</dt>
+        <dd class="text-right">{{ .language | default "N/A" }}</dd>
+      </div>
+      <div class="flex justify-between py-1">
+        <dt class="font-semibold">License:</dt>
+        <dd class="text-right">{{ .license | default "N/A" }}</dd>
+      </div>
+       <div class="flex justify-between py-1">
+        <dt class="font-semibold">Application:</dt>
+        <dd class="text-right">{{ .field_of_application | default "N/A" }}</dd>
+      </div>
+      <div class="flex justify-between py-1 items-center">
+        <dt class="font-semibold">Dependencies:</dt>
+        <dd class="text-right">{{ .dependencies | default "N/A" }}</dd>
+      </div>
+    </dl>
+  </div>
+  
+  <div class="border-t border-border dark:border-darkmode-border pt-4 mt-4 flex flex-wrap gap-2 justify-center">
+    {{ if .supports_NIR }}
+      <span class="support-badge">NIR Support</span>
+    {{ end }}
+    {{ if .supports_hardware }}
+      <span class="support-badge">Hardware Support</span>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

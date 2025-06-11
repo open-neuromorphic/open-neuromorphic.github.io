@@ -1,0 +1,108 @@
+{{ define "main" }}
+{{ partial "page-header" . }}
+
+<section class="section pt-6 mt-0">
+  <div class="container">
+    {{/* Display the main content of the _index.md page */}}
+    <div class="content text-center mb-12 prose dark:prose-invert max-w-none">
+        {{ .Content }}
+    </div>
+
+    {{/* Display the new guide cards */}}
+    <div class="row gx-5 gy-8 mb-16">
+      {{ range .Params.sections }}
+        <div class="{{ .column }}">
+          {{/* Updated partial call to pass page_context */}}
+          {{ partial "components/guide-card.html" (dict
+              "title" .title
+              "url" .url
+              "icon" .icon
+              "description" .description
+              "key_areas" .key_areas
+              "cta_text" .cta_text
+              "page_context" $.Page
+          )}}
+        </div>
+      {{ end }}
+    </div>
+
+    {{/* --- New Modern Recent Events Sections --- */}}
+    {{/* Recent Workshops Section */}}
+    {{ $workshops_all := where site.RegularPages "Section" "workshops" }}
+    {{ $workshops_past_valid_date := slice }}
+    {{ range $workshops_all }}
+      {{ if and (ne .Params.upcoming true) (.Date) (not .Date.IsZero) }}
+        {{ $workshops_past_valid_date = $workshops_past_valid_date | append . }}
+      {{ end }}
+    {{ end }}
+    {{ $workshops_sorted := sort $workshops_past_valid_date "Date" "desc" }}
+    {{ partial "custom/modern-recent-events-section.html" (dict
+        "section_title" "Workshops"
+        "section_subtitle" "Catch up on our latest expert-led sessions and community discussions."
+        "events_list" $workshops_sorted
+        "view_all_link" "/workshops/"
+        "view_all_text" "View All Workshops"
+        "page_context" .
+      )
+    }}
+
+    {{/* Recent Hacking Hours Section */}}
+    {{ $hacking_hours_all := where site.RegularPages "Type" "hacking-hours" }}
+    {{ $hacking_hours_past_valid_date := slice }}
+    {{ range $hacking_hours_all }}
+      {{ if and (ne .Params.upcoming true) (.Date) (not .Date.IsZero) }}
+        {{ $hacking_hours_past_valid_date = $hacking_hours_past_valid_date | append . }}
+      {{ end }}
+    {{ end }}
+    {{ $hacking_hours_sorted := sort $hacking_hours_past_valid_date "Date" "desc" }}
+    {{ partial "custom/modern-recent-events-section.html" (dict
+        "section_title" "Hacking Hours"
+        "section_subtitle" "Review our latest live coding explorations into neuromorphic software and tools."
+        "events_list" $hacking_hours_sorted
+        "view_all_link" "/neuromorphic-computing/software/hacking-hours/"
+        "view_all_text" "View All Hacking Hours"
+        "page_context" .
+      )
+    }}
+
+    {{/* Recent Student Talks Section */}}
+    {{ $student_talks_all := where site.RegularPages "Type" "student-talks" }}
+    {{ $student_talks_past_valid_date := slice }}
+    {{ range $student_talks_all }}
+      {{ if and (ne .Params.upcoming true) (.Date) (not .Date.IsZero) }}
+        {{ $student_talks_past_valid_date = $student_talks_past_valid_date | append . }}
+      {{ end }}
+    {{ end }}
+    {{ $student_talks_sorted := sort $student_talks_past_valid_date "Date" "desc" }}
+    {{ partial "custom/modern-recent-events-section.html" (dict
+        "section_title" "Student Talks"
+        "section_subtitle" "Insights from students and early-career researchers in neuromorphic computing."
+        "events_list" $student_talks_sorted
+        "view_all_link" "/neuromorphic-computing/student-talks/"
+        "view_all_text" "View All Student Talks"
+        "page_context" .
+      )
+    }}
+    
+    <!-- Recent Posts -->
+    <div class="mb-16"> <!-- Added mb-16 for spacing similar to new sections -->
+      <h3 class="section-title text-3xl font-semibold mb-3">Blog</h3>
+      <p class="section-subtitle text-lg text-gray-600 dark:text-gray-400 mb-8 mx-auto">Stay informed with our latest articles, tutorials, and community updates.</p>
+      <div class="row"> <!-- Kept row for 3-column layout for blogs -->
+        {{ $blog_posts := where .Site.RegularPages "Section" "blog" }}
+        {{ $sorted_blog_posts := sort $blog_posts "Date" "desc" }}
+        {{ range first 3 $sorted_blog_posts }}
+          <div class="md:col-6 lg:col-4 mb-14"> <!-- Changed md:col-12 to md:col-6 for better md layout -->
+            {{ partial "components/blog-card" . }}
+          </div>
+        {{ end }}
+      </div>
+      <div class="text-center mt-8"> <!-- Centered "View All Posts" button -->
+         <a href="{{ "blog/" | relLangURL }}" class="btn btn-new-primary">View All Posts</a>
+      </div>
+    </div>
+    
+  </div>
+</section>
+{{ end }}
+

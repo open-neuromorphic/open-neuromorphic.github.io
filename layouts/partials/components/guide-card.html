@@ -1,0 +1,33 @@
+{{ $title := .title }}
+{{ $url_segment := .url }}
+{{ $icon := .icon }}
+{{ $description := .description }}
+{{ $key_areas := .key_areas }}
+{{ $cta_text := .cta_text }}
+{{ $page_context := .page_context }}
+
+<div class="guide-card bg-theme-light dark:bg-darkmode-theme-light rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 p-4 md:p-6 h-full flex flex-col">
+  <div class="flex items-center mb-3">
+    {{ if $icon }}
+      {{ $iconData := partial "helpers/parse-fa-class.html" $icon }}{{ partial "icon.html" (dict "style" $iconData.style "name" $iconData.name "class" "text-3xl text-[var(--color-primary-new)] mr-4") }}
+    {{ end }}
+    <h2 class="text-xl md:text-2xl font-bold text-dark dark:text-darkmode-dark leading-tight">{{ $title }}</h2>
+  </div>
+  <p class="text-text dark:text-darkmode-text mb-4 text-sm flex-grow">{{ $description }}</p>
+
+  {{ if $key_areas }}
+    <div class="mb-4">
+      <h3 class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">Key areas:</h3>
+      <ul class="list-disc list-inside text-xs text-gray-600 dark:text-gray-400 space-y-0.5 pl-1">
+        {{ range $key_areas }}
+          <li>{{ . }}</li>
+        {{ end }}
+      </ul>
+    </div>
+  {{ end }}
+
+  {{ $final_url := path.Join $page_context.RelPermalink $url_segment }}
+  <a href="{{ $final_url | relLangURL }}" class="btn btn-new-primary btn-sm mt-auto w-full md:w-auto md:self-start py-2 px-4 text-base">
+    {{ $cta_text }} {{ partial "icon.html" (dict "style" "solid" "name" "arrow-right" "class" "ml-1 text-xs") }}
+  </a>
+</div>

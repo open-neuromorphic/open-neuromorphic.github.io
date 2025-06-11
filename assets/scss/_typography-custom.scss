@@ -1,0 +1,225 @@
+// assets/scss/_typography-custom.scss
+
+// Gradient text class
+.gradient-text {
+    background: linear-gradient(135deg, var(--color-primary-new) 0%, var(--color-secondary-new) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent !important;
+}
+
+// Specific overrides for header navigation links if Tailwind classes aren't enough
+.navbar-nav .nav-link {
+  @apply text-gray-700 dark:text-darkmode-light px-3 py-2;
+}
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  color: var(--color-primary-new);
+}
+
+// Ensure the logo text picks up the gradient if it's text-based
+.navbar-brand.gradient-text {
+  // Gradient is applied by the class itself.
+}
+
+h1.homepage {
+  font-size: 1.7em;
+}
+
+nav#TableOfContents {
+  li.active a {
+    color: #022b4a !important;
+    text-decoration: none !important;
+    font-weight: 550 !important;
+  }
+
+  ol ol li {
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
+}
+
+.code span {
+  color: #000;
+}
+
+figcaption {
+  color: #000;
+  margin-top: 0 !important;
+}
+
+.authorContent {
+  ul li {
+    list-style: disc;
+    margin-left: 25px;
+    padding: 10px 30px 10px 0;
+  }
+
+  p {
+    margin-bottom: 10px;
+  }
+}
+
+
+//Links
+a {
+  overflow-wrap: break-word;
+}
+
+.content :is(:where(a):not(:where([class~="not-prose"], [class~="not-prose"] *))),
+section a:not(.breadcrumb-link-parent, .social-link-container) { // Exclude social link containers
+  text-decoration-color: #d7c7e3;
+  text-decoration-thickness: 0.115em;
+  text-underline-offset: 2.6px;
+  text-decoration-line: underline;
+  font-weight: 550 !important;
+  transition: text-decoration-color 0.3s ease-in-out;
+}
+
+.content :is(:where(a):not(:where([class~="not-prose"], [class~="not-prose"] *)):hover),
+section a:not(.breadcrumb-link-parent, .social-link-container):hover {
+  text-decoration-color: #200435;
+}
+
+// New rules for social links
+section a.social-link-container {
+  text-decoration-line: none !important; // Remove underline from the container <a>
+  font-weight: 550 !important;
+}
+
+section a.social-link-container .social-link-text {
+  text-decoration-line: underline;
+  text-decoration-color: #d7c7e3;
+  text-decoration-thickness: 0.115em;
+  text-underline-offset: 2.6px;
+  transition: text-decoration-color 0.3s ease-in-out;
+}
+
+section a.social-link-container:hover .social-link-text {
+  text-decoration-color: #200435;
+}
+
+
+h1 a, h2 a, h3 a, h4 a, h5 a {
+  text-decoration: none !important;
+  font-weight: 550 !important;
+}
+
+.social-icons a {
+  color: #FFF !important;
+}
+
+.dark {
+  figcaption {
+    color: #FFF;
+  }
+
+  .content :is(:where(a):not(:where([class~="not-prose"], [class~="btn"], [class~="not-prose"] *))),
+  section a:not(.breadcrumb-link-parent, .social-link-container) { // Exclude social link containers
+    color: #bcfbff !important;
+    text-decoration-color: #288b8c;
+  }
+
+  .content :is(:where(a):not(:where([class~="not-prose"], [class~="not-prose"] *)):hover),
+  section a:not(.breadcrumb-link-parent, .social-link-container):hover {
+    text-decoration-color: #bcfbff !important;
+  }
+  
+  // New rules for dark mode social links
+  .dark section a.social-link-container {
+      color: #bcfbff !important;
+  }
+
+  .dark section a.social-link-container .social-link-text {
+      text-decoration-color: #288b8c;
+  }
+  
+  .dark section a.social-link-container:hover .social-link-text {
+      text-decoration-color: #bcfbff !important;
+  }
+
+  h1 a, h2 a, h3 a, h4 a, h5 a {
+    color: #ffffff !important;
+  }
+
+  nav#TableOfContents {
+    li.active a {
+      color: #bcfbff !important;
+      font-weight: 600 !important;
+    }
+  }
+
+  .social-icons a {
+    color: #000 !important;
+  }
+  
+  .author-card-compact {
+    h4 a {
+      color: #bcfbff !important;
+      text-decoration-color: #288b8c !important;
+
+      &:hover {
+        text-decoration-color: #bcfbff !important;
+      }
+    }
+  }
+}
+
+.author-card-compact {
+  h4 {
+    @apply text-lg font-semibold;
+    a {
+      color: #200435 !important;
+      text-decoration-line: underline !important;
+      text-decoration-color: #d7c7e3 !important;
+      text-decoration-thickness: 0.115em !important;
+      text-underline-offset: 2.6px !important;
+      font-weight: 550 !important;
+      transition: text-decoration-color 0.3s ease-in-out;
+
+      &:hover {
+        text-decoration-color: #200435 !important;
+      }
+    }
+  }
+
+  .role-compact {
+    @apply text-sm text-text dark:text-darkmode-text mt-1;
+  }
+}
+
+// Style for the date badge within an event card context
+.event-card .date-badge {
+  background-color: var(--color-primary-new);
+  @apply text-white py-2 px-4 rounded-md text-sm font-semibold inline-block;
+}
+
+.software-hacking-hours-promo {
+  .past-event-promo {
+    .flex {
+      div h4 a {
+        font-size: 1.1rem;
+      }
+    }
+  }
+}
+// New rules for contributor page social links
+.contributor-socials a {
+  text-decoration: none !important; 
+  font-weight: normal !important;
+  color: #444444; 
+  transition: color 0.2s ease-in-out;
+
+  &:hover {
+    color: #121212; 
+  }
+}
+
+.dark .contributor-socials a {
+  color: #B4AFB6; 
+  
+  &:hover {
+    color: #bcfbff; 
+  }
+}

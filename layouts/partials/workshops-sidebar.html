@@ -1,0 +1,10 @@
+<div class="pb-4 text-center">~ Share this Site ~
+{{ partial "override-social-share" (dict "Context" . "Class" "share-icons" "Whatsapp" true "Telegram" false) }}
+</div>
+<div class="px-7 pt-7 content-panel">
+  <h3 class="pb-5 pt-5 text-xl">Upcoming Workshops</h3>
+  {{ partial "components/upcoming-events" . }}
+  <div class="text-right pb-5 pt-5">
+    <a href="/getting-involved/" class="btn btn-new-primary btn-sm">Host a workshop</a>
+  </div>
+</div>

@@ -1,0 +1,96 @@
+.journey-ribbon-card {
+  @apply bg-white dark:bg-darkmode-theme-light rounded-xl shadow-lg mb-10 flex flex-col items-center;
+  padding: 1.5rem; /* Default padding */
+}
+
+@media (min-width: 768px) { /* md breakpoint */
+  .journey-ribbon-card {
+    @apply flex-row items-start;
+    padding: 2rem; /* Larger padding for wider screens */
+  }
+  .journey-ribbon-card.reverse {
+    @apply flex-row-reverse;
+  }
+  .journey-ribbon-card.reverse .journey-ribbon-image-container {
+    @apply mr-0 ml-8; // Adjusted margin forrtl
+  }
+}
+
+.journey-ribbon-image-container {
+  @apply flex-shrink-0 w-full mb-6;
+  max-width: 250px; /* Max width for the image on mobile */
+}
+
+@media (min-width: 768px) { /* md breakpoint */
+  .journey-ribbon-image-container {
+    width: 250px; /* Fixed width for image on larger screens */
+    @apply mr-8 mb-0; // margin-right and reset bottom margin
+  }
+}
+
+.journey-ribbon-image {
+  @apply w-full h-auto rounded-lg object-cover;
+  max-height: 250px; /* Max height for the image itself */
+}
+
+.journey-ribbon-content {
+  @apply flex-grow text-center;
+}
+@media (min-width: 768px) { /* md breakpoint */
+  .journey-ribbon-content {
+    @apply text-left;
+  }
+}
+
+.journey-ribbon-contributor {
+  @apply text-sm mb-1 italic;
+  color: var(--color-text-muted-new); // Using new var from mockup
+}
+.dark .journey-ribbon-contributor {
+   @apply text-gray-400; // Example dark mode color
+}
+
+.journey-ribbon-title {
+  @apply text-2xl md:text-3xl font-bold mb-3; // Adjusted size slightly
+  color: var(--color-text-new); // Using new var from mockup
+}
+.dark .journey-ribbon-title {
+  @apply text-darkmode-text;
+}
+
+.journey-ribbon-description {
+  @apply text-base mb-6;
+  color: var(--color-text-muted-new); // Using new var from mockup
+}
+.dark .journey-ribbon-description {
+   @apply text-gray-400; // Example dark mode color
+}
+
+.journey-ribbon-links-title {
+  @apply text-lg font-semibold mt-4 mb-2;
+  color: var(--color-text-new);
+}
+.dark .journey-ribbon-links-title {
+  @apply text-darkmode-light;
+}
+
+.journey-ribbon-links ul {
+  @apply list-none p-0 m-0;
+}
+.journey-ribbon-links li {
+  @apply mb-1;
+}
+.journey-ribbon-links a {
+  color: var(--color-secondary-new); // Using new var from mockup
+  @apply font-medium no-underline; // remove default Hugo link underline for these
+}
+.journey-ribbon-links a:hover {
+  @apply underline;
+}
+.dark .journey-ribbon-links a {
+  color: var(--color-accent-new); // Example dark mode link color, adjust as needed
+}
+
+.journey-ribbon-cta {
+  @apply mt-6;
+}

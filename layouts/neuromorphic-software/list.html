@@ -1,0 +1,25 @@
+{{ define "main" }}
+  {{ partial "page-header" . }}
+
+  <section class="section pt-8">
+    <div class="container">
+      {{/* Display Hacking Hours promo partial only on the main software list page */}}
+      {{ if eq .File.Path (path.Join "neuromorphic-computing" "software" "_index.md") }}
+        <div class="row"> {{/* Wrap promo in its own row */}}
+          <div class="col-12 mb-8 mt-0">
+            {{ partial "custom/hacking-hours-software-promo.html" . }}
+          </div>
+        </div>
+      {{ end }}
+
+      <div class="row gx-5"> {{/* This row contains the main software list and categories sidebar */}}
+        <div class="lg:col-8">
+          {{ partial "components/software-list" . }}
+        </div>
+        <div class="lg:col-4 pl-0">
+          {{ partial "components/software-categories" . }}
+        </div>
+      </div>
+    </div>
+  </section>
+{{ end }}

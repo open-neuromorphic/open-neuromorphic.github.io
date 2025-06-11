@@ -1,0 +1,11 @@
+{{- $style := .style | default "solid" -}}
+{{- $name := .name -}}
+{{- $class := .class | default "" -}}
+
+{{- if $name -}}
+<svg class="icon icon-{{ $name }} {{ $class }}" fill="currentColor" aria-hidden="true" role="img" style="display: inline-block; vertical-align: -0.125em; width: 1em; height: 1em;">
+  <use xlink:href="#icon-{{ $style }}-{{ $name }}"></use>
+</svg>
+{{- else -}}
+  {{- warnf "Icon partial called without a 'name'." -}}
+{{- end -}}

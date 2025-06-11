@@ -1,0 +1,36 @@
+{{ $page_context := . }}
+{{ $sidebar_content_partial := .Scratch.Get "sidebarContentPartial" }}
+
+{{ partial "page-header" $page_context }}
+
+<section class="section pt-6">
+  <div class="container">
+    <div class="row">
+      {{ $allPastEvents := where $page_context.RegularPages "Params.upcoming" "ne" true | sort "Date" "Desc" }}
+      {{ with index $allPastEvents 0 }}
+      <div class="lg:col-8 md:col-12 mb-8">
+        {{ partial "components/session-card-video" . }}
+      </div>
+      {{ end }}
+      <div class="lg:col-4 md:col-12 mb-14">
+         {{ partial $sidebar_content_partial $page_context }}
+      </div>
+    </div>
+    <div class="row">
+      {{ $eventsForList := after 1 $allPastEvents }}
+      {{ $firstFourOfRest := first 4 $eventsForList }}
+      {{ range $firstFourOfRest }}
+      <div class="col-12 mb-14">
+        {{ partial "components/session-card-wide" . }}
+      </div>
+      {{ end }}
+
+      {{ $remainingPages := after 4 $eventsForList }}
+      {{ range $remainingPages }}
+      <div class="lg:col-4 mb-14">
+        {{ partial "components/session-card" . }}
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>

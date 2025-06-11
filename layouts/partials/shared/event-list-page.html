@@ -1,0 +1,75 @@
+{{ $page_context := .context }}
+{{ $sidebar_content_partial := .sidebar }}
+
+{{/*
+  1. Get all regular content pages within the current section context.
+*/}}
+{{ $section_pages := $page_context.RegularPages }}
+
+{{/*
+  2. Filter for pages that are not upcoming AND have a valid, non-zero date.
+     This is done by iterating and appending to a new slice. This is the most
+     robust way to create a clean collection and avoid errors.
+*/}}
+{{ $valid_past_events := slice }}
+{{ range $section_pages }}
+  {{ if and (ne .Params.upcoming true) .Date (not .Date.IsZero) }}
+    {{ $valid_past_events = $valid_past_events | append . }}
+  {{ end }}
+{{ end }}
+
+{{/*
+  3. Sort the clean collection. We sort by date ascending first,
+     then reverse the collection to get the desired newest-to-oldest order.
+     This is a standard and reliable Hugo pattern for descending sort.
+*/}}
+{{ $all_past_events_sorted := sort $valid_past_events "Date" | collections.Reverse }}
+
+{{/* 4. Separate the most recent event to feature it. */}}
+{{ $featured_event := "" }}
+{{ if gt (len $all_past_events_sorted) 0 }}
+  {{ $featured_event = index $all_past_events_sorted 0 }}
+{{ end }}
+
+{{/* 5. Create a list of the remaining events for the other layouts. */}}
+{{ $events_after_featured := slice }}
+{{ if gt (len $all_past_events_sorted) 1 }}
+  {{ $events_after_featured = after 1 $all_past_events_sorted }}
+{{ end }}
+
+{{ $wide_card_events := first 4 $events_after_featured }}
+{{ $grid_card_events := after 4 $events_after_featured }}
+
+{{ partial "page-header" $page_context }}
+
+<section class="section pt-6">
+  <div class="container">
+    <div class="row">
+      {{ with $featured_event }}
+        <div class="lg:col-8 md:col-12 mb-8">
+          {{ partial "components/event-card.html" (dict "Context" . "variant" "featured") }}
+        </div>
+      {{ else }}
+        <div class="lg:col-8 md:col-12 mb-8">
+          <p class="p-4 bg-gray-100 dark:bg-gray-700 rounded">No past events to display.</p>
+        </div>
+      {{ end }}
+      <div class="lg:col-4 md:col-12 mb-14">
+        {{ partial $sidebar_content_partial $page_context }}
+      </div>
+    </div>
+    <div class="row">
+      {{ range $wide_card_events }}
+        <div class="col-12 mb-14">
+          {{ partial "components/event-card.html" (dict "Context" . "variant" "wide") }}
+        </div>
+      {{ end }}
+
+      {{ range $grid_card_events }}
+        <div class="lg:col-4 mb-14">
+          {{ partial "components/event-card.html" (dict "Context" . "variant" "grid") }}
+        </div>
+      {{ end }}
+    </div>
+  </div>
+</section>

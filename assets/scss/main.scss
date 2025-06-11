@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @import "base";
+  @import "fonts";
+}
+
+@layer components {
+  @import "components";
+  @import "navigation";
+  @import "components/mobile-nav"; // Add this line
+  @import "buttons";
+}
+
+@layer utilities {
+  @import "utilities";
+}
+
+@import "social-share";
+@import "images";
+
+
+@import "module-overrides";
+@import "custom";
+
+// Custom component-like SCSS files
+@import "components/cookie-consent";
+
+@import "components/author-card";
+@import "components/event-card";
+
+@import "components/info-card";
+@import "components/breadcrumbs";
+@import "components/news-card";
+@import "components/journey-ribbon";
+@import "components/footer";
+@import "components/involvement-card";
+@import "components/hardware-card-wide"; // Add this line
+
+// Import new custom typography and buttons
+@import "components/mega-menu"; // Add this line
+@import "typography-custom";

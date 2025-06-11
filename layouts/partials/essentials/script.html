@@ -1,0 +1,38 @@
+{{- /* layouts/partials/essentials/script.html */ -}}
+{{ $scripts := slice }}
+{{ range site.Params.plugins.js }}
+  {{ if findRE "^http" .link }}
+    <script
+      src="{{ .link | relURL }}"
+      type="application/javascript"
+      {{ .attributes | safeHTMLAttr }}></script>
+  {{ else }}
+    {{ $scripts = $scripts | append (resources.Get .link) }}
+  {{ end }}
+{{ end }}
+
+{{ $mainScript := resources.Get "js/main.js" }}
+{{ $scripts = $scripts | append $mainScript }}
+
+{{ $concatenatedScripts := $scripts | resources.Concat "js/script.js" }}
+{{ if hugo.IsProduction }}
+  {{ $concatenatedScripts = $concatenatedScripts | minify | fingerprint }}
+{{ end }}
+
+{{ $cookieScriptResource := resources.Get "plugins/cookie.js" }}
+{{ if $cookieScriptResource }}
+  {{ $cookieScript := $cookieScriptResource }}
+  {{ if hugo.IsProduction }}
+      {{ $cookieScript = $cookieScript | minify | fingerprint }}
+  {{ end }}
+  <script crossorigin="anonymous" integrity="{{ $cookieScript.Data.Integrity }}" src="{{ $cookieScript.RelPermalink }}"></script>
+{{ else }}
+  {{ warnf "plugins/cookie.js not found in assets." }}
+{{ end }}
+
+{{ partialCached "cookie-consent.html" . }}
+
+<script
+  crossorigin="anonymous"
+  integrity="{{ $concatenatedScripts.Data.Integrity }}"
+  src="{{ $concatenatedScripts.RelPermalink }}"></script>

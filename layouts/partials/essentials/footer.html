@@ -1,0 +1,84 @@
+<footer class="footer bg-gray-800 dark:bg-black text-gray-300 pt-16 pb-8">
+  <div class="container">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+
+      <!-- Column 1: Brand & Social -->
+      <div class="lg:col-span-1 text-center md:text-left">
+        <a class="inline-block mb-4" href="{{ site.BaseURL | relLangURL }}">
+          {{ partial "logo" (dict "force_dark_logo" true) }}
+        </a>
+        <p class="text-sm text-gray-400 mb-6">
+          A global community fostering education, research, and open-source collaboration in brain-inspired AI and hardware.
+        </p>
+        <ul class="social-icons flex justify-center md:justify-start space-x-3">
+          {{ range site.Data.social.main }}
+            <li>
+              <a target="_blank" aria-label="{{ .name }}" rel="nofollow noopener" href="{{ .link | safeURL }}" class="bg-gray-700 hover:bg-[var(--color-primary-new)] text-white">
+                {{ $iconData := partial "helpers/parse-fa-class.html" .icon }}
+                {{ partial "icon.html" (dict "style" $iconData.style "name" $iconData.name) }}
+              </a>
+            </li>
+          {{ end }}
+        </ul>
+      </div>
+
+      <!-- Column 2: Explore -->
+      <div class="text-center md:text-left">
+        <h4 class="footer-heading">Explore</h4>
+        <nav aria-label="Explore our resources">
+          <ul class="footer-link-list">
+            {{ range site.Menus.footer_explore_new.ByWeight }}
+              <li><a href="{{ .URL | relLangURL }}" class="footer-link">{{ .Name }}</a></li>
+            {{ end }}
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Column 3: Community -->
+      <div class="text-center md:text-left">
+        <h4 class="footer-heading">Community</h4>
+        <nav aria-label="Community links">
+          <ul class="footer-link-list">
+            {{ range site.Menus.footer_community.ByWeight }}
+              <li>
+                <a href="{{ .URL | relLangURL }}" class="footer-link" {{ if findRE `^http` .URL }}target="_blank" rel="noopener"{{ end }}>
+                  {{ .Name }}
+                </a>
+              </li>
+            {{ end }}
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Column 4: About & Legal -->
+      <div class="text-center md:text-left">
+        <h4 class="footer-heading">About & Legal</h4>
+        <nav aria-label="About and legal information">
+          <ul class="footer-link-list">
+            {{ range site.Menus.footer_legal_new.ByWeight }}
+              <li><a href="{{ .URL | relLangURL }}" class="footer-link">{{ .Name }}</a></li>
+            {{ end }}
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="footer-bottom-bar">
+      <p>
+        {{ site.Params.copyright | markdownify }} | Site Built By: <a href="https://visioninit.dev">VisionInit</a>
+      </p>
+      {{ if .IsPage }}
+        {{ with .File }}
+          {{ with .Path }}
+            <p class="mt-2">
+              <a href='https://github.com/open-neuromorphic/open-neuromorphic.github.io/tree/main/content/{{ . }}' target="_blank" rel="noopener">
+                Edit this Page <i class="fab fa-github ml-1"></i>
+              </a>
+            </p>
+          {{ end }}
+        {{ end }}
+      {{ end }}
+    </div>
+  </div>
+</footer>

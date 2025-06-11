@@ -1,0 +1,61 @@
+.mobile-nav-panel {
+  @apply fixed top-0 right-0 h-full w-80 max-w-[90vw] bg-white dark:bg-darkmode-theme-dark shadow-xl p-6 z-50;
+  @apply transform translate-x-full transition-transform duration-300 ease-in-out;
+  @apply flex flex-col;
+
+  .nav-header {
+    @apply flex justify-between items-center pb-4 border-b border-border dark:border-darkmode-border;
+  }
+
+  .nav-body {
+    @apply flex-grow overflow-y-auto;
+  }
+
+  .nav-brand-mobile {
+    @apply text-xl font-bold gradient-text;
+  }
+
+  .close-btn {
+    @apply p-2 text-2xl text-text dark:text-darkmode-text hover:text-primary dark:hover:text-darkmode-primary;
+  }
+}
+
+.mobile-nav-list {
+  @apply list-none p-0 m-0 mt-6;
+
+  .mobile-nav-parent-item > span {
+    @apply block text-sm font-bold uppercase text-gray-500 dark:text-gray-400 mb-2 px-4;
+  }
+
+  .mobile-nav-child-list {
+    @apply list-none p-0 m-0 mb-4;
+  }
+
+  a {
+    @apply block py-2 px-4 rounded-md text-text dark:text-darkmode-text;
+    @apply hover:bg-theme-light hover:text-primary dark:hover:bg-darkmode-theme-light dark:hover:text-darkmode-primary;
+    @apply transition-colors duration-200;
+
+    &.active {
+      @apply bg-primary/10 text-primary dark:bg-darkmode-primary/20 dark:text-darkmode-primary font-semibold;
+    }
+  }
+}
+
+.mobile-nav-overlay {
+  @apply fixed inset-0 bg-black bg-opacity-0 z-40;
+  @apply invisible transition-opacity duration-300 ease-in-out;
+}
+
+// State when menu is open
+body.is-mobile-nav-open {
+  @apply overflow-hidden lg:overflow-auto;
+
+  .mobile-nav-panel {
+    @apply translate-x-0;
+  }
+
+  .mobile-nav-overlay {
+    @apply visible bg-opacity-50;
+  }
+}
