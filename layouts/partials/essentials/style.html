@@ -25,10 +25,13 @@
   a[target='_blank']::after {
     content: "";
     display: inline-block;
-    width: 16px;
-    height: 16px;
-    margin: 0px 3px 0px 5px;
+    width: 0.8em;
+    height: 0.8em;
+    margin-inline-start: 0.3em; /* Spacing between text and icon */
+    vertical-align: -0.1em; /* Fine-tunes vertical alignment with text */
     background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAAXNSR0IB2cksfwAAAAlwSFlzAAALEwAACxMBAJqcGAAAABtQTFRFAAAAl5aWAAAAKSkps7KyDQ0Nbm1tDg4OiYmJOV4XEQAAAAl0Uk5TAE//9SD/kP9kb5xATAAAAFlJREFUeJxNzTsKgDAQhOGpJLVH+IWQa1jYSxp7T+ARQsB7u4/Gafbb2UAkz8oWUwfohkeLATg1HXYp1B6YjN1RaLYRRSALQxaGbsXleEe8RNn/kJF/aqn6ABiVDmAZHw+0AAAAAElFTkSuQmCC');
   }
 

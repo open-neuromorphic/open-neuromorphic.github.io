@@ -1,6 +1,6 @@
 ---
 active_product: true
-description: 'Learn about Charlotte Frenkel''s neuromorphic hardware: ReckOn'
+description: "Learn about Charlotte Frenkel's neuromorphic hardware: ReckOn"
 type: neuromorphic-hardware
 image: reckon.png
 organization:

@@ -1,6 +1,6 @@
 ---
 active_product: true
-description: 'Learn about Charlotte Frenkel''s neuromorphic hardware: ODIN'
+description: "Learn about Charlotte Frenkel's neuromorphic hardware: ODIN"
 type: neuromorphic-hardware
 image: odin.png
 organization:

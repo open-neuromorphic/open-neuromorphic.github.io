@@ -1,6 +1,6 @@
 ---
 active_product: true
-description: 'Learn about SynSense''s neuromorphic hardware: Speck'
+description: "Learn about SynSense's neuromorphic hardware: Speck"
 type: neuromorphic-hardware
 image: speck.jpg
 organization:

@@ -1,6 +1,6 @@
 ---
 active_product: false
-description: 'Learn about Stanford''s neuromorphic hardware: NeuroGrid (BrainDrop)'
+description: "Learn about Stanford's neuromorphic hardware: NeuroGrid (BrainDrop)"
 type: neuromorphic-hardware
 image: neurogrid.jpg
 organization:

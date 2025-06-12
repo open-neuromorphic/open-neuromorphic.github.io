@@ -1,6 +1,6 @@
 ---
 active_product: true
-description: 'Learn about BrainChip''s neuromorphic hardware: Akida'
+description: "Learn about BrainChip's neuromorphic hardware: Akida"
 type: neuromorphic-hardware
 image: akida.png
 organization:

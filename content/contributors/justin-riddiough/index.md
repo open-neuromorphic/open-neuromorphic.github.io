@@ -1,6 +1,6 @@
 ---
 title: "Justin Riddiough"
-description: "Experienced in scalable web applications & open-source growth. Created aimodels.org. Active supporter of ONM and related community initiatives."
+description: "Strategic digital solutions partner and open-source advocate. As Vice-Chair of the ONM Executive Committee, Justin focuses on building robust digital infrastructure and fostering community growth."
 image: "justin-riddiough.png"
 social:
   - icon: "fa-brands fa-github"
@@ -14,5 +14,8 @@ social:
     title: "website"
 draft: false
 ---
-With over two decades of experience, Justin brings a wealth of knowledge in collaborating with in-house developers, technologists, and strategists. His expertise extends to crafting and deploying robust, scalable web applications and strategically coordinating growth across various Open Source initiatives.<br><br>Justin created and nurtured the AI Models project ([aimodels.org](https://aimodels.org)), a dedicated resource for exploring and advancing ONM and related initiatives like the Foundation Models Cheatsheet ([fmcheatsheet.org](https://fmcheatsheet.org)),
-prior to AI Models acquisition in late 2024. He remains an active supporter of the community and the ongoing development of these initiatives.
+Justin Riddiough is a strategic digital solutions partner and dedicated open-source advocate. As the Vice-Chair of the Open Neuromorphic Executive Committee, he plays a key role in shaping the community's growth and digital strategy.
+
+He designed and built the Open Neuromorphic website, creating the central hub for our resources, events, and community engagement.
+
+With over two decades of experience deploying robust, scalable web applications, Justin brings a wealth of technical and strategic knowledge to the team. He is a strong proponent of connectivism, applying its principles of networked learning to help build a collaborative and accessible ecosystem for neuromorphic computing. His work focuses on creating powerful digital tools and coordinating growth across open-source initiatives to empower communities and advance shared knowledge.

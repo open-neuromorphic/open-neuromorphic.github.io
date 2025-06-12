@@ -19,6 +19,7 @@
             {{ partial "override-social-share" (dict "Context" . "Class" "share-icons" "Title" (i18n "share") "Whatsapp" true "Telegram" false) }}
           </div>
         </div>
+        {{ partial "components/author-bios.html" . }}
       </article>
       {{ partial "components/sidebar-toc-shared.html" . }}
     </div>

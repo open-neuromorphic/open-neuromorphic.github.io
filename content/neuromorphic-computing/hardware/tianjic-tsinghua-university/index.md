@@ -1,6 +1,6 @@
 ---
 active_product: false
-description: 'Learn about Tsinghua University''s neuromorphic hardware: Tianjic'
+description: "Learn about Tsinghua University's neuromorphic hardware: Tianjic"
 type: neuromorphic-hardware
 image: tianjic.jpg
 organization:

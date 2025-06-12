@@ -1,0 +1,59 @@
+{{ with .Params.show_author_bios }}
+{{ if . }}
+<div class="author-bios-section mt-12 pt-8">
+  <h2 class="text-3xl font-bold mb-8">About the Author{{ if gt (len $.Params.author) 1 }}s{{ end }}</h2>
+  {{ with $.Params.author }}
+  {{ $authors := . }}
+  {{ range $index, $authorName := $authors }}
+  {{ $isFirstAuthor := eq $index 0 }}
+  {{ $nameForSlug := $authorName | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" }}
+  {{ $contributorSlug := $nameForSlug | anchorize }}
+  {{ $contributorPage := $.Site.GetPage (printf "contributors/%s" $contributorSlug) }}
+
+  <div class="author-bio-item mb-8 flex flex-col {{ if $isFirstAuthor }}md:flex-row{{ else }}md:flex-row{{ end }} items-start gap-6">
+    {{ if $contributorPage }}
+    {{ with $contributorPage.Params.image }}
+    <div class="flex-shrink-0 text-center">
+      <a href="{{ $contributorPage.RelPermalink }}">
+        {{ partial "image" (dict "Src" . "Context" $contributorPage "Alt" $contributorPage.Title "Class" (printf "rounded-full object-cover shadow-md mx-auto %s" (cond $isFirstAuthor "w-32 h-32" "w-24 h-24")) "Size" (cond $isFirstAuthor "128x128" "96x96") "Command" "Fill") }}
+      </a>
+    </div>
+    {{ else }}
+    <div class="flex-shrink-0 {{ cond $isFirstAuthor "w-32 h-32" "w-24 h-24" }} bg-gray-200 dark:bg-darkmode-theme-dark rounded-full flex items-center justify-center mx-auto">
+    {{ partial "icon.html" (dict "style" "solid" "name" "user" "class" "text-4xl text-gray-400") }}
+  </div>
+  {{ end }}
+  <div class="flex-grow text-center {{ if $isFirstAuthor }}md:text-left{{ else }}md:text-left{{ end }}">
+    <h3 class="text-2xl font-semibold mb-1">
+      <a href="{{ $contributorPage.RelPermalink }}" class="text-dark dark:text-darkmode-dark hover:text-primary dark:hover:text-darkmode-primary">{{ $authorName }}</a>
+    </h3>
+    <div class="prose prose-sm dark:prose-invert max-w-none text-text dark:text-darkmode-text">
+      {{ $contributorPage.Description | plainify }}
+    </div>
+    {{ with $contributorPage.Params.social }}
+    <ul class="contributor-socials flex justify-center {{ if $isFirstAuthor }}md:justify-start{{ else }}md:justify-start{{ end }} space-x-3 mt-4">
+      {{ range . }}
+      <li>
+        <a href="{{ .link | safeURL }}" target="_blank" rel="noopener noreferrer" aria-label="{{ .title }}" class="text-xl">
+          {{ $iconData := partial "helpers/parse-fa-class.html" .icon }}{{ partial "icon.html" (dict "style" $iconData.style "name" $iconData.name "class" "") }}
+        </a>
+      </li>
+      {{ end }}
+    </ul>
+    {{ end }}
+  </div>
+  {{ else }}
+  <div class="w-24 h-24 bg-gray-200 dark:bg-darkmode-theme-dark rounded-full flex items-center justify-center mx-auto md:mx-0 flex-shrink-0">
+    {{ partial "icon.html" (dict "style" "solid" "name" "user" "class" "text-4xl text-gray-400") }}
+  </div>
+  <div class="flex-grow text-center md:text-left">
+    <h3 class="text-2xl font-semibold mb-1">{{ $authorName }}</h3>
+    <p class="text-sm text-gray-500 italic">Contributor profile not found.</p>
+  </div>
+  {{ end }}
+</div>
+{{ end }}
+{{ end }}
+</div>
+{{ end }}
+{{ end }}
