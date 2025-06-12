@@ -31,14 +31,12 @@
 
     /* The main content card, also absolutely positioned */
     .container {
-      position: absolute;
       z-index: 2; /* On top of the watermark */
-      width: 1200px;
-      height: 630px;
-      padding: 50px 60px;
-      box-sizing: border-box;
-      display: flex; /* Flexbox for internal alignment is fine */
-      flex-direction: column;
+      position: absolute;
+      top: 30px;
+      left: 30px;
+      width: 950px;
+      height: 550px;
     }
 
     .main-content {
@@ -80,13 +78,13 @@
     }
 
     .title {
-      font-size: 60px;
+      font-size: 50px;
       font-weight: 700;
       line-height: 1.15;
       color: #1f2937;
       margin: 0 0 20px 0;
       display: -webkit-box;
-      -webkit-line-clamp: 2;
+      -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -100,7 +98,7 @@
       color: #4b5563;
       margin: 0 0 20px 0;
       display: -webkit-box;
-      -webkit-line-clamp: 4;
+      -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;
