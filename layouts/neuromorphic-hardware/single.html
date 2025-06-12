@@ -1,46 +1,47 @@
 {{ define "main" }}
-{{ partial "page-header" . }}
-<section class="section pt-6">
-  <div class="container">
-    <div class="row">
-      <div>
-        <div class="content-panel p-6 shadow-lg">
-          {{ partial "hardware/product-info" .Page }}
+  {{ partial "page-header" . }}
+  <section class="section pt-6">
+    <div class="container">
+      {{/* Row 1: "At a Glance" section, full width */}}
+      <div class="row mb-8">
+        <div class="lg:col-12">
+          <div class="content-panel p-6 shadow-lg">
+            {{ partial "hardware/product-info" .Page }}
+          </div>
         </div>
       </div>
-      <article class="{{ if gt (len .TableOfContents) 80 }}lg:col-8{{ else }}lg:col-10{{ end }}">
-        <div class="content mb-10">
+
+      {{/* Row 2: Main content and sidebar */}}
+      <div class="row lg:items-stretch">
+        <article
+          class="{{ if gt (len .TableOfContents) 80 }}lg:col-8{{ else }}lg:col-10 mx-auto{{ end }}">
           <p class="mb-6 text-xl">{{ .Params.summary }}</p>
-          <div class="content-panel p-6 shadow-lg">
+          <div class="content-panel p-6 shadow-lg mb-8">
             {{ partial "hardware/company-info" .Page }}
           </div>
-          {{ .Content }}
-        </div>
-        <div class="row items-start justify-between">
-          <div class="lg:col-12 flex justify-end">
-            {{ partial "override-social-share" (dict "Context" . "Class" "share-icons" "Title" (i18n "share") "Whatsapp"
-            true "Telegram" false) }}
+          <div class="content mb-10">
+            {{ .Content }}
+          </div>
+          {{ partial "components/share-cta.html" . }}
+        </article>
+        {{ partial "components/sidebar-toc-shared.html" . }}
+      </div>
+
+      <!-- Related posts -->
+      {{ $related := (where site.RegularPages "Section" "blog") | intersect (where
+      site.RegularPages ".Title" "!=" .Title) | union (site.RegularPages.Related . ) }}
+      {{ $related = $related | shuffle | first 3 }}
+      {{ with $related }}
+        <div class="section pb-0">
+          <div class="row">
+            {{ range . }}
+              <div class="lg:col-4">
+                {{ partial "components/blog-card" . }}
+              </div>
+            {{ end }}
           </div>
         </div>
-      </article>
-      {{ partial "components/sidebar-toc-shared.html" . }}
+      {{ end }}
     </div>
-
-    <!-- Related posts -->
-    {{ $related := (where site.RegularPages "Section" "blog") | intersect (where
-    site.RegularPages ".Title" "!=" .Title) | union (site.RegularPages.Related . ) }}
-    {{ $related = $related | shuffle | first 3 }}
-    {{ with $related }}
-    <div class="section pb-0">
-      <div class="row">
-        {{ range . }}
-        <div class="lg:col-4">
-          {{ partial "components/blog-card" . }}
-        </div>
-        {{ end }}
-      </div>
-    </div>
-    {{ end }}
-  </div>
-</section>
+  </section>
 {{ end }}

@@ -9,7 +9,7 @@ const purgecssOptions = {
     ];
   },
   safelist: [
-    /^swiper-/, /^lb-/, /^gl/, /^go/, /^gc/, /^gs/, /^gi/, /^gz/,
+    /^lb-/, /^gl/, /^go/, /^gc/, /^gs/, /^gi/, /^gz/,
     /^gprev/, /^gnext/, /^desc/, /^zoom/, /^search/, /^:is/,
     /dark/, /show/, /dragging/, /fullscreen/, /loaded/, /visible/,
     /current/, /active/,

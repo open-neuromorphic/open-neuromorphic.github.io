@@ -38,10 +38,14 @@
   .dark a[target='_blank']::after {
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAAXNSR0IB2cksfwAAAAlwSFlzAAALEwAACxMBAJqcGAAAABtQTFRFAAAAaGlp////1tbWTE1N8vLykZKS8fHxdnZ2RkLL8wAAAAl0Uk5TAE//9SD/kP9kb5xATAAAAFlJREFUeJxNzTsKgDAQhOGpJLVH+IWQa1jYSxp7T+ARQsB7u4/Gafbb2UAkz8oWUwfohkeLATg1HXYp1B6YjN1RaLYRRSALQxaGbsXleEe8RNn/kJF/aqn6ABiVDmAZHw+0AAAAAElFTkSuQmCC');
   }
-  .social-icons [target="_blank"]::after,
-  .share-icons [target="_blank"]::after,
-  .contributor-socials [target="_blank"]::after {
-    content: none; /* Remove the 'external-link-alt' icon */
+  /* --- EXCEPTION LIST --- */
+  /* The global rule above adds an icon to all external links. */
+  /* Add component-specific selectors here to suppress the icon where it's not wanted. */
+  .social-icons a[target="_blank"]::after,
+  .share-icons a[target="_blank"]::after,
+  .contributor-socials a[target="_blank"]::after,
+  .og-preview-container a[target="_blank"]::after {
+    content: none;
   }
   a.btn[target='_blank']::after {
     content: "";
