@@ -1,5 +1,5 @@
 .og-preview-wrapper {
-  @apply relative max-w-sm mx-auto p-2 lg:max-w-xs;
+  @apply relative max-w-sm mx-auto lg:max-w-xs;
 }
 
 .og-preview-container {
@@ -15,7 +15,7 @@
       @apply opacity-100;
     }
     .sharing-runner {
-      @apply translate-y-full;
+      @apply opacity-0;
     }
   }
 }
@@ -63,7 +63,7 @@
 }
 
 .sharing-runner {
-  @apply absolute bottom-0 left-0 right-0 h-10 flex items-center justify-between px-4 transition-transform duration-300 ease-in-out z-[3];
+  @apply absolute bottom-0 left-0 right-0 h-10 flex items-center justify-between px-4 transition-all duration-300 ease-in-out z-[3] opacity-100;
   background: rgba(0,0,0, 0.7);
   backdrop-filter: blur(3px);
   color: white;
@@ -97,6 +97,6 @@
      opacity: 1;
   }
   .sharing-runner {
-     transform: translateY(100%);
+     @apply opacity-0;
   }
 }

@@ -2,7 +2,7 @@
 {{ partial "page-header" . }}
 <section class="section pt-6">
   <div class="container">
-    <div class="row">
+    <div class="row lg:items-stretch">
       <article class="{{ if gt (len .TableOfContents) 80 }}lg:col-8{{ else }}lg:col-10 mx-auto{{ end }}">
         {{ $image:= .Params.image }}
         {{ if $image }}

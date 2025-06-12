@@ -1,11 +1,15 @@
 {{ if gt (len .TableOfContents) 80 }}
 <aside class="lg:col-4 hidden lg:block">
-  <div class="sticky top-24">
+  <div class="">
+      {{ partial "components/og-preview.html" . }}
+</div>
+  <div class="sticky top-24 space-y-6">
+    {{/* Table of Contents Section */}}
     <div class="px-3 pt-5 pb-5 content-panel">
       <div class="pb-3">
         <strong class="text-xl">Table of Contents</strong>
       </div>
-      <div id="tableOfContentContainer" class="max-h-[calc(100vh-12rem)] overflow-y-auto">
+      <div id="tableOfContentContainer" class="max-h-[calc(100vh-28rem)] overflow-y-auto">
         {{ .TableOfContents }}
       </div>
     </div>
