@@ -30,17 +30,11 @@ async function generateImages() {
 
   if (!(await pathExists(TEMPLATE_PATH))) { console.error(`❌ Template not found: ${TEMPLATE_PATH}`); process.exit(1); }
   if (!(await pathExists(INPUT_JSON_PATH))) { console.error(`❌ Data file not found: ${INPUT_JSON_PATH}`); process.exit(1); }
-  try { execSync('wkhtmltoimage --version', { stdio: 'ignore' }); debugLog("wkhtmltoimage found."); }
+  try { execSync('wkhtmltoimage --version', { stdio: 'ignore' }); }
   catch (e) { console.error("❌ wkhtmltoimage not found in PATH. Please install it."); process.exit(1); }
 
-  let templateContent;
-  let jsonData;
-  try {
-    templateContent = await readFile(TEMPLATE_PATH, 'utf8');
-    const jsonFileContent = await readFile(INPUT_JSON_PATH, 'utf8');
-    jsonData = JSON.parse(jsonFileContent);
-    debugLog(`Successfully read template and parsed data for ${jsonData?.pages?.length || 0} pages.`);
-  } catch (err) { console.error(`❌ Error reading template or JSON: ${err.message}`); process.exit(1); }
+  const templateContent = await readFile(TEMPLATE_PATH, 'utf8');
+  const jsonData = JSON.parse(await readFile(INPUT_JSON_PATH, 'utf8'));
 
   let successCount = 0;
   let errorCount = 0;
@@ -50,41 +44,29 @@ async function generateImages() {
     return;
   }
 
-  const logoDataUri = jsonData.logoDataUri || '';
+  const globalLogoUri = jsonData.logoDataUri || '';
   const siteNameForDisplay = jsonData.siteNameForDisplay || 'Open Neuromorphic';
-
-  // Get colors from JSON, with fallbacks
   const primaryColor = jsonData.colors?.['color-primary-new'] || DEFAULT_PRIMARY_COLOR;
   const titleTextColor = jsonData.colors?.['color-text-new'] || DEFAULT_TITLE_TEXT_COLOR;
   const descriptionTextColor = jsonData.colors?.['color-text-muted-new'] || DEFAULT_DESCRIPTION_TEXT_COLOR;
   const backgroundColor = jsonData.colors?.['color-background-new'] || DEFAULT_BACKGROUND_COLOR;
 
-
-  debugLog(`Using Site Name for display: ${siteNameForDisplay}`);
-  debugLog(`Using Primary Color: ${primaryColor}`);
-  debugLog(`Using Title Text Color: ${titleTextColor}`);
-  debugLog(`Using Description Text Color: ${descriptionTextColor}`);
-  debugLog(`Using Background Color: ${backgroundColor}`);
-
-
   for (const pageData of jsonData.pages) {
-    const { title, description, outputPath, tempHtmlPath, type } = pageData;
+    const { title, description, outputPath, tempHtmlPath, type, pageSpecificLogoUri } = pageData;
     const pageIdentifier = type === 'homepage' ? 'Homepage' : `Content (${outputPath.replace(PROJECT_ROOT, '')})`;
 
     if (!title || !description || !outputPath || !tempHtmlPath) {
-      debugLog(`Skipping invalid page data for ${pageIdentifier}`);
       errorCount++;
       continue;
     }
 
-    debugLog(`\nProcessing ${pageIdentifier}...`);
-    debugLog(`  Output: ${outputPath}`);
-    debugLog(`  Temp HTML: ${tempHtmlPath}`);
-
     try {
+      // Use the page-specific image/logo if available, otherwise fall back to the global one.
+      const finalLogoUri = pageSpecificLogoUri || globalLogoUri;
+
       const htmlContent = templateContent
-        .replace('LOGO_SRC', logoDataUri)
-        .replace(/PAGE_TITLE/g, title) // Use regex global for multiple occurrences if any
+        .replace('LOGO_SRC', finalLogoUri)
+        .replace(/PAGE_TITLE/g, title)
         .replace(/PAGE_DESCRIPTION/g, description)
         .replace(/SITE_NAME/g, siteNameForDisplay)
         .replace(/PRIMARY_COLOR_PLACEHOLDER/g, primaryColor)
@@ -92,29 +74,19 @@ async function generateImages() {
         .replace(/DESCRIPTION_TEXT_COLOR_PLACEHOLDER/g, descriptionTextColor)
         .replace(/BACKGROUND_COLOR_PLACEHOLDER/g, backgroundColor);
 
-
-      debugLog(`  Writing temp HTML...`);
       await writeFile(tempHtmlPath, htmlContent);
 
       const command = `wkhtmltoimage --enable-local-file-access --quality ${JPEG_QUALITY} --format ${OUTPUT_FORMAT} --width 1200 --height 630 "${tempHtmlPath}" "${outputPath}"`;
-      debugLog(`  Executing: ${command}`);
       execSync(command, { stdio: 'pipe' });
-
-      try {
-        const stats = await stat(outputPath);
-        const fileSizeKB = (stats.size / 1024).toFixed(1);
-        console.log(`✅ Generated OG image for: ${pageIdentifier} (${fileSizeKB} KB)`);
-      } catch(statErr) {
-        console.log(`✅ Generated OG image for: ${pageIdentifier} (size check failed)`);
-      }
+      
+      const stats = await stat(outputPath);
+      console.log(`✅ Generated OG image for: ${pageIdentifier} (${(stats.size / 1024).toFixed(1)} KB)`);
       successCount++;
-
-      debugLog(`  Removing temp file: ${tempHtmlPath}`);
+      
       await unlink(tempHtmlPath);
 
     } catch (err) {
       console.error(`❌ Failed generating image for ${pageIdentifier}:`, err.stderr?.toString() || err.message || err);
-      debugLog('Full error object:', err);
       errorCount++;
       if (await pathExists(tempHtmlPath)) {
         try { await unlink(tempHtmlPath); } catch (cleanupErr) { debugLog(`Failed to clean up temp file ${tempHtmlPath} after error.`); }
@@ -124,12 +96,9 @@ async function generateImages() {
 
   console.log('\n✨ Image generation process complete!');
   console.log(`📊 Summary: ${successCount} generated, ${errorCount} errors.`);
-  if (errorCount > 0) {
-    process.exitCode = 1;
-  }
+  if (errorCount > 0) process.exitCode = 1;
 }
 
-// --- Execution ---
 generateImages().catch(err => {
   console.error("🔥 Uncaught error during image generation:", err);
   process.exit(1);

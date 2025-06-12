@@ -1,5 +1,5 @@
 // scripts/collectOgData.js
-const { join, dirname, basename } = require('path'); // Ensure basename is imported
+const { join, dirname, basename } = require('path');
 const { readdir, readFile, stat, mkdir, writeFile } = require('fs/promises');
 const toml = require('toml');
 const mimeTypes = require('mime-types');
@@ -49,19 +49,6 @@ async function ensureDir(dirPath) {
   catch (err) { if (err.code !== 'EEXIST') throw err; debugLog(`Directory already exists: ${dirPath}`); }
 }
 
-// slugify is kept in case it's needed elsewhere, but not for OG image name from content pages
-function slugify(text) {
-  if (!text) return 'untitled';
-  return text
-    .toString()
-    .toLowerCase()
-    .replace(/\s+/g, '-')
-    .replace(/[^\w-]+/g, '')
-    .replace(/--+/g, '-')
-    .replace(/^-+/, '')
-    .replace(/-+$/, '');
-}
-
 async function findMarkdownFiles(dir) {
   let entries;
   try { entries = await readdir(dir); } catch (err) { console.warn(`Could not read directory ${dir}: ${err.message}`); return []; }
@@ -88,7 +75,6 @@ function extractFrontMatter(content) {
     const draftMatch = fm.match(/^draft:\s*(true)\s*$/im);
     const excludeMatch = fm.match(/^exclude_sitemap:\s*(true)\s*$/im);
     const imageMatch = fm.match(/^(?:image|Image):\s*"?([^"#\n]+)"?\s*$/m);
-
 
     if (titleMatch) title = titleMatch[1].split('#')[0].trim().replace(/^['"]|['"]$/g, '').replace(/\\"/g, '"').replace(/\\'/g, "'").trim();
     if (descMatch) {
@@ -125,26 +111,18 @@ async function getHugoSiteConfig() {
   let paramsConfig = {};
 
   try {
-    debugLog(`Reading Hugo config from: ${HUGO_CONFIG_PATH}`);
     if (await pathExists(HUGO_CONFIG_PATH)) {
       const hugoContent = await readFile(HUGO_CONFIG_PATH, 'utf8');
       siteConfig = toml.parse(hugoContent);
-      debugLog(`Hugo config parsed.`);
-    } else {
-      console.warn(`⚠️ Hugo config file not found at ${HUGO_CONFIG_PATH}`);
     }
   } catch (err) {
     console.error(`❌ Error parsing ${HUGO_CONFIG_PATH}: ${err.message}`);
   }
 
   try {
-    debugLog(`Reading params config from: ${PARAMS_CONFIG_PATH}`);
     if (await pathExists(PARAMS_CONFIG_PATH)) {
       const paramsContent = await readFile(PARAMS_CONFIG_PATH, 'utf8');
       paramsConfig = toml.parse(paramsContent);
-      debugLog(`Params config parsed.`);
-    } else {
-      console.warn(`⚠️ Params config file not found at ${PARAMS_CONFIG_PATH}`);
     }
   } catch (err) {
     console.error(`❌ Error parsing ${PARAMS_CONFIG_PATH}: ${err.message}`);
@@ -161,35 +139,19 @@ async function getHugoSiteConfig() {
 async function getPaletteFromScss() {
   const palette = { ...DEFAULT_COLORS };
   try {
-    debugLog(`Attempting to read SCSS variables from: ${CUSTOM_SCSS_PATH}`);
     if (!(await pathExists(CUSTOM_SCSS_PATH))) {
       console.warn(`⚠️ Custom SCSS file not found at ${CUSTOM_SCSS_PATH}. Using default colors.`);
       return palette;
     }
     const scssContent = await readFile(CUSTOM_SCSS_PATH, 'utf8');
 
-    let foundColorsCount = 0;
     CSS_VARS_TO_EXTRACT.forEach(cssVarName => {
       const regex = new RegExp(`--${cssVarName}\\s*:\\s*([^;]+);`, 'm');
       const match = scssContent.match(regex);
       if (match && match[1]) {
-        const colorValue = match[1].trim();
-        if (palette[cssVarName] !== colorValue || !DEFAULT_COLORS.hasOwnProperty(cssVarName)) {
-          if (palette[cssVarName] !== colorValue && DEFAULT_COLORS.hasOwnProperty(cssVarName) ) {
-            debugLog(`Updated CSS variable --${cssVarName} from SCSS: ${colorValue} (was ${palette[cssVarName]})`);
-          } else if (!DEFAULT_COLORS.hasOwnProperty(cssVarName)) {
-            debugLog(`Found new CSS variable --${cssVarName} from SCSS: ${colorValue}`);
-          }
-          foundColorsCount++;
-        } else {
-          debugLog(`CSS variable --${cssVarName} found in SCSS but value (${colorValue}) is same as default.`);
-        }
-        palette[cssVarName] = colorValue;
-      } else {
-        debugLog(`CSS variable --${cssVarName} not found or not in expected format in ${CUSTOM_SCSS_PATH}. Will use default: ${palette[cssVarName]}`);
+        palette[cssVarName] = match[1].trim();
       }
     });
-    console.log(`🎨 Extracted/Updated ${foundColorsCount} colors from SCSS. Total in palette: ${Object.keys(palette).length}`);
     return palette;
   } catch (err) {
     console.error(`❌ Error reading or parsing SCSS file ${CUSTOM_SCSS_PATH}: ${err.message}`);
@@ -204,41 +166,34 @@ async function collectData() {
   const hugoConfig = await getHugoSiteConfig();
   const colorPalette = await getPaletteFromScss();
 
-  let absoluteLogoPath = '';
-  if (hugoConfig.logoPath) {
-    debugLog(`Logo path from config: ${hugoConfig.logoPath}`);
-    if (hugoConfig.logoPath.startsWith('/')) {
-      absoluteLogoPath = join(STATIC_DIR, hugoConfig.logoPath.substring(1));
-      debugLog(`Trying static logo path (absolute): ${absoluteLogoPath}`);
-    } else {
+  // --- MODIFIED LOGO LOGIC ---
+  // Explicitly use assets/images/ONM-logo.png as the primary logo for OG images.
+  let absoluteLogoPath = join(ASSETS_DIR, 'images', 'ONM-logo.png');
+  
+  if (!(await pathExists(absoluteLogoPath))) {
+    console.warn(`⚠️ Preferred OG logo not found at ${absoluteLogoPath}. Falling back to config logo.`);
+    // Fallback to the logo from hugo config if the primary one is missing
+    if (hugoConfig.logoPath) {
       const pathInAssets = join(ASSETS_DIR, hugoConfig.logoPath);
       const pathInStatic = join(STATIC_DIR, hugoConfig.logoPath);
-
       if (await pathExists(pathInAssets)) {
         absoluteLogoPath = pathInAssets;
-        debugLog(`Found logo in assets: ${absoluteLogoPath}`);
       } else if (await pathExists(pathInStatic)) {
         absoluteLogoPath = pathInStatic;
-        debugLog(`Found logo in static: ${absoluteLogoPath}`);
       } else {
-        console.warn(`⚠️ Logo path specified (${hugoConfig.logoPath}) but file not found in assets or static directory.`);
         absoluteLogoPath = '';
       }
+    } else {
+      absoluteLogoPath = '';
     }
-  } else {
-    console.warn(`⚠️ No logo path specified in params.toml.`);
   }
-
+  // --- END MODIFIED LOGO LOGIC ---
+  
   const logoDataUri = await getImageDataUri(absoluteLogoPath);
   if (!logoDataUri) {
-    if (hugoConfig.logoPath && absoluteLogoPath) {
-      console.warn(`⚠️ Logo data URI could not be generated. Attempted path: ${absoluteLogoPath}`);
-    } else if (!hugoConfig.logoPath) {
-      console.warn(`⚠️ No logo path in config, so no logo data URI generated.`);
-    } else {
-      console.warn(`⚠️ Logo path ${hugoConfig.logoPath} did not resolve to an existing file, no logo data URI generated.`);
-    }
+    console.error("❌ Could not generate a data URI for the logo. OG images will not have a logo.");
   }
+
 
   const outputData = {
     siteNameForDisplay: hugoConfig.siteName,
@@ -250,26 +205,23 @@ async function collectData() {
   // 1. Add Homepage Data
   console.log('🏠 Processing Homepage...');
   if (hugoConfig.siteName && hugoConfig.siteDescription) {
-    const homepageOgDir = join(STATIC_DIR, 'images'); // OG images for homepage go to static/images
+    const homepageOgDir = join(STATIC_DIR, 'images');
     await ensureDir(homepageOgDir);
     outputData.pages.push({
       type: 'homepage',
       title: hugoConfig.siteName,
       description: hugoConfig.siteDescription,
-      outputPath: join(homepageOgDir, `og-image.${OUTPUT_FORMAT}`), // Consistent name for homepage OG
+      outputPath: join(homepageOgDir, `og-image.${OUTPUT_FORMAT}`),
       tempHtmlPath: join(TMP_DIR, `homepage-temp-og.html`),
-      pageSpecificLogoUri: null // Homepage uses the global logo
+      pageSpecificLogoUri: null
     });
     debugLog('Added homepage data.');
-  } else {
-    console.warn('⚠️ Missing siteName or siteDescription for homepage OG image.');
   }
 
   // 2. Process Content Pages
   console.log('📄 Processing content pages...');
   const markdownFiles = await findMarkdownFiles(CONTENT_ROOT_DIR);
-  let processedCount = 0;
-  let skippedCount = 0;
+  let processedCount = 0, skippedCount = 0;
 
   for (const mdFile of markdownFiles) {
     const pageDirectory = dirname(mdFile);
@@ -280,7 +232,6 @@ async function collectData() {
       const { title, description, isDraft, excludeSitemap, image: pageImage } = extractFrontMatter(mdContent);
 
       if (isDraft || excludeSitemap || !title || !description) {
-        debugLog(`Skipping ${relativeMdPath} (Draft: ${isDraft}, Exclude: ${excludeSitemap}, NoTitle: ${!title}, NoDesc: ${!description})`);
         skippedCount++;
         continue;
       }
@@ -288,45 +239,32 @@ async function collectData() {
       let pageSpecificLogoUri = null;
       if (pageImage) {
         let imageFullPath = join(pageDirectory, pageImage); // Check in bundle first
-        if (! (await pathExists(imageFullPath))) {
+        if (!(await pathExists(imageFullPath))) {
           const staticImageCand = join(STATIC_DIR, pageImage.startsWith('/') ? pageImage.substring(1) : pageImage);
-          const assetImageCand = join(ASSETS_DIR, pageImage.startsWith('/') ? pageImage.substring(1) : pageImage);
-          if(await pathExists(staticImageCand)) {
+          if (await pathExists(staticImageCand)) {
             imageFullPath = staticImageCand;
-            debugLog(`Found page image in static: ${imageFullPath}`);
-          } else if(await pathExists(assetImageCand)) {
-            imageFullPath = assetImageCand;
-            debugLog(`Found page image in assets: ${imageFullPath}`);
           } else {
-            debugLog(`Page specific image ${pageImage} for ${relativeMdPath} not found in bundle, static, or assets. Will use global logo if available, or no logo.`);
             imageFullPath = null;
           }
-        } else {
-          debugLog(`Found page image in bundle: ${imageFullPath}`);
         }
-
-        if(imageFullPath) {
+        if (imageFullPath) {
           pageSpecificLogoUri = await getImageDataUri(imageFullPath);
-          if(pageSpecificLogoUri) debugLog(`Using page specific image for ${relativeMdPath}: ${pageImage}`);
-          else debugLog(`Failed to get Data URI for page image: ${imageFullPath}`);
         }
       }
 
-      // MODIFICATION: Use parent directory name as the slug for OG image
       const parentDirName = basename(pageDirectory);
-      const ogImageFilename = `${parentDirName}-og.${OUTPUT_FORMAT}`; // Use parentDirName as the slug
+      const ogImageFilename = `${parentDirName}-og.${OUTPUT_FORMAT}`;
 
       outputData.pages.push({
         type: 'content',
         sourceMdPath: mdFile,
         title: title,
         description: description,
-        outputPath: join(pageDirectory, ogImageFilename), // Image saved in the page's bundle
-        tempHtmlPath: join(TMP_DIR, `${parentDirName}-${Date.now()}-temp-og.html`), // Temp HTML uses parentDirName
+        outputPath: join(pageDirectory, ogImageFilename),
+        tempHtmlPath: join(TMP_DIR, `${parentDirName}-${Date.now()}-temp-og.html`),
         pageSpecificLogoUri: pageSpecificLogoUri
       });
       processedCount++;
-      debugLog(`Added data for: ${relativeMdPath}, OG image: ${ogImageFilename} (slug from dir: ${parentDirName})`);
 
     } catch (err) {
       console.error(`❌ Error processing ${relativeMdPath}: ${err.message}`);
@@ -336,17 +274,11 @@ async function collectData() {
 
   // 3. Write JSON Output
   console.log(`💾 Writing data for ${outputData.pages.length} pages to ${OUTPUT_JSON_PATH}...`);
-  try {
-    await writeFile(OUTPUT_JSON_PATH, JSON.stringify(outputData, null, 2));
-    console.log('✅ Data collection complete.');
-    console.log(`📊 Processed ${processedCount} content pages, skipped ${skippedCount}.`);
-  } catch (err) {
-    console.error(`❌ Error writing JSON output: ${err.message}`);
-    process.exit(1);
-  }
+  await writeFile(OUTPUT_JSON_PATH, JSON.stringify(outputData, null, 2));
+  console.log('✅ Data collection complete.');
+  console.log(`📊 Processed ${processedCount} content pages, skipped ${skippedCount}.`);
 }
 
-// --- Execution ---
 (async () => {
   try {
     await collectData();
