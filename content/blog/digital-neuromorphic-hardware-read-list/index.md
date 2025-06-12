@@ -7,6 +7,7 @@ author:
 image: banner.png
 draft: false
 tags: ["research", "hardware", "digital", "neuromorphic", "snn", "AI"]
+show_author_bios: true
 ---
 
 Here's a list of articles and theses related to digital hardware designs for neuomorphic applications. I plan to update it regularly. To be redirected directly to the sources, click on the titles! 
@@ -130,7 +131,3 @@ I would like to thank [Charlotte Frenkel](https://ch.frenkel.github.io) for the 
 ## Credits
 
 The cover image is taken from [Charlotte Frenkel](https://ch.frenkel.github.io)'s thesis.
-
-## Authors
-
-- [Fabrizio Ottati](https://fabrizio-ottati.dev) is a Ph.D. student in the HLS Laboratory of the Department of Electronics and Communications, Politecnico di Torino. His main interests are event-based cameras, digital hardware design and neuromorphic computing. He is one of the maintainers of two open source projects in the field of neuromorphic computing, [Tonic](/neuromorphic-computing/software/data-tools/tonic/) and [Expelliarmus](/neuromorphic-computing/software/data-tools/expelliarmus/), and one of the founders of [Open Neuromorphic](https://open-neuromorphic.org).
