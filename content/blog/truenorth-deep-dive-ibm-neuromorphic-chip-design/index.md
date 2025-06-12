@@ -9,6 +9,7 @@ author:
 tags: ["research", "hardware", "digital", "neuromorphic"]
 showTableOfContents: true
 math: true
+show_author_bios: true
 ---
 
 ## Why do we want to emulate the brain?
@@ -235,10 +236,6 @@ What we have discussed until now is the model of a TrueNorth core: in this, 256 
 ## To be continued...
 
 *Stay tuned for episode II, in which we will dive in the theory behind the asynchronous design of TrueNorth :)*
-
-## Authors
-
-- [Fabrizio Ottati](https://fabrizio-ottati.dev) is a Ph.D. student in the HLS Laboratory of the Department of Electronics and Communications, Politecnico di Torino. His main interests are event-based cameras, digital hardware design and neuromorphic computing. He is one of the maintainers of two open source projects in the field of neuromorphic computing, [Tonic](https://tonic.readthedocs.io) and [Expelliarmus](https://expelliarmus.readthedocs.io), and one of the founders of [Open Neuromorphic](https://open-neuromorphic.org).
 
 ## Bibliography 
 * [*TrueNorth: Design and Tool Flow of a 65 mW 1 Million Neuron Programmable Neurosynaptic Chip*](https://redwood.berkeley.edu/wp-content/uploads/2021/08/Akopyan2015.pdf), Filipp Akopyan et al.

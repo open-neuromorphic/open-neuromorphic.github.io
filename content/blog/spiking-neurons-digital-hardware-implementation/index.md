@@ -8,6 +8,7 @@ author:
 - "Fabrizio Ottati"
 image: banner.png
 tags: ["hardware", "digital", "spiking", "snn", "rtl", "verilog", "AI", "machine learning"]
+show_author_bios: true
 ---
 
 ## Introduction 
@@ -158,11 +159,6 @@ I would like to thank [Jason Eshraghian](https://jasoneshraghian.com), [Steven A
 ## Credits
 
 The cover image is the Loihi die, taken from [WikiChip](https://en.wikichip.org/wiki/intel/loihi).
-
-## Authors
-
-- [Fabrizio Ottati](https://fabrizio-ottati.dev) is a Ph.D. student in the HLS Laboratory of the Department of Electronics and Communications, Politecnico di Torino. His main interests are event-based cameras, digital hardware design and neuromorphic computing. He is one of the maintainers of two open source projects in the field of neuromorphic computing, [Tonic](https://tonic.readthedocs.io) and [Expelliarmus](https://expelliarmus.readthedocs.io), and one of the founders of [Open Neuromorphic](https://open-neuromorphic.org).
-
 
 ## Bibliography
 

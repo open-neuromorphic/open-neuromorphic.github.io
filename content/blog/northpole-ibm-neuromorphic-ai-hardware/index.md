@@ -10,6 +10,7 @@ date: 2023-12-26
 showTableOfContents: true
 author:
 - Fabrizio Ottati
+show_author_bios: true
 ---
 
 [NorthPole](https://research.ibm.com/blog/northpole-ibm-ai-chip) is the new
