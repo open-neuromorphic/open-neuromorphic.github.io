@@ -20,4 +20,4 @@ This initiative aims to:
 
 These regular sessions are designed to be interactive and educational, contributing to the collective understanding and advancement of neuromorphic science and engineering.
 
-**Find details about past and upcoming sessions on the main [Student Talks page](/student-talks/).**
+**Find details about past and upcoming sessions on the main [Student Talks page](/neuromorphic-computing/student-talks/).**
