@@ -1,6 +1,6 @@
 ---
 active_product: true
-description: 'Learn about TU Dresden''s neuromorphic hardware: SpiNNaker2'
+description: "Learn about TU Dresden's neuromorphic hardware: SpiNNaker2"
 type: neuromorphic-hardware
 image: spinnaker.jpg
 organization:

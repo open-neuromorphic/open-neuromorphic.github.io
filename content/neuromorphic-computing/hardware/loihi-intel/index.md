@@ -1,6 +1,6 @@
 ---
 active_product: false
-description: 'Learn about Intel''s neuromorphic hardware: Loihi 1'
+description: "Learn about Intel's neuromorphic hardware: Loihi 1"
 type: neuromorphic-hardware
 image: loihi-nahuku-board.jpg
 organization:

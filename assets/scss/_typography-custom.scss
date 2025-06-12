@@ -28,15 +28,67 @@ h1.homepage {
 }
 
 nav#TableOfContents {
-  li.active a {
-    color: #022b4a !important;
-    text-decoration: none !important;
-    font-weight: 550 !important;
+  background-color: transparent !important;
+
+  ul, ol {
+    @apply list-none p-0 m-0 space-y-1;
   }
 
-  ol ol li {
-    margin-left: 10px;
-    margin-bottom: 10px;
+  li {
+    @apply m-0 p-0;
+  }
+
+  a {
+    @apply block rounded-md text-sm transition-all duration-200 ease-in-out;
+    padding: 0.4rem 0.75rem;
+    color: theme('colors.light');
+    text-decoration: none !important;
+    font-weight: 500 !important;
+    border-left: 3px solid transparent;
+    line-height: 1.4;
+
+    &:hover {
+      background-color: theme('colors.body');
+      color: var(--color-primary-new);
+      border-left-color: theme('colors.border');
+    }
+  }
+
+  li.active > a {
+    color: var(--color-primary-new) !important;
+    background-color: rgba(102, 126, 234, 0.1); // Tint of primary color
+    font-weight: 600 !important;
+    border-left-color: var(--color-primary-new);
+  }
+
+  ul ul, ol ol {
+    @apply pl-4 mt-1 mb-1;
+    border-left: 1px solid theme('colors.border');
+  }
+}
+
+// Dark Mode Overrides for ToC
+.dark {
+  nav#TableOfContents {
+    a {
+      color: theme('colors.darkmode.light');
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+        color: theme('colors.darkmode.primary');
+        border-left-color: theme('colors.darkmode.border');
+      }
+    }
+
+    li.active > a {
+      color: theme('colors.darkmode.primary') !important;
+      background-color: rgba(188, 251, 255, 0.1); // Tint of dark primary
+      border-left-color: theme('colors.darkmode.primary');
+    }
+
+    ul ul, ol ol {
+      border-left-color: theme('colors.darkmode.border');
+    }
   }
 }
 

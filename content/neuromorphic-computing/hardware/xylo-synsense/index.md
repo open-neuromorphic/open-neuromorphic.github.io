@@ -1,6 +1,6 @@
 ---
 active_product: true
-description: 'Learn about SynSense''s neuromorphic hardware: Xylo'
+description: "Learn about SynSense's neuromorphic hardware: Xylo"
 type: neuromorphic-hardware
 image: xylo.png
 organization:

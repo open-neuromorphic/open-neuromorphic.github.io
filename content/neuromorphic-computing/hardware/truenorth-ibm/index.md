@@ -1,6 +1,6 @@
 ---
 active_product: false
-description: 'Learn about IBM''s neuromorphic hardware: TrueNorth'
+description: "Learn about IBM's neuromorphic hardware: TrueNorth"
 type: neuromorphic-hardware
 image: truenorth.jpg
 organization:

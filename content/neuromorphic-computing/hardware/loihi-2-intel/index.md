@@ -1,6 +1,6 @@
 ---
 active_product: true
-description: 'Learn about Intel''s neuromorphic hardware: Loihi 2'
+description: "Learn about Intel's neuromorphic hardware: Loihi 2"
 type: neuromorphic-hardware
 image: loihi2.png
 organization:

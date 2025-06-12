@@ -1,6 +1,6 @@
 ---
 active_product: true
-description: 'Learn about Institute of Neuroinformatics''s neuromorphic hardware: DYNAP-SE2'
+description: "Learn about Institute of Neuroinformatics's neuromorphic hardware: DYNAP-SE2"
 type: neuromorphic-hardware
 image: dynap-se2.jpg
 organization:
