@@ -12,6 +12,7 @@ author:
 - "Jens E. Pedersen"
 image: neurons-race.png
 tags: ["snn", "framework", "library", "pytorch", "JAX"]
+show_author_bios: true
 ---
 
 ## Introduction 
@@ -67,10 +68,3 @@ Some things that would be interesting to add:
 * given equivalent forward dynamics, check gradient correlations and magnitudes
 * ✔ memory consumption of different libraries
 * ✔ add JAX framework
-
-## Authors
-* [Gregor Lenz](https://lenzgregor.com) holds a PhD in neuromorphic engineering from Sorbonne University and has been training SNNs for a little while now!
-* [Kade Heckel](https://github.com/kmheckel/spyx) is a Marshall Scholar and a current MPhil student at the Univeristy of Cambridge. He authored the library Spyx as part of the dissertation for an MSc at the University of Sussex under the supervision of Thomas Nowotny.
-* [Sumit Bam Shrestha](https://www.intel.com/content/www/us/en/research/featured-researchers/sumit-bam-shrestha.html) is a research scientist in neuromorphic computing at Intel Labs, where he focuses on deep spiking neural networks.
-* [Cameron Barker](https://github.com/cameron-git) is a Neuromorphic Engineer at Ripga ltd.
-* [Jens Egholm Pedersen](https://jepedersen.dk) is a PhD student at KTH Royal Institute of Technology

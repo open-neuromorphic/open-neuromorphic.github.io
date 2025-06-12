@@ -7,6 +7,7 @@ draft: false
 author: 
 - Gregor Lenz
 tags: ["community", "governance", "election", "charter", "AGM", "open source"]
+show_author_bios: true
 ---
 
 Exciting news from the Open Neuromorphic (ONM) community! As our community continues to grow and thrive, we're taking an important step towards a more structured and sustainable future. Today, we're announcing the introduction of an **ONM Organisational Charter** and the upcoming election of our very first **Executive Committee**.
