@@ -2,7 +2,7 @@ name: Deploy Hugo site to Pages
 
 on:
   push:
-    branches: ["main", "design-adjustments"]
+    branches: ["main", "refactor-merge"]
 
 permissions:
   contents: read
@@ -13,23 +13,25 @@ env:
   HUGO_ENV: production
   HUGO_VERSION: "0.147.7"
   GO_VERSION: "1.24.3"
-  NODE_VERSION: "22.16.0"
+  NODE_VERSION: "22.x" # Use major version for setup-node
 
 jobs:
   build:
-    runs-on: ubuntu-24.04-arm
+    # Switched to a standard x86_64 runner for better package compatibility
+    runs-on: ubuntu-24.04
     steps:
       - name: Install Hugo
         run: |
-          wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-arm64.deb \
+          # Updated to use amd64 for the new runner
+          wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb \
           && sudo dpkg -i ${{ runner.temp }}/hugo.deb
 
       - name: Install Go
         run: |
-          # Corrected to download linux-arm64 for ARM runner
-          wget -O ${{ runner.temp }}/go.tar.gz https://go.dev/dl/go${GO_VERSION}.linux-arm64.tar.gz \
+          # Updated to use amd64 for the new runner
+          wget -O ${{ runner.temp }}/go.tar.gz https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz \
           && sudo tar -C /usr/local -xzf ${{ runner.temp }}/go.tar.gz \
-          && sudo ln -s /usr/local/go/bin/go /usr/local/bin/go # Ensure go is in PATH
+          && sudo ln -s /usr/local/go/bin/go /usr/local/bin/go
 
       - name: Install wkhtmltopdf
         run: |
@@ -46,8 +48,15 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
 
+      # Best practice: Use setup-node with caching
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
       - name: Install npm dependencies
-        run: npm install
+        run: npm ci # Use npm ci for faster, more reliable CI builds
 
       - name: Determine Base URL
         id: base_url
@@ -82,7 +91,6 @@ jobs:
       - name: Create and Populate .htaccess
         run: |
           echo "Creating and populating .htaccess in public directory"
-          # Ensure public directory exists (though npm run build should create it)
           mkdir -p public
           cat .github/config/htaccess.template > public/.htaccess
           echo ".htaccess created and populated."
@@ -94,10 +102,8 @@ jobs:
           echo "Current BASE_URL for .htaccess modification: $BASE_URL"
           if [[ "$BASE_URL" != "https://open-neuromorphic.org/" ]]; then
             echo "Modifying .htaccess to prevent indexing for $BASE_URL"
-            # The file is created by the workflow user, sudo likely not needed for chmod.
-            # If issues persist, can use sudo, but check file ownership first.
-            chmod u+w public/.htaccess # Ensure user has write permission
-            echo "" >> public/.htaccess # Add a newline for separation
+            chmod u+w public/.htaccess
+            echo "" >> public/.htaccess
             echo "# Rules to prevent indexing on non-production deployments" >> public/.htaccess
             echo "Header set X-Robots-Tag \"noindex, nofollow\"" >> public/.htaccess
             echo ".htaccess modified."
@@ -130,7 +136,8 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-24.04-arm
+    # Switched to a standard x86_64 runner for consistency
+    runs-on: ubuntu-24.04
     needs: build
     steps:
       - name: Deploy to GitHub Pages
