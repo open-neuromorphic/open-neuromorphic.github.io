@@ -15,7 +15,7 @@
       @apply opacity-100;
     }
     .sharing-runner {
-      @apply opacity-0;
+      @apply opacity-0 pointer-events-none;
     }
   }
 }
@@ -58,6 +58,10 @@
     transform: scale(1.1);
     background: var(--color-primary-new);
   }
+
+  svg {
+    pointer-events: none;
+  }
 }
 
 .dark .social-icon:hover {
@@ -79,12 +83,6 @@
   @apply flex gap-5 items-center;
   svg {
     @apply text-xl text-white opacity-80;
-  }
-}
-
-@screen lg {
-  .og-preview-wrapper {
-    @apply mt-6;
   }
 }
 
