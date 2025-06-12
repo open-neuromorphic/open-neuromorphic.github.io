@@ -1,15 +1,14 @@
 {{ if gt (len .TableOfContents) 80 }}
-<div class="toc lg:col-4 md:hidden lg:block">
-  <div class="pb-4 text-center">~ Share this Site ~
-    {{ partial "override-social-share" (dict "Context" . "Class" "share-icons" "Whatsapp" true "Telegram" false) }}
-  </div>
-  <div class="px-3 pt-5 pb-5 content-panel">
-    <div class="pb-3">
-      <strong class="text-xl">Table of Contents</strong>
+<aside class="lg:col-4 hidden lg:block">
+  <div class="sticky top-24">
+    <div class="px-3 pt-5 pb-5 content-panel">
+      <div class="pb-3">
+        <strong class="text-xl">Table of Contents</strong>
+      </div>
+      <div id="tableOfContentContainer" class="max-h-[calc(100vh-12rem)] overflow-y-auto">
+        {{ .TableOfContents }}
+      </div>
     </div>
-    <aside class="tableOfContentContainer" id="tableOfContentContainer">
-      {{ .TableOfContents }}
-    </aside>
   </div>
-</div>
+</aside>
 {{ end }}

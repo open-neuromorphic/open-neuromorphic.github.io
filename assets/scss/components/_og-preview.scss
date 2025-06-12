@@ -1,0 +1,102 @@
+.og-preview-wrapper {
+  @apply relative max-w-sm mx-auto p-2 lg:max-w-xs;
+}
+
+.og-preview-container {
+  @apply relative w-full rounded-lg overflow-hidden transition-all duration-300 ease-in-out;
+  box-shadow: 0 4px 12px rgba(0,0,0, 0.2), 0 0 0 1px theme('colors.border'), 0 0 15px rgba(102, 126, 234, 0.3);
+  aspect-ratio: 1.91 / 1;
+
+  &:hover {
+    @apply lg:scale-110;
+    box-shadow: 0 6px 20px rgba(0,0,0, 0.15), 0 0 0 1px var(--color-primary-new), 0 0 25px rgba(102, 126, 234, 0.5);
+
+    .social-share-overlay {
+      @apply opacity-100;
+    }
+    .sharing-runner {
+      @apply translate-y-full;
+    }
+  }
+}
+
+.dark .og-preview-container {
+   box-shadow: 0 4px 12px rgba(0,0,0, 0.4), 0 0 0 1px theme('colors.darkmode.border'), 0 0 20px rgba(188, 251, 255, 0.4);
+   &:hover {
+     box-shadow: 0 6px 25px rgba(0,0,0, 0.3), 0 0 0 1px theme('colors.darkmode.primary'), 0 0 30px rgba(188, 251, 255, 0.6);
+   }
+}
+
+.og-preview-image {
+  @apply w-full h-full bg-cover bg-center bg-no-repeat relative;
+  background-color: theme('colors.body');
+}
+
+.image-dark-overlay {
+  @apply absolute inset-0 z-[1] pointer-events-none;
+  background: rgba(0,0,0,0);
+}
+
+.social-share-overlay {
+  @apply absolute left-0 right-0 bottom-0 h-auto flex justify-center opacity-0 transition-opacity duration-300 ease-in-out z-[2];
+}
+
+.social-icons-container {
+  @apply flex justify-center gap-3 w-full px-4 relative;
+  transform: translateY(-50%);
+}
+
+.social-icon {
+  @apply text-white text-xl w-9 h-9 flex items-center justify-center transition-all duration-300 ease-in-out no-underline;
+  background: rgba(0,0,0, 0.6);
+  backdrop-filter: blur(2px);
+  border-radius: 50%;
+
+  &:hover {
+    transform: scale(1.1);
+    background: var(--color-primary-new);
+  }
+}
+
+.dark .social-icon:hover {
+  background: var(--color-darkmode-primary);
+}
+
+.sharing-runner {
+  @apply absolute bottom-0 left-0 right-0 h-10 flex items-center justify-between px-4 transition-transform duration-300 ease-in-out z-[3];
+  background: rgba(0,0,0, 0.7);
+  backdrop-filter: blur(3px);
+  color: white;
+
+  span {
+    @apply text-lg font-medium;
+  }
+}
+
+.runner-icons {
+  @apply flex gap-5 items-center;
+  svg {
+    @apply text-xl text-white opacity-80;
+  }
+}
+
+@screen lg {
+  .og-preview-wrapper {
+    @apply mt-6;
+  }
+}
+
+@media (max-width: 1023.98px) {
+  .og-preview-container:hover {
+     transform: none;
+  }
+   .og-preview-image {
+      background-size: contain;
+   }
+  .social-share-overlay {
+     opacity: 1;
+  }
+  .sharing-runner {
+     transform: translateY(100%);
+  }
+}
