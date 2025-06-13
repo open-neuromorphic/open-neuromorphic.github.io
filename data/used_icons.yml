@@ -14,6 +14,7 @@ fontawesome_svgs:
   - { style: solid, name: code-branch }
   - { style: solid, name: arrow-right }
   - { style: solid, name: location-dot }
+  - { style: solid, name: pen-to-square }
   - { style: solid, name: envelope }
   - { style: solid, name: moon }
   - { style: solid, name: sun }
