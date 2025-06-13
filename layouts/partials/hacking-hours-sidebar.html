@@ -1,67 +1,64 @@
-<div class="pb-4 text-center">~ Share this Site ~
-  {{ partial "override-social-share" (dict "Context" . "Class" "share-icons" "Whatsapp" true "Telegram" false) }}
+<div class="pb-4">
+  {{ partial "components/og-preview.html" . }}
 </div>
 <div class="px-7 pt-7 content-panel">
-  <h3 class="pb-5 text-xl">Next Hacking Hour</h3>
+  <h3 class="pb-5 pt-5 text-xl">Next Hacking Hour</h3>
   {{ $recurringEventData := site.Data.recurring_events.events }}
   {{ $hackingHourEvent := "" }}
   {{ range $recurringEventData }}
-  {{ if and (eq .id "hacking-hours") .active }}
-  {{ $hackingHourEvent = . }}
-  {{ end }}
+    {{ if and (eq .id "hacking-hours") .active }}
+      {{ $hackingHourEvent = . }}
+    {{ end }}
   {{ end }}
 
   {{ if $hackingHourEvent }}
-  {{ $now := now }}
-  {{ $daysMap := dict "Sunday" 0 "Monday" 1 "Tuesday" 2 "Wednesday" 3 "Thursday" 4 "Friday" 5 "Saturday" 6 }}
-
-  {{/* Ensure day_of_week is valid, default to Monday if not found in map to prevent sub error */}}
-  {{ $targetDayKey := $hackingHourEvent.day_of_week | default "Monday" }}
-  {{ $targetDayIndex := index $daysMap $targetDayKey }}
-  {{ if eq $targetDayIndex nil }}{{ $targetDayIndex = 1 }}{{ warnf "Invalid day_of_week '%s' in recurring_events.toml for Hacking Hours. Defaulting to Monday." $hackingHourEvent.day_of_week }}{{ end }}
-
-  {{ $currentDayIndex := int $now.Weekday }}
-
-  {{ $daysToAdd := sub (int $targetDayIndex) (int $currentDayIndex) }}
-
-  {{ if lt $daysToAdd 0 }}
-  {{ $daysToAdd = add $daysToAdd 7 }}
-  {{ else if eq $daysToAdd 0 }}
-  {{ $eventStartHour := int (substr $hackingHourEvent.start_time 0 2) }}
-  {{ $eventStartMinute := int (substr $hackingHourEvent.start_time 3 2) }}
-  {{ $nowHour := $now.Hour }}
-  {{ $nowMinute := $now.Minute }}
-
-  {{ if or (gt $nowHour $eventStartHour) (and (eq $nowHour $eventStartHour) (ge $nowMinute $eventStartMinute)) }}
-  {{ $daysToAdd = 7 }}
-  {{ end }}
-  {{ end }}
-
-  {{ $nextOccurrenceDate := $now.AddDate 0 0 (int $daysToAdd) }}
-
-  <div class="mb-4 pb-6">
-    <div>
-      <h4 class="font-semibold text-lg">{{ $hackingHourEvent.title }}</h4>
-      {{ if $hackingHourEvent.host }}
-      <p class="text-sm text-gray-600 dark:text-gray-400">
-        Hosted by: {{ $hackingHourEvent.host }}
-      </p>
+    {{ $now := now }}
+    {{ $daysMap := dict "Sunday" 0 "Monday" 1 "Tuesday" 2 "Wednesday" 3 "Thursday" 4 "Friday" 5 "Saturday" 6 }}
+    {{ $targetDayKey := $hackingHourEvent.day_of_week | default "Monday" }}
+    {{ $targetDayIndex := index $daysMap $targetDayKey | default 1 }}
+    {{ $currentDayIndex := int $now.Weekday }}
+    {{ $daysToAdd := sub $targetDayIndex $currentDayIndex }}
+    {{ if lt $daysToAdd 0 }}{{ $daysToAdd = add $daysToAdd 7 }}{{ end }}
+    {{ if eq $daysToAdd 0 }}
+      {{ $eventStartHour := int (substr $hackingHourEvent.start_time 0 2) }}
+      {{ $eventStartMinute := int (substr $hackingHourEvent.start_time 3 2) }}
+      {{ $nowHour := $now.Hour }}
+      {{ $nowMinute := $now.Minute }}
+      {{ if or (gt $nowHour $eventStartHour) (and (eq $nowHour $eventStartHour) (ge $nowMinute $eventStartMinute)) }}
+        {{ $daysToAdd = 7 }}
       {{ end }}
-      <p class="text-sm mt-1 flex items-center">
-          {{ partial "icon.html" (dict "style" "regular" "name" "calendar" "class" "mr-2") }}Next: {{ $nextOccurrenceDate.Format "Mon, Jan 2, 2006" }}
-      </p>
-      <p class="text-sm flex items-center">
-          {{ partial "icon.html" (dict "style" "regular" "name" "clock" "class" "mr-2") }}{{ $hackingHourEvent.start_time }} - {{ $hackingHourEvent.end_time }} {{ $hackingHourEvent.time_zone }}
-      </p>
-      <p class="text-sm mt-2">
-        {{ $hackingHourEvent.description }}
-      </p>
-      <p class="mt-3">
-        <a href="{{ $hackingHourEvent.location_url }}" target="_blank" class="btn btn-sm btn-new-primary">Join on Discord</a>
-      </p>
+    {{ end }}
+    {{ $nextOccurrenceDate := $now.AddDate 0 0 (int $daysToAdd) }}
+
+    <div class="mb-4 pb-6">
+      <div>
+        <h4 class="font-semibold text-lg">{{ $hackingHourEvent.title }}</h4>
+        {{ if $hackingHourEvent.host }}
+        <p class="text-sm text-gray-600 dark:text-gray-400">
+          Hosted by: {{ $hackingHourEvent.host }}
+        </p>
+        {{ end }}
+        <p class="text-sm mt-1 flex items-center">
+            {{ partial "icon.html" (dict "style" "regular" "name" "calendar" "class" "mr-2") }}Next: {{ $nextOccurrenceDate.Format "Mon, Jan 2, 2006" }}
+        </p>
+        <p class="text-sm flex items-center">
+            {{ partial "icon.html" (dict "style" "regular" "name" "clock" "class" "mr-2") }}{{ $hackingHourEvent.start_time }} - {{ $hackingHourEvent.end_time }} {{ $hackingHourEvent.time_zone }}
+        </p>
+        <div class="text-sm mt-2">
+          {{ $hackingHourEvent.description | markdownify }}
+        </div>
+      </div>
     </div>
-  </div>
   {{ else }}
-  <p>No active Hacking Hours scheduled in `data/recurring_events.toml`.</p>
+    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+      Hacking Hours are currently on a break. Check back soon for the new schedule!
+    </p>
+    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+      In the meantime, join our Discord to connect with the community and see what others are working on.
+    </p>
   {{ end }}
+
+  <div class="text-right pb-5 pt-5">
+    <a href="{{ $hackingHourEvent.location_url | default "https://discord.gg/C9bzWgNmqk" }}" target="_blank" class="btn btn-new-primary btn-sm">Join on Discord</a>
+  </div>
 </div>
