@@ -45,10 +45,10 @@ Your contributions, big or small, are the lifeblood of Open Neuromorphic. As you
 
 **ONM Initiatives** are community-driven projects and efforts aimed at achieving specific goals that align with our mission. These can range from developing new educational resources, organizing event series, improving our software tools, to spearheading new research collaborations.
 *   **Discover & Join:** Explore [current ONM Initiatives](/neuromorphic-computing/initiatives/) to see where your skills and passion can make a direct impact.
-*   **Propose Your Own:** Have an idea that could benefit the neuromorphic community? We encourage you to [propose a new initiative](../docs/initiatives/submit_initiative_instructions.md)!
+*   **Propose Your Own:** Have an idea that could benefit the neuromorphic community? We encourage you to [propose a new initiative](https://github.com/open-neuromorphic/communications/blob/main/docs/initiatives/submit_initiative_instructions.md)!
 
 **ONM Fellowship** is a way we recognize individuals who demonstrate sustained, impactful contributions and leadership within our community. Actively participating in and leading initiatives is a key pathway to becoming an ONM Fellow.
-*   **Learn More:** Understand the [Path to Fellowship](../docs/fellowship/path_to_fellowship.md) and how your continued involvement can lead to this recognition.
+*   **Learn More:** Understand the [Path to Fellowship](https://github.com/open-neuromorphic/communications/blob/main/docs/fellowship/path_to_fellowship.md) and how your continued involvement can lead to this recognition.
 
 By engaging in initiatives, you not only help drive the ONM community forward but also develop your own skills, expand your network, and gain valuable experience in the open-source neuromorphic landscape.
 
