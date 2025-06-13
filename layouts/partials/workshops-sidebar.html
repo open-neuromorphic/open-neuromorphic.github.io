@@ -1,10 +1,43 @@
-<div class="pb-4 text-center">~ Share this Site ~
-{{ partial "override-social-share" (dict "Context" . "Class" "share-icons" "Whatsapp" true "Telegram" false) }}
+<div class="pb-4">
+  {{ partial "components/og-preview.html" . }}
 </div>
 <div class="px-7 pt-7 content-panel">
   <h3 class="pb-5 pt-5 text-xl">Upcoming Workshops</h3>
-  {{ partial "components/upcoming-events" . }}
+
+  {{ $upcoming_workshops := where (where .Site.RegularPages "Section" "workshops") ".Params.upcoming" true }}
+
+  {{ if gt (len $upcoming_workshops) 0 }}
+    {{ range sort $upcoming_workshops ".Date" }}
+      <div class="mb-4">
+        <a href="{{ .Permalink }}" class="block font-semibold hover:text-primary dark:hover:text-darkmode-primary">{{ .Title }}</a>
+        <div class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+          {{ if .Params.author }}
+          <div class="flex items-center">
+              {{ partial "icon.html" (dict "style" "regular" "name" "circle-user" "class" "mr-2") }}
+              <span>{{ delimit .Params.author ", " }}</span>
+          </div>
+          {{ end }}
+          <div class="flex items-center mt-1">
+              {{ partial "icon.html" (dict "style" "regular" "name" "calendar" "class" "mr-2") }}
+              <span>{{ dateFormat "Jan 2, 2006" .Date }}</span>
+          </div>
+          <div class="flex items-center mt-1">
+              {{ partial "icon.html" (dict "style" "regular" "name" "clock" "class" "mr-2") }}
+              <span>{{ .Params.start_time }} - {{ .Params.end_time}} {{ .Params.time_zone }}</span>
+          </div>
+        </div>
+      </div>
+    {{ end }}
+  {{ else }}
+    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+      No workshops are currently scheduled. Check back soon for new events!
+    </p>
+    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+      Are you an expert in a neuromorphic topic? We invite you to share your knowledge with our community. Hosting a workshop is a great way to engage with peers and share your work.
+    </p>
+  {{ end }}
+
   <div class="text-right pb-5 pt-5">
-    <a href="/getting-involved/" class="btn btn-new-primary btn-sm">Host a workshop</a>
+    <a href="/getting-involved/host-an-event" class="btn btn-new-primary btn-sm">Host a Workshop</a>
   </div>
 </div>

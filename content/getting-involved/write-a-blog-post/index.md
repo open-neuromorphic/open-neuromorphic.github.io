@@ -11,8 +11,6 @@ Writing a blog post is one of the best ways to share your expertise, insights, o
 -   **Build Your Profile:** Establish yourself as a voice in the neuromorphic field.
 -   **Educate and Inspire:** Help others learn, solve problems, and get excited about the future of brain-inspired computing.
 
----
-
 ## How to Submit Your Post
 
 We offer two straightforward ways to submit your blog post. Choose the one that works best for you.
@@ -37,8 +35,6 @@ If you're comfortable with Git and GitHub, you can follow our standard contribut
 2.  **Create a new branch** for your post.
 3.  **Submit a Pull Request** with your completed post. Our team will review it and merge it.
 
----
-
 ## What We're Looking For
 
 We welcome a wide range of topics, including but not limited to:
@@ -48,4 +44,4 @@ We welcome a wide range of topics, including but not limited to:
 -   Opinion pieces on the future of the field.
 -   Deep dives into specific neuromorphic concepts.
 
-If you have an idea, don't hesitate to pitch it to us first on Discord or via email!
+If you have an idea, don't hesitate to pitch it to us first on Discord!
