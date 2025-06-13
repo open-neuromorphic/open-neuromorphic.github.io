@@ -39,21 +39,24 @@ layout_class=""
 explore_links="About ONM & Governance|/about/;Host a Workshop|/workshops/#host-a-workshop;ONM Initiatives|/neuromorphic-computing/initiatives/"
 >}}
 
-## Advancing Your Involvement: Initiatives & Fellowship
+## Specific Ways to Contribute
 
-Your contributions, big or small, are the lifeblood of Open Neuromorphic. As you engage with our community and projects, you might find yourself wanting to take on more focused roles or lead new efforts. This is where **ONM Initiatives** and **Fellowship** come into play.
+Ready to jump in? Here are some of the most impactful ways you can contribute to the community. We've created simple guides for each, with options for all skill levels.
 
-**ONM Initiatives** are community-driven projects and efforts aimed at achieving specific goals that align with our mission. These can range from developing new educational resources, organizing event series, improving our software tools, to spearheading new research collaborations.
-*   **Discover & Join:** Explore [current ONM Initiatives](/neuromorphic-computing/initiatives/) to see where your skills and passion can make a direct impact.
-*   **Propose Your Own:** Have an idea that could benefit the neuromorphic community? We encourage you to [propose a new initiative](https://github.com/open-neuromorphic/communications/blob/main/docs/initiatives/submit_initiative_instructions.md)!
+<div class="my-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+  {{< contribution_card icon="fas fa-pen-to-square" title="Write for Our Blog" link="/getting-involved/write-a-blog-post/" >}}
+  Share your research, tutorials, or insights with a global audience. We make it easy to submit your work, even if you're not a GitHub expert.
+  {{< /contribution_card >}}
 
-**ONM Fellowship** is a way we recognize individuals who demonstrate sustained, impactful contributions and leadership within our community. Actively participating in and leading initiatives is a key pathway to becoming an ONM Fellow.
-*   **Learn More:** Understand the [Path to Fellowship](https://github.com/open-neuromorphic/communications/blob/main/docs/fellowship/path_to_fellowship.md) and how your continued involvement can lead to this recognition.
+  {{< contribution_card icon="fas fa-chalkboard-user" title="Host an Event" link="/getting-involved/host-an-event/" >}}
+  Present a workshop, give a student talk, or co-host a Hacking Hour. It's a great way to share your knowledge and get valuable feedback.
+  {{< /contribution_card >}}
 
-By engaging in initiatives, you not only help drive the ONM community forward but also develop your own skills, expand your network, and gain valuable experience in the open-source neuromorphic landscape.
+  {{< contribution_card icon="fas fa-rocket" title="Join an Initiative" link="/getting-involved/join-an-initiative/" >}}
+  Collaborate on community-driven projects that shape the future of ONM. Explore existing initiatives or propose a new one.
+  {{< /contribution_card >}}
+</div>
 
-Beyond these pathways, there are many specific ways you can contribute to ONM:
+Beyond these pathways, a quick and easy way to support our community is by sharing our [website](https://open-neuromorphic.org/) and [Discord](https://discord.gg/C9bzWgNmqk) with your friends and colleagues. We're always looking for new members, and linking to our site helps boost our search engine rankings, making it easier for others to find us.
 
-If you're new to the community, we recommend joining our [Discord](https://discord.gg/C9bzWgNmqk) to connect with other members and learn more about our ongoing projects and initiatives. Leave a message in the `#welcome` channel to introduce yourself and let us know how you'd like to contribute!
-
-One quick and easy way to support our community is by sharing our [website](https://open-neuromorphic.org/) and [Discord](https://discord.gg/C9bzWgNmqk) with your friends and colleagues. We're always looking for new members to join our community. Also, linking to our website helps boost our search engine rankings, which makes it easier for others to find us.
+If you're new, we recommend joining our [Discord](https://discord.gg/C9bzWgNmqk) to connect with other members. Leave a message in the `#welcome` channel to introduce yourself!

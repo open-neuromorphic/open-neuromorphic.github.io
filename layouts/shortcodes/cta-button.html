@@ -1,0 +1,27 @@
+{{/* layouts/shortcodes/cta-button.html */}}
+{{- $text := .Get "text" | default "Learn More" -}}
+{{- $link := .Get "link" | default "#" -}}
+{{- $is_external := strings.HasPrefix $link "http" -}}
+
+{{- /* Determine the target attribute. Default to _blank for external links. */ -}}
+{{- $target := "" -}}
+{{- if .Get "target" -}}
+    {{- $target = .Get "target" -}}
+{{- else if $is_external -}}
+    {{- $target = "_blank" -}}
+{{- end -}}
+
+{{- /* Determine the final URL. Apply relLangURL only to internal links. */ -}}
+{{- $final_link := $link -}}
+{{- if not $is_external -}}
+    {{- $final_link = $link | relLangURL -}}
+{{- end -}}
+
+<div class="my-6 text-center">
+  <a href="{{ $final_link }}"
+     class="btn btn-new-primary text-lg"
+     {{ with $target }}target="{{ . }}"{{ end }}
+     {{ if eq $target "_blank" }}rel="noopener"{{ end }}>
+    {{ $text | markdownify }}
+  </a>
+</div>

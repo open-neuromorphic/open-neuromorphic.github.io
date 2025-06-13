@@ -1,0 +1,31 @@
+{{ $icon := .Get "icon" }}
+{{ $title := .Get "title" }}
+{{ $link := .Get "link" }}
+{{ $description := .Inner }}
+
+{{/* Use the same structure and classes as the homepage's involvement-card to ensure consistent styling and solve the link underline issue. */}}
+<div class="h-full">
+  <div class="involvement-card group">
+    {{ if $icon }}
+      <div class="involvement-card__icon">
+        {{ $iconData := partial "helpers/parse-fa-class.html" $icon }}
+        {{ partial "icon.html" (dict "style" $iconData.style "name" $iconData.name "class" "text-3xl text-white") }}
+      </div>
+    {{ end }}
+    <h3 class="involvement-card__title">
+      {{ $title }}
+    </h3>
+    <div class="involvement-card__description">
+      {{ $description | markdownify }}
+    </div>
+    <span class="involvement-card__cta">
+      Learn How
+      {{ partial "icon.html" (dict "style" "solid" "name" "arrow-right" "class" "transform transition-transform duration-200 group-hover:translate-x-1") }}
+    </span>
+
+    {{/* The link is an overlay, so its content is not directly styled as a link */}}
+    <a href="{{ $link | relLangURL }}" class="absolute inset-0 z-10" aria-label="Learn more about {{ $title }}">
+      <span class="sr-only">Learn more about {{ $title }}</span>
+    </a>
+  </div>
+</div>
