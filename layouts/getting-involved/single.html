@@ -1,0 +1,26 @@
+{{ define "main" }}
+  {{ partial "page-header" . }}
+  <section class="section pt-6">
+    <div class="container">
+      <div class="row lg:items-stretch">
+        {{/* Main content area */}}
+        <article class="{{ if gt (len .TableOfContents) 80 }}lg:col-8{{ else }}lg:col-10 mx-auto{{ end }}">
+          {{ $image := .Params.image }}
+          {{ if $image }}
+            <div class="mb-6">
+              {{ partial "image" (dict "Src" $image "Context" .Page "Alt" .Title "Class" "w-full rounded" "Size" "1280x720" "Command" "Crop") }}
+            </div>
+          {{ end }}
+          <div class="content mb-10">
+            {{ .Content }}
+          </div>
+          {{/* This partial includes the OG image preview and sharing buttons */}}
+          {{ partial "components/share-cta.html" . }}
+        </article>
+
+        {{/* Sidebar with Table of Contents */}}
+        {{ partial "components/sidebar-toc-shared.html" . }}
+      </div>
+    </div>
+  </section>
+{{ end }}

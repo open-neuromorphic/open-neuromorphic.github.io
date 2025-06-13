@@ -7,9 +7,9 @@ Open Neuromorphic thrives on the focused efforts of our community members. **Ini
 
 Contributing to an initiative is a fantastic way to collaborate with others, gain experience, and make a lasting impact.
 
-### How to Get Involved
+## How to Get Involved
 
-#### 1. Explore Existing Initiatives
+### 1. Explore Existing Initiatives
 
 The best way to start is by seeing what's already in motion. We maintain a directory of all active and past community initiatives.
 
@@ -19,7 +19,7 @@ Each initiative page lists the goals and the key contributors. To get involved, 
 -   **Join the discussion** on our [Discord server](https://discord.gg/C9bzWgNmqk). Many initiatives have dedicated threads or discussions in relevant channels.
 -   **Reach out to the initiative lead(s)** to express your interest and see how you can help.
 
-#### 2. Propose a New Initiative
+### 2. Propose a New Initiative
 
 Have an idea that could benefit the neuromorphic community? We strongly encourage members to lead new efforts! Whether it's creating a new tutorial series, benchmarking a new set of tools, or starting a study group, your leadership is welcome.
 
