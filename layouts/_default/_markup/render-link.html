@@ -1,18 +1,16 @@
+{{- /* layouts/_default/_markup/render-link.html */ -}}
 <a href="{{ .Destination | safeURL }}"
-
-{{ with .Title}}
- title="{{ . }}"
-{{ end }}
-
-{{ if strings.HasPrefix .Destination "http" }}
- target="_blank"
-{{ end }} 
-
-{{ if in .Destination "?class=" }}
-{{ $getClass:= string (index (findRE "class=([^&#]*)" .Destination) 0) }}
-{{ $allClass:= replace $getClass `class=` `` }}
-{{ $class:= replace $allClass `+` ` ` }}
- class="{{$class}}"
-{{ end }}
->{{.Text | safeHTML}}</a>
-{{- /* This comment removes trailing newlines. */ -}}
+  {{- with .Title}} title="{{ . }}"{{ end -}}
+  {{- $isExternal := strings.HasPrefix .Destination "http" -}}
+  {{- if $isExternal }} target="_blank" rel="noopener"{{ end -}}
+  {{- $class := "" -}}
+  {{- if in .Destination "?class=" -}}
+    {{- $class = index (findRE `class=([^&#]*)` .Destination) 0 | replace `class=` `` | replace `+` ` ` -}}
+    class="{{ $class }}"
+  {{- end -}}
+  >
+  {{- .Text | safeHTML -}}
+  {{- if and $isExternal (not (in (string $class) "btn")) (not (in (string $class) "breadcrumb-link-parent")) (not (in (string $class) "social-link-container")) -}}
+    {{- partial "icon.html" (dict "style" "solid" "name" "arrow-up-right-from-square" "class" "inline-block align-baseline ml-1 h-[0.8em] w-[0.8em]") -}}
+  {{- end -}}
+</a>

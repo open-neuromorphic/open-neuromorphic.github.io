@@ -6,13 +6,6 @@
     // Ensure logo text is white/light
     @apply text-white;
   }
-
-  // Override external link icon to be visible on dark background.
-  // This is needed because the footer is dark even in light mode.
-  a[target='_blank']::after {
-    // This is the light-on-dark version of the icon, same as in dark mode
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAAXNSR0IB2cksfwAAAAlwSFlzAAALEwAACxMBAJqcGAAAABtQTFRFAAAAaGlp////1tbWTE1N8vLykZKS8fHxdnZ2RkLL8wAAAAl0Uk5TAE//9SD/kP9kb5xATAAAAFlJREFUeJxNzTsKgDAQhOGpJLVH+IWQa1jYSxp7T+ARQsB7u4/Gafbb2UAkz8oWUwfohkeLATg1HXYp1B6YjN1RaLYRRSALQxaGbsXleEe8RNn/kJF/aqn6ABiVDmAZHw+0AAAAAElFTkSuQmCC');
-  }
 }
 
 .footer-heading {

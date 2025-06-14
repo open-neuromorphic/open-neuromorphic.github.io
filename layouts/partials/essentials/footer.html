@@ -28,7 +28,13 @@
         <nav aria-label="Explore our resources">
           <ul class="footer-link-list">
             {{ range site.Menus.footer_explore_new.ByWeight }}
-              <li><a href="{{ .URL | relLangURL }}" class="footer-link">{{ .Name }}</a></li>
+              <li>
+                {{ $is_external := findRE `^http` .URL }}
+                <a href="{{ .URL | relLangURL }}" class="footer-link" {{ if $is_external }}target="_blank" rel="noopener"{{ end }}>
+                  {{- .Name -}}
+                  {{- if $is_external -}}{{- partial "icon.html" (dict "style" "solid" "name" "arrow-up-right-from-square" "class" "inline-block align-baseline ml-1 h-[0.8em] w-[0.8em]") -}}{{- end -}}
+                </a>
+              </li>
             {{ end }}
           </ul>
         </nav>
@@ -41,8 +47,10 @@
           <ul class="footer-link-list">
             {{ range site.Menus.footer_community.ByWeight }}
               <li>
-                <a href="{{ .URL | relLangURL }}" class="footer-link" {{ if findRE `^http` .URL }}target="_blank" rel="noopener"{{ end }}>
-                  {{ .Name }}
+                {{ $is_external := findRE `^http` .URL }}
+                <a href="{{ .URL | relLangURL }}" class="footer-link" {{ if $is_external }}target="_blank" rel="noopener"{{ end }}>
+                  {{- .Name -}}
+                  {{- if $is_external -}}{{- partial "icon.html" (dict "style" "solid" "name" "arrow-up-right-from-square" "class" "inline-block align-baseline ml-1 h-[0.8em] w-[0.8em]") -}}{{- end -}}
                 </a>
               </li>
             {{ end }}
@@ -56,7 +64,13 @@
         <nav aria-label="About and legal information">
           <ul class="footer-link-list">
             {{ range site.Menus.footer_legal_new.ByWeight }}
-              <li><a href="{{ .URL | relLangURL }}" class="footer-link">{{ .Name }}</a></li>
+             <li>
+                {{ $is_external := findRE `^http` .URL }}
+                <a href="{{ .URL | relLangURL }}" class="footer-link" {{ if $is_external }}target="_blank" rel="noopener"{{ end }}>
+                  {{- .Name -}}
+                  {{- if $is_external -}}{{- partial "icon.html" (dict "style" "solid" "name" "arrow-up-right-from-square" "class" "inline-block align-baseline ml-1 h-[0.8em] w-[0.8em]") -}}{{- end -}}
+                </a>
+              </li>
             {{ end }}
           </ul>
         </nav>

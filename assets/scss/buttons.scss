@@ -10,11 +10,6 @@
   @apply rounded-sm px-4 py-1.5 text-sm;
 }
 
-// Suppress the global ::after icon for buttons where we use an inline SVG icon instead.
-a.btn.has-inline-icon[target='_blank']::after {
-  content: none !important;
-}
-
 // ----- Project-specific & Updated Theme Button Styles -----
 
 // Project's main primary button (gradient) - e.g., for "Join Discord"

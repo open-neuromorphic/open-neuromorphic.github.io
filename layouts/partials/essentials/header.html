@@ -65,10 +65,16 @@
       {{ partial "components/theme-switcher" (dict "Class" "mr-5") }}
 
       <!-- navigation btn -->
-      {{ if site.Params.navigation_button.enable }}
-        <a href="{{ site.Params.navigation_button.link | relLangURL }}" class="btn-new-primary btn-sm hidden lg:inline-block">
-          {{ site.Params.navigation_button.label }}
-        </a>
+      {{ with site.Params.navigation_button }}
+        {{ if .enable }}
+          {{ $is_external := findRE `^http` .link }}
+          <a href="{{ .link | relLangURL }}" class="btn-new-primary btn-sm hidden lg:inline-block" {{ if $is_external }}target="_blank" rel="noopener"{{ end }}>
+            {{- .label -}}
+            {{- if $is_external -}}
+              {{- partial "icon.html" (dict "style" "solid" "name" "arrow-up-right-from-square" "class" "ml-1.5") -}}
+            {{- end -}}
+          </a>
+        {{ end }}
       {{ end }}
     </div>
   </nav>
