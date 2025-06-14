@@ -6,5 +6,6 @@ social:
     link: "https://github.com/aMarcireau"
     title: "github"
 draft: false
+image: alexandre-marciraeu.png
 ---
 Alexandre Marcireau is a software developer and contributor in the neuromorphic computing space, known for his work on the Faery event processing library.
