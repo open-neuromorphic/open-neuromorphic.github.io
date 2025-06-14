@@ -1,0 +1,18 @@
+<div class="p-8 rounded-lg bg-theme-light dark:bg-darkmode-theme-light shadow-lg">
+  <div class="flex flex-col md:flex-row items-center text-center md:text-left gap-8">
+    <div class="flex-shrink-0">
+      {{ partial "icon.html" (dict "style" "solid" "name" "pen-to-square" "class" "text-6xl text-primary dark:text-darkmode-primary") }}
+    </div>
+    <div class="flex-grow">
+      <h2 class="text-3xl font-bold mb-2">
+        Have an idea? <span class="gradient-text">Share your voice.</span>
+      </h2>
+      <p class="text-lg text-gray-600 dark:text-gray-400 mb-4">
+        Open Neuromorphic is a community-driven platform. We invite you to share your research, tutorials, or insights with a global audience of neuromorphic enthusiasts.
+      </p>
+      <a href="{{ "/getting-involved/write-a-blog-post/" | relLangURL }}" class="btn btn-new-primary">
+        Learn How to Contribute
+      </a>
+    </div>
+  </div>
+</div>

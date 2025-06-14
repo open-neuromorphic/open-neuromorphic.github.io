@@ -15,7 +15,12 @@
           {{ .Content }}
         </div>
         {{ partial "components/share-cta.html" . }}
+       
         {{ partial "components/author-bios.html" . }}
+
+        <div class="mt-16">
+          {{ partial "components/blog-contribute-cta.html" . }}
+        </div>
       </article>
       {{ partial "components/sidebar-toc-shared.html" . }}
     </div>
