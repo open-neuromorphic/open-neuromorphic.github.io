@@ -21,15 +21,14 @@
 }
 
 .dark .og-preview-container {
-   box-shadow: 0 4px 12px rgba(0,0,0, 0.4), 0 0 0 1px theme('colors.darkmode.border'), 0 0 20px rgba(188, 251, 255, 0.4);
-   &:hover {
-     box-shadow: 0 6px 25px rgba(0,0,0, 0.3), 0 0 0 1px theme('colors.darkmode.primary'), 0 0 30px rgba(188, 251, 255, 0.6);
-   }
+  box-shadow: 0 4px 12px rgba(0,0,0, 0.4), 0 0 0 1px theme('colors.darkmode.border'), 0 0 20px rgba(188, 251, 255, 0.4);
+  &:hover {
+    box-shadow: 0 6px 25px rgba(0,0,0, 0.3), 0 0 0 1px theme('colors.darkmode.primary'), 0 0 30px rgba(188, 251, 255, 0.6);
+  }
 }
 
-.og-preview-image {
-  @apply w-full h-full bg-cover bg-center bg-no-repeat relative;
-  background-color: theme('colors.body');
+.og-preview-image-tag {
+  @apply absolute inset-0 w-full h-full object-cover z-0;
 }
 
 .image-dark-overlay {
@@ -88,15 +87,12 @@
 
 @media (max-width: 1023.98px) {
   .og-preview-container:hover {
-     transform: none;
+    transform: none;
   }
-   .og-preview-image {
-      background-size: contain;
-   }
   .social-share-overlay {
-     opacity: 1;
+    opacity: 1;
   }
   .sharing-runner {
-     @apply opacity-0;
+    @apply opacity-0;
   }
 }
