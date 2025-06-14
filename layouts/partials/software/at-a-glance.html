@@ -1,6 +1,6 @@
 {{ $page := . }}
 {{ with $page.Params }}
-<div class="p-6 rounded-lg bg-theme-light dark:bg-darkmode-theme-light shadow-lg sticky top-28">
+<div class="p-6 rounded-lg bg-theme-light dark:bg-darkmode-theme-light shadow-lg">
   {{ with .logo }}
     {{ $logoRes := $page.Resources.GetMatch . }}
     {{ if $logoRes }}

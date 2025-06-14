@@ -9,22 +9,27 @@
             {{ .Content }}
           </article>
           
-          <blockquote class="p-4 border-l-4 border-[var(--color-primary-new)] bg-blue-50 dark:bg-darkmode-theme-dark">
-            <h3 class="text-lg font-semibold !mt-0 !mb-2">Want to contribute to this entry?</h3>
-            <p class="!mb-0">
-              Help us keep this guide up-to-date! You can submit tutorials, case studies, or corrections by
-              <a href="https://github.com/open-neuromorphic/open-neuromorphic.github.io/issues" target="_blank">opening an issue on GitHub</a> or joining the discussion on our <a href="https://discord.gg/C9bzWgNmqk" target="_blank">Discord server</a>.
-            </p>
-          </blockquote>
+          {{ partial "components/content-contribute-cta.html" (dict
+            "icon" "solid code"
+            "title" "Help Improve this <span class=\"gradient-text\">Software Guide</span>"
+            "description" "Our software guide is maintained by the community. If you have updates, see an error, or want to suggest a new tool, please let us know by opening an issue on our GitHub repository."
+            "link" "https://github.com/open-neuromorphic/open-neuromorphic.github.io/issues/new/choose"
+            "link_text" "Suggest an Edit on GitHub"
+          ) }}
 
-          <div class="mt-8 flex justify-end">
-            {{ partial "override-social-share" (dict "Context" . "Class" "share-icons" "Title" (i18n "share") "Whatsapp" true "Telegram" false) }}
+          <div class="mt-8">
+             {{ partial "components/share-cta.html" . }}
           </div>
         </div>
         
         {{/* Sidebar Column */}}
         <aside class="lg:col-4">
-          {{ partial "software/at-a-glance.html" . }}
+          <div class="pb-4">
+            {{ partial "components/og-preview.html" . }}
+          </div>
+          <div class="sticky top-24">
+            {{ partial "software/at-a-glance.html" . }}
+          </div>
         </aside>
       </div>
 
