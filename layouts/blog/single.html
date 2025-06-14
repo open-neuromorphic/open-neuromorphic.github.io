@@ -8,6 +8,7 @@
         {{ if $image }}
         <div class="mb-6">
           {{ partial "image" (dict "Src" $image "Context" .Page "Alt" .Title "Class" "w-full rounded" "Size" "1280x720" "Command" "Crop") }}
+          {{ partial "components/image-attribution.html" . }}
         </div>
         {{ end }}
         {{ partial "components/metadata-bar.html" (dict "context" . "type" "blog") }}

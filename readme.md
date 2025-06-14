@@ -12,6 +12,7 @@ This repository contains the source code for the official **Open Neuromorphic (O
 *   **Resource Hubs:** Curated guides for [Neuromorphic Hardware](/neuromorphic-computing/hardware/) and [Software](/neuromorphic-computing/software/).
 *   **Automated Deployments:** CI/CD pipeline using GitHub Actions for automated builds and deployments.
 *   **Dynamic OG Images:** Automatically generated Open Graph images for better social sharing.
+*   **Image Attribution:** Simple front matter configuration to give credit for banner images.
 
 ## 🚀 Getting Started: Running Locally
 

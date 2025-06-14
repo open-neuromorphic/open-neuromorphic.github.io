@@ -2,6 +2,10 @@
 title: "Strategic Vision for Open Neuromorphic"
 description: "Why 'open' matters and where we want to take the Open Neuromorphic community"
 image: stars.jpg
+image_attribution:
+  text: "Photo by"
+  author: "Casey Horner"
+  url: "https://unsplash.com/photos/fireworks-pXZxuXmpsNo"
 aliases:
   - /blog/vision
 draft: false
