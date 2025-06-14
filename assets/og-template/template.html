@@ -1,138 +1,106 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   <title>OG Image</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  />
   <style>
-    /* Use a wrapper to act as our canvas and positioning context */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Inter", Arial, sans-serif;
+    }
     .canvas {
       position: relative;
       width: 1200px;
       height: 630px;
-      margin: 0;
-      padding: 0;
       background-color: #f9fafb;
-      font-family: 'Inter', Arial, sans-serif;
-      overflow: hidden; /* Important to clip anything that goes outside */
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-
-    /* The watermark is now a simple, absolutely positioned image */
-    .watermark {
+    .background {
       position: absolute;
-      z-index: 1; /* Behind the content */
+      z-index: 1;
       opacity: 0.25;
-      /* Position at bottom-left, partially off-screen */
       bottom: -35px;
-      left: 300px;
-      /* Set an explicit size */
+      left: 380px;
       width: 900px;
       height: auto;
       transform: rotate(-15deg);
     }
-
-    /* The main content card, also absolutely positioned */
-    .container {
-      z-index: 2; /* On top of the watermark */
-      position: absolute;
-      top: 30px;
-      left: 30px;
-      width: 950px;
-      height: 550px;
-    }
-
-    .main-content {
-      width: 100%;
-      height: 100%;
+    .content-wrapper {
+      position: relative;
+      z-index: 2;
+      width: 1100px;
+      height: 570px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: space-between;
     }
-
     .header {
-      position: relative;
-      width: 100%;
-      height: 80px;
-      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
     }
-
     .logo {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 80px;
+      height: 90px;
       width: auto;
+      margin-right: 30px;
     }
-    img.logo[src=""] {
-      display: none;
-    }
-
     .logo-text {
-      position: absolute;
-      top: 0;
-      left: 110px;
-      height: 80px;
-      line-height: 80px;
-      font-size: 54px;
+      font-size: 56px;
       font-weight: 700;
       color: #1f2937;
-      white-space: nowrap;
     }
-
+    .main-text {
+    }
     .title {
-      font-size: 50px;
+      font-size: 64px;
       font-weight: 700;
-      line-height: 1.15;
+      line-height: 1.2;
       color: #1f2937;
       margin: 0 0 20px 0;
       display: -webkit-box;
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
-      text-overflow: ellipsis;
-      text-align: left;
     }
     .description {
-      font-size: 32px;
-      font-weight: 400;
-      line-height: 1.45;
+      font-size: 36px;
+      line-height: 1.4;
       color: #4b5563;
-      margin: 0 0 20px 0;
+      margin: 0;
       display: -webkit-box;
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
-      text-overflow: ellipsis;
-      text-align: left;
+      text-shadow: 0 0 10px white, 0 0 15px white, 0 0 20px white;
     }
-
-    .site-name {
+    .footer {
       font-size: 35px;
       font-weight: 500;
       color: #667eea;
       text-align: left;
-      position: absolute;
-      left: 0px;
-      bottom: 10px;
     }
   </style>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="canvas">
-  <!-- Layer 1: The Watermark Image -->
-  <img src="BACKGROUND_URL" class="watermark" alt=""/>
-
-  <!-- Layer 2: The Content Container -->
-  <div class="container">
-    <div class="main-content">
-      <div class="header">
-        <img src="LOGO_SRC" alt="Site Logo" class="logo">
-        <div class="logo-text">Open Neuromorphic</div>
-      </div>
+  <img src="BACKGROUND_URL" class="background" alt="" />
+  <div class="content-wrapper">
+    <div class="header">
+      <img src="LOGO_SRC" alt="Logo" class="logo" />
+      <div class="logo-text">Open Neuromorphic</div>
+    </div>
+    <div class="main-text">
       <h1 class="title">PAGE_TITLE</h1>
       <p class="description">PAGE_DESCRIPTION</p>
-      <div class="site-name">open-neuromorphic.org</div>
     </div>
+    <div class="footer">open-neuromorphic.org</div>
   </div>
 </div>
 </body>

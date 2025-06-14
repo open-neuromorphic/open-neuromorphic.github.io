@@ -1,5 +1,12 @@
-<footer class="footer bg-gray-800 dark:bg-black text-gray-300 pt-16 pb-8">
-  <div class="container">
+<footer class="footer bg-gray-800 dark:bg-black text-gray-300 pt-16 pb-8 relative overflow-hidden">
+  {{ with resources.Get "images/ONM.png" }}
+    {{ $watermark_webp := .Process "webp" }}
+    <div
+      class="absolute bottom-0 right-0 w-[1500px] h-[1500px] bg-no-repeat bg-contain bg-right-bottom opacity-[0.06] dark:opacity-[0.2] z-0 pointer-events-none"
+      style="background-image: url('{{ $watermark_webp.RelPermalink }}'); transform: translate(5%, 5%) rotate(-10deg);">
+    </div>
+  {{ end }}
+  <div class="container relative z-10">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
 
       <!-- Column 1: Brand & Social -->

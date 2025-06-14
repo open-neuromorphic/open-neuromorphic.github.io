@@ -2,60 +2,60 @@
 
 {{/* 1. Try to find the auto-generated OG image: [slug]-og.jpg */}}
 {{ if .File }}
-  {{ $pageSlug := path.Base .File.Dir }}
-  {{ $generatedOgImageName := printf "%s-og.jpg" $pageSlug }}
-  {{ $ogImageResource = .Resources.GetMatch $generatedOgImageName }}
+{{ $pageSlug := path.Base .File.Dir }}
+{{ $generatedOgImageName := printf "%s-og.jpg" $pageSlug }}
+{{ $ogImageResource = .Resources.GetMatch $generatedOgImageName }}
 {{ end }}
 
 {{/* 2. If not found, fall back to the `image` param in front matter */}}
 {{ if not $ogImageResource }}
-  {{ with .Params.image }}
-    {{ $fmImage := . }}
-    {{ $ogImageResource = $.Page.Resources.GetMatch $fmImage }}
-    {{ if not $ogImageResource }}
-      {{ $ogImageResource = resources.Get $fmImage }}
-    {{ end }}
-  {{ end }}
+{{ with .Params.image }}
+{{ $fmImage := . }}
+{{ $ogImageResource = $.Page.Resources.GetMatch $fmImage }}
+{{ if not $ogImageResource }}
+{{ $ogImageResource = resources.Get $fmImage }}
+{{ end }}
+{{ end }}
 {{ end }}
 
 {{/* 3. If still not found, use a site-wide default */}}
 {{ if not $ogImageResource }}
-  {{ with site.Params.metadata.image }}
-    {{ $ogImageResource = resources.Get . }}
-  {{ end }}
+{{ with site.Params.metadata.image }}
+{{ $ogImageResource = resources.Get . }}
+{{ end }}
 {{ end }}
 
 
 {{ if $ogImageResource }}
-  {{ $resizedOg := $ogImageResource.Fill "600x315 Lanczos q85" }}
-  {{ $ogImageDisplay := $resizedOg.RelPermalink }}
+{{ $resizedOg := $ogImageResource.Resize "600x Lanczos q85" }}
+{{ $ogImageDisplay := $resizedOg.RelPermalink }}
 
-  <div class="og-preview-wrapper">
-    <div class="og-preview-container">
-      <div class="og-preview-image" style="background-image: url('{{ $ogImageDisplay }}')">
-        <div class="image-dark-overlay"></div>
-        <div class="social-share-overlay">
-          <div class="social-icons-container">
-            <a href="https://twitter.com/intent/tweet/?text={{ .Title | urlquery }}&url={{ .Permalink | absURL }}" target="_blank" rel="noopener" class="social-icon" title="Share on X/Twitter">
-              {{ partial "icon.html" (dict "style" "brands" "name" "x-twitter") }}
-            </a>
-            <a href="https://www.facebook.com/sharer/sharer.php?u={{ .Permalink | absURL }}" target="_blank" rel="noopener" class="social-icon" title="Share on Facebook">
-              {{ partial "icon.html" (dict "style" "brands" "name" "facebook") }}
-            </a>
-            <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ .Permalink | absURL }}&title={{ .Title | urlquery }}" target="_blank" rel="noopener" class="social-icon" title="Share on LinkedIn">
-              {{ partial "icon.html" (dict "style" "brands" "name" "linkedin") }}
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="sharing-runner">
-        <span>Share this post</span>
-        <div class="runner-icons">
+<div class="og-preview-wrapper">
+  <div class="og-preview-container">
+    <img src="{{ $ogImageDisplay }}" alt="Social share preview for {{ .Title }}" class="og-preview-image-tag" />
+
+    <div class="image-dark-overlay"></div>
+    <div class="social-share-overlay">
+      <div class="social-icons-container">
+        <a href="https://twitter.com/intent/tweet/?text={{ .Title | urlquery }}&url={{ .Permalink | absURL }}" target="_blank" rel="noopener" class="social-icon" title="Share on X/Twitter">
           {{ partial "icon.html" (dict "style" "brands" "name" "x-twitter") }}
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ .Permalink | absURL }}" target="_blank" rel="noopener" class="social-icon" title="Share on Facebook">
           {{ partial "icon.html" (dict "style" "brands" "name" "facebook") }}
+        </a>
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ .Permalink | absURL }}&title={{ .Title | urlquery }}" target="_blank" rel="noopener" class="social-icon" title="Share on LinkedIn">
           {{ partial "icon.html" (dict "style" "brands" "name" "linkedin") }}
-        </div>
+        </a>
+      </div>
+    </div>
+    <div class="sharing-runner">
+      <span>Share this post</span>
+      <div class="runner-icons">
+        {{ partial "icon.html" (dict "style" "brands" "name" "x-twitter") }}
+        {{ partial "icon.html" (dict "style" "brands" "name" "facebook") }}
+        {{ partial "icon.html" (dict "style" "brands" "name" "linkedin") }}
       </div>
     </div>
   </div>
+</div>
 {{ end }}
