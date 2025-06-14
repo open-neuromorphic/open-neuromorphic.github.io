@@ -20,6 +20,17 @@
           {{ partial "components/software-categories" . }}
         </div>
       </div>
+
+      <div class="mt-16">
+        {{ partial "components/content-contribute-cta.html" (dict
+          "icon" "solid code"
+          "title" "Know a Tool <span class=\"gradient-text\">We Missed?</span>"
+          "description" "Help us keep the software guide comprehensive and up-to-date. Suggest new frameworks, data tools, or corrections by opening an issue on our GitHub repository."
+          "link" "https://github.com/open-neuromorphic/open-neuromorphic.github.io/issues/new/choose"
+          "link_text" "Suggest an Addition on GitHub"
+        ) }}
+      </div>
+
     </div>
   </section>
 {{ end }}

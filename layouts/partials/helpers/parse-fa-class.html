@@ -2,11 +2,18 @@
 {{- $parts := split $classString " " -}}
 {{- $style := "solid" -}}
 {{- $name := "" -}}
+
 {{- range $part := $parts -}}
-  {{- if or (eq $part "fas") (eq $part "fa-solid") -}}{{- $style = "solid" -}}
-  {{- else if or (eq $part "far") (eq $part "fa-regular") -}}{{- $style = "regular" -}}
-  {{- else if or (eq $part "fab") (eq $part "fa-brands") -}}{{- $style = "brands" -}}
-  {{- else if hasPrefix $part "fa-" -}}{{- $name = strings.TrimPrefix "fa-" $part -}}
+  {{- if or (eq $part "fas") (eq $part "fa-solid") (eq $part "solid") -}}
+    {{- $style = "solid" -}}
+  {{- else if or (eq $part "far") (eq $part "fa-regular") (eq $part "regular") -}}
+    {{- $style = "regular" -}}
+  {{- else if or (eq $part "fab") (eq $part "fa-brands") (eq $part "brands") -}}
+    {{- $style = "brands" -}}
+  {{- else -}}
+    {{- /* If it's not a style keyword, it must be the name */ -}}
+    {{- $name = strings.TrimPrefix "fa-" $part -}}
   {{- end -}}
 {{- end -}}
+
 {{- return (dict "style" $style "name" $name) -}}

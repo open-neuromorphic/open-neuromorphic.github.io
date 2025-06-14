@@ -1,0 +1,25 @@
+{{ $icon := .icon | default "solid pen-to-square" }}
+{{ $title := .title | default "Have an idea? <span class=\"gradient-text\">Share your voice.</span>" }}
+{{ $description := .description | default "Open Neuromorphic is a community-driven platform. We invite you to share your research, tutorials, or insights with a global audience of neuromorphic enthusiasts." }}
+{{ $link := .link | default "/getting-involved/" }}
+{{ $link_text := .link_text | default "Learn How to Contribute" }}
+
+<div class="p-8 rounded-lg bg-theme-light dark:bg-darkmode-theme-light shadow-lg">
+  <div class="flex flex-col md:flex-row items-center text-center md:text-left gap-8">
+    <div class="flex-shrink-0">
+      {{ $icon_data := partial "helpers/parse-fa-class.html" $icon }}
+      {{ partial "icon.html" (dict "style" $icon_data.style "name" $icon_data.name "class" "text-6xl text-primary dark:text-darkmode-primary") }}
+    </div>
+    <div class="flex-grow">
+      <h2 class="text-3xl font-bold mb-2">
+        {{ $title | safeHTML }}
+      </h2>
+      <p class="text-lg text-gray-600 dark:text-gray-400 mb-4">
+        {{ $description | markdownify }}
+      </p>
+      <a href="{{ $link | relLangURL }}" class="btn btn-new-primary">
+        {{ $link_text }}
+      </a>
+    </div>
+  </div>
+</div>

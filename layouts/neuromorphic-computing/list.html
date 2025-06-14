@@ -102,6 +102,16 @@
       </div>
     </div>
     
+    <div class="mt-16">
+      {{ partial "components/content-contribute-cta.html" (dict
+        "icon" "solid brain"
+        "title" "Join the <span class=\"gradient-text\">Conversation</span>"
+        "description" "The Open Neuromorphic community thrives on collaboration. Join our Discord, attend an event, or contribute to a project to help push the boundaries of brain-inspired computing."
+        "link" "/getting-involved/"
+        "link_text" "Find Your Place in Our Community"
+      ) }}
+    </div>
+
   </div>
 </section>
 {{ end }}
