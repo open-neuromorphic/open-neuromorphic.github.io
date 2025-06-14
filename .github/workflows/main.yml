@@ -33,10 +33,6 @@ jobs:
           && sudo tar -C /usr/local -xzf ${{ runner.temp }}/go.tar.gz \
           && sudo ln -s /usr/local/go/bin/go /usr/local/bin/go
 
-      - name: Install wkhtmltopdf
-        run: |
-          sudo apt update
-          sudo apt install wkhtmltopdf imagemagick -y
 
       - name: Checkout
         uses: actions/checkout@v4.2.2
