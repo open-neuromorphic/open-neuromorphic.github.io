@@ -1,0 +1,7 @@
+{{ with .Params.image_attribution }}
+  <div class="image-attribution-caption">
+    <span class="attribution-backdrop">
+      {{ .text | default "Image:" }} <a href="{{ .url }}" target="_blank" rel="noopener">{{ .author }}</a>
+    </span>
+  </div>
+{{ end }}

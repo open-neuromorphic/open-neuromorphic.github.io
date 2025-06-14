@@ -120,7 +120,7 @@ Adding new content is one of the best ways to contribute. We use Hugo's [archety
     ```
 2.  **Location:** `content/blog/your-post-title-slug/index.md`
 3.  **Images:** Place images for the post inside the `content/blog/your-post-title-slug/` directory.
-4.  **Front Matter:** Fill in the `title`, `description`, `author`, and `image` (for the banner).
+4.  **Front Matter:** Fill in the `title`, `description`, `author`, and `image` (for the banner). Remember to add `image_attribution` if the banner image requires credit.
 
 ### Adding Events (Workshops, Student Talks, etc.)
 

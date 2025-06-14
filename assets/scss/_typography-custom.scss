@@ -275,3 +275,32 @@ h1 a, h2 a, h3 a, h4 a, h5 a {
     color: #bcfbff; 
   }
 }
+
+.image-attribution-caption {
+  // Positioning for the container div
+  @apply text-right text-xs italic -mt-8 mb-4 pr-2 relative z-10;
+
+  .attribution-backdrop {
+    // Styling for the text's background
+    @apply inline-block px-2 py-1 rounded-md;
+    background-color: rgba(0, 0, 0, 0.6); // Semi-transparent black
+    backdrop-filter: blur(2px); // Optional: adds a nice blur effect on supported browsers
+    color: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); // Adds a subtle shadow for pop
+
+    // Link styling within the backdrop
+    a {
+      color: #bcfbff !important; // Bright, readable link color
+      text-decoration: underline !important;
+      text-underline-offset: 2px;
+      transition: color 0.2s;
+
+      &:hover {
+        color: #ffffff !important; // Brighten on hover
+      }
+    }
+  }
+}
+
+// NOTE: We no longer need a separate .dark rule for this,
+// as the dark semi-transparent background works well in both light and dark modes.
