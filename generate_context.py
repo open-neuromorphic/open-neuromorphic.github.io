@@ -209,6 +209,7 @@ def generate_header(mode: str, checkpoint_file: Path | None = None, with_public_
 9.  Provide Code with focus toward with minimal commenting
 10. dont include {{{{/* comments */}}}}, every time it confuses hugo and causes errors
 11. If we are copying or moving files, provide the bash command to accomplish this
+12. We don't need to make backups of files before big edits - there is sufficient rollback capability in dev environment
 """
     if mode == "diff":
         checkpoint_ts_str = "ERROR: Checkpoint file missing!"
