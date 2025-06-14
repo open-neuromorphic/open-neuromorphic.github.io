@@ -1,8 +1,19 @@
 {{ define "main" }}
 {{ partial "page-header" . }}
 
+
 <section class="section pt-6 mt-0 pb-16">
   <div class="container">
+
+    <div>
+      {{ partial "components/content-contribute-cta.html" (dict
+      "icon" "solid brain"
+      "title" "Join the <span class=\"gradient-text\">Conversation</span>"
+      "description" "The Open Neuromorphic community thrives on collaboration. Join our Discord, attend an event, or contribute to a project to help push the boundaries of brain-inspired computing."
+      "link" "/getting-involved/"
+      "link_text" "Find Your Place in Our Community"
+      ) }}
+    </div>
     {{/* Display the main content of the _index.md page */}}
     <div class="content text-center mb-12 prose dark:prose-invert max-w-none">
         {{ .Content }}
@@ -83,7 +94,7 @@
         "page_context" .
       )
     }}
-    
+
     <!-- Recent Posts -->
     <div class="mb-0">
       <h3 class="section-title text-3xl font-semibold mb-3">Blog</h3>
@@ -101,17 +112,6 @@
          <a href="{{ "blog/" | relLangURL }}" class="btn btn-new-primary">View All Posts</a>
       </div>
     </div>
-    
-    <div class="mt-16">
-      {{ partial "components/content-contribute-cta.html" (dict
-        "icon" "solid brain"
-        "title" "Join the <span class=\"gradient-text\">Conversation</span>"
-        "description" "The Open Neuromorphic community thrives on collaboration. Join our Discord, attend an event, or contribute to a project to help push the boundaries of brain-inspired computing."
-        "link" "/getting-involved/"
-        "link_text" "Find Your Place in Our Community"
-      ) }}
-    </div>
-
   </div>
 </section>
 {{ end }}
