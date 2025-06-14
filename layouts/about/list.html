@@ -7,6 +7,15 @@
           <div class="content">
             {{ .Content }}
           </div>
+          <div class="mt-16">
+            {{ partial "components/content-contribute-cta.html" (dict
+              "icon" "solid rocket"
+              "title" "Ready to Shape the Future of <span class=\"gradient-text\">Neuromorphics?</span>"
+              "description" "Join our mission to advance open, collaborative, and accessible neuromorphic computing. Your expertise and passion can make a real difference."
+              "link" "/getting-involved/"
+              "link_text" "Get Involved Now"
+            ) }}
+          </div>
         </div>
       </div>
     </div>

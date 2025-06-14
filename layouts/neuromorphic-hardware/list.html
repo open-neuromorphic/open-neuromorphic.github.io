@@ -30,6 +30,16 @@
         {{ end }}
       </ul>
 
+      <div class="max-w-4xl mx-auto mt-12 mb-16">
+        {{ partial "components/content-contribute-cta.html" (dict
+          "icon" "solid microchip"
+          "title" "Help Us <span class=\"gradient-text\">Improve this Guide</span>"
+          "description" "Our hardware guide is community-maintained. If you know of a chip we should add, see an error, or have updated information, please let us know by opening an issue on our GitHub repository."
+          "link" "https://github.com/open-neuromorphic/open-neuromorphic.github.io/issues/new/choose"
+          "link_text" "Suggest an Edit on GitHub"
+        ) }}
+      </div>
+
       <div id="glossary" class="pt-12 max-w-4xl mx-auto">
         <h2 class="text-3xl font-bold text-center mb-8">Glossary of Terms</h2>
         <details class="bg-theme-light dark:bg-darkmode-theme-light rounded-lg shadow-md p-6 cursor-pointer">

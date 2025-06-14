@@ -15,7 +15,19 @@
           {{ .Content }}
         </div>
         {{ partial "components/share-cta.html" . }}
+       
         {{ partial "components/author-bios.html" . }}
+
+        <div class="mt-16">
+          {{ partial "components/content-contribute-cta.html" (dict
+            "icon" "solid pen-to-square"
+            "title" "Have an idea? <span class=\"gradient-text\">Share your voice.</span>"
+            "description" "Open Neuromorphic is a community-driven platform. We invite you to share your research, tutorials, or insights by writing a blog post."
+            "link" "/getting-involved/write-a-blog-post/"
+            "link_text" "Write for Our Blog"
+          ) }}
+        </div>
+
       </article>
       {{ partial "components/sidebar-toc-shared.html" . }}
     </div>

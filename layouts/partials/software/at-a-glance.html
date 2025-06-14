@@ -1,6 +1,6 @@
 {{ $page := . }}
 {{ with $page.Params }}
-<div class="p-6 rounded-lg bg-theme-light dark:bg-darkmode-theme-light shadow-lg sticky top-28">
+<div class="p-6 rounded-lg bg-theme-light dark:bg-darkmode-theme-light shadow-lg">
   {{ with .logo }}
     {{ $logoRes := $page.Resources.GetMatch . }}
     {{ if $logoRes }}
@@ -13,9 +13,14 @@
 
   <h2 class="text-2xl font-bold text-center mb-4">{{ $page.Title }}</h2>
 
+  {{/* --- Button Section --- */}}
   <div class="grid grid-cols-2 gap-2 mb-4">
-    <a href="{{ .website }}" target="_blank" rel="noopener" class="btn btn-new-primary text-sm text-center">Website</a>
-    <a href="{{ .source_code }}" target="_blank" rel="noopener" class="btn btn-new-outline text-sm text-center">Source Code</a>
+    <a href="{{ .website }}" target="_blank" rel="noopener" class="btn btn-new-primary has-inline-icon !text-sm !py-2 !px-4 flex items-center justify-center">
+      Website {{ partial "icon.html" (dict "style" "solid" "name" "arrow-up-right-from-square" "class" "ml-1.5") }}
+    </a>
+    <a href="{{ .source_code }}" target="_blank" rel="noopener" class="btn btn-new-outline has-inline-icon !text-sm !py-2 !px-4 flex items-center justify-center">
+      Source Code {{ partial "icon.html" (dict "style" "solid" "name" "arrow-up-right-from-square" "class" "ml-1.5") }}
+    </a>
   </div>
 
   <div class="flex justify-center items-center space-x-2 mb-4">
@@ -27,57 +32,74 @@
     {{ end }}
   </div>
 
+  {{/* --- Details List --- */}}
   <div class="border-t border-border dark:border-darkmode-border pt-4">
-    <dl class="text-sm text-text dark:text-darkmode-text">
-      <div class="flex justify-between py-1">
-        <dt class="font-semibold">Maintainer(s):</dt>
-        <dd class="text-right">
-          {{ with .maintainer }}
+    <dl class="text-sm text-text dark:text-darkmode-text space-y-2">
+      
+      {{/* Maintainer(s) Row */}}
+      {{ with .maintainer }}
+        <div class="flex justify-between items-start">
+          <dt class="font-semibold pt-2">Maintainer(s):</dt>
+          <dd class="text-right">
             {{ $maintainerList := . }}
-            {{ if reflect.IsSlice $maintainerList }}
-              {{ $links := slice }}
-              {{ range $maintainerList }}
-                {{ $nameForProcessing := . | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" }}
-                {{ $contributorSlug := $nameForProcessing | anchorize }}
-                {{ $contributorPage := $page.Site.GetPage (printf "contributors/%s" $contributorSlug) }}
-                {{ if $contributorPage }}
-                  {{ $links = $links | append (printf `<a href="%s" class="text-primary dark:text-darkmode-primary hover:underline">%s</a>` $contributorPage.RelPermalink .) }}
-                {{ else }}
-                  {{ $links = $links | append . }}
-                {{ end }}
-              {{ end }}
-              {{ delimit $links ", " | safeHTML }}
-            {{ else }}
-              {{ $nameForProcessing := . | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" }}
-              {{ $contributorSlug := $nameForProcessing | anchorize }}
-              {{ $contributorPage := $page.Site.GetPage (printf "contributors/%s" $contributorSlug) }}
-              {{ if $contributorPage }}
-                <a href="{{ $contributorPage.RelPermalink }}" class="text-primary dark:text-darkmode-primary hover:underline">{{ . }}</a>
-              {{ else }}
-                {{ . }}
-              {{ end }}
-            {{ end }}
-          {{ else }}
-            N/A
-          {{ end }}
-        </dd>
-      </div>
-      <div class="flex justify-between py-1">
+            {{ if not (reflect.IsSlice .) }}{{ $maintainerList = slice . }}{{ end }}
+            
+            <div class="flex items-center justify-end">
+                <div class="mr-2 text-right">
+                    {{ range $i, $name := $maintainerList }}
+                      {{ $nameForProcessing := . | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" }}
+                      {{ $contributorSlug := $nameForProcessing | anchorize }}
+                      {{ $contributorPage := $page.Site.GetPage (printf "contributors/%s" $contributorSlug) }}
+                      <span class="block">
+                        {{ if $contributorPage }}
+                          <a href="{{ $contributorPage.RelPermalink }}" class="text-primary dark:text-darkmode-primary hover:underline">{{ . }}</a>
+                        {{ else }}
+                          {{ . }}
+                        {{ end }}
+                      </span>
+                    {{ end }}
+                </div>
+                <div class="flex-shrink-0 flex -space-x-3">
+                  {{ range $maintainerList }}
+                    {{ $maintainerName := . }}
+                    {{ $nameForProcessing := $maintainerName | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" }}
+                    {{ $contributorSlug := $nameForProcessing | anchorize }}
+                    {{ $contributorPage := $page.Site.GetPage (printf "contributors/%s" $contributorSlug) }}
+                    {{ if and $contributorPage $contributorPage.Params.image }}
+                      {{ with $contributorPage.Resources.GetMatch $contributorPage.Params.image }}
+                        {{ $thumb := .Fill "32x32 Lanczos" }}
+                        <img src="{{ $thumb.RelPermalink }}" alt="{{ $maintainerName }}" title="{{ $maintainerName }}" class="w-8 h-8 rounded-full object-cover border-2 border-white dark:border-darkmode-theme-light">
+                      {{ end }}
+                    {{ else }}
+                      <div class="w-8 h-8 rounded-full bg-gray-200 dark:bg-darkmode-theme-dark flex items-center justify-center text-gray-400 border-2 border-white dark:border-darkmode-theme-light" title="{{ $maintainerName }}">
+                        {{ partial "icon.html" (dict "style" "solid" "name" "user" "class" "text-base") }}
+                      </div>
+                    {{ end }}
+                  {{ end }}
+                </div>
+            </div>
+          </dd>
+        </div>
+      {{ end }}
+
+      {{/* Other Details Rows */}}
+      <div class="flex justify-between">
         <dt class="font-semibold">Language:</dt>
-        <dd class="text-right">{{ .language | default "N/A" }}</dd>
+        <dd>{{ .language | default "N/A" }}</dd>
       </div>
-      <div class="flex justify-between py-1">
+      <div class="flex justify-between">
         <dt class="font-semibold">License:</dt>
-        <dd class="text-right">{{ .license | default "N/A" }}</dd>
+        <dd>{{ .license | default "N/A" }}</dd>
       </div>
-       <div class="flex justify-between py-1">
+       <div class="flex justify-between">
         <dt class="font-semibold">Application:</dt>
-        <dd class="text-right">{{ .field_of_application | default "N/A" }}</dd>
+        <dd>{{ .field_of_application | default "N/A" }}</dd>
       </div>
-      <div class="flex justify-between py-1 items-center">
+      <div class="flex justify-between items-center">
         <dt class="font-semibold">Dependencies:</dt>
-        <dd class="text-right">{{ .dependencies | default "N/A" }}</dd>
+        <dd>{{ .dependencies | default "N/A" }}</dd>
       </div>
+
     </dl>
   </div>
   

@@ -181,10 +181,19 @@
       {{ end }}
     </div>
     {{ end }}
+{{ if not $uniqueYearsSorted }}
+<p class="text-center text-xl">No contributions found with yearly data.</p>
+{{ end }}
 
-    {{ if not $uniqueYearsSorted }}
-    <p class="text-center text-xl">No contributions found with yearly data.</p>
-    {{ end }}
-  </div>
+<div class="mt-8">
+  {{ partial "components/content-contribute-cta.html" (dict
+    "icon" "solid user-group"
+    "title" "Ready to <span class=\"gradient-text\">Join Us?</span>"
+    "description" "Become part of our growing community of researchers, developers, and enthusiasts. Explore the many ways you can contribute to the future of open-source neuromorphic computing."
+    "link" "/getting-involved/"
+    "link_text" "See How to Get Involved"
+  ) }}
+</div>
+</div>
 </section>
 {{ end }}

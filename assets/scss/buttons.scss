@@ -1,13 +1,18 @@
 // assets/scss/buttons.scss
 
-// Base .btn style
+// Base .btn style - Added 'no-underline' to prevent link styling
 .btn {
-  @apply inline-block rounded border border-transparent px-5 py-2 font-semibold capitalize transition;
+  @apply inline-block rounded border border-transparent px-5 py-2 font-semibold capitalize transition no-underline;
 }
 
 // Base .btn-sm style
 .btn-sm {
   @apply rounded-sm px-4 py-1.5 text-sm;
+}
+
+// Suppress the global ::after icon for buttons where we use an inline SVG icon instead.
+a.btn.has-inline-icon[target='_blank']::after {
+  content: none !important;
 }
 
 // ----- Project-specific & Updated Theme Button Styles -----
@@ -32,6 +37,16 @@
   &:hover {
     background-color: var(--color-primary-new);
     @apply text-white;
+  }
+}
+
+// Dark mode override for the outline button
+.dark .btn-new-outline {
+  color: var(--color-darkmode-primary);
+  border-color: var(--color-darkmode-primary);
+  &:hover {
+    background-color: var(--color-darkmode-primary);
+    color: theme('colors.darkmode.theme-dark');
   }
 }
 

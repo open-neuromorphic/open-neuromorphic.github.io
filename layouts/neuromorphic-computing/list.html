@@ -1,7 +1,7 @@
 {{ define "main" }}
 {{ partial "page-header" . }}
 
-<section class="section pt-6 mt-0">
+<section class="section pt-6 mt-0 pb-16">
   <div class="container">
     {{/* Display the main content of the _index.md page */}}
     <div class="content text-center mb-12 prose dark:prose-invert max-w-none">
@@ -85,7 +85,7 @@
     }}
     
     <!-- Recent Posts -->
-    <div class="mb-16"> <!-- Added mb-16 for spacing similar to new sections -->
+    <div class="mb-0">
       <h3 class="section-title text-3xl font-semibold mb-3">Blog</h3>
       <p class="section-subtitle text-lg text-gray-600 dark:text-gray-400 mb-8 mx-auto">Stay informed with our latest articles, tutorials, and community updates.</p>
       <div class="row"> <!-- Kept row for 3-column layout for blogs -->
@@ -102,6 +102,16 @@
       </div>
     </div>
     
+    <div class="mt-16">
+      {{ partial "components/content-contribute-cta.html" (dict
+        "icon" "solid brain"
+        "title" "Join the <span class=\"gradient-text\">Conversation</span>"
+        "description" "The Open Neuromorphic community thrives on collaboration. Join our Discord, attend an event, or contribute to a project to help push the boundaries of brain-inspired computing."
+        "link" "/getting-involved/"
+        "link_text" "Find Your Place in Our Community"
+      ) }}
+    </div>
+
   </div>
 </section>
 {{ end }}
