@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>OG Image Text Overlay</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+    }
+    .canvas {
+      position: relative;
+      width: 1200px;
+      height: 630px;
+      background-image: url('BASE_IMAGE_URL');
+      background-size: 1200px 630px;
+      background-repeat: no-repeat;
+      font-family: 'Inter', Arial, sans-serif;
+      overflow: hidden;
+    }
+    .container {
+      position: absolute;
+      top: 30px;
+      left: 30px;
+      width: 950px;
+      height: 550px;
+    }
+    .main-content {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 110px; /* To account for the header in the base image */
+      box-sizing: border-box;
+    }
+    .title {
+      font-size: 50px;
+      font-weight: 700;
+      line-height: 1.15;
+      color: #1f2937;
+      margin: 0 0 20px 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: left;
+    }
+    .description {
+      font-size: 32px;
+      font-weight: 400;
+      line-height: 1.45;
+      color: #4b5563;
+      margin: 0 0 20px 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: left;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="canvas">
+    <div class="container">
+      <div class="main-content">
+        <h1 class="title">PAGE_TITLE</h1>
+        <p class="description">PAGE_DESCRIPTION</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
