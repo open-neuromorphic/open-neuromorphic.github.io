@@ -41,7 +41,7 @@ preloader = "" # use jpg, png, svg or gif format.
 [navigation_button]
 enable = true
 label = "Join Discord (2100+ joined)"
-link = "https://discord.gg/hUygPUdD8E"
+link = "https://discord.gg/C9bzWgNmqk"
 
 # search
 # search module: https://github.com/gethugothemes/hugo-modules/tree/master/search

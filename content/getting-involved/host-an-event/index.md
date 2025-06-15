@@ -18,7 +18,7 @@ Getting started is easy. You don't need to be a seasoned presenter; you just nee
 1.  **Have an Idea:** Think about what you'd like to share. It could be your latest project, a tutorial you've developed, or a topic you're passionate about.
 
 2.  **Reach Out to Us:** Contact us through one of these channels:
-    -   **Discord:** This is the best way. Post a message in the `#proposals-contributions` channel on our [Discord server](https://discord.gg/hUygPUdD8E) or send a direct message to an Executive Committee member (like **Jens E. Pedersen**).
+    -   **Discord:** This is the best way. Post a message in the `#proposals-contributions` channel on our [Discord server](https://discord.gg/C9bzWgNmqk) or send a direct message to an Executive Committee member (like **Jens E. Pedersen**).
 
 3.  **Tell Us About Your Idea:** In your message, please include:
     -   A brief title and description of your proposed talk/workshop.

@@ -44,7 +44,7 @@ ONM is dedicated to providing a comprehensive ecosystem for the neuromorphic com
     *   Live **[Hacking Hours](/neuromorphic-computing/software/hacking-hours/)** exploring software, tackling coding challenges, and discussing the latest developments.
 *   **A Collaborative Platform:**
     *   Our **[GitHub organization](https://github.com/open-neuromorphic)** serves as a platform for open-source neuromorphic projects. We welcome new contributions and can help migrate existing projects.
-    *   A thriving **[Discord community](https://discord.gg/hUygPUdD8E)** for discussions, Q&A, networking, and real-time collaboration.
+    *   A thriving **[Discord community](https://discord.gg/C9bzWgNmqk)** for discussions, Q&A, networking, and real-time collaboration.
 *   **Clear Project Focus:** We concentrate on projects and resources related to:
     *   Spiking Neural Networks (SNNs) for training, inference, Machine Learning, and neuroscience applications.
     *   Event-based sensor data handling and processing.
@@ -65,7 +65,7 @@ Open Neuromorphic was brought to life through the vision and dedication of its f
 ## Join Us & Get Involved!
 
 The heart of Open Neuromorphic is its community. Whether you're looking to learn, contribute your expertise, or find collaborators, there's a place for you here.
-*   **Engage with us** on our [Discord server](https://discord.gg/hUygPUdD8E).
+*   **Engage with us** on our [Discord server](https://discord.gg/C9bzWgNmqk).
 *   **Contribute** to our [website and projects on GitHub](https://github.com/open-neuromorphic/open-neuromorphic.github.io).
 *   **Share your knowledge** by giving a talk, writing a blog post, or leading an initiative.
 

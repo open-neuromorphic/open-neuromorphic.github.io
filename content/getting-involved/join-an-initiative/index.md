@@ -16,7 +16,7 @@ The best way to start is by seeing what's already in motion. We maintain a direc
 {{< cta-button text="View All ONM Initiatives" link="/neuromorphic-computing/initiatives/" >}}
 
 Each initiative page lists the goals and the key contributors. To get involved, you can:
--   **Join the discussion** on our [Discord server](https://discord.gg/hUygPUdD8E). Many initiatives have dedicated threads or discussions in relevant channels.
+-   **Join the discussion** on our [Discord server](https://discord.gg/C9bzWgNmqk). Many initiatives have dedicated threads or discussions in relevant channels.
 -   **Reach out to the initiative lead(s)** to express your interest and see how you can help.
 
 ### 2. Propose a New Initiative

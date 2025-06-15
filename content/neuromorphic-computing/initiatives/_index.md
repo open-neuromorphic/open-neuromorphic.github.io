@@ -11,4 +11,4 @@ Open Neuromorphic thrives on the dedication and passion of its community members
 ## Get Involved!
 
 Do you have an idea for an initiative or want to contribute to an existing one?
-Visit our [Getting Involved](/getting-involved/) page or join the discussion on our [Discord server](https://discord.gg/hUygPUdD8E)!
+Visit our [Getting Involved](/getting-involved/) page or join the discussion on our [Discord server](https://discord.gg/C9bzWgNmqk)!
