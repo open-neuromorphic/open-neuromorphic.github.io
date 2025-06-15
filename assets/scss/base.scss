@@ -14,7 +14,7 @@ h3,
 h4,
 h5,
 h6 {
-  @apply font-secondary text-dark dark:text-darkmode-dark font-bold leading-tight;
+  @apply font-secondary text-dark dark:text-darkmode-dark font-semibold leading-tight;
 }
 
 h1,
@@ -47,10 +47,6 @@ h6,
   @apply text-h6 font-medium;
 }
 
-b,
-strong {
-  @apply font-semibold;
-}
 
 code {
   @apply after:border-none;
@@ -59,3 +55,4 @@ code {
 blockquote > p {
   @apply my-0 #{!important};
 }
+
