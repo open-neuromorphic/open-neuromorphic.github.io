@@ -34,7 +34,7 @@ explore_links="Neuromorphic Software Guide|/neuromorphic-computing/software/;Neu
 title="For Industry & Organizations"
 description="Partner with ONM to shape the future of neuromorphic technology. Explore opportunities for strategic collaborations, sponsor initiatives, host workshops, or contribute to the development of open standards. Leverage our community to share industry insights and foster innovation."
 cta_text="Discuss Partnership"
-cta_link="https://discord.gg/C9bzWgNmqk"
+cta_link="https://discord.gg/hUygPUdD8E"
 image="industry-path.jpeg"
 alt_text="Industry professionals in a meeting"
 layout_class=""
@@ -59,6 +59,6 @@ Collaborate on community-driven projects that shape the future of ONM. Explore e
 {{< /contribution_card >}}
 </div>
 
-Beyond these pathways, a quick and easy way to support our community is by sharing our [website](https://open-neuromorphic.org/) and [Discord](https://discord.gg/C9bzWgNmqk) with your friends and colleagues. We're always looking for new members, and linking to our site helps boost our search engine rankings, making it easier for others to find us.
+Beyond these pathways, a quick and easy way to support our community is by sharing our [website](https://open-neuromorphic.org/) and [Discord](https://discord.gg/hUygPUdD8E) with your friends and colleagues. We're always looking for new members, and linking to our site helps boost our search engine rankings, making it easier for others to find us.
 
-If you're new, we recommend joining our [Discord](https://discord.gg/C9bzWgNmqk) to connect with other members. Leave a message in the `#welcome` channel to introduce yourself!
+If you're new, we recommend joining our [Discord](https://discord.gg/hUygPUdD8E) to connect with other members. Leave a message in the `#welcome` channel to introduce yourself!
