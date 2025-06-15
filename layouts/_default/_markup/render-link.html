@@ -11,6 +11,6 @@
   >
   {{- .Text | safeHTML -}}
   {{- if and $isExternal (not (in (string $class) "btn")) (not (in (string $class) "breadcrumb-link-parent")) (not (in (string $class) "social-link-container")) -}}
-    {{- partial "icon.html" (dict "style" "solid" "name" "arrow-up-right-from-square" "class" "inline-block align-baseline ml-1 h-[0.8em] w-[0.8em]") -}}
+    {{- partial "icon.html" (dict "style" "solid" "name" "arrow-up-right-from-square" "class" "inline-block  ml-[.5] pb-[.4]" "width" "1em" "height" "0.7em") -}}
   {{- end -}}
 </a>

@@ -46,7 +46,7 @@ main {
   @apply prose-h1:text-h2-sm md:prose-h1:text-h2; // Markdown '#' will be like a global H2
   @apply prose-h2:text-h3-sm md:prose-h2:text-h3; // Markdown '##' will be like a global H3
   @apply prose-h3:text-h4;                       // Markdown '###' will be like a global H4
-  @apply prose-h4:text-h5;                       // Markdown '####' will be like a global H5
+  @apply prose-h4:text-h5;                       // Markdown '#####' will be like a global H5
   @apply prose-h5:text-h6;                       // Markdown '#####' will be like a global H6
   @apply prose-h6:text-base prose-h6:font-semibold; // Markdown '######' will be base size, bold
 
@@ -56,7 +56,7 @@ main {
 
   blockquote {
     @apply bg-white dark:bg-darkmode-theme-light rounded-xl p-6 shadow-md transition-all duration-300 ease-in-out not-italic;
-    @apply font-secondary text-xl text-dark dark:text-darkmode-light; // Text styling for blockquote
+    @apply font-primary text-xl text-dark dark:text-darkmode-light; // Text styling for blockquote
     border-left: 4px solid var(--color-accent-new); // Pink left border like news-card
     border-top: none; // Remove other prose borders
     border-right: none;
@@ -85,8 +85,12 @@ main {
 
   @apply prose-pre:rounded-lg prose-pre:bg-theme-light prose-pre:dark:bg-darkmode-theme-light;
   @apply prose-code:px-1;
-  @apply prose-strong:text-dark prose-strong:dark:text-darkmode-text;
-  @apply prose-a:text-text prose-a:underline hover:prose-a:text-primary prose-a:dark:text-darkmode-text hover:prose-a:dark:text-darkmode-primary;
+
+  strong {
+    color: inherit;
+    font-weight: 550;
+  }
+  @apply prose-a:underline hover:prose-a:text-primary hover:prose-a:dark:text-darkmode-primary;
   @apply prose-li:text-text prose-li:dark:text-darkmode-text;
   @apply prose-table:relative prose-table:overflow-hidden prose-table:rounded-lg prose-table:before:absolute prose-table:before:left-0 prose-table:before:top-0 prose-table:before:h-full prose-table:before:w-full prose-table:before:rounded-[inherit] prose-table:before:border prose-table:before:content-[""] prose-table:before:dark:border-darkmode-border;
   @apply prose-thead:border-border prose-thead:bg-theme-light prose-thead:dark:border-darkmode-border prose-thead:dark:bg-darkmode-theme-light;

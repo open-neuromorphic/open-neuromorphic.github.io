@@ -6,8 +6,6 @@ image_attribution:
   text: "Photo by"
   author: "Casey Horner"
   url: "https://unsplash.com/photos/fireworks-pXZxuXmpsNo"
-aliases:
-  - /blog/vision
 draft: false
 date: 2025-06-11
 showTableOfContents: true
