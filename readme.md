@@ -65,7 +65,7 @@ It covers everything you need to know, including:
 *   Specific guidelines for adding blog posts, events, and other content.
 *   Coding standards and commit message conventions.
 
-For community discussions and questions, join us on our [Discord server](https://discord.gg/C9bzWgNmqk).
+For community discussions and questions, join us on our [Discord server](https://discord.gg/hUygPUdD8E).
 
 ## 📄 License
 
