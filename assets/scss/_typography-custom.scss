@@ -112,7 +112,7 @@ a {
 }
 
 .content :is(:where(a):not(:where([class~="not-prose"], [class~="not-prose"] *, .btn))),
-section a:not(.breadcrumb-link-parent, .social-link-container, .btn, .hardware-card-wide-link) {
+section a:not(.breadcrumb-link-parent, .social-link-container, .btn, .hardware-card-wide-link, .social-icon) {
   font-weight: inherit;
   color: inherit !important;
   @include styled-link(#d7c7e3, #200435, #288b8c, #bcfbff);
@@ -135,7 +135,7 @@ h1 a, h2 a, h3 a, h4 a, h5 a {
   }
 
 .dark .content :is(:where(a):not(:where([class~="not-prose"], [class~="btn"], [class~="not-prose"] *))),
-.dark section a:not(.breadcrumb-link-parent, .social-link-container, .btn) {
+.dark section a:not(.breadcrumb-link-parent, .social-link-container, .btn, .hardware-card-wide-link, .social-icon) {
     color: inherit !important;
 }
 
@@ -224,6 +224,3 @@ a.breadcrumb-link-parent {
     }
   }
 }
-
-// NOTE: We no longer need a separate .dark rule for this,
-// as the dark semi-transparent background works well in both light and dark modes.

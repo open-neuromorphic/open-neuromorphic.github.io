@@ -47,7 +47,8 @@
 }
 
 .social-icon {
-  @apply text-white text-xl w-9 h-9 flex items-center justify-center transition-all duration-300 ease-in-out no-underline;
+  @apply text-xl w-9 h-9 flex items-center justify-center transition-all duration-300 ease-in-out no-underline;
+  color: white;
   background: rgba(0,0,0, 0.6);
   backdrop-filter: blur(2px);
   border-radius: 50%;
