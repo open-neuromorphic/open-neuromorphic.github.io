@@ -6,7 +6,8 @@
   "author": "VisionInit.dev",
   "scripts": {
     "dev": "hugo serve --buildFuture",
-    "build": "npm run og-images && rm public -fr && hugo --gc --minify --buildFuture --templateMetrics --templateMetricsHints --forceSyncStatic -e production",
+    "hugo-build": "hugo --gc --minify --buildFuture --templateMetrics --templateMetricsHints --forceSyncStatic -e production",
+    "build": "npm run og-images && npm run hugo-build",
     "build-preview": "hugo server --disableFastRender --buildFuture --navigateToChanged --templateMetrics --templateMetricsHints  --forceSyncStatic -e production --minify",
     "og-images": "node scripts/collectOgData.js && node scripts/generateOgImages.js"
   },

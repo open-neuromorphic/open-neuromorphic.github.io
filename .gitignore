@@ -20,3 +20,8 @@ yarn.lock
 /tmp/ogImageData.json
 /tmp/output_full.txt
 /tmp/
+
+# Ignore generated OG images and cache files
+content/**/*-og.jpg
+static/images/og-image.jpg
+tmp/og-cache-manifest.json
