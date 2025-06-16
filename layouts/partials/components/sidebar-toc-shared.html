@@ -12,6 +12,34 @@
       <div id="tableOfContentContainer" class="max-h-[calc(100vh-28rem)] overflow-y-auto">
         {{ .TableOfContents }}
       </div>
+
+      {{/* --- START: New 'Next Article' Logic --- */}}
+      {{ if eq .Type "neuromorphic-hardware" }}
+        {{ $all_hardware := where site.RegularPages "Type" "neuromorphic-hardware" }}
+        {{ $grouped_by_year := $all_hardware.GroupByParam "product.release_year" }}
+        {{ $sorted_groups := sort $grouped_by_year "Key" "desc" }}
+
+        {{ $sorted_hardware := slice }}
+        {{ range $sorted_groups }}
+          {{ $pages_in_year := sort .Pages "Title" "asc" }}
+          {{ $sorted_hardware = $sorted_hardware | append $pages_in_year }}
+        {{ end }}
+
+        {{ $currentPageIndex := -1 }}
+        {{ range $index, $page := $sorted_hardware }}
+          {{ if eq $page.Permalink $.Permalink }}
+            {{ $currentPageIndex = $index }}
+          {{ end }}
+        {{ end }}
+
+        {{ if and (ne $currentPageIndex -1) (lt $currentPageIndex (sub (len $sorted_hardware) 1)) }}
+          {{ $nextPageIndex := add $currentPageIndex 1 }}
+          {{ $next_page := index $sorted_hardware $nextPageIndex }}
+          {{ partial "components/next-article-card.html" $next_page }}
+        {{ end }}
+      {{ end }}
+      {{/* --- END: New 'Next Article' Logic --- */}}
+      
     </div>
   </div>
 </aside>
