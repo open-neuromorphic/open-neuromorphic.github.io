@@ -2,6 +2,7 @@
 const { join, dirname, basename } = require('path');
 const { readdir, readFile, stat, mkdir, writeFile } = require('fs/promises');
 const mimeTypes = require('mime-types');
+const crypto = require('crypto');
 
 // --- Configuration ---
 const PROJECT_ROOT = process.cwd();
@@ -12,7 +13,8 @@ const TMP_DIR = join(PROJECT_ROOT, 'tmp');
 const OUTPUT_JSON_PATH = join(TMP_DIR, 'ogImageData.json');
 const OUTPUT_FORMAT = 'jpg';
 const LOGO_PATH_IN_ASSETS = 'images/ONM-logo.png';
-const BACKGROUND_IMAGE_PATH_IN_ASSETS = 'images/ONM.png'; // Added this line
+const BACKGROUND_IMAGE_PATH_IN_ASSETS = 'images/ONM.png';
+const OG_TEMPLATE_PATH = join(PROJECT_ROOT, 'assets', 'og-template', 'template.html');
 const HOMEPAGE_TITLE = "Advancing Neuromorphic Computing, Together.";
 const HOMEPAGE_DESCRIPTION = "Open Neuromorphic (ONM) is a global community fostering education, research, and open-source collaboration in brain-inspired AI and hardware.";
 
@@ -28,6 +30,10 @@ async function isDirectory(path) {
 async function ensureDir(dirPath) {
   try { await mkdir(dirPath, { recursive: true }); }
   catch (err) { if (err.code !== 'EEXIST') throw err; }
+}
+
+function createHash(data) {
+    return crypto.createHash('sha256').update(data).digest('hex');
 }
 
 async function findMarkdownFiles(dir) {
@@ -83,8 +89,13 @@ async function getImageDataUri(filePath) {
 
 // --- Main Script ---
 async function collectData() {
-  console.log('📊 Collecting OG image data...');
+  console.log('📊 Collecting OG image data and calculating hashes...');
   await ensureDir(TMP_DIR);
+
+  const templateBuffer = await readFile(OG_TEMPLATE_PATH);
+  const logoBuffer = await readFile(join(ASSETS_DIR, LOGO_PATH_IN_ASSETS));
+  const backgroundBuffer = await readFile(join(ASSETS_DIR, BACKGROUND_IMAGE_PATH_IN_ASSETS));
+  const globalHash = createHash(Buffer.concat([templateBuffer, logoBuffer, backgroundBuffer]));
 
   const absoluteLogoPath = join(ASSETS_DIR, LOGO_PATH_IN_ASSETS);
   const logoDataUri = await getImageDataUri(absoluteLogoPath);
@@ -93,27 +104,26 @@ async function collectData() {
     process.exit(1);
   }
 
-  // --- Add logic for background image ---
   const absoluteBackgroundPath = join(ASSETS_DIR, BACKGROUND_IMAGE_PATH_IN_ASSETS);
   const backgroundDataUri = await getImageDataUri(absoluteBackgroundPath);
-  if (!backgroundDataUri) {
-      console.warn(`⚠️ Background image not found at ${absoluteBackgroundPath}, will proceed without it.`);
-  }
 
   const outputData = {
+    globalHash,
     logoDataUri,
-    backgroundDataUri: backgroundDataUri || '', // Add background URI
+    backgroundDataUri: backgroundDataUri || '',
     pages: [],
   };
 
   // 1. Add Homepage Data
+  const homepageContentHash = createHash(HOMEPAGE_TITLE + HOMEPAGE_DESCRIPTION);
+  const homepageFinalHash = createHash(homepageContentHash + globalHash);
   const homepageOgDir = join(STATIC_DIR, 'images');
   await ensureDir(homepageOgDir);
   outputData.pages.push({
     title: HOMEPAGE_TITLE,
     description: HOMEPAGE_DESCRIPTION,
     outputPath: join(homepageOgDir, `og-image.${OUTPUT_FORMAT}`),
-    tempHtmlPath: join(TMP_DIR, `homepage-temp-og.html`),
+    finalHash: homepageFinalHash
   });
 
   // 2. Process Content Pages
@@ -128,6 +138,9 @@ async function collectData() {
         continue;
       }
 
+      const contentHash = createHash(title + description);
+      const finalHash = createHash(contentHash + globalHash);
+
       const parentDirName = basename(pageDirectory);
       const ogImageFilename = `${parentDirName}-og.${OUTPUT_FORMAT}`;
 
@@ -135,7 +148,7 @@ async function collectData() {
         title,
         description,
         outputPath: join(pageDirectory, ogImageFilename),
-        tempHtmlPath: join(TMP_DIR, `${parentDirName}-${Date.now()}-temp-og.html`),
+        finalHash
       });
     } catch (err) {
       console.error(`❌ Error processing ${mdFile}: ${err.message}`);
