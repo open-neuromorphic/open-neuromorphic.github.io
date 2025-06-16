@@ -1,0 +1,36 @@
+{{ $next_page := . }}
+
+{{ if $next_page }}
+<div class="next-article-card-container mt-8 border-t border-border dark:border-darkmode-border pt-6">
+  <a href="{{ $next_page.RelPermalink }}" class="next-article-card group block p-4">
+    <div class="flex items-center gap-4">
+
+      <div class="flex-shrink-0">
+        {{ $image_res := "" }}
+        {{ with $next_page.Params.image }}
+          {{ $image_res = $next_page.Resources.GetMatch . }}
+        {{ end }}
+
+        {{ if $image_res }}
+          {{ $thumb := $image_res.Fill "80x80 Lanczos" }}
+          <img src="{{ $thumb.RelPermalink }}" alt="Image of {{ $next_page.Title }}" class="w-20 h-20 object-cover rounded-md">
+        {{ else }}
+          <div class="w-20 h-20 bg-gray-200 dark:bg-darkmode-theme-dark flex items-center justify-center rounded-md">
+            {{ partial "icon.html" (dict "style" "solid" "name" "microchip" "class" "text-3xl text-gray-400") }}
+          </div>
+        {{ end }}
+      </div>
+
+      <div class="flex-grow">
+        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Next article</p>
+        <h4 class="text-md font-bold text-dark dark:text-darkmode-dark group-hover:text-primary dark:group-hover:text-darkmode-primary transition-colors">
+          {{ $next_page.Title }}
+        </h4>
+        <span class="text-sm text-primary dark:text-darkmode-primary font-semibold mt-1 inline-block">
+          Continue reading {{ partial "icon.html" (dict "style" "solid" "name" "arrow-right" "class" "inline-block transform transition-transform duration-200 group-hover:translate-x-1") }}
+        </span>
+      </div>
+    </div>
+  </a>
+</div>
+{{ end }}
