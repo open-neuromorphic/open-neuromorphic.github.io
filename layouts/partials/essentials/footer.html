@@ -89,17 +89,6 @@
       <p>
         {{ site.Params.copyright | markdownify }} | Site Built By: <a href="https://visioninit.dev">VisionInit</a>
       </p>
-      {{ if .IsPage }}
-        {{ with .File }}
-          {{ with .Path }}
-            <p class="mt-2">
-              <a href='https://github.com/open-neuromorphic/open-neuromorphic.github.io/tree/main/content/{{ . }}' target="_blank" rel="noopener">
-                Edit this Page <i class="fab fa-github ml-1"></i>
-              </a>
-            </p>
-          {{ end }}
-        {{ end }}
-      {{ end }}
     </div>
   </div>
 </footer>
