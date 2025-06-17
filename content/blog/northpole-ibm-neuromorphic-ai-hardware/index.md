@@ -1,10 +1,7 @@
 ---
 title: "NorthPole, IBM's latest Neuromorphic AI Hardware"
-description: "Translating the NorthPole paper from IBM to human language."
+description: "A deep dive into IBM's NorthPole, a brain-inspired AI accelerator. Understand its architecture, 10 core axioms, and how it achieves groundbreaking energy efficiency for neural inference."
 image: cover.png
-aliases:
-  - /blog/northpole
-  - /blog/northpole-ibm-neural-inference-frontier-energy-space-time
 draft: false
 date: 2023-12-26
 showTableOfContents: true
@@ -59,6 +56,7 @@ When you want to skip zero-computations, you need to introduce a structured appr
 fig
 src="dally-sparsity.png"
 caption="Sparse neural networks support in hardware [[William J. Dally]](https://www.computer.org/csdl/proceedings-article/hcs/2023/10254716/1QKTnGyUPbG)."
+alt="Sparse neural networks support in hardware"
 >}}
 
 ## Axiom 2 - Getting inspired by biological neurons
@@ -116,6 +114,7 @@ fig
 src="simd-mac.png"
 width=760px
 caption="The single-instruction-multiple-data MAC unit of NorthPole."
+alt="The single-instruction-multiple-data MAC unit of NorthPole."
 >}}
 
 Above it is shown a visual description of how this parallelism is exploited. The total word width is always 8 bit, but more values can be glued together to be processed in parallel in the MAC, which produces more outputs at once for the INT4 and INT2 precisions. This is why in the "Silicon implementation" section of the paper it is written:
@@ -139,6 +138,7 @@ fig
 src="temporal-vs-spatial.png"
 width=760px
 caption="Spatial (left) and temporal (right) architectures."
+alt="Spatial (left) and temporal (right) architectures."
 >}}
 
 Eyeriss [[Chen et al.](https://dspace.mit.edu/bitstream/handle/1721.1/101151/eyeriss_isscc_2016.pdf)] proposed this approach and taxonomy in 2016. Field programmable gate arrays (FPGAs) have been doing this since the beginning, with distributed SRAM near the logic or the special purpose macros available on the silicon. I do not know if it is brain-inspired but it makes sense from a silicon perspective if you want to maximize efficiency.
@@ -154,6 +154,7 @@ Take-home message: PEs communicate using dedicated busses, in what is called a n
 fig
 src="northpole-arch.png"
 caption="A snippet of NorthPole architecture [[Modha et al.](https://www.science.org/doi/10.1126/science.adh1174)]"
+caption="A snippet of NorthPole architecture"
 width=760px
 >}}
 
