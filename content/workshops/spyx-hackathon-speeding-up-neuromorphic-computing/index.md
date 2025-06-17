@@ -7,6 +7,7 @@ start_time: 18:00
 end_time: 20:00
 video: gKNegntASLI
 speaker_photo: speaker.jpeg
+software_tags: ["spyx"]
 speaker_bio: "Kade studied Computer Science and Computer Engineering at the U.S. Naval Academy. Studying in the UK as a Marshall Scholar, Kade completed an MSc in A.I. and Adaptive Systems with distinction from the University of Sussex and is currently pursuing an MPhil in Machine Learning and Machine Intelligence at the University of Cambridge. His dissertation at Sussex focused on comparing surrogate gradient and large scale neuroevolutionary algorithms for optimizing spiking neural networks."
 speaker_code: https://github.com/kmheckel/spyx
 time_zone: CEST

@@ -12,6 +12,7 @@ author:
 - "Jens E. Pedersen"
 image: neurons-race.png
 tags: ["snn", "framework", "library", "pytorch", "JAX"]
+software_tags: ["spyx"]
 show_author_bios: true
 ---
 
@@ -40,7 +41,7 @@ Striking a balance between flexibility/extensibility and efficiency from compila
 
 The second figure shows the maximum memory usage during forward and backward pass for the same networks. The compiled Norse model comes out on top, which is interesting because it is being built in pure Python.
 This is most likely due to compiler techinques such as kernel fusion, where subsequent PyTorch layers are fused into single operations to avoid device bottleneck and to leverage the single instruction, multiple data (SIMD) architectures of GPUs.
-The memory usage benchmarks were collected using PyTorch's [max_memory_allocated()](https://pytorch.org/docs/stable/generated/torch.cuda.max_memory_allocated.html) function, unfortunately JAX does not have a similar function so for now Spyx is not included in the memory benchmark.
+The memory usage benchmarks were collected using PyTorch's [max_memory_allocated()](https://pytorch.org/docs/stable/generated/torch.cuda.max_memory_allocated.html) function, unfortunately JAX does not have a similar function so for now [Spyx](/neuromorphic-computing/software/snn-frameworks/spyx/) is not included in the memory benchmark.
 
 ## Summary
 The ideal library will often depend on a multitude of factors, such as accessible documentation, usability of the API or pre-trained models. Generally speaking, PyTorch offers good support when custom neuron models (that have additional states, recurrence) are to be explored. For larger networks, it will likely pay off to rely on CUDA-accelerated existing implementations, or ensure your model is compatible with the recent compilation techniques to leverage the backend-specific JIT optimizations. The development of Spyx offers an interesting new framework as it enables the flexible neuron definitions of PyTorch frameworks while also enabling the speed of libraries which utilize custom CUDA backends. One more note on the accuracy of gradient computation: In order to speed up computation, some frameworks will approximate this calculation over time. Networks will still manage to *learn* in most cases, but EXODUS, correcting an approximation in SLAYER and therefore calculating gradients that are equivalent to BPTT, showed that it can make a substantial difference in certain experiments. So while speed is extremely important, other factors such as memory consumption and quality of gradient calculation matter as well. 
