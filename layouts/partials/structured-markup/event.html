@@ -1,5 +1,8 @@
+{{/* layouts/partials/structured-markup/event.html */}}
 {{ $page_context := . }}
 {{ $defaultOgImage := site.Params.metadata.image | default "images/og-image.png" | absLangURL }}
+
+{{/* --- Date and Time Processing --- */}}
 {{ $eventStartDate := "" }}{{ $eventEndDate := "" }}
 {{ if $page_context.Params.start_time }}
 {{ $eventStartDate = printf "%sT%s" ($page_context.Date.Format "2006-01-02") $page_context.Params.start_time }}
@@ -19,6 +22,7 @@
 {{ $offset = "Z" }}
 {{ end }}
 
+{{/* --- Image Processing --- */}}
 {{ $imagePath := $page_context.Params.image }}
 {{ $resolvedImageURL := "" }}
 {{ if $imagePath }}
@@ -28,24 +32,53 @@
 {{ with $page_context.Resources.GetMatch $imagePath }}
 {{ $resolvedImageURL = .Permalink }}
 {{ else }}
+{{ with resources.Get $imagePath }}
+{{ $resolvedImageURL = .Permalink }}
+{{ else }}
 {{ $resolvedImageURL = printf "%s%s" $page_context.RelPermalink $imagePath | absLangURL }}
+{{ end }}
 {{ end }}
 {{ end }}
 {{ else }}
 {{ $resolvedImageURL = $defaultOgImage }}
 {{ end }}
 
+{{/* --- Event Status Logic --- */}}
+{{ $eventStatus := "https://schema.org/EventScheduled" }}
+{{ if eq .Params.upcoming false }}
+{{/* Event has passed. Google infers this from date, but we can be explicit if needed.
+For now, we'll let the presence of a VideoObject signal its new state. */}}
+{{ end }}
+
+{{/* --- Video Object Logic --- */}}
+{{ $videoObject := "" }}
+{{ with .Params.video }}
+{{ $videoObject = dict
+"@type" "VideoObject"
+"name" $page_context.Title
+"description" $page_context.Description
+"thumbnailUrl" (printf "https://i.ytimg.com/vi/%s/maxresdefault.jpg" .)
+"uploadDate" ($page_context.Date.Format "2006-01-02")
+"embedUrl" (printf "https://www.youtube.com/embed/%s" .)
+}}
+{{ end }}
+
+
+{{/* --- Main Event Schema Construction --- */}}
 {{ $eventLD := dict
 "@context" "https://schema.org"
 "@type" "Event"
-"name" $page_context.Params.Title
+"name" $page_context.Title
 "startDate" (printf "%s%s" $eventStartDate $offset)
 "endDate" (printf "%s%s" $eventEndDate $offset)
-"eventStatus" "https://schema.org/EventScheduled"
+"eventStatus" $eventStatus
 "eventAttendanceMode" "https://schema.org/OnlineEventAttendanceMode"
-"location" (dict "@type" "VirtualLocation" "url" "https://youtube.com/@openneuromorphic")
+"location" (dict
+"@type" "VirtualLocation"
+"url" (cond (ne .Params.video "") (printf "https://www.youtube.com/watch?v=%s" .Params.video) "https://youtube.com/@openneuromorphic")
+)
 "image" (slice $resolvedImageURL)
-"description" $page_context.Params.Description
+"description" $page_context.Description
 "offers" (dict
 "@type" "Offer"
 "price" "0"
@@ -55,6 +88,9 @@
 "validFrom" ($page_context.Date.Format "2006-01-02T15:04:05Z07:00")
 )
 }}
+
+{{ if $videoObject }}{{ $eventLD = merge $eventLD (dict "video" $videoObject) }}{{ end }}
+
 {{ if $page_context.Params.author }}
 {{ $authorList := slice }}
 {{ with $page_context.Params.author }}{{ if reflect.IsSlice . }}{{ $authorList = . }}{{ else }}{{ $authorList = slice . }}{{ end }}{{ end }}
