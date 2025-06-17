@@ -1,26 +1,44 @@
 {{ $page_context := . }}
-{{ $defaultOgImage := site.Params.metadata.image | default "images/og-image.png" | absLangURL }}
-{{ $imagePath := $page_context.Params.image }}
-{{ $resolvedImageURL := "" }}
-{{ if $imagePath }}
-  {{ if hasPrefix $imagePath "/" }}
-    {{ $resolvedImageURL = $imagePath | absLangURL }}
-  {{ else }}
-    {{ with $page_context.Resources.GetMatch $imagePath }}
-      {{ $resolvedImageURL = .Permalink }}
-    {{ else }}
-      {{ $resolvedImageURL = printf "%s%s" $page_context.RelPermalink $imagePath | absLangURL }}
+{{ $imageUrls := slice }}
+
+{{ if .File }}
+    {{ $pageSlug := path.Base .File.Dir }}
+    {{ $suffixes := slice "16x9" "4x3" "1x1" }}
+    {{ range $suffixes }}
+        {{ $ogImageName := printf "%s-og-%s.jpg" $pageSlug . }}
+        {{ with $page_context.Resources.GetMatch $ogImageName }}
+            {{ $imageUrls = $imageUrls | append .Permalink }}
+        {{ end }}
     {{ end }}
-  {{ end }}
-{{ else }}
-  {{ $resolvedImageURL = $defaultOgImage }}
+{{ end }}
+
+{{ if not $imageUrls }}
+    {{ with .Params.image }}
+        {{ $fmImage := . }}
+        {{ $imageRes := "" }}
+        {{ with $page_context.Resources.GetMatch $fmImage }}
+            {{ $imageRes = . }}
+        {{ end }}
+        
+        {{ if $imageRes }}
+             {{ $imageUrls = $imageUrls | append $imageRes.Permalink }}
+        {{ else }}
+            {{ $imageUrls = $imageUrls | append ($fmImage | absURL) }}
+        {{ end }}
+    {{ end }}
+{{ end }}
+
+{{ if not $imageUrls }}
+    {{ with site.Params.metadata.image }}
+        {{ $imageUrls = $imageUrls | append (. | absURL) }}
+    {{ end }}
 {{ end }}
 
 {{ $blogLD := dict
   "@context" "https://schema.org"
   "@type" "BlogPosting"
   "headline" $page_context.Title
-  "image" (slice $resolvedImageURL)
+  "image" $imageUrls
   "datePublished" ($page_context.Date.Format "2006-01-02T15:04:05Z07:00")
 }}
 {{ if $page_context.Lastmod }}{{ $blogLD = merge $blogLD (dict "dateModified" ($page_context.Lastmod.Format "2006-01-02T15:04:05Z07:00")) }}{{ end }}

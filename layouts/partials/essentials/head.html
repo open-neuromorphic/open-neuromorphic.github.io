@@ -1,16 +1,16 @@
 <meta charset="utf-8" />
 {{ $title := "" }}
 {{ if .IsHome }}
-  {{ $title = printf "%s" .Site.Params.homepageTitle }}
+{{ $title = printf "%s" .Site.Params.homepageTitle }}
 {{ else }}
-  {{ $type := .Type }}
-  {{ $product := .Params.product }}
+{{ $type := .Type }}
+{{ $product := .Params.product }}
 
-  {{ if (and (eq $type "neuromorphic-hardware") $product) }}
-    {{ $title = printf "A Look at %s - %s - %s" .Page.Title "Neuromorphic Chip" .Site.Title}}
-  {{ else }}
-    {{ $title = printf "%s - %s" .Page.Title .Site.Title }}
-  {{ end }}
+{{ if (and (eq $type "neuromorphic-hardware") $product) }}
+{{ $title = printf "A Look at %s - %s - %s" .Page.Title "Neuromorphic Chip" .Site.Title}}
+{{ else }}
+{{ $title = printf "%s - %s" .Page.Title .Site.Title }}
+{{ end }}
 {{ end }}
 
 
@@ -21,6 +21,44 @@
   content="width=device-width, initial-scale=1, maximum-scale=5" />
 
 <link rel="canonical" href="{{ .Permalink }}" />
+
+{{- /* RSS Discovery Links - Single Best Feed Strategy */ -}}
+{{- $feed := "" -}}
+{{- $feedTitle := "" -}}
+{{- $feedProviderPage := "" -}}
+
+{{- /* Determine the page that provides the feed (either the section page or the home page) */ -}}
+{{- if .IsPage -}}
+{{- $feedProviderPage = .Parent -}}
+{{- else if .IsSection -}}
+{{- $feedProviderPage = . -}}
+{{- else if .IsHome -}}
+{{- $feedProviderPage = . -}}
+{{- end -}}
+
+{{- /* Check if the identified provider page has an RSS feed and it's not the homepage (unless we are on the homepage) */ -}}
+{{- if and $feedProviderPage ($feedProviderPage.OutputFormats.Get "rss") -}}
+{{- $homeFeedPermalink := (site.Home.OutputFormats.Get "rss").Permalink -}}
+{{- $specificFeed := $feedProviderPage.OutputFormats.Get "rss" -}}
+{{- if or (ne $specificFeed.Permalink $homeFeedPermalink) .IsHome -}}
+{{- $feed = $specificFeed -}}
+{{- $feedTitle = printf "%s | %s" $feedProviderPage.Title site.Title -}}
+{{- end -}}
+{{- end -}}
+
+{{- /* Fallback to the homepage feed if no specific feed was found */ -}}
+{{- if not $feed -}}
+{{- with site.Home.OutputFormats.Get "rss" -}}
+{{- $feed = . -}}
+{{- $feedTitle = printf "%s | RSS Feed" site.Title -}}
+{{- end -}}
+{{- end -}}
+
+{{- /* Render the single link tag */ -}}
+{{- with $feed -}}
+<link rel="alternate" type="application/rss+xml" title="{{ $feedTitle }}" href="{{ .Permalink }}">
+{{- end -}}
+
 
 <!-- favicon -->
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -44,4 +82,3 @@
 {{ if .Params.math }}
 {{ partial "helpers/katex.html" . }}
 {{ end }}
-
