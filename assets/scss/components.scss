@@ -43,12 +43,18 @@ main {
   @apply prose max-w-none;
   @apply prose-headings:mb-[.6em] prose-headings:mt-[.6em];
   // Re-map prose heading sizes for better hierarchy within content
-  @apply prose-h1:text-h2-sm md:prose-h1:text-h2; // Markdown '#' will be like a global H2
-  @apply prose-h2:text-h3-sm md:prose-h2:text-h3; // Markdown '##' will be like a global H3
-  @apply prose-h3:text-h4;                       // Markdown '###' will be like a global H4
-  @apply prose-h4:text-h5;                       // Markdown '#####' will be like a global H5
-  @apply prose-h5:text-h6;                       // Markdown '#####' will be like a global H6
-  @apply prose-h6:text-base prose-h6:font-semibold; // Markdown '######' will be base size, bold
+  @apply prose-h1:text-h2-sm md:prose-h1:text-h2;
+  // Markdown '#' will be like a global H2
+  @apply prose-h2:text-h3-sm md:prose-h2:text-h3;
+  // Markdown '##' will be like a global H3
+  @apply prose-h3:text-h4;
+  // Markdown '###' will be like a global H4
+  @apply prose-h4:text-h5;
+  // Markdown '#####' will be like a global H5
+  @apply prose-h5:text-h6;
+  // Markdown '#####' will be like a global H6
+  @apply prose-h6:text-base prose-h6:font-semibold;
+  // Markdown '######' will be base size, bold
 
   @apply prose-img:max-w-full prose-img:rounded;
   @apply prose-hr:border-border prose-hr:dark:border-darkmode-border;
@@ -56,7 +62,8 @@ main {
 
   blockquote {
     @apply bg-white dark:bg-darkmode-theme-light rounded-xl p-6 shadow-md transition-all duration-300 ease-in-out not-italic;
-    @apply font-primary text-xl text-dark dark:text-darkmode-light; // Text styling for blockquote
+    @apply font-primary text-xl text-dark dark:text-darkmode-light;
+    // Text styling for blockquote
     border-left: 4px solid var(--color-accent-new); // Pink left border like news-card
     border-top: none; // Remove other prose borders
     border-right: none;
@@ -71,9 +78,12 @@ main {
     // Font size/color for p inside blockquote will be inherited from the blockquote's text-xl and text colors.
 
     &:hover {
-      @apply shadow-lg; // Hover effect like news-card
+      @apply shadow-lg;
+      // Hover effect like news-card
     }
-  } // Correctly closing the blockquote style here
+  }
+
+  // Correctly closing the blockquote style here
 
   // Added styles for nested lists
   ul ul,
@@ -90,13 +100,45 @@ main {
     color: inherit;
     font-weight: 550;
   }
+
   @apply prose-a:underline hover:prose-a:text-primary hover:prose-a:dark:text-darkmode-primary;
   @apply prose-li:text-text prose-li:dark:text-darkmode-text;
-  @apply prose-table:relative prose-table:overflow-hidden prose-table:rounded-lg prose-table:before:absolute prose-table:before:left-0 prose-table:before:top-0 prose-table:before:h-full prose-table:before:w-full prose-table:before:rounded-[inherit] prose-table:before:border prose-table:before:content-[""] prose-table:before:dark:border-darkmode-border;
-  @apply prose-thead:border-border prose-thead:bg-theme-light prose-thead:dark:border-darkmode-border prose-thead:dark:bg-darkmode-theme-light;
-  @apply prose-th:relative prose-th:z-10 prose-th:px-4 prose-th:py-[18px] prose-th:text-dark prose-th:dark:text-darkmode-text;
-  @apply prose-tr:border-border prose-tr:dark:border-darkmode-border;
-  @apply prose-td:relative prose-td:z-10 prose-td:px-3 prose-td:py-[18px] prose-td:dark:text-darkmode-text;
+
+  // -- NEW MODERN TABLE STYLES --
+  table {
+    @apply w-full table-auto text-left shadow-md rounded-xl my-8 overflow-hidden;
+    border-collapse: separate;
+    border-spacing: 0;
+
+    // Remove the default prose border-around-table effect.
+    &:before {
+      content: none !important;
+    }
+
+    thead {
+      @apply bg-gray-100 dark:bg-darkmode-theme-dark;
+      th {
+        @apply px-2 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-600 dark:text-gray-300;
+      }
+    }
+
+    tbody {
+      @apply bg-white dark:bg-darkmode-theme-light divide-y divide-gray-200 dark:divide-gray-800;
+
+      tr {
+        // Remove default borders from rows, as we use tbody's divide utility
+        @apply border-b-0;
+        &:nth-of-type(even) {
+          @apply bg-gray-50 dark:bg-darkmode-theme-dark/50;
+        }
+      }
+
+      td {
+        @apply px-3 py-4 text-sm align-middle text-text dark:text-darkmode-text;
+      }
+    }
+  }
+
   .btn {
     @apply dark:hover:text-dark no-underline hover:text-white #{!important};
   }
