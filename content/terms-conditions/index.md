@@ -18,7 +18,7 @@ You agree to use Open-Neuromorphic.org in a manner that is lawful and in accorda
 
 ## 4. Privacy Policy
 
-Your use of Open-Neuromorphic.org is also governed by our Privacy Policy, which can be found [here](/privacy-policy). Please review our Privacy Policy to understand how we collect, use, and protect your personal information.
+Your use of Open-Neuromorphic.org is also governed by our Privacy Policy, which can be found [here](/privacy). Please review our Privacy Policy to understand how we collect, use, and protect your personal information.
 
 ## 5. Intellectual Property
 
