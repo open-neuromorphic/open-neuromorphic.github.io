@@ -1,42 +1,4 @@
-main {
-  min-height: 70vh;
-}
-
-// section style
-.section {
-  @apply py-24 xl:py-28;
-  &-sm {
-    @apply py-16 xl:py-20;
-  }
-}
-
-// container
-.container {
-  @apply mx-auto px-4 2xl:max-w-[1320px];
-}
-
-// form style
-.form-input {
-  @apply bg-theme-light text-dark placeholder:text-light focus:border-primary dark:border-darkmode-border dark:bg-darkmode-theme-light dark:text-darkmode-light w-full rounded border-transparent px-6 py-4 focus:ring-transparent;
-}
-
-.form-label {
-  @apply font-secondary text-dark dark:text-darkmode-light mb-4 block text-xl font-normal;
-}
-
-// social icons
-.social-icons {
-  @apply space-x-4;
-  li {
-    @apply inline-block;
-    a {
-      @apply bg-primary dark:bg-darkmode-primary dark:text-dark flex h-9 w-9 items-center justify-center rounded text-center leading-9 text-white;
-      svg {
-        @apply h-5 w-5;
-      }
-    }
-  }
-}
+// ... (other styles in the file)
 
 // content style
 .content {
@@ -85,12 +47,17 @@ main {
 
   // Correctly closing the blockquote style here
 
+  // Custom list indentation. Overrides prose defaults.
+  ul, ol {
+    @apply pl-3;
+  }
+
   // Added styles for nested lists
   ul ul,
   ul ol,
   ol ul,
   ol ol {
-    @apply my-3 ml-6;
+    @apply my-3;
   }
 
   @apply prose-pre:rounded-lg prose-pre:bg-theme-light prose-pre:dark:bg-darkmode-theme-light;

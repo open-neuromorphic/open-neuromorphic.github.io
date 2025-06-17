@@ -1,8 +1,20 @@
 {{ define "main" }}
 {{ partial "page-header" . }}
-
 <section class="section pt-6 contributors-list-section">
+
   <div class="container">
+
+    <div class="mt-6 mb-12">
+      {{ partial "components/content-contribute-cta.html" (dict
+      "icon" "solid user-group"
+      "title" "Ready to <span class=\"gradient-text\">Join Us?</span>"
+      "description" "Become part of our growing community of researchers, developers, and enthusiasts. Explore the many ways you can contribute to the future of open-source neuromorphic computing."
+      "link" "/getting-involved/"
+      "link_text" "See How to Get Involved"
+      ) }}
+    </div>
+
+
     {{/* 1. Get all contributor profile pages, sorted by title (name) */}}
     {{ $allContributorProfiles := where site.RegularPages "Section" "contributors"  }}
 
@@ -61,8 +73,8 @@
 
     {{ range $year_str := $uniqueYearsSorted }}
     {{ $current_loop_year := int $year_str }}
-    <div class="year-section mb-12">
-      <h2 class="text-3xl font-bold mb-6 pb-2 border-b border-border dark:border-darkmode-border">{{ $year_str }}</h2>
+    <div class="year-section mb-6">
+      <h2 class="text-3xl text-center font-bold mb-10 pb-2">{{ $year_str }} Contributors</h2>
 
       {{ $contributorsInThisYear := slice }}
 
@@ -185,15 +197,6 @@
 <p class="text-center text-xl">No contributions found with yearly data.</p>
 {{ end }}
 
-<div class="mt-8">
-  {{ partial "components/content-contribute-cta.html" (dict
-    "icon" "solid user-group"
-    "title" "Ready to <span class=\"gradient-text\">Join Us?</span>"
-    "description" "Become part of our growing community of researchers, developers, and enthusiasts. Explore the many ways you can contribute to the future of open-source neuromorphic computing."
-    "link" "/getting-involved/"
-    "link_text" "See How to Get Involved"
-  ) }}
-</div>
 </div>
 </section>
 {{ end }}
