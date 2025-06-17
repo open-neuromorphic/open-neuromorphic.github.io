@@ -3,15 +3,27 @@
   <section class="section pt-6">
     <div class="container">
       <div class="row lg:gx-8 lg:items-stretch">
-        {{/* Main Content Column */}}
         <div class="lg:col-8">
           <article class="content mb-10">
             {{ .Content }}
           </article>
-          
+
+          {{ $softwareSlug := .File.Dir | path.Base }}
+          {{ $relatedContent := slice }}
+          {{ range site.RegularPages }}
+            {{ $contentPage := . }}
+            {{ with .Params.software_tags }}
+              {{ if in . $softwareSlug }}
+                {{ $relatedContent = $relatedContent | append $contentPage }}
+              {{ end }}
+            {{ end }}
+          {{ end }}
+          {{ $relatedContent = sort $relatedContent "Date" "desc" }}
+          {{ partial "software/related-events.html" $relatedContent }}
+
           {{ partial "components/content-contribute-cta.html" (dict
             "icon" "solid code"
-            "title" "Help Improve this <span class=\"gradient-text\">Software Guide</span>"
+            "title" "Help Improve this <span class='gradient-text'>Software Guide</span>"
             "description" "Our software guide is maintained by the community. If you have updates, see an error, or want to suggest a new tool, please let us know by opening an issue on our GitHub repository."
             "link" "https://github.com/open-neuromorphic/open-neuromorphic.github.io/issues/new/choose"
             "link_text" "Suggest an Edit on GitHub"
@@ -21,8 +33,7 @@
              {{ partial "components/share-cta.html" . }}
           </div>
         </div>
-        
-        {{/* Sidebar Column */}}
+
         <aside class="lg:col-4">
           <div class="pb-4">
             {{ partial "components/og-preview.html" . }}
@@ -32,22 +43,6 @@
           </div>
         </aside>
       </div>
-
-      {{/* Related Posts Section (Optional, but good to keep) */}}
-      {{ $related := where site.RegularPages "Section" "blog" | intersect (where site.RegularPages ".Title" "!=" .Title) | union (site.RegularPages.Related . ) }}
-      {{ $related = $related | shuffle | first 3 }}
-      {{ with $related }}
-      <div class="section pb-0 mt-12">
-        <h2 class="h3 mb-6 text-center">Related Blog Posts</h2>
-        <div class="row">
-          {{ range . }}
-            <div class="lg:col-4">
-              {{ partial "components/blog-card" . }}
-            </div>
-          {{ end }}
-        </div>
-      </div>
-      {{ end }}
     </div>
   </section>
 {{ end }}

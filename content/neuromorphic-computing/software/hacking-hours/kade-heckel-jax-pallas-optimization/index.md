@@ -14,6 +14,7 @@ speaker_photo: "images/speakers/kade-heckel-placeholder.png" # Placeholder, plea
 image: "kade-heckel-jax-pallas-optimization.jpg" # Placeholder, please create
 type: "hacking-hours"
 speaker_bio: "Kade Heckel is a researcher and developer focusing on high-performance computing for neural networks, with expertise in JAX and related optimization tools like Pallas. He is the creator of Spyx, a JAX-based spiking neural network library."
+software_tags: ["spyx"]
 ---
 
 In this Hacking Hour, Kade Heckel, creator of the JAX-based spiking neural network (SNN) library "Spyx," joins host Jens E. Pedersen. They explore techniques for optimizing SNN code for GPUs and TPUs using JAX and the Pallas library, covering practical approaches to accelerate neuromorphic and machine learning computations.
@@ -92,7 +93,7 @@ In this Hacking Hour, Kade Heckel, creator of the JAX-based spiking neural netwo
 *   JAX's automatic fusion matched Pallas performance for simple element-wise functions.
 *   Pallas is particularly useful for TPUs, structured sparsity, and custom data loading.
 *   Calling JAX functions with custom VJPs inside Pallas kernels is problematic.
-*   Optimizing SNNs for TPUs with JAX/Pallas is a promising, largely unexplored area.
+*   Optimizing SNNs for TPUs using Pallas is a key future direction.
 
 ## Conclusion
 

@@ -15,4 +15,5 @@ speaker_bio: "[Jason K. Eshraghian](https://jasoneshraghian.com) is an Assistant
 
 Professor Eshraghian was awarded the 2019 IEEE VLSI Best Paper Award, the Best Paper Award at 2019 IEEE Artificial Intelligence CAS Conference, and the Best Live Demonstration Award at 2020 IEEE ICECS for his work on neuromorphic vision and in-memory computing using RRAM. He currently serves as the secretary-elect of the IEEE Neural Systems and Applications Committee, and was a recipient of the Fulbright Future Fellowship (Australian-America Fulbright Commission), the Forrest Research Fellowship (Forrest Research Foundation), and the Endeavour Fellowship (Australian Government)."
 speaker_notebook: https://github.com/open-neuromorphic/hands-on-session-snntorch-230302
+software_tags: ["snntorch"]
 ---
