@@ -57,7 +57,7 @@ The BrainScaleS-2 accelerated neuromorphic system is an integrated circuit archi
 - Massively parallel readout of analog observables enables gradient-based and surrogate gradient optimization approaches
 
 ## Applications and Experiments
-- Accelerated emulation of complex spiking neuron dynamics, multi-compartment models, and path integration circuits
+- Accelerated (1,000-fold compared to biological real time) emulation of complex spiking neuron dynamics, multi-compartment models, and path integration circuits
 - Exploration of synaptic plasticity models and critical network dynamics at biological timescales
 - Training of deep spiking neural networks using surrogate gradient techniques
 - Non-spiking neural network execution leveraging synaptic crossbar for analog matrix multiplication
