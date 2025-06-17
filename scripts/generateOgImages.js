@@ -56,52 +56,68 @@ async function generateImages() {
 
   // --- Process each page ---
   for (const pageData of jsonData.pages) {
-    const { title, description, outputPath, finalHash } = pageData;
+    const { title, description, outputs, finalHash } = pageData;
 
-    try {
-      const fileAlreadyExists = await pathExists(outputPath);
-      const isCacheValid = oldCache[outputPath] === finalHash;
+    if (!outputs || outputs.length === 0) {
+      console.warn(`⚠️ No outputs defined for page: ${title}`);
+      continue;
+    }
 
-      if (fileAlreadyExists && isCacheValid) {
-        skippedCount++;
-        newCache[outputPath] = finalHash; // Keep valid entry in new cache
-        continue;
+    // Process each output size for the current page
+    for (const output of outputs) {
+      const { path: outputPath, width, height } = output;
+
+      try {
+        const fileAlreadyExists = await pathExists(outputPath);
+        const isCacheValid = oldCache[outputPath] === finalHash;
+
+        if (fileAlreadyExists && isCacheValid) {
+          skippedCount++;
+          newCache[outputPath] = finalHash; // Keep valid entry
+          continue;
+        }
+        
+        const page = await browser.newPage();
+        await page.setViewport({ width, height });
+
+        const htmlContent = templateContent
+          .replace('LOGO_SRC', jsonData.logoDataUri)
+          .replace('BACKGROUND_URL', jsonData.backgroundDataUri || '')
+          .replace('PAGE_TITLE', title)
+          .replace('PAGE_DESCRIPTION', description);
+
+        await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
+
+        await page.screenshot({
+          path: outputPath,
+          type: 'jpeg',
+          quality: JPEG_QUALITY,
+        });
+
+        const stats = await stat(outputPath);
+        console.log(`✅ Generated: ${outputPath.replace(PROJECT_ROOT, '')} (${width}x${height}, ${(stats.size / 1024).toFixed(1)} KB)`);
+        successCount++;
+        newCache[outputPath] = finalHash; // Add new entry to cache
+        
+        await page.close();
+      } catch (err) {
+        console.error(`❌ Failed generating image for: ${outputPath.replace(PROJECT_ROOT, '')}`);
+        console.error(err.message || err);
+        errorCount++;
       }
-      
-      const page = await browser.newPage();
-      await page.setViewport({ width: 1200, height: 630 });
-
-      const htmlContent = templateContent
-        .replace('LOGO_SRC', jsonData.logoDataUri)
-        .replace('BACKGROUND_URL', jsonData.backgroundDataUri || '')
-        .replace('PAGE_TITLE', title)
-        .replace('PAGE_DESCRIPTION', description);
-
-      await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
-
-      await page.screenshot({
-        path: outputPath,
-        type: 'jpeg',
-        quality: JPEG_QUALITY,
-      });
-
-      const stats = await stat(outputPath);
-      console.log(`✅ Generated: ${outputPath.replace(PROJECT_ROOT, '')} (${(stats.size / 1024).toFixed(1)} KB)`);
-      successCount++;
-      newCache[outputPath] = finalHash; // Add new entry to cache
-      
-      await page.close();
-    } catch (err) {
-      console.error(`❌ Failed generating image for: ${outputPath.replace(PROJECT_ROOT, '')}`);
-      console.error(err.message || err);
-      errorCount++;
     }
   }
   
   await browser.close();
 
   // --- Cleanup stale images and cache entries ---
-  const validOutputPaths = new Set(jsonData.pages.map(p => p.outputPath));
+  const validOutputPaths = new Set();
+  jsonData.pages.forEach(p => {
+    if (p.outputs) {
+      p.outputs.forEach(o => validOutputPaths.add(o.path));
+    }
+  });
+  
   let cleanedCount = 0;
   for (const oldPath in oldCache) {
     if (!validOutputPaths.has(oldPath)) {

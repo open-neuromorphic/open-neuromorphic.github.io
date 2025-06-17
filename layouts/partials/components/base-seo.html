@@ -55,8 +55,8 @@
 
 {{ $ogImageNameWithExt := "" }}
 {{ if .IsHome }}
-{{ $ogImageNameWithExt = "og-image.jpg" }}
-{{/* Homepage OG image is expected at static/images/og-image.jpg by the Node script */}}
+{{ $ogImageNameWithExt = "og-image-16x9.jpg" }}
+{{/* Homepage OG image is expected at static/images/og-image-16x9.jpg by the Node script */}}
 {{ $homeOgStaticPath := printf "images/%s" $ogImageNameWithExt }}
 {{ if fileExists (printf "static/%s" $homeOgStaticPath) }}
 {{ $finalOgImageAbsURL = ($homeOgStaticPath | absURL) }}
@@ -74,18 +74,18 @@
 {{ $pageSlug = .Title | urlize }} {{/* Fallback, less likely for actual content pages */}}
 {{ warnf "Page %s: .File.Dir not available, falling back to title-based slug '%s' for OG image name." (.RelPermalink | default .Path) $pageSlug }}
 {{ end }}
-{{ $ogImageNameWithExt = printf "%s-og.jpg" $pageSlug }}
+{{ $ogImageNameWithExt = printf "%s-og-16x9.jpg" $pageSlug }}
 {{ $ogImageSourceDebug = printf "Content Page: derived OG name '%s' from dir slug '%s'" $ogImageNameWithExt $pageSlug }}
 {{ else }}
 {{/* Fallback for pages without .File (e.g., some list pages, 404, etc.) */}}
 {{ $pageSlug := .Title | urlize }}
-{{ $ogImageNameWithExt = printf "%s-og.jpg" $pageSlug }}
+{{ $ogImageNameWithExt = printf "%s-og-16x9.jpg" $pageSlug }}
 {{ $ogImageSourceDebug = printf "Fallback Page (no .File): derived OG name '%s' from title slug '%s'" $ogImageNameWithExt $pageSlug }}
 {{ end }}
 
 
 {{/* Try to find the image based on $ogImageNameWithExt */}}
-{{/* 1. Page Bundle check for [slug]-og.jpg (for content pages) */}}
+{{/* 1. Page Bundle check for [slug]-og-16x9.jpg (for content pages) */}}
 {{ if not $finalOgImageAbsURL }} {{/* Only if homepage check didn't set it */}}
 {{ if and (not .IsHome) .File }} {{/* For content pages, prioritize page bundle */}}
 {{ $pageBundleOG := .Resources.GetMatch $ogImageNameWithExt }}
@@ -98,8 +98,7 @@
 {{ end }}
 {{ end }}
 
-{{/* ------------------------- NEW/MODIFIED SECTION START ------------------------- */}}
-{{/* 2. Static /images/[slug]-og.jpg check (if not found above and not homepage) */}}
+{{/* 2. Static /images/[slug]-og-16x9.jpg check (if not found above and not homepage) */}}
 {{ if and (not $finalOgImageAbsURL) (not .IsHome) }}
 {{ $staticOgPathForSlug := printf "images/%s" $ogImageNameWithExt }}
 {{ if fileExists (printf "static/%s" $staticOgPathForSlug) }}
@@ -111,7 +110,6 @@
 {{ $ogImageSourceDebug = printf "%s (and NOT found in static/images as %s)" $ogImageSourceDebug $staticOgPathForSlug }}
 {{ end }}
 {{ end }}
-{{/* ------------------------- NEW/MODIFIED SECTION END --------------------------- */}}
 
 
 {{/* Standard fallbacks if specific image not found yet */}}

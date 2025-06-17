@@ -17,6 +17,11 @@ const BACKGROUND_IMAGE_PATH_IN_ASSETS = 'images/ONM.png';
 const OG_TEMPLATE_PATH = join(PROJECT_ROOT, 'assets', 'og-template', 'template.html');
 const HOMEPAGE_TITLE = "Advancing Neuromorphic Computing, Together.";
 const HOMEPAGE_DESCRIPTION = "Open Neuromorphic (ONM) is a global community fostering education, research, and open-source collaboration in brain-inspired AI and hardware.";
+const SIZES = [
+  { width: 1200, height: 630, suffix: '16x9' }, // Standard OG 1.91:1
+  { width: 1200, height: 900, suffix: '4x3' },
+  { width: 1080, height: 1080, suffix: '1x1' },
+];
 
 // --- Helper Functions ---
 async function pathExists(path) {
@@ -119,10 +124,17 @@ async function collectData() {
   const homepageFinalHash = createHash(homepageContentHash + globalHash);
   const homepageOgDir = join(STATIC_DIR, 'images');
   await ensureDir(homepageOgDir);
+
+  const homepageOutputs = SIZES.map(size => ({
+    path: join(homepageOgDir, `og-image-${size.suffix}.${OUTPUT_FORMAT}`),
+    width: size.width,
+    height: size.height,
+  }));
+
   outputData.pages.push({
     title: HOMEPAGE_TITLE,
     description: HOMEPAGE_DESCRIPTION,
-    outputPath: join(homepageOgDir, `og-image.${OUTPUT_FORMAT}`),
+    outputs: homepageOutputs,
     finalHash: homepageFinalHash
   });
 
@@ -142,12 +154,17 @@ async function collectData() {
       const finalHash = createHash(contentHash + globalHash);
 
       const parentDirName = basename(pageDirectory);
-      const ogImageFilename = `${parentDirName}-og.${OUTPUT_FORMAT}`;
+      
+      const pageOutputs = SIZES.map(size => ({
+        path: join(pageDirectory, `${parentDirName}-og-${size.suffix}.${OUTPUT_FORMAT}`),
+        width: size.width,
+        height: size.height,
+      }));
 
       outputData.pages.push({
         title,
         description,
-        outputPath: join(pageDirectory, ogImageFilename),
+        outputs: pageOutputs,
         finalHash
       });
     } catch (err) {
