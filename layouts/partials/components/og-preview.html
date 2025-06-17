@@ -1,38 +1,49 @@
 {{ $ogImageResource := "" }}
+{{ $ogImageDisplayURL := "" }}
 
-{{/* 1. Try to find the auto-generated OG image: [slug]-og.jpg */}}
-{{ if .File }}
+{{ if .IsHome }}
+{{ $ogImageDisplayURL = "images/og-image-16x9.jpg" | relLangURL }}
+{{ else if .File }}
 {{ $pageSlug := path.Base .File.Dir }}
-{{ $generatedOgImageName := printf "%s-og.jpg" $pageSlug }}
-{{ $ogImageResource = .Resources.GetMatch $generatedOgImageName }}
+{{ $generatedOgImageName := printf "%s-og-16x9.jpg" $pageSlug }}
+{{ with .Resources.GetMatch $generatedOgImageName }}
+{{ $ogImageResource = . }}
+{{ end }}
 {{ end }}
 
-{{/* 2. If not found, fall back to the `image` param in front matter */}}
 {{ if not $ogImageResource }}
 {{ with .Params.image }}
 {{ $fmImage := . }}
-{{ $ogImageResource = $.Page.Resources.GetMatch $fmImage }}
-{{ if not $ogImageResource }}
-{{ $ogImageResource = resources.Get $fmImage }}
+{{ with $.Page.Resources.GetMatch $fmImage }}
+{{ $ogImageResource = . }}
+{{ else }}
+{{ with resources.Get $fmImage }}
+{{ $ogImageResource = . }}
+{{ else }}
+{{ if fileExists (printf "static%s" $fmImage) }}
+{{ $ogImageDisplayURL = $fmImage | relLangURL }}
+{{ end }}
+{{ end }}
 {{ end }}
 {{ end }}
 {{ end }}
 
-{{/* 3. If still not found, use a site-wide default */}}
-{{ if not $ogImageResource }}
-{{ with site.Params.metadata.image }}
-{{ $ogImageResource = resources.Get . }}
-{{ end }}
-{{ end }}
-
-
+{{ if not $ogImageDisplayURL }}
 {{ if $ogImageResource }}
 {{ $resizedOg := $ogImageResource.Resize "600x Lanczos q85" }}
-{{ $ogImageDisplay := $resizedOg.RelPermalink }}
+{{ $ogImageDisplayURL = $resizedOg.RelPermalink }}
+{{ else }}
+{{ with site.Params.metadata.image }}
+{{ $ogImageDisplayURL = . | relLangURL }}
+{{ end }}
+{{ end }}
+{{ end }}
 
+
+{{ if $ogImageDisplayURL }}
 <div class="og-preview-wrapper">
   <div class="og-preview-container">
-    <img src="{{ $ogImageDisplay }}" alt="Social share preview for {{ .Title }}" class="og-preview-image-tag" />
+    <img src="{{ $ogImageDisplayURL }}" alt="Social share preview for {{ .Title }}" class="og-preview-image-tag" />
 
     <div class="image-dark-overlay"></div>
     <div class="social-share-overlay">
