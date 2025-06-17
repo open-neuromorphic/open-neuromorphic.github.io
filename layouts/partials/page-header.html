@@ -3,7 +3,10 @@
     <div>
       <h1 class="mb-3">{{ .Title | title }}</h1>
       <p class="mb-3">{{ .Description }}</p>
-      {{ partial "components/breadcrumb" (dict "Context" . ) }}
+      <div class="flex flex-wrap items-center justify-between gap-y-2">
+        {{ partial "components/breadcrumb" (dict "Context" . ) }}
+        {{ partial "components/edit-page-link.html" . }}
+      </div>
     </div>
   </div>
 </section>
