@@ -1,7 +1,7 @@
 ---
 title: "Luuk van Keeken"
 description: "Researcher/PhD student at KTH Royal Institute of Technology, specializing in Neuromorphic Intermediate Representation (NIR) and its PyTorch applications."
-image: "" # To be replaced with "luuk-van-keeken.jpg" or similar
+image: "luuk-van-keeken.jpeg" # To be replaced with "luuk-van-keeken.jpg" or similar
 social: []
 draft: false
 ---
