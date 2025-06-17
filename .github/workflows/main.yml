@@ -54,8 +54,8 @@ jobs:
         id: og-cache
         with:
           path: |
-            content/**/*-og.jpg
-            static/images/og-image.jpg
+            content/**/*-og-*.jpg
+            static/images/og-image-*.jpg
             tmp/og-cache-manifest.json
           key: ${{ runner.os }}-og-images-${{ hashFiles('**/content/**/index.md', '**/content/**/_index.md', 'assets/og-template/template.html', 'assets/images/ONM-logo.png') }}
           restore-keys: |
@@ -84,7 +84,7 @@ jobs:
           sed -i "s|baseURL = .*|baseURL = \"$BASE_URL\"|" hugo.toml
           echo "hugo.toml after modification:"
           cat hugo.toml
-      
+
       - name: Build Hugo Site
         run: |
           echo "Starting Hugo site build..."
