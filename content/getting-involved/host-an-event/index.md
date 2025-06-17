@@ -1,15 +1,23 @@
 ---
 title: "Host an Event"
 description: "Present your research, lead a workshop, or host a discussion. Learn how to share your expertise with the Open Neuromorphic community through our events."
+date: 2025-06-17
 ---
 
 Sharing your knowledge through a live event is a powerful way to engage with the community, get feedback on your work, and help others learn. Open Neuromorphic hosts several types of events, and we are always looking for new speakers and hosts.
 
 ## Types of Events You Can Host
 
--   **Workshops:** Lead a hands-on session or a deep-dive presentation on a specific neuromorphic tool, technology, or research area.
--   **Student Talks:** Present your ongoing research, a recently published paper, or a comprehensive literature review. This is a great platform for students and early-career researchers.
--   **Hacking Hours:** Co-host a live coding session to tackle a specific problem, demonstrate a library, or explore a new concept.
+-   ### Workshops
+    Lead a hands-on session or a deep-dive presentation on a specific neuromorphic tool, technology, or research area.
+
+-   ### Student Talks
+    Present your ongoing research, a recently published paper, or a comprehensive literature review. This is a great platform for students and early-career researchers.
+
+    For more details on the format and goals, please see the [Student Talks initiative page](/neuromorphic-computing/initiatives/student-talks-initiative/).
+
+-   ### Hacking Hours
+    Co-host a live coding session to tackle a specific problem, demonstrate a library, or explore a new concept.
 
 ## How to Propose an Event
 
@@ -17,13 +25,15 @@ Getting started is easy. You don't need to be a seasoned presenter; you just nee
 
 1.  **Have an Idea:** Think about what you'd like to share. It could be your latest project, a tutorial you've developed, or a topic you're passionate about.
 
-2.  **Reach Out to Us:** Contact us through one of these channels:
-    -   **Discord:** This is the best way. Post a message in the `#proposals-contributions` channel on our [Discord server](https://discord.gg/hUygPUdD8E) or send a direct message to an Executive Committee member (like **Jens E. Pedersen**).
+2.  **Reach Out to Us:** The best way to propose an event is on our [Discord server](https://discord.gg/hUygPUdD8E):
+  -   For **Student Talks**, please post a message in the `#student-talks` channel.
+  -   For all other events like **Workshops** or **Hacking Hours**, use the `#proposals-contributions` channel.
+  -   Alternatively, you can send a direct message to an Executive Committee member (e.g., **Jens E. Pedersen**).
 
 3.  **Tell Us About Your Idea:** In your message, please include:
-    -   A brief title and description of your proposed talk/workshop.
-    -   The type of event you're interested in (Workshop, Student Talk, etc.).
-    -   A short bio of yourself.
+  -   A brief title and description of your proposed talk/workshop.
+  -   The type of event you're interested in (Workshop, Student Talk, etc.).
+  -   A short bio of yourself.
 
 ## What We Provide
 

@@ -12,7 +12,7 @@ Find your path to making an impact within our vibrant community. Below, we've ou
 title="For Students & Aspiring Researchers"
 description="Kickstart your journey in neuromorphic computing. Access learning resources, participate in engaging discussions, and find opportunities to contribute to real projects. ONM provides a supportive environment to grow your skills and network with peers and experts."
 cta_text="Join Student Talks"
-cta_link="/neuromorphic-computing/student-talks/"
+cta_link="/getting-involved/host-an-event"
 image="student-path.jpeg"
 alt_text="Students learning about neuromorphic computing"
 layout_class=""
