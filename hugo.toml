@@ -57,7 +57,7 @@ target = '$1'
 ############################# Outputs ############################
 [outputs]
 home = ["HTML", "RSS"]
-
+section = ["HTML", "RSS"] # Add this line
 ############################# Imaging ############################
 [imaging]
 # See https://github.com/disintegration/imaging
