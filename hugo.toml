@@ -123,3 +123,9 @@ priority = 0
 [Taxonomies]
 category = "categories"
 author = "authors"
+
+######################### Services ###############################
+[services]
+[services.rss]
+# Number of items to include in the RSS feed.
+limit = 20
