@@ -56,7 +56,7 @@ target = '$1'
 
 ############################# Outputs ############################
 [outputs]
-home = ["HTML", "RSS"]
+home = ["HTML", "RSS", "videoSitemap"]
 section = ["HTML", "RSS"] # Add this line
 ############################# Imaging ############################
 [imaging]
@@ -107,6 +107,12 @@ rel = "manifest"
 mediaType = "application/json"
 baseName = "searchindex"
 isPlainText = true
+notAlternative = true
+
+[outputFormats.videoSitemap]
+mediaType = "application/xml"
+baseName = "video-sitemap"
+isPlainText = false
 notAlternative = true
 
 
