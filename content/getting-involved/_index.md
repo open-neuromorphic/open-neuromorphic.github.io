@@ -12,7 +12,7 @@ Find your path to making an impact within our vibrant community. Below, we've ou
 title="For Students & Aspiring Researchers"
 description="Kickstart your journey in neuromorphic computing. Access learning resources, participate in engaging discussions, and find opportunities to contribute to real projects. ONM provides a supportive environment to grow your skills and network with peers and experts."
 cta_text="Join Student Talks"
-cta_link="/getting-involved/host-an-event"
+cta_link="/getting-involved/share-your-work"
 image="student-path.jpeg"
 alt_text="Students learning about neuromorphic computing"
 layout_class=""
@@ -38,7 +38,7 @@ cta_link="https://discord.gg/hUygPUdD8E"
 image="industry-path.jpeg"
 alt_text="Industry professionals in a meeting"
 layout_class=""
-explore_links="About ONM & Governance|/about/;Host a Workshop|/getting-involved/host-an-event/;ONM Initiatives|/getting-involved/join-an-initiative/"
+explore_links="About ONM & Governance|/about/;Host a Workshop|/getting-involved/share-your-work/;ONM Initiatives|/getting-involved/join-an-initiative/"
 >}}
 
 ## Ready to Start? Here's How You Can Contribute
@@ -50,8 +50,8 @@ If you're ready to jump in, here are some of the most direct and impactful ways 
   Share your research, tutorials, or insights with a global audience. We make it easy to submit your work, even if you're not a GitHub expert.
   {{< /contribution_card >}}
 
-{{< contribution_card icon="fas fa-chalkboard-user" title="Host an Event" link="/getting-involved/host-an-event/" >}}
-Present a workshop, give a student talk, or co-host a Hacking Hour. It's a great way to share your knowledge and get valuable feedback.
+{{< contribution_card icon="fas fa-chalkboard-user" title="Share Your Work" link="/getting-involved/share-your-work/" >}}
+Present a workshop, give a student talk, or join a Hacking Hour as a guest. It's a great way to share your knowledge and get valuable feedback.
 {{< /contribution_card >}}
 
 {{< contribution_card icon="fas fa-rocket" title="Join an Initiative" link="/getting-involved/join-an-initiative/" >}}
