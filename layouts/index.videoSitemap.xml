@@ -1,0 +1,38 @@
+{{- printf "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" | safeHTML -}}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  {{- $eventPages := where site.RegularPages "Section" "workshops" -}}
+  {{- $eventPages = $eventPages | union (where site.RegularPages "Type" "in" (slice "student-talks" "hacking-hours")) -}}
+
+  {{- $videoPages := slice -}}
+  {{- range $eventPages -}}
+  {{- if and .Params.video (ne .Params.video "") (ne .Params.upcoming true) -}}
+  {{- $videoPages = $videoPages | append . -}}
+  {{- end -}}
+  {{- end -}}
+
+  {{- range $videoPages -}}
+  {{- $pageSlug := path.Base .File.Dir -}}
+  {{- $ogImageName := printf "%s-og-16x9.jpg" $pageSlug -}}
+  {{- $ogImageResource := .Resources.GetMatch $ogImageName -}}
+
+  {{- $thumbnail_url := printf "https://i.ytimg.com/vi/%s/maxresdefault.jpg" .Params.video -}}
+  {{- if $ogImageResource -}}
+  {{- $thumbnail_url = $ogImageResource.Permalink -}}
+  {{- end -}}
+  <url>
+    <loc>{{ .Permalink }}</loc>
+    <video:video>
+      <video:thumbnail_loc>{{ $thumbnail_url }}</video:thumbnail_loc>
+      <video:title>{{ .Title | plainify }}</video:title>
+      <video:description>{{ .Description | plainify }}</video:description>
+      <video:player_loc>https://www.youtube.com/embed/{{ .Params.video }}</video:player_loc>
+      {{- with .Date -}}
+      <video:publication_date>{{ .Format "2006-01-02T15:04:05-07:00" }}</video:publication_date>
+      {{- end -}}
+      <video:uploader info="{{ site.BaseURL | absLangURL }}">{{ site.Title }}</video:uploader>
+      <video:live>no</video:live>
+    </video:video>
+  </url>
+  {{- end -}}
+</urlset>
