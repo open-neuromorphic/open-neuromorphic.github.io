@@ -1,6 +1,5 @@
-{{/* layouts/partials/structured-markup/event.html */}}
+{{- /* layouts/partials/structured-markup/event.html */ -}}
 {{ $page_context := . }}
-{{ $defaultOgImage := site.Params.metadata.image | default "images/og-image.png" | absLangURL }}
 
 {{/* --- Date and Time Processing --- */}}
 {{ $eventStartDate := "" }}{{ $eventEndDate := "" }}
@@ -22,47 +21,62 @@
 {{ $offset = "Z" }}
 {{ end }}
 
-{{/* --- Image Processing --- */}}
-{{ $imagePath := $page_context.Params.image }}
-{{ $resolvedImageURL := "" }}
-{{ if $imagePath }}
-{{ if hasPrefix $imagePath "/" }}
-{{ $resolvedImageURL = $imagePath | absLangURL }}
-{{ else }}
-{{ with $page_context.Resources.GetMatch $imagePath }}
-{{ $resolvedImageURL = .Permalink }}
-{{ else }}
-{{ with resources.Get $imagePath }}
-{{ $resolvedImageURL = .Permalink }}
-{{ else }}
-{{ $resolvedImageURL = printf "%s%s" $page_context.RelPermalink $imagePath | absLangURL }}
+{{/* --- Image Processing: Create a definitive list of image URLs for the schema --- */}}
+{{ $imageUrls := slice }}
+{{ if .File }}
+{{ $pageSlug := path.Base .File.Dir }}
+{{ $suffixes := slice "16x9" "4x3" "1x1" }}
+{{ range $suffixes }}
+{{ $ogImageName := printf "%s-og-%s.jpg" $pageSlug . }}
+{{ with $page_context.Resources.GetMatch $ogImageName }}
+{{ $imageUrls = $imageUrls | append .Permalink }}
 {{ end }}
 {{ end }}
 {{ end }}
+
+{{/* If no generated OG images are found, fall back to the front matter 'image' param */}}
+{{ if not $imageUrls }}
+{{ with $page_context.Params.image }}
+{{ $fmImage := . }}
+{{ with $page_context.Resources.GetMatch $fmImage }}
+{{ $imageUrls = slice .Permalink }}
 {{ else }}
-{{ $resolvedImageURL = $defaultOgImage }}
+{{ $imageUrls = slice ($fmImage | absLangURL) }}
+{{ end }}
+{{ end }}
+{{ end }}
+
+{{/* If still no images, fall back to the site's default OG image */}}
+{{ if not $imageUrls }}
+{{ with site.Params.metadata.image }}
+{{ $imageUrls = slice (. | absLangURL) }}
+{{ end }}
 {{ end }}
 
 {{/* --- Event Status Logic --- */}}
 {{ $eventStatus := "https://schema.org/EventScheduled" }}
 {{ if eq .Params.upcoming false }}
-{{/* Event has passed. Google infers this from date, but we can be explicit if needed.
-For now, we'll let the presence of a VideoObject signal its new state. */}}
+{{/* Google infers past events from date. Can add specific statuses like EventMovedOnline if needed. */}}
 {{ end }}
 
 {{/* --- Video Object Logic --- */}}
 {{ $videoObject := "" }}
 {{ with .Params.video }}
+{{/* Use the main imageUrls if they exist (from OG images), otherwise fallback to YouTube's default thumbnail */}}
+{{ $thumbnailUrls := $imageUrls }}
+{{ if not $thumbnailUrls }}
+{{ $thumbnailUrls = slice (printf "https://i.ytimg.com/vi/%s/maxresdefault.jpg" .) }}
+{{ end }}
+
 {{ $videoObject = dict
 "@type" "VideoObject"
 "name" $page_context.Title
 "description" $page_context.Description
-"thumbnailUrl" (printf "https://i.ytimg.com/vi/%s/maxresdefault.jpg" .)
-"uploadDate" ($page_context.Date.Format "2006-01-02")
+"thumbnailUrl" $thumbnailUrls
+"uploadDate" ($page_context.Date.Format "2006-01-02T15:04:05Z07:00")
 "embedUrl" (printf "https://www.youtube.com/embed/%s" .)
 }}
 {{ end }}
-
 
 {{/* --- Main Event Schema Construction --- */}}
 {{ $eventLD := dict
@@ -77,7 +91,7 @@ For now, we'll let the presence of a VideoObject signal its new state. */}}
 "@type" "VirtualLocation"
 "url" (cond (ne .Params.video "") (printf "https://www.youtube.com/watch?v=%s" .Params.video) "https://youtube.com/@openneuromorphic")
 )
-"image" (slice $resolvedImageURL)
+"image" $imageUrls
 "description" $page_context.Description
 "offers" (dict
 "@type" "Offer"
@@ -110,6 +124,7 @@ For now, we'll let the presence of a VideoObject signal its new state. */}}
 {{ end }}
 {{ $eventLD = merge $eventLD (dict "performer" $performers) }}
 {{ end }}
+
 {{ $eventLD = merge $eventLD (dict "organizer" (dict "@type" "Organization" "name" "Open Neuromorphic" "url" (absLangURL "/"))) }}
 
 {{ return $eventLD }}
