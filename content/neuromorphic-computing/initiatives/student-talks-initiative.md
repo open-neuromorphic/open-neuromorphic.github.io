@@ -26,7 +26,7 @@ Talks are generally scheduled every three weeks, with the exact timing announced
 
 A typical session lasts about 1 hour and 15 minutes, with approximately one hour for the presentation and 15 minutes for discussion.
 
-1.  **Propose a Talk:** If you are interested in presenting, please follow the instructions on our [**Host an Event**](/getting-involved/host-an-event/) page. The best way to start is by posting your proposal in the `#student-talks` channel on our [Discord server](https://discord.gg/hUygPUdD8E). Please include a brief summary or a one-page PDF of your talk to give the community a clear idea of the topic.
+1.  **Propose a Talk:** If you are interested in presenting, please follow the instructions on our [**Host an Event**](/getting-involved/share-your-work/) page. The best way to start is by posting your proposal in the `#student-talks` channel on our [Discord server](https://discord.gg/hUygPUdD8E). Please include a brief summary or a one-page PDF of your talk to give the community a clear idea of the topic.
 2.  **Scheduling:** An initiative lead will work with you to schedule a time that accommodates both you and a maximum number of community members. The final date and time will be announced at least one week in advance.
 3.  **The Event:** A link to the virtual event (typically on YouTube Live) will be shared on the day of the talk. The presentation portion is usually recorded for those who cannot attend live. The Q&A and discussion phase may or may not be recorded, at the speaker's discretion.
 4.  **Post-Event:** The recorded talk can be hosted on ONM’s YouTube channel or provided to you privately. Further questions and discussions can continue asynchronously in the `#student-talks` Discord channel.
