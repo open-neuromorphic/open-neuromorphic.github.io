@@ -11,9 +11,19 @@ supports_hardware: True
 supports_NIR: False
 language: Python
 draft: false
+maintainer: Electronic Visions Group
 ---
 
 ## Overview
 
 **PyNN.brainscales2** is an implementation of the backend-agnostic PyNN API for BrainScaleS-2.
 It supports arbitrary topologies, and complex plasticity rules.
+
+Custom cell types are available allowing fine-grained access to the configuration of the available neuron circuits on hardware.
+Additionally, cell types parameterized through model parameters use automated calibration to find suitable hardware configurations for desired behavior.
+
+Due to the real-time nature of the emulation, experiment protocol definition and execution are separated, while dynamic reconfiguration of hardware entities during the experiment runtime is offered.
+
+Usage of the embedded processors for implementing plasticity rules is integrated such that users can define plasticity rules acting on PyNN network entities and having access to the to be executed code for the processors.
+
+Observables recorded from the hardware are made available using the standard data formats used in PyNN after execution on the hardware.
