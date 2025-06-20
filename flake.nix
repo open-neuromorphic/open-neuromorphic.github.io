@@ -20,7 +20,7 @@
             git
             chromium
             bash-completion
-            ncurses # Provides the 'tput' command
+            ncurses # Provides 'tput' for colors
           ];
 
           shellHook = ''
@@ -28,8 +28,13 @@
             export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
             export PUPPETEER_EXECUTABLE_PATH="${pkgs.chromium}/bin/chromium"
 
+            # Enable history and other interactive features
+            set -o vi # or set -o emacs for emacs keybindings
+            HISTFILE=~/.bash_history_nix_dev
+            history -c
+            history -r
+
             # Set a nice, readable prompt using tput for portability
-            # This is the robust way to set colors.
             if command -v tput >/dev/null && tput setaf 1 >/dev/null; then
                 green=$(tput setaf 2)
                 blue=$(tput setaf 4)
