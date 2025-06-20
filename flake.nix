@@ -13,34 +13,22 @@
       in
       {
         devShells.default = pkgs.mkShell {
-          # System-level dependencies required by the project.
-          # These versions are based on your project's configuration files.
           buildInputs = with pkgs; [
-            # Hugo Extended v0.147.7+
             hugo
-
-            # Go v1.24.3+
             go_1_24
-
-            # Node.js v22.x+
             nodejs_22
-
-            # Git is good practice to include
             git
-
-            # Required by Puppeteer, a dev dependency in package.json
-            # This prevents Puppeteer from downloading its own browser binary.
             chromium
-
-            # Add bash-completion to prevent shell startup errors
             bash-completion
           ];
 
-          # Set environment variables required for the shell.
           shellHook = ''
-            # Point Puppeteer to the Chromium binary provided by Nixpkgs
             export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
             export PUPPETEER_EXECUTABLE_PATH="${pkgs.chromium}/bin/chromium"
+
+            # Set a nice, readable prompt for the Nix shell
+            # This is the corrected version.
+            export PS1="\\[\\033[01;32m\\][nix-dev]\\[\\033[00m\\] \\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\$ "
 
             echo ""
             echo "----------------------------------------------------"
