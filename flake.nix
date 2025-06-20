@@ -31,6 +31,9 @@
             # Required by Puppeteer, a dev dependency in package.json
             # This prevents Puppeteer from downloading its own browser binary.
             chromium
+
+            # Add bash-completion to prevent shell startup errors
+            bash-completion
           ];
 
           # Set environment variables required for the shell.
