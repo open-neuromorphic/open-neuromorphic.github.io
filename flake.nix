@@ -20,15 +20,24 @@
             git
             chromium
             bash-completion
+            ncurses # Provides the 'tput' command
           ];
 
           shellHook = ''
+            # Point Puppeteer to the Nix-provided Chromium
             export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
             export PUPPETEER_EXECUTABLE_PATH="${pkgs.chromium}/bin/chromium"
 
-            # Set a nice, readable prompt for the Nix shell
-            # This is the corrected version.
-            export PS1="\\[\\033[01;32m\\][nix-dev]\\[\\033[00m\\] \\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\$ "
+            # Set a nice, readable prompt using tput for portability
+            # This is the robust way to set colors.
+            if command -v tput >/dev/null && tput setaf 1 >/dev/null; then
+                green=$(tput setaf 2)
+                blue=$(tput setaf 4)
+                reset=$(tput sgr0)
+                export PS1="$green[nix-dev]$reset $blue\w$reset$ "
+            else
+                export PS1='[nix-dev] \w\$ '
+            fi
 
             echo ""
             echo "----------------------------------------------------"
