@@ -2,47 +2,38 @@
 {{ $class := .Class }}
 {{ $base := site.BaseURL }}
 
-{{/* Visual breadcrumb rendering */}}
 <nav aria-label="Breadcrumb" class="{{ $class }} md:inline-flex sm:hidden">
-  <ol class="flex flex-wrap space-x-1 capitalize">
+  <ol class="flex flex-wrap items-center capitalize text-sm space-x-2">
     <li>
-      <div class="flex items-center">
-        <a class="breadcrumb-link-parent text-primary dark:text-darkmode-primary" href="{{ $base | relLangURL }}">
-          <span class="breadcrumb-link-text">{{ i18n "home" | default "Home" }}</span>
-        </a>
-        <span class="px-1 text-gray-500 dark:text-gray-400" aria-hidden="true">/</span>
-      </div>
+      <a href="{{ $base | relLangURL }}" aria-label="Home" title="Home" class="text-gray-600 dark:text-gray-300 flex items-center justify-center w-7 h-7 bg-gray-100 dark:bg-darkmode-theme-dark rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+        {{ partial "icon.html" (dict "style" "solid" "name" "house" "class" "h-4 w-4") }}
+      </a>
     </li>
 
+    {{ $pages := slice }}
     {{ if or (eq $context.Section "workshops") (eq $context.Section "contributors") }}
-      {{ $ncPage := site.GetPage "neuromorphic-computing" }}
-      <li>
-        <div class="flex items-center">
-          <a class="breadcrumb-link-parent text-primary dark:text-darkmode-primary" href="{{ ($ncPage.RelPermalink | default "/neuromorphic-computing/") | relLangURL }}">
-            <span class="breadcrumb-link-text">{{ $ncPage.Title | default "Neuromorphic Computing" }}</span>
-          </a>
-          <span class="px-1 text-gray-500 dark:text-gray-400" aria-hidden="true">/</span>
-        </div>
-      </li>
+    {{ $ncPage := site.GetPage "neuromorphic-computing" }}
+    {{ $pages = $pages | append (dict "Title" ($ncPage.Title | default "Neuromorphic Computing") "Permalink" (($ncPage.RelPermalink | default "/neuromorphic-computing/") | relLangURL)) }}
     {{ end }}
 
     {{ range $context.Ancestors.Reverse }}
-      {{ if and (not .IsHome) (ne .Title "Pages") (ne .Title "") }}
-        <li>
-          <div class="flex items-center">
-            <a class="breadcrumb-link-parent text-primary dark:text-darkmode-primary" href="{{ .RelPermalink }}">
-              <span class="breadcrumb-link-text">{{ .Title }}</span>
-            </a>
-            <span class="px-1 text-gray-500 dark:text-gray-400" aria-hidden="true">/</span>
-          </div>
-        </li>
-      {{ end }}
+    {{ if and (not .IsHome) (ne .Title "Pages") (ne .Title "") }}
+    {{ $pages = $pages | append . }}
+    {{ end }}
     {{ end }}
 
-    <li aria-current="page">
-      <div class="flex items-center">
-        <span class="text-text dark:text-darkmode-text">{{ $context.Title }}</span>
-      </div>
+    {{ range $pages }}
+    <li class="text-gray-400 dark:text-gray-500" aria-hidden="true">/</li>
+    <li>
+      <a class="breadcrumb-link-parent text-indigo-600 dark:text-indigo-400" href="{{ .Permalink }}">
+        <span class="breadcrumb-link-text">{{ .Title }}</span>
+      </a>
+    </li>
+    {{ end }}
+
+    <li class="text-gray-400 dark:text-gray-500" aria-hidden="true">/</li>
+    <li>
+      <span class="text-text dark:text-darkmode-text font-semibold">{{ $context.Title }}</span>
     </li>
   </ol>
 </nav>
