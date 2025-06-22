@@ -14,7 +14,7 @@ show_author_bios: true
 ---
 
 ## Datasets grow larger in size
-As neuromorphic algorithms tackle more complex tasks that are linked to bigger datasets, and event cameras mature to have higher spatial resolution, it is worth looking at how to encode that data efficiently when storing it on disk. To give you an example, Prophesee's latest automotive [object detection dataset](https://docs.prophesee.ai/stable/datasets.html) is some 3.5 TB in size for under 40h of recordings with a single camera.
+As [neuromorphic algorithms](/neuromorphic-computing/software/) tackle more complex tasks that are linked to bigger datasets, and event cameras mature to have higher spatial resolution, it is worth looking at how to encode that data efficiently when storing it on disk. To give you an example, Prophesee's latest automotive [object detection dataset](https://docs.prophesee.ai/stable/datasets.html) is some 3.5 TB in size for under 40h of recordings with a single camera.
 
 ## Event cameras record with fine-grained temporal resolution
 In contrast to conventional cameras, event cameras output changes in illumination, which is already a form of compression. But the output data rate is still a lot higher cameras because of the microsecond temporal resolution that event cameras are able to record with. When streaming data, we get millions of tuples of microsecond timestamps, x/y coordinates and polarity indicators per second that look nothing like a frame but are a list of events:
@@ -39,7 +39,7 @@ Ideally, we want to be close to the origin where we read fast and compression is
 The authors of this post have released [Expelliarmus](/neuromorphic-computing/software/data-tools/expelliarmus/) as a lightweight, well-tested, pip-installable framework that can read and write different formats easily. If you're working with dat, evt2 or evt3 formats, why not give it a try?
 
 ## Summary
-When training spiking neural networks on event-based data, we want to be able to feed new data to the network as fast as possible. But given the high data rate of an event camera, the amount of data quickly becomes an issue itself, especially for more complex tasks. So we want to choose a good trade-off between a dataset size that's manageable and reading speed. We hope that this article will help future groups that record large-scale datasets to pick a good encoding format. 
+When training [spiking neural networks](/neuromorphic-computing/software/snn-frameworks/) on event-based data, we want to be able to feed new data to the network as fast as possible. But given the high data rate of an event camera, the amount of data quickly becomes an issue itself, especially for more complex tasks. So we want to choose a good trade-off between a dataset size that's manageable and reading speed. We hope that this article will help future groups that record large-scale datasets to pick a good encoding format.
 
 ## Comments
 The aedat4 file contains IMU events as well as change detection events, which increases the file size artificially in contrast to the other benchmarked formats.

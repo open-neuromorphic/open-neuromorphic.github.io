@@ -28,7 +28,7 @@ Join the discussion [on Discord](https://discord.gg/hUygPUdD8E), star us [on Git
 
 Open Neuromorphic is almost 4 years old.
 
-We set out to make the field of neuromorphic engineering more transparent, open, and accessible to newcomers. It's been a tremendous success: Open Neuromorphic is the biggest online neuromorphic community *in the world*, our videos are seen by thousands of researchers, our material is reaching even further, and the 2000+ academics and students on our Discord server are actively and happily collaborating to further the scientific vision of neuromorphic engineering.
+We set out to make the field of [neuromorphic engineering](/neuromorphic-computing/) more transparent, open, and accessible to newcomers. It's been a tremendous success: Open Neuromorphic is the biggest online neuromorphic community *in the world*, our videos are seen by thousands of researchers, our material is reaching even further, and the 2000+ academics and students on our Discord server are actively and happily collaborating to further the scientific vision of neuromorphic engineering.
 
 But, let's face it: we still have a long way to go.
 

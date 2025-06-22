@@ -12,7 +12,7 @@ show_author_bios: true
 
 Here's a list of articles and theses related to digital hardware designs for neuomorphic applications. I plan to update it regularly. To be redirected directly to the sources, click on the titles! 
 
-If you are new to neuromorphic computing, I strongly suggest to get a grasp of how an SNN works from [this paper](https://arxiv.org/abs/2109.12894). Otherwise, it will be pretty difficult to understand the content of the papers listed here.
+If you are new to [neuromorphic computing](/neuromorphic-computing/), I strongly suggest to get a grasp of how an SNN works from [this paper](https://arxiv.org/abs/2109.12894). Otherwise, it will be pretty difficult to understand the content of the papers listed here.
 
 ## 2015
 
@@ -44,7 +44,7 @@ The Loihi chip employs **128 neuromorphic cores**, each of which consisting of *
 
 [*A 0.086-mm2 12.7-pJ/SOP 64k-Synapse 256-Neuron Online-Learning Digital Spiking Neuromorphic Processor in 28nm CMOS*](https://arxiv.org/abs/1804.07858), Charlotte Frenkel et al., 2019
 
-In this paper, a digital neuromorphic processor is presented. The Verilog is also [open source](https://github.com/ChFrenkel/ODIN)!
+In this paper, a digital neuromorphic processor is presented. The Verilog is also [open source](https://github.com/ChFrenkel/ODIN)! The processor is also known as [ODIN](/neuromorphic-computing/hardware/odin-frenkel/).
 
 The neurons states and the synapses weights are stored in two foundry SRAMs on chip. In order to emulate a crossbar, **time-multiplexing** is adopted: the synapses weights and neurons states are updated in a sequential manner instead of in parallel. On the core, **256 neurons (4kB SRAM)** and **256x256 synapses (64kB SRAM)** are embedded. This allows to get a very high synapses and neuron densities: **741k synapses per squared millimiters** and **3k neurons per squared millimeters**, using a **28nm CMOS FDSOI** process. 
 
