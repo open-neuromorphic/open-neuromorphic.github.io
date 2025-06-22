@@ -211,13 +211,13 @@
             </div>
             <div class="journey-ribbon-content">
                 <p class="journey-ribbon-contributor">
-                    {{ $ribbon.contributor_text_prefix }}
-                    {{ if $contributor_page_resource }}
+                    {{ $ribbon.contributor_text_prefix -}}
+                    {{- if $contributor_page_resource -}}
                         <a href="{{ $contributor_page_resource.RelPermalink }}">{{ $ribbon.primary_contributor_name }}</a>
-                    {{ else }}
-                        {{ $ribbon.primary_contributor_name }}
-                    {{ end }}
-                    {{ $ribbon.contributor_text_suffix | safeHTML }}
+                    {{- else -}}
+                        {{- $ribbon.primary_contributor_name -}}
+                    {{- end -}}
+                    {{- $ribbon.contributor_text_suffix | safeHTML -}}
                 </p>
                 <h3 class="journey-ribbon-title">{{ $ribbon.title }}</h3>
                 <p class="journey-ribbon-description">
