@@ -206,7 +206,8 @@ def generate_header(mode: str, checkpoint_file: Path | None = None, with_public_
 6. We don't need to make backups of files before big edits - there is sufficient rollback capability in dev environment
 7. If a solution is found for a particularly difficult issue, suggest updates to these instructions (generate_context.py)
 8. If code contains a code block, special handling may be required as the ``` often break the codeblock implementation
-9. Format code changes in a way that is most simple for an LLM (gemini, copilot) to integrate - this could be one single code block that references the file to update and it's new contents. It is not necessary to provide human instructions that highlight the specific lines being updated.
+9. Format code changes in a way that is most simple for an LLM (gemini, copilot) to integrate - this could be one single code block. It is not necessary to provide human instructions that highlight the specific lines being updated.
+10. indicate which file it is to be updated, outside of the file codeblock
 """
     if mode == "diff":
         checkpoint_ts_str = "ERROR: Checkpoint file missing!"
