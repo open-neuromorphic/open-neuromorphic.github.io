@@ -1,23 +1,22 @@
 {{ $item := . }}
-{{ $is_legacy := eq $item.Params.active_product false }}
 
-<a href="{{ $item.RelPermalink }}" class="hardware-card-wide-link block p-4 rounded-lg bg-theme-light dark:bg-darkmode-theme-light shadow-md {{ if $is_legacy }}opacity-80 grayscale-[50%]{{ end }}">
+<a href="{{ $item.RelPermalink }}" class="hardware-card-wide-link block p-4 rounded-lg bg-theme-light dark:bg-darkmode-theme-light shadow-md">
   <div class="flex flex-col sm:flex-row items-start gap-5">
-    
+
     {{/* Image Column */}}
     <div class="flex-shrink-0 w-full sm:w-32 md:w-40 text-center">
       {{ $image_res := "" }}
       {{ with $item.Params.image }}
-        {{ $image_res = $item.Resources.GetMatch . }}
+      {{ $image_res = $item.Resources.GetMatch . }}
       {{ end }}
 
       {{ if $image_res }}
-        {{ $thumb := $image_res.Fill "160x160 Lanczos" }}
-        <img src="{{ $thumb.RelPermalink }}" alt="Image of {{ $item.Title }}" class="w-full h-auto object-cover rounded-md">
+      {{ $thumb := $image_res.Fill "160x160 Lanczos" }}
+      <img src="{{ $thumb.RelPermalink }}" alt="Image of {{ $item.Title }}" class="w-full h-auto object-cover rounded-md">
       {{ else }}
-        <div class="w-full h-32 bg-gray-200 dark:bg-darkmode-theme-dark flex items-center justify-center rounded-md">
-          <i class="fas fa-microchip text-4xl text-gray-400"></i>
-        </div>
+      <div class="w-full h-32 bg-gray-200 dark:bg-darkmode-theme-dark flex items-center justify-center rounded-md">
+        <i class="fas fa-microchip text-4xl text-gray-400"></i>
+      </div>
       {{ end }}
     </div>
 
@@ -26,18 +25,18 @@
       <h3 class="text-xl text-left font-bold text-dark dark:text-darkmode-dark mb-1">
         {{ $item.Title }}
       </h3>
-      
+
       {{/* Badges */}}
       <div class="flex flex-wrap gap-1.5 mb-3 text-xs">
         {{ with $item.Params.product }}
-          {{ if .chip_type }}<span class="support-badge">{{ .chip_type }}</span>{{ end }}
-          {{ with .status }}
-            {{ if .retired }}<span class="bg-red-100 text-red-800 border-red-400 support-badge">Retired</span>
-            {{ else if .released }}<span class="bg-green-100 text-green-800 border-green-400 support-badge">Released</span>
-            {{ else if .announced }}<span class="bg-yellow-100 text-yellow-800 border-yellow-400 support-badge">Announced</span>
-            {{ end }}
-          {{ end }}
-          {{ if .on_chip_learning }}<span class="support-badge">On-Chip Learning</span>{{ end }}
+        {{ if .chip_type }}<span class="support-badge">{{ .chip_type }}</span>{{ end }}
+        {{ with .status }}
+        {{ if .retired }}<span class="bg-red-100 text-red-800 border-red-400 support-badge">Retired</span>
+        {{ else if .released }}<span class="bg-green-100 text-green-800 border-green-400 support-badge">Released</span>
+        {{ else if .announced }}<span class="bg-yellow-100 text-yellow-800 border-yellow-400 support-badge">Announced</span>
+        {{ end }}
+        {{ end }}
+        {{ if .on_chip_learning }}<span class="support-badge">On-Chip Learning</span>{{ end }}
         {{ end }}
       </div>
 
