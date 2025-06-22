@@ -4,19 +4,19 @@ First off, thank you for considering contributing to the Open Neuromorphic (ONM)
 
 This document provides guidelines for contributing to the ONM website. Please read it carefully to ensure a smooth and effective collaboration process.
 
-Before you start, please read our [Code of Conduct](./CODE_OF_CONDUCT.md). We expect all contributors to adhere to it in all interactions with the project.
+Before you start, please read our [Code of Conduct](https://github.com/open-neuromorphic/open-neuromorphic.github.io/blob/main/CODE_OF_CONDUCT.md). We expect all contributors to adhere to it in all interactions with the project.
 
 ## Table of Contents
 - [Ways to Contribute](#ways-to-contribute)
 - [Getting Started: Local Development Setup](#getting-started-local-development-setup)
 - [How to Submit Changes](#how-to-submit-changes)
   - [Reporting Bugs and Suggesting Enhancements](#reporting-bugs-and-suggesting-enhancements)
-  - [Your First Code Contribution](#your-first-code-contribution)
   - [Submitting a Pull Request](#submitting-a-pull-request)
 - [Content Contribution Guide](#content-contribution-guide)
+  - [Content Creation Cheat Sheet](#content-creation-cheat-sheet)
   - [General Guidelines](#general-guidelines)
   - [Adding Blog Posts](#adding-blog-posts)
-  - [Adding Events (Workshops, Student Talks, etc.)](#adding-events-workshops-student-talks-etc)
+  - [Adding Events](#adding-events)
   - [Adding Hardware or Software Pages](#adding-hardware-or-software-pages)
   - [Adding Contributor Profiles](#adding-contributor-profiles)
 - [Image Guidelines](#image-guidelines)
@@ -101,12 +101,26 @@ All code and content changes should be submitted via a Pull Request (PR).
 
 ## Content Contribution Guide
 
-Adding new content is one of the best ways to contribute. We use Hugo's [archetypes](https://gohugo.io/content-management/archetypes/) to ensure new content has the correct structure.
+Adding new content is one of the best ways to contribute. We use Hugo's [archetypes](https://gohugo.io/content-management/archetypes/) to ensure new content has the correct structure. This is especially useful for AI assistants creating content, as the archetypes serve as self-documenting templates.
+
+### Content Creation Cheat Sheet
+
+This table provides the exact commands for creating common content types.
+
+| Content Type | Archetype Command | Location |
+| :--- | :--- | :--- |
+| **Blog Post** | `hugo new blog/your-post-slug/index.md` | `content/blog/your-post-slug/` |
+| **Workshop** | `hugo new workshops/your-event-slug/index.md` | `content/workshops/your-event-slug/` |
+| **Student Talk** | `hugo new neuromorphic-computing/student-talks/your-talk-slug/index.md` | `content/neuromorphic-computing/student-talks/your-talk-slug/` |
+| **Hacking Hour** | `hugo new neuromorphic-computing/software/hacking-hours/your-session-slug/index.md` | `content/neuromorphic-computing/software/hacking-hours/your-session-slug/` |
+| **Hardware Page** | `hugo new neuromorphic-computing/hardware/manufacturer-chip/index.md` | `content/neuromorphic-computing/hardware/manufacturer-chip/` |
+| **Software Page** | `hugo new neuromorphic-computing/software/snn-frameworks/software-name/index.md` | `content/neuromorphic-computing/software/snn-frameworks/software-name/` |
+| **Contributor** | `hugo new contributors/full-name-slug/index.md` | `content/contributors/full-name-slug/` |
+| **Initiative** | `hugo new neuromorphic-computing/initiatives/your-initiative-slug/index.md`| `content/neuromorphic-computing/initiatives/your-initiative-slug/` |
 
 ### General Guidelines
 
-*   **Use Archetypes:** Always create new content with `hugo new <path>`. This pre-fills the necessary front matter. For content that should have its own images and assets, create a page bundle by adding `index.md` to the path.
-    *   Example: `hugo new blog/my-new-post/index.md`
+*   **Use Archetypes:** Always create new content with `hugo new <path>` if possible. If you are creating a file manually, copy the relevant file from the `archetypes/` directory to use as a template.
 *   **Draft Status:** New content is created with `draft: true`. This prevents it from being published. When your content is ready, change this to `draft: false`.
 *   **SEO is Key:**
     *   **`title`:** 50-60 characters. Make it descriptive and keyword-rich.
@@ -114,27 +128,29 @@ Adding new content is one of the best ways to contribute. We use Hugo's [archety
 
 ### Adding Blog Posts
 
-1.  **Create the file:**
+1.  **Create the file:** (template: [archetypes/blog.md](https://github.com/open-neuromorphic/open-neuromorphic.github.io/blob/main/archetypes/blog.md))
     ```bash
     hugo new blog/your-post-title-slug/index.md
     ```
 2.  **Location:** `content/blog/your-post-title-slug/index.md`
-3.  **Images:** Place images for the post inside the `content/blog/your-post-title-slug/` directory.
-4.  **Front Matter:** Fill in the `title`, `description`, `author`, and `image` (for the banner). Remember to add `image_attribution` if the banner image requires credit.
+3.  **Front Matter:** Fill in the `title`, `description`, `author`, and `image` (for the banner). Remember to add `image_attribution` if the banner image requires credit.
+4.  **Images:** Place images for the post inside the `content/blog/your-post-title-slug/` directory.
 
-### Adding Events (Workshops, Student Talks, etc.)
+### Adding Events
 
-1.  **Create the file:**
-    *   **Workshop:** `hugo new workshops/your-event-slug/index.md`
-    *   **Student Talk:** `hugo new neuromorphic-computing/student-talks/your-talk-slug/index.md`
-    *   **Hacking Hour:** `hugo new neuromorphic-computing/software/hacking-hours/your-session-slug/index.md`
-2.  **Front Matter:** Fill in all event-specific fields: `title`, `author`, `date` (event date), `start_time`, `end_time`, `time_zone`, `upcoming`, `video` (add YouTube ID after the event), `image`, `speaker_photo`, and `speaker_bio`. Ensure the `type` field is set correctly (`workshops`, `student-talks`, or `hacking-hours`).
+Events like workshops, student talks, and hacking hours share a similar structure.
+
+1.  **Create the file:** Use the appropriate command from the cheat sheet.
+    *   Workshop (template: [archetypes/workshops.md](https://github.com/open-neuromorphic/open-neuromorphic.github.io/blob/main/archetypes/workshops.md))
+    *   Student Talk (template: [archetypes/student-talks.md](https://github.com/open-neuromorphic/open-neuromorphic.github.io/blob/main/archetypes/student-talks.md))
+    *   Hacking Hour (template: [archetypes/hacking-hours.md](https://github.com/open-neuromorphic/open-neuromorphic.github.io/blob/main/archetypes/hacking-hours.md))
+2.  **Front Matter:** Fill in all event-specific fields: `title`, `author`, `date` (event date), `start_time`, `end_time`, `time_zone`, `upcoming`, `video` (add YouTube ID after the event), `image`, `speaker_photo`, and `speaker_bio`.
 
 ### Adding Hardware or Software Pages
 
-1.  **Create the file:**
-    *   **Hardware:** `hugo new neuromorphic-computing/hardware/manufacturer-chip-name/index.md`
-    *   **Software:** `hugo new neuromorphic-computing/software/snn-frameworks/software-name/index.md`
+1.  **Create the file:** Use the appropriate command from the cheat sheet.
+    *   Hardware (template: [archetypes/neuromorphic-hardware.md](https://github.com/open-neuromorphic/open-neuromorphic.github.io/blob/main/archetypes/neuromorphic-hardware.md))
+    *   Software (template: [archetypes/neuromorphic-software.md](https://github.com/open-neuromorphic/open-neuromorphic.github.io/blob/main/archetypes/neuromorphic-software.md))
 2.  **Front Matter:** Follow the structure in the respective archetype. These pages have detailed front matter for specifications.
 3.  **Images:** Place logos and product images inside the new directory.
 
@@ -142,7 +158,7 @@ Adding new content is one of the best ways to contribute. We use Hugo's [archety
 
 To link content to an author, a contributor profile is required.
 
-1.  **Create the file:**
+1.  **Create the file:** (template: [archetypes/contributors.md](https://github.com/open-neuromorphic/open-neuromorphic.github.io/blob/main/archetypes/contributors.md))
     ```bash
     hugo new contributors/full-name-slug/index.md
     ```
@@ -163,7 +179,7 @@ To link content to an author, a contributor profile is required.
 ## Style and Coding Guidelines
 
 *   **Templates:** Hugo templates are located in `layouts/`.
-*   **Styling:** We use Tailwind CSS. Custom styles are in `assets/scss/`. Add project-specific overrides to `assets/scss/custom.scss`.
+*   **Styling:** We use Tailwind CSS. Custom styles are in `assets/scss/`.
 *   **JavaScript:** Custom scripts are in `assets/js/main.js`.
 
 ### Commit Messages

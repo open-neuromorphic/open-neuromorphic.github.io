@@ -57,7 +57,7 @@ This project uses `npm` to manage common tasks:
 
 We welcome contributions of all kinds! Whether you're adding content, fixing a bug, or improving the code, your help is greatly appreciated.
 
-**To get started, please read our detailed [CONTRIBUTING.md](./CONTRIBUTING.md) guide.**
+**To get started, please read our detailed [CONTRIBUTING.md](https://github.com/open-neuromorphic/open-neuromorphic.github.io/blob/main/CONTRIBUTING.md) guide.**
 
 It covers everything you need to know, including:
 *   How to report issues and suggest features.
@@ -69,4 +69,4 @@ For community discussions and questions, join us on our [Discord server](https:/
 
 ## 📄 License
 
-The website's theme and code are licensed under the MIT License. See the [LICENSE](./LICENSE) file for more details. Content contributed to the site is shared under the same license unless otherwise specified.
+The website's theme and code are licensed under the MIT License. See the [LICENSE](https://github.com/open-neuromorphic/open-neuromorphic.github.io/blob/main/LICENSE) file for more details. Content contributed to the site is shared under the same license unless otherwise specified.
