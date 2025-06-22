@@ -202,7 +202,7 @@ There are some additional blocks, such as the Pseudo Random Number Generator (PR
 
 ### Neuron model
 
-Let's get to the equations now! The neuron model employed in TrueNorth is the **Leaky Integrate and Fire** (LIF) one. The update equation is the following:
+Let's get to the equations now! The neuron model employed in TrueNorth is the **[Leaky Integrate and Fire](/blog/spiking-neurons-digital-hardware-implementation/)** (LIF) one. The update equation is the following:
 
 {{< math >}}
 V_{j}[t] = V_{j}[t-1] + \sum_{i=0}^{255} A_{i}[t] \cdot w_{i,j} \cdot s_{j}^{G_{i}} - \lambda_{j}
