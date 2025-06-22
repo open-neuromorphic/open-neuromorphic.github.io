@@ -59,6 +59,6 @@ Collaborate on community-driven projects that shape the future of ONM. Explore e
 {{< /contribution_card >}}
 </div>
 
-Beyond these pathways, a quick and easy way to support our community is by sharing our [website](https://open-neuromorphic.org/) and [Discord](https://discord.gg/hUygPUdD8E) with your friends and colleagues. We're always looking for new members, and linking to our site helps boost our search engine rankings, making it easier for others to find us.
+Beyond these pathways, a quick and easy way to support our community is by sharing our [website](/) and [Discord](https://discord.gg/hUygPUdD8E) with your friends and colleagues. We're always looking for new members, and linking to our site helps boost our search engine rankings, making it easier for others to find us.
 
 If you're new, we recommend joining our [Discord](https://discord.gg/hUygPUdD8E) to connect with other members. Leave a message in the `#welcome` channel to introduce yourself!

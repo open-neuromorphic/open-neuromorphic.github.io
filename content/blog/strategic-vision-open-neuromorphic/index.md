@@ -20,7 +20,7 @@ show_author_bios: true
 
 This post presents a **vision for Open Neuromorphic** towards more open, reproducible, and competitive neuromorphics.
 
-The post will be the first in a series that lays out the **Open Neuromorphic Strategic Initiative** where we later discuss **Neuromorphic UX** and **new initiatives** that will be kickstarted by the [newly elected Executive Committee](/blog/open-neuromorphic-evolves-charter-first-executive-committee-election/).
+The post will be the first in a series that lays out the **Open Neuromorphic Strategic Initiative** where we later discuss **Neuromorphic UX** and **new initiatives** that will be kickstarted by the [newly elected Executive Committee](/neuromorphic-computing/initiatives/executive-committee/).
 
 Join the discussion [on Discord](https://discord.gg/hUygPUdD8E), star us [on GitHub](https://github.com/open-neuromorphic/), follow us [on LinkedIn](https://www.linkedin.com/company/98345683/), and give us a watch [on YouTube](https://www.youtube.com/@openneuromorphic).
 
