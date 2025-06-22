@@ -46,7 +46,7 @@ ONM is dedicated to providing a comprehensive ecosystem for the neuromorphic com
     *   Our **[GitHub organization](https://github.com/open-neuromorphic)** serves as a platform for open-source neuromorphic projects. We welcome new contributions and can help migrate existing projects.
     *   A thriving **[Discord community](https://discord.gg/hUygPUdD8E)** for discussions, Q&A, networking, and real-time collaboration.
 *   **Clear Project Focus:** We concentrate on projects and resources related to:
-    *   Spiking Neural Networks (SNNs) for training, inference, Machine Learning, and neuroscience applications.
+    *   [Spiking Neural Networks (SNNs)](/neuromorphic-computing/software/snn-frameworks/) for training, inference, Machine Learning, and neuroscience applications.
     *   Event-based sensor data handling and processing.
     *   Digital and mixed-signal neuromorphic hardware designs and concepts.
 

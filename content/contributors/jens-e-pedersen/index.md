@@ -25,4 +25,4 @@ vision, motor control, and self-sustenance, Jens seeks to build autonomous syste
 that perform meaningful work, tightly following the Feynman axiom ''What I cannot
 create, I do not understand''.
 
-He is the maintainer of [norse](https://github.com/norse/norse) and [AEStream](https:github.com/norse/aestream).
+He is the maintainer of [norse](/neuromorphic-computing/software/snn-frameworks/norse/) and [AEStream](/neuromorphic-computing/software/data-tools/aestream/).
