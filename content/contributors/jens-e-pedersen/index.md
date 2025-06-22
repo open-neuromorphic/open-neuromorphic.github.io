@@ -11,18 +11,11 @@ social:
     title: "github"
 draft: false
 ---
-Jens Egholm Pedersen is a doctoral student at the [Royal Institute of
-Technology (KTH)](https://www.kth.se/profile/jeped/) working to model and construct
-[neuromorphic](https://en.wikipedia.org/wiki/Neuromorphic_engineering) control
-systems.
+Jens Egholm Pedersen is a doctoral student at the [Royal Institute of Technology (KTH)](https://www.kth.se/profile/jeped/) working to model and construct [neuromorphic](https://en.wikipedia.org/wiki/Neuromorphic_engineering) control systems.
 
-When faced with the complexity and ambiguity in the real world, contemporary algorithms
-fail spectacularly. There is a strong need for self-correcting, closed-loop systems
-to help solve our everyday physical problems.
+When faced with the complexity and ambiguity in the real world, contemporary algorithms fail spectacularly. There is a strong need for self-correcting, closed-loop systems to help solve our everyday physical problems.
 
-By simulating and carefully scrutinizing and understanding neural circuits, including
-vision, motor control, and self-sustenance, Jens seeks to build autonomous systems
-that perform meaningful work, tightly following the Feynman axiom ''What I cannot
-create, I do not understand''.
+By simulating and carefully scrutinizing and understanding neural circuits, including vision, motor control, and self-sustenance, Jens seeks to build autonomous systems that perform meaningful work, tightly following the Feynman axiom ''What I cannot create, I do not understand''.
 
 He is the maintainer of [norse](/neuromorphic-computing/software/snn-frameworks/norse/) and [AEStream](/neuromorphic-computing/software/data-tools/aestream/).
+

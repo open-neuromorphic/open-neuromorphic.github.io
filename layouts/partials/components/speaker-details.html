@@ -1,6 +1,6 @@
 <div class="lg:col-3">
   {{ if .Params.speaker_photo }}
-  {{ partial "image" (dict "Src" .Params.speaker_photo "Context" .Page "Alt" .Title "Class" "mb-6 rounded" "Size" "300x300" "Command" "Fit")}}
+  {{ partial "image" (dict "Src" .Params.speaker_photo "Context" .Page "Alt" .Params.speaker_name "Class" "mb-6 rounded" "Size" "300x300" "Command" "Fit")}}
   {{ end }}
 </div>
 {{ if .Params.speaker_bio}}

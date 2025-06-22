@@ -1,16 +1,21 @@
 {{- /* layouts/_default/_markup/render-link.html */ -}}
 <a href="{{ .Destination | safeURL }}"
-  {{- with .Title}} title="{{ . }}"{{ end -}}
-  {{- $isExternal := strings.HasPrefix .Destination "http" -}}
-  {{- if $isExternal }} target="_blank" rel="noopener"{{ end -}}
-  {{- $class := "" -}}
-  {{- if in .Destination "?class=" -}}
-    {{- $class = index (findRE `class=([^&#]*)` .Destination) 0 | replace `class=` `` | replace `+` ` ` -}}
-    class="{{ $class }}"
-  {{- end -}}
-  >
-  {{- .Text | safeHTML -}}
-  {{- if and $isExternal (not (in (string $class) "btn")) (not (in (string $class) "breadcrumb-link-parent")) (not (in (string $class) "social-link-container")) -}}
-    {{- partial "icon.html" (dict "style" "solid" "name" "arrow-up-right-from-square" "class" "inline-block  ml-[.5] pb-[.4]" "width" "1em" "height" "0.7em") -}}
-  {{- end -}}
-</a>
+   {{- with .Title}} title="{{ . }}"{{ end -}}
+   {{- $isExternal := strings.HasPrefix .Destination "http" -}}
+{{- if $isExternal }} target="_blank" rel="noopener"{{ end -}}
+{{- $class := "" -}}
+{{- if in .Destination "?class=" -}}
+{{- $class = index (findRE `class=([^&#]*)` .Destination) 0 | replace `class=` `` | replace `+` ` ` -}}
+class="{{ $class }}"
+{{- end -}}
+>
+{{- .Text | safeHTML -}}
+{{- if and $isExternal (not (in (string $class) "btn")) (not (in (string $class) "breadcrumb-link-parent")) (not (in (string $class) "social-link-container")) -}}
+{{- partial "icon.html" (dict "style" "solid" "name" "arrow-up-right-from-square" "class" "inline-block  ml-[.5] pb-[.4]" "width" "1em" "height" "0.7em") -}}
+{{- end -}}
+</a><!--
+This empty Go template tag with hyphens is a Hugo trick.
+It consumes any trailing whitespace (like newlines) from this partial's output.
+This prevents the markdown renderer from adding an unwanted space after the <a> tag
+and before any subsequent punctuation (e.g., "link," vs. "link ,").
+-->{{- "" -}}

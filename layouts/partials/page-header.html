@@ -1,12 +1,12 @@
 <section class="from-body to-theme-light dark:from-darkmode-body dark:to-darkmode-theme-light bg-gradient-to-b py-6">
   <div class="container">
     <div>
-      <h1 class="mb-3">{{ .Title | title }}</h1>
-      <p class="mb-3">{{ .Description }}</p>
-      <div class="flex flex-wrap items-center justify-between gap-y-2">
+      <div class="flex flex-wrap items-center justify-between gap-y-2 mb-4">
         {{ partial "components/breadcrumb" (dict "Context" . ) }}
         {{ partial "components/edit-page-link.html" . }}
       </div>
+      <h1 class="mb-3">{{ .Title | title }}</h1>
+      <p class="mb-3">{{ .Description }}</p>
     </div>
   </div>
 </section>

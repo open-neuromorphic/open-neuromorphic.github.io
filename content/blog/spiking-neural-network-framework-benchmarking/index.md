@@ -56,7 +56,7 @@ The ideal library will often depend on a multitude of factors, such as accessibl
 **19/2/2024**: [Jens E. Pedersen](/contributors/jens-e-pedersen/) updated the benchmark for Norse to use the correct neuron model and `torch.compile`.
 
 ## Code and comments
-The code for this benchmark is available [here](https://github.com/open-neuromorphic/open-neuromorphic.github.io/blob/main/content/english/blog/spiking-neural-network-framework-benchmarking/). The order of dimensions in the input tensor and how it is fed to the respective models differs between libraries.
+The code for this benchmark is available [here](https://github.com/open-neuromorphic/open-neuromorphic.github.io/blob/main/content/blog/spiking-neural-network-framework-benchmarking/). The order of dimensions in the input tensor and how it is fed to the respective models differs between libraries.
 Benchmarks were run on a NVIDIA RTX 4090 with 24GB of VRAM. Frameworks use full precision computation unless stated otherwise.
 <!-- Benchmarks are averaged across 100 runs on a NVIDIA A100 GPU with 40GB of vRAM.  Standard deviations have been omitted because they are negligible. Frameworks use full precision computation unless stated otherwise.  -->
 
