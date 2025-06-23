@@ -20,7 +20,6 @@
   @import "utilities";
 }
 
-@import "social-share";
 @import "images";
 
 
@@ -42,6 +41,7 @@
 @import "components/hardware-card-wide"; // Add this line
 
 @import "components/og-preview";
+@import "components/contributor-timeline";
 // Import new custom typography and buttons
-@import "components/mega-menu"; // Add this line
+@import "components/mega-menu";
 @import "typography-custom";

@@ -2,13 +2,13 @@
 {{ with $page.Params }}
 <div class="p-6 rounded-lg bg-theme-light dark:bg-darkmode-theme-light shadow-lg">
   {{ with .logo }}
-    {{ $logoRes := $page.Resources.GetMatch . }}
-    {{ if $logoRes }}
-      {{ $thumb := $logoRes.Fit "200x200" }}
-      <div class="p-2 bg-white dark:bg-gray-800 rounded-lg mb-4 flex justify-center">
-        <img src="{{ $thumb.RelPermalink }}" alt="{{ $page.Title }} logo" class="max-h-24 w-auto">
-      </div>
-    {{ end }}
+  {{ $logoRes := $page.Resources.GetMatch . }}
+  {{ if $logoRes }}
+  {{ $thumb := $logoRes.Fit "200x200" }}
+  <div class="p-2 bg-white dark:bg-gray-800 rounded-lg mb-4 flex justify-center">
+    <img src="{{ $thumb.RelPermalink }}" alt="{{ $page.Title }} logo" class="max-h-24 w-auto">
+  </div>
+  {{ end }}
   {{ end }}
 
   <h2 class="text-2xl font-bold text-center mb-4">{{ $page.Title }}</h2>
@@ -25,90 +25,90 @@
 
   <div class="flex justify-center items-center space-x-2 mb-4">
     {{ with .version_widget_url }}
-      <img src="{{ . }}" alt="Version Badge" class="inline-block h-5">
+    <img src="{{ . }}" alt="Version Badge" class="inline-block h-5">
     {{ end }}
     {{ with .stars_widget_url }}
-      <img src="{{ . }}" alt="GitHub Stars" class="inline-block h-5">
+    <img src="{{ . }}" alt="GitHub Stars" class="inline-block h-5">
     {{ end }}
   </div>
 
   {{/* --- Details List --- */}}
   <div class="border-t border-border dark:border-darkmode-border pt-4">
     <dl class="text-sm text-text dark:text-darkmode-text space-y-2">
-      
+
       {{/* Maintainer(s) Row */}}
       {{ with .maintainer }}
-        <div class="flex justify-between items-start">
-          <dt class="font-semibold pt-2">Maintainer(s):</dt>
-          <dd class="text-right">
-            {{ $maintainerList := . }}
-            {{ if not (reflect.IsSlice .) }}{{ $maintainerList = slice . }}{{ end }}
-            
-            <div class="flex items-center justify-end">
-                <div class="mr-2 text-right">
-                    {{ range $i, $name := $maintainerList }}
-                      {{ $nameForProcessing := . | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" }}
-                      {{ $contributorSlug := $nameForProcessing | anchorize }}
-                      {{ $contributorPage := $page.Site.GetPage (printf "contributors/%s" $contributorSlug) }}
-                      <span class="block">
+      <div class="flex justify-between items-start">
+        <dt class="font-semibold pt-2 shrink-0 pr-2">Maintainer(s):</dt>
+        <dd>
+          {{ $maintainerList := . }}
+          {{ if not (reflect.IsSlice .) }}{{ $maintainerList = slice . }}{{ end }}
+
+          <div class="flex items-center justify-end">
+            <div class="flex-shrink-0 flex -space-x-3">
+              {{ range $maintainerList }}
+              {{ $maintainerName := . }}
+              {{ $nameForProcessing := $maintainerName | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" }}
+              {{ $contributorSlug := $nameForProcessing | anchorize }}
+              {{ $contributorPage := $page.Site.GetPage (printf "contributors/%s" $contributorSlug) }}
+              {{ if and $contributorPage $contributorPage.Params.image }}
+              {{ with $contributorPage.Resources.GetMatch $contributorPage.Params.image }}
+              {{ $thumb := .Fill "32x32 Lanczos" }}
+              <img src="{{ $thumb.RelPermalink }}" alt="{{ $maintainerName }}" title="{{ $maintainerName }}" class="w-8 h-8 rounded-full object-cover border-2 border-white dark:border-darkmode-theme-light">
+              {{ end }}
+              {{ else }}
+              <div class="w-8 h-8 rounded-full bg-gray-200 dark:bg-darkmode-theme-dark flex items-center justify-center text-gray-400 border-2 border-white dark:border-darkmode-theme-light" title="{{ $maintainerName }}">
+                {{ partial "icon.html" (dict "style" "solid" "name" "user" "class" "text-base") }}
+              </div>
+              {{ end }}
+              {{ end }}
+            </div>
+            <div class="ml-2 text-left">
+              {{ range $i, $name := $maintainerList }}
+              {{ $nameForProcessing := . | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" }}
+              {{ $contributorSlug := $nameForProcessing | anchorize }}
+              {{ $contributorPage := $page.Site.GetPage (printf "contributors/%s" $contributorSlug) }}
+              <span class="block">
                         {{ if $contributorPage }}
                           <a href="{{ $contributorPage.RelPermalink }}" class="text-primary dark:text-darkmode-primary hover:underline">{{ . }}</a>
                         {{ else }}
                           {{ . }}
                         {{ end }}
                       </span>
-                    {{ end }}
-                </div>
-                <div class="flex-shrink-0 flex -space-x-3">
-                  {{ range $maintainerList }}
-                    {{ $maintainerName := . }}
-                    {{ $nameForProcessing := $maintainerName | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" }}
-                    {{ $contributorSlug := $nameForProcessing | anchorize }}
-                    {{ $contributorPage := $page.Site.GetPage (printf "contributors/%s" $contributorSlug) }}
-                    {{ if and $contributorPage $contributorPage.Params.image }}
-                      {{ with $contributorPage.Resources.GetMatch $contributorPage.Params.image }}
-                        {{ $thumb := .Fill "32x32 Lanczos" }}
-                        <img src="{{ $thumb.RelPermalink }}" alt="{{ $maintainerName }}" title="{{ $maintainerName }}" class="w-8 h-8 rounded-full object-cover border-2 border-white dark:border-darkmode-theme-light">
-                      {{ end }}
-                    {{ else }}
-                      <div class="w-8 h-8 rounded-full bg-gray-200 dark:bg-darkmode-theme-dark flex items-center justify-center text-gray-400 border-2 border-white dark:border-darkmode-theme-light" title="{{ $maintainerName }}">
-                        {{ partial "icon.html" (dict "style" "solid" "name" "user" "class" "text-base") }}
-                      </div>
-                    {{ end }}
-                  {{ end }}
-                </div>
+              {{ end }}
             </div>
-          </dd>
-        </div>
+          </div>
+        </dd>
+      </div>
       {{ end }}
 
       {{/* Other Details Rows */}}
-      <div class="flex justify-between">
-        <dt class="font-semibold">Language:</dt>
-        <dd>{{ .language | default "N/A" }}</dd>
+      <div class="flex justify-between items-start">
+        <dt class="font-semibold shrink-0 pr-2">Language:</dt>
+        <dd class="text-right">{{ .language | default "N/A" }}</dd>
       </div>
-      <div class="flex justify-between">
-        <dt class="font-semibold">License:</dt>
-        <dd>{{ .license | default "N/A" }}</dd>
+      <div class="flex justify-between items-start">
+        <dt class="font-semibold shrink-0 pr-2">License:</dt>
+        <dd class="text-right">{{ .license | default "N/A" }}</dd>
       </div>
-       <div class="flex justify-between">
-        <dt class="font-semibold">Application:</dt>
-        <dd>{{ .field_of_application | default "N/A" }}</dd>
+      <div class="flex justify-between items-start">
+        <dt class="font-semibold shrink-0 pr-2">Application:</dt>
+        <dd class="text-right">{{ .field_of_application | default "N/A" }}</dd>
       </div>
-      <div class="flex justify-between items-center">
-        <dt class="font-semibold">Dependencies:</dt>
-        <dd>{{ .dependencies | default "N/A" }}</dd>
+      <div class="flex justify-between items-start">
+        <dt class="font-semibold shrink-0 pr-2">Dependencies:</dt>
+        <dd class="text-right">{{ .dependencies | default "N/A" }}</dd>
       </div>
 
     </dl>
   </div>
-  
+
   <div class="border-t border-border dark:border-darkmode-border pt-4 mt-4 flex flex-wrap gap-2 justify-center">
     {{ if .supports_NIR }}
-      <span class="support-badge">NIR Support</span>
+    <span class="support-badge">NIR Support</span>
     {{ end }}
     {{ if .supports_hardware }}
-      <span class="support-badge">Hardware Support</span>
+    <span class="support-badge">Hardware Support</span>
     {{ end }}
   </div>
 </div>

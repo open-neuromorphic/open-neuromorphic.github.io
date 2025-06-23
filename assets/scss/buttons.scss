@@ -56,28 +56,12 @@
     border-color: color-mix(in srgb, var(--color-primary-new) 85%, black);
   }
 }
-// No specific dark mode override for .btn-primary if var(--color-primary-new) and white text
-// provide sufficient contrast on dark backgrounds. If a different dark mode appearance
-// for this specific button is needed, it can be added like:
-// .dark .btn-primary {
-//   background-color: var(--some-dark-mode-primary-variant);
-//   color: var(--some-dark-mode-text-for-primary-button);
-// }
 
 // Standard .btn-outline-primary (redefined to match .btn-new-outline for consistency)
 // Used by some components like event-card's "Learn More".
 .btn-outline-primary {
-  @apply border-2 font-semibold py-3 px-6 rounded-lg transition-all duration-300 ease-in-out inline-block text-center;
-  color: var(--color-primary-new);
-  border-color: var(--color-primary-new);
-  background-color: transparent;
-  &:hover {
-    background-color: var(--color-primary-new);
-    @apply text-white;
-  }
+  @extend .btn-new-outline;
 }
-// Dark mode for .btn-outline-primary can also be specified here if needed,
-// similar to .btn-primary. For now, relies on var(--color-primary-new).
 
 // Utility button style
 .btn-details-mini {

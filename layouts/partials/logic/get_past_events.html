@@ -1,0 +1,9 @@
+{{ $pages_to_filter := . }}
+{{ $valid_past_events := slice }}
+{{ range $pages_to_filter }}
+  {{ if and (ne .Params.upcoming true) .Date (not .Date.IsZero) }}
+    {{ $valid_past_events = $valid_past_events | append . }}
+  {{ end }}
+{{ end }}
+{{ $sorted_past_events := sort $valid_past_events "Date" "desc" }}
+{{ return $sorted_past_events }}

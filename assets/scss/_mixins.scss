@@ -2,7 +2,7 @@
   text-decoration-line: underline !important;
   text-decoration-thickness: 0.115em !important;
   text-underline-offset: 2.6px !important;
-  transition: text-decoration-color 0.3s ease-in-out;
+  transition: text-decoration-color 0.3s ease-in-out, color 0.3s ease-in-out;
   text-decoration-color: $base-color !important;
 
   &:hover {

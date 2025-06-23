@@ -1,0 +1,50 @@
+// assets/scss/components/_contributor-timeline.scss
+
+.contributor-timeline {
+  @apply relative pl-8;
+
+  // The vertical timeline bar
+  &::before {
+    content: '';
+    @apply absolute top-0 left-[0.3rem] w-0.5 h-full bg-border dark:bg-darkmode-border;
+  }
+}
+
+// New style for the year marker
+.timeline-year {
+  @apply relative h-12; // Height to space out the years
+
+  span {
+    @apply absolute bg-body dark:bg-darkmode-body px-3 py-0.5 text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 rounded-full z-10;
+    // Center on the timeline bar (left: 0.3rem; width: w-0.5 which is 0.125rem). Center = 0.3 + (0.125/2) = 0.3625rem
+    left: calc(0.3rem + (0.125rem / 2));
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+
+.timeline-item {
+  @apply relative mb-8;
+
+  // The dot on the timeline
+  &::before {
+    content: '';
+    @apply absolute -left-[2.1rem] top-1.5 w-4 h-4 rounded-full border-4 border-body dark:border-darkmode-body;
+    background-color: var(--color-primary-new);
+  }
+
+  // Remove bottom margin on the last item for a clean finish
+  &:last-child {
+    @apply mb-0;
+  }
+}
+
+.timeline-item-content {
+  @apply p-5 rounded-lg bg-theme-light dark:bg-darkmode-theme-light shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out;
+}
+
+.timeline-item-badge {
+  // Removed mb-2 as layout is now controlled by flexbox
+  @apply inline-block bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200 text-xs font-semibold px-2 py-0.5 rounded-full;
+}

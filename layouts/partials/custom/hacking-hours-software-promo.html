@@ -1,11 +1,5 @@
 {{ $allPastHH := where site.RegularPages "Type" "hacking-hours" }}
-{{ $validDatePastHH := slice }}
-{{ range $allPastHH }}
-  {{ if and (ne .Params.upcoming true) (.Date) (not .Date.IsZero) }}
-    {{ $validDatePastHH = $validDatePastHH | append . }}
-  {{ end }}
-{{ end }}
-{{ $sortedPastHH := sort $validDatePastHH "Date" "Desc" }}
+{{ $sortedPastHH := partial "logic/get_past_events.html" $allPastHH }}
 {{ $mostRecentPastHH := "" }}
 {{ if $sortedPastHH }}{{ $mostRecentPastHH = index $sortedPastHH 0 }}{{ end }}
 

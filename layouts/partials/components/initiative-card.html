@@ -7,7 +7,14 @@
   </h3>
   {{ if $item.Params.author }}
     <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
-      Led by: {{ partial "components/author-links.html" $item }}
+      {{ $label := "Contributor" }}
+      {{ if gt (len $item.Params.author) 1 }}
+        {{ $label = "Contributors" }}
+      {{ end }}
+      {{ with $item.Params.author_label }}
+        {{ $label = . }}
+      {{ end }}
+      {{ $label }}: {{ partial "components/author-links.html" $item }}
     </p>
   {{ end }}
   <p class="mb-3 text-text dark:text-darkmode-text flex-grow">{{ $item.Description | truncate 150 }}</p>
