@@ -11,8 +11,5 @@
     @apply transform shadow-lg;
   }
 
-  // Target the h3 title specifically and apply the consistent link styling.
-  h3 {
-    @include styled-link(#d7c7e3, #200435, #288b8c, #bcfbff);
-  }
+  // The h3 title inside will be styled automatically by the rules in _typography-custom.scss
 }

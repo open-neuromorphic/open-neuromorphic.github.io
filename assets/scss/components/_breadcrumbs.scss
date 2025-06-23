@@ -1,29 +1,8 @@
 // Breadcrumb specific styling
-// Remove underline from the <a> tag itself in breadcrumbs
+// This file can now be simplified as the core styling is handled by the main stylesheet.
+// We just need to ensure the parent <a> doesn't get an underline itself.
 a.breadcrumb-link-parent {
-  text-decoration-line: none !important; // Remove general underline from the <a> container
+  text-decoration-line: none !important;
 }
 
-// Apply underline only to the inner span
-.breadcrumb-link-text {
-  text-decoration-line: underline;
-  text-decoration-color: #d7c7e3; // Match general link style
-  text-decoration-thickness: 0.115em; // Match general link style
-  text-underline-offset: 2.6px; // Match general link style
-  transition: text-decoration-color 0.3s ease-in-out;
-}
-
-// Hover effect for the inner span, triggered by hovering the parent <a>
-a.breadcrumb-link-parent:hover .breadcrumb-link-text {
-  text-decoration-color: #200435; // Match general link hover style
-}
-
-// Dark mode for breadcrumb link text span
-.dark .breadcrumb-link-text {
-  text-decoration-color: #288b8c; // Match dark mode general link style
-}
-
-.dark a.breadcrumb-link-parent:hover .breadcrumb-link-text {
-  text-decoration-color: #bcfbff !important; // Match dark mode general link hover style
-}
-// End of Breadcrumb specific styling
+// The .breadcrumb-link-text will be automatically styled by the rules in _typography-custom.scss
