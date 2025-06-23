@@ -84,26 +84,6 @@ weight = 8
   icon = "fas fa-user-group"
   description = "Meet the people building the Open Neuromorphic community."
 
-
-[[main]]
-parent = "explore-resources" # Add this new entry
-name = "Contributors"
-url = "/contributors/"
-weight = 8
-[main.params]
-  icon = "fas fa-user-group"
-  description = "Meet the people building the Open Neuromorphic community."
-
-
-[[main]]
-parent = "explore-resources" # Add this new entry
-name = "Contributors"
-url = "/contributors/"
-weight = 8
-[main.params]
-  icon = "fas fa-user-group"
-  description = "Meet the people building the Open Neuromorphic community."
-
 [[main]]
 name = "Blog"
 url = "/blog/"

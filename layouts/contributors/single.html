@@ -36,12 +36,7 @@
         <h2 class="text-3xl font-semibold mb-8 text-center lg:text-left">Contributions</h2>
 
         {{ $contributorName := .Title }}
-        {{ $authoredPages := slice }}
-        {{ range where site.RegularPages "Params.author" "!=" nil }}
-        {{ if in .Params.author $contributorName }}
-        {{ $authoredPages = $authoredPages | append . }}
-        {{ end }}
-        {{ end }}
+        {{ $authoredPages := where site.RegularPages "Params.author" "intersect" (slice $contributorName) }}
 
         {{/* Section 1: Initiatives */}}
         {{ $initiatives_unsorted := where $authoredPages "Type" "eq" "initiatives" }}
@@ -59,21 +54,28 @@
         </div>
         {{ end }}
 
-        {{/* Section 2: Combined Timeline of Other Contributions */}}
-        {{ $otherContributions := $authoredPages | complement $initiatives }}
+        {{/* Section 2: Combined Timeline of Other Contributions - CORRECTED LOGIC */}}
+        {{ $otherContributions := slice }}
+        {{ range $authoredPages }}
+        {{ if not (in $initiatives .) }}
+        {{ $otherContributions = $otherContributions | append . }}
+        {{ end }}
+        {{ end }}
         {{ $sortedTimelineItems := sort $otherContributions "Date" "desc" }}
-        {{ $groupedByYear := $sortedTimelineItems.GroupByDate "2006" }}
-        {{ $sortedGroups := sort $groupedByYear ".Key" "desc" }}
 
         {{ if $sortedTimelineItems }}
         <div class="mb-10">
           <h3 class="text-2xl font-semibold mb-6 {{ if $initiatives }}border-t-2 border-border dark:border-darkmode-border pt-8{{ end }}">Activity Timeline</h3>
           <div class="contributor-timeline">
-            {{ range $group := $sortedGroups }}
+            {{ $currentYear := "" }}
+            {{ range $item := $sortedTimelineItems }}
+            {{ $itemYear := $item.Date.Format "2006" }}
+            {{ if ne $itemYear $currentYear }}
             <div class="timeline-year">
-              <span>{{ .Key }}</span>
+              <span>{{ $itemYear }}</span>
             </div>
-            {{ range .Pages }}
+            {{ $currentYear = $itemYear }}
+            {{ end }}
             <div class="timeline-item">
               <div class="timeline-item-content">
                 <div class="flex justify-between items-start gap-4">
@@ -88,15 +90,14 @@
                   </div>
                   {{/* Right side: Badge */}}
                   <span class="timeline-item-badge flex-shrink-0">
-                    {{ .Type | default .Section | humanize | title }}
-                  </span>
+                      {{ .Type | default .Section | humanize | title }}
+                    </span>
                 </div>
                 {{ if .Description }}
                 <p class="text-gray-600 dark:text-gray-400 mt-3 text-sm">{{ .Description }}</p>
                 {{ end }}
               </div>
             </div>
-            {{ end }}
             {{ end }}
           </div>
         </div>
