@@ -22,11 +22,12 @@
           {{ partial "software/related-events.html" $relatedContent }}
 
           {{ partial "components/content-contribute-cta.html" (dict
+            "page_context" .
             "icon" "solid code"
             "title" "Help Improve this <span class='gradient-text'>Software Guide</span>"
             "description" "Our software guide is maintained by the community. If you have updates, see an error, or want to suggest a new tool, please let us know by opening an issue on our GitHub repository."
             "link" "https://github.com/open-neuromorphic/open-neuromorphic.github.io/issues/new/choose"
-            "link_text" "Suggest an Edit on GitHub"
+            "link_text" "Open an Issue"
           ) }}
 
           <div class="mt-8">
