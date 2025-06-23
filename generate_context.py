@@ -199,17 +199,15 @@ def generate_header(mode: str, checkpoint_file: Path | None = None, with_public_
     common_instructions = """
 **Instructions for AI:**
 1.  **Analyze Structure:** Understand the Hugo project layout (config, content, layouts, assets, static structure).
-2.  **Focus on Code/Config:** Pay close attention to Hugo templates (.html), SCSS (.scss), JavaScript (.js), configuration files (.toml, .yaml, .json), Go module files (go.mod, go.sum), and Node config (package.json).
-3.  **Understand Content:** Review markdown content files (.md) for site text and structure.
-4.  **Identify Customizations:** Note custom logic in layouts, partials, shortcodes, SCSS, and JS compared to standard Hugo/theme practices.
-5.  **Note Dependencies:** Identify key dependencies from go.mod/go.sum and package.json.
-6.  **Image Files:** Files ending with common image extensions (e.g., .png, .jpg, .svg, .gif, .webp, .ico) are listed with their paths (e.g., '=== IMAGE FILE: path/to/image.ext ===') but their binary content is NOT included.
-7.  **Ignore Irrelevant Data:** Skip over binary data representations or verbose dependency code if accidentally included. Focus on the content provided below.
-8.  **Primary Goal:** Use this information to answer questions about the website's implementation, structure, features, styling, configuration, and potential areas for improvement or troubleshooting.
-9.  Provide Code with focus toward with minimal commenting
-10. dont include {{{{/* comments */}}}}, every time it confuses hugo and causes errors
-11. If we are copying or moving files, provide the bash command to accomplish this
-12. We don't need to make backups of files before big edits - there is sufficient rollback capability in dev environment
+2.  **Primary Goal:** Use this information to answer questions about the website's implementation, structure, features, styling, configuration, and potential areas for improvement or troubleshooting.
+3.  Provide Code with focus toward with minimal commenting
+4. dont include {{{{/* comments */}}}}, every time it confuses hugo and causes errors
+5. If we are copying or moving files, provide the bash command to accomplish this
+6. We don't need to make backups of files before big edits - there is sufficient rollback capability in dev environment
+7. If a solution is found for a particularly difficult issue, suggest updates to these instructions (generate_context.py)
+8. If code contains a code block, special handling may be required as the ``` often break the codeblock implementation
+9. Format code changes in a way that is most simple for an LLM (gemini, copilot) to integrate - this could be one single code block. It is not necessary to provide human instructions that highlight the specific lines being updated.
+10. indicate which file it is to be updated, outside of the file codeblock
 """
     if mode == "diff":
         checkpoint_ts_str = "ERROR: Checkpoint file missing!"

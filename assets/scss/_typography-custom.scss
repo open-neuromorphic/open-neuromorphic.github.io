@@ -111,6 +111,7 @@ a {
   overflow-wrap: break-word;
 }
 
+.styled-link,
 .content :is(:where(a):not(:where([class~="not-prose"], [class~="not-prose"] *, .btn))),
 section a:not(.breadcrumb-link-parent, .social-link-container, .btn, .hardware-card-wide-link, .social-icon) {
   font-weight: inherit;
