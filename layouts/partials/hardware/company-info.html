@@ -1,56 +1,56 @@
 {{ with .Params.organization }}
-  <h2 class="text-xl p-0 m-0 font-bold  col-span-2">Developed By:</h2>
-  <div class="company-info md:flex">
-    {{ if .org_logo }}
-      <div class="mr-6">
-        {{ partial "image" (dict "Src" .org_logo "Context" $.Page "Alt" .Title "Class" "bg-white p-2 mb-6 rounded" "Size" "250x") }}
-      </div>
+<h2 class="text-xl p-0 m-0 font-bold  col-span-2">Developed By:</h2>
+<div class="company-info md:flex">
+  {{ if .org_logo }}
+  <div class="mr-6">
+    {{ partial "image" (dict "Src" .org_logo "Context" $.Page "Alt" .Title "Class" "bg-white p-2 mb-6 rounded" "Size" "250x") }}
+  </div>
+  {{ end }}
+  <div class="flex-1">
+    {{ if .org_website }}
+    {{ if .group_name }}
+    <p class="text-xl font-bold mb-2"><a href="{{ .org_website }}" target="_blank">{{ .group_name }} at {{ .org_name }}</a></p>
+    {{ else }}
+    <p class="text-xl font-bold mb-2"><a href="{{ .org_website }}" target="_blank">{{ .org_name }}</a></p>
     {{ end }}
-    <div class="flex-1">
-      {{ if .org_website }}
-        {{ if .group_name }}
-          <p class="text-xl font-bold mb-2"><a href="{{ .org_website }}" target="_blank">{{ .group_name }} at {{ .org_name }}</a></p>
-        {{ else }}
-          <p class="text-xl font-bold mb-2"><a href="{{ .org_website }}" target="_blank">{{ .org_name }}</a></p>
-        {{ end }}
-      {{ else }}
-        {{ if .group_name }}
-          <p class="text-xl font-bold mb-2">{{ .group_name }} at {{ .org_name }}</p>
-        {{ else }}
-          <p class="text-xl font-bold mb-2">{{ .org_name }}</p>
-        {{ end }}
+    {{ else }}
+    {{ if .group_name }}
+    <p class="text-xl font-bold mb-2">{{ .group_name }} at {{ .org_name }}</p>
+    {{ else }}
+    <p class="text-xl font-bold mb-2">{{ .org_name }}</p>
+    {{ end }}
+    {{ end }}
+    <div class="mb-4">
+      {{ with .social_media_links.linkedin }}
+      {{ $fullLinkedinUsername := index (split . "com/") 1 }}
+      {{ $linkedinUsername := $fullLinkedinUsername | truncate 40 }}
+      <a href="{{ . }}" target="_blank" class="block social-link-container" title="{{ $fullLinkedinUsername }}">
+        {{ $iconData := partial "helpers/parse-fa-class.html" "fab fa-linkedin" }}{{ partial "icon.html" (dict "style" $iconData.style "name" $iconData.name "class" "mr-2") }}
+        <span class="social-link-text">{{ $linkedinUsername }}</span>
+      </a>
       {{ end }}
-      <div class="mb-4">
-        {{ with .social_media_links.linkedin }}
-          {{ $fullLinkedinUsername := index (split . "com/") 1 }}
-          {{ $linkedinUsername := $fullLinkedinUsername | truncate 40 }}
-          <a href="{{ . }}" target="_blank" class="block social-link-container" title="{{ $fullLinkedinUsername }}">
-            {{ $iconData := partial "helpers/parse-fa-class.html" "fab fa-linkedin" }}{{ partial "icon.html" (dict "style" $iconData.style "name" $iconData.name "class" "mr-2") }}
-            <span class="social-link-text">{{ $linkedinUsername }}</span>
-          </a>
-        {{ end }}
-        {{ with .social_media_links.twitter }}
-          {{ $fullTwitterUsername := index (split . "/") 3 }}
-          {{ $twitterUsername := $fullTwitterUsername | truncate 40 }}
-          <a href="{{ . }}" target="_blank" class="block social-link-container" title="{{ $fullTwitterUsername }}">
-            {{ $iconData := partial "helpers/parse-fa-class.html" "fab fa-twitter" }}{{ partial "icon.html" (dict "style" $iconData.style "name" $iconData.name "class" "mr-2") }}
-            <span class="social-link-text">@{{ $twitterUsername }}</span>
-          </a>
-        {{ end }}
-        {{ with .social_media_links.wikipedia }}
-          {{ $fullWikipediaTitle := index (split . "/") (sub (len (split . "/")) 1) }}
-          {{ $wikipediaTitle := $fullWikipediaTitle | truncate 40 }}
-          <a href="{{ . }}" target="_blank" class="block social-link-container" title="{{ $.Params.organization.org_name }}">
-            {{ $iconData := partial "helpers/parse-fa-class.html" "fab fa-wikipedia-w" }}{{ partial "icon.html" (dict "style" $iconData.style "name" $iconData.name "class" "mr-2") }}
-            <span class="social-link-text">{{ $.Params.organization.org_name }}</span>
-          </a>
-        {{ end }}
-      </div>
-      {{ if .product_page_link }}
-        <div class="mt-4 text-right">
-          <a href="{{ .product_page_link }}" target="_blank" class="btn btn-new-primary">Official Product Page</a>
-        </div>
+      {{ with .social_media_links.twitter }}
+      {{ $fullTwitterUsername := index (split . "/") 3 }}
+      {{ $twitterUsername := $fullTwitterUsername | truncate 40 }}
+      <a href="{{ . }}" target="_blank" class="block social-link-container" title="{{ $fullTwitterUsername }}">
+        {{ $iconData := partial "helpers/parse-fa-class.html" "fab fa-x-twitter" }}{{ partial "icon.html" (dict "style" $iconData.style "name" $iconData.name "class" "mr-2") }}
+        <span class="social-link-text">@{{ $twitterUsername }}</span>
+      </a>
+      {{ end }}
+      {{ with .social_media_links.wikipedia }}
+      {{ $fullWikipediaTitle := index (split . "/") (sub (len (split . "/")) 1) }}
+      {{ $wikipediaTitle := $fullWikipediaTitle | truncate 40 }}
+      <a href="{{ . }}" target="_blank" class="block social-link-container" title="{{ $.Params.organization.org_name }}">
+        {{ $iconData := partial "helpers/parse-fa-class.html" "fab fa-wikipedia-w" }}{{ partial "icon.html" (dict "style" $iconData.style "name" $iconData.name "class" "mr-2") }}
+        <span class="social-link-text">{{ $.Params.organization.org_name }}</span>
+      </a>
       {{ end }}
     </div>
+    {{ if .product_page_link }}
+    <div class="mt-4 text-right">
+      <a href="{{ .product_page_link }}" target="_blank" class="btn btn-new-primary">Official Product Page</a>
+    </div>
+    {{ end }}
   </div>
+</div>
 {{ end }}
