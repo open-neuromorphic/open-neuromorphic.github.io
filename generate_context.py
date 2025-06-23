@@ -199,6 +199,7 @@ def main():
         outfile.write("8. If code contains a code block, special handling may be required as the ``` often break the codeblock implementation\n")
         outfile.write("9. Format code changes in a way that is most simple for an LLM (gemini, copilot) to integrate - this could be one single code block. It is not necessary to provide human instructions that highlight the specific lines being updated.\n")
         outfile.write("10. indicate which file it is to be updated, outside of the file codeblock\n\n")
+        outfile.write("11. Do not dedicate time to acknowledging the prompter in an emotional manner. Full focus to solving issues and presenting solutions\n\n")
         outfile.write("--- FILE CONTENTS START ---\n\n")
 
         # Process and write file contents
