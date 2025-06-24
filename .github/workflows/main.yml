@@ -135,7 +135,14 @@ jobs:
             echo "robots.txt creation skipped for production URL."
           fi
 
-      - name: Upload artifact
+      - name: Upload artifact for link checker
+        if: github.event_name == 'pull_request' || contains(github.event.head_commit.message, '[link-check]')
+        uses: actions/upload-artifact@v4
+        with:
+          name: built-site-for-lychee
+          path: public/
+
+      - name: Upload artifact for deployment
         uses: actions/upload-pages-artifact@v3.0.1
         with:
           path: ./public
@@ -145,11 +152,11 @@ jobs:
     needs: build
     if: github.event_name == 'pull_request' || contains(github.event.head_commit.message, '[link-check]')
     steps:
-      - name: Download artifact
+      - name: Download built site artifact
         uses: actions/download-artifact@v4
         with:
-          name: github-pages
-          path: ./public
+          name: built-site-for-lychee
+          path: public
 
       - name: List downloaded files # Debugging step
         run: ls -R public
@@ -166,8 +173,7 @@ jobs:
         id: lychee
         uses: lycheeverse/lychee-action@v2
         with:
-          # Run lychee from inside the 'public' directory
-          working-directory: ./public
+          workingDirectory: ./public
           args: >-
             --cache
             --max-cache-age 1d
@@ -179,8 +185,7 @@ jobs:
             --exclude 'https://github.com/open-neuromorphic/open-neuromorphic.github.io/issues/new/choose'
             './**/*.html'
           fail: false
-          job_summary: true
-          # This output path is now relative to the working-directory
+          jobSummary: true
           output: ./lychee-out.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -190,7 +195,6 @@ jobs:
         uses: peter-evans/create-issue-from-file@v5
         with:
           title: Link Checker Report
-          # The report is inside the 'public' directory
           content-filepath: ./public/lychee-out.md
           labels: report, automated, broken-links
 
@@ -200,7 +204,6 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-24.04
     needs: build
-    # Only deploy on pushes to the main branch, not on pull requests
     if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/cache-images')
     steps:
       - name: Deploy to GitHub Pages
