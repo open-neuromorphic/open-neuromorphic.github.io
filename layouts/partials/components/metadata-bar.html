@@ -33,7 +33,7 @@
         {{- end -}}
 
         {{- /* Show 'Updated' for non-events (like blog posts) */ -}}
-        {{- if and (ne $type "event") (ne $ctx.Lastmod.Date $ctx.Date) -}}
+        {{- if and (ne $type "event") (ne $ctx.Lastmod $ctx.Date) -}}
           <span class="italic text-gray-500 ml-2">(Updated {{ $ctx.Lastmod.Format (site.Params.dateFormatSingle | default "January 2, 2006") }})</span>
         {{- end -}}
       </span>
