@@ -5,7 +5,7 @@ type: neuromorphic-hardware
 image: loihi2.png
 organization:
   group_name: null
-  org_logo: ../loihi/intel.png
+  org_logo: intel.png
   org_name: Intel
   org_website: https://www.intel.com/content/www/us/en/research/neuromorphic-computing.html
   product_page_link: https://www.intel.com/content/www/us/en/research/neuromorphic-computing.html
