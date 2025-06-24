@@ -18,6 +18,7 @@ His main interests are event cameras that are inspired by the human retina and s
 
 He is the maintainer of two open source projects in the field of neuromorphic computing, [Tonic](https://tonic.readthedocs.io) and [expelliarmus](https://expelliarmus.readthedocs.io)."
 software_tags: ["sinabs"]
+hardware_tags: ["speck-synsense"]
 ---
 
 

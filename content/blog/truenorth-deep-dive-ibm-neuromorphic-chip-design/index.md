@@ -9,6 +9,7 @@ author:
 tags: ["research", "hardware", "digital", "neuromorphic"]
 showTableOfContents: true
 math: true
+hardware_tags: ["truenorth-ibm"]
 show_author_bios: true
 ---
 
