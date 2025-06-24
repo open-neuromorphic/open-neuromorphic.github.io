@@ -10,6 +10,7 @@ author:
 - Alexandre Marcireau
 image: file_read_benchmark.png
 tags: ["file encoding", "events", "event camera", "compression"]
+software_tags: ["expelliarmus", "tonic"]
 show_author_bios: true
 ---
 

@@ -2,20 +2,77 @@
 
 {{ if $related_events }}
 <div class="related-events-section mt-12 pt-8 pb-8">
-  <h2 class="text-3xl font-bold mb-6">Related Content & Events</h2>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    {{ range $related_events }}
-      <div class="bg-theme-light dark:bg-darkmode-theme-light rounded-lg p-5 shadow-md hover:shadow-lg transition-shadow duration-300">
-        <h4 class="text-lg font-semibold mb-2">
-          <a href="{{ .RelPermalink }}" class="text-primary dark:text-darkmode-primary hover:underline">
-            {{ .Title }}
+  <h2 class="text-3xl font-bold mb-8">Related Content & Events</h2>
+
+  <div class="space-y-6">
+    {{ range $event := $related_events }}
+    <div class="timeline-item-content">
+      <div class="flex flex-col md:flex-row items-start gap-5">
+
+        {{/* Thumbnail Column */}}
+        <div class="flex-shrink-0 w-full md:w-40 text-center">
+          <a href="{{ $event.RelPermalink }}">
+            {{ $image_param := $event.Params.image }}
+            {{ $img_path := "" }}
+            {{ $img_alt := $event.Title }}
+
+            {{ if $image_param }}
+            {{ $img_path_cleaned := strings.TrimPrefix "/" $image_param }}
+            {{ $resource := "" }}
+            {{ with $event.Resources.GetMatch $image_param }}
+            {{ $resource = . }}
+            {{ else }}
+            {{ with resources.Get $img_path_cleaned }}
+            {{ $resource = . }}
+            {{ end }}
+            {{ end }}
+
+            {{ if $resource }}
+            {{ $img_path = ($resource.Fill "160x90 Lanczos").RelPermalink }}
+            {{ else if fileExists (printf "static/%s" $img_path_cleaned) }}
+            {{ $img_path = $image_param | relURL }}
+            {{ end }}
+            {{ end }}
+
+            {{ if not $img_path }}
+            {{ with resources.Get "images/workshop-thumbnail-default.png" }}
+            {{ $img_path = (.Fill "160x90 Lanczos").RelPermalink }}
+            {{ $img_alt = "Default Open Neuromorphic Event Thumbnail" }}
+            {{ end }}
+            {{ end }}
+
+            {{ if $img_path }}
+            <img src="{{ $img_path }}" alt="{{ $img_alt }}" class="w-full h-auto rounded-md object-cover">
+            {{ else }}
+            <div class="w-full h-[90px] bg-gray-200 dark:bg-darkmode-theme-dark rounded-md flex items-center justify-center">
+              {{ partial "icon.html" (dict "style" "regular" "name" "images" "class" "text-4xl text-gray-400") }}
+            </div>
+            {{ end }}
           </a>
-        </h4>
-        <p class="text-sm text-gray-500 dark:text-gray-400 mb-3">
-          <span class="capitalize">{{ .Type | default .Section | humanize }}</span> · {{ .Date.Format "January 2, 2006" }}
-        </p>
-        <p class="text-sm text-text dark:text-darkmode-text">{{ .Description | truncate 100 }}</p>
+        </div>
+
+        {{/* Content Column */}}
+        <div class="flex-grow">
+          <div class="flex justify-between items-start gap-4">
+            <div>
+              <h4 class="text-xl font-semibold mb-1">
+                <a href="{{ $event.RelPermalink }}" class="text-dark dark:text-darkmode-dark hover:text-primary dark:hover:text-darkmode-primary">{{ $event.Title }}</a>
+              </h4>
+              <p class="text-sm text-gray-500 dark:text-gray-400">
+                {{ $event.Date.Format "January 2, 2006" }}
+              </p>
+            </div>
+            <span class="timeline-item-badge flex-shrink-0">
+                {{ $event.Type | default $event.Section | humanize | title }}
+              </span>
+          </div>
+          {{ if $event.Description }}
+          <p class="text-gray-600 dark:text-gray-400 mt-3 text-sm">{{ $event.Description | truncate 150 }}</p>
+          {{ end }}
+        </div>
+
       </div>
+    </div>
     {{ end }}
   </div>
 </div>
