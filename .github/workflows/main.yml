@@ -181,7 +181,7 @@ jobs:
             --max-cache-age 1d
             --exclude-mail
             --exclude-all-private
-            --base .
+            --base file://$(pwd)/
             --exclude 'https://www.linkedin.com/.*'
             --exclude 'https://twitter.com/intent/.*'
             --exclude 'https://x.com/.*'
@@ -214,7 +214,6 @@ jobs:
           title: Link Checker Report
           content-filepath: ./public/lychee-out.md
           labels: report, automated, broken-links
-
   deploy:
     environment:
       name: github-pages
