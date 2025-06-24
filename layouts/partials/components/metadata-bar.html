@@ -5,9 +5,9 @@
   <li class="mr-4 inline-block">
     {{ partial "icon.html" (dict "style" "regular" "name" "circle-user" "class" "mr-2") }}
     {{ if eq $type "event" }}
-      {{ partial "components/author-links.html" $ctx }}
+    {{ partial "components/author-links.html" $ctx }}
     {{ else }}
-      {{ partial "components/author-links.html" $ctx }}
+    {{ partial "components/author-links.html" $ctx }}
     {{ end }}
   </li>
   {{ end }}
@@ -16,20 +16,29 @@
     {{ partial "icon.html" (dict "style" "regular" "name" "clock" "class" "mr-2") }}
     {{ $ctx.Date.Format (site.Params.dateFormatSingle | default "January 2, 2006") }}
     {{ if eq $type "event" }}
-      {{ if $ctx.Params.start_time }}
-        {{ $ctx.Params.start_time }}{{ if $ctx.Params.end_time }} - {{ $ctx.Params.end_time }}{{ end }} {{ $ctx.Params.time_zone }}
-      {{ end }}
+    {{ if $ctx.Params.start_time }}
+    {{ $ctx.Params.start_time }}{{ if $ctx.Params.end_time }} - {{ $ctx.Params.end_time }}{{ end }} {{ $ctx.Params.time_zone }}
+    {{ end }}
     {{ else if ne $ctx.Params.Lastmod $ctx.Params.Date }}
-      (Updated {{ $ctx.Params.Lastmod.Format (site.Params.dateFormatSingle | default "January 2, 2006") }})
+    (Updated {{ $ctx.Params.Lastmod.Format (site.Params.dateFormatSingle | default "January 2, 2006") }})
     {{ end }}
   </li>
   {{ end }}
   {{ if eq $type "event" }}
+  {{ $hasButtons := or $ctx.Params.speaker_slides $ctx.Params.speaker_notebook $ctx.Params.speaker_code $ctx.Params.video $ctx.Params.upcoming }}
+  {{ if $hasButtons }}
   <li class="mr-4 inline-block">
-    {{ $slides := $ctx.Params.speaker_slides }}{{ if $slides }}<a href="{{ $slides }}" target="_blank" class="ms-1 btn btn-new-primary btn-sm">{{ partial "icon.html" (dict "style" "regular" "name" "images" "class" "mr-2") }}Slides</a>{{ end }}
-    {{ $notebook := $ctx.Params.speaker_notebook }}{{ if $notebook }}<a href="{{ $notebook }}" target="_blank" class="ms-1 btn btn-new-primary btn-sm">{{ partial "icon.html" (dict "style" "regular" "name" "folder" "class" "mr-2") }}Notebook</a>{{ end }}
-    {{ $code := $ctx.Params.speaker_code }}{{ if $code }}<a href="{{ $code }}" target="_blank" class="ms-1 btn btn-new-primary btn-sm">{{ partial "icon.html" (dict "style" "brands" "name" "github" "class" "mr-2") }}Code</a>{{ end }}
-    {{ if $ctx.Params.upcoming }}{{ if $ctx.Params.upcoming_url }}<a href="{{ $ctx.Params.upcoming_url }}" target="_blank" class="ms-1 btn btn-new-primary btn-sm">{{ partial "icon.html" (dict "style" "regular" "name" "calendar" "class" "mr-2") }}Event</a>{{ else }}<a href="https://www.youtube.com/@openneuromorphic" target="_blank" class="ms-1 btn btn-new-primary btn-sm">{{ partial "icon.html" (dict "style" "brands" "name" "youtube" "class" "mr-2") }}Event</a>{{ end }}{{ end }}
+    <div class="flex flex-wrap gap-2">
+      {{ with $ctx.Params.speaker_slides }}<a href="{{ . }}" target="_blank" rel="noopener" class="btn btn-new-primary btn-sm">{{ partial "icon.html" (dict "style" "regular" "name" "images" "class" "mr-2") }}Slides</a>{{ end }}
+      {{ with $ctx.Params.speaker_notebook }}<a href="{{ . }}" target="_blank" rel="noopener" class="btn btn-new-primary btn-sm">{{ partial "icon.html" (dict "style" "regular" "name" "folder" "class" "mr-2") }}Notebook</a>{{ end }}
+      {{ with $ctx.Params.speaker_code }}<a href="{{ . }}" target="_blank" rel="noopener" class="btn btn-new-primary btn-sm">{{ partial "icon.html" (dict "style" "brands" "name" "github" "class" "mr-2") }}Code</a>{{ end }}
+      {{ with $ctx.Params.video }}<a href="https://www.youtube.com/watch?v={{ . }}" target="_blank" rel="noopener" class="btn btn-new-primary btn-sm">{{ partial "icon.html" (dict "style" "brands" "name" "youtube" "class" "mr-2") }}Watch on YouTube</a>{{ end }}
+      {{ if $ctx.Params.upcoming }}
+      {{ $event_url := $ctx.Params.upcoming_url | default "https://www.youtube.com/@openneuromorphic" }}
+      <a href="{{ $event_url }}" target="_blank" rel="noopener" class="btn btn-new-primary btn-sm">{{ partial "icon.html" (dict "style" "regular" "name" "calendar" "class" "mr-2") }}Event</a>
+      {{ end }}
+    </div>
   </li>
+  {{ end }}
   {{ end }}
 </ul>
