@@ -3,6 +3,8 @@ name: Deploy Hugo site to Pages
 on:
   push:
     branches: ["main", "cache-images"]
+  pull_request: # Add this to run on pull requests
+    branches: ["main"]
 
 permissions:
   contents: read
@@ -137,12 +139,37 @@ jobs:
         with:
           path: ./public
 
+  link-checker:
+    runs-on: ubuntu-24.04
+    needs: build
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: github-pages
+          path: ./public
+      - name: Link Checker
+        uses: lycheeverse/lychee-action@v1.11.0
+        with:
+          args: >-
+            --verbose
+            --exclude-mail
+            --exclude-all-private
+            --exclude 'https://www.linkedin.com/.*'
+            --exclude 'https://twitter.com/intent/.*'
+            --exclude 'https://github.com/open-neuromorphic/open-neuromorphic.github.io/issues/new/choose'
+            './**/*.html'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-24.04
     needs: build
+    # Only deploy on pushes to the main branch, not on pull requests
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
