@@ -151,10 +151,13 @@ jobs:
           name: github-pages
           path: ./public
 
+      - name: List downloaded files # Debugging step
+        run: ls -R public
+
       - name: Restore lychee cache
         uses: actions/cache@v4
         with:
-          path: ./.lycheecache
+          path: ./public/.lycheecache # The cache file will be inside the 'public' directory
           key: lychee-cache-${{ github.ref }}
           restore-keys: |
             lychee-cache-
@@ -163,7 +166,8 @@ jobs:
         id: lychee
         uses: lycheeverse/lychee-action@v2
         with:
-          # Check all HTML files in the downloaded public directory
+          # Run lychee from inside the 'public' directory
+          working-directory: ./public
           args: >-
             --cache
             --max-cache-age 1d
@@ -173,9 +177,10 @@ jobs:
             --exclude 'https://www.linkedin.com/.*'
             --exclude 'https://twitter.com/intent/.*'
             --exclude 'https://github.com/open-neuromorphic/open-neuromorphic.github.io/issues/new/choose'
-            './public/**/*.html'
-          fail: false # Do not fail the workflow, create an issue instead
+            './**/*.html'
+          fail: false
           job_summary: true
+          # This output path is now relative to the working-directory
           output: ./lychee-out.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -185,7 +190,8 @@ jobs:
         uses: peter-evans/create-issue-from-file@v5
         with:
           title: Link Checker Report
-          content-filepath: ./lychee-out.md
+          # The report is inside the 'public' directory
+          content-filepath: ./public/lychee-out.md
           labels: report, automated, broken-links
 
   deploy:
