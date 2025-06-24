@@ -7,6 +7,7 @@ author:
 image: banner.png
 draft: false
 tags: ["research", "hardware", "digital", "neuromorphic", "snn", "AI"]
+hardware_tags: ["truenorth-ibm", "loihi-intel", "loihi-2-intel", "odin-frenkel"]
 show_author_bios: true
 ---
 
