@@ -179,7 +179,6 @@ jobs:
           args: >-
             --cache
             --max-cache-age 1d
-            --verbose
             --exclude-mail
             --exclude-all-private
             --exclude 'https://www.linkedin.com/.*'
@@ -196,6 +195,10 @@ jobs:
             --exclude 'https://ch.frenkel.github.io/.*'
             --exclude 'https://*.ecmlpkdd.org/.*'
             --exclude 'https://*.acm.org/.*'
+            --exclude 'https://*.synsense.ai/.*'
+            --exclude 'https://doc.brainchipinc.com/.*'
+            --exclude 'https://fabrizio-ottati.dev/.*'
+            --exclude 'https://drive.google.com/.*'
             './**/*.html'
           fail: false
           jobSummary: true
@@ -217,7 +220,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-24.04
     needs: build
-    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/cache-images')
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/cache-images')
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
