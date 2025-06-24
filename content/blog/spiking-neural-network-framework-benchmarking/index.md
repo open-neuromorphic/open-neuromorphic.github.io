@@ -12,7 +12,7 @@ author:
 - "Jens E. Pedersen"
 image: neurons-race.png
 tags: ["snn", "framework", "library", "pytorch", "JAX"]
-software_tags: ["spyx","snntorch"]
+software_tags: ["spyx", "snntorch", "spikingjelly", "lava", "sinabs", "rockpool", "norse"]
 show_author_bios: true
 ---
 

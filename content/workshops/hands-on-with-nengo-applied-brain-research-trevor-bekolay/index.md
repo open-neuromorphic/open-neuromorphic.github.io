@@ -15,5 +15,6 @@ speaker_bio: "Trevor Bekolay’s primary research interest is in learning and me
 
 Trevor is also passionate about reproducible science, particularly when complex software pipelines are involved. In 2013, he started a development effort to reimplement the Nengo neural simulator from scratch in Python, which has now grown to a project with over 20 contributors around the world."
 speaker_slides: 2023-01-26-Nengo.pdf
+software_tags: ["nengo"]
 ---
 
