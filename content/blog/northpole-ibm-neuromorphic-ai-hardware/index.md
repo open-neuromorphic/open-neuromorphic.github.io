@@ -7,7 +7,7 @@ date: 2023-12-26
 showTableOfContents: true
 author:
   - Fabrizio Ottati
-hardware_tags: ["truenorth-ibm"]
+hardware_tags: ["northpole-ibm","truenorth-ibm"]
 show_author_bios: true
 ---
 
