@@ -15,4 +15,4 @@ Fabrizio Ottati completed his Ph.D. in the Department of Electronics and Communi
 
 His main interests are event-based cameras, digital hardware design and automation, deep learning and piedmontese red wine.
 
-He is the maintainer of two open source projects in the field of neuromorphic computing, [Tonic](https://tonic.readthedocs.io) and [Expelliarmus](https://expelliarmus.readthedocs.io).
+He is the maintainer of two open source projects in the field of neuromorphic computing, [Tonic](/neuromorphic-computing/software/data-tools/tonic/) and [Expelliarmus](/neuromorphic-computing/software/data-tools/expelliarmus/).

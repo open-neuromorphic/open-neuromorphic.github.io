@@ -15,4 +15,4 @@ Jason Eshraghian is an Assistant Professor at the Department of Electrical and C
 
 His research focuses on brain-inspired circuit design to accelerate AI algorithms and spiking neural networks.
 
-He is the maintainer of [snnTorch](https://github.com/jeshraghian/snntorch).
+He is the maintainer of [snnTorch](/neuromorphic-computing/software/snn-frameworks/snntorch/).

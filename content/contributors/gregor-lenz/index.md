@@ -15,4 +15,4 @@ Gregor Lenz, Co-Founder and CTO at [Neurobus](https://neurobus.space), graduated
 
 His main interests are event cameras that are inspired by the human retina and spiking neural networks that mimic human brain in an effort to teach machines to compute a bit more like humans do. At the very least there are some power efficiency gains to be made, but hopefully more! Also he loves to build open source software for spike-based machine learning.
 
-He is the maintainer of two open source projects in the field of neuromorphic computing, [Tonic](https://github.com/neuromorphs/tonic) and [expelliarmus](https://github.com/open-neuromorphic/expelliarmus).
+He is the maintainer of two open source projects in the field of neuromorphic computing, [Tonic](/neuromorphic-computing/software/data-tools/tonic/) and [expelliarmus](/neuromorphic-computing/software/data-tools/expelliarmus/).

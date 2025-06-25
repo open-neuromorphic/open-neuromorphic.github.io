@@ -8,4 +8,4 @@ social:
     title: "website"
 draft: false
 ---
-Sumit Bam Shrestha is a research scientist in neuromorphic computing at Intel Labs, where he focuses on deep spiking neural networks. He is a contributor to the Lava software framework and has worked on applying neuromorphic hardware like Loihi to various tasks.
+Sumit Bam Shrestha is a research scientist in neuromorphic computing at Intel Labs, where he focuses on deep spiking neural networks. He is a contributor to the [Lava](/neuromorphic-computing/software/snn-frameworks/lava/) software framework and has worked on applying neuromorphic hardware like [Loihi](/neuromorphic-computing/hardware/loihi-intel/) to various tasks.
