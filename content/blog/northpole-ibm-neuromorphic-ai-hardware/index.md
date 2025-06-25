@@ -11,7 +11,7 @@ hardware_tags: ["northpole-ibm","truenorth-ibm"]
 show_author_bios: true
 ---
 
-[NorthPole](https://research.ibm.com/blog/northpole-ibm-ai-chip) is the new shiny artificial intelligence (AI) accelerator developed by IBM.
+[NorthPole](/neuromorphic-computing/hardware/northpole-ibm) is the new shiny artificial intelligence (AI) accelerator developed by IBM.
 
 > NorthPole, an architecture and a programming model for neural inference, reimagines (Fig. 1) the interaction between compute and memory by embodying 10 interrelated, synergistic axioms that build on brain-inspired computing.
 
