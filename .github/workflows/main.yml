@@ -10,7 +10,6 @@ permissions:
   contents: read
   pages: write
   id-token: write
-  issues: write # Add this permission for creating issues
 
 env:
   HUGO_ENV: production
@@ -141,52 +140,27 @@ jobs:
           path: ./public
 
   link-checker:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: build
-    if: github.event_name == 'pull_request' # Only run on pull requests
     steps:
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
           name: github-pages
           path: ./public
-
-      - name: Restore lychee cache
-        uses: actions/cache@v4
-        with:
-          path: ./.lycheecache
-          key: lychee-cache-${{ github.ref }}
-          restore-keys: |
-            lychee-cache-
-
       - name: Link Checker
-        id: lychee
-        uses: lycheeverse/lychee-action@v2
+        uses: lycheeverse/lychee-action@v1.11.0
         with:
-          # Check all HTML files in the downloaded public directory
           args: >-
-            --cache
-            --max-cache-age 1d
             --verbose
             --exclude-mail
             --exclude-all-private
             --exclude 'https://www.linkedin.com/.*'
             --exclude 'https://twitter.com/intent/.*'
             --exclude 'https://github.com/open-neuromorphic/open-neuromorphic.github.io/issues/new/choose'
-            './public/**/*.html'
-          fail: false # Do not fail the workflow, create an issue instead
-          job_summary: true
-          output: ./lychee-out.md
+            './**/*.html'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Create Issue From File
-        if: steps.lychee.outputs.exit_code != 0
-        uses: peter-evans/create-issue-from-file@v5
-        with:
-          title: Link Checker Report
-          content-filepath: ./lychee-out.md
-          labels: report, automated, broken-links
 
   deploy:
     environment:
@@ -195,7 +169,7 @@ jobs:
     runs-on: ubuntu-24.04
     needs: build
     # Only deploy on pushes to the main branch, not on pull requests
-    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/cache-images')
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
