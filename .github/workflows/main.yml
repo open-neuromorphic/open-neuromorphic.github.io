@@ -195,7 +195,6 @@ jobs:
             --exclude 'https://www.kth.se/.*'
             --exclude 'https://ch.frenkel.github.io/.*'
             --exclude 'https://*.ecmlpkdd.org/.*'
-            --exclude 'https://*.acm.org/.*'
             './**/*.html'
           fail: false
           jobSummary: true
