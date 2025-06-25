@@ -11,4 +11,4 @@ In 2022, he was elected as a junior member of the German Association of Applied 
 
 His current research focuses on spiking neural networks (SNN). Recently, he published a preprint on nonlinear history-dependent regression using SNN. This enables SNN to be used in the context of applied mathematics and computational engineering.
 
-He is a contributor of [snnTorch](https://github.com/jeshraghian/snntorch).
+He is a contributor of [snnTorch](/neuromorphic-computing/software/snn-frameworks/snntorch/).

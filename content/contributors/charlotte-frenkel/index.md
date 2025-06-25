@@ -14,4 +14,4 @@ Her research goals are:
 
 To achieve these goals, she is investigating both the bottom-up and the top-down design approaches, as well as their synergies.
 
-She is the designer of the [ODIN](https://github.com/ChFrenkel/ODIN) and [ReckOn](https://github.com/ChFrenkel/ReckOn) open-source online-learning digital neuromorphic processors.
+She is the designer of the [ODIN](/neuromorphic-computing/hardware/odin-frenkel/) and [ReckOn](/neuromorphic-computing/hardware/reckon-frenkel/) open-source online-learning digital neuromorphic processors.

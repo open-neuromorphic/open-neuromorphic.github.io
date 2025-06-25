@@ -10,7 +10,7 @@ author:
 - Charlotte Frenkel
 - Alexander Hadjiivanov
 - Alexander Henkes
-- Stephen Abreu
+- Steven Abreu
 date: 2023-01-01
 draft: false
 type: initiatives

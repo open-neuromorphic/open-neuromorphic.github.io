@@ -8,4 +8,4 @@ social:
     title: "linkedin"
 draft: false
 ---
-Luuk van Keeken is a researcher/PhD student at KTH Royal Institute of Technology, focusing on neuromorphic computing, specifically related to the Neuromorphic Intermediate Representation (NIR) and its applications with frameworks like PyTorch.
+Luuk van Keeken is a researcher/PhD student at KTH Royal Institute of Technology, focusing on neuromorphic computing, specifically related to the [Neuromorphic Intermediate Representation (NIR)](/workshops/neuromorphic-intermediate-representation/) and its applications with frameworks like PyTorch.
