@@ -8,4 +8,4 @@ social:
     title: "linkedin"
 draft: false
 ---
-Petruț Bogdan is a software developer at Innatera, active in the neuromorphic community. He contributes to tools like Faery and explores hardware-software co-design with platforms like Innatera and standards like NIR. He has a background in SpiNNaker, PyNN, and Nengo, and works on bringing neuromorphic hardware to market.
+Petruț Bogdan is a software developer at Innatera, active in the neuromorphic community. He contributes to tools like Faery and explores hardware-software co-design with platforms like Innatera and standards like [NIR](/workshops/neuromorphic-intermediate-representation/). He has a background in [SpiNNaker](/neuromorphic-computing/hardware/spinnaker-2-university-of-dresden/), PyNN, and [Nengo](/neuromorphic-computing/software/snn-frameworks/nengo/), and works on bringing neuromorphic hardware to market.

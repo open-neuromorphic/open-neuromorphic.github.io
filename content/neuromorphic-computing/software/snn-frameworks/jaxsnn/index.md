@@ -2,10 +2,14 @@
 title: "jaxsnn"
 type: neuromorphic-software
 description: Event-based training of spiking neural networks with support for BrainScaleS-2 hardware-in-the-loop based on JAX.
+logo: jaxsnn.png
 website: https://electronicvisions.github.io/documentation-brainscales2/latest/
 dependencies: JAX, BrainScaleS-2 OS
 field_of_application: Machine Learning, Neuromorphic Hardware, In-the-loop Training, Event-based Training
 source_code: https://github.com/electronicvisions/jaxsnn
+stars_widget_url: https://img.shields.io/github/stars/electronicvisions/jaxsnn
+stars: 20
+version_widget_url: https://img.shields.io/pypi/v/jaxsnn
 license: LGPL-2.0-or-later
 supports_hardware: True
 supports_NIR: True
@@ -16,7 +20,7 @@ maintainer: Electronic Visions Group
 
 ## Overview
 
-**jaxsnn** is a deep learning Python library used for event-based numerical simulation, neuromorphic emulation and training of spiking neural networks (SNNs) with BrainScaleS-2 neuromorphic hardware in-the-loop. It is maintained by the Electronic Visions group at Heidelberg University.
+**jaxsnn** is a deep learning Python library used for event-based numerical simulation, neuromorphic emulation and training of spiking neural networks (SNNs) with [BrainScaleS-2](https://open-neuromorphic.org/neuromorphic-computing/hardware/brainscales-2-universitat-heidelberg/) neuromorphic hardware in-the-loop. It is maintained by the Electronic Visions group at Heidelberg University.
 
 Unlike conventional deep learning libraries, which rely on dense tensor representations and time-discretized updates, jaxsnn is designed for event-driven computation. It directly operates on asynchronous spike events and supports gradient-based learning using methods such as EventProp and “Fast & Deep” spike-time coding. The library leverages JAX’s automatic differentiation, just-in-time compilation (via XLA) and support for hardware acceleration to enable efficient and composable training of biologically inspired SNNs.
 

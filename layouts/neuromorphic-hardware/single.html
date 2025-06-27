@@ -22,19 +22,8 @@
           <div class="content mb-10">
             {{ .Content }}
           </div>
-          {{/* Related Content via hardware_tags */}}
-          {{ $hardwareSlug := .File.Dir | path.Base }}
-          {{ $relatedContent := slice }}
-          {{ range site.RegularPages }}
-            {{ $contentPage := . }}
-            {{ with .Params.hardware_tags }}
-              {{ if in . $hardwareSlug }}
-                {{ $relatedContent = $relatedContent | append $contentPage }}
-              {{ end }}
-            {{ end }}
-          {{ end }}
-          {{ $relatedContent = sort $relatedContent "Date" "desc" }}
-          {{ partial "hardware/related-content.html" $relatedContent }}
+          
+          {{ partial "shared/related-content.html" . }}
 
           <div class="max-w-4xl mx-auto mt-12 mb-16">
             {{ partial "components/content-contribute-cta.html" (dict
