@@ -38,6 +38,7 @@ summary: The BrainScaleS-2 is an accelerated spiking neuromorphic system-on-chip
   and non-spiking neural networks using hybrid techniques like surrogate gradients.
 title: BrainScaleS-2 — Heidelberg University
 type: neuromorphic-hardware
+software_tags: ['hxtorch','jaxsnn','pynn-brainscales2']
 ---
 
 The BrainScaleS-2 accelerated neuromorphic system is an integrated circuit architecture for emulating biologically-inspired spiking neural networks. It was developed by researchers at the Heidelberg University and collaborators. Key features of the BrainScaleS-2 system include:
