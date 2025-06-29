@@ -2,7 +2,6 @@
 title: CARLsim
 type: neuromorphic-software
 description: GPU-accelerated library for simulating large-scale spiking neural network (SNN) models with high biologically realistic synaptic dynamics.
-stars_widget_url: https://img.shields.io/github/stars/UCI-CARL/CARLsim6.svg?style=social
 stars: 34
 website: https://uci-carl.github.io/CARLsim3/
 field_of_application: Machine Learning, Hardware Interface
@@ -12,6 +11,8 @@ supports_hardware: True
 language: C/C++/Python
 maintainer: Jeff Krichmar
 ---
+
+
 
 ## Overview
 

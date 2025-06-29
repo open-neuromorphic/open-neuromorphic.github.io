@@ -7,9 +7,8 @@ website: https://sinabs.ai
 dependencies: PyTorch
 field_of_application: Vision Models
 source_code: https://github.com/synsense/sinabs
-stars_widget_url: https://img.shields.io/github/stars/synsense/sinabs.svg?style=social
+pypi_id: sinabs
 stars: 54
-version_widget_url: https://img.shields.io/pypi/v/sinabs.svg
 license: AGPL-3.0
 supports_hardware: True
 supports_NIR: True
@@ -17,6 +16,8 @@ language: Python
 maintainer: Sadique Sheik
 draft: false
 ---
+
+
 
 ## Overview
 **Sinabs** (Sinabs Is Not A Brain Simulator) is a deep learning library based on PyTorch, specifically designed for spiking neural networks. It focuses on simplicity, fast training,

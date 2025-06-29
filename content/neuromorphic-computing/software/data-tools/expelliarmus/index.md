@@ -7,9 +7,8 @@ website: https://expelliarmus.readthedocs.io/
 dependencies: Numpy
 field_of_application: Data Processing
 source_code: https://github.com/open-neuromorphic/expelliarmus
-stars_widget_url: https://img.shields.io/github/stars/open-neuromorphic/expelliarmus.svg?style=social
+pypi_id: expelliarmus
 stars: 25
-version_widget_url: https://img.shields.io/pypi/v/expelliarmus.svg
 license: GPL-2.0
 supports_hardware: False
 supports_NIR: False
@@ -17,6 +16,8 @@ language: Python
 maintainer: Fabrizio Ottati
 draft: false
 ---
+
+
 
 ## Overview
 Expelliarmus is a specialized Python library focused on decoding binary data from event-based sensors, specifically designed to work with various binary formats prevalent in event cameras like DAT, EVT2, and EVT3. It converts this binary data into NumPy structured arrays, enabling easier manipulation and analysis within the Python ecosystem. This makes it an essential tool for researchers and developers in neuromorphic computing, robotics, and computer vision who rely on event cameras for capturing visual information in the form of events rather than traditional frames.

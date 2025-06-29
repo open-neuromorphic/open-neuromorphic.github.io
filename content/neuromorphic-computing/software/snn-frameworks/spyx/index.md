@@ -7,9 +7,8 @@ website: https://spyx.readthedocs.io
 dependencies: JAX, Haiku
 field_of_application: Machine Learning
 source_code: https://github.com/kmheckel/spyx
-stars_widget_url: https://img.shields.io/github/stars/kmheckel/spyx.svg?style=social
+pypi_id: spyx
 stars: 30
-version_widget_url: https://img.shields.io/pypi/v/spyx.svg
 license: MIT
 supports_hardware: False
 supports_NIR: True
@@ -17,6 +16,8 @@ language: Python
 maintainer: Kade Heckel
 draft: false
 ---
+
+
 
 ## Overview
 **Spyx** is a compact spiking neural network library built on top of DeepMind's Haiku package. It aims to blend the flexibility and extensibility typical of PyTorch-based SNN

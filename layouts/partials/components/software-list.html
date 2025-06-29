@@ -26,8 +26,20 @@
           <a href="{{ .Permalink }}" class="text-dark dark:text-darkmode-dark hover:text-primary dark:hover:text-darkmode-primary">{{ .Title }}</a>
         </h3>
         <div class="flex items-center space-x-2 flex-shrink-0">
-          {{ with .Params.version_widget_url }}<img class="h-5" src="{{ . }}" alt="Version">{{ end }}
-          {{ with .Params.stars_widget_url }}<img class="h-5" src="{{ . }}" alt="Stars">{{ end }}
+          {{ $repo_id := "" }}
+          {{ with .Params.source_code }}{{ $repo_id = replace . "https://github.com/" "" }}{{ end }}
+
+          {{ if .Params.version_badge_url_override }}
+            <img class="h-5" src="{{ .Params.version_badge_url_override }}" alt="Version Badge">
+          {{ else if .Params.pypi_id }}
+            <img class="h-5" src="https://img.shields.io/pypi/v/{{ .Params.pypi_id }}.svg" alt="PyPI Version">
+          {{ else if $repo_id }}
+            <img class="h-5" src="https://img.shields.io/github/v/release/{{ $repo_id }}" alt="GitHub Release">
+          {{ end }}
+
+          {{ if $repo_id }}
+            <img class="h-5" src="https://img.shields.io/github/stars/{{ $repo_id }}.svg?style=social" alt="GitHub Stars">
+          {{ end }}
         </div>
       </div>
 

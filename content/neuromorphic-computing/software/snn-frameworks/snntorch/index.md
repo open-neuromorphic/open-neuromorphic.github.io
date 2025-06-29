@@ -7,9 +7,8 @@ website: https://snntorch.readthedocs.io
 dependencies: PyTorch
 field_of_application: Machine Learning
 source_code: https://github.com/jeshraghian/snntorch
-stars_widget_url: https://img.shields.io/github/stars/jeshraghian/snntorch.svg?style=social
+pypi_id: snntorch
 stars: 914
-version_widget_url: https://img.shields.io/pypi/v/snntorch.svg
 license: MIT
 supports_hardware: False
 supports_NIR: True
@@ -17,6 +16,8 @@ language: Python
 maintainer: Jason Eshraghian
 draft: false
 ---
+
+
 
 ## Overview
 **snnTorch** is a Python package designed for spiking neural network simulations and extends PyTorch's capabilities to spiking neurons, offering pre-designed models within the 

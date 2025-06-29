@@ -24,11 +24,19 @@
   </div>
 
   <div class="flex justify-center items-center space-x-2 mb-4">
-    {{ with .version_widget_url }}
-    <img src="{{ . }}" alt="Version Badge" class="inline-block h-5">
+    {{ $repo_id := "" }}
+    {{ with .source_code }}{{ $repo_id = replace . "https://github.com/" "" }}{{ end }}
+
+    {{ if .version_badge_url_override }}
+      <img src="{{ .version_badge_url_override }}" alt="Version Badge" class="inline-block h-5">
+    {{ else if .pypi_id }}
+      <img src="https://img.shields.io/pypi/v/{{ .pypi_id }}.svg" alt="PyPI Version" class="inline-block h-5">
+    {{ else if $repo_id }}
+      <img src="https://img.shields.io/github/v/release/{{ $repo_id }}" alt="GitHub Release" class="inline-block h-5">
     {{ end }}
-    {{ with .stars_widget_url }}
-    <img src="{{ . }}" alt="GitHub Stars" class="inline-block h-5">
+    
+    {{ if $repo_id }}
+      <img src="https://img.shields.io/github/stars/{{ $repo_id }}.svg?style=social" alt="GitHub Stars" class="inline-block h-5">
     {{ end }}
   </div>
 
@@ -91,6 +99,14 @@
         <dt class="font-semibold shrink-0 pr-2">License:</dt>
         <dd class="text-right">{{ .license | default "N/A" }}</dd>
       </div>
+       {{ with .pypi_id }}
+      <div class="flex justify-between items-start">
+        <dt class="font-semibold shrink-0 pr-2">PyPI Package:</dt>
+        <dd class="text-right">
+            <a href="https://pypi.org/project/{{ . }}" target="_blank" rel="noopener" class="text-primary dark:text-darkmode-primary hover:underline">{{ . }}</a>
+        </dd>
+      </div>
+      {{ end }}
       <div class="flex justify-between items-start">
         <dt class="font-semibold shrink-0 pr-2">Application:</dt>
         <dd class="text-right">{{ .field_of_application | default "N/A" }}</dd>

@@ -6,9 +6,8 @@ website: https://electronicvisions.github.io/documentation-brainscales2/latest/
 dependencies: PyTorch, BrainScaleS-2 OS
 field_of_application: Machine Learning, Neuromorphic Hardware, In-the-loop Training
 source_code: https://github.com/electronicvisions/hxtorch
-stars_widget_url: https://img.shields.io/github/stars/electronicvisions/hxtorch
+version_badge_url_override: "https://img.shields.io/github/v/tag/electronicvisions/releases-ebrains"
 stars: 9
-version_widget_url: https://img.shields.io/github/v/tag/electronicvisions/releases-ebrains
 license: LGPL-2.0-or-later
 supports_hardware: True
 supports_NIR: True
@@ -16,6 +15,8 @@ language: Python
 draft: false
 maintainer: Electronic Visions Group
 ---
+
+
 
 ## Overview
 
