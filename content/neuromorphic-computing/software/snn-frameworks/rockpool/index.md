@@ -7,16 +7,17 @@ website: https://rockpool.ai
 dependencies: PyTorch, Jax
 field_of_application: Machine Learning
 source_code: https://gitlab.com/synsense/rockpool
-stars_widget_url: https://img.shields.io/github/stars/synsense/rockpool.svg?style=social
-stars: 37
-version_widget_url: https://img.shields.io/pypi/v/rockpool.svg
+pypi_id: rockpool
 license: AGPL-3.0
 supports_hardware: True
 supports_NIR: True
 language: Python
 maintainer: Dylan Muir
 draft: false
+stars: 10
 ---
+
+
 
 ## Overview
 **Rockpool** is an open-source Python package focused on dynamic neural network architectures, tailored for event-driven networks and neuromorphic hardware. Managed by SynSense,

@@ -7,9 +7,7 @@ website: https://nengo.ai
 dependencies: 
 field_of_application: Machine Learning, Neuroscience
 source_code: https://github.com/nengo/nengo
-stars_widget_url: https://img.shields.io/github/stars/nengo/nengo.svg?style=social
-stars: 781
-version_widget_url: https://img.shields.io/pypi/v/nengo.svg
+pypi_id: nengo
 license: custom
 supports_hardware: True
 supports_NIR: True
@@ -17,6 +15,8 @@ language: Python
 maintainer: Trevor Bekolay
 draft: false
 ---
+
+
 
 ## Overview
 **Nengo**, also known as "Brain Maker", is a versatile open-source Python package designed for building, testing, and applying neural networks, and it supports many backends for 

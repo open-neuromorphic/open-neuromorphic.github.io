@@ -38,6 +38,7 @@ summary: The BrainScaleS-2 is an accelerated spiking neuromorphic system-on-chip
   and non-spiking neural networks using hybrid techniques like surrogate gradients.
 title: BrainScaleS-2 — Heidelberg University
 type: neuromorphic-hardware
+software_tags: ['hxtorch','jaxsnn','pynn-brainscales2']
 ---
 
 The BrainScaleS-2 accelerated neuromorphic system is an integrated circuit architecture for emulating biologically-inspired spiking neural networks. It was developed by researchers at the Heidelberg University and collaborators. Key features of the BrainScaleS-2 system include:
@@ -62,9 +63,9 @@ The BrainScaleS-2 accelerated neuromorphic system is an integrated circuit archi
 - Training of deep spiking neural networks using surrogate and exact gradient techniques
 - Non-spiking neural network execution leveraging synaptic crossbar for analog matrix multiplication
 - Available via three different software frameworks:
-  - [jaxsnn](https://open-neuromorphic.org/neuromorphic-computing/software/snn-frameworks/jaxsnn/), a JAX-based framework for event-based numerical simulation of SNNs
-  - [hxtorch](https://open-neuromorphic.org/neuromorphic-computing/software/snn-frameworks/hxtorch/), a PyTorch-based deep learning Python library for SNNs
-  - [PyNN.brainscales2](https://open-neuromorphic.org/neuromorphic-computing/software/snn-frameworks/pynn-brainscales2), an implementation of the PyNN API
+  - [jaxsnn](/neuromorphic-computing/software/snn-frameworks/jaxsnn/), a JAX-based framework for event-based numerical simulation of SNNs
+  - [hxtorch](/neuromorphic-computing/software/snn-frameworks/hxtorch/), a PyTorch-based deep learning Python library for SNNs
+  - [PyNN.brainscales2](/neuromorphic-computing/software/snn-frameworks/pynn-brainscales2), an implementation of the PyNN API
 
 The accelerated operation and flexible architecture facilitate applications in computational neuroscience research and novel machine learning approaches. The system design serves as a scalable basis for future large-scale neuromorphic computing platforms.
 

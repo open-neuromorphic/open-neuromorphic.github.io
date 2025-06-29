@@ -7,9 +7,7 @@ website: https://aestream.github.io/aestream
 dependencies: Numpy, nanobind, pysdl2-dll 
 field_of_application: Data Processing
 source_code: https://github.com/aestream/aestream
-stars_widget_url: https://img.shields.io/github/stars/aestream/aestream.svg?style=social
-stars: 49
-version_widget_url: https://img.shields.io/pypi/v/aestream.svg
+pypi_id: aestream
 license: MIT
 supports_hardware: False
 supports_NIR: False
@@ -17,6 +15,8 @@ language: Python
 maintainer: Jens E. Pedersen
 draft: false
 ---
+
+
 
 ## Overview
 AEStream is an advanced, flexible tool specifically designed to handle and transmit event-based data efficiently, catering to the unique needs of neuromorphic computing and event-based sensing. It is capable of interfacing with a variety of data sources including different models of event cameras, network streams, and data files, making it highly adaptable for various applications. AEStream supports a range of input and output formats, and can be used in diverse environments: as a command-line tool, through a Python interface, or as a C++ library, allowing users to choose the method that best fits their workflow.

@@ -7,9 +7,6 @@ website: https://genn-team.github.io/
 dependencies: 
 field_of_application: Neuroscience, Machine learning
 source_code: https://github.com/genn-team/genn
-stars_widget_url: https://img.shields.io/github/stars/genn-team/genn.svg?style=social
-stars: 233
-version_widget_url: https://img.shields.io/github/release/genn-team/genn.svg?label=github%20release
 license: LGPL-2.1
 supports_hardware: False
 supports_NIR: False
@@ -17,6 +14,8 @@ language: C++/Python
 maintainer: James Knight
 draft: false
 ---
+
+
 
 ## Overview
 **GeNN** is a software package to accelerate Spiking Neural Network simulations 

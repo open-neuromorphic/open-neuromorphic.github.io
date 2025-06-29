@@ -7,20 +7,22 @@
   "scripts": {
     "dev": "hugo serve --buildFuture",
     "hugo-build": "hugo --gc --minify --buildFuture --templateMetrics --templateMetricsHints --forceSyncStatic -e production",
-    "build": "npm run og-images && npm run hugo-build",
-    "build-preview": "hugo server --disableFastRender --buildFuture --navigateToChanged --templateMetrics --templateMetricsHints  --forceSyncStatic -e production --minify",
-    "og-images": "node scripts/collectOgData.js && node scripts/generateOgImages.js"
+    "build": "npm run fetch-stars && npm run og-images && npm run hugo-build",
+    "build-preview": "npm run fetch-stars && hugo server --disableFastRender --buildFuture --navigateToChanged --templateMetrics --templateMetricsHints  --forceSyncStatic -e production --minify",
+    "og-images": "node scripts/collectOgData.js && node scripts/generateOgImages.js",
+    "fetch-stars": "node scripts/fetchGithubStars.js"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^5.0.0",
     "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/typography": "^0.5.10",
     "autoprefixer": "^10.4.21",
+    "dotenv": "^17.0.0",
+    "mime-types": "^3.0.1",
     "postcss": "^8.5.4",
     "postcss-cli": "^11.0.1",
+    "puppeteer": "^24.10.1",
     "tailwind-bootstrap-grid": "^5.1.0",
-    "tailwindcss": "^3.4.17",
-    "mime-types": "^3.0.1",
-    "puppeteer": "^24.10.1"
+    "tailwindcss": "^3.4.17"
   }
 }

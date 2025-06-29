@@ -7,9 +7,7 @@ website: https://briansimulator.org/
 dependencies: 
 field_of_application: Neuroscience
 source_code: https://github.com/brian-team/brian2
-stars_widget_url: https://img.shields.io/github/stars/brian-team/brian2.svg?style=social
-stars: 835
-version_widget_url: https://img.shields.io/pypi/v/brian2.svg
+pypi_id: brian2
 license: custom
 supports_hardware: False
 supports_NIR: False
@@ -20,6 +18,8 @@ maintainer:
   - Dan Goodman 
 draft: false
 ---
+
+
 
 ## Overview
 **Brian2** is an open-source Python library for the simulation of spiking neural networks (SNNs), notable for its user-friendly syntax and flexible approach to the design and

@@ -8,18 +8,7 @@
             {{ .Content }}
           </article>
 
-          {{ $softwareSlug := .File.Dir | path.Base }}
-          {{ $relatedContent := slice }}
-          {{ range site.RegularPages }}
-            {{ $contentPage := . }}
-            {{ with .Params.software_tags }}
-              {{ if in . $softwareSlug }}
-                {{ $relatedContent = $relatedContent | append $contentPage }}
-              {{ end }}
-            {{ end }}
-          {{ end }}
-          {{ $relatedContent = sort $relatedContent "Date" "desc" }}
-          {{ partial "software/related-events.html" $relatedContent }}
+          {{ partial "shared/related-content.html" . }}
 
           {{ partial "components/content-contribute-cta.html" (dict
             "page_context" .

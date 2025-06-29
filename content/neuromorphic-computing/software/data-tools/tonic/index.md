@@ -7,9 +7,7 @@ website: https://tonic.readthedocs.io/
 dependencies: Numpy
 field_of_application: Data processing
 source_code: https://github.com/neuromorphs/tonic
-stars_widget_url: https://img.shields.io/github/stars/neuromorphs/tonic.svg?style=social
-stars: 167
-version_widget_url: https://img.shields.io/pypi/v/tonic.svg
+pypi_id: tonic
 license: GPL-3.0
 supports_hardware: False
 supports_NIR: False
@@ -19,6 +17,8 @@ maintainer:
   - Fabrizio Ottati 
 draft: false
 ---
+
+
 
 ## Overview
 Tonic is a specialized Python package designed to facilitate the downloading and manipulation of neuromorphic datasets, particularly focusing on event-based vision and audio data. It is fully compatible with PyTorch Vision/Audio and offers a range of event transformations, making it a flexible tool for working with neuromorphic data. The package includes a variety of publicly available datasets and provides efficient ways to manage and transform these datasets for various applications.

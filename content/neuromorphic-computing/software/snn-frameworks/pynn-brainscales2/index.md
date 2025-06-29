@@ -6,9 +6,7 @@ website: https://electronicvisions.github.io/documentation-brainscales2/latest/
 dependencies: PyNN, BrainScaleS-2 OS
 field_of_application: Neuromorphic Hardware, Computational Neuroscience, Spiking Neural Networks, Local Plasticity
 source_code: https://github.com/electronicvisions/pynn-brainscales
-stars_widget_url: https://img.shields.io/github/stars/electronicvisions/pynn-brainscales
-stars: 6
-version_widget_url: https://img.shields.io/github/v/tag/electronicvisions/releases-ebrains
+version_badge_url_override: "https://img.shields.io/github/v/tag/electronicvisions/releases-ebrains"
 license: LGPL-2.0-or-later
 supports_hardware: True
 supports_NIR: False
@@ -16,6 +14,8 @@ language: Python
 draft: false
 maintainer: Electronic Visions Group
 ---
+
+
 
 ## Overview
 

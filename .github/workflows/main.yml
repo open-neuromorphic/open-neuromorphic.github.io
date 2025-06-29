@@ -63,6 +63,11 @@ jobs:
 
       - name: Generate OG Images
         run: npm run og-images
+        
+      - name: Fetch GitHub Stars
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm run fetch-stars
 
       - name: Determine Base URL
         id: base_url

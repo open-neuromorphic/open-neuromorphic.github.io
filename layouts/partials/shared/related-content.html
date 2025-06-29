@@ -1,0 +1,136 @@
+{{ $page_context := . }}
+{{ $related_items := slice }}
+
+{{ $current_type := $page_context.Type }}
+{{ $current_slug := "" }}
+{{ if $page_context.File }}
+  {{ $current_slug = path.Base $page_context.File.Dir }}
+{{ end }}
+{{ $current_title := $page_context.Title }}
+
+
+{{/* --- Part 1: Find related content (blog, events) that tag this page --- */}}
+
+{{ $tag_param_key := "" }}
+{{ if eq $current_type "neuromorphic-hardware" }}
+    {{ $tag_param_key = ".Params.hardware_tags" }}
+{{ else if eq $current_type "neuromorphic-software" }}
+    {{ $tag_param_key = ".Params.software_tags" }}
+{{ end }}
+
+{{ if and (ne $tag_param_key "") (ne $current_slug "") }}
+    {{ $tagged_pages := where site.RegularPages $tag_param_key "intersect" (slice $current_slug) }}
+    {{ range $tagged_pages }}
+        {{ $related_items = $related_items | append . }}
+    {{ end }}
+{{ end }}
+
+
+{{/* --- Part 2: Find related hardware/software (bidirectional linking) --- */}}
+
+{{ if eq $current_type "neuromorphic-hardware" }}
+    {{/* I am a hardware page. Find software I support using my `software_tags` */}}
+    {{ with .Params.software_tags }}
+        {{ $software_slugs_to_find := . }}
+        {{ $all_software_pages := where site.RegularPages "Type" "neuromorphic-software" }}
+        {{ range $software_page := $all_software_pages }}
+            {{ $software_slug := "" }}
+            {{ if $software_page.File }}{{ $software_slug = path.Base $software_page.File.Dir }}{{ end }}
+            {{ if and (ne $software_slug "") (in $software_slugs_to_find $software_slug) }}
+                {{ $related_items = $related_items | append $software_page }}
+            {{ end }}
+        {{ end }}
+    {{ end }}
+
+{{ else if and (eq $current_type "neuromorphic-software") (ne $current_slug "") }}
+    {{/* I am a software page. Find hardware that supports me. */}}
+    {{ $hardware_pages := where site.RegularPages "Type" "neuromorphic-hardware" }}
+    {{ range where $hardware_pages ".Params.software_tags" "intersect" (slice $current_slug) }}
+        {{ $related_items = $related_items | append . }}
+    {{ end }}
+{{ end }}
+
+{{/* --- Finalize and Render --- */}}
+{{/* Deduplicate */}}
+{{ $unique_related_items := slice }}
+{{ $seen_permalinks := slice }}
+{{ range $related_items }}
+    {{ if not (in $seen_permalinks .Permalink) }}
+        {{ $unique_related_items = $unique_related_items | append . }}
+        {{ $seen_permalinks = $seen_permalinks | append .Permalink }}
+    {{ end }}
+{{ end }}
+{{ $sorted_related_items := sort $unique_related_items "Date" "desc" }}
+
+
+{{ if $sorted_related_items }}
+<div class="related-content-section mt-12 pt-8 pb-8">
+  <h2 class="text-3xl font-bold mb-8">Related Content, Events & Resources</h2>
+
+  <div class="space-y-6">
+    {{ range $item := $sorted_related_items }}
+    <div class="timeline-item-content">
+      <div class="flex flex-col md:flex-row items-start gap-5">
+        
+        {{/* Thumbnail Column - Renders only if image is in front matter */}}
+        {{ with $item.Params.image }}
+          <div class="flex-shrink-0 w-full md:w-40 text-center">
+            <a href="{{ $item.RelPermalink }}">
+              {{ $image_param := . }}
+              {{ $img_path := "" }}
+              {{ $img_alt := $item.Title }}
+
+              {{ $img_path_cleaned := strings.TrimPrefix "/" $image_param }}
+              {{ $resource := "" }}
+              {{ with $item.Resources.GetMatch $image_param }}{{ $resource = . }}{{ end }}
+              {{ if not $resource }}{{ with resources.Get $img_path_cleaned }}{{ $resource = . }}{{ end }}{{ end }}
+              
+              {{ if $resource }}
+                {{ $img_path = ($resource.Fill "160x90 Lanczos").RelPermalink }}
+              {{ else if fileExists (printf "static/%s" $img_path_cleaned) }}
+                {{ $img_path = $image_param | relURL }}
+              {{ end }}
+
+              {{ if $img_path }}
+                <img src="{{ $img_path }}" alt="{{ $img_alt }}" class="w-full h-auto rounded-md object-cover">
+              {{ end }}
+            </a>
+          </div>
+        {{ end }}
+
+        {{/* Content Column */}}
+        <div class="flex-grow">
+          <div class="flex justify-between items-start gap-4">
+            <div>
+              <h4 class="text-xl font-semibold mb-1">
+                <a href="{{ $item.RelPermalink }}" class="text-dark dark:text-darkmode-dark hover:text-primary dark:hover:text-darkmode-primary">{{ $item.Title }}</a>
+              </h4>
+              {{ with $item.Params.date }}
+              <p class="text-sm text-gray-500 dark:text-gray-400">
+                {{ .Format "January 2, 2006" }}
+              </p>
+              {{ end }}
+            </div>
+            <span class="timeline-item-badge flex-shrink-0">
+              {{- $item_type := "" -}}
+              {{- if eq $item.Type "neuromorphic-hardware" -}}
+                  {{- $item_type = "Hardware" -}}
+              {{- else if eq $item.Type "neuromorphic-software" -}}
+                  {{- $item_type = "Software" -}}
+              {{- else -}}
+                  {{- $item_type = $item.Type | default $item.Section | humanize | title -}}
+              {{- end -}}
+              {{- $item_type -}}
+            </span>
+          </div>
+          {{ if $item.Description }}
+          <p class="text-gray-600 dark:text-gray-400 mt-3 text-sm">{{ $item.Description | truncate 150 }}</p>
+          {{ end }}
+        </div>
+
+      </div>
+    </div>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

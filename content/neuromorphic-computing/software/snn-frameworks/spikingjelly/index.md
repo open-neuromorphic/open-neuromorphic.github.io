@@ -7,9 +7,7 @@ website: https://spikingjelly.readthedocs.io
 dependencies: PyTorch
 field_of_application: Machine Learning
 source_code: https://github.com/fangwei123456/spikingjelly
-stars_widget_url: https://img.shields.io/github/stars/fangwei123456/spikingjelly.svg?style=social
-stars: 998
-version_widget_url: https://img.shields.io/pypi/v/spikingjelly.svg
+pypi_id: spikingjelly
 license: unknown
 supports_hardware: False
 supports_NIR: False
@@ -17,6 +15,8 @@ language: Python
 maintainer: Wei Fang
 draft: false
 ---
+
+
 
 ## Overview
 **SpikingJelly** is an open-source deep learning framework designed for Spiking Neural Networks (SNNs) based on PyTorch. It leverages PyTorch's user-friendly

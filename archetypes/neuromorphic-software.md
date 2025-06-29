@@ -9,10 +9,11 @@ logo: "software-logo.png" # Software logo. Place in this software's folder, or r
 website: "https://official-website.com"
 dependencies: "Key dependencies (e.g., PyTorch, JAX, NumPy, C++17)"
 field_of_application: "e.g., Machine Learning, Neuroscience, Data Processing, Hardware Interface, Robotics"
-source_code: "https://github.com/org/repo"
-stars_widget_url: "https://img.shields.io/github/stars/org/repo.svg?style=social" # Replace org/repo with actual GitHub path
-stars: 0 # This will be auto-updated by a script if implemented, otherwise copy from the badge manually.
-version_widget_url: "https://img.shields.io/pypi/v/package-name.svg" # Or other relevant badge URL (e.g., GitHub release)
+source_code: "https://github.com/org/repo" # This URL is now used to automatically fetch the star count for sorting.
+# To display the version, use one of the following. `pypi_id` is preferred for PyPI packages.
+# Use `version_badge_url_override` for custom badges (e.g., from GitHub releases or other registries).
+pypi_id: "" # e.g., "snntorch". This will auto-generate a PyPI version badge.
+# version_badge_url_override: "" # e.g., "https://img.shields.io/github/v/release/user/repo"
 license: "e.g., MIT, GPL-3.0, AGPL-3.0, Apache-2.0, custom"
 supports_hardware: false # Set to true if it directly supports or deploys to neuromorphic hardware platforms
 supports_NIR: false # Set to true if it supports the Neuromorphic Intermediate Representation

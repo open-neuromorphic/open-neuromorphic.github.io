@@ -7,9 +7,6 @@ website: https://electronicvisions.github.io/documentation-brainscales2/latest/
 dependencies: JAX, BrainScaleS-2 OS
 field_of_application: Machine Learning, Neuromorphic Hardware, In-the-loop Training, Event-based Training
 source_code: https://github.com/electronicvisions/jaxsnn
-stars_widget_url: https://img.shields.io/github/stars/electronicvisions/jaxsnn
-stars: 20
-version_widget_url: https://img.shields.io/pypi/v/jaxsnn
 license: LGPL-2.0-or-later
 supports_hardware: True
 supports_NIR: True
@@ -17,6 +14,8 @@ language: Python
 draft: false
 maintainer: Electronic Visions Group
 ---
+
+
 
 ## Overview
 
