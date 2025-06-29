@@ -8,7 +8,6 @@ dependencies: PyTorch
 field_of_application: Vision Models
 source_code: https://github.com/synsense/sinabs
 pypi_id: sinabs
-stars: 54
 license: AGPL-3.0
 supports_hardware: True
 supports_NIR: True

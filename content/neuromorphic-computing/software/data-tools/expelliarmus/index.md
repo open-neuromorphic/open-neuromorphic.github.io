@@ -8,7 +8,6 @@ dependencies: Numpy
 field_of_application: Data Processing
 source_code: https://github.com/open-neuromorphic/expelliarmus
 pypi_id: expelliarmus
-stars: 25
 license: GPL-2.0
 supports_hardware: False
 supports_NIR: False

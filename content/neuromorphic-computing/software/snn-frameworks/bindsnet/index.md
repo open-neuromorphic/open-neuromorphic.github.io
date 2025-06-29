@@ -8,7 +8,6 @@ dependencies: PyTorch
 field_of_application: Machine Learning
 source_code: https://github.com/bindsnet/bindsnet
 pypi_id: bindsnet
-stars: 1375
 license: AGPL-3.0
 supports_hardware: False
 supports_NIR: False

@@ -5,10 +5,36 @@
     {{ $isMainSoftwarePage := eq . $mainSoftwarePage }}
 
     {{ $allSoftwarePages := where site.RegularPages "Params.type" "neuromorphic-software" }}
-    {{ $sortedSoftwarePages := sort $allSoftwarePages "Params.stars" "desc" }}
+
+    {{/* Augment pages with star count for sorting */}}
+    {{ $pagesWithStars := slice }}
+    {{ range $allSoftwarePages }}
+    {{ $is_github := false }}
+    {{ $repo_id := "" }}
+    {{ with .Params.source_code }}
+    {{ if in . "github.com" }}
+    {{ $is_github = true }}
+    {{ $repo_id = replace . "https://github.com/" "" }}
+    {{ $repo_id = replace $repo_id ".git" "" }}
+    {{ end }}
+    {{ end }}
+
+    {{ $stars := 0 }}
+    {{ if isset .Params "stars" }}
+    {{ $stars = .Params.stars }}
+    {{ else if and $is_github (ne $repo_id "") site.Data.github_stars }}
+    {{ with index site.Data.github_stars $repo_id }}
+    {{ $stars = . }}
+    {{ end }}
+    {{ end }}
+
+    {{ $pagesWithStars = $pagesWithStars | append (dict "Page" . "Stars" $stars) }}
+    {{ end }}
+
+    {{ $sortedSoftwarePages := sort $pagesWithStars "Stars" "desc" }}
 
     {{ range $sortedSoftwarePages }}
-    {{ $page := . }}
+    {{ $page := .Page }}
 
     {{ $displayPage := false }}
     {{ if $isMainSoftwarePage }}
@@ -23,32 +49,45 @@
     <li class="mb-6 content-panel p-6 shadow-lg rounded-lg">
       <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mb-3">
         <h3 class="text-xl font-bold">
-          <a href="{{ .Permalink }}" class="text-dark dark:text-darkmode-dark hover:text-primary dark:hover:text-darkmode-primary">{{ .Title }}</a>
+          <a href="{{ $page.Permalink }}" class="text-dark dark:text-darkmode-dark hover:text-primary dark:hover:text-darkmode-primary">{{ $page.Title }}</a>
         </h3>
         <div class="flex items-center space-x-2 flex-shrink-0">
-          {{ $repo_id := "" }}
-          {{ with .Params.source_code }}{{ $repo_id = replace . "https://github.com/" "" }}{{ end }}
-
-          {{ if .Params.version_badge_url_override }}
-            <img class="h-5" src="{{ .Params.version_badge_url_override }}" alt="Version Badge">
-          {{ else if .Params.pypi_id }}
-            <img class="h-5" src="https://img.shields.io/pypi/v/{{ .Params.pypi_id }}.svg" alt="PyPI Version">
-          {{ else if $repo_id }}
-            <img class="h-5" src="https://img.shields.io/github/v/release/{{ $repo_id }}" alt="GitHub Release">
+          {{ $repo_path := "" }}
+          {{ $is_github := false }}
+          {{ $is_gitlab := false }}
+          {{ with $page.Params.source_code }}
+          {{ if in . "github.com" }}
+          {{ $is_github = true }}
+          {{ $repo_path = replace . "https://github.com/" "" }}
+          {{ else if in . "gitlab.com" }}
+          {{ $is_gitlab = true }}
+          {{ $repo_path = replace . "https://gitlab.com/" "" }}
+          {{ end }}
+          {{ $repo_path = replace $repo_path ".git" "" }}
           {{ end }}
 
-          {{ if $repo_id }}
-            <img class="h-5" src="https://img.shields.io/github/stars/{{ $repo_id }}.svg?style=social" alt="GitHub Stars">
+          {{ if $page.Params.version_badge_url_override }}
+          <img class="h-5" src="{{ $page.Params.version_badge_url_override }}" alt="Version Badge">
+          {{ else if $page.Params.pypi_id }}
+          <img class="h-5" src="https://img.shields.io/pypi/v/{{ $page.Params.pypi_id }}.svg" alt="PyPI Version">
+          {{ else if $is_github }}
+          <img class="h-5" src="https://img.shields.io/github/v/release/{{ $repo_path }}" alt="GitHub Release">
+          {{ end }}
+
+          {{ if $is_github }}
+          <img class="h-5" src="https://img.shields.io/github/stars/{{ $repo_path }}.svg?style=social" alt="GitHub Stars">
+          {{ else if $is_gitlab }}
+          <img class="h-5" src="https://img.shields.io/gitlab/stars/{{ $repo_path }}.svg?style=social" alt="GitLab Stars">
           {{ end }}
         </div>
       </div>
 
-      <p class="mb-4 text-text dark:text-darkmode-text">{{ .Params.description }}</p>
+      <p class="mb-4 text-text dark:text-darkmode-text">{{ $page.Params.description }}</p>
 
       <div class="border-t border-border dark:border-darkmode-border pt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
 
         <div class="flex items-center gap-3">
-          {{ with .Params.maintainer }}
+          {{ with $page.Params.maintainer }}
           {{ $maintainerList := . }}
           {{ if not (reflect.IsSlice .) }}{{ $maintainerList = slice . }}{{ end }} {{/* Unify to a slice */}}
 
@@ -92,10 +131,10 @@
 
         <div class="flex items-center gap-4">
           <div class="flex flex-wrap gap-2">
-            {{ if .Params.supports_NIR }}<span class="support-badge">NIR Support</span>{{ end }}
-            {{ if .Params.supports_hardware }}<span class="support-badge">Hardware Support</span>{{ end }}
+            {{ if $page.Params.supports_NIR }}<span class="support-badge">NIR Support</span>{{ end }}
+            {{ if $page.Params.supports_hardware }}<span class="support-badge">Hardware Support</span>{{ end }}
           </div>
-          <a href="{{ .Permalink }}" class="btn btn-new-outline btn-sm !py-2 !px-4 flex-shrink-0">View Details</a>
+          <a href="{{ $page.Permalink }}" class="btn btn-new-outline btn-sm !py-2 !px-4 flex-shrink-0">View Details</a>
         </div>
       </div>
     </li>

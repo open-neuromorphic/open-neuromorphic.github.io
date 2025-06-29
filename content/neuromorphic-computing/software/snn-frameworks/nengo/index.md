@@ -8,7 +8,6 @@ dependencies:
 field_of_application: Machine Learning, Neuroscience
 source_code: https://github.com/nengo/nengo
 pypi_id: nengo
-stars: 781
 license: custom
 supports_hardware: True
 supports_NIR: True

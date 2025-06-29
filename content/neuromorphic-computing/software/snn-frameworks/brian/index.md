@@ -8,7 +8,6 @@ dependencies:
 field_of_application: Neuroscience
 source_code: https://github.com/brian-team/brian2
 pypi_id: brian2
-stars: 835
 license: custom
 supports_hardware: False
 supports_NIR: False

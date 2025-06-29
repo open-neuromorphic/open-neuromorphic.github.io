@@ -8,7 +8,6 @@ dependencies: Numpy
 field_of_application: Data processing
 source_code: https://github.com/neuromorphs/tonic
 pypi_id: tonic
-stars: 167
 license: GPL-3.0
 supports_hardware: False
 supports_NIR: False

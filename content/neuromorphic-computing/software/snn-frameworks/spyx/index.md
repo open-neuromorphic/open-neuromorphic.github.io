@@ -8,7 +8,6 @@ dependencies: JAX, Haiku
 field_of_application: Machine Learning
 source_code: https://github.com/kmheckel/spyx
 pypi_id: spyx
-stars: 30
 license: MIT
 supports_hardware: False
 supports_NIR: True

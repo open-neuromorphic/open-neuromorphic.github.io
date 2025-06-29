@@ -7,7 +7,6 @@ website: https://genn-team.github.io/
 dependencies: 
 field_of_application: Neuroscience, Machine learning
 source_code: https://github.com/genn-team/genn
-stars: 233
 license: LGPL-2.1
 supports_hardware: False
 supports_NIR: False

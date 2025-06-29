@@ -8,7 +8,6 @@ dependencies: PyTorch
 field_of_application: Machine Learning
 source_code: https://github.com/fangwei123456/spikingjelly
 pypi_id: spikingjelly
-stars: 998
 license: unknown
 supports_hardware: False
 supports_NIR: False

@@ -8,7 +8,6 @@ dependencies: PyTorch
 field_of_application: Machine Learning
 source_code: https://github.com/jeshraghian/snntorch
 pypi_id: snntorch
-stars: 914
 license: MIT
 supports_hardware: False
 supports_NIR: True

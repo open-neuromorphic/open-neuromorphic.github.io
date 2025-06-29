@@ -8,7 +8,6 @@ dependencies: PyTorch
 field_of_application: Bio-inspired Neural Networks
 source_code: https://github.com/norse/norse
 pypi_id: norse
-stars: 578
 license: LGPL-3.0
 supports_hardware: False
 supports_NIR: True

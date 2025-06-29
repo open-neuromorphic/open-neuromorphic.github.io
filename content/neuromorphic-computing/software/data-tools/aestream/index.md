@@ -8,7 +8,6 @@ dependencies: Numpy, nanobind, pysdl2-dll
 field_of_application: Data Processing
 source_code: https://github.com/aestream/aestream
 pypi_id: aestream
-stars: 49
 license: MIT
 supports_hardware: False
 supports_NIR: False

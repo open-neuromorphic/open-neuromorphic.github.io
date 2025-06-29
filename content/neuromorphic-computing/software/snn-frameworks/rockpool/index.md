@@ -8,13 +8,13 @@ dependencies: PyTorch, Jax
 field_of_application: Machine Learning
 source_code: https://gitlab.com/synsense/rockpool
 pypi_id: rockpool
-stars: 37
 license: AGPL-3.0
 supports_hardware: True
 supports_NIR: True
 language: Python
 maintainer: Dylan Muir
 draft: false
+stars: 10
 ---
 
 

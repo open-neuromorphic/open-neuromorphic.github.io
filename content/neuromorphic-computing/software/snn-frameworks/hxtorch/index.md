@@ -7,7 +7,6 @@ dependencies: PyTorch, BrainScaleS-2 OS
 field_of_application: Machine Learning, Neuromorphic Hardware, In-the-loop Training
 source_code: https://github.com/electronicvisions/hxtorch
 version_badge_url_override: "https://img.shields.io/github/v/tag/electronicvisions/releases-ebrains"
-stars: 9
 license: LGPL-2.0-or-later
 supports_hardware: True
 supports_NIR: True

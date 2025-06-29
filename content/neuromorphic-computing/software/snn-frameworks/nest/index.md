@@ -7,7 +7,6 @@ website: https://www.nest-simulator.org/
 dependencies: 
 field_of_application: Neuroscience
 source_code: https://github.com/nest/nest-simulator
-stars: 502
 license: GPL-2.0
 supports_hardware: False
 supports_NIR: False

@@ -8,7 +8,6 @@ dependencies: Numpy
 field_of_application: Data Processing
 source_code: https://github.com/neuromorphicsystems/aedat
 pypi_id: aedat
-stars: 28
 license: MIT
 supports_hardware: False
 supports_NIR: False

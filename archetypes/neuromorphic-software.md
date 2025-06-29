@@ -9,9 +9,7 @@ logo: "software-logo.png" # Software logo. Place in this software's folder, or r
 website: "https://official-website.com"
 dependencies: "Key dependencies (e.g., PyTorch, JAX, NumPy, C++17)"
 field_of_application: "e.g., Machine Learning, Neuroscience, Data Processing, Hardware Interface, Robotics"
-source_code: "https://github.com/org/repo"
-stars_widget_url: "https://img.shields.io/github/stars/org/repo.svg?style=social" # Replace org/repo with actual GitHub path
-stars: 0 # This will be auto-updated by a script if implemented, otherwise copy from the badge manually.
+source_code: "https://github.com/org/repo" # This URL is now used to automatically fetch the star count for sorting.
 version_widget_url: "https://img.shields.io/pypi/v/package-name.svg" # Or other relevant badge URL (e.g., GitHub release)
 license: "e.g., MIT, GPL-3.0, AGPL-3.0, Apache-2.0, custom"
 supports_hardware: false # Set to true if it directly supports or deploys to neuromorphic hardware platforms

@@ -8,7 +8,6 @@ dependencies:
 field_of_application: Neuro-inspired Applications
 source_code: https://github.com/lava-nc/lava
 pypi_id: lava-nc
-stars: 462
 license: custom
 supports_hardware: True
 supports_NIR: True

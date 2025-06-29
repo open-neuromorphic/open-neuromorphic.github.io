@@ -7,7 +7,6 @@ website: https://ml-genn.readthedocs.io/en/latest/
 dependencies: GeNN
 field_of_application: Machine learning
 source_code: https://github.com/genn-team/ml_genn
-stars: 24
 license: LGPL-2.1
 supports_hardware: False
 supports_NIR: False
