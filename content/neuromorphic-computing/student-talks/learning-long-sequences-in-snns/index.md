@@ -29,4 +29,4 @@ This talk will highlight, at a high level, the similarities in computational pri
 **References**
 [1]: Gu, A., Goel, K. and Ré, C., 2021. Efficiently modeling long sequences with structured state spaces. arXiv preprint arXiv:2111.00396.
 [2]: Stan, M.I. and Rhodes, O., 2024. Learning long sequences in spiking neural networks. Scientific Reports, 14(1), p.21957.
-[3]: Tay, Y., Dehghani, M., Abnar, S., Shen, Y., Bahri, D., Pham, P., Rao, J., Yang, L., Ruder, S. and Metzler, D., 2020. Long range arena: A benchmark for efficient transformers. arXiv preprint.
+[3]: Tay, Y., Dehghani, M., Abnar, S., Shen, Y., Bahri, D., Pham, P., Rao, J., Yang, L., Ruder, S. and Metzler, D., 2020. Long range arena: A benchmark for efficient transformers. arXiv preprint arXiv:2011.04006.
