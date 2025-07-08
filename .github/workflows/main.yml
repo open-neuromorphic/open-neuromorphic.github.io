@@ -2,7 +2,7 @@ name: Deploy Hugo site to Pages
 
 on:
   push:
-    branches: ["main", "cache-images"]
+    branches: ["main", "student-talk"]
 
 permissions:
   contents: read
@@ -63,7 +63,7 @@ jobs:
 
       - name: Generate OG Images
         run: npm run og-images
-        
+
       - name: Fetch GitHub Stars
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
