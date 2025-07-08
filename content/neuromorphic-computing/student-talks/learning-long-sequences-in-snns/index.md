@@ -1,5 +1,5 @@
 ---
-title: "Student Talk: Learning Long Sequences in Spiking Neural Networks"
+title: "Student Talk: Learning Long Sequences in Spiking Neural Networks with Matei Stan"
 author:
   - "Matei Stan"
 date: 2025-07-27
