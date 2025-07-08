@@ -1,10 +1,10 @@
 ---
 title: "Matei Stan"
 description: "Matei Stan is a PhD student at the University of Manchester, focusing on State Space Models (SSMs) and their application in Spiking Neural Networks for long-range sequential tasks."
-image: "matei-stan.jpg" # Ask him for this photo
+image: "matei-stan.jpg"
 social:
   - icon: "fa-brands fa-linkedin"
-    link: "https://www.linkedin.com/in/username" # Ask for his LinkedIn/GitHub/Website URL
+    link: "https://www.linkedin.com/in/matei-stan"
     title: "linkedin"
 draft: false
 ---
