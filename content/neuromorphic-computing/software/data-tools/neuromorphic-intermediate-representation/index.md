@@ -35,7 +35,7 @@ hardware_tags:
 
 ## Overview
 
-By defining a common set of computational primitives (like Leaky-Integrate-and-Fire neurons and convolutions), NIR allows researchers and developers to define a model once and then translate it to run on different backends without having to rewrite the model from scratch for each platform. This decouples the model definition from the hardware- or software-specific implementation details.
+By defining a common set of computational primitives (like Leaky-Integrate-and-Fire neurons and convolutions), NIR allows researchers and developers to define a model once and then translate it to run on different backends without having to rewrite the model from scratch for each platform. This decouples the model definition from the hardware or software-specific implementation details.
 
 NIR is designed to be extensible and currently supports a range of popular SNN frameworks and hardware, including:
 -   **Simulators:** [Lava-DL](/neuromorphic-computing/software/snn-frameworks/lava/), [Nengo](/neuromorphic-computing/software/snn-frameworks/nengo/), [Norse](/neuromorphic-computing/software/snn-frameworks/norse/), [Rockpool](/neuromorphic-computing/software/snn-frameworks/rockpool/), [Sinabs](/neuromorphic-computing/software/snn-frameworks/sinabs/), [snnTorch](/neuromorphic-computing/software/snn-frameworks/snntorch/), [Spyx](/neuromorphic-computing/software/snn-frameworks/spyx/)
