@@ -18,16 +18,28 @@ maintainer:
   - "Jason Eshraghian"
   - "Bernhard Vogginger"
 draft: false
+software_tags:
+  - "lava"
+  - "nengo"
+  - "norse"
+  - "rockpool"
+  - "sinabs"
+  - "snntorch"
+  - "spyx"
+hardware_tags:
+  - "loihi-2-intel"
+  - "spinnaker-2-university-of-dresden"
+  - "speck-synsense"
+  - "xylo-synsense"
 ---
 
 ## Overview
 
-The Neuromorphic Intermediate Representation (NIR) is a graph-based format designed to represent Spiking Neural Network (SNN) models in a standardized way. Its primary goal is to enable interoperability between a wide variety of neuromorphic simulators and hardware platforms.
-
-By defining a common set of computational primitives (like Leaky-Integrate-and-Fire neurons and synapses), NIR allows researchers and developers to define a model once and then translate it to run on different backends without having to rewrite the model from scratch for each platform. This decouples the model definition from the hardware- or software-specific implementation details.
+By defining a common set of computational primitives (like Leaky-Integrate-and-Fire neurons and convolutions), NIR allows researchers and developers to define a model once and then translate it to run on different backends without having to rewrite the model from scratch for each platform. This decouples the model definition from the hardware- or software-specific implementation details.
 
 NIR is designed to be extensible and currently supports a range of popular SNN frameworks and hardware, including:
--   **Simulators:** Spyx, snnTorch, Norse, Lava
--   **Hardware:** Intel Loihi 2, SpiNNaker 2, Speck
+-   **Simulators:** [Lava-DL](/neuromorphic-computing/software/snn-frameworks/lava/), [Nengo](/neuromorphic-computing/software/snn-frameworks/nengo/), [Norse](/neuromorphic-computing/software/snn-frameworks/norse/), [Rockpool](/neuromorphic-computing/software/snn-frameworks/rockpool/), [Sinabs](/neuromorphic-computing/software/snn-frameworks/sinabs/), [snnTorch](/neuromorphic-computing/software/snn-frameworks/snntorch/), [Spyx](/neuromorphic-computing/software/snn-frameworks/spyx/)
+-   **Hardware:** [Intel Loihi 2](/neuromorphic-computing/hardware/loihi-2-intel/), [SpiNNaker 2](/neuromorphic-computing/hardware/spinnaker-2-university-of-dresden/), [SynSense Speck](/neuromorphic-computing/hardware/speck-synsense/), [SynSense Xylo](/neuromorphic-computing/hardware/xylo-synsense/).
 
-The project aims to simplify the workflow for neuromorphic development, making it easier to benchmark, deploy, and share SNN models across the community.
+More information can be found in the [NIR documentation](https://neuroir.org/docs/) and the [Nature Communications paper](https://www.nature.com/articles/s41467-024-52259-9).
+It is actively being developed on [GitHub](https://github.com/neuromorphs/nir) with additional tools for [PyTorch integrations](https://github.com/neuromorphs/nirtorch).
