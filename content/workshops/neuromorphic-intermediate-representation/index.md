@@ -15,7 +15,7 @@ speaker_code: "https://github.com/neuromorphs/nir"
 time_zone: CET
 image: neuromorphic-intermediate-representation.png
 description: "We show how to use the Neuromorphic Intermediate Representation to migrate your spiking model onto neuromorphic hardware."
-software_tags: ["norse", "snntorch", "spyx"]
+software_tags: ["norse", "snntorch", "spyx", "neuromorphic-intermediate-representation"]
 ---
 
 Have you wondered how to use neuromorphic hardware platforms?
