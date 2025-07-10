@@ -14,6 +14,8 @@ supports_NIR: False
 language: Python
 maintainer: Charl Linssen
 draft: false
+software_tags: ["nest", 'genn']
+hardware_tags: ["spinnaker-2-university-of-dresden"]
 ---
 
 
