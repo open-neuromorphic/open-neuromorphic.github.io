@@ -168,7 +168,7 @@ By bringing together the key maintainers in one forum, we aim to:
 
 **When**: July 30, 2025, 17:00-18:30 CEST (11:00-12:30 EST)
 
-This workshop will be hosted on StreamYard and streamed live. A direct link to join the session will be shared on our community channels closer to the event date:
+This workshop will be streamed live on Discord and YouTube. A direct link to join the session will be shared on our community channels closer to the event date:
 
 - [Discord](https://discord.gg/hUygPUdD8E)
 - [LinkedIn](https://www.linkedin.com/company/98345683/)
