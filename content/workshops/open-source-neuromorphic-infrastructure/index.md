@@ -1,7 +1,7 @@
 ---
 title: "Open-Source Neuromorphic Research Infrastructure: A Community Panel"
 author: 
-- "Jens E. Pedersen"
+- Jens E. Pedersen
 date: 2025-07-30
 start_time: 17:00
 end_time: 18:30
@@ -9,8 +9,8 @@ time_zone: CEST
 description: "Join leading maintainers of neuromorphic software libraries for a panel discussion on building open-source infrastructure, sharing lessons learned, and shaping the future of the neuromorphic ecosystem."
 upcoming: true
 # video: "" # Will be added after the event
-# image: "workshop-banner.png"
-speaker_photo: "panel-speakers.jpg"
+image: "tools.png"
+#speaker_photo: "tools.png"
 speaker_bio: "This panel brings together 9 leading maintainers of neuromorphic software libraries: Alexandre Marcireau (Faery), Dylan Muir (Rockpool), Gregor Lenz (Tonic), Jens E. Pedersen (NIR/Norse), Trevor Bekolay (Nengo), Hananel Hazan (BindsNET), Marcel Stimberg (Brian), Terry Stewart (Nengo), James Knight (GeNN), and Christian Pehle (Norse/jaxsnn). These contributors represent the backbone of the open-source neuromorphic ecosystem."
 # type: "workshops"
 # software_tags: ["community", "open-source", "infrastructure"]
@@ -40,10 +40,9 @@ This panel will provide valuable insights into:
 
 This 90-minute session will feature:
 
-- **Opening Introduction** (10 minutes): Overview of the current neuromorphic software landscape
-- **Lightning Talks** (45 minutes): 9 maintainers presenting for 5 minutes each
+- **Opening Introduction** (10 minutes): Overview of the current neuromorphic landscape
+- **Lightning Talks** (45 minutes): 9 maintainers presenting their motivation and vision
 - **Panel Discussion** (20-30 minutes): Community-focused discussion on priorities and collaboration
-- **Q&A Session** (15 minutes): Audience questions and closing thoughts
 
 ## Target Audience
 
@@ -55,39 +54,83 @@ This workshop is designed for:
 - **Software developers** considering contributing to neuromorphic libraries
 - **Community leaders** interested in ecosystem development and collaboration
 
-## Prerequisites
-
-- Basic familiarity with neuromorphic computing concepts
-- Interest in open-source software development
-- No specific technical prerequisites required
-
-## Confirmed Panelists
+## Confirmed Speakers
 
 This panel brings together 9 leading maintainers from the neuromorphic software ecosystem:
 
-### **Alexandre Marcireau** - [Faery](https://open-neuromorphic.org/neuromorphic-computing/software/data-tools/faery/)
-Software developer in neuromorphic computing, recognized for his contributions to the Faery event processing library for event-based camera data.
+speaker_bio: "This panel brings together 9 leading maintainers of neuromorphic software libraries: Alexandre Marcireau (Faery), Dylan Muir (Rockpool), Gregor Lenz (Tonic), Jens E. Pedersen (NIR/Norse), Terry Stewart (Nengo), Hananel Hazan (BindsNET), Marcel Stimberg (Brian), Terry Stewart (Nengo), James Knight (GeNN), and Christian Pehle (Norse/jaxsnn). These contributors represent the backbone of the open-source neuromorphic ecosystem."
 
-### **Dylan Muir** - [Rockpool](https://open-neuromorphic.org/neuromorphic-computing/software/snn-frameworks/rockpool/)
-VP Global Research Operations at SynSense, specialist in neural computation architectures. Directs research vision and neural architecture development with a PhD from ETH Zurich.
+<div style="display: flex; align-items: flex-start; margin-bottom: 20px; gap: 15px;">
+  <img src="https://i0.wp.com/hananel.hazan.org.il/wp-content/uploads/2020/05/Hananel_Hazan.jpg?resize=300%2C300&ssl=1" alt="Hananel Hazan" width="120" height="120" style="border-radius: 8px; flex-shrink: 0;">
+  <div>
+    <h3 style="margin-top: 0;"><strong><a href="https://hananel.hazan.org.il/">Hananel Hazan</a></strong> - <a href="https://open-neuromorphic.org/neuromorphic-computing/software/snn-frameworks/bindsnet/">BindsNET</a></h3>
+    <p>Research scientist at the Allen Discovery Center at Tufts University and a leading developer of the BindsNET framework.</p>
+  </div>
+</div>
 
-### **Gregor Lenz** - [Tonic](https://open-neuromorphic.org/neuromorphic-computing/software/data-tools/tonic/)
-Co-Founder & CTO at Neurobus, PhD in neuromorphic engineering from Sorbonne University. Expert in event cameras, SNNs, and open-source software development.
+<div style="display: flex; align-items: flex-start; margin-bottom: 20px; gap: 15px;">
+  <img src="https://profiles.sussex.ac.uk/p415734-james-knight/thumbnail" alt="James Knight" width="120" height="120" style="border-radius: 8px; flex-shrink: 0;">
+  <div>
+    <h3 style="margin-top: 0;"><strong><a href="https://profiles.sussex.ac.uk/p415734-james-knight">James Knight</a></strong> - <a href="https://open-neuromorphic.org/neuromorphic-computing/software/snn-frameworks/genn/">GeNN</a></h3>
+    <p>Senior Research Software Engineer at the University of Sussex, leading developer of the GeNN neural simulation environment.</p>
+  </div>
+</div>
 
-### **Jens E. Pedersen** - [NIR](https://open-neuromorphic.org/neuromorphic-computing/software/deployment-tools/nir/) & [Norse](https://open-neuromorphic.org/neuromorphic-computing/software/snn-frameworks/norse/)
-Doctoral student at KTH, modeling neuromorphic systems to solve real-world challenges. Maintainer of Norse, AEStream, and co-author of the Neuromorphic Intermediate Representation (NIR).
+<div style="display: flex; align-items: flex-start; margin-bottom: 20px; gap: 15px;">
+  <img src="https://www.westernsydney.edu.au/__data/assets/image/0006/1965534/MARCIREAU_Alex_bw.png" alt="Alexandre Marcireau" width="120" height="120" style="border-radius: 8px; flex-shrink: 0;">
+  <div>
+    <h3 style="margin-top: 0;"><strong><a href="https://www.westernsydney.edu.au/marcs/about/our_people/researchers/dr_alexandre_marcireau">Alexandre Marcireau</a></strong> - <a href="https://open-neuromorphic.org/neuromorphic-computing/software/data-tools/faery/">Faery</a></h3>
+    <p>Researcher in neuromorphic event-based vision and leading contributor to event camera infrastructure.</p>
+  </div>
+</div>
 
-### **Trevor Bekolay** - [Nengo](https://open-neuromorphic.org/neuromorphic-computing/software/snn-frameworks/nengo/)
-Research scientist focused on learning, memory, and biologically plausible SNNs for speech processing. Creator and lead developer of the Nengo neural simulator.
+<div style="display: flex; align-items: flex-start; margin-bottom: 20px; gap: 15px;">
+  <img src="https://lenzgregor.com/images/profile.jpg" alt="Gregor Lenz" width="120" height="120" style="border-radius: 8px; flex-shrink: 0;">
+  <div>
+    <h3 style="margin-top: 0;"><strong><a href="https://lenzgregor.com/">Gregor Lenz</a></strong> - <a href="https://open-neuromorphic.org/neuromorphic-computing/software/data-tools/tonic/">Tonic</a></h3>
+    <p>Co-Founder & CTO at Neurobus, PhD in neuromorphic engineering from Sorbonne University. Expert in event cameras, SNNs, and open-source software development.</p>
+  </div>
+</div>
 
-### **Additional Confirmed Speakers:**
-- **Hananel Hazan** - [BindsNET](https://open-neuromorphic.org/neuromorphic-computing/software/snn-frameworks/bindsnet/) maintainer
-- **Marcel Stimberg** - [Brian](https://open-neuromorphic.org/neuromorphic-computing/software/snn-frameworks/brian/) maintainer
-- **Terry Stewart** - [Nengo](https://open-neuromorphic.org/neuromorphic-computing/software/snn-frameworks/nengo/) contributor
-- **James Knight** - [GeNN](https://open-neuromorphic.org/neuromorphic-computing/software/snn-frameworks/genn/) maintainer
-- **Christian Pehle** - [Norse](https://open-neuromorphic.org/neuromorphic-computing/software/snn-frameworks/norse/) & [jaxsnn](https://open-neuromorphic.org/neuromorphic-computing/software/snn-frameworks/jaxsnn/) contributor
+<div style="display: flex; align-items: flex-start; margin-bottom: 20px; gap: 15px;">
+  <img src="https://scholar.googleusercontent.com/citations?view_op=view_photo&user=CLP_WPsAAAAJ&citpid=3" alt="Dylan Muir" width="120" height="120" style="border-radius: 8px; flex-shrink: 0;">
+  <div>
+    <h3 style="margin-top: 0;"><strong><a href="https://scholar.google.com/citations?user=CLP_WPsAAAAJ&hl=en">Dylan Muir</a></strong> - <a href="https://open-neuromorphic.org/neuromorphic-computing/software/snn-frameworks/rockpool/">Rockpool</a></h3>
+    <p>VP Global Research Operations at SynSense. Built Rockpool and contributed heavily to community initiatives, most recently with a paper on <a href="https://www.nature.com/articles/s41467-025-57352-1">The road to commercial success for neuromorphic technologies</a>.</p>
+  </div>
+</div>
 
-*Complete bios for all speakers will be available before the event.*
+<div style="display: flex; align-items: flex-start; margin-bottom: 20px; gap: 15px;">
+  <img src="https://jepedersen.dk/img/2404_jens.jpg" alt="Jens E. Pedersen" width="120" height="120" style="border-radius: 8px; flex-shrink: 0;">
+  <div>
+    <h3 style="margin-top: 0;"><strong><a href="https://jepedersen.dk/">Jens E. Pedersen</a></strong> - <a href="https://open-neuromorphic.org/neuromorphic-computing/software/deployment-tools/nir/">NIR</a> & <a href="https://open-neuromorphic.org/neuromorphic-computing/software/snn-frameworks/norse/">Norse</a></h3>
+    <p>Doctoral student at KTH and chair of Open Neuromorphic. Maintainer of Norse, Faery, and co-author of the Neuromorphic Intermediate Representation (NIR).</p>
+  </div>
+</div>
+
+<div style="display: flex; align-items: flex-start; margin-bottom: 20px; gap: 15px;">
+  <img src="https://cpehle.github.io/photos/portrait.png" alt="Christian Pehle" width="120" height="120" style="border-radius: 8px; flex-shrink: 0;">
+  <div>
+    <h3 style="margin-top: 0;"><strong><a href="https://cpehle.github.io/">Christian Pehle</a></strong> - <a href="https://open-neuromorphic.org/neuromorphic-computing/software/snn-frameworks/norse/">Norse</a> & <a href="https://open-neuromorphic.org/neuromorphic-computing/software/snn-frameworks/jaxsnn/">jaxsnn</a></h3>
+    <p>Researcher at Cold Spring Harbor Laboratory. Maintainer of Norse and jaxsnn.</p>
+  </div>
+</div>
+
+<div style="display: flex; align-items: flex-start; margin-bottom: 20px; gap: 15px;">
+  <img src="http://compneuro.uwaterloo.ca/files/people/TerryStewart.png" alt="Terry Stewart" width="120" height="120" style="border-radius: 8px; flex-shrink: 0;">
+  <div>
+    <h3 style="margin-top: 0;"><strong><a href="https://compneuro.uwaterloo.ca/people/terrence-c-stewart.html">Terry Stewart</a></strong> - <a href="https://open-neuromorphic.org/neuromorphic-computing/software/snn-frameworks/nengo/">Nengo</a></h3>
+    <p>Research scientist focused on learning, memory, and biologically plausible SNNs. Lead developer of the Nengo neural simulator.</p>
+  </div>
+</div>
+
+<div style="display: flex; align-items: flex-start; margin-bottom: 20px; gap: 15px;">
+  <img src="https://marcel.stimberg.info/_static/marcel_circle.webp" alt="Marcel Stimberg" width="120" height="120" style="border-radius: 8px; flex-shrink: 0;">
+  <div>
+    <h3 style="margin-top: 0;"><strong><a href="https://marcel.stimberg.info/">Marcel Stimberg</a></strong> - <a href="https://open-neuromorphic.org/neuromorphic-computing/software/snn-frameworks/brian/">Brian</a></h3>
+    <p>Research engineer at Sorbonne Université. Leading developer of the Brian neural simulator.</p>
+  </div>
+</div>
 
 ## Key Discussion Topics
 
