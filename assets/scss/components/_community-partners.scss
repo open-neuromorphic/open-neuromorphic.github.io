@@ -1,0 +1,36 @@
+// assets/scss/components/_community-partners.scss
+.community-partners-section {
+  .partners-slider-wrapper {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+  }
+
+  .partners-track {
+    animation: scroll 40s linear infinite;
+    &:hover {
+      animation-play-state: paused;
+    }
+  }
+
+  .partner-logo {
+    filter: grayscale(100%) contrast(70%) brightness(1.2);
+    opacity: 0.7;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .partner-logo-link:hover .partner-logo {
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: scale(1.05);
+  }
+
+  @keyframes scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
