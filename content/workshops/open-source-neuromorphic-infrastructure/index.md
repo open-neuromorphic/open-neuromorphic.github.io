@@ -32,34 +32,6 @@ The neuromorphic computing field stands at a critical juncture. While we have in
 
 Join us for a unique opportunity to hear directly from the people building the tools that power neuromorphic research. Each panelist will share their insights on why they chose to build open-source solutions, what they've learned from developing these libraries, and their vision for how the Open Neuromorphic community can better support and accelerate the entire ecosystem.
 
-## What You'll Learn
-
-This panel will provide valuable insights into:
-
-- **Open-Source Motivation**: Why leading developers chose to build open-source neuromorphic tools rather than proprietary solutions
-- **Development Lessons**: Real-world challenges and discoveries from building neuromorphic software libraries
-- **Community Vision**: How maintainers believe the Open Neuromorphic ecosystem should evolve
-- **Collaboration Opportunities**: Ways the community can work together to create a more competitive and unified infrastructure
-- **Strategic Priorities**: What the neuromorphic community should focus on to accelerate adoption and impact
-
-## Format
-
-This 90-minute session will feature:
-
-- **Opening Introduction** (10 minutes): Overview of the current neuromorphic landscape
-- **Lightning Talks** (45 minutes): 9 maintainers presenting their motivation and vision
-- **Panel Discussion** (20-30 minutes): Community-focused discussion on priorities and collaboration
-
-## Target Audience
-
-This workshop is designed for:
-
-- **Researchers** working in neuromorphic computing who want to understand the software ecosystem
-- **PhD students** exploring neuromorphic tools and seeking guidance on library selection
-- **Industry practitioners** interested in the open-source neuromorphic landscape
-- **Software developers** considering contributing to neuromorphic libraries
-- **Community leaders** interested in ecosystem development and collaboration
-
 ## Confirmed Panelists
 
 This panel brings together leading maintainers from the neuromorphic software ecosystem to discuss the future of open-source tools. We are thrilled to welcome:
@@ -73,6 +45,27 @@ This panel brings together leading maintainers from the neuromorphic software ec
 - **Christian Pehle** ([Norse](/neuromorphic-computing/software/snn-frameworks/norse/) & [jaxsnn](/neuromorphic-computing/software/snn-frameworks/jaxsnn/)), *Researcher at Cold Spring Harbor Laboratory*.
 - **Terry Stewart** ([Nengo](/neuromorphic-computing/software/snn-frameworks/nengo/)), *Lead developer of the Nengo neural simulator*.
 - **Marcel Stimberg** ([Brian](/neuromorphic-computing/software/snn-frameworks/brian/)), *Research engineer at Sorbonne Université*.
+
+## What You'll Learn
+
+This panel will provide valuable insights into:
+
+- **Open-Source Motivation**: Why leading developers chose to build open-source neuromorphic tools rather than proprietary solutions
+- **Development Lessons**: Real-world challenges and discoveries from building neuromorphic software libraries
+- **Community Vision**: How maintainers believe the Open Neuromorphic ecosystem should evolve
+- **Collaboration Opportunities**: Ways the community can work together to create a more competitive and unified infrastructure
+- **Strategic Priorities**: What the neuromorphic community should focus on to accelerate adoption and impact
+
+## Target Audience
+
+This workshop is designed for:
+
+- **Researchers** working in neuromorphic computing who want to understand the software ecosystem
+- **PhD students** exploring neuromorphic tools and seeking guidance on library selection
+- **Industry practitioners** interested in the open-source neuromorphic landscape
+- **Software developers** considering contributing to neuromorphic libraries
+- **Community leaders** interested in ecosystem development and collaboration
+
 
 ## Key Discussion Topics
 
@@ -117,6 +110,15 @@ This workshop will be streamed live on Discord and YouTube. A direct link to joi
 - [YouTube](https://www.youtube.com/@openneuromorphic)
 
 The session will be recorded and made available on YouTube for those who cannot attend live. We encourage early attendance to ensure smooth technical setup.
+
+## Format
+
+This 90-minute session will feature:
+
+- **Opening Introduction** (10 minutes): Overview of the current neuromorphic landscape
+- **Lightning Talks** (45 minutes): 9 maintainers presenting their motivation and vision
+- **Panel Discussion** (20-30 minutes): Community-focused discussion on priorities and collaboration
+
 
 ## About the Organizer
 
