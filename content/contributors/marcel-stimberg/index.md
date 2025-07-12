@@ -6,6 +6,9 @@ social:
   - icon: "fa fa-house"
     link: "https://marcel.stimberg.info/"
     title: "website"
+  - icon: "fa-brands fa-github"
+    link: "https://github.com/mstimberg"
+    title: "github"
 draft: false
 ---
 Marcel Stimberg is a research engineer at Sorbonne Université and a leading developer of the Brian neural simulator.
