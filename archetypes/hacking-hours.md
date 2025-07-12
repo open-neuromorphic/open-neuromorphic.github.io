@@ -13,9 +13,8 @@ description: "Join us for a hands-on hacking hours on [Topic] with [Speaker Name
 upcoming: true # Set to 'true' for future events. Change to 'false' after the event.
 video: ""      # After the event, add the YouTube video ID (e.g., "dQw4w9WgXcQ").
 image: "hacking-hours-banner.png" # Main banner image for social sharing (1200x630px). Place in this folder.
-speaker_photo: "speaker-photo.jpg" # Speaker's photo. Place in this folder.
 type: "hacking-hours" # IMPORTANT: Do not change this line.
-speaker_bio: "A brief biography of the speaker. What makes them the right person to talk about this topic?"
+show_author_bios: true # Set to true to display author bios from contributor profiles.
 # Optional: Add the file name (slug) of any software pages this event is related to.
 # e.g., ["spyx", "snntorch"]
 software_tags: []
