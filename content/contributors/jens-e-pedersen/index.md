@@ -1,6 +1,6 @@
 ---
 title: "Jens E. Pedersen"
-description: "Doctoral student at KTH, modeling neuromorphic control systems to solve real-world ambiguity. Maintainer of Norse, AEStream, and co-author of NIR."
+description: "Doctoral student at KTH, modeling neuromorphic systems to solve real-world challenges. Maintainer of Norse, AEStream, Faery, and co-author of NIR."
 image: "jens-egholm.png"
 social:
   - icon: "fa fa-house"
@@ -11,7 +11,7 @@ social:
     title: "github"
 draft: false
 ---
-Jens Egholm Pedersen is a doctoral student at the [Royal Institute of Technology (KTH)](https://www.kth.se/profile/jeped/) working to model and construct [neuromorphic](https://en.wikipedia.org/wiki/Neuromorphic_engineering) control systems.
+Jens Egholm Pedersen is a doctoral student at the [Royal Institute of Technology (KTH)](https://www.kth.se/profile/jeped/) working to model and construct [neuromorphic](https://en.wikipedia.org/wiki/Neuromorphic_engineering) systems.
 
 When faced with the complexity and ambiguity in the real world, contemporary algorithms fail spectacularly. There is a strong need for self-correcting, closed-loop systems to help solve our everyday physical problems.
 
