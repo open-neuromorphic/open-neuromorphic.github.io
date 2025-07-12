@@ -14,8 +14,8 @@
     </div>
 
     {{- .Scratch.Set "contributorContent" (dict) -}}
-    {{- $contentSectionsToScan := slice "blog" "workshops" "student-talks" -}}
-    {{- $contentTypesToScan := slice "hacking-hours" "initiatives" -}}
+    {{- $contentSectionsToScan := slice "blog" "workshops" -}}
+    {{- $contentTypesToScan := slice "hacking-hours" "initiatives" "student-talks" -}}
 
     {{- range where site.RegularPages "Params.author" "!=" nil -}}
     {{- $page := . -}}
