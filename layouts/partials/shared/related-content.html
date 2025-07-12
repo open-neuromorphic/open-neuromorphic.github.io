@@ -6,11 +6,8 @@
 {{ if $page_context.File }}
   {{ $current_slug = path.Base $page_context.File.Dir }}
 {{ end }}
-{{ $current_title := $page_context.Title }}
 
-
-{{/* --- Part 1: Find related content (blog, events) that tag this page --- */}}
-
+{{/* --- Part 1: Find INCOMING links from other content (blog, events, etc.) --- */}}
 {{ $tag_param_key := "" }}
 {{ if eq $current_type "neuromorphic-hardware" }}
     {{ $tag_param_key = ".Params.hardware_tags" }}
@@ -25,15 +22,14 @@
     {{ end }}
 {{ end }}
 
+{{/* --- Part 2: Find OUTGOING links to other hardware/software --- */}}
 
-{{/* --- Part 2: Find related hardware/software (bidirectional linking) --- */}}
-
-{{ if eq $current_type "neuromorphic-hardware" }}
-    {{/* I am a hardware page. Find software I support using my `software_tags` */}}
-    {{ with .Params.software_tags }}
-        {{ $software_slugs_to_find := . }}
-        {{ $all_software_pages := where site.RegularPages "Type" "neuromorphic-software" }}
-        {{ range $software_page := $all_software_pages }}
+{{/* Find software this page links to */}}
+{{ with .Params.software_tags }}
+    {{ $software_slugs_to_find := . }}
+    {{ $all_software_pages := where site.RegularPages "Type" "neuromorphic-software" }}
+    {{ range $software_page := $all_software_pages }}
+        {{ if ne $software_page.Permalink $page_context.Permalink }}
             {{ $software_slug := "" }}
             {{ if $software_page.File }}{{ $software_slug = path.Base $software_page.File.Dir }}{{ end }}
             {{ if and (ne $software_slug "") (in $software_slugs_to_find $software_slug) }}
@@ -41,17 +37,25 @@
             {{ end }}
         {{ end }}
     {{ end }}
+{{ end }}
 
-{{ else if and (eq $current_type "neuromorphic-software") (ne $current_slug "") }}
-    {{/* I am a software page. Find hardware that supports me. */}}
-    {{ $hardware_pages := where site.RegularPages "Type" "neuromorphic-hardware" }}
-    {{ range where $hardware_pages ".Params.software_tags" "intersect" (slice $current_slug) }}
-        {{ $related_items = $related_items | append . }}
+{{/* Find hardware this page links to */}}
+{{ with .Params.hardware_tags }}
+    {{ $hardware_slugs_to_find := . }}
+    {{ $all_hardware_pages := where site.RegularPages "Type" "neuromorphic-hardware" }}
+    {{ range $hardware_page := $all_hardware_pages }}
+         {{ if ne $hardware_page.Permalink $page_context.Permalink }}
+            {{ $hardware_slug := "" }}
+            {{ if $hardware_page.File }}{{ $hardware_slug = path.Base $hardware_page.File.Dir }}{{ end }}
+            {{ if and (ne $hardware_slug "") (in $hardware_slugs_to_find $hardware_slug) }}
+                {{ $related_items = $related_items | append $hardware_page }}
+            {{ end }}
+        {{ end }}
     {{ end }}
 {{ end }}
 
+
 {{/* --- Finalize and Render --- */}}
-{{/* Deduplicate */}}
 {{ $unique_related_items := slice }}
 {{ $seen_permalinks := slice }}
 {{ range $related_items }}
@@ -72,7 +76,6 @@
     <div class="timeline-item-content">
       <div class="flex flex-col md:flex-row items-start gap-5">
         
-        {{/* Thumbnail Column - Renders only if image is in front matter */}}
         {{ with $item.Params.image }}
           <div class="flex-shrink-0 w-full md:w-40 text-center">
             <a href="{{ $item.RelPermalink }}">
@@ -98,7 +101,6 @@
           </div>
         {{ end }}
 
-        {{/* Content Column */}}
         <div class="flex-grow">
           <div class="flex justify-between items-start gap-4">
             <div>
