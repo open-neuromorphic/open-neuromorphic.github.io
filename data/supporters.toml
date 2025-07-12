@@ -1,0 +1,71 @@
+# Supporters of Open Neuromorphic
+# This file manages the list of open-source projects and future tiered supporters.
+# `page_path` should link to the software/hardware page on this site.
+# `logo` should be the filename of the logo within the corresponding page bundle.
+# `dark_logo_invert = true` will apply a CSS invert filter in dark mode for logos that are dark.
+
+[[opensource_collaborator]]
+name = "BindsNET"
+logo = "bindsnet.jpg"
+page_path = "neuromorphic-computing/software/snn-frameworks/bindsnet/"
+dark_logo_invert = false
+
+[[opensource_collaborator]]
+name = "snnTorch"
+logo = "snntorch.png"
+page_path = "neuromorphic-computing/software/snn-frameworks/snntorch/"
+dark_logo_invert = false
+
+[[opensource_collaborator]]
+name = "Brian"
+logo = "brian.jpg"
+page_path = "neuromorphic-computing/software/snn-frameworks/brian/"
+dark_logo_invert = true
+
+[[opensource_collaborator]]
+name = "jaxsnn"
+logo = "jaxsnn.png"
+page_path = "neuromorphic-computing/software/snn-frameworks/jaxsnn/"
+dark_logo_invert = false
+
+[[opensource_collaborator]]
+name = "Nengo"
+logo = "nengo.jpg"
+page_path = "neuromorphic-computing/software/snn-frameworks/nengo/"
+dark_logo_invert = true
+
+[[opensource_collaborator]]
+name = "Norse"
+logo = "norse.png"
+page_path = "neuromorphic-computing/software/snn-frameworks/norse/"
+dark_logo_invert = false
+
+[[opensource_collaborator]]
+name = "Rockpool"
+logo = "rockpool.png"
+page_path = "neuromorphic-computing/software/snn-frameworks/rockpool/"
+dark_logo_invert = false
+
+[[opensource_collaborator]]
+name = "Tonic"
+logo = "tonic-logo-black-bg.png"
+page_path = "neuromorphic-computing/software/data-tools/tonic/"
+dark_logo_invert = true
+
+[[opensource_collaborator]]
+name = "Lava"
+logo = "lava.png"
+page_path = "neuromorphic-computing/software/snn-frameworks/lava/"
+dark_logo_invert = true
+
+[[opensource_collaborator]]
+name = "Sinabs"
+logo = "sinabs.png"
+page_path = "neuromorphic-computing/software/snn-frameworks/sinabs/"
+dark_logo_invert = false
+    
+[[opensource_collaborator]]
+name = "Spyx"
+logo = "spyx.png"
+page_path = "neuromorphic-computing/software/snn-frameworks/spyx/"
+dark_logo_invert = true

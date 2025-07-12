@@ -1,23 +1,9 @@
-{{ $partner_slugs := slice "bindsnet" "snntorch" "brian" "jaxsnn" "nengo" "norse" "rockpool" "tonic" "lava" "sinabs" "spyx" }}
-{{ $partners := slice }}
-
-{{ $all_software := where site.RegularPages "Type" "neuromorphic-software" }}
-
-{{ range $slug := $partner_slugs }}
-  {{ range $page := $all_software }}
-    {{ $page_slug := "" }}
-    {{ if $page.File }}{{ $page_slug = path.Base $page.File.Dir }}{{ end }}
-    {{ if and (eq $page_slug $slug) $page.Params.logo }}
-      {{ $partners = $partners | append $page }}
-    {{ end }}
-  {{ end }}
-{{ end }}
-
-{{ if $partners }}
-<div class="community-partners-section bg-gray-50 dark:bg-darkmode-theme-dark pb-16">
+{{ with site.Data.supporters.opensource_collaborator }}
+{{ $partners := . }}
+<div class="community-partners-section bg-gray-50 dark:bg-darkmode-theme-dark pt-10 pb-16">
   <div class="container mx-auto px-6">
     <h3 class="text-center text-sm font-semibold uppercase text-gray-500 dark:text-gray-400 tracking-wider mb-8">
-      Proudly supported by a robust open-source community
+      A community supported by leading open-source projects
     </h3>
     <div class="partners-slider-wrapper">
       <div class="partners-slider whitespace-nowrap">
@@ -25,12 +11,17 @@
           {{/* Duplicate the logos for a seamless scroll animation effect */}}
           {{ range (seq 2) }}
             {{ range $partners }}
-              <a href="{{ .RelPermalink }}" title="{{ .Title }}" class="partner-logo-link px-6 py-2 flex-shrink-0" {{ if eq . 2 }}aria-hidden="true"{{ end }}>
-                {{ with .Resources.GetMatch .Params.logo }}
-                  {{ $logo_img := .Fit "150x50 Lanczos" }}
-                  <img src="{{ $logo_img.RelPermalink }}" alt="{{ .Title }} logo" class="partner-logo h-10 w-auto max-w-[150px]">
+              {{ $partner := . }}
+              {{ with site.GetPage $partner.page_path }}
+                {{ $page := . }}
+                {{ with $page.Resources.GetMatch $partner.logo }}
+                  {{ $logo_resource := . }}
+                  <a href="{{ $page.RelPermalink }}" title="{{ $partner.name }}" class="partner-logo-link px-6 py-2 flex-shrink-0" {{ if eq . 2 }}aria-hidden="true"{{ end }}>
+                    {{ $logo_img := $logo_resource.Fit "150x50 Lanczos" }}
+                    <img src="{{ $logo_img.RelPermalink }}" alt="{{ $partner.name }} logo" class="partner-logo h-10 w-auto max-w-[150px] {{ if $partner.dark_logo_invert }}dark:invert{{ end }}">
+                  </a>
                 {{ end }}
-              </a>
+              {{ end }}
             {{ end }}
           {{ end }}
         </div>
