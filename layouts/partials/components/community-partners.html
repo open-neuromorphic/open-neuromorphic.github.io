@@ -1,33 +1,75 @@
-{{ with site.Data.supporters.opensource_collaborator }}
-{{ $partners := . }}
-<div class="community-partners-section bg-gray-50 dark:bg-darkmode-theme-dark pt-10 pb-16">
+{{- with site.Data.supporters.opensource_collaborator -}}
+  {{- $partners := . -}}
+
+  {{- /* --- Pre-calculation of contributions --- */ -}}
+  {{- $contributionsMap := dict -}}
+  {{- $contentTypes := slice "workshops" "hacking-hours" -}}
+  {{- $contentSections := slice "blog" -}}
+  {{- $allRelevantContent := where site.RegularPages "Type" "in" $contentTypes | union (where site.RegularPages "Section" "in" $contentSections) -}}
+
+  {{- range $content := $allRelevantContent -}}
+    {{- with $content.Params.software_tags -}}
+      {{- range . -}}
+        {{- $slug := . -}}
+        {{- $counts := index $contributionsMap $slug | default (dict "Workshops" 0 "Hacking Hours" 0 "Blogs" 0) -}}
+        {{- $type_key := "" -}}
+        {{- if eq $content.Type "workshops" -}}{{- $type_key = "Workshops" -}}
+        {{- else if eq $content.Type "hacking-hours" -}}{{- $type_key = "Hacking Hours" -}}
+        {{- else if eq $content.Section "blog" -}}{{- $type_key = "Blogs" -}}{{- end -}}
+
+        {{- if ne $type_key "" -}}
+          {{- $counts = merge $counts (dict $type_key (add (index $counts $type_key) 1)) -}}
+          {{- $contributionsMap = merge $contributionsMap (dict $slug $counts) -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+
+<div class="community-partners-section bg-gray-50 dark:bg-darkmode-theme-dark pt-10 pb-16 relative">
   <div class="container mx-auto px-6">
     <h3 class="text-center text-sm font-semibold uppercase text-gray-500 dark:text-gray-400 tracking-wider mb-8">
-      A community <a href="supporters">supported by leading open-source projects</a>
+      A community <a href="{{ `supporters/` | relLangURL }}">supported by leading open-source projects</a>
     </h3>
 
     <div class="partners-slider-wrapper">
       <div class="partners-slider whitespace-nowrap">
         <div class="partners-track inline-flex items-center">
-          {{/* Duplicate the logos for a seamless scroll animation effect */}}
-          {{ range (seq 2) }}
-            {{ range $partners }}
-              {{ $partner := . }}
-              {{ with site.GetPage $partner.page_path }}
-                {{ $page := . }}
-                {{ with $page.Resources.GetMatch $partner.logo }}
-                  {{ $logo_resource := . }}
-                  <a href="{{ $page.RelPermalink }}" title="{{ $partner.name }}" class="partner-logo-link px-6 py-2 flex-shrink-0" {{ if eq . 2 }}aria-hidden="true"{{ end }}>
-                    {{ $logo_img := $logo_resource.Fit "150x50 Lanczos" }}
+          {{- /* Duplicate the logos for a seamless scroll animation effect */ -}}
+          {{- range (seq 2) -}}
+            {{- range $partners -}}
+              {{- $partner := . -}}
+              {{- with site.GetPage $partner.page_path -}}
+                {{- $page := . -}}
+                {{- $slug := "" -}}
+                {{- if .File -}}{{- $slug = path.Base .File.Dir -}}{{- end -}}
+
+                {{- $data_attr := "" -}}
+                {{- with index $contributionsMap $slug -}}
+                  {{- $contribution_strings := slice -}}
+                  {{- if gt .Workshops 0 -}}{{- $contribution_strings = $contribution_strings | append (printf "Workshops: %d" .Workshops) -}}{{- end -}}
+                  {{- if gt (index . "Hacking Hours") 0 -}}{{- $contribution_strings = $contribution_strings | append (printf "Hacking Hours: %d" (index . "Hacking Hours")) -}}{{- end -}}
+                  {{- if gt .Blogs 0 -}}{{- $contribution_strings = $contribution_strings | append (printf "Blogs: %d" .Blogs) -}}{{- end -}}
+                  {{- if gt (len $contribution_strings) 0 -}}
+                    {{- $data_attr = printf `data-contributions="%s"` (delimit $contribution_strings "<br>") | safeHTMLAttr -}}
+                  {{- end -}}
+                {{- end -}}
+
+                {{- with $page.Resources.GetMatch $partner.logo -}}
+                  {{- $logo_resource := . -}}
+                  <a href="{{ $page.RelPermalink }}" title="{{ $partner.name }}" class="partner-logo-link px-6 py-2 flex-shrink-0" {{ $data_attr }}>
+                    {{- $logo_img := $logo_resource.Fit "150x50 Lanczos" -}}
                     <img src="{{ $logo_img.RelPermalink }}" alt="{{ $partner.name }} logo" class="partner-logo h-10 w-auto max-w-[150px] {{ if $partner.dark_logo_invert }}dark:invert{{ end }}">
                   </a>
-                {{ end }}
-              {{ end }}
-            {{ end }}
-          {{ end }}
+                {{- end -}}
+              {{- end -}}
+            {{- end -}}
+          {{- end -}}
         </div>
       </div>
     </div>
   </div>
+  
+  {{/* This new container will hold the bubbles and have the same fade mask */}}
+  <div class="bubbles-container"></div>
 </div>
-{{ end }}
+{{- end -}}
