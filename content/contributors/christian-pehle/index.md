@@ -12,6 +12,9 @@ social:
   - icon: "fa-brands fa-github"
     link: "https://github.com/cpehle"
     title: "github"
+  - icon: "fa-solid fa-graduation-cap"
+    link: "https://scholar.google.com/citations?user=FzRMI38AAAAJ&hl=en"
+    title: "scholar"
 draft: false
 ---
 Christian Pehle is a researcher at Cold Spring Harbor Laboratory. He is a maintainer of the Norse and jaxsnn software frameworks.

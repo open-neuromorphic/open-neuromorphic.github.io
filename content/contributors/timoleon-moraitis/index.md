@@ -2,7 +2,13 @@
 title: "Timoleon Moraitis"
 description: "Leads research in neuromorphic computing, focusing on models that surpass conventional AI in performance and efficiency. Formerly at Huawei & IBM Research."
 image: "speaker.png"
-social: []
+social:
+  - icon: "fa-brands fa-linkedin"
+    link: "https://www.linkedin.com/in/timos-moraitis/"
+    title: "linkedin"
+  - icon: "fa-solid fa-graduation-cap"
+    link: "https://scholar.google.com/citations?user=w3KiO1MAAAAJ&hl=en"
+    title: "scholar"
 draft: false
 ---
 

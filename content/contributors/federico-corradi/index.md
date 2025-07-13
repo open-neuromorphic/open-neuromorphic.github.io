@@ -2,7 +2,13 @@
 title: "Federico Corradi"
 description: "Assistant Professor in Electrical Engineering, researches neuromorphic computing, from models to microelectronic architectures for efficient deep learning."
 image: "corradi.jpg"
-social: []
+social:
+  - icon: "fa-brands fa-linkedin"
+    link: "https://www.linkedin.com/in/federico-corradi-19a69a17/"
+    title: "linkedin"
+  - icon: "fa-solid fa-graduation-cap"
+    link: "https://scholar.google.com/citations?user=6puWRkkAAAAJ&hl=it"
+    title: "scholar"
 draft: false
 ---
 Dr. Federico Corradi is an Assistant Professor in the Electrical Engineering Department. His research activities are in Neuromorphic Computing and Engineering and span from the development of efficient models of computation to novel microelectronic architectures, with CMOS and emerging technologies, for both efficient deep learning and brain-inspired algorithms. His long-term research goal is to understand the principles of computation in natural neural systems and apply those for the development of a new generation of energy-efficient sensing and computing technologies. His research outputs find use in several application domains as robotics, machine vision, temporal signal processing, and biomedical signal analysis.

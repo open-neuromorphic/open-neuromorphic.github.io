@@ -2,7 +2,13 @@
 title: "Melika Payvand"
 description: "Assistant Professor at Inst. of Neuroinformatics (UZH/ETH). Develops on-device learning systems using resistive memory for brain-inspired plasticity."
 image: "melika-payvand.jpg" # Assuming melika-payvand.jpg is in this bundle
-social: []
+social:
+  - icon: "fa-brands fa-linkedin"
+    link: "https://www.linkedin.com/in/melika-payvand-a9897625/"
+    title: "linkedin"
+  - icon: "fa-solid fa-graduation-cap"
+    link: "https://scholar.google.com/citations?user=Ol_9mKgAAAAJ&hl=en"
+    title: "scholar"
 draft: false
 ---
 Melika Payvand is an Assistant Professor at the Institute of Neuroinformatics, University of Zurich and ETH Zurich. She received her PhD in Electrical and Computer Engineering at the University of California Santa Barbara.
