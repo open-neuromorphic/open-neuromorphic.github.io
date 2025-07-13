@@ -7,10 +7,35 @@ Slug          (string)         — contributor slug
 ImageResource (Resource | nil) — page-bundle image resource if found
 */}}
 {{ $name := . }}
-{{ $slug := $name | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" | replaceRE "é" "e" | replaceRE "É" "E" | replaceRE "á" "a" | replaceRE "Á" "A" | replaceRE "í" "i" | replaceRE "Í" "I" | replaceRE "ó" "o" | replaceRE "Ó" "O" | replaceRE "ú" "u" | replaceRE "Ú" "U" | anchorize }}
-{{ $page := site.GetPage (printf "contributors/%s" $slug) }}
+{{ $page := "" }}
+
+{{/* 1. Try to find the exact contributor page by matching the Title front matter */}}
+{{/* This is 100% robust against special characters (é, ć, ț, etc.) */}}
+{{ $contributors := where site.RegularPages "Type" "contributors" }}
+{{ range $contributors }}
+  {{ if eq (lower .Title) (lower $name) }}
+    {{ $page = . }}
+  {{ end }}
+{{ end }}
+
+{{/* 2. Fallback to slug-based path lookup if no title matched */}}
+{{ if not $page }}
+  {{ $slug_guess := $name | urlize }}
+  {{ $page = site.GetPage (printf "contributors/%s" $slug_guess) }}
+{{ end }}
+
+{{/* 3. Determine the final slug to return */}}
+{{ $slug := "" }}
+{{ if $page }}
+  {{ $slug = path.Base $page.File.Dir }}
+{{ else }}
+  {{ $slug = $name | urlize }}
+{{ end }}
+
+{{/* 4. Resolve the image resource from the page bundle */}}
 {{ $image := "" }}
 {{ if and $page $page.Params.image }}
-{{ with $page.Resources.GetMatch $page.Params.image }}{{ $image = . }}{{ end }}
+  {{ with $page.Resources.GetMatch $page.Params.image }}{{ $image = . }}{{ end }}
 {{ end }}
+
 {{ return (dict "Page" $page "Name" $name "Slug" $slug "ImageResource" $image) }}
