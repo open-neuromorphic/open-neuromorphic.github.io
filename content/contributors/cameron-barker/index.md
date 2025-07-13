@@ -5,9 +5,8 @@ image: "" # No image found
 social:
   - icon: "fa-brands fa-github"
     link: "https://github.com/cameron-git"
-    title: "linkedin"
+    title: "github"
 draft: false
 ---
 
 Cameron Barker is a Neuromorphic Engineer at Ripga ltd.
-

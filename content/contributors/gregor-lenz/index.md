@@ -12,6 +12,9 @@ social:
   - icon: "fa-brands fa-github"
     link: "https://github.com/biphasic"
     title: "github"
+  - icon: "fa-solid fa-graduation-cap"
+    link: "https://scholar.google.com/citations?user=aqahOiAAAAAJ&hl=fr"
+    title: "scholar"
 draft: false
 ---
 Gregor Lenz, Co-Founder and CTO at [Neurobus](https://neurobus.space), graduated with a Ph.D. in neuromorphic engineering from Sorbonne University. He thinks that technology can learn a thing or two from how biological systems process information.

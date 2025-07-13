@@ -11,6 +11,9 @@ social:
   - icon: "fa-brands fa-github"
     link: "https://github.com/aMarcireau"
     title: "github"
+  - icon: "fa-solid fa-graduation-cap"
+    link: "https://scholar.google.com/citations?user=43KBWgoAAAAJ&hl=en"
+    title: "scholar"
 draft: false
 image: alexandre-marciraeu.png
 ---

@@ -2,7 +2,13 @@
 title: "Carlos Ortega-Otero"
 description: "Sr. Research Staff Member at IBM, specializing in Circuit Design, Neuromorphic Chip Architectures, and Low-Power Circuits. Key member of NorthPole Project."
 image: "carlos-ortega-otero.webp"
-social: []
+social:
+  - icon: "fa-brands fa-linkedin"
+    link: "https://www.linkedin.com/in/carlos-vls"
+    title: "linkedin"
+  - icon: "fa-solid fa-graduation-cap"
+    link: "https://scholar.google.co.in/citations?user=J_I1-ZoAAAAJ&hl=ja"
+    title: "scholar"
 draft: false
 ---
 Dr. Carlos Ortega-Otero is an Sr. Research Staff Member at IBM driven by a passion in Circuit Design, Neuromorphic Chip Architectures, Low-Power Circuits and Physical Design optimizations. He earned his Ph.D. from Cornell University under the guidance of Prof. Rajit Manohar.

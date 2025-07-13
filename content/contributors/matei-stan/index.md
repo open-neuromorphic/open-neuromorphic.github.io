@@ -6,6 +6,9 @@ social:
   - icon: "fa-brands fa-linkedin"
     link: "https://www.linkedin.com/in/matei-stan"
     title: "linkedin"
+  - icon: "fa-solid fa-graduation-cap"
+    link: "https://scholar.google.com/citations?user=ykrwW2EAAAAJ&hl=en"
+    title: "scholar"
 draft: false
 ---
 

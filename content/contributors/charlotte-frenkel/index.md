@@ -1,8 +1,14 @@
 ---
 title: "Charlotte Frenkel"
 description: "Assistant Professor at TU Delft, researching competitive neuromorphic devices and on-chip intelligence. Designer of ODIN & ReckOn open-source processors."
-image: "charlotte-frenkel.jpg" # Assuming charlotte-frenkel.jpg is in this bundle
-social: [] # Add social links if available, e.g., { icon: "fa-brands fa-github", link: "https://github.com/ChFrenkel", title: "github" }
+image: "charlotte-frenkel.jpg"
+social:
+  - icon: "fa-brands fa-linkedin"
+    link: "https://www.linkedin.com/in/cfrenkel/"
+    title: "linkedin"
+  - icon: "fa-solid fa-graduation-cap"
+    link: "https://scholar.google.com/citations?user=Lf6_Zl0AAAAJ&hl=fr"
+    title: "scholar"
 draft: false
 ---
 Charlotte Frenkel is an Assistant Professor at the Microelectronics department of Delft University of Technology, Delft, The Netherlands.

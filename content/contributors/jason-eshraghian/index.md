@@ -9,6 +9,9 @@ social:
   - icon: "fa-brands fa-github"
     link: "https://github.com/jeshraghian"
     title: "github"
+  - icon: "fa-solid fa-graduation-cap"
+    link: "https://scholar.google.com/citations?user=C16f0r3hL-kC&hl=en"
+    title: "scholar"
 draft: false
 ---
 Jason Eshraghian is an Assistant Professor at the Department of Electrical and Computer Engineering, University of California, Santa Cruz, leading the [UCSC Neuromorphic Computing Group](http://ncg.ucsc.edu/).
