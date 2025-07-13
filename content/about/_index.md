@@ -68,5 +68,6 @@ The heart of Open Neuromorphic is its community. Whether you're looking to learn
 *   **Engage with us** on our [Discord server](https://discord.gg/hUygPUdD8E).
 *   **Contribute** to our [website and projects on GitHub](https://github.com/open-neuromorphic/open-neuromorphic.github.io).
 *   **Share your knowledge** by giving a talk, writing a blog post, or leading an initiative.
+*   **Contact us** via email at [contact@open-neuromorphic.org](mailto:contact@open-neuromorphic.org) for partnerships or direct inquiries.
 
 Discover how you can make an impact by visiting our [Getting Involved](/getting-involved/) page. We're excited to have you as part of the Open Neuromorphic journey!
