@@ -1,8 +1,14 @@
 ---
 title: "Giulia D'Angelo"
-image: "giulia-dangelo.jpg"
 description: "Researcher with a PhD in visual attention neuromorphic algorithms for robotics (IIT). Passionate about bioinspired architectures and event-based vision."
-social: []
+image: "giulia-dangelo.jpg"
+social:
+  - icon: "fa-brands fa-linkedin"
+    link: "https://www.linkedin.com/in/giuliadangelo/"
+    title: "linkedin"
+  - icon: "fa-solid fa-graduation-cap"
+    link: "https://scholar.google.com/citations?user=76sPLvEAAAAJ&hl=it"
+    title: "scholar"
 draft: false
 ---
 Giulia D’Angelo is a Researcher with a PhD in visual attention neuromorphic algorithms for online robotic applications at the Italian Institute of Technology. 

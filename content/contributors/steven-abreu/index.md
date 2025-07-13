@@ -6,6 +6,12 @@ social:
   - icon: "fa fa-house"
     link: "https://stevenabreu.com/"
     title: "website"
+  - icon: "fa-brands fa-linkedin"
+    link: "https://www.linkedin.com/in/stevenabreu7/"
+    title: "linkedin"
+  - icon: "fa-solid fa-graduation-cap"
+    link: "https://scholar.google.com/citations?user=CqbIOvMAAAAJ&hl=en"
+    title: "scholar"
 draft: false
 ---
 Steve is doing his PhD on neuromorphic computing theory in the [MINDS](https://www.ai.rug.nl/minds/) research group at the new [CogniGron](https://www.rug.nl/research/fse/cognitive-systems-and-materials/about/) center for cognitive systems and materials in Groningen. He is funded by the European [Post-Digital](http://postdigital.astonphotonics.uk/) research network.

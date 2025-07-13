@@ -12,7 +12,9 @@ social:
   - icon: "fa-brands fa-github"
     link: "https://github.com/hananel-hazan"
     title: "github"
+  - icon: "fa-solid fa-graduation-cap"
+    link: "https://scholar.google.com/citations?user=M8ayghUAAAAJ&hl=en"
+    title: "scholar"
 draft: false
 ---
 Hananel Hazan is a research scientist at the Allen Discovery Center at Tufts University and a leading developer of the BindsNET framework.
-
