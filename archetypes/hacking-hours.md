@@ -5,7 +5,7 @@ author:
 date: {{ .Date }} # Date of the event (YYYY-MM-DD).
 start_time: "18:00" # Event start time (24-hour format HH:MM).
 end_time: "19:30"   # Event end time (24-hour format HH:MM).
-time_zone: "CET"    # Timezone (e.g., CET, CEST, EST, PST).
+time_zone: "CET"    # Timezone (e.g., CET, EST). For best calendar compatibility, use an IANA Time Zone name like "Europe/Berlin" or "America/New_York".
 # Meta Description (SEO) 120-160 characters:
 # What are the 2-3 most important skills or insights someone will gain from this session?
 # Why should someone invest their time to attend this event?
@@ -24,6 +24,6 @@ software_tags: []
 # speaker_code: "https://github.com/example/repo" # External link
 # speaker_notebook: "my-notebook.ipynb" # Place in folder
 ---
-
+<!-- For best calendar compatibility, use an IANA Time Zone name like 'Europe/Berlin' or 'America/New_York'. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones -->
 Detailed hacking hours abstract or information goes here.
 Explain what attendees will learn, the agenda, and any prerequisites.

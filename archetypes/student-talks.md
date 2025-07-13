@@ -5,7 +5,7 @@ author:
 date: {{ .Date }} # Date of the student talk (YYYY-MM-DD).
 start_time: "18:00" # Event start time (24-hour format HH:MM).
 end_time: "19:30"   # Event end time (24-hour format HH:MM).
-time_zone: "CET"    # Timezone (e.g., CET, CEST, EST, PST).
+time_zone: "CET"    # Timezone (e.g., CET, EST). For best calendar compatibility, use an IANA Time Zone name like "Europe/Berlin" or "America/New_York".
 description: "Join us for an insightful student talk on [Topic] by [Speaker Name]. Discover [Key Takeaway 1] and explore [Key Takeaway 2] in neuromorphic computing."
 upcoming: true # Set to 'true' for future events. Change to 'false' after the event.
 video: ""      # After the event, add the YouTube video ID (e.g., "dQw4w9WgXcQ").
@@ -21,6 +21,6 @@ software_tags: []
 # speaker_code: "https://github.com/example/repo" # External link
 # speaker_notebook: "my-notebook.ipynb" # Place in folder
 ---
-
+<!-- For best calendar compatibility, use an IANA Time Zone name like 'Europe/Berlin' or 'America/New_York'. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones -->
 Detailed student talk abstract or information goes here.
 Explain what attendees will learn, the agenda, and any prerequisites.

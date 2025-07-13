@@ -1,0 +1,63 @@
+{{- with .Page -}}
+{{- if and .Params.upcoming .Params.date .Params.start_time .Params.end_time -}}
+{{- $title := .Title -}}
+{{- $description := printf "%s\n\nView event details: %s" .Description .Permalink -}}
+{{- $location := .Params.upcoming_url | default "Virtual Event - See Open Neuromorphic website for details" -}}
+
+{{- $startDateTimeString := printf "%sT%s:00" (.Params.date.Format "2006-01-02") .Params.start_time -}}
+{{- $endDateTimeString := printf "%sT%s:00" (.Params.date.Format "2006-01-02") .Params.end_time -}}
+{{- $startDT := time.AsTime $startDateTimeString -}}
+{{- $endDT := time.AsTime $endDateTimeString -}}
+
+{{- /* ---- Generate links for web calendars (require UTC time) ---- */ -}}
+{{- $utcStart := $startDT.UTC.Format "20060102T150405Z" -}}
+{{- $utcEnd := $endDT.UTC.Format "20060102T150405Z" -}}
+{{- $googleCalendarUrl := printf "https://www.google.com/calendar/render?action=TEMPLATE&text=%s&dates=%s/%s&details=%s&location=%s" ($title | urlquery) $utcStart $utcEnd ($description | urlquery) ($location | urlquery) -}}
+{{- $outlookCalendarUrl := printf "https://outlook.live.com/calendar/0/deeplink/compose?path=/calendar/action/compose&rru=addevent&subject=%s&startdt=%s&enddt=%s&body=%s&location=%s" ($title | urlquery) ($startDT.UTC.Format "2006-01-02T15:04:05") ($endDT.UTC.Format "2006-01-02T15:04:05") ($description | urlquery) ($location | urlquery) -}}
+
+{{- /* ---- Generate .ics file ---- */ -}}
+{{- $tz := .Params.time_zone -}}
+{{- $icalStart := $startDT.Format "20060102T150405" -}}
+{{- $icalEnd := $endDT.Format "20060102T150405" -}}
+{{- $icalStamp := now.UTC.Format "20060102T150405Z" -}}
+{{- $icalContent := slice
+"BEGIN:VCALENDAR" "VERSION:2.0" "PRODID:-//OpenNeuromorphic//Website//EN"
+"BEGIN:VEVENT"
+(printf "UID:%s@open-neuromorphic.org" (.Permalink | md5))
+(printf "DTSTAMP:%s" $icalStamp)
+(printf "DTSTART;TZID=%s:%s" $tz $icalStart)
+(printf "DTEND;TZID=%s:%s" $tz $icalEnd)
+(printf "SUMMARY:%s" $title)
+(printf "DESCRIPTION:%s" ($description | replace "\n" "\\n"))
+(printf "LOCATION:%s" $location)
+"END:VEVENT" "END:VCALENDAR"
+-}}
+{{- $crlf := "\n" -}}
+{{- $icalString := delimit $icalContent $crlf -}}
+{{- $dataUri := printf "data:text/calendar;charset=utf-8,%s" ($icalString | urlquery) -}}
+
+<div class="relative group inline-block text-left pb-2 -mb-2">
+  <button type="button" class="btn btn-sm btn-new-primary inline-flex items-center justify-center w-full">
+    Add to Calendar
+    {{ partial "icon.html" (dict "style" "solid" "name" "chevron-down" "class" "-mr-1 ml-2 h-4 w-4") }}
+  </button>
+
+  <div class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white dark:bg-darkmode-theme-dark ring-1 ring-black ring-opacity-5 focus:outline-none transition ease-out duration-100 transform opacity-0 scale-95 group-hover:transform group-hover:opacity-100 group-hover:scale-100 invisible group-hover:visible z-10">
+    <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+      <a href="{{ $googleCalendarUrl | safeURL }}" target="_blank" rel="noopener" class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 no-underline" role="menuitem">
+        {{ partial "icon.html" (dict "style" "brands" "name" "google" "class" "w-4 h-4") }}
+        <span>Google Calendar</span>
+      </a>
+      <a href="{{ $outlookCalendarUrl | safeURL }}" target="_blank" rel="noopener" class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 no-underline" role="menuitem">
+        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path fill="currentColor" d="M216 40H40a16 16 0 0 0-16 16v144a16 16 0 0 0 16 16h112a8 8 0 0 0 0-16H48V88h160v24a8 8 0 0 0 16 0V56a16 16 0 0 0-16-16m-48-16a8 8 0 0 1 8-8h48a8 8 0 0 1 0 16h-48a8 8 0 0 1-8-8m-67.6 124.22a8 8 0 0 1 0 11.31l-24 24a8 8 0 0 1-11.31 0l-24-24a8 8 0 0 1 11.31-11.31L64 162.34l12.69-12.68a8 8 0 0 1 11.31 0m115.06 4.34a36 36 0 1 1-50.91 0a36 36 0 0 1 50.91 0"/></svg>
+        <span>Outlook</span>
+      </a>
+      <a href="{{ $dataUri | safeURL }}" download="{{ .File.TranslationBaseName | default "event" }}.ics" class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 no-underline" role="menuitem">
+      {{ partial "icon.html" (dict "style" "regular" "name" "calendar-plus" "class" "w-4 h-4") }}
+      <span>Download .ics file</span>
+      </a>
+    </div>
+  </div>
+</div>
+{{- end -}}
+{{- end -}}
