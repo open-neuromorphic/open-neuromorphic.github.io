@@ -11,9 +11,38 @@ Our **Collaboration Network** is a community-driven initiative based on mutual s
 
 This simple act of cross-promotion helps build domain authority and brings more visibility to everyone in the network, creating a virtuous cycle of discovery and growth. In return, we are proud to feature them here and across our platform.
 
+{{< details summary="How to Link to Us" >}}
+
+You can support our community by linking back to us. Here are a few examples you can use in your `README.md` or project website.
+
+### Text Link
+
+A simple text link is a great way to show support. We recommend linking to our main "Neuromorphic Computing" hub.
+
+```
+Part of the [Open Neuromorphic](https://open-neuromorphic.org/neuromorphic-computing/) community.
+```
+
+**Result:** Part of the [Open Neuromorphic](https://open-neuromorphic.org/neuromorphic-computing/) community.
+
+### Community Badge
+
+You can also use a badge. Here is a generic community badge you can use.
+
+```
+[![Open Neuromorphic Community](https://img.shields.io/badge/community-Open%20Neuromorphic-667eea?style=for-the-badge)](https://open-neuromorphic.org)
+```
+
+**Result:** <a href="https://open-neuromorphic.org" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/community-Open%20Neuromorphic-667eea?style=for-the-badge" alt="Open Neuromorphic Community"><svg class="icon icon-arrow-up-right-from-square inline-block  ml-[.5] pb-[.4]" fill="currentColor" aria-hidden="true" role="img" style="display: inline-block; vertical-align: middle; width: 1em; height: 0.7em;">
+<use xlink:href="#icon-solid-arrow-up-right-from-square"></use>
+</svg></a>
+
+{{< /details >}}
+
+
 ## Become a Supporter
 
-If your project, lab, or company is interested in joining our mission, we would love to hear from you. We are building a tiered support system, similar to organizations like the Linux Foundation, to offer various levels of partnership.
+If your project, lab, or company is interested in joining our mission, we would love to hear from you. We are building a tiered support system to offer various levels of partnership.
 
 For now, joining our open-source collaboration network is the first step.
 
