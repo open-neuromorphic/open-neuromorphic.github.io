@@ -13,7 +13,7 @@ This simple act of cross-promotion helps build domain authority and brings more 
 
 {{< details summary="How to Link to Us" >}}
 
-You can support our community by linking back to us. Here are a few examples you can use in your `README.md` or project website.
+You can support our community by linking back to us. Here are examples you can use in your `README.md` or project website.
 
 ### Text Link
 

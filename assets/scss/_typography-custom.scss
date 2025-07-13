@@ -13,11 +13,11 @@ $dark-link-underline-hover-color: #ffffff;
 
 // Gradient text class
 .gradient-text {
-    background: linear-gradient(135deg, var(--color-primary-new) 0%, var(--color-secondary-new) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent !important;
+  background: linear-gradient(135deg, var(--color-primary-new) 0%, var(--color-secondary-new) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent !important;
 }
 
 // Specific overrides for header navigation links if Tailwind classes aren't enough
@@ -130,8 +130,8 @@ section a.social-link-container .social-link-text,
 .breadcrumb-link-text,
 .author-card-compact h4 a,
 .hardware-card-wide-link h3 {
-  font-weight: 500;
-  color: $link-color !important;
+  font-weight: inherit;
+  color: inherit !important;
   text-decoration-line: underline !important;
   text-decoration-thickness: 0.1em !important;
   text-underline-offset: 3px !important;
@@ -139,15 +139,12 @@ section a.social-link-container .social-link-text,
   text-decoration-color: $link-underline-color !important;
 
   &:hover {
-    color: $link-hover-color !important;
     text-decoration-color: $link-underline-hover-color !important;
   }
 
   .dark & {
-    color: $dark-link-color !important;
     text-decoration-color: $dark-link-underline-color !important;
     &:hover {
-      color: $dark-link-hover-color !important;
       text-decoration-color: $dark-link-underline-hover-color !important;
     }
   }
@@ -188,7 +185,7 @@ h1 a, h2 a, h3 a, h4 a, h5 a {
   }
 
   .author-card-compact h4 a {
-      color: #bcfbff !important;
+    color: #bcfbff !important;
   }
 
   .role-compact {
