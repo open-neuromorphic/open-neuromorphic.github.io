@@ -1,0 +1,11 @@
+<details class="details-shortcode my-6 rounded-lg bg-theme-light dark:bg-darkmode-theme-light shadow-md overflow-hidden">
+  <summary class="p-4 cursor-pointer font-semibold text-lg flex justify-between items-center list-none transition-colors hover:bg-gray-200/60 dark:hover:bg-darkmode-theme-dark/60">
+    <span>{{ .Get "summary" | default "Details" }}</span>
+    <span class="details-marker text-primary dark:text-darkmode-primary transition-transform duration-300">
+      {{ partial "icon.html" (dict "style" "solid" "name" "chevron-right" "class" "h-5 w-5") }}
+    </span>
+  </summary>
+  <div class="prose dark:prose-invert max-w-none p-4 pt-2 border-t border-border dark:border-darkmode-border">
+    {{ .Inner | markdownify }}
+  </div>
+</details>
