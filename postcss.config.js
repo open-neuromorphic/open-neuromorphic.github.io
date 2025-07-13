@@ -12,9 +12,9 @@ const purgecssOptions = {
     /^lb-/, /^gl/, /^go/, /^gc/, /^gs/, /^gi/, /^gz/,
     /^gprev/, /^gnext/, /^desc/, /^zoom/, /^search/, /^:is/,
     /dark/, /show/, /dragging/, /fullscreen/, /loaded/, /visible/,
-    /current/, /active/,
     'contributor-socials',
     'is-mobile-nav-open', // Add this class to prevent it from being purged
+    'contribution-bubble', // Ensure bubble styles are not purged
   ],
 };
 
