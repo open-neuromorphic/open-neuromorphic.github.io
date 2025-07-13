@@ -16,8 +16,6 @@ draft: false
 maintainer: Electronic Visions Group
 ---
 
-
-
 ## Overview
 
 **jaxsnn** is a deep learning Python library used for event-based numerical simulation, neuromorphic emulation and training of spiking neural networks (SNNs) with [BrainScaleS-2](https://open-neuromorphic.org/neuromorphic-computing/hardware/brainscales-2-universitat-heidelberg/) neuromorphic hardware in-the-loop. It is maintained by the Electronic Visions group at Heidelberg University.
