@@ -27,15 +27,17 @@ Getting started is easy. If you have a topic you're passionate about, we want to
 
 1.  **Have an Idea:** Think about what you'd like to share. It could be your latest project, a tutorial you've developed, or a concept you find exciting.
 
-2.  **Reach Out to Us:** The best way to propose a session is on our [Discord server](https://discord.gg/hUygPUdD8E):
-  -   For **Student Talks**, please post a message in the `#student-talks` channel.
-  -   For all other events like **Workshops** or **Hacking Hours**, use the `#proposals-contributions` channel.
-  -   Alternatively, you can send a direct message to an Executive Committee member (e.g., **Jens E. Pedersen**).
+2.  **Reach Out to Us:** The best way to propose a session is on our [Discord server](https://discord.gg/hUygPUdD8E), but email is also a great option:
+    -   **Discord:**
+        -   For **Student Talks**, please post a message in the `#student-talks` channel.
+        -   For all other events like **Workshops** or **Hacking Hours**, use the `#proposals-contributions` channel.
+        -   Alternatively, you can send a direct message to an Executive Committee member (e.g., **Jens E. Pedersen**).
+    -   **Email:** Send your proposal directly to [contact@open-neuromorphic.org](mailto:contact@open-neuromorphic.org).
 
 3.  **Tell Us About Your Idea:** In your message, please include:
-  -   A brief title and description of your proposed talk/workshop.
-  -   The type of event you're interested in (Workshop, Student Talk, etc.).
-  -   A short bio of yourself.
+    -   A brief title and description of your proposed talk/workshop.
+    -   The type of event you're interested in (Workshop, Student Talk, etc.).
+    -   A short bio of yourself.
 
 ## Our Support For You
 
