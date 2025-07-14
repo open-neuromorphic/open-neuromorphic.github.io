@@ -12,7 +12,7 @@
 @layer components {
   @import "components";
   @import "navigation";
-  @import "components/mobile-nav"; // Add this line
+  @import "components/mobile-nav";
   @import "buttons";
 }
 
@@ -26,7 +26,6 @@
 @import "module-overrides";
 @import "custom";
 
-// Custom component-like SCSS files
 @import "components/cookie-consent";
 
 @import "components/author-card";
@@ -38,10 +37,11 @@
 @import "components/journey-ribbon";
 @import "components/footer";
 @import "components/involvement-card";
-@import "components/hardware-card-wide"; // Add this line
+@import "components/hardware-card-wide";
+@import "components/community-partners";
 
 @import "components/og-preview";
 @import "components/contributor-timeline";
-// Import new custom typography and buttons
+
 @import "components/mega-menu";
 @import "typography-custom";

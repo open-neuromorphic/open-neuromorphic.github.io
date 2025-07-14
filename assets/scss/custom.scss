@@ -1,26 +1,20 @@
-// Add new CSS variables from the mockup
 :root {
-    --color-primary-new: #667eea; /* Indigo */
-    --color-secondary-new: #764ba2; /* Purple */
-    --color-accent-new: #f093fb; /* Pink */
-    --color-text-new: #1f2937; /* Gray-800 */
-    --color-text-muted-new: #4b5563; /* Gray-600 */
-    --color-background-new: #f9fafb; /* Gray-50 */
+    --color-primary-new: #667eea;
+    --color-secondary-new: #764ba2;
+    --color-accent-new: #f093fb;
+    --color-text-new: #1f2937;
+    --color-text-muted-new: #4b5563;
+    --color-background-new: #f9fafb;
     --color-card-bg-new: #ffffff;
-
-    /* Shadows from mockup, if needed elsewhere, or use Tailwind classes directly */
     --shadow-lg-new: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     --shadow-md-new: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
-// Ensure dropdowns in new navbar style are consistent
 .nav-dropdown.active .nav-dropdown-list {
-  // Mockup implies a simple dropdown, existing style might need slight tweaks if complex
-  // Keeping existing dark mode behavior for dropdown for now
   @apply lg:bg-white dark:lg:bg-darkmode-theme-dark;
 }
 .nav-dropdown-list {
-   @apply lg:bg-white dark:lg:bg-darkmode-theme-dark; // ensure consistency
+   @apply lg:bg-white dark:lg:bg-darkmode-theme-dark;
 }
 
 
@@ -29,8 +23,6 @@ div.chart {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 1rem;
-
-  // Add horizontal scroll on mobile since Plotly
   overflow-x: auto;
 
   svg {
@@ -66,7 +58,7 @@ section.section-sm.hero {
 }
 
 #tableOfContentContainer {
-  max-height: 65vh; /* Adjust the percentage as needed */
+  max-height: 65vh;
   overflow-y: auto;
 }
 
@@ -177,4 +169,25 @@ code {
 
 .section-subtitle {
   @apply text-center text-lg text-gray-600 dark:text-gray-400 mb-12 mx-auto;
+}
+
+.details-shortcode > summary .details-marker {
+  transition: transform 0.2s ease-in-out;
+}
+
+.details-shortcode[open] > summary .details-marker {
+  transform: rotate(90deg);
+}
+
+.copy-code-button {
+    @apply absolute top-2 right-2 p-1.5 rounded-md bg-gray-700/50 text-gray-300;
+    @apply opacity-0 group-hover:opacity-100 transition-opacity duration-200;
+}
+
+.copy-code-button:hover {
+    @apply bg-gray-600 text-white;
+}
+
+.copy-code-button.copied {
+    @apply bg-green-600/80 text-white;
 }

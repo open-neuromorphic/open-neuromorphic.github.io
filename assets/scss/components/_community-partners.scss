@@ -1,0 +1,65 @@
+// assets/scss/components/_community-partners.scss
+.community-partners-section {
+  .partners-slider-wrapper {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+  }
+
+  .partners-track {
+    animation: scroll 40s linear infinite;
+    &:hover {
+      animation-play-state: paused;
+    }
+  }
+
+  .partner-logo {
+    filter: grayscale(100%) contrast(70%) brightness(1.2);
+    opacity: 0.7;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .partner-logo-link:hover .partner-logo {
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: scale(1.05);
+  }
+
+  .bubbles-container {
+    @apply absolute inset-0 pointer-events-none;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+  }
+
+  @keyframes scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+.contribution-bubble {
+  @apply absolute top-0 left-0 bg-dark dark:bg-darkmode-dark text-white dark:text-darkmode-text text-xs font-semibold p-2 rounded-lg shadow-lg z-20;
+  @apply opacity-0 invisible transition-opacity duration-300 ease-in-out;
+  will-change: opacity, transform;
+
+  &.visible {
+    @apply opacity-100;
+    visibility: visible;
+  }
+
+  // Bubble tail
+  &::after {
+    content: '';
+    @apply absolute top-full left-1/2 -translate-x-1/2;
+    @apply w-0 h-0 border-x-8 border-x-transparent border-t-8;
+    border-top-color: theme('colors.dark');
+  }
+
+  .dark &::after {
+    border-top-color: theme('colors.darkmode.dark');
+  }
+}
