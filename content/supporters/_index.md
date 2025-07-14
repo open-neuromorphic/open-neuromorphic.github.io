@@ -7,7 +7,7 @@ Open Neuromorphic is built on a foundation of open collaboration. We are proud t
 
 ## The Collaboration Network
 
-Our **Collaboration Network** is a community-driven initiative based on mutual support. We believe that by working together and promoting each other's work, we can elevate the entire field. Our open-source partners help us by linking back to Open Neuromorphic from their project websites, GitHub repositories, or documentation.
+We believe that by working together and promoting each other's work, we can elevate the entire field. Our open-source partners help us by linking back to Open Neuromorphic from their project websites, GitHub repositories, or documentation.
 
 This simple act of cross-promotion helps build domain authority and brings more visibility to everyone in the network, creating a virtuous cycle of discovery and growth. In return, we are proud to feature them here and across our platform.
 
@@ -51,8 +51,6 @@ If your project, lab, or company is interested in joining our mission, we would 
 For now, joining our open-source collaboration network is the first step.
 
 To learn more, please reach out to us at [contact@open-neuromorphic.org](mailto:contact@open-neuromorphic.org).
-
----
 
 <!--
 ## Our Open-Source Collaborators
