@@ -11,14 +11,18 @@ Our **Collaboration Network** is a community-driven initiative based on mutual s
 
 This simple act of cross-promotion helps build domain authority and brings more visibility to everyone in the network, creating a virtuous cycle of discovery and growth. In return, we are proud to feature them here and across our platform.
 
-{{< details summary="How to Link to Us" >}}
+{{< details summary="How to Link to Us" open="true" >}}
 
-You can support our community by linking back to us. Here are examples you can use in your `README.md` or project website.
+You can support our community by linking back to us. Here are examples you can use in your project website, `README.md`, and generated documentation sites.
 
 ### Text Link
 
 A simple text link is a great way to show support. We recommend linking to our main "Neuromorphic Computing" hub.
 
+```
+Part of the <a href="https://open-neuromorphic.org/neuromorphic-computing/" target="_blank" rel="noopener">Open Neuromorphic</a> community.
+```
+or
 ```
 Part of the [Open Neuromorphic](https://open-neuromorphic.org/neuromorphic-computing/) community.
 ```
@@ -50,6 +54,8 @@ To learn more, please reach out to us at [contact@open-neuromorphic.org](mailto:
 
 ---
 
+<!--
 ## Our Open-Source Collaborators
 
 The following open-source projects are integral members of our community, contributing to the tools and frameworks that power neuromorphic research worldwide.
+-->
