@@ -1,0 +1,45 @@
+{{ define "main" }}
+{{ partial "page-header" . }}
+
+<section class="section pt-10">
+  <div class="container">
+    <div class="content lg:col-10 mx-auto mb-12">
+      {{ .Content }}
+    </div>
+
+    {{ with site.Data.supporters.opensource_collaborator }}
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      {{ range . }}
+      {{ $supporter := . }}
+      {{ with site.GetPage $supporter.page_path }}
+      {{ $page := . }}
+      <a href="{{ $page.RelPermalink }}" class="supporter-card block p-6 bg-theme-light dark:bg-darkmode-theme-light rounded-lg shadow-md hover:shadow-xl hover:-translate-y-1 transition-transform duration-300">
+        <div class="flex flex-col items-center text-center h-full">
+          {{ with $page.Resources.GetMatch $supporter.logo }}
+          {{ $logo_resource := . }}
+          {{/*
+          Resize to a max width of 200px to keep file size down, but preserve aspect ratio.
+          The display logic will handle the final sizing.
+          */}}
+          {{ $logo_resized := $logo_resource.Resize "200x" }}
+          {{/*
+          Use a container div to set the display area, and object-contain on the image
+          to fit the logo inside without distortion.
+          */}}
+          <div class="h-16 w-full mb-4 flex items-center justify-center">
+            <img src="{{ $logo_resized.RelPermalink }}" alt="{{ $supporter.name }} logo" class="max-h-full max-w-full object-contain {{ if $supporter.dark_logo_invert }}dark:invert{{ end }}">
+          </div>
+          {{ else }}
+          <div class="h-16 w-full mb-4 flex items-center justify-center font-bold text-lg text-gray-400 bg-gray-100 dark:bg-darkmode-theme-dark rounded-md">{{ $supporter.name }}</div>
+          {{ end }}
+          <h4 class="text-xl font-bold flex-grow">{{ $supporter.name }}</h4>
+          <span class="text-sm text-primary dark:text-darkmode-primary mt-2">View Details →</span>
+        </div>
+      </a>
+      {{ end }}
+      {{ end }}
+    </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

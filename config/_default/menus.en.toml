@@ -106,6 +106,12 @@ name = "Getting Involved"
 url = "/getting-involved/"
 weight = 2
 
+[[main]]
+parent = "About"
+name = "Supporters"
+url = "/supporters/"
+weight = 3
+
 
 # --- New Footer Menus (replace the old [[footer]], [[footer_explore]], [[footer_legal]]) ---
 

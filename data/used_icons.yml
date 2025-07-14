@@ -18,7 +18,6 @@ fontawesome_svgs:
   - { style: solid, name: envelope }
   - { style: solid, name: moon }
   - { style: solid, name: sun }
-  - { style: solid, name: chevron-down }
   - { style: solid, name: arrow-up-right-from-square }
   - { style: brands, name: discord }
   - { style: brands, name: github }
@@ -38,3 +37,4 @@ fontawesome_svgs:
   - { style: regular, name: calendar-plus }
   - { style: regular, name: images }
   - { style: regular, name: folder }
+  - { style: regular, name: copy }
