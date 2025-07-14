@@ -5,7 +5,7 @@ author:
 date: {{ .Date }} # Date of the event (YYYY-MM-DD).
 start_time: "18:00" # Event start time (24-hour format HH:MM).
 end_time: "19:30"   # Event end time (24-hour format HH:MM).
-time_zone: "CET"    # Timezone (e.g., CET, EST). For best calendar compatibility, use an IANA Time Zone name like "Europe/Berlin" or "America/New_York".
+time_zone: "Europe/Berlin"    # Timezone. For best calendar compatibility, use an IANA Time Zone name like "Europe/Berlin" or "America/New_York".
 # Meta Description (SEO) 120-160 characters:
 # What are the 2-3 most important skills or insights someone will gain from this session?
 # Why should someone invest their time to attend this event?

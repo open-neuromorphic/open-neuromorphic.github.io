@@ -2,21 +2,46 @@
 {{- if and .Params.upcoming .Params.date .Params.start_time .Params.end_time -}}
 {{- $title := .Title -}}
 {{- $description := printf "%s\n\nView event details: %s" .Description .Permalink -}}
-{{- $location := .Params.upcoming_url | default "Virtual Event - See Open Neuromorphic website for details" -}}
+{{- $location_param := .Params.upcoming_url | default "Virtual Event - See Open Neuromorphic website for details" -}}
+
+{{- /*
+  The timezone ID from front matter. MUST be a valid IANA Time Zone name
+  (e.g., "America/New_York", "Europe/Berlin"). Abbreviations like "EST" or "CET"
+  are not reliable and will cause errors.
+*/ -}}
+{{- $tz_name := .Params.time_zone | default site.TimeZone -}}
+{{- $loc, $err := time.LoadLocation $tz_name -}}
+
+{{- if $err -}}
+  {{- warnf "Invalid IANA Timezone ID '%s' in page '%s'. Falling back to site timezone '%s'. Error: %s" $tz_name .Path site.TimeZone $err -}}
+  {{- $loc = site.Time.Location -}}
+{{- end -}}
 
 {{- $startDateTimeString := printf "%sT%s:00" (.Params.date.Format "2006-01-02") .Params.start_time -}}
 {{- $endDateTimeString := printf "%sT%s:00" (.Params.date.Format "2006-01-02") .Params.end_time -}}
-{{- $startDT := time.AsTime $startDateTimeString -}}
-{{- $endDT := time.AsTime $endDateTimeString -}}
 
-{{- /* ---- Generate links for web calendars (require UTC time) ---- */ -}}
+{{- $startDT, $err_start := time.ParseInLocation "2006-01-02T15:04:05" $startDateTimeString $loc -}}
+{{- $endDT, $err_end := time.ParseInLocation "2006-01-02T15:04:05" $endDateTimeString $loc -}}
+
+{{- if or $err_start $err_end -}}
+  {{- warnf "Error parsing date/time in '%s'. Falling back to site timezone. StartErr: %v, EndErr: %v" .Path $err_start $err_end -}}
+  {{- /* Fallback to parsing with site's default timezone if ParseInLocation fails */ -}}
+  {{- $startDT = time.AsTime $startDateTimeString -}}
+  {{- $endDT = time.AsTime $endDateTimeString -}}
+{{- end -}}
+
+{{- /* --- Web Calendar Links (Google, Outlook) --- */ -}}
+{{- /* These require UTC times. We convert our timezone-aware time object to UTC. */ -}}
 {{- $utcStart := $startDT.UTC.Format "20060102T150405Z" -}}
 {{- $utcEnd := $endDT.UTC.Format "20060102T150405Z" -}}
-{{- $googleCalendarUrl := printf "https://www.google.com/calendar/render?action=TEMPLATE&text=%s&dates=%s/%s&details=%s&location=%s" ($title | urlquery) $utcStart $utcEnd ($description | urlquery) ($location | urlquery) -}}
-{{- $outlookCalendarUrl := printf "https://outlook.live.com/calendar/0/deeplink/compose?path=/calendar/action/compose&rru=addevent&subject=%s&startdt=%s&enddt=%s&body=%s&location=%s" ($title | urlquery) ($startDT.UTC.Format "2006-01-02T15:04:05") ($endDT.UTC.Format "2006-01-02T15:04:05") ($description | urlquery) ($location | urlquery) -}}
+{{- $googleCalendarUrl := printf "https://www.google.com/calendar/render?action=TEMPLATE&text=%s&dates=%s/%s&details=%s&location=%s" ($title | urlquery) $utcStart $utcEnd ($description | urlquery) ($location_param | urlquery) -}}
 
-{{- /* ---- Generate .ics file ---- */ -}}
-{{- $tz := .Params.time_zone -}}
+{{- /* Outlook link also needs UTC time, and ISO 8601 format with 'Z' is most reliable. */ -}}
+{{- $outlookCalendarUrl := printf "https://outlook.live.com/calendar/0/deeplink/compose?path=/calendar/action/compose&rru=addevent&subject=%s&startdt=%s&enddt=%s&body=%s&location=%s" ($title | urlquery) ($startDT.UTC.Format "2006-01-02T15:04:05Z") ($endDT.UTC.Format "2006-01-02T15:04:05Z") ($description | urlquery) ($location_param | urlquery) -}}
+
+{{- /* --- .ics file generation --- */ -}}
+{{- /* .ics files need the local time and the IANA timezone ID separately. */ -}}
+{{- $tzID := $loc.String -}}
 {{- $icalStart := $startDT.Format "20060102T150405" -}}
 {{- $icalEnd := $endDT.Format "20060102T150405" -}}
 {{- $icalStamp := now.UTC.Format "20060102T150405Z" -}}
@@ -25,11 +50,11 @@
 "BEGIN:VEVENT"
 (printf "UID:%s@open-neuromorphic.org" (.Permalink | md5))
 (printf "DTSTAMP:%s" $icalStamp)
-(printf "DTSTART;TZID=%s:%s" $tz $icalStart)
-(printf "DTEND;TZID=%s:%s" $tz $icalEnd)
+(printf "DTSTART;TZID=%s:%s" $tzID $icalStart)
+(printf "DTEND;TZID=%s:%s" $tzID $icalEnd)
 (printf "SUMMARY:%s" $title)
 (printf "DESCRIPTION:%s" ($description | replace "\n" "\\n"))
-(printf "LOCATION:%s" $location)
+(printf "LOCATION:%s" $location_param)
 "END:VEVENT" "END:VCALENDAR"
 -}}
 {{- $crlf := "\n" -}}

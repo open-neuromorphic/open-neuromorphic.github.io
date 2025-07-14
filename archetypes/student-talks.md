@@ -5,7 +5,7 @@ author:
 date: {{ .Date }} # Date of the student talk (YYYY-MM-DD).
 start_time: "18:00" # Event start time (24-hour format HH:MM).
 end_time: "19:30"   # Event end time (24-hour format HH:MM).
-time_zone: "CET"    # Timezone (e.g., CET, EST). For best calendar compatibility, use an IANA Time Zone name like "Europe/Berlin" or "America/New_York".
+time_zone: "Europe/Berlin"    # Timezone. For best calendar compatibility, use an IANA Time Zone name like "Europe/Berlin" or "America/New_York".
 description: "Join us for an insightful student talk on [Topic] by [Speaker Name]. Discover [Key Takeaway 1] and explore [Key Takeaway 2] in neuromorphic computing."
 upcoming: true # Set to 'true' for future events. Change to 'false' after the event.
 video: ""      # After the event, add the YouTube video ID (e.g., "dQw4w9WgXcQ").
