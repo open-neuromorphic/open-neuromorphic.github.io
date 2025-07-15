@@ -5,9 +5,6 @@ author:
 - Fabrizio Ottati
 - Jason Eshraghian
 date: 2024-01-25
-start_time: 18:00
-end_time: 19:30
-time_zone: CET
 hardware_tags: ['northpole-ibm']
 description: "NorthPole outperforms all prevalent architectures, even those that use more-advanced technology processes."
 video: 7s1M09z_ql8

@@ -4,9 +4,6 @@ author:
 - "Kade Heckel"
 - "Jens E. Pedersen"
 date: 2024-10-15
-start_time: "18:00"
-end_time: "19:45" # 1h 44m 45s duration
-time_zone: "CET"
 description: "Kade Heckel discusses optimizing GPU/TPU code using JAX and Pallas in this Hacking Hour session."
 upcoming: false
 video: "pRqRYcjufjA"

@@ -4,9 +4,6 @@ author:
   - "Alexandre Marcireau"
   - "Jens E. Pedersen"
 date: 2024-10-29
-start_time: "18:00"
-end_time: "19:52" # 1h 51m 39s duration
-time_zone: "CET"
 description: "A deep dive into hacking and extending the Faery API with Alexandre Marcireau and host Jens E. Pedersen."
 upcoming: false
 video: "bkwC0ygMous"

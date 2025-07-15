@@ -4,9 +4,6 @@ author:
 - Aaron Spieler
 - Gregor Lenz
 date: 2024-02-27
-start_time: 18:00
-end_time: 19:30
-time_zone: CET
 draft: false
 upcoming: false
 video: q0shX-zCk4c

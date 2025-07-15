@@ -5,9 +5,6 @@ author:
 - Gregor Lenz
 description: "Dive into the world of applied brain research with Trevor Bekolay. Explore learning, memory, and neural simulations in this insightful recorded session"
 date: 2023-01-26
-start_time: 18:00
-end_time: 19:30
-time_zone: CET
 video: sgu9l_bqAHM
 speaker_photo: trevor-bekolay.jpeg
 image: hands-on-nengo.png

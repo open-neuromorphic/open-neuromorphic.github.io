@@ -4,9 +4,6 @@ author:
 - "Sangyeob Kim"
 - Fabrizio Ottati
 date: 2024-05-04
-start_time: 11:00
-end_time: 12:15
-time_zone: CEST
 description: "Join us for a talk by Sangyeob Kim, Postdoctoral researcher at KAIST, on designing efficient accelerators that mix SNNs and ANNs."
 upcoming: false
 video: lEl9DPgBqvA

@@ -4,9 +4,6 @@ author:
   - "Luuk van Keeken"
   - "Jens E. Pedersen"
 date: 2024-12-02
-start_time: "18:00"
-end_time: "18:28" # 27m 31s duration
-time_zone: "CET"
 description: "Luuk van Keeken introduces the Neuromorphic Intermediate Representation (NIR) and demonstrates graph tracing using torch.fx."
 upcoming: false
 video: "FIqxexNQX4k"
