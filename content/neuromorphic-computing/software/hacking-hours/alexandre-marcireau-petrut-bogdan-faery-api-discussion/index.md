@@ -5,9 +5,6 @@ author:
   - "Petruț Bogdan"
   - "Jens E. Pedersen"
 date: 2024-10-22
-start_time: "18:00"
-end_time: "19:49" # 1h 48m 37s duration
-time_zone: "CET"
 description: "An in-depth discussion on the Faery API with Alexandre Marcireau, Petruț Bogdan, and host Jens E. Pedersen."
 upcoming: false
 video: "GVJb6oFJhpA"

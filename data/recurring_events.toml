@@ -13,7 +13,7 @@ Active projects and issues that need help are listed here: https://github.com/op
 day_of_week = "Monday" # Case-sensitive, full day name
 start_time = "16:00"   # 24-hour format HH:MM
 end_time = "18:00"     # 24-hour format HH:MM
-time_zone = "CET/CEST"      # Or "CEST" as appropriate. Be mindful of DST.
+time_zone = "CEST"      # Or "CEST" as appropriate. Be mindful of DST.
 location_name = "Open Neuromorphic Discord"
 location_url = "https://discord.gg/hUygPUdD8E"
 details_page_link = "/neuromorphic-computing/software/hacking-hours/" # Link to the main Hacking Hours page

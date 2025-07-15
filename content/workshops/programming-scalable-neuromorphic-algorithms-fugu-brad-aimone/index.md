@@ -4,9 +4,6 @@ author:
 - "Brad Aimone"
 - Gregor Lenz
 date: 2023-12-19
-start_time: 18:00
-end_time: 19:30
-time_zone: CET
 video: UDM9Mbd0Vaw
 description: "Explore neural-inspired computing with Brad Aimone, a leading neuroscientist at Sandia Labs. Join us for insights into next-gen technology and neuroscience."
 image: fugu-neuromorphic-algorithyms.png

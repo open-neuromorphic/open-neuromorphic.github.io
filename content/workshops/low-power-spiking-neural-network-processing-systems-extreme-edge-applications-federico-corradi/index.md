@@ -5,9 +5,6 @@ author:
 - Gregor Lenz
 - Fabrizio Ottati
 date: 2023-06-08
-start_time: 18:00
-end_time: 19:30
-time_zone: CET
 description: Join Dr. Federico Corradi as he explores low-power spiking neural network processing systems, offering insights into energy-efficient computing for extreme-edge applications.
 video: xiYUVzdwDIA
 speaker_photo: corradi.jpg

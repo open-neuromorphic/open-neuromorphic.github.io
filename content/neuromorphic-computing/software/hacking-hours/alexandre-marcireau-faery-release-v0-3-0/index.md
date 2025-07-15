@@ -4,9 +4,6 @@ author:
   - "Alexandre Marcireau"
   - "Jens E. Pedersen"
 date: 2024-11-05
-start_time: "18:00"
-end_time: "20:11" # 2h 10m 49s duration
-time_zone: "CET"
 description: "Alexandre Marcireau discusses the v0.3.0 release of Faery, an event processing library, in this Hacking Hour session."
 upcoming: false
 video: "Wz1s0dFp1II"
