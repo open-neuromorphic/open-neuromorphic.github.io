@@ -4,9 +4,6 @@ author:
   - "Alexandre Marcireau"
   - "Jens E. Pedersen"
 date: 2024-09-30
-start_time: "18:00"
-end_time: "18:44" # 43m 44s duration
-time_zone: "CET"
 description: "Learn about using GitHub Actions for CI/CD with the Faery event processing library, presented by Alexandre Marcireau."
 upcoming: false
 video: "BGclcb7u4PQ"

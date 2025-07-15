@@ -90,11 +90,8 @@
                   <span>{{ .Date.Format "January 2, 2006" }}</span>
                 </li>
                 {{ if .Params.author }}
-                <li class="flex items-start">
-                  <span class="mx-1.5 flex-shrink-0 mt-px">|</span>
-                  <span class="flex-shrink-0 mt-px">
-                    {{ partial "icon.html" (dict "style" "regular" "name" "circle-user" "class" "mr-1.5") }}
-                  </span>
+                <li class="flex items-center">
+                  {{ partial "icon.html" (dict "style" "regular" "name" "circle-user" "class" "mr-1.5") }}
                   <span>By {{ partial "components/author-links.html" . }}</span>
                 </li>
                 {{ end }}

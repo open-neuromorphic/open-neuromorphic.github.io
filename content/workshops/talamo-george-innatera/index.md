@@ -5,9 +5,6 @@ author:
 - Fabrizio Ottati
 
 date: 2023-10-23
-start_time: 18:00 
-end_time: 19:00
-time_zone: CEST
 video: DN-b8Ra_mD4
 image: workshop-thumbnail-default.png
 speaker_photo: speaker.jpg

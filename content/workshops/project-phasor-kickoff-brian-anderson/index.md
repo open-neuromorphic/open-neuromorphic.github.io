@@ -10,9 +10,6 @@ author:
   - "Petrut Bogdan"
   - "Blessing Effiong"
 date: 2025-01-28
-start_time: 19:00
-end_time: 20:00
-time_zone: CET
 upcoming: false
 video: vZ0mlHpSeD0
 speaker_slides: https://drive.google.com/drive/folders/1RHIv9JaBvOLeo0MveBvnEAkqKe2Vc9_I?usp=drive_link

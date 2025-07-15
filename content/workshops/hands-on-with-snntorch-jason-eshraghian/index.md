@@ -4,9 +4,6 @@ author:
 - Jason Eshraghian
 - Fabrizio Ottati
 date: 2023-03-02
-start_time: 18:00
-end_time: 19:30
-time_zone: CET
 description: Join Jason Eshraghian for an engaging hands-on session featuring snnTorch. Explore the world of neuromorphic engineering.
 video: aUjWRpisRRg
 speaker_photo: jason-eshraghian.webp

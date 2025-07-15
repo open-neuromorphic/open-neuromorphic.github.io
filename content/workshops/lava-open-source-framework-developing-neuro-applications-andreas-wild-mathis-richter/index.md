@@ -4,9 +4,6 @@ author:
 - "Andreas Wild"
 - "Mathis Richter"
 date: 2023-05-31
-start_time: 18:00
-end_time: 19:30
-time_zone: CET
 description: Discover Lava, an open-source software framework for neuro-inspired applications, presented by Andreas Wild and Mathis Richter. Dive into the future of neuromorphic computing.
 video: vXZukQ6A79k
 speaker_photo: lava-intel.png

@@ -5,9 +5,6 @@ author:
 - "Petruț Bogdan"
 - "Jens E. Pedersen"
 date: 2024-10-08
-start_time: "18:00"
-end_time: "19:47" # 1h 46m 48s duration
-time_zone: "CET"
 description: "Alexandre Marcireau and Petruț Bogdan discuss the Faery library's integration and interaction with Innatera hardware and the Neuromorphic Intermediate Representation (NIR)."
 upcoming: false
 video: "1Jz3cj2y1k0"
