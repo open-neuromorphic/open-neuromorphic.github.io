@@ -44,5 +44,21 @@
       {{ partial "essentials/footer.html" . }}
       {{ partial "essentials/script.html" . }}
     {{ end }}
+    
+    <!-- OG Image Modal -->
+    <div id="og-image-modal" class="fixed inset-0 bg-black bg-opacity-70 z-[100] hidden items-center justify-center p-4 backdrop-blur-sm">
+      <div class="bg-white dark:bg-darkmode-theme-dark rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] flex flex-col">
+        <div class="flex justify-between items-center p-4 border-b border-border dark:border-darkmode-border flex-shrink-0">
+          <h3 class="text-xl font-bold">Social Media Assets</h3>
+          <button id="og-modal-close" class="p-2 -mr-2 text-2xl hover:text-primary dark:hover:text-darkmode-primary" aria-label="Close modal">×</button>
+        </div>
+        <div id="og-modal-content" class="p-6 overflow-y-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Image cards will be injected here by JS -->
+        </div>
+        <div class="p-4 border-t border-border dark:border-darkmode-border text-xs text-gray-500 dark:text-gray-400 flex-shrink-0">
+          <p>Click an image to download. Use the buttons to copy the public URL for sharing.</p>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

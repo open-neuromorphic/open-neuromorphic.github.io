@@ -1,44 +1,63 @@
-{{ $ogImageResource := "" }}
+{{ $page := . }}
+{{ $ogImagesForModal := slice }}
 {{ $ogImageDisplayURL := "" }}
 
-{{ if .IsHome }}
-{{ $ogImageDisplayURL = "images/og-image-16x9.jpg" | relLangURL }}
-{{ else if .File }}
-{{ $pageSlug := path.Base .File.Dir }}
-{{ $generatedOgImageName := printf "%s-og-16x9.jpg" $pageSlug }}
-{{ with .Resources.GetMatch $generatedOgImageName }}
-{{ $ogImageResource = . }}
+{{ $pageSlug := "" }}
+{{ if $page.IsHome }}
+{{ $pageSlug = "og-image" }}
+{{ else if $page.File }}
+{{ $pageSlug = path.Base $page.File.Dir }}
 {{ end }}
+
+{{ if $pageSlug }}
+{{ $suffixes := dict "16:9 Aspect Ratio" "16x9" "4:3 Aspect Ratio" "4x3" "1:1 Square" "1x1" }}
+
+{{ range $label, $suffix := $suffixes }}
+{{ $ogImageName := "" }}
+{{ if eq $pageSlug "og-image" }}
+{{ $ogImageName = printf "og-image-%s.jpg" $suffix }}
+{{ else }}
+{{ $ogImageName = printf "%s-og-%s.jpg" $pageSlug $suffix }}
+{{ end }}
+
+{{ $ogImageResource := "" }}
+{{ if and (not $page.IsHome) $page.File }}
+{{ $ogImageResource = $page.Resources.GetMatch $ogImageName }}
 {{ end }}
 
 {{ if not $ogImageResource }}
-{{ with .Params.image }}
-{{ $fmImage := . }}
-{{ with $.Page.Resources.GetMatch $fmImage }}
-{{ $ogImageResource = . }}
-{{ else }}
-{{ with resources.Get $fmImage }}
-{{ $ogImageResource = . }}
-{{ else }}
-{{ if fileExists (printf "static%s" $fmImage) }}
-{{ $ogImageDisplayURL = $fmImage | relLangURL }}
+{{ $staticPath := printf "images/%s" $ogImageName }}
+{{ if fileExists (printf "static/%s" $staticPath) }}
+{{ $ogImageResource = resources.Get $staticPath }}
 {{ end }}
 {{ end }}
+
+{{ with $ogImageResource }}
+{{ if and (not $ogImageDisplayURL) (eq $suffix "16x9") }}
+{{ $resizedPreview := .Resize "600x" }}
+{{ $ogImageDisplayURL = $resizedPreview.Permalink }}
+{{ end }}
+{{ $ogImagesForModal = $ogImagesForModal | append (dict "url" .Permalink "label" $label "filename" (path.Base .Name)) }}
 {{ end }}
 {{ end }}
 {{ end }}
 
 {{ if not $ogImageDisplayURL }}
-{{ if $ogImageResource }}
-{{ $resizedOg := $ogImageResource.Resize "600x Lanczos q85" }}
-{{ $ogImageDisplayURL = $resizedOg.RelPermalink }}
+{{ with $page.Params.image }}
+{{ $fmImageRes := $page.Resources.GetMatch . }}
+{{ if $fmImageRes }}
+{{ $ogImageDisplayURL = ($fmImageRes.Fill "1200x630").RelPermalink }}
+{{ else }}
+{{ $ogImageDisplayURL = . | relURL }}
+{{ end }}
 {{ else }}
 {{ with site.Params.metadata.image }}
-{{ $ogImageDisplayURL = . | relLangURL }}
+{{ $ogImageDisplayURL = . | relURL }}
 {{ end }}
 {{ end }}
 {{ end }}
 
+{{ $ogAssetsJson := $ogImagesForModal | jsonify }}
 
 {{ if $ogImageDisplayURL }}
 <div class="og-preview-wrapper">
@@ -57,6 +76,11 @@
         <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ .Permalink | absURL }}&title={{ .Title | urlquery }}" target="_blank" rel="noopener" class="social-icon" title="Share on LinkedIn">
           {{ partial "icon.html" (dict "style" "brands" "name" "linkedin") }}
         </a>
+        {{ if gt (len $ogImagesForModal) 0 }}
+        <a href="#" data-og-assets="{{ $ogAssetsJson | safeJS }}" class="social-icon" title="View Social Assets">
+          {{ partial "icon.html" (dict "style" "regular" "name" "images") }}
+        </a>
+        {{ end }}
       </div>
     </div>
     <div class="sharing-runner">
