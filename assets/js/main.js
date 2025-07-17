@@ -185,43 +185,15 @@
                     <img src="${img.url}" alt="OG Image Preview for ${img.label}" class="w-full rounded-md border border-border dark:border-darkmode-border shadow-md hover:shadow-lg transition-shadow">
                 </a>
                 <div class="mt-3">
-                    <button class="copy-og-image-btn btn btn-sm btn-outline-primary" data-url="${img.url}">
-                        <span class="copy-text">Copy Image</span>
-                        <span class="copied-text hidden">Copied!</span>
-                    </button>
+                    <a href="${img.url}" download="${img.filename}" class="btn btn-sm btn-new-primary">
+                        Download
+                    </a>
                 </div>
             </div>
           `;
           modalContent.insertAdjacentHTML('beforeend', cardHTML);
         });
       }
-
-      modalContent.querySelectorAll('.copy-og-image-btn').forEach(button => {
-        button.addEventListener('click', () => {
-          const urlToCopy = button.dataset.url;
-          fetch(urlToCopy)
-            .then(response => response.blob())
-            .then(blob => {
-              const item = new ClipboardItem({ [blob.type]: blob });
-              return navigator.clipboard.write([item]);
-            })
-            .then(() => {
-              button.classList.add('copied');
-              button.querySelector('.copy-text').classList.add('hidden');
-              button.querySelector('.copied-text').classList.remove('hidden');
-              setTimeout(() => {
-                button.classList.remove('copied');
-                button.querySelector('.copy-text').classList.remove('hidden');
-                button.querySelector('.copied-text').classList.add('hidden');
-              }, 2000);
-            })
-            .catch(err => {
-              console.error('Failed to copy image: ', err);
-              alert('Failed to copy image to clipboard. This feature requires a secure connection (HTTPS) and may need browser permissions.');
-            });
-        });
-      });
-
       showModal();
     };
 
