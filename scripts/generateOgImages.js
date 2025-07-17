@@ -7,7 +7,7 @@ const { readFile, writeFile, unlink, stat } = require('fs/promises');
 const PROJECT_ROOT = process.cwd();
 const TMP_DIR = join(PROJECT_ROOT, 'tmp');
 const TEMPLATE_PATH = join(PROJECT_ROOT, 'assets', 'og-template', 'template.html');
-const EVENT_TEMPLATE_PATH = join(PROJECT_ROOT, 'assets', 'og-template', 'event-template.html'); // New
+const EVENT_TEMPLATE_PATH = join(PROJECT_ROOT, 'assets', 'og-template', 'event-template.html');
 const INPUT_JSON_PATH = join(TMP_DIR, 'ogImageData.json');
 const CACHE_MANIFEST_PATH = join(TMP_DIR, 'og-cache-manifest.json');
 const JPEG_QUALITY = 90;
@@ -17,6 +17,7 @@ async function pathExists(path) {
 }
 
 async function generateImages() {
+  const startTime = Date.now();
   console.log('🖼️  Starting OG Image Generation with Caching...');
 
   // --- Pre-flight checks ---
@@ -31,14 +32,14 @@ async function generateImages() {
   const defaultTemplateContent = await readFile(TEMPLATE_PATH, 'utf8');
   const eventTemplateContent = await readFile(EVENT_TEMPLATE_PATH, 'utf8');
   const jsonData = JSON.parse(await readFile(INPUT_JSON_PATH, 'utf8'));
-  
+
   let oldCache = {};
   try {
     oldCache = JSON.parse(await readFile(CACHE_MANIFEST_PATH, 'utf8'));
   } catch (e) {
     console.log('ℹ️ No existing cache manifest found. Will generate all images.');
   }
-  
+
   const newCache = {};
 
   if (!jsonData || !jsonData.pages || jsonData.pages.length === 0) {
@@ -46,11 +47,12 @@ async function generateImages() {
     return;
   }
 
-  // --- Launch Puppeteer ---
+  // --- Launch Puppeteer and create ONE reusable page ---
   const browser = await puppeteer.launch({
     headless: true,
     args: ['--no-sandbox', '--disable-setuid-sandbox'],
   });
+  const page = await browser.newPage();
 
   let successCount = 0;
   let errorCount = 0;
@@ -78,37 +80,44 @@ async function generateImages() {
           newCache[outputPath] = finalHash; // Keep valid entry
           continue;
         }
-        
-        const page = await browser.newPage();
+
+        // Reuse the single page
         await page.setViewport({ width, height });
 
         let htmlContent;
         if (template === 'event') {
-            const speakersHtml = (speakers || [])
-              .map(speaker => `
-                <div class="speaker-item">
-                  ${speaker.imageUri ? `<img src="${speaker.imageUri}" class="speaker-img" alt="Photo of ${speaker.name}" />` : ''}
+          const speakersHtml = (speakers || [])
+            .map(speaker => `
+                <div class="speaker-item" style="width: ${
+              speaker.count === 1 ? '42vmin' :
+                speaker.count === 2 ? '32vmin' :
+                  speaker.count === 3 ? '27vmin' :
+                    speaker.count >= 4 && speaker.count <= 6 ? '24vmin' :
+                      '20vmin'
+            };">
+                  ${speaker.imageUri ? `<img src="${speaker.imageUri}" class="speaker-img" alt="Photo of ${speaker.name}" style="width: 100%; height: 100%;" />` : ''}
                   <div class="speaker-name">${speaker.name}</div>
                 </div>
               `)
-              .join('');
+            .join('');
 
-            htmlContent = eventTemplateContent
-              .replace('LOGO_SRC', jsonData.logoDataUri)
-              .replace('BACKGROUND_URL', jsonData.backgroundDataUri || '')
-              .replace('PAGE_TITLE', title)
-              .replace('<!-- SPEAKER_IMAGES_HTML will be injected here -->', speakersHtml)
-              .replace('EVENT_DATE', eventDate || '')
-              .replace('EVENT_TIME', eventTime || '');
+          htmlContent = eventTemplateContent
+            .replace('LOGO_SRC', jsonData.logoDataUri)
+            .replace('BACKGROUND_URL', jsonData.backgroundDataUri || '')
+            .replace('PAGE_TITLE', title)
+            .replace('<!-- SPEAKER_IMAGES_HTML will be injected here -->', speakersHtml)
+            .replace('EVENT_DATE', eventDate || '')
+            .replace('EVENT_TIME', eventTime || '');
         } else {
-            htmlContent = defaultTemplateContent
-              .replace('LOGO_SRC', jsonData.logoDataUri)
-              .replace('BACKGROUND_URL', jsonData.backgroundDataUri || '')
-              .replace('PAGE_TITLE', title)
-              .replace('PAGE_DESCRIPTION', description);
+          htmlContent = defaultTemplateContent
+            .replace('LOGO_SRC', jsonData.logoDataUri)
+            .replace('BACKGROUND_URL', jsonData.backgroundDataUri || '')
+            .replace('PAGE_TITLE', title)
+            .replace('PAGE_DESCRIPTION', description);
         }
 
-        await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
+        // Use 'domcontentloaded' for faster processing
+        await page.setContent(htmlContent, { waitUntil: 'domcontentloaded' });
 
         await page.screenshot({
           path: outputPath,
@@ -120,8 +129,7 @@ async function generateImages() {
         console.log(`✅ Generated: ${outputPath.replace(PROJECT_ROOT, '')} (${width}x${height}, ${(stats.size / 1024).toFixed(1)} KB)`);
         successCount++;
         newCache[outputPath] = finalHash; // Add new entry to cache
-        
-        await page.close();
+
       } catch (err) {
         console.error(`❌ Failed generating image for: ${outputPath.replace(PROJECT_ROOT, '')}`);
         console.error(err.message || err);
@@ -129,7 +137,7 @@ async function generateImages() {
       }
     }
   }
-  
+
   await browser.close();
 
   // --- Cleanup stale images and cache entries ---
@@ -139,7 +147,7 @@ async function generateImages() {
       p.outputs.forEach(o => validOutputPaths.add(o.path));
     }
   });
-  
+
   let cleanedCount = 0;
   for (const oldPath in oldCache) {
     if (!validOutputPaths.has(oldPath)) {
@@ -150,13 +158,14 @@ async function generateImages() {
     }
   }
   if (cleanedCount > 0) {
-      console.log(`🗑️  Cleaned up ${cleanedCount} stale OG image(s).`);
+    console.log(`🗑️  Cleaned up ${cleanedCount} stale OG image(s).`);
   }
 
   // --- Write the new cache manifest ---
   await writeFile(CACHE_MANIFEST_PATH, JSON.stringify(newCache, null, 2));
 
-  console.log(`\n✨ Generation complete! Succeeded: ${successCount}, Skipped: ${skippedCount}, Failed: ${errorCount}.`);
+  const duration = ((Date.now() - startTime) / 1000).toFixed(2);
+  console.log(`\n✨ Generation complete in ${duration}s! Succeeded: ${successCount}, Skipped: ${skippedCount}, Failed: ${errorCount}.`);
   if (errorCount > 0) process.exit(1);
 }
 

@@ -27,12 +27,12 @@
       display: flex;
       flex-direction: column;
       box-sizing: border-box;
-      padding: 6vmin;
+      padding: 5vmin;
     }
     .background {
       position: absolute;
       z-index: 1;
-      opacity: 0.1;
+      opacity: 0.15;
       width: 150%;
       height: auto;
       right: -25%;
@@ -42,6 +42,7 @@
     .header {
       display: flex;
       align-items: center;
+      justify-content: center;
       flex-shrink: 0;
       margin-bottom: 4vmin;
     }
@@ -65,11 +66,11 @@
       text-align: center;
     }
     .title {
-      font-size: clamp(30px, 6.5vmin, 65px); /* Further decreased font size */
+      font-size: clamp(30px, 6.2vmin, 62px);
       font-weight: 800;
       line-height: 1.2;
       color: #1f2937;
-      margin: 0 0 4vmin 0; /* Reduced bottom margin slightly */
+      margin: 0 0 4vmin 0;
       display: -webkit-box;
       -webkit-line-clamp: 5;
       -webkit-box-orient: vertical;
@@ -80,15 +81,15 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 25vmin; /* Ensure space is reserved */
+      min-height: 28vmin;
     }
     .speakers-container {
       display: flex;
       justify-content: center;
-      align-items: flex-start; /* Align items to top */
+      align-items: flex-start;
       gap: 2.5vmin;
       flex-wrap: wrap;
-      max-width: 95%; /* Prevent overflow */
+      max-width: 95%;
     }
     .speaker-item {
       display: flex;
@@ -104,12 +105,12 @@
       flex-shrink: 0;
     }
     .speaker-name {
-        font-size: clamp(16px, 2.8vmin, 26px);
-        font-weight: 500;
-        color: #374151; /* gray-700 */
-        line-height: 1.2;
-        max-width: 100%;
-        word-wrap: break-word;
+      font-size: clamp(18px, 3.2vmin, 28px);
+      font-weight: 500;
+      color: #374151;
+      line-height: 1.2;
+      max-width: 100%;
+      word-wrap: break-word;
     }
     .event-details {
       font-size: clamp(28px, 5.5vmin, 55px);
@@ -119,8 +120,8 @@
       font-weight: 500;
     }
     .event-date {
-        font-weight: 700;
-        color: #667eea; /* Primary color */
+      font-weight: 700;
+      color: #667eea;
     }
     .footer {
       font-size: clamp(20px, 4vmin, 40px);
@@ -158,28 +159,32 @@
   document.addEventListener('DOMContentLoaded', () => {
     const speakerContainer = document.querySelector('.speakers-container');
     if (!speakerContainer) return;
-    const speakerCount = speakerContainer.children.length;
+    const speakerItems = speakerContainer.querySelectorAll('.speaker-item');
+    const speakerCount = speakerItems.length;
 
     if (speakerCount === 0) return;
 
-    let size = '20vmin'; // Default
+    let size = '22vmin';
 
     if (speakerCount === 1) {
-      size = '40vmin';
+      size = '42vmin';
     } else if (speakerCount === 2) {
-      size = '30vmin';
+      size = '32vmin';
     } else if (speakerCount === 3) {
-      size = '25vmin';
+      size = '27vmin';
     } else if (speakerCount >= 4 && speakerCount <= 6) {
-      size = '22vmin';
+      size = '24vmin';
     } else if (speakerCount > 6) {
-      size = '18vmin';
+      size = '20vmin';
     }
 
-    const speakerImages = document.querySelectorAll('.speaker-img');
-    speakerImages.forEach(img => {
-      img.style.width = size;
-      img.style.height = size;
+    speakerItems.forEach(item => {
+      item.style.width = size;
+      const img = item.querySelector('.speaker-img');
+      if (img) {
+        img.style.width = size;
+        img.style.height = size;
+      }
     });
   });
 </script>
