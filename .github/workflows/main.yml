@@ -57,7 +57,7 @@ jobs:
             content/**/*-og-*.jpg
             static/images/og-image-*.jpg
             tmp/og-cache-manifest.json
-          key: ${{ runner.os }}-og-images-${{ hashFiles('**/content/**/index.md', '**/content/**/_index.md', 'assets/og-template/template.html', 'assets/images/ONM-logo.png') }}
+          key: ${{ runner.os }}-og-images-${{ hashFiles('**/content/**/index.md', '**/content/**/_index.md', 'assets/og-template/template.html', 'assets/og-template/event-template.html', 'assets/images/ONM-logo.png', 'scripts/collectOgData.js', 'scripts/generateOgImages.js') }}
           restore-keys: |
             ${{ runner.os }}-og-images-
 
