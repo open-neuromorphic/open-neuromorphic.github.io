@@ -4,57 +4,65 @@
 
 {{ $pageSlug := "" }}
 {{ if $page.IsHome }}
-{{ $pageSlug = "og-image" }}
+  {{ $pageSlug = "og-image" }}
 {{ else if $page.File }}
-{{ $pageSlug = path.Base $page.File.Dir }}
+  {{ $pageSlug = path.Base $page.File.Dir }}
 {{ end }}
 
 {{ if $pageSlug }}
-{{ $suffixes := dict "16:9 Aspect Ratio" "16x9" "4:3 Aspect Ratio" "4x3" "1:1 Square" "1x1" }}
+  {{ $isUpcomingEvent := and .Params.upcoming (in (slice "workshops" "student-talks" "hacking-hours") .Type) }}
+  
+  {{ $suffixes := dict }}
+  {{ if $isUpcomingEvent }}
+    {{ $suffixes = merge $suffixes (dict "Event Announcement (Portrait)" "portrait") }}
+  {{ end }}
+  {{ $standardSuffixes := dict "16:9 Aspect Ratio" "16x9" "4:3 Aspect Ratio" "4x3" "1:1 Square" "1x1" }}
+  {{ $suffixes = merge $suffixes $standardSuffixes }}
 
-{{ range $label, $suffix := $suffixes }}
-{{ $ogImageName := "" }}
-{{ if eq $pageSlug "og-image" }}
-{{ $ogImageName = printf "og-image-%s.jpg" $suffix }}
-{{ else }}
-{{ $ogImageName = printf "%s-og-%s.jpg" $pageSlug $suffix }}
-{{ end }}
 
-{{ $ogImageResource := "" }}
-{{ if and (not $page.IsHome) $page.File }}
-{{ $ogImageResource = $page.Resources.GetMatch $ogImageName }}
-{{ end }}
+  {{ range $label, $suffix := $suffixes }}
+    {{ $ogImageName := "" }}
+    {{ if eq $pageSlug "og-image" }}
+      {{ $ogImageName = printf "og-image-%s.jpg" $suffix }}
+    {{ else }}
+      {{ $ogImageName = printf "%s-og-%s.jpg" $pageSlug $suffix }}
+    {{ end }}
 
-{{ if not $ogImageResource }}
-{{ $staticPath := printf "images/%s" $ogImageName }}
-{{ if fileExists (printf "static/%s" $staticPath) }}
-{{ $ogImageResource = resources.Get $staticPath }}
-{{ end }}
-{{ end }}
+    {{ $ogImageResource := "" }}
+    {{ if and (not $page.IsHome) $page.File }}
+      {{ $ogImageResource = $page.Resources.GetMatch $ogImageName }}
+    {{ end }}
 
-{{ with $ogImageResource }}
-{{ if and (not $ogImageDisplayURL) (eq $suffix "16x9") }}
-{{ $resizedPreview := .Resize "600x" }}
-{{ $ogImageDisplayURL = $resizedPreview.Permalink }}
-{{ end }}
-{{ $ogImagesForModal = $ogImagesForModal | append (dict "url" .Permalink "label" $label "filename" (path.Base .Name)) }}
-{{ end }}
-{{ end }}
+    {{ if not $ogImageResource }}
+      {{ $staticPath := printf "images/%s" $ogImageName }}
+      {{ if fileExists (printf "static/%s" $staticPath) }}
+        {{ $ogImageResource = resources.Get $staticPath }}
+      {{ end }}
+    {{ end }}
+
+    {{ with $ogImageResource }}
+      {{ if and (not $ogImageDisplayURL) (eq $suffix "16x9") }}
+        {{ $resizedPreview := .Resize "600x" }}
+        {{ $ogImageDisplayURL = $resizedPreview.Permalink }}
+      {{ end }}
+      {{ $ogImagesForModal = $ogImagesForModal | append (dict "url" .Permalink "label" $label "filename" (path.Base .Name)) }}
+    {{ end }}
+  {{ end }}
 {{ end }}
 
 {{ if not $ogImageDisplayURL }}
-{{ with $page.Params.image }}
-{{ $fmImageRes := $page.Resources.GetMatch . }}
-{{ if $fmImageRes }}
-{{ $ogImageDisplayURL = ($fmImageRes.Fill "1200x630").RelPermalink }}
-{{ else }}
-{{ $ogImageDisplayURL = . | relURL }}
-{{ end }}
-{{ else }}
-{{ with site.Params.metadata.image }}
-{{ $ogImageDisplayURL = . | relURL }}
-{{ end }}
-{{ end }}
+  {{ with $page.Params.image }}
+    {{ $fmImageRes := $page.Resources.GetMatch . }}
+    {{ if $fmImageRes }}
+      {{ $ogImageDisplayURL = ($fmImageRes.Fill "1200x630").RelPermalink }}
+    {{ else }}
+      {{ $ogImageDisplayURL = . | relURL }}
+    {{ end }}
+  {{ else }}
+    {{ with site.Params.metadata.image }}
+      {{ $ogImageDisplayURL = . | relURL }}
+    {{ end }}
+  {{ end }}
 {{ end }}
 
 {{ $ogAssetsJson := $ogImagesForModal | jsonify }}
@@ -89,6 +97,9 @@
         {{ partial "icon.html" (dict "style" "brands" "name" "x-twitter") }}
         {{ partial "icon.html" (dict "style" "brands" "name" "facebook") }}
         {{ partial "icon.html" (dict "style" "brands" "name" "linkedin") }}
+        {{ if gt (len $ogImagesForModal) 0 }}
+        {{ partial "icon.html" (dict "style" "regular" "name" "images") }}
+        {{ end }}
       </div>
     </div>
   </div>

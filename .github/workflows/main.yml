@@ -2,7 +2,7 @@ name: Deploy Hugo site to Pages
 
 on:
   push:
-    branches: ["main", "supporters"]
+    branches: ["main", "social-sharing"]
 
 permissions:
   contents: read
