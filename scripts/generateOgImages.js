@@ -7,6 +7,7 @@ const { readFile, writeFile, unlink, stat } = require('fs/promises');
 const PROJECT_ROOT = process.cwd();
 const TMP_DIR = join(PROJECT_ROOT, 'tmp');
 const TEMPLATE_PATH = join(PROJECT_ROOT, 'assets', 'og-template', 'template.html');
+const EVENT_TEMPLATE_PATH = join(PROJECT_ROOT, 'assets', 'og-template', 'event-template.html'); // New
 const INPUT_JSON_PATH = join(TMP_DIR, 'ogImageData.json');
 const CACHE_MANIFEST_PATH = join(TMP_DIR, 'og-cache-manifest.json');
 const JPEG_QUALITY = 90;
@@ -22,12 +23,13 @@ async function generateImages() {
   if (!(await pathExists(INPUT_JSON_PATH))) {
     throw new Error(`❌ Data file not found: ${INPUT_JSON_PATH}. Run collect script first.`);
   }
-  if (!(await pathExists(TEMPLATE_PATH))) {
-    throw new Error(`❌ OG template not found: ${TEMPLATE_PATH}`);
+  if (!(await pathExists(TEMPLATE_PATH)) || !(await pathExists(EVENT_TEMPLATE_PATH))) {
+    throw new Error(`❌ OG template(s) not found.`);
   }
 
-  // --- Read data, template, and cache manifest ---
-  const templateContent = await readFile(TEMPLATE_PATH, 'utf8');
+  // --- Read data, templates, and cache manifest ---
+  const defaultTemplateContent = await readFile(TEMPLATE_PATH, 'utf8');
+  const eventTemplateContent = await readFile(EVENT_TEMPLATE_PATH, 'utf8');
   const jsonData = JSON.parse(await readFile(INPUT_JSON_PATH, 'utf8'));
   
   let oldCache = {};
@@ -56,7 +58,7 @@ async function generateImages() {
 
   // --- Process each page ---
   for (const pageData of jsonData.pages) {
-    const { title, description, outputs, finalHash } = pageData;
+    const { title, description, outputs, finalHash, eventDate, eventTime, speakers } = pageData;
 
     if (!outputs || outputs.length === 0) {
       console.warn(`⚠️ No outputs defined for page: ${title}`);
@@ -65,7 +67,7 @@ async function generateImages() {
 
     // Process each output size for the current page
     for (const output of outputs) {
-      const { path: outputPath, width, height } = output;
+      const { path: outputPath, width, height, template } = output;
 
       try {
         const fileAlreadyExists = await pathExists(outputPath);
@@ -80,11 +82,31 @@ async function generateImages() {
         const page = await browser.newPage();
         await page.setViewport({ width, height });
 
-        const htmlContent = templateContent
-          .replace('LOGO_SRC', jsonData.logoDataUri)
-          .replace('BACKGROUND_URL', jsonData.backgroundDataUri || '')
-          .replace('PAGE_TITLE', title)
-          .replace('PAGE_DESCRIPTION', description);
+        let htmlContent;
+        if (template === 'event') {
+            const speakersHtml = (speakers || [])
+              .map(speaker => `
+                <div class="speaker-item">
+                  ${speaker.imageUri ? `<img src="${speaker.imageUri}" class="speaker-img" alt="Photo of ${speaker.name}" />` : ''}
+                  <div class="speaker-name">${speaker.name}</div>
+                </div>
+              `)
+              .join('');
+
+            htmlContent = eventTemplateContent
+              .replace('LOGO_SRC', jsonData.logoDataUri)
+              .replace('BACKGROUND_URL', jsonData.backgroundDataUri || '')
+              .replace('PAGE_TITLE', title)
+              .replace('<!-- SPEAKER_IMAGES_HTML will be injected here -->', speakersHtml)
+              .replace('EVENT_DATE', eventDate || '')
+              .replace('EVENT_TIME', eventTime || '');
+        } else {
+            htmlContent = defaultTemplateContent
+              .replace('LOGO_SRC', jsonData.logoDataUri)
+              .replace('BACKGROUND_URL', jsonData.backgroundDataUri || '')
+              .replace('PAGE_TITLE', title)
+              .replace('PAGE_DESCRIPTION', description);
+        }
 
         await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
 
