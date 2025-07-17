@@ -11,7 +11,7 @@
 
 {{ if $pageSlug }}
   {{ $isUpcomingEvent := and .Params.upcoming (in (slice "workshops" "student-talks" "hacking-hours") .Type) }}
-  
+
   {{ $suffixes := dict }}
   {{ if $isUpcomingEvent }}
     {{ $suffixes = merge $suffixes (dict "Event Announcement (Portrait)" "portrait") }}
@@ -97,9 +97,6 @@
         {{ partial "icon.html" (dict "style" "brands" "name" "x-twitter") }}
         {{ partial "icon.html" (dict "style" "brands" "name" "facebook") }}
         {{ partial "icon.html" (dict "style" "brands" "name" "linkedin") }}
-        {{ if gt (len $ogImagesForModal) 0 }}
-        {{ partial "icon.html" (dict "style" "regular" "name" "images") }}
-        {{ end }}
       </div>
     </div>
   </div>
