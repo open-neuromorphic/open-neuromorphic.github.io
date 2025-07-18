@@ -8,6 +8,7 @@ const PROJECT_ROOT = process.cwd();
 const TMP_DIR = join(PROJECT_ROOT, 'tmp');
 const TEMPLATE_PATH = join(PROJECT_ROOT, 'assets', 'og-template', 'template.html');
 const EVENT_TEMPLATE_PATH = join(PROJECT_ROOT, 'assets', 'og-template', 'event-template.html');
+const YOUTUBE_TEMPLATE_PATH = join(PROJECT_ROOT, 'assets', 'og-template', 'youtube-thumbnail-template.html');
 const INPUT_JSON_PATH = join(TMP_DIR, 'ogImageData.json');
 const CACHE_MANIFEST_PATH = join(TMP_DIR, 'og-cache-manifest.json');
 const JPEG_QUALITY = 90;
@@ -24,13 +25,14 @@ async function generateImages() {
   if (!(await pathExists(INPUT_JSON_PATH))) {
     throw new Error(`❌ Data file not found: ${INPUT_JSON_PATH}. Run collect script first.`);
   }
-  if (!(await pathExists(TEMPLATE_PATH)) || !(await pathExists(EVENT_TEMPLATE_PATH))) {
+  if (!(await pathExists(TEMPLATE_PATH)) || !(await pathExists(EVENT_TEMPLATE_PATH)) || !(await pathExists(YOUTUBE_TEMPLATE_PATH))) {
     throw new Error(`❌ OG template(s) not found.`);
   }
 
   // --- Read data, templates, and cache manifest ---
   const defaultTemplateContent = await readFile(TEMPLATE_PATH, 'utf8');
   const eventTemplateContent = await readFile(EVENT_TEMPLATE_PATH, 'utf8');
+  const youtubeTemplateContent = await readFile(YOUTUBE_TEMPLATE_PATH, 'utf8');
   const jsonData = JSON.parse(await readFile(INPUT_JSON_PATH, 'utf8'));
 
   let oldCache = {};
@@ -81,42 +83,85 @@ async function generateImages() {
           continue;
         }
 
-        // Reuse the single page
         await page.setViewport({ width, height });
 
         let htmlContent;
-        if (template === 'event') {
-          const speakersHtml = (speakers || [])
-            .map(speaker => `
-                <div class="speaker-item" style="width: ${
-              speaker.count === 1 ? '42vmin' :
-                speaker.count === 2 ? '32vmin' :
-                  speaker.count === 3 ? '27vmin' :
-                    speaker.count >= 4 && speaker.count <= 6 ? '24vmin' :
-                      '20vmin'
-            };">
-                  ${speaker.imageUri ? `<img src="${speaker.imageUri}" class="speaker-img" alt="Photo of ${speaker.name}" style="width: 100%; height: 100%;" />` : ''}
-                  <div class="speaker-name">${speaker.name}</div>
-                </div>
-              `)
-            .join('');
+        if (template === 'event' || template === 'youtube') {
+            let allSpeakers = speakers || [];
+            let speakersWithPhotos = allSpeakers.filter(s => s.imageUri);
+            let speakersWithoutPhotos = allSpeakers.filter(s => !s.imageUri);
 
-          htmlContent = eventTemplateContent
-            .replace('LOGO_SRC', jsonData.logoDataUri)
-            .replace('BACKGROUND_URL', jsonData.backgroundDataUri || '')
-            .replace('PAGE_TITLE', title)
-            .replace('<!-- SPEAKER_IMAGES_HTML will be injected here -->', speakersHtml)
-            .replace('EVENT_DATE', eventDate || '')
-            .replace('EVENT_TIME', eventTime || '');
-        } else {
-          htmlContent = defaultTemplateContent
-            .replace('LOGO_SRC', jsonData.logoDataUri)
-            .replace('BACKGROUND_URL', jsonData.backgroundDataUri || '')
-            .replace('PAGE_TITLE', title)
-            .replace('PAGE_DESCRIPTION', description);
+            let speakersHtml;
+            if (template === 'youtube') {
+                const speakerCount = speakersWithPhotos.length;
+                let speakerImgSize, speakerNameSize, speakerContainerGap;
+
+                if (speakerCount > 6) {
+                    speakerImgSize = '110px';
+                    speakerNameSize = '18px';
+                    speakerContainerGap = '10px';
+                } else if (speakerCount > 4) {
+                    speakerImgSize = '130px';
+                    speakerNameSize = '20px';
+                    speakerContainerGap = '15px';
+                } else {
+                    speakerImgSize = '160px';
+                    speakerNameSize = '24px';
+                    speakerContainerGap = '25px';
+                }
+
+                const photosHtml = speakersWithPhotos.map(speaker => `
+                  <div class="speaker-item">
+                    <img src="${speaker.imageUri}" class="speaker-img" alt="Photo of ${speaker.name}" style="width: ${speakerImgSize}; height: ${speakerImgSize};" />
+                    <div class="speaker-name" style="font-size: ${speakerNameSize};">${speaker.name}</div>
+                  </div>
+                `).join('');
+
+                let textHtml = '';
+                if (speakersWithoutPhotos.length > 0) {
+                    const otherSpeakersTitle = speakersWithPhotos.length > 0 ? 'With' : 'Speakers';
+                    textHtml = `
+                      <div class="speakers-without-photos">
+                        <h3 class="other-speakers-title">${otherSpeakersTitle}:</h3>
+                        <ul class="other-speakers-list">
+                          ${speakersWithoutPhotos.map(s => `<li>${s.name}</li>`).join('')}
+                        </ul>
+                      </div>
+                    `;
+                }
+                
+                speakersHtml = `<div class="speakers-container" style="gap: ${speakerContainerGap};">${photosHtml}</div>${textHtml}`;
+
+                htmlContent = youtubeTemplateContent
+                  .replace('LOGO_SRC', jsonData.logoDataUri)
+                  .replace('BACKGROUND_URL', jsonData.backgroundDataUri || '')
+                  .replace('PAGE_TITLE', title)
+                  .replace('<!-- SPEAKERS_HTML will be injected here -->', speakersHtml);
+
+            } else { // 'event' template
+                speakersHtml = allSpeakers.map(speaker => `
+                  <div class="speaker-item">
+                    ${speaker.imageUri ? `<img src="${speaker.imageUri}" class="speaker-img" alt="Photo of ${speaker.name}" />` : ''}
+                    <div class="speaker-name">${speaker.name}</div>
+                  </div>
+                `).join('');
+
+                htmlContent = eventTemplateContent
+                  .replace('LOGO_SRC', jsonData.logoDataUri)
+                  .replace('BACKGROUND_URL', jsonData.backgroundDataUri || '')
+                  .replace('PAGE_TITLE', title)
+                  .replace('<!-- SPEAKER_IMAGES_HTML will be injected here -->', `<div class="speakers-container">${speakersHtml}</div>`)
+                  .replace('EVENT_DATE', eventDate || '')
+                  .replace('EVENT_TIME', eventTime || '');
+            }
+        } else { // 'default' template
+            htmlContent = defaultTemplateContent
+              .replace('LOGO_SRC', jsonData.logoDataUri)
+              .replace('BACKGROUND_URL', jsonData.backgroundDataUri || '')
+              .replace('PAGE_TITLE', title)
+              .replace('PAGE_DESCRIPTION', description);
         }
 
-        // Use 'domcontentloaded' for faster processing
         await page.setContent(htmlContent, { waitUntil: 'domcontentloaded' });
 
         await page.screenshot({
@@ -128,7 +173,7 @@ async function generateImages() {
         const stats = await stat(outputPath);
         console.log(`✅ Generated: ${outputPath.replace(PROJECT_ROOT, '')} (${width}x${height}, ${(stats.size / 1024).toFixed(1)} KB)`);
         successCount++;
-        newCache[outputPath] = finalHash; // Add new entry to cache
+        newCache[outputPath] = finalHash;
 
       } catch (err) {
         console.error(`❌ Failed generating image for: ${outputPath.replace(PROJECT_ROOT, '')}`);
@@ -140,7 +185,6 @@ async function generateImages() {
 
   await browser.close();
 
-  // --- Cleanup stale images and cache entries ---
   const validOutputPaths = new Set();
   jsonData.pages.forEach(p => {
     if (p.outputs) {
@@ -158,10 +202,9 @@ async function generateImages() {
     }
   }
   if (cleanedCount > 0) {
-    console.log(`🗑️  Cleaned up ${cleanedCount} stale OG image(s).`);
+      console.log(`🗑️  Cleaned up ${cleanedCount} stale OG image(s).`);
   }
 
-  // --- Write the new cache manifest ---
   await writeFile(CACHE_MANIFEST_PATH, JSON.stringify(newCache, null, 2));
 
   const duration = ((Date.now() - startTime) / 1000).toFixed(2);
