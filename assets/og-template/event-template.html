@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Event OG Image</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Roboto+Slab:wght@700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Inter", Arial, sans-serif;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .canvas {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background-color: #f9fafb;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+      padding: 5vmin;
+    }
+    .background {
+      position: absolute;
+      z-index: 1;
+      opacity: 0.15;
+      width: 150%;
+      height: auto;
+      right: -25%;
+      bottom: -10%;
+      transform: rotate(-15deg);
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-bottom: 4vmin;
+    }
+    .logo {
+      height: 12vmin;
+      width: auto;
+      margin-right: 3vmin;
+    }
+    .logo-text {
+      font-family: "Inter", sans-serif;
+      font-size: 6vmin;
+      line-height: 1.1;
+      font-weight: 800;
+      color: #1f2937;
+    }
+    .main-content {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
+    .title {
+      font-size: clamp(30px, 6.2vmin, 62px);
+      font-weight: 800;
+      line-height: 1.2;
+      color: #1f2937;
+      margin: 0 0 4vmin 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 5;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .speakers {
+      margin-bottom: 4vmin;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 28vmin;
+    }
+    .speakers-container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 2.5vmin;
+      flex-wrap: wrap;
+      max-width: 95%;
+    }
+    .speaker-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5vmin;
+    }
+    .speaker-img {
+      border-radius: 50%;
+      object-fit: cover;
+      border: 0.8vmin solid white;
+      box-shadow: 0 0.5vmin 1.5vmin rgba(0,0,0,0.15);
+      flex-shrink: 0;
+    }
+    .speaker-name {
+        font-size: clamp(18px, 3.2vmin, 28px);
+        font-weight: 500;
+        color: #374151;
+        line-height: 1.2;
+        max-width: 100%;
+        word-wrap: break-word;
+    }
+    .event-details {
+      font-size: clamp(28px, 5.5vmin, 55px);
+      line-height: 1.4;
+      color: #4b5563;
+      margin: 0;
+      font-weight: 500;
+    }
+    .event-date {
+        font-weight: 700;
+        color: #667eea;
+    }
+    .footer {
+      font-size: clamp(20px, 4vmin, 40px);
+      font-weight: 500;
+      color: #667eea;
+      text-align: center;
+      flex-shrink: 0;
+      margin-top: 4vmin;
+    }
+  </style>
+</head>
+<body>
+<div class="canvas">
+  <img src="BACKGROUND_URL" class="background" alt="" />
+  <div class="header">
+    <img src="LOGO_SRC" alt="Logo" class="logo" />
+    <div class="logo-text">Open Neuromorphic</div>
+  </div>
+  <div class="main-content">
+    <h1 class="title">PAGE_TITLE</h1>
+    <div class="speakers">
+      <div class="speakers-container">
+        <!-- SPEAKER_IMAGES_HTML will be injected here -->
+      </div>
+    </div>
+    <div class="event-details">
+      <div class="event-date">EVENT_DATE</div>
+      <div>EVENT_TIME</div>
+    </div>
+  </div>
+  <div class="footer">open-neuromorphic.org</div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const speakerContainer = document.querySelector('.speakers-container');
+    if (!speakerContainer) return;
+    const speakerItems = speakerContainer.querySelectorAll('.speaker-item');
+    const speakerCount = speakerItems.length;
+
+    if (speakerCount === 0) return;
+
+    let size = '22vmin';
+
+    if (speakerCount === 1) {
+      size = '42vmin';
+    } else if (speakerCount === 2) {
+      size = '32vmin';
+    } else if (speakerCount === 3) {
+      size = '27vmin';
+    } else if (speakerCount >= 4 && speakerCount <= 6) {
+      size = '24vmin';
+    } else if (speakerCount > 6) {
+      size = '20vmin';
+    }
+
+    speakerItems.forEach(item => {
+      item.style.width = size;
+      const img = item.querySelector('.speaker-img');
+      if (img) {
+        img.style.width = size;
+        img.style.height = size;
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
