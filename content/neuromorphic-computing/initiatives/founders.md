@@ -9,6 +9,8 @@ author:
 date: 2023-01-01
 draft: false
 type: initiatives
-# Add an image if you want one specific to this initiative's card/page
-# image: "images/hacking-hours-logo.png" 
 ---
+
+This page recognizes the foundational members of Open Neuromorphic. Their vision and initial efforts created the collaborative community that exists today.
+
+The founders are prominently featured on our main **[About page](/about/)**, which details their role in establishing ONM's mission and community.

@@ -1,64 +1,46 @@
 ---
 title: Getting Involved with Open Neuromorphic
-description: Join ONM's collaborative community. Find your path as a student, practitioner, or industry expert to contribute to open-source neuromorphic computing.
+description: "Join ONM's collaborative community. Find your path as a student, practitioner, or industry expert to contribute to open-source neuromorphic computing."
 image: "images/getting-involved/getting-involved-og.jpg" 
 ---
 
-Open Neuromorphic (ONM) welcomes contributions from everyone, whether you're just starting out, a seasoned researcher, or representing an organization. We believe in the power of open collaboration to advance the field of neuromorphic computing.
-
-Find your path to making an impact within our vibrant community. Below, we've outlined pathways tailored to different roles and interests.
+Welcome to the Open Neuromorphic community! We thrive on collaboration and welcome contributions from everyone, regardless of background or expertise. Below are the primary ways you can join our mission to advance the field of neuromorphic computing. Find the path that best suits your interests and skills.
 
 {{< pathway_card
-title="For Students & Aspiring Researchers"
-description="Kickstart your journey in neuromorphic computing. Access learning resources, participate in engaging discussions, and find opportunities to contribute to real projects. ONM provides a supportive environment to grow your skills and network with peers and experts."
-cta_text="Join Student Talks"
-cta_link="/getting-involved/share-your-work"
+title="Share Your Knowledge"
+description="Educate and inspire the community by sharing your work. We provide a platform for you to present research, lead workshops, or publish articles. Our team helps with logistics and promotion, making it easy to contribute."
+cta_text="Propose a Talk or Post"
+cta_link="/getting-involved/share-your-work/"
 image="student-path.jpeg"
-alt_text="Students learning about neuromorphic computing"
+alt_text="A person presenting at a workshop"
 layout_class=""
-explore_links="Hacking Hour Sessions|/neuromorphic-computing/software/hacking-hours/;Explore ONM Workshops|/workshops/;Read Our Blog|/blog/"
+explore_links="ONM Workshops|/workshops/;Student Talks|/neuromorphic-computing/student-talks/;Write for Our Blog|/getting-involved/write-a-blog-post/"
 >}}
 
 {{< pathway_card
-title="For Researchers & Developers"
-description="Dive deeper into neuromorphic systems. Contribute your expertise by developing open-source tools, writing insightful blog posts, or leading new community initiatives. Collaborate with a global network of practitioners pushing the boundaries of brain-inspired AI."
-cta_text="Join Hacking Hours"
-cta_link="/neuromorphic-computing/software/hacking-hours/"
+title="Collaborate on Projects"
+description="Get hands-on by contributing to community-driven projects. You can join an existing initiative, participate in live coding sessions, or take on a specific volunteer role to help us improve our resources and platforms."
+cta_text="See Volunteer Roles"
+cta_link="/volunteer-opportunities/"
 image="developer-path.jpeg"
 alt_text="Developers collaborating on code"
 layout_class="reverse"
-explore_links="Neuromorphic Software Guide|/neuromorphic-computing/software/;Neuromorphic Hardware Guide|/neuromorphic-computing/hardware/;Submit a Blog Post|/getting-involved/write-a-blog-post/"
+explore_links="Join an Initiative|/neuromorphic-computing/initiatives/;Attend Hacking Hours|/neuromorphic-computing/software/hacking-hours/;Contribute on GitHub|https://github.com/open-neuromorphic"
 >}}
 
 {{< pathway_card
-title="For Industry & Organizations"
-description="Partner with ONM to shape the future of neuromorphic technology. Explore opportunities for strategic collaborations, sponsor initiatives, host workshops, or contribute to the development of open standards. Leverage our community to share industry insights and foster innovation."
-cta_text="Discuss Partnership"
-cta_link="https://discord.gg/hUygPUdD8E"
+title="Support Our Mission"
+description="Help sustain and grow our community. We partner with organizations and projects that align with our open-source vision. Explore how your organization can become a supporter and contribute to the future of neuromorphic technology."
+cta_text="Become a Supporter"
+cta_link="/supporters/"
 image="industry-path.jpeg"
 alt_text="Industry professionals in a meeting"
 layout_class=""
-explore_links="About ONM & Governance|/about/;Host a Workshop|/getting-involved/share-your-work/;ONM Initiatives|/getting-involved/join-an-initiative/"
+explore_links="About ONM & Governance|/about/;Our Code of Conduct|/code-of-conduct/;Join our Discord|https://discord.gg/hUygPUdD8E"
 >}}
 
-## Ready to Start? Here's How You Can Contribute
+## Any Contribution Helps
 
-If you're ready to jump in, here are some of the most direct and impactful ways to contribute to the community. We've created simple guides for each, with options for all skill levels.
-
-<div class="my-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-  {{< contribution_card icon="fas fa-pen-to-square" title="Write for Our Blog" link="/getting-involved/write-a-blog-post/" >}}
-  Share your research, tutorials, or insights with a global audience. We make it easy to submit your work, even if you're not a GitHub expert.
-  {{< /contribution_card >}}
-
-{{< contribution_card icon="fas fa-chalkboard-user" title="Share Your Work" link="/getting-involved/share-your-work/" >}}
-Present a workshop, give a student talk, or join a Hacking Hour as a guest. It's a great way to share your knowledge and get valuable feedback.
-{{< /contribution_card >}}
-
-{{< contribution_card icon="fas fa-rocket" title="Join an Initiative" link="/getting-involved/join-an-initiative/" >}}
-Collaborate on community-driven projects that shape the future of ONM. Explore existing initiatives or propose a new one.
-{{< /contribution_card >}}
-</div>
-
-Beyond these pathways, a quick and easy way to support our community is by sharing our [website](/) and [Discord](https://discord.gg/hUygPUdD8E) with your friends and colleagues. We're always looking for new members, and linking to our site helps boost our search engine rankings, making it easier for others to find us.
+Even small actions make a big difference. Sharing our [website](/) and [Discord](https://discord.gg/hUygPUdD8E) with your network helps us grow. Linking to our resources improves our visibility, making it easier for others to discover our community.
 
 If you're new, we recommend joining our [Discord](https://discord.gg/hUygPUdD8E) to connect with other members. Leave a message in the `#welcome` channel to introduce yourself!
