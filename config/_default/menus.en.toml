@@ -108,9 +108,15 @@ weight = 2
 
 [[main]]
 parent = "About"
+name = "Volunteer Opportunities"
+url = "/volunteer-opportunities/"
+weight = 3
+
+[[main]]
+parent = "About"
 name = "Supporters"
 url = "/supporters/"
-weight = 3
+weight = 4
 
 
 # --- New Footer Menus (replace the old [[footer]], [[footer_explore]], [[footer_legal]]) ---

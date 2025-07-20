@@ -1,0 +1,58 @@
+{{ define "main" }}
+  {{ partial "page-header" . }}
+  <section class="section pt-6">
+    <div class="container">
+      <div class="row lg:gx-8 lg:items-stretch">
+        <article class="lg:col-8">
+          <div class="content mb-10">
+            {{ .Content }}
+          </div>
+        </article>
+        <aside class="lg:col-4">
+          <div class="sticky top-24">
+            <div class="p-6 rounded-lg bg-theme-light dark:bg-darkmode-theme-light shadow-lg">
+              <h2 class="text-2xl font-bold text-center mb-4">Role Details</h2>
+              <dl class="text-sm text-text dark:text-darkmode-text space-y-3">
+                <div class="flex justify-between items-start">
+                  <dt class="font-semibold shrink-0 pr-2">Category:</dt>
+                  <dd class="text-right">{{ .Params.role_type | default "N/A" }}</dd>
+                </div>
+                <div class="flex justify-between items-start">
+                  <dt class="font-semibold shrink-0 pr-2">Commitment:</dt>
+                  <dd class="text-right">{{ .Params.time_commitment | default "Varies" }}</dd>
+                </div>
+                <div class="flex justify-between items-start">
+                  <dt class="font-semibold shrink-0 pr-2">Contact:</dt>
+                  <dd class="text-right">
+                    {{ if strings.Contains .Params.contact "@" }}
+                      <a href="mailto:{{ .Params.contact }}" class="styled-link">{{ .Params.contact }}</a>
+                    {{ else }}
+                      <a href="{{ .Params.contact }}" target="_blank" rel="noopener" class="styled-link">{{ .Params.contact }}</a>
+                    {{ end }}
+                  </dd>
+                </div>
+              </dl>
+
+              {{ with .Params.initiative_tags }}
+                <div class="border-t border-border dark:border-darkmode-border pt-4 mt-4">
+                  <h3 class="font-semibold mb-2">Related Initiatives:</h3>
+                  <ul class="space-y-1">
+                    {{ range . }}
+                      {{ $initiative_slug := . }}
+                      {{ $initiativePage := site.GetPage (printf "neuromorphic-computing/initiatives/%s" $initiative_slug) }}
+                      {{ if $initiativePage }}
+                        <li><a href="{{ $initiativePage.RelPermalink }}" class="styled-link text-sm">{{ $initiativePage.Title }}</a></li>
+                      {{ else }}
+                        <li class="text-sm text-gray-500 italic">{{ $initiative_slug | humanize }} (No page found)</li>
+                      {{ end }}
+                    {{ end }}
+                  </ul>
+                </div>
+              {{ end }}
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+{{ end }}
