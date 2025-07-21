@@ -150,6 +150,7 @@ async function generateImages() {
                   .replace('LOGO_SRC', jsonData.logoDataUri)
                   .replace('BACKGROUND_URL', jsonData.backgroundDataUri || '')
                   .replace('PAGE_TITLE', title)
+                  .replace('PAGE_DESCRIPTION', description || '')
                   .replace('<!-- SPEAKER_IMAGES_HTML will be injected here -->', `<div class="speakers-container">${speakersHtml}</div>`)
                   .replace('EVENT_DATE', eventDate || '')
                   .replace('EVENT_TIME', eventTime || '');
