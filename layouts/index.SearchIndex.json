@@ -10,7 +10,7 @@
 {{- end -}}
 {{- end -}}
 {{- if and $isSearchable (ne .Params.draft true) (ne .Params.exclude_sitemap true) -}}
-{{- $.Scratch.Add "index" (dict "title" .Title "description" .Description "permalink" .RelPermalink "tags" .Params.tags "categories" .Params.categories "content" .Plain) -}}
+{{- $.Scratch.Add "index" (dict "title" .Title "description" .Description "permalink" .RelPermalink "tags" .Params.tags "categories" .Params.categories "content" (.Plain | truncate 2000)) -}}
 {{- end -}}
 {{- end -}}
 {{- $.Scratch.Get "index" | jsonify -}}
