@@ -27,7 +27,7 @@
       display: flex;
       flex-direction: column;
       box-sizing: border-box;
-      padding: 5vmin;
+      padding: 4vmin;
     }
     .background {
       position: absolute;
@@ -44,16 +44,16 @@
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      margin-bottom: 4vmin;
+      margin-bottom: 2.5vmin;
     }
     .logo {
-      height: 12vmin;
+      height: 10vmin;
       width: auto;
-      margin-right: 3vmin;
+      margin-right: 2.5vmin;
     }
     .logo-text {
       font-family: "Inter", sans-serif;
-      font-size: 6vmin;
+      font-size: 5vmin;
       line-height: 1.1;
       font-weight: 800;
       color: #1f2937;
@@ -62,32 +62,41 @@
       flex-grow: 1;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: space-around;
       text-align: center;
+      gap: 2vmin;
     }
     .title {
-      font-size: clamp(30px, 6.2vmin, 62px);
       font-weight: 800;
       line-height: 1.2;
       color: #1f2937;
-      margin: 0 0 4vmin 0;
+      margin: 0;
       display: -webkit-box;
-      -webkit-line-clamp: 5;
+      -webkit-line-clamp: 4; /* More room for long titles */
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
+    .description {
+      line-height: 1.4;
+      color: #4b5563;
+      margin: 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 6; /* Allow more lines for description */
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      word-wrap: break-word;
+    }
     .speakers {
-      margin-bottom: 4vmin;
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 28vmin;
+      min-height: 45vmin; /* Adjusted to give text more space */
     }
     .speakers-container {
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      gap: 2.5vmin;
+      gap: 2vmin;
       flex-wrap: wrap;
       max-width: 95%;
     }
@@ -100,12 +109,11 @@
     .speaker-img {
       border-radius: 50%;
       object-fit: cover;
-      border: 0.8vmin solid white;
+      border: 0.7vmin solid white;
       box-shadow: 0 0.5vmin 1.5vmin rgba(0,0,0,0.15);
       flex-shrink: 0;
     }
     .speaker-name {
-        font-size: clamp(18px, 3.2vmin, 28px);
         font-weight: 500;
         color: #374151;
         line-height: 1.2;
@@ -113,23 +121,27 @@
         word-wrap: break-word;
     }
     .event-details {
-      font-size: clamp(28px, 5.5vmin, 55px);
+      font-size: clamp(24px, 4.5vmin, 45px); /* Default size */
       line-height: 1.4;
       color: #4b5563;
       margin: 0;
       font-weight: 500;
+      text-shadow:
+        -2px -2px 6px white, 2px -2px 6px white,
+        -2px  2px 6px white, 2px  2px 6px white,
+        0    0   15px white, 0   0   25px white, 0 0 35px white;
     }
     .event-date {
         font-weight: 700;
         color: #667eea;
     }
     .footer {
-      font-size: clamp(20px, 4vmin, 40px);
+      font-size: clamp(18px, 3.5vmin, 35px);
       font-weight: 500;
       color: #667eea;
       text-align: center;
       flex-shrink: 0;
-      margin-top: 4vmin;
+      margin-top: 2.5vmin;
     }
   </style>
 </head>
@@ -142,6 +154,7 @@
   </div>
   <div class="main-content">
     <h1 class="title">PAGE_TITLE</h1>
+    <p class="description">PAGE_DESCRIPTION</p>
     <div class="speakers">
       <div class="speakers-container">
         <!-- SPEAKER_IMAGES_HTML will be injected here -->
@@ -158,34 +171,72 @@
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const speakerContainer = document.querySelector('.speakers-container');
-    if (!speakerContainer) return;
+    const descriptionEl = document.querySelector('.description');
+    const titleEl = document.querySelector('.title');
+    const eventDetailsEl = document.querySelector('.event-details');
+    
+    if (!speakerContainer || !titleEl) return;
     const speakerItems = speakerContainer.querySelectorAll('.speaker-item');
     const speakerCount = speakerItems.length;
 
-    if (speakerCount === 0) return;
-
-    let size = '22vmin';
-
-    if (speakerCount === 1) {
-      size = '42vmin';
-    } else if (speakerCount === 2) {
-      size = '32vmin';
-    } else if (speakerCount === 3) {
-      size = '27vmin';
-    } else if (speakerCount >= 4 && speakerCount <= 6) {
-      size = '24vmin';
-    } else if (speakerCount > 6) {
-      size = '20vmin';
+    // Logic for description visibility
+    if (descriptionEl) {
+        if (!descriptionEl.textContent || descriptionEl.textContent.trim() === '') {
+            descriptionEl.style.display = 'none';
+        }
     }
 
-    speakerItems.forEach(item => {
-      item.style.width = size;
-      const img = item.querySelector('.speaker-img');
-      if (img) {
-        img.style.width = size;
-        img.style.height = size;
-      }
-    });
+    if (speakerCount >= 1 && speakerCount <= 6) {
+        // Larger sizes for 1-6 speakers
+        titleEl.style.fontSize = 'clamp(32px, 6.0vmin, 60px)';
+        if (descriptionEl) descriptionEl.style.fontSize = 'clamp(22px, 4.3vmin, 42px)';
+        // Reduced date/time size to give more room to description
+        if (eventDetailsEl) eventDetailsEl.style.fontSize = 'clamp(32px, 5.5vmin, 55px)';
+        
+        let imgSize = '27vmin'; // Default for 4-6 speakers
+        let nameSize = 'clamp(20px, 3.5vmin, 32px)';
+
+        if (speakerCount === 1) { imgSize = '51vmin'; }
+        else if (speakerCount === 2) { imgSize = '37vmin'; }
+        else if (speakerCount === 3) { imgSize = '32vmin'; }
+
+        speakerItems.forEach(item => {
+            item.style.width = imgSize;
+            const img = item.querySelector('.speaker-img');
+            const name = item.querySelector('.speaker-name');
+            if (img) {
+                img.style.width = imgSize;
+                img.style.height = imgSize;
+            }
+            if (name) {
+                name.style.fontSize = nameSize;
+            }
+        });
+    } else { // 0 or 7+ speakers
+        // Smaller sizes for 7+ speakers
+        titleEl.style.fontSize = 'clamp(28px, 5.5vmin, 55px)';
+        if (descriptionEl) descriptionEl.style.fontSize = 'clamp(28px, 5.2vmin, 52px)';
+        
+        let imgSize = '18vmin';
+        let nameSize = 'clamp(16px, 2.8vmin, 26px)';
+        if (speakerCount > 8) {
+            imgSize = '16vmin';
+            nameSize = 'clamp(14px, 2.5vmin, 24px)';
+        }
+
+        speakerItems.forEach(item => {
+            item.style.width = imgSize;
+            const img = item.querySelector('.speaker-img');
+            const name = item.querySelector('.speaker-name');
+            if (img) {
+                img.style.width = imgSize;
+                img.style.height = imgSize;
+            }
+            if (name) {
+                name.style.fontSize = nameSize;
+            }
+        });
+    }
   });
 </script>
 
