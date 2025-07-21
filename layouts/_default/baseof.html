@@ -44,7 +44,7 @@
       {{ partial "essentials/footer.html" . }}
       {{ partial "essentials/script.html" . }}
     {{ end }}
-    
+
     <!-- OG Image Modal -->
     <div id="og-image-modal" class="fixed inset-0 bg-black bg-opacity-70 z-[100] hidden items-center justify-center p-4 backdrop-blur-sm">
       <div class="bg-white dark:bg-darkmode-theme-dark rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] flex flex-col">
@@ -60,5 +60,28 @@
         </div>
       </div>
     </div>
+
+    {{ if site.Params.search.enable }}
+    <!-- Search Modal -->
+    <div id="search-modal" class="fixed inset-0 bg-black bg-opacity-50 z-[100] hidden items-start justify-center pt-16 md:pt-24 backdrop-blur-sm" data-search-modal>
+      <div class="bg-white dark:bg-darkmode-theme-dark rounded-lg shadow-xl w-full max-w-3xl max-h-[80vh] flex flex-col" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
+        <div class="flex justify-between items-center p-4 border-b border-border dark:border-darkmode-border flex-shrink-0">
+          <h3 id="search-modal-title" class="text-xl font-bold">Search</h3>
+          <button class="p-2 -mr-2 text-2xl hover:text-primary dark:hover:text-darkmode-primary" aria-label="Close search" data-search-close>×</button>
+        </div>
+        <div class="p-4 flex-shrink-0">
+          <input type="text" id="search-input" class="form-input w-full" placeholder="Type to search..." autocomplete="off">
+        </div>
+        <div id="search-results" class="overflow-y-auto p-4 space-y-2">
+          <div class="text-center text-gray-500 py-4" id="search-placeholder">Start typing to see results.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Search Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.1.0/dist/fuse.min.js"></script>
+    {{ $searchJS := resources.Get "js/search.js" | minify | fingerprint }}
+    <script src="{{ $searchJS.RelPermalink }}" integrity="{{ $searchJS.Data.Integrity }}"></script>
+    {{ end }}
   </body>
 </html>

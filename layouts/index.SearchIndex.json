@@ -1,0 +1,16 @@
+{{- $.Scratch.Add "index" slice -}}
+{{- $searchableSections := site.Params.search.include_sections | default (slice "blog") -}}
+{{- range site.RegularPages -}}
+{{- $page := . -}}
+{{- $isSearchable := false -}}
+{{- range $searchableSections -}}
+{{- /* Corrected path check: .File.Path is relative to /content, so we don't need to add "content/" */ -}}
+{{- if hasPrefix $page.File.Path . -}}
+{{- $isSearchable = true -}}
+{{- end -}}
+{{- end -}}
+{{- if and $isSearchable (ne .Params.draft true) (ne .Params.exclude_sitemap true) -}}
+{{- $.Scratch.Add "index" (dict "title" .Title "description" .Description "permalink" .RelPermalink "tags" .Params.tags "categories" .Params.categories "content" .Plain) -}}
+{{- end -}}
+{{- end -}}
+{{- $.Scratch.Get "index" | jsonify -}}
