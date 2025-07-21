@@ -56,7 +56,7 @@ target = '$1'
 
 ############################# Outputs ############################
 [outputs]
-home = ["HTML", "RSS", "videoSitemap"]
+home = ["HTML", "RSS", "videoSitemap", "SearchIndex"]
 section = ["HTML", "RSS"] # Add this line
 ############################# Imaging ############################
 [imaging]
