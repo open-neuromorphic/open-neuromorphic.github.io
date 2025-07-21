@@ -18,9 +18,12 @@
   async function initFuse() {
     if (isFuseInitialized) return;
     try {
-      const response = await fetch('/searchindex.json');
+      if (!window.searchIndexURL) {
+        throw new Error('Search index URL not provided via window.searchIndexURL');
+      }
+      const response = await fetch(window.searchIndexURL);
       if (!response.ok) {
-        throw new Error('Search index not found');
+        throw new Error('Search index not found at ' + window.searchIndexURL);
       }
       searchData = await response.json();
       const options = {

@@ -85,3 +85,8 @@
     {{ end }}
   </body>
 </html>
+
+    <!-- Search Scripts -->
+    <script>
+      window.searchIndexURL = "{{ (site.Home.OutputFormats.Get `SearchIndex`).RelPermalink }}";
+    </script>
