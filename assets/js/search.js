@@ -14,10 +14,30 @@
   let fuse;
   let searchData;
   let isFuseInitialized = false;
+  let debounceTimer;
+
+  // Function to load a script dynamically
+  function loadScript(src) {
+    return new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = src;
+      script.onload = resolve;
+      script.onerror = reject;
+      document.head.appendChild(script);
+    });
+  }
 
   async function initFuse() {
     if (isFuseInitialized) return;
     try {
+      // Check if Fuse is loaded, if not, load it.
+      if (typeof Fuse === 'undefined') {
+        if (!window.fuseJSSrc) {
+          throw new Error('Fuse.js library source URL not provided via window.fuseJSSrc');
+        }
+        await loadScript(window.fuseJSSrc);
+      }
+
       if (!window.searchIndexURL) {
         throw new Error('Search index URL not provided via window.searchIndexURL');
       }
@@ -28,15 +48,27 @@
       searchData = await response.json();
       const options = {
         keys: [
-          { name: 'title', weight: 0.8 },
-          { name: 'content', weight: 0.5 },
-          { name: 'description', weight: 0.6 },
+          { name: 'title', weight: 1.0 },
+          { name: 'description', weight: 0.4 },
+          { name: 'content', weight: 0.2 },
           { name: 'tags', weight: 0.4 },
           { name: 'categories', weight: 0.4 }
         ],
         includeMatches: true,
         minMatchCharLength: 2,
-        threshold: 0.3, // Lowered from 0.4 to make search stricter
+        threshold: 0.2, // Stricter search threshold
+        sortFn: (a, b) => {
+          // Primary sort: by score (ascending, lower is better)
+          if (a.score !== b.score) {
+            return a.score - b.score;
+          }
+          // Secondary sort: by priority (ascending, lower is better)
+          if (a.item.priority !== b.item.priority) {
+            return a.item.priority - b.item.priority;
+          }
+          // Tertiary sort: by original index in the list
+          return a.refIndex - b.refIndex;
+        }
       };
       fuse = new Fuse(searchData, options);
       isFuseInitialized = true;
@@ -93,19 +125,31 @@
 
   if(searchInput) {
     searchInput.addEventListener('input', () => {
-      if (!isFuseInitialized) {
-        searchResults.innerHTML = '<div class="text-center text-gray-500 py-4">Initializing search...</div>';
-        return;
-      }
-      const query = searchInput.value.trim();
-      if (query.length < 2) {
-        searchResults.innerHTML = '';
-        if (searchPlaceholder) searchResults.appendChild(searchPlaceholder);
-        return;
-      }
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        if (!isFuseInitialized) {
+          searchResults.innerHTML = '<div class="text-center text-gray-500 py-4">Initializing search...</div>';
+          return;
+        }
+        const query = searchInput.value.trim();
+        if (query.length < 2) {
+          searchResults.innerHTML = '';
+          if (searchPlaceholder) searchResults.appendChild(searchPlaceholder);
+          return;
+        }
 
-      const results = fuse.search(query, { limit: 20 });
-      renderResults(results, query);
+        // --- Google Analytics Event Tracking ---
+        if (typeof gtag === 'function') {
+          gtag('event', 'search', {
+            search_term: query
+          });
+          console.log(`GA Event sent: search, search_term: ${query}`);
+        }
+        // -----------------------------------------
+
+        const results = fuse.search(query, { limit: 20 });
+        renderResults(results, query);
+      }, 500); // Wait 500ms after user stops typing
     });
   }
 

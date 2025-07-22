@@ -79,15 +79,13 @@
     </div>
 
     <!-- Search Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.1.0/dist/fuse.min.js"></script>
+    <script>
+      window.searchIndexURL = "{{ (site.Home.OutputFormats.Get `SearchIndex`).RelPermalink }}";
+      {{ $fuseJS := resources.Get "plugins/fuse.min.js" | minify | fingerprint }}
+      window.fuseJSSrc = "{{ $fuseJS.RelPermalink }}";
+    </script>
     {{ $searchJS := resources.Get "js/search.js" | minify | fingerprint }}
-    <script src="{{ $searchJS.RelPermalink }}" integrity="{{ $searchJS.Data.Integrity }}"></script>
+    <script src="{{ $searchJS.RelPermalink }}" integrity="{{ $searchJS.Data.Integrity }}" defer></script>
     {{ end }}
   </body>
 </html>
-
-    <!-- Search Scripts -->
-    <script>
-      window.searchIndexURL = "{{ (site.Home.OutputFormats.Get `SearchIndex`).RelPermalink }}";
-    </script>
-
