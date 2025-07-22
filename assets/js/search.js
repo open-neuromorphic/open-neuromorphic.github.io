@@ -14,6 +14,7 @@
   let fuse;
   let searchData;
   let isFuseInitialized = false;
+  let debounceTimer;
 
   // Function to load a script dynamically
   function loadScript(src) {
@@ -124,19 +125,31 @@
 
   if(searchInput) {
     searchInput.addEventListener('input', () => {
-      if (!isFuseInitialized) {
-        searchResults.innerHTML = '<div class="text-center text-gray-500 py-4">Initializing search...</div>';
-        return;
-      }
-      const query = searchInput.value.trim();
-      if (query.length < 2) {
-        searchResults.innerHTML = '';
-        if (searchPlaceholder) searchResults.appendChild(searchPlaceholder);
-        return;
-      }
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        if (!isFuseInitialized) {
+          searchResults.innerHTML = '<div class="text-center text-gray-500 py-4">Initializing search...</div>';
+          return;
+        }
+        const query = searchInput.value.trim();
+        if (query.length < 2) {
+          searchResults.innerHTML = '';
+          if (searchPlaceholder) searchResults.appendChild(searchPlaceholder);
+          return;
+        }
 
-      const results = fuse.search(query, { limit: 20 });
-      renderResults(results, query);
+        // --- Google Analytics Event Tracking ---
+        if (typeof gtag === 'function') {
+          gtag('event', 'search', {
+            search_term: query
+          });
+          console.log(`GA Event sent: search, search_term: ${query}`);
+        }
+        // -----------------------------------------
+
+        const results = fuse.search(query, { limit: 20 });
+        renderResults(results, query);
+      }, 500); // Wait 500ms after user stops typing
     });
   }
 
