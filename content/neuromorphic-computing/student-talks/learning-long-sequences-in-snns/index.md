@@ -13,7 +13,9 @@ video: ""
 image: "banner.png"
 speaker_photo: "matei-stan.jpg"
 type: "student-talks"
-speaker_bio: "Matei Stan is a third-year PhD student in the Department of Computer Science at the University of Manchester, UK. He is supervised by Dr Oliver Rhodes in the Advanced Processor Technologies (APT) group. In his PhD work, Matei has primarily focused on the applications of deep State Space Models (SSMs), such as S4, in neuromorphic computing, and their potential in scaling energy-efficient algorithms for long-range sequential tasks."
+speaker_bio: "Matei Stan is a third-year PhD student in the Department of Computer Science at the University of Manchester, UK. He is supervised by Dr Oliver Rhodes in the Advanced Processor Technologies (APT) group. In his PhD work, Matei has primarily focused on the applications of deep State Space Models (SSMs), such as S4, in neuromorphic computing, and their potential in scaling energy-efficient algorithms for long-range sequence modelling."
+speaker_paper: "https://arxiv.org/abs/2401.00955"
+paper_license: "CC-BY-NC-SA"
 ---
 
 Matei’s published work, “Learning Long Sequences in Spiking Neural Networks” [1], systematically investigates, for the first time, the intersection of the State‑of‑The‑Art State Space Models (SSMs) with Spiking Neural Networks (SNNs) for long‑range sequence modelling. Results suggest that SSM‑based SNNs can outperform the Transformer on all tasks of a well‑established long‑range sequence modelling benchmark - the “Long-Range Arena” [2]. It is also shown that the SSM‑based SNNs can outperform current State‑of‑The‑Art SNNs with fewer parameters on sequential image classification. Finally, a novel feature mixing layer is introduced, improving SNN accuracy while challenging assumptions about the role of binary activations in SNNs. This work paves the way for deploying powerful SSM-based architectures, such as Large Language Models, on neuromorphic hardware for energy-efficient long-range sequence modelling.
