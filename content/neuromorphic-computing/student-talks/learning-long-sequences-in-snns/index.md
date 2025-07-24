@@ -13,7 +13,7 @@ video: ""
 image: "banner.png"
 speaker_photo: "matei-stan.jpg"
 type: "student-talks"
-speaker_bio: "Matei Stan is a third-year PhD student in the Department of Computer Science at the University of Manchester, UK. He is supervised by Dr Oliver Rhodes in the Advanced Processor Technologies (APT) group. In his PhD work, Matei has primarily focused on the applications of deep State Space Models (SSMs), such as S4, in neuromorphic computing, and their potential in scaling energy-efficient algorithms for long-range sequence modelling."
+speaker_bio: "Matei Stan is a third-year PhD student in the Department of Computer Science at the University of Manchester, UK. He is supervised by Dr Oliver Rhodes in the Advanced Processor Technologies (APT) group. In his PhD work, Matei has primarily focused on the applications of deep State Space Models (SSMs), such as S4, in neuromorphic computing, and their potential in scaling energy-efficient algorithms for long-range sequential tasks."
 speaker_paper: "https://arxiv.org/abs/2401.00955"
 paper_license: "CC-BY-NC-SA"
 ---
