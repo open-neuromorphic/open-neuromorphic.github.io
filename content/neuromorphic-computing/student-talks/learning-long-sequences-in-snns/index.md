@@ -8,7 +8,7 @@ end_time: "09:45"
 time_zone: "EST"
 description: "Explore how State Space Models (SSMs) combined with Spiking Neural Networks (SNNs) can outperform Transformers on long-sequence tasks, and a novel feature mixing layer that challenges assumptions about binary activations."
 upcoming: true
-upcoming_url: "https://teams.microsoft.com/l/meetup-join/19%3Ameeting_OTBkNTY5MjgtMjE3Ni00OTFmLWEwNzktN2QwZTU1NWIxNDc2%40thread.v2/0?context=%7B%22Tid%22%3A%22c152cb07-614e-4abb-818a-f035cfa91a77%22%2C%22Oid%22%3A%223f444780-d657-4917-993e-0f42adeff90e%22%7D"
+upcoming_url: "https://www.youtube.com/@openneuromorphic"
 video: ""
 image: "banner.png"
 speaker_photo: "matei-stan.jpg"
