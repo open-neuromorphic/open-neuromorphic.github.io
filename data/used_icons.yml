@@ -33,6 +33,7 @@ fontawesome_svgs:
   - { style: brands, name: whatsapp }
   - { style: brands, name: telegram }
   - { style: regular, name: circle-user }
+  - { style: regular, name: file-lines }
   - { style: regular, name: clock }
   - { style: regular, name: calendar }
   - { style: regular, name: images }

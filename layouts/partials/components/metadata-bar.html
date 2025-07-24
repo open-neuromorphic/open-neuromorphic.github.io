@@ -4,7 +4,7 @@
 {{ $hasInfo := or $ctx.Params.author $ctx.Date }}
 {{ $hasButtons := false }}
 {{ if eq $type "event" }}
-{{ $hasButtons = or $ctx.Params.speaker_slides $ctx.Params.speaker_notebook $ctx.Params.speaker_code $ctx.Params.video $ctx.Params.upcoming }}
+{{ $hasButtons = or $ctx.Params.speaker_slides $ctx.Params.speaker_notebook $ctx.Params.speaker_code $ctx.Params.speaker_paper $ctx.Params.video $ctx.Params.upcoming }}
 {{ end }}
 
 {{ if or $hasInfo $hasButtons }}
@@ -48,6 +48,14 @@
     {{ with $ctx.Params.speaker_slides }}<a href="{{ . }}" target="_blank" rel="noopener" class="btn btn-sm btn-outline-primary">{{ partial "icon.html" (dict "style" "regular" "name" "images" "class" "mr-1.5") }}Slides</a>{{ end }}
     {{ with $ctx.Params.speaker_notebook }}<a href="{{ . }}" target="_blank" rel="noopener" class="btn btn-sm btn-outline-primary">{{ partial "icon.html" (dict "style" "regular" "name" "folder" "class" "mr-1.5") }}Notebook</a>{{ end }}
     {{ with $ctx.Params.speaker_code }}<a href="{{ . }}" target="_blank" rel="noopener" class="btn btn-sm btn-outline-primary">{{ partial "icon.html" (dict "style" "brands" "name" "github" "class" "mr-1.5") }}Code</a>{{ end }}
+    {{ with $ctx.Params.speaker_paper }}
+    <a href="{{ . }}" target="_blank" rel="noopener" class="btn btn-sm btn-outline-primary">
+      {{ partial "icon.html" (dict "style" "regular" "name" "file-lines" "class" "mr-1.5") }}Paper
+      {{ with $ctx.Params.paper_license }}
+      <span class="ml-1.5 text-xs opacity-75">({{ . }})</span>
+      {{ end }}
+    </a>
+    {{ end }}
 
     {{ if $ctx.Params.upcoming }}
     {{ $event_url := $ctx.Params.upcoming_url | default "https://www.youtube.com/@openneuromorphic" }}
