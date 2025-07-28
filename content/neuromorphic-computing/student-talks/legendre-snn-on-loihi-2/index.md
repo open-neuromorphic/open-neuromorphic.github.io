@@ -5,7 +5,7 @@ author:
 date: 2024-12-20
 description: "Join us for a talk by Ramashish Gaurav, PhD student at Virginia Tech."
 upcoming: false
-video: A1egFLRw12c
+video: GE2GefISrME
 speaker_photo: ramashish.jpg
 image: poster.png
 type: "student-talks"
