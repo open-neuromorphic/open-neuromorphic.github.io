@@ -2,6 +2,7 @@
 title: "Open-Source Neuromorphic Research Infrastructure: A Community Panel"
 author:
   - Jens E. Pedersen
+  - Giulia D'Angelo
   - Hananel Hazan
   - James Knight
   - Alexandre Marcireau
@@ -36,6 +37,8 @@ Join us for a unique opportunity to hear directly from the people building the t
 
 This panel brings together leading maintainers from the neuromorphic software ecosystem to discuss the future of open-source tools. We are thrilled to welcome:
 
+
+- **Host: [Giulia D'Angelo](/contributors/giulia-dangelo/)** is a Marie Skłodowska-Curie Postdoc at the Czhech Technical University in Prague, working on brain-inspired algorithms optimized for neuromorphic hardware.
 - **Hananel Hazan** ([BindsNET](/neuromorphic-computing/software/snn-frameworks/bindsnet/)), *Research Scientist at Tufts University*.
 - **James Knight** ([GeNN](/neuromorphic-computing/software/snn-frameworks/genn/)), *Senior Research Software Engineer at the University of Sussex*.
 - **Alexandre Marcireau** (Faery), *Researcher in neuromorphic event-based vision*.
