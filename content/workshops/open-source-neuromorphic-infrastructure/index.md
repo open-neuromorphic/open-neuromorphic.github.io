@@ -2,6 +2,7 @@
 title: "Open-Source Neuromorphic Research Infrastructure: A Community Panel"
 author:
   - Jens E. Pedersen
+  - Giulia D'Angelo
   - Hananel Hazan
   - James Knight
   - Alexandre Marcireau

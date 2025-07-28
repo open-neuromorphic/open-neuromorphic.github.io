@@ -114,11 +114,11 @@
       flex-shrink: 0;
     }
     .speaker-name {
-        font-weight: 500;
-        color: #374151;
-        line-height: 1.2;
-        max-width: 100%;
-        word-wrap: break-word;
+      font-weight: 500;
+      color: #374151;
+      line-height: 1.2;
+      max-width: 100%;
+      word-wrap: break-word;
     }
     .event-details {
       font-size: clamp(24px, 4.5vmin, 45px); /* Default size */
@@ -132,8 +132,8 @@
         0    0   15px white, 0   0   25px white, 0 0 35px white;
     }
     .event-date {
-        font-weight: 700;
-        color: #667eea;
+      font-weight: 700;
+      color: #667eea;
     }
     .footer {
       font-size: clamp(18px, 3.5vmin, 35px);
@@ -174,68 +174,68 @@
     const descriptionEl = document.querySelector('.description');
     const titleEl = document.querySelector('.title');
     const eventDetailsEl = document.querySelector('.event-details');
-    
+
     if (!speakerContainer || !titleEl) return;
     const speakerItems = speakerContainer.querySelectorAll('.speaker-item');
     const speakerCount = speakerItems.length;
 
     // Logic for description visibility
     if (descriptionEl) {
-        if (!descriptionEl.textContent || descriptionEl.textContent.trim() === '') {
-            descriptionEl.style.display = 'none';
-        }
+      if (!descriptionEl.textContent || descriptionEl.textContent.trim() === '') {
+        descriptionEl.style.display = 'none';
+      }
     }
 
     if (speakerCount >= 1 && speakerCount <= 6) {
-        // Larger sizes for 1-6 speakers
-        titleEl.style.fontSize = 'clamp(32px, 6.0vmin, 60px)';
-        if (descriptionEl) descriptionEl.style.fontSize = 'clamp(22px, 4.3vmin, 42px)';
-        // Reduced date/time size to give more room to description
-        if (eventDetailsEl) eventDetailsEl.style.fontSize = 'clamp(32px, 5.5vmin, 55px)';
-        
-        let imgSize = '27vmin'; // Default for 4-6 speakers
-        let nameSize = 'clamp(20px, 3.5vmin, 32px)';
+      // Larger sizes for 1-6 speakers
+      titleEl.style.fontSize = 'clamp(32px, 6.0vmin, 60px)';
+      if (descriptionEl) descriptionEl.style.fontSize = 'clamp(22px, 4.3vmin, 42px)';
+      // Reduced date/time size to give more room to description
+      if (eventDetailsEl) eventDetailsEl.style.fontSize = 'clamp(32px, 5.5vmin, 55px)';
 
-        if (speakerCount === 1) { imgSize = '51vmin'; }
-        else if (speakerCount === 2) { imgSize = '37vmin'; }
-        else if (speakerCount === 3) { imgSize = '32vmin'; }
+      let imgSize = '27vmin'; // Default for 4-6 speakers
+      let nameSize = 'clamp(20px, 3.5vmin, 32px)';
 
-        speakerItems.forEach(item => {
-            item.style.width = imgSize;
-            const img = item.querySelector('.speaker-img');
-            const name = item.querySelector('.speaker-name');
-            if (img) {
-                img.style.width = imgSize;
-                img.style.height = imgSize;
-            }
-            if (name) {
-                name.style.fontSize = nameSize;
-            }
-        });
-    } else { // 0 or 7+ speakers
-        // Smaller sizes for 7+ speakers
-        titleEl.style.fontSize = 'clamp(28px, 5.5vmin, 55px)';
-        if (descriptionEl) descriptionEl.style.fontSize = 'clamp(28px, 5.2vmin, 52px)';
-        
-        let imgSize = '18vmin';
-        let nameSize = 'clamp(16px, 2.8vmin, 26px)';
-        if (speakerCount > 8) {
-            imgSize = '16vmin';
-            nameSize = 'clamp(14px, 2.5vmin, 24px)';
+      if (speakerCount === 1) { imgSize = '51vmin'; }
+      else if (speakerCount === 2) { imgSize = '37vmin'; }
+      else if (speakerCount === 3) { imgSize = '32vmin'; }
+
+      speakerItems.forEach(item => {
+        item.style.width = imgSize;
+        const img = item.querySelector('.speaker-img');
+        const name = item.querySelector('.speaker-name');
+        if (img) {
+          img.style.width = imgSize;
+          img.style.height = imgSize;
         }
+        if (name) {
+          name.style.fontSize = nameSize;
+        }
+      });
+    } else { // 0 or 7+ speakers
+      // Smaller sizes for 7+ speakers
+      titleEl.style.fontSize = 'clamp(28px, 5.5vmin, 55px)';
+      if (descriptionEl) descriptionEl.style.fontSize = 'clamp(28px, 5.0vmin, 50px)';
 
-        speakerItems.forEach(item => {
-            item.style.width = imgSize;
-            const img = item.querySelector('.speaker-img');
-            const name = item.querySelector('.speaker-name');
-            if (img) {
-                img.style.width = imgSize;
-                img.style.height = imgSize;
-            }
-            if (name) {
-                name.style.fontSize = nameSize;
-            }
-        });
+      let imgSize = '18vmin';
+      let nameSize = 'clamp(16px, 2.8vmin, 26px)';
+      if (speakerCount > 8) {
+        imgSize = '16vmin';
+        nameSize = 'clamp(14px, 2.5vmin, 24px)';
+      }
+
+      speakerItems.forEach(item => {
+        item.style.width = imgSize;
+        const img = item.querySelector('.speaker-img');
+        const name = item.querySelector('.speaker-name');
+        if (img) {
+          img.style.width = imgSize;
+          img.style.height = imgSize;
+        }
+        if (name) {
+          name.style.fontSize = nameSize;
+        }
+      });
     }
   });
 </script>
