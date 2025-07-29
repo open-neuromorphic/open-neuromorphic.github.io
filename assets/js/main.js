@@ -38,6 +38,7 @@
     const partnersWithContributions = Array.from(section.querySelectorAll('.partner-logo-link[data-contributions]'));
     if (partnersWithContributions.length === 0) return;
 
+    // --- Logic for randomly appearing bubbles ---
     const MAX_BUBBLES = 3;
     const BUBBLE_LIFETIME = 4000;
     const BUBBLE_INTERVAL = 2000;
@@ -50,50 +51,70 @@
       bubbleContainer.appendChild(bubble);
       bubblePool.push(bubble);
     }
-
     let activeBubbles = new Map();
 
     const updateBubblePositions = () => {
       activeBubbles.forEach((bubble, partner) => {
         const partnerRect = partner.getBoundingClientRect();
         const containerRect = bubbleContainer.getBoundingClientRect();
-
         const left = partnerRect.left - containerRect.left + (partnerRect.width / 2) - (bubble.offsetWidth / 2);
         const top = partnerRect.top - containerRect.top - bubble.offsetHeight - 10;
-
         bubble.style.transform = `translate(${left}px, ${top}px)`;
       });
       requestAnimationFrame(updateBubblePositions);
     };
-
     requestAnimationFrame(updateBubblePositions);
 
     const showBubble = (partner) => {
       const bubble = bubblePool.find(b => b.dataset.busy === 'false');
       if (!bubble) return;
-
       bubble.dataset.busy = 'true';
       activeBubbles.set(partner, bubble);
-
       bubble.innerHTML = partner.dataset.contributions;
       bubble.classList.add('visible');
-
-      setTimeout(() => {
-        hideBubble(partner, bubble);
-      }, BUBBLE_LIFETIME);
+      setTimeout(() => hideBubble(partner, bubble), BUBBLE_LIFETIME);
     };
 
     const hideBubble = (partner, bubble) => {
       bubble.classList.remove('visible');
       activeBubbles.delete(partner);
-
-      setTimeout(() => {
-        bubble.dataset.busy = 'false';
-      }, 300);
+      setTimeout(() => { bubble.dataset.busy = 'false'; }, 300);
     };
 
+    // --- NEW: Hover-triggered bubble logic ---
+    let hoverBubble = document.createElement('div');
+    hoverBubble.className = 'contribution-bubble';
+    bubbleContainer.appendChild(hoverBubble);
+    let isHovering = false;
+
+    partnersWithContributions.forEach(partner => {
+      partner.addEventListener('mouseenter', () => {
+        isHovering = true;
+        // Hide any random bubbles that might be showing
+        activeBubbles.forEach((bubble, p) => hideBubble(p, bubble));
+
+        hoverBubble.innerHTML = partner.dataset.contributions;
+
+        // Position calculation must happen *after* content is set
+        const partnerRect = partner.getBoundingClientRect();
+        const containerRect = bubbleContainer.getBoundingClientRect();
+        const left = partnerRect.left - containerRect.left + (partnerRect.width / 2) - (hoverBubble.offsetWidth / 2);
+        const top = partnerRect.top - containerRect.top - hoverBubble.offsetHeight - 10;
+
+        hoverBubble.style.transform = `translate(${left}px, ${top}px)`;
+        hoverBubble.classList.add('visible');
+      });
+
+      partner.addEventListener('mouseleave', () => {
+        isHovering = false;
+        hoverBubble.classList.remove('visible');
+      });
+    });
+
+    // --- Modified interval for random bubbles ---
     setInterval(() => {
-      if (activeBubbles.size >= MAX_BUBBLES) return;
+      // Pause random bubbles if user is hovering or max bubbles are already shown
+      if (isHovering || activeBubbles.size >= MAX_BUBBLES) return;
 
       const rect = section.getBoundingClientRect();
       const isInView = rect.top < window.innerHeight && rect.bottom >= 0;
@@ -112,6 +133,7 @@
       }
     }, BUBBLE_INTERVAL);
   };
+
 
   // --- Copy Code Block ---
   const initCopyCodeButtons = () => {
