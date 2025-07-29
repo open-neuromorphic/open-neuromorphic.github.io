@@ -1,20 +1,20 @@
 :root {
-    --color-primary-new: #667eea;
-    --color-secondary-new: #764ba2;
-    --color-accent-new: #f093fb;
-    --color-text-new: #1f2937;
-    --color-text-muted-new: #4b5563;
-    --color-background-new: #f9fafb;
-    --color-card-bg-new: #ffffff;
-    --shadow-lg-new: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    --shadow-md-new: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --color-primary-new: #667eea;
+  --color-secondary-new: #764ba2;
+  --color-accent-new: #f093fb;
+  --color-text-new: #1f2937;
+  --color-text-muted-new: #4b5563;
+  --color-background-new: #f9fafb;
+  --color-card-bg-new: #ffffff;
+  --shadow-lg-new: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-md-new: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .nav-dropdown.active .nav-dropdown-list {
   @apply lg:bg-white dark:lg:bg-darkmode-theme-dark;
 }
 .nav-dropdown-list {
-   @apply lg:bg-white dark:lg:bg-darkmode-theme-dark;
+  @apply lg:bg-white dark:lg:bg-darkmode-theme-dark;
 }
 
 
@@ -94,10 +94,13 @@ code {
 }
 
 .content :is(:where(pre):not(:where([class~="not-prose"], [class~="not-prose"] *))) {
-  border-radius: 0.5rem;
-  --tw-bg-opacity: 1;
-  background-color: #000;
+  background-color: #000 !important;
   border-radius: 12px;
+}
+
+.content :is(:where(pre):not(:where([class~="not-prose"], [class~="not-prose"] *))) code {
+  color: #cdf3f5;
+  background-color: transparent;
 }
 
 .share-link {
@@ -180,14 +183,14 @@ code {
 }
 
 .copy-code-button {
-    @apply absolute top-2 right-2 p-1.5 rounded-md bg-gray-700/50 text-gray-300;
-    @apply opacity-0 group-hover:opacity-100 transition-opacity duration-200;
+  @apply absolute top-2 right-2 p-1.5 rounded-md bg-gray-700/50 text-gray-300;
+  @apply opacity-0 group-hover:opacity-100 transition-opacity duration-200;
 }
 
 .copy-code-button:hover {
-    @apply bg-gray-600 text-white;
+  @apply bg-gray-600 text-white;
 }
 
 .copy-code-button.copied {
-    @apply bg-green-600/80 text-white;
+  @apply bg-green-600/80 text-white;
 }
