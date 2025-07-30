@@ -8,7 +8,6 @@ author:
   - Alexandre Marcireau
   - Gregor Lenz
   - Dylan Muir
-  - Christian Pehle
   - Terry Stewart
   - Marcel Stimberg
 date: 2025-07-30
@@ -45,7 +44,6 @@ This panel brings together leading maintainers from the neuromorphic software ec
 - **Gregor Lenz** ([Tonic](/neuromorphic-computing/software/data-tools/tonic/)), *Co-Founder & CTO at Neurobus*.
 - **Dylan Muir** ([Rockpool](/neuromorphic-computing/software/snn-frameworks/rockpool/)), *VP Global Research Operations at SynSense*.
 - **Jens E. Pedersen** ([NIR](/workshops/neuromorphic-intermediate-representation/) & [Norse](/neuromorphic-computing/software/snn-frameworks/norse/)), *Doctoral student at KTH and chair of Open Neuromorphic*.
-- **Christian Pehle** ([Norse](/neuromorphic-computing/software/snn-frameworks/norse/) & [jaxsnn](/neuromorphic-computing/software/snn-frameworks/jaxsnn/)), *Researcher at Cold Spring Harbor Laboratory*.
 - **Terry Stewart** ([Nengo](/neuromorphic-computing/software/snn-frameworks/nengo/)), *Lead developer of the Nengo neural simulator*.
 - **Marcel Stimberg** ([Brian](/neuromorphic-computing/software/snn-frameworks/brian/)), *Research engineer at Sorbonne Université*.
 
