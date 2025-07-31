@@ -4,8 +4,44 @@
 # `logo` should be the filename of the logo within the corresponding page bundle.
 # `dark_logo_invert = true` will apply a CSS invert filter in dark mode for logos that are dark.
 
-# [[opensource_collaborator]]
-# name = "BindsNET"
-# logo = "bindsnet.jpg"
-# page_path = "neuromorphic-computing/software/snn-frameworks/bindsnet/"
-# dark_logo_invert = false
+[[opensource_collaborator]]
+name = "AEStream"
+logo = "aestream.png"
+page_path = "neuromorphic-computing/software/data-tools/aestream/"
+dark_logo_invert = true
+
+[[opensource_collaborator]]
+name = "BindsNET"
+logo = "bindsnet.jpg"
+page_path = "neuromorphic-computing/software/snn-frameworks/bindsnet/"
+dark_logo_invert = false
+
+[[opensource_collaborator]]
+name = "Brian"
+logo = "brian.jpg"
+page_path = "neuromorphic-computing/software/snn-frameworks/brian/"
+dark_logo_invert = true
+
+[[opensource_collaborator]]
+name = "Faery"
+logo = "faery.png" # No official logo found
+page_path = "neuromorphic-computing/software/data-tools/faery/"
+dark_logo_invert = false
+
+[[opensource_collaborator]]
+name = "GeNN"
+logo = "genn.png" # No logo provided in the software page
+page_path = "neuromorphic-computing/software/snn-frameworks/genn/"
+dark_logo_invert = false
+
+[[opensource_collaborator]]
+name = "Neuromorphic Intermediate Representation (NIR)"
+logo = "nir-logo.png"
+page_path = "neuromorphic-computing/software/data-tools/neuromorphic-intermediate-representation/"
+dark_logo_invert = false
+
+[[opensource_collaborator]]
+name = "NIRTorch"
+logo = "nir-logo.png"
+page_path = "neuromorphic-computing/software/snn-frameworks/nirtorch/"
+dark_logo_invert = false
