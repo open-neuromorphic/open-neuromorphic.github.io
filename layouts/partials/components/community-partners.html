@@ -85,7 +85,7 @@
           {{- if $logo_resource -}}
           <a href="{{ $page.RelPermalink }}" title="{{ $display_name }}" class="partner-logo-link px-6 py-2 flex-shrink-0" {{ $data_attr }}>
             {{- $logo_img := $logo_resource.Fit "150x50 Lanczos" -}}
-            <img src="{{ $logo_img.RelPermalink }}" alt="{{ $display_name }} logo" class="partner-logo h-10 w-auto max-w-[150px] {{ if $supporter.dark_logo_invert }}dark:invert{{ end }}">
+            <img src="{{ $logo_img.RelPermalink }}" alt="{{ $display_name }} logo" class="partner-logo h-10 w-auto max-w-[150px] object-contain {{ if $supporter.dark_logo_invert }}dark:invert{{ end }}">
           </a>
           {{- end -}}
           {{- end -}}
