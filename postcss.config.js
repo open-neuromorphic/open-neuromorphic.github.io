@@ -19,6 +19,7 @@ const purgecssOptions = {
     'bubble-description',
     'bubble-separator',
     'bubble-contributions',
+    'is-highlighted',
   ],
 };
 
