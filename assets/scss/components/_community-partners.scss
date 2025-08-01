@@ -43,7 +43,8 @@
 }
 
 .contribution-bubble {
-  @apply absolute top-0 left-0 bg-dark dark:bg-darkmode-theme-dark text-white dark:text-darkmode-text rounded-lg shadow-lg z-20 dark:border-2 dark:border-darkmode-border;
+  @apply absolute top-0 left-0 dark:bg-darkmode-theme-dark text-white dark:text-darkmode-text rounded-lg shadow-lg z-20 dark:border-2 dark:border-darkmode-border;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--color-primary-new) 40%, black) 0%, color-mix(in srgb, var(--color-secondary-new) 40%, black) 100%);
   @apply opacity-0 invisible transition-opacity ease-in-out;
   transition-duration: 150ms;
   will-change: opacity, transform;
@@ -62,7 +63,7 @@
     content: '';
     @apply absolute top-full left-1/2 -translate-x-1/2;
     @apply w-0 h-0 border-x-8 border-x-transparent border-t-8;
-    border-top-color: theme('colors.dark');
+    border-top-color: color-mix(in srgb, var(--color-secondary-new) 40%, black);
   }
 }
 
@@ -71,7 +72,7 @@
 }
 
 .bubble-description {
-  @apply text-xs text-gray-300 dark:text-gray-400 leading-snug;
+  @apply text-xs text-gray-300 dark:text-white leading-snug;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
