@@ -19,6 +19,21 @@
 
 {{ $sortedAllUpcomingEvents := partial "logic/get_sorted_upcoming_events.html" . }}
 
+{{/* Get all event pages */}}
+{{ $workshops := where site.RegularPages "Section" "workshops" }}
+{{ $student_talks := where site.RegularPages "Type" "student-talks" }}
+{{ $hacking_hours := where site.RegularPages "Type" "hacking-hours" }}
+{{ $all_events := $workshops | union $student_talks | union $hacking_hours }}
+
+{{/* Get sorted past events */}}
+{{ $sorted_past_events := partial "logic/get_past_events.html" $all_events }}
+
+{{/* Get the most recent one */}}
+{{ $most_recent_past_event := "" }}
+{{ if $sorted_past_events }}
+{{ $most_recent_past_event = index $sorted_past_events 0 }}
+{{ end }}
+
 
 {{/* What's New at ONM Section */}}
 <section class="mt-8 mb-14">
@@ -27,8 +42,65 @@
     <p class="section-subtitle">Stay up-to-date with the latest workshops, blog posts, and community highlights.</p>
     <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
 
-      {{/* Upcoming Events Column - Updated Logic */}}
+      {{/* Events Column (Recent & Upcoming) */}}
       <div class="lg:col-span-1">
+
+        {{/* RECENT EVENT */}}
+        {{ with $most_recent_past_event }}
+        <h3 class="text-2xl font-bold mb-6 text-center lg:text-left text-text dark:text-darkmode-text">Recent Event</h3>
+        <div class="event-card-simple bg-white dark:bg-darkmode-theme-light rounded-xl p-4 shadow-md hover:shadow-lg transition-all duration-300 ease-in-out mb-8">
+
+          {{/* Thumbnail Logic */}}
+          {{ $image_param := .Params.image }}
+          {{ $img_resource := "" }}
+          {{ $processed_img := "" }}
+
+          {{ if $image_param }}
+          {{ $img_resource = .Resources.GetMatch $image_param }}
+          {{ if not $img_resource }}
+          {{ $asset_path := strings.TrimPrefix "/" $image_param }}
+          {{ $img_resource = resources.Get $asset_path }}
+          {{ end }}
+          {{ if not $img_resource }}
+          {{ if fileExists (printf "static/%s" (strings.TrimPrefix "/" $image_param)) }}
+          {{ $img_resource = resources.Get (strings.TrimPrefix "/" $image_param) }}
+          {{ end }}
+          {{ end }}
+          {{ end }}
+
+          {{ if not $img_resource }}
+          {{ $img_resource = resources.Get "images/workshop-thumbnail-default.png" }}
+          {{ end }}
+
+          {{ if $img_resource }}
+          {{ $processed_img = $img_resource.Fill "504x280 Lanczos" }}
+          {{ end }}
+
+          {{ if $processed_img }}
+          <a href="{{ .Permalink }}" class="block mb-4">
+            <img src="{{ $processed_img.RelPermalink }}" alt="{{ .Title }}" class="w-full rounded object-cover">
+          </a>
+          {{ end }}
+
+          <div>
+            <span class="date-badge mb-1 inline-block text-xs">{{ .Date.Format "Jan 02, 2006" }}</span>
+            <h4 class="text-lg font-semibold mb-1 leading-tight">
+              <a href="{{ .Permalink }}" class="text-text dark:text-darkmode-dark hover:text-[var(--color-primary-new)]">{{ .Title }}</a>
+            </h4>
+            {{ if .Params.author }}
+            <p class="text-xs text-gray-500 dark:text-gray-300">
+              {{ partial "icon.html" (dict "style" "regular" "name" "circle-user" "class" "mr-1") }}
+              {{ partial "components/author-links.html" . }}
+            </p>
+            {{ end }}
+            <a href="{{ .Permalink }}" class="font-semibold text-xs text-[var(--color-primary-new)] hover:underline block mt-2">
+              View Details {{ partial "icon.html" (dict "style" "solid" "name" "arrow-right" "class" "ml-1") }}
+            </a>
+          </div>
+        </div>
+        {{ end }}
+
+        {{/* UPCOMING EVENTS */}}
         <h3 class="text-2xl font-bold mb-6 text-center lg:text-left text-text dark:text-darkmode-text">Upcoming Events</h3>
         {{ if $sortedAllUpcomingEvents }}
         {{ range first 3 $sortedAllUpcomingEvents }}
