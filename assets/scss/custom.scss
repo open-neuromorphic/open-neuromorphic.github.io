@@ -10,6 +10,50 @@
   --shadow-md-new: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
+// Hero section background with fading checkerboard
+.hero-section {
+  position: relative;
+  overflow: hidden;
+  background-color: #ffffff;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background-image:
+      linear-gradient(45deg, #f3f4f6 25%, transparent 25%),
+      linear-gradient(-45deg, #f3f4f6 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #f3f4f6 75%),
+      linear-gradient(-45deg, transparent 75%, #f3f4f6 75%);
+    background-size: 20px 20px;
+    mask-image: linear-gradient(to bottom, black 0%, transparent 14%);
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 14%);
+  }
+
+  // Ensure content is above the pattern
+  > .container {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.dark .hero-section {
+  background-color: theme('colors.darkmode.theme-dark');
+
+  &::before {
+    background-image:
+      linear-gradient(45deg, #2a2a2a 25%, transparent 25%),
+      linear-gradient(-45deg, #2a2a2a 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #2a2a2a 75%),
+      linear-gradient(-45deg, transparent 75%, #2a2a2a 75%);
+  }
+}
+
+
 .nav-dropdown.active .nav-dropdown-list {
   @apply lg:bg-white dark:lg:bg-darkmode-theme-dark;
 }
