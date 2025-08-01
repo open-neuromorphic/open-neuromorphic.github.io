@@ -23,7 +23,7 @@
 name = "AEStream"
 logo = "aestream.png"
 page_path = "neuromorphic-computing/software/data-tools/aestream/"
-dark_logo_invert = true
+dark_logo_invert = false
 
 [[foundational]]
 name = "BindsNET"
@@ -35,28 +35,23 @@ dark_logo_invert = false
 name = "Brian"
 logo = "brian.jpg"
 page_path = "neuromorphic-computing/software/snn-frameworks/brian/"
-dark_logo_invert = true
+dark_logo_invert = false
 
 [[foundational]]
 name = "Faery"
-logo = "" # No official logo found
+logo = "faery.png" # No official logo found
 page_path = "neuromorphic-computing/software/data-tools/faery/"
 dark_logo_invert = false
 
 [[foundational]]
 name = "GeNN"
-logo = "" # No logo provided in the software page
+logo = "genn.png" # No logo provided in the software page
 page_path = "neuromorphic-computing/software/snn-frameworks/genn/"
-dark_logo_invert = false
+dark_logo_invert = true
 
 [[foundational]]
 name = "Neuromorphic Intermediate Representation (NIR)"
 logo = "nir-logo.png"
 page_path = "neuromorphic-computing/software/data-tools/neuromorphic-intermediate-representation/"
 dark_logo_invert = false
-
-[[foundational]]
-name = "NIRTorch"
-logo = "nir-logo.png"
-page_path = "neuromorphic-computing/software/snn-frameworks/nirtorch/"
-dark_logo_invert = false
+hero_display = { name = "NIRTorch", page_path = "neuromorphic-computing/software/snn-frameworks/nirtorch/" }

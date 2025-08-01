@@ -1,18 +1,6 @@
-{{- /* Get software from the panel discussion */ -}}
-{{- $panelPage := site.GetPage "workshops/open-source-neuromorphic-infrastructure" -}}
-{{- with $panelPage.Params.software_tags -}}
-{{- $software_slugs := . -}}
-{{- $all_software_pages := where site.RegularPages "Type" "neuromorphic-software" -}}
-{{- $panel_software_list := slice -}}
-{{- range $slug := $software_slugs -}}
-{{- range $sw_page := $all_software_pages -}}
-{{- if eq (path.Base $sw_page.File.Dir) $slug -}}
-{{- $panel_software_list = $panel_software_list | append $sw_page -}}
-{{- end -}}
-{{- end -}}
-{{- end -}}
+{{- $supporters := site.Data.supporters.foundational -}}
 
-{{- if $panel_software_list -}}
+{{- if $supporters -}}
 {{- /* --- Pre-calculation of contributions for bubbles --- */ -}}
 {{- $contributionsMap := dict -}}
 {{- $contentTypes := slice "workshops" "hacking-hours" -}}
@@ -48,11 +36,25 @@
         <div class="partners-track inline-flex items-center">
           {{- /* Duplicate the logos for a seamless scroll animation effect */ -}}
           {{- range (seq 2) -}}
-          {{- range $panel_software_list -}}
-          {{- $page := . -}}
-          {{- $slug := "" -}}
-          {{- if .File -}}{{- $slug = path.Base .File.Dir -}}{{- end -}}
+          {{- range $supporter := $supporters -}}
+          {{- /* Determine what to display: the hero override or the default */ -}}
+          {{- $display_name := $supporter.name -}}
+          {{- $display_page_path := $supporter.page_path -}}
+          {{- if $supporter.hero_display -}}
+          {{- $display_name = $supporter.hero_display.name -}}
+          {{- $display_page_path = $supporter.hero_display.page_path -}}
+          {{- end -}}
 
+          {{- $page := "" -}}
+          {{- with $display_page_path -}}
+          {{- $page = site.GetPage . -}}
+          {{- end -}}
+
+          {{- if $page -}}
+          {{- $slug := "" -}}
+          {{- if $page.File -}}{{- $slug = path.Base $page.File.Dir -}}{{- end -}}
+
+          {{- /* Bubble logic remains the same, using the page slug */ -}}
           {{- $data_attr := "" -}}
           {{- with index $contributionsMap $slug -}}
           {{- $contribution_strings := slice -}}
@@ -64,16 +66,28 @@
           {{- end -}}
           {{- end -}}
 
-          {{- with $page.Params.logo -}}
-          {{- $logo_filename := . -}}
-          {{- with $page.Resources.GetMatch $logo_filename -}}
-          {{- $logo_resource := . -}}
-          <a href="{{ $page.RelPermalink }}" title="{{ $page.Title }}" class="partner-logo-link px-6 py-2 flex-shrink-0" {{ $data_attr }}>
+          {{- /* Image and Link logic */ -}}
+          {{- with $supporter.logo -}}
+          {{- $logo_resource := "" -}}
+          {{- /* Check for logo in the actual page bundle (e.g., nirtorch's page) */ -}}
+          {{- with $page.Resources.GetMatch . -}}
+          {{- $logo_resource = . -}}
+          {{- end -}}
+
+          {{- /* Fallback to check assets folder */ -}}
+          {{- if not $logo_resource -}}
+          {{- $logo_from_assets := resources.Get . -}}
+          {{- if $logo_from_assets -}}
+          {{- $logo_resource = $logo_from_assets -}}
+          {{- end -}}
+          {{- end -}}
+
+          {{- if $logo_resource -}}
+          <a href="{{ $page.RelPermalink }}" title="{{ $display_name }}" class="partner-logo-link px-6 py-2 flex-shrink-0" {{ $data_attr }}>
             {{- $logo_img := $logo_resource.Fit "150x50 Lanczos" -}}
-            {{- $dark_invert := false -}}
-            {{- with $page.Params.dark_logo_invert -}}{{- $dark_invert = . -}}{{- end -}}
-            <img src="{{ $logo_img.RelPermalink }}" alt="{{ $page.Title }} logo" class="partner-logo h-10 w-auto max-w-[150px] {{ if $dark_invert }}dark:invert{{ end }}">
+            <img src="{{ $logo_img.RelPermalink }}" alt="{{ $display_name }} logo" class="partner-logo h-10 w-auto max-w-[150px] {{ if $supporter.dark_logo_invert }}dark:invert{{ end }}">
           </a>
+          {{- end -}}
           {{- end -}}
           {{- end -}}
           {{- end -}}
@@ -85,5 +99,4 @@
 
   <div class="bubbles-container"></div>
 </div>
-{{- end -}}
 {{- end -}}
