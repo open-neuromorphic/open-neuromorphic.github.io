@@ -19,7 +19,8 @@
     transition: all 0.3s ease-in-out;
   }
 
-  .partner-logo-link:hover .partner-logo {
+  .partner-logo-link:hover .partner-logo,
+  .partner-logo-link.is-highlighted .partner-logo {
     filter: grayscale(0%);
     opacity: 1;
     transform: scale(1.05);
@@ -42,9 +43,14 @@
 }
 
 .contribution-bubble {
-  @apply absolute top-0 left-0 bg-dark dark:bg-darkmode-theme-dark text-white dark:text-darkmode-text text-xs font-semibold p-2 rounded-lg shadow-lg z-20 dark:border-2 dark:border-darkmode-border;
-  @apply opacity-0 invisible transition-opacity duration-300 ease-in-out;
+  @apply absolute top-0 left-0 bg-dark dark:bg-darkmode-theme-dark text-white dark:text-darkmode-text rounded-lg shadow-lg z-20 dark:border-2 dark:border-darkmode-border;
+  @apply opacity-0 invisible transition-opacity ease-in-out;
+  transition-duration: 150ms;
   will-change: opacity, transform;
+  max-width: 280px;
+  padding: 0.75rem;
+  text-align: left;
+  font-weight: 400;
 
   &.visible {
     @apply opacity-100;
@@ -59,6 +65,27 @@
     border-top-color: theme('colors.dark');
   }
 }
+
+.bubble-title {
+  @apply font-bold text-sm mb-1 text-white;
+}
+
+.bubble-description {
+  @apply text-xs text-gray-300 dark:text-gray-400 leading-snug;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.bubble-separator {
+  @apply h-px bg-gray-600 dark:bg-gray-500 my-2;
+}
+
+.bubble-contributions {
+  @apply text-xs font-semibold;
+}
+
 
 // Dark mode styles for the bubble's tail to add a border
 .dark .contribution-bubble {
