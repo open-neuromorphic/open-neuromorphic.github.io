@@ -1,5 +1,58 @@
 // assets/scss/components/_community-partners.scss
 .community-partners-section {
+  position: relative;
+  overflow: hidden;
+  background-color: theme('colors.gray.50');
+
+  > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(to bottom, white 0%, rgba(255, 255, 255, 0) 21%);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background-image:
+      linear-gradient(45deg, theme('colors.gray.100') 25%, transparent 25%),
+      linear-gradient(-45deg, theme('colors.gray.100') 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, theme('colors.gray.100') 75%),
+      linear-gradient(-45deg, transparent 75%, theme('colors.gray.100') 75%);
+    background-size: 20px 20px;
+  }
+
+  .dark & {
+    background-color: theme('colors.darkmode.theme-dark');
+
+    &::before {
+      background: linear-gradient(to bottom, theme('colors.darkmode.theme-dark') 0%, rgba(34, 34, 34, 0) 21%);
+    }
+
+    &::after {
+      background-image:
+        linear-gradient(45deg, #2a2a2a 25%, transparent 25%),
+        linear-gradient(-45deg, #2a2a2a 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #2a2a2a 75%),
+        linear-gradient(-45deg, transparent 75%, #2a2a2a 75%);
+    }
+  }
+
   .partners-slider-wrapper {
     overflow: hidden;
     -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
@@ -104,5 +157,47 @@
   &::after {
     border-top-color: theme('colors.darkmode.theme-dark');
     margin-top: -2px;
+  }
+}
+
+.byline-paragraph {
+  @apply inline-flex items-center;
+
+  &::before, &::after {
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 16px;
+    flex-shrink: 0;
+    background-size: 8px 8px;
+    background-color: white;
+  }
+
+  &::before {
+    margin-right: 0.75rem;
+    background-image:
+      linear-gradient(45deg, #000 25%, transparent 25%),
+      linear-gradient(-45deg, #000 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #000 75%),
+      linear-gradient(-45deg, transparent 75%, #000 75%);
+  }
+  &::after {
+    margin-left: 0.75rem;
+    background-image:
+      linear-gradient(45deg, #000 25%, transparent 25%),
+      linear-gradient(-45deg, #000 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #000 75%),
+      linear-gradient(-45deg, transparent 75%, #000 75%);
+  }
+
+  .dark & {
+    &::before, &::after {
+      background-color: #444;
+      background-image:
+        linear-gradient(45deg, #bbbbbb 25%, transparent 25%),
+        linear-gradient(-45deg, #bbbbbb 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #bbbbbb 75%),
+        linear-gradient(-45deg, transparent 75%, #bbbbbb 75%);
+    }
   }
 }

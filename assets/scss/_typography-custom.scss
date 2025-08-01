@@ -42,6 +42,8 @@ $dark-link-underline-hover-color: #ffffff;
   text-underline-offset: 3px;
   text-decoration-color: $link-underline-color;
   transition: all 0.2s ease-in-out;
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
 
   &:hover {
     text-decoration-color: $link-underline-hover-color;
