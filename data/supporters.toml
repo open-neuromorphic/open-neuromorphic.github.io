@@ -1,46 +1,61 @@
 # Supporters of Open Neuromorphic
-# This file manages the list of open-source projects and future tiered supporters.
-# `page_path` should link to the software/hardware page on this site.
-# `logo` should be the filename of the logo within the corresponding page bundle.
-# `dark_logo_invert = true` will apply a CSS invert filter in dark mode for logos that are dark.
+# This file manages the list of projects and organizations that support our mission,
+# organized into tiers: Platinum, Gold, and Foundational.
 
-[[opensource_collaborator]]
+# [[platinum]]
+# name = "Platinum Supporter"
+# logo = "logo.png" # Path within the supporter's content bundle or static/images
+# page_path = "path/to/supporter/page/" # Optional link to a page on this site
+# website = "https://supporter.com" # External website link for the card
+# dark_logo_invert = false
+
+# [[gold]]
+# name = "Gold Supporter"
+# logo = "logo.png"
+# page_path = "path/to/supporter/page/"
+# website = "https://supporter.com"
+# dark_logo_invert = false
+
+
+# The Foundational Collaboration Network consists of open-source projects that
+# are integral to the neuromorphic ecosystem.
+[[foundational]]
 name = "AEStream"
 logo = "aestream.png"
 page_path = "neuromorphic-computing/software/data-tools/aestream/"
 dark_logo_invert = true
 
-[[opensource_collaborator]]
+[[foundational]]
 name = "BindsNET"
 logo = "bindsnet.jpg"
 page_path = "neuromorphic-computing/software/snn-frameworks/bindsnet/"
 dark_logo_invert = false
 
-[[opensource_collaborator]]
+[[foundational]]
 name = "Brian"
 logo = "brian.jpg"
 page_path = "neuromorphic-computing/software/snn-frameworks/brian/"
 dark_logo_invert = true
 
-[[opensource_collaborator]]
+[[foundational]]
 name = "Faery"
-logo = "faery.png" # No official logo found
+logo = "" # No official logo found
 page_path = "neuromorphic-computing/software/data-tools/faery/"
 dark_logo_invert = false
 
-[[opensource_collaborator]]
+[[foundational]]
 name = "GeNN"
-logo = "genn.png" # No logo provided in the software page
+logo = "" # No logo provided in the software page
 page_path = "neuromorphic-computing/software/snn-frameworks/genn/"
 dark_logo_invert = false
 
-[[opensource_collaborator]]
+[[foundational]]
 name = "Neuromorphic Intermediate Representation (NIR)"
 logo = "nir-logo.png"
 page_path = "neuromorphic-computing/software/data-tools/neuromorphic-intermediate-representation/"
 dark_logo_invert = false
 
-[[opensource_collaborator]]
+[[foundational]]
 name = "NIRTorch"
 logo = "nir-logo.png"
 page_path = "neuromorphic-computing/software/snn-frameworks/nirtorch/"
