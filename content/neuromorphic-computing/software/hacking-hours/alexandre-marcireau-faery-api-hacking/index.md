@@ -11,6 +11,7 @@ speaker_photo: "images/speakers/alexandre-marcireau-placeholder.png" # Can reuse
 image: "alexandre-marcireau-faery-api-hacking.jpg"
 type: "hacking-hours"
 speaker_bio: "Alexandre Marcireau is a software developer and contributor in the neuromorphic computing space, known for his work on the Faery event processing library."
+software_tags: ["faery"]
 ---
 
 This Hacking Hour features Alexandre Marcireau, who, along with host Jens E. Pedersen, dives deep into the Faery event processing library. The session focuses on practical API hacking, exploring how to extend and customize Faery for specific neuromorphic data processing tasks.

@@ -12,6 +12,7 @@ speaker_photo: "images/speakers/multi-speaker-placeholder.png" # Placeholder for
 image: "faery-api-discussion-marcireau-bogdan.jpg"
 type: "hacking-hours"
 speaker_bio: "Alexandre Marcireau and Petruț Bogdan are developers and contributors in the neuromorphic software community, with a focus on event-based data processing tools like Faery."
+software_tags: ["faery"]
 ---
 
 Jens E. Pedersen hosts a Hacking Hour with Alexandre Marcireau and Petruț Bogdan. This session is dedicated to a comprehensive discussion about the Faery API, covering its design philosophy, current capabilities, and future directions for this event processing library.
