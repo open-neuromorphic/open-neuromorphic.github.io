@@ -50,17 +50,14 @@
           {{- $slug := "" -}}
           {{- if $page.File -}}{{- $slug = path.Base $page.File.Dir -}}{{- end -}}
 
-          {{- /* Bubble logic remains the same, using the page slug */ -}}
-          {{- $data_attr := "" -}}
-          {{- with index $contributionsMap $slug -}}
+          {{- /* Bubble logic: Always generate data-contributions, even if empty */ -}}
           {{- $contribution_strings := slice -}}
+          {{- with index $contributionsMap $slug -}}
           {{- if gt .Workshops 0 -}}{{- $contribution_strings = $contribution_strings | append (printf "Workshops: %d" .Workshops) -}}{{- end -}}
           {{- if gt (index . "Hacking Hours") 0 -}}{{- $contribution_strings = $contribution_strings | append (printf "Hacking Hours: %d" (index . "Hacking Hours")) -}}{{- end -}}
           {{- if gt .Blogs 0 -}}{{- $contribution_strings = $contribution_strings | append (printf "Blogs: %d" .Blogs) -}}{{- end -}}
-          {{- if gt (len $contribution_strings) 0 -}}
-          {{- $data_attr = printf `data-contributions="%s"` (delimit $contribution_strings "<br>") | safeHTMLAttr -}}
           {{- end -}}
-          {{- end -}}
+          {{- $data_attr := printf `data-contributions="%s"` (delimit $contribution_strings "<br>") | safeHTMLAttr -}}
 
           {{- /* Image and Link logic */ -}}
           {{- with $supporter.logo -}}

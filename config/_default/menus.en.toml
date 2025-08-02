@@ -47,10 +47,19 @@ icon = "fas fa-rocket"
 description = "Discover community-driven projects and how to get involved."
 
 [[main]]
+parent = "explore-resources"
+name = "Community Resources"
+url = "/neuromorphic-computing/community-resources/"
+weight = 5
+[main.params]
+  icon = "fas fa-share-nodes"
+  description = "A curated list of community-led blogs, channels, and projects."
+
+[[main]]
 parent = "explore-resources" # Match the identifier
 name = "Hacking Hours"
 url = "/neuromorphic-computing/software/hacking-hours/"
-weight = 5
+weight = 6
 [main.params]
   icon = "fas fa-terminal"
   description = "Live coding sessions exploring neuromorphic software."
@@ -60,7 +69,7 @@ weight = 5
 parent = "explore-resources" # Match the identifier
 name = "Student Talks"
 url = "/neuromorphic-computing/student-talks/"
-weight = 6
+weight = 7
 [main.params]
   icon = "fas fa-graduation-cap"
   description = "Presentations by students and early-career researchers."
@@ -70,7 +79,7 @@ weight = 6
 parent = "explore-resources" # Match the identifier
 name = "Workshops"
 url = "/workshops/"
-weight = 7
+weight = 8
 [main.params]
   icon = "fas fa-chalkboard-user"
   description = "Expert-led workshops on key neuromorphic topics."
@@ -79,7 +88,7 @@ weight = 7
 parent = "explore-resources" # Add this new entry
 name = "Contributors"
 url = "/contributors/"
-weight = 8
+weight = 9
 [main.params]
   icon = "fas fa-user-group"
   description = "Meet the people building the Open Neuromorphic community."
