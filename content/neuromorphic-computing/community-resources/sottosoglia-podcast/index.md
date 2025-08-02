@@ -1,7 +1,7 @@
 ---
 title: "Sottosoglia Podcast"
 date: 2025-08-02
-description: "Sottosoglia is a podcast in Italian that explores the world of neuromorphic engineering, artificial intelligence, and their impact on technology and society."
+description: "On a mission to uncover \"The Person Behind the Scientist,\" this isn't a typical academic chat. "
 image: "sottosoglia-logo.png"
 draft: false
 type: "community-resources"
