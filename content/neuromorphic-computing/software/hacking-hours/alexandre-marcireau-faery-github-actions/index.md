@@ -11,6 +11,7 @@ speaker_photo: "images/speakers/alexandre-marcireau-placeholder.png" # Can reuse
 image: "alexandre-marcireau-faery-github-actions.jpg"
 type: "hacking-hours"
 speaker_bio: "Alexandre Marcireau is a software developer and contributor in the neuromorphic computing space, known for his work on the Faery event processing library and its development workflows."
+software_tags: ["faery"]
 ---
 
 In this Hacking Hour session, Alexandre Marcireau joins host Jens E. Pedersen to discuss the implementation and benefits of using GitHub Actions for the Faery event processing library. The focus is on continuous integration (CI), testing, and deployment (CD) workflows to maintain and improve the Faery codebase.

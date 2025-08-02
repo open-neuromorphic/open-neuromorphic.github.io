@@ -2,7 +2,7 @@
 title: "GeNN"
 type: neuromorphic-software
 description: Simulator for SNN models focusing on networks, not on individual neuron morphology. Optimised for accelerated simulations on computational backends including NVIDIA GPUs.
-logo: 
+logo: genn.png
 website: https://genn-team.github.io/
 dependencies: 
 field_of_application: Neuroscience, Machine learning

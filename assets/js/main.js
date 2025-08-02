@@ -52,6 +52,8 @@
       bubblePool.push(bubble);
     }
     let activeBubbles = new Map();
+    let recentlyHidden = new Set();
+    const COOLDOWN_PERIOD = BUBBLE_INTERVAL;
 
     const updateBubblePositions = () => {
       activeBubbles.forEach((bubble, partner) => {
@@ -64,21 +66,39 @@
       requestAnimationFrame(updateBubblePositions);
     };
     requestAnimationFrame(updateBubblePositions);
+    
+    const setBubbleContent = (partner) => {
+      const name = partner.dataset.projectName || '';
+      const description = partner.dataset.projectDescription || '';
+      const contributions = partner.dataset.contributions;
+
+      return `
+        <div class="bubble-content">
+          <h4 class="bubble-title">${name}</h4>
+          <p class="bubble-description">${description}</p>
+          ${contributions ? `<div class="bubble-separator"></div><div class="bubble-contributions">${contributions}</div>` : ''}
+        </div>
+      `;
+    }
 
     const showBubble = (partner) => {
       const bubble = bubblePool.find(b => b.dataset.busy === 'false');
       if (!bubble) return;
+      partner.classList.add('is-highlighted');
       bubble.dataset.busy = 'true';
       activeBubbles.set(partner, bubble);
-      bubble.innerHTML = partner.dataset.contributions;
+      bubble.innerHTML = setBubbleContent(partner);
       bubble.classList.add('visible');
       setTimeout(() => hideBubble(partner, bubble), BUBBLE_LIFETIME);
     };
 
     const hideBubble = (partner, bubble) => {
+      partner.classList.remove('is-highlighted');
       bubble.classList.remove('visible');
       activeBubbles.delete(partner);
+      recentlyHidden.add(partner);
       setTimeout(() => { bubble.dataset.busy = 'false'; }, 300);
+      setTimeout(() => { recentlyHidden.delete(partner); }, COOLDOWN_PERIOD);
     };
 
     // --- NEW: Hover-triggered bubble logic ---
@@ -93,7 +113,7 @@
         // Hide any random bubbles that might be showing
         activeBubbles.forEach((bubble, p) => hideBubble(p, bubble));
 
-        hoverBubble.innerHTML = partner.dataset.contributions;
+        hoverBubble.innerHTML = setBubbleContent(partner);
 
         // Position calculation must happen *after* content is set
         const partnerRect = partner.getBoundingClientRect();
@@ -121,7 +141,7 @@
 
       if (isInView) {
         const availablePartners = partnersWithContributions.filter(p => {
-          if (activeBubbles.has(p)) return false;
+          if (activeBubbles.has(p) || recentlyHidden.has(p)) return false;
           const r = p.getBoundingClientRect();
           return r.left > 50 && r.right < window.innerWidth - 50;
         });
@@ -247,7 +267,7 @@
     initCopyCodeButtons();
     initOgImageModal();
     if (window.innerWidth > 768) { // Only run on larger screens
-      initContributionBubbles();
+        initContributionBubbles();
     }
   }
 

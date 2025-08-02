@@ -12,7 +12,7 @@ speaker_bio: "This talk will be given jointly by Felix Bauer, Jason Eshraghian, 
 speaker_code: "https://github.com/neuromorphs/nir"
 image: neuromorphic-intermediate-representation.png
 description: "We show how to use the Neuromorphic Intermediate Representation to migrate your spiking model onto neuromorphic hardware."
-software_tags: ["norse", "snntorch", "spyx", "neuromorphic-intermediate-representation"]
+software_tags: ["norse", "snntorch", "spyx", "neuromorphic-intermediate-representation", "nirtorch"]
 ---
 
 Have you wondered how to use neuromorphic hardware platforms?
