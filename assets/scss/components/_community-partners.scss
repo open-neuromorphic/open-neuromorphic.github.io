@@ -18,11 +18,11 @@
     height: 100%;
     z-index: 0;
     background-image:
-      linear-gradient(45deg, theme('colors.body') 25%, transparent 25%),
+      linear-gradient(45deg, theme('colors.body') 25%, transparent 105%),
       linear-gradient(-45deg, theme('colors.body') 25%, transparent 25%),
       linear-gradient(45deg, transparent 75%, theme('colors.body') 75%),
       linear-gradient(-45deg, transparent 75%, theme('colors.body') 75%);
-    background-size: 20px 20px;
+    background-size: 10px 10px;
   }
 
   .dark & {
@@ -30,7 +30,7 @@
 
     &::after {
       background-image:
-        linear-gradient(45deg, theme('colors.darkmode.body') 25%, transparent 25%),
+        linear-gradient(45deg, theme('colors.darkmode.body') 25%, transparent 105%),
         linear-gradient(-45deg, theme('colors.darkmode.body') 25%, transparent 25%),
         linear-gradient(45deg, transparent 75%, theme('colors.darkmode.body') 75%),
         linear-gradient(-45deg, transparent 75%, theme('colors.darkmode.body') 75%);
