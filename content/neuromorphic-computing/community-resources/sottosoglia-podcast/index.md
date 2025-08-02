@@ -24,4 +24,4 @@ resource_log:
 
 Hosted by Giulia D'Angelo and Fabrizio Ottati, Sottosoglia (Italian for "Subthreshold") is a podcast where science gets personal. On a mission to uncover "The Person Behind the Scientist," this isn't a typical academic chat. Instead, it digs into the real stories behind the research: the breakthroughs, the setbacks, and the human moments that shape top minds in the field.
 
-A unique twist is the "Sottosoglia cards"—a deck of random, spicy, and unpredictable questions that can take the conversation anywhere. The result is a raw, real, and often hilarious look at the lives of scientists. The podcast is in Italian, providing a fantastic resource for the Italian-speaking neuromorphic community.
+A unique twist is the "Sottosoglia cards"—a deck of random, spicy, and unpredictable questions that can take the conversation anywhere. The result is a raw, real, and often hilarious look at the lives of scientists.
