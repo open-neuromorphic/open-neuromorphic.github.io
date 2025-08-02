@@ -55,3 +55,9 @@ logo = "nir-logo.png"
 page_path = "neuromorphic-computing/software/data-tools/neuromorphic-intermediate-representation/"
 dark_logo_invert = false
 hero_display = { name = "NIRTorch", page_path = "neuromorphic-computing/software/snn-frameworks/nirtorch/" }
+
+[[foundational]]
+name = "snnTorch"
+logo = "snntorch.png"
+page_path = "neuromorphic-computing/software/snn-frameworks/snntorch/"
+dark_logo_invert = false
