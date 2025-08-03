@@ -19,7 +19,7 @@ The energy and shared purpose from that discussion were too valuable to let fade
 
 ### A Strategic Vision in Action
 
-This initiative is a direct answer to the call for a more collaborative and open ecosystem that we outlined in our [**Strategic Vision for Open Neuromorphic**](/blog/strategic-vision-open-neuromorphic/). By uniting these essential projects into a collaborative network, we are creating a shared space for the exchange of ideas. This is a concrete step towards reducing fragmentation, improving interoperability, and making neuromorphic technology more accessible and reproducible for everyone—core tenets of our vision.
+This initiative is a direct answer to the call for a more collaborative and open ecosystem that we outlined in our [**Strategic Vision for Open Neuromorphic**](/blog/strategic-vision-open-neuromorphic/). By uniting these essential projects, we are creating a shared space for the exchange of ideas, acting as an ambassador to help newcomers find their bearings and veterans discover new collaborators. This is a concrete step towards reducing fragmentation, improving interoperability, and making neuromorphic technology more accessible and reproducible for everyone—core tenets of our vision.
 
 We are honored to announce the founding members of this new network, featuring the leading open-source projects in our field:
 
@@ -37,7 +37,7 @@ We are honored to announce the founding members of this new network, featuring t
 
 A theme that resonated throughout the panel was the idea of being "Diverse and United." Our field is broad, spanning everything from deeply bio-inspired computational neuroscience to performance-driven machine learning. This diversity is our strength, and by uniting, we amplify it.
 
-The goal of the Collaboration Network is to create a virtuous cycle. By cross-promoting each other's work through our websites and documentation, we strengthen the discoverability and authority of the entire open-source neuromorphic ecosystem. This makes it easier for newcomers to find the right tools and helps established researchers stay connected.
+The goal of the Collaboration Network is to celebrate the diverse contributions of each project. It's about fostering a culture of sharing and signaling that the lines of communication between these foundational tools are wide open. We believe this shared commitment to openness sets the groundwork for the deeper collaborations needed to propel the entire field forward.
 
 ### A New Chapter: Announcing Supporter Tiers
 
