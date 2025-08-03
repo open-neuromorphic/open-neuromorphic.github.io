@@ -44,7 +44,7 @@
   }
 
   .partners-track {
-    background-color: #FFF;
+    @apply bg-white dark:bg-black;
     animation: scroll 40s linear infinite;
     &:hover {
       animation-play-state: paused;
@@ -147,7 +147,7 @@
 }
 
 .byline-paragraph {
-  @apply inline-flex items-center;
+  @apply inline-flex items-center rounded-bl-lg rounded-br-lg px-4 py-2;
 
   &::before, &::after {
     content: '';
@@ -156,7 +156,7 @@
     height: 16px;
     flex-shrink: 0;
     background-size: 8px 8px;
-    background-color: white;
+    background-color: theme('colors.body');
   }
 
   &::before {
@@ -178,7 +178,7 @@
 
   .dark & {
     &::before, &::after {
-      background-color: #444;
+      background-color: theme('colors.darkmode.body');
       background-image:
         linear-gradient(45deg, #bbbbbb 25%, transparent 25%),
         linear-gradient(-45deg, #bbbbbb 25%, transparent 25%),
