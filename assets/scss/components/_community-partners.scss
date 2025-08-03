@@ -44,10 +44,12 @@
   }
 
   .partners-track {
+    background-color: #FFF;
     animation: scroll 40s linear infinite;
     &:hover {
       animation-play-state: paused;
     }
+    padding-bottom: 30px;
   }
 
   .partner-logo {
