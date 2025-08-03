@@ -13,7 +13,7 @@ software_tags: ["bindsnet", "brian", "genn", "faery", "neuromorphic-intermediate
 show_author_bios: true
 ---
 
-Our recent community panel, "[Open-Source Neuromorphic Research Infrastructure](/workshops/open-source-neuromorphic-infrastructure/)," was a tremendous success. Brilliantly hosted by Giulia D'Angelo, the event brought together the maintainers of the most critical tools in our field for a much-needed discussion on building a more unified, competitive, and accessible ecosystem.
+Our recent community panel, "[Open-Source Neuromorphic Research Infrastructure](/workshops/open-source-neuromorphic-infrastructure/)," was a tremendous success. Organized by ONM Chair Jens E Pedersen and brilliantly hosted by Giulia D'Angelo, the event brought together the maintainers of the most critical tools in our field for a much-needed discussion on building a more unified, competitive, and accessible ecosystem.
 
 The energy and shared purpose from that discussion were too valuable to let fade. It became the catalyst for something new: the official launch of the **Open Neuromorphic Collaboration Network**.
 
