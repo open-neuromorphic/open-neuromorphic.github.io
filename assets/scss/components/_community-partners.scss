@@ -82,10 +82,10 @@
 }
 
 .contribution-bubble {
-  @apply absolute top-0 left-0 dark:bg-darkmode-theme-dark text-white dark:text-darkmode-text rounded-lg shadow-lg z-20 dark:border-2 dark:border-darkmode-border;
+  @apply absolute top-0 left-0 dark:bg-darkmode-theme-dark text-white dark:text-darkmode-text rounded-lg shadow-lg z-40 dark:border-2 dark:border-darkmode-border;
   background: linear-gradient(135deg, color-mix(in srgb, var(--color-primary-new) 40%, black) 0%, color-mix(in srgb, var(--color-secondary-new) 40%, black) 100%);
   @apply opacity-0 invisible transition-opacity ease-in-out;
-  transition-duration: 150ms;
+  transition-duration: 300ms;
   will-change: opacity, transform;
   max-width: 280px;
   padding: 0.75rem;
@@ -156,34 +156,34 @@
     height: 16px;
     flex-shrink: 0;
     background-size: 8px 8px;
-    background-color: theme('colors.body');
+    background-color: var(--color-secondary-new);
   }
 
   &::before {
     margin-right: 0.75rem;
     background-image:
-      linear-gradient(45deg, #000 25%, transparent 25%),
-      linear-gradient(-45deg, #000 25%, transparent 25%),
-      linear-gradient(45deg, transparent 75%, #000 75%),
-      linear-gradient(-45deg, transparent 75%, #000 75%);
+      linear-gradient(45deg, theme('colors.body') 25%, transparent 25%),
+      linear-gradient(-45deg, theme('colors.body') 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, theme('colors.body') 75%),
+      linear-gradient(-45deg, transparent 75%, theme('colors.body') 75%);
   }
   &::after {
     margin-left: 0.75rem;
     background-image:
-      linear-gradient(45deg, #000 25%, transparent 25%),
-      linear-gradient(-45deg, #000 25%, transparent 25%),
-      linear-gradient(45deg, transparent 75%, #000 75%),
-      linear-gradient(-45deg, transparent 75%, #000 75%);
+      linear-gradient(45deg, theme('colors.body') 25%, transparent 25%),
+      linear-gradient(-45deg, theme('colors.body') 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, theme('colors.body') 75%),
+      linear-gradient(-45deg, transparent 75%, theme('colors.body') 75%);
   }
 
   .dark & {
     &::before, &::after {
-      background-color: theme('colors.darkmode.body');
+      background-color: var(--color-primary-new);
       background-image:
-        linear-gradient(45deg, #bbbbbb 25%, transparent 25%),
-        linear-gradient(-45deg, #bbbbbb 25%, transparent 25%),
-        linear-gradient(45deg, transparent 75%, #bbbbbb 75%),
-        linear-gradient(-45deg, transparent 75%, #bbbbbb 75%);
+        linear-gradient(45deg, theme('colors.darkmode.body') 25%, transparent 25%),
+        linear-gradient(-45deg, theme('colors.darkmode.body') 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, theme('colors.darkmode.body') 75%),
+        linear-gradient(-45deg, transparent 75%, theme('colors.darkmode.body') 75%);
     }
   }
 }

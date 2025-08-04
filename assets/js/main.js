@@ -1,3 +1,4 @@
+// assets/js/main.js
 // main script
 (function () {
   "use strict";
@@ -66,7 +67,7 @@
       requestAnimationFrame(updateBubblePositions);
     };
     requestAnimationFrame(updateBubblePositions);
-    
+
     const setBubbleContent = (partner) => {
       const name = partner.dataset.projectName || '';
       const description = partner.dataset.projectDescription || '';
@@ -97,7 +98,7 @@
       bubble.classList.remove('visible');
       activeBubbles.delete(partner);
       recentlyHidden.add(partner);
-      setTimeout(() => { bubble.dataset.busy = 'false'; }, 300);
+      setTimeout(() => { bubble.dataset.busy = 'false'; }, 400);
       setTimeout(() => { recentlyHidden.delete(partner); }, COOLDOWN_PERIOD);
     };
 
@@ -267,7 +268,7 @@
     initCopyCodeButtons();
     initOgImageModal();
     if (window.innerWidth > 768) { // Only run on larger screens
-        initContributionBubbles();
+      initContributionBubbles();
     }
   }
 
