@@ -50,11 +50,21 @@
         <h3 class="text-2xl font-bold mb-6 text-center lg:text-left text-text dark:text-darkmode-text">Recent Event</h3>
         <div class="event-card-simple bg-white dark:bg-darkmode-theme-light rounded-xl p-4 shadow-md hover:shadow-lg transition-all duration-300 ease-in-out mb-8">
 
-          {{/* Thumbnail Logic */}}
-          {{ $image_param := .Params.image }}
+          {{/* --- START: NEW Thumbnail Logic to prioritize OG image --- */}}
           {{ $img_resource := "" }}
           {{ $processed_img := "" }}
 
+          {{/* 1. Try to find the 16x9 OG image first */}}
+          {{ $slug := "" }}
+          {{ if .File }}{{ $slug = path.Base .File.Dir }}{{ end }}
+          {{ if $slug }}
+          {{ $ogImageName := printf "%s-og-16x9.jpg" $slug }}
+          {{ $img_resource = .Resources.GetMatch $ogImageName }}
+          {{ end }}
+
+          {{/* 2. If OG image not found, fall back to the front matter 'image' param */}}
+          {{ if not $img_resource }}
+          {{ $image_param := .Params.image }}
           {{ if $image_param }}
           {{ $img_resource = .Resources.GetMatch $image_param }}
           {{ if not $img_resource }}
@@ -67,11 +77,14 @@
           {{ end }}
           {{ end }}
           {{ end }}
+          {{ end }}
 
+          {{/* 3. If still no image, use the default */}}
           {{ if not $img_resource }}
           {{ $img_resource = resources.Get "images/workshop-thumbnail-default.png" }}
           {{ end }}
 
+          {{/* 4. Process the final image resource */}}
           {{ if $img_resource }}
           {{ $processed_img = $img_resource.Fill "504x280 Lanczos" }}
           {{ end }}
@@ -81,6 +94,7 @@
             <img src="{{ $processed_img.RelPermalink }}" alt="{{ .Title }}" class="w-full rounded object-cover">
           </a>
           {{ end }}
+          {{/* --- END: NEW Thumbnail Logic --- */}}
 
           <div>
             <span class="date-badge mb-1 inline-block text-xs">{{ .Date.Format "Jan 02, 2006" }}</span>
