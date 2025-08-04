@@ -1,4 +1,5 @@
 // assets/scss/_typography-custom.scss
+// assets/scss/_typography-custom.scss
 
 // Define link colors as variables
 $link-color: var(--color-primary-new);
@@ -32,30 +33,6 @@ $dark-link-underline-hover-color: #ffffff;
 // Ensure the logo text picks up the gradient if it's text-based
 .navbar-brand.gradient-text {
   // Gradient is applied by the class itself.
-}
-
-// NEW CLASS FOR THE SPECIFIC LINK
-.byline-link {
-  color: var(--color-primary-new);
-  text-decoration-line: underline;
-  text-decoration-thickness: 0.1em;
-  text-underline-offset: 3px;
-  text-decoration-color: $link-underline-color;
-  transition: all 0.2s ease-in-out;
-  margin-left: 0.25rem;
-  margin-right: 0.25rem;
-
-  &:hover {
-    text-decoration-color: $link-underline-hover-color;
-  }
-
-  .dark & {
-    color: var(--color-darkmode-primary);
-    text-decoration-color: $dark-link-underline-color;
-    &:hover {
-      text-decoration-color: $dark-link-underline-hover-color;
-    }
-  }
 }
 
 h1.homepage {
@@ -148,6 +125,7 @@ a {
 
 // REFACTORED: Centralized Link Styling
 .styled-link,
+.byline-link,
 .content :is(:where(a):not(:where([class~="not-prose"], [class~="not-prose"] *, .btn))),
 section a:not(.breadcrumb-link-parent, .social-link-container, .btn, .hardware-card-wide-link, .social-icon, .no-style),
 section a.social-link-container .social-link-text,
