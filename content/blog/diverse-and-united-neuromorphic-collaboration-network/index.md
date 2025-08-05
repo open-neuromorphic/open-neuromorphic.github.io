@@ -2,8 +2,12 @@
 title: "Diverse and United: Neuromorphic Open Source Leaders Form ONM Collaboration Network"
 date: 2025-08-03
 description: "Following a landmark panel, leading projects like BindsNET, Brian, GeNN, and snnTorch unite to form the inaugural Open Neuromorphic Collaboration Network, putting our strategic vision into action."
-image: "onm-collaboration-network-growth.png"
+image: "image.jpg"
 draft: false
+image_attribution:
+  text: "Photo by"
+  author: "tarry_not"
+  url: "https://pixabay.com/illustrations/network-points-technology-6088549/"
 author:
   - "Jens E. Pedersen"
   - "Justin Riddiough"
