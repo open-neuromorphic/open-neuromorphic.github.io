@@ -69,8 +69,11 @@
 
             {{ if $img_thumb_path }}
               <div class="flex-shrink-0 w-full md:w-[150px] mb-4 md:mb-0 text-center md:text-left">
-                <a href="{{ $featured_event.RelPermalink }}">
-                  <img src="{{ $img_thumb_path }}" alt="{{ $img_alt }}" class="w-[150px] h-[84px] rounded object-cover inline-block">
+                <a href="{{ $featured_event.RelPermalink }}" class="relative inline-block group">
+                  <img src="{{ $img_thumb_path }}" alt="{{ $img_alt }}" class="w-[150px] h-[84px] rounded object-cover">
+                  {{ if $featured_event.Params.video }}
+                    {{ partial "components/video-play-overlay.html" (dict "size_class" "w-10 h-10" "icon_size_class" "w-6 h-6" "rounding_class" "rounded") }}
+                  {{ end }}
                 </a>
               </div>
             {{ end }}
