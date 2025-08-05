@@ -84,7 +84,7 @@
 
           {{/* Process and render the selected image */}}
           {{ if $img_resource }}
-          {{ $processed_img := $img_resource.Fill "504x280 Lanczos" }}
+          {{ $processed_img := $img_resource.Fit "504x280 Lanczos" }}
           <a href="{{ .Permalink }}" class="block mb-4 relative group">
             <img src="{{ $processed_img.RelPermalink }}" alt="{{ .Title }}" class="w-full rounded object-cover">
             {{ if .Params.video }}
