@@ -1,5 +1,42 @@
 // assets/scss/components/_community-partners.scss
 .community-partners-section {
+  position: relative;
+  overflow: hidden;
+  background-color: #ffffff;
+
+  > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background-image:
+      linear-gradient(45deg, theme('colors.body') 25%, transparent 105%),
+      linear-gradient(-45deg, theme('colors.body') 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, theme('colors.body') 75%),
+      linear-gradient(-45deg, transparent 75%, theme('colors.body') 75%);
+    background-size: 10px 10px;
+  }
+
+  .dark & {
+    background-color: theme('colors.darkmode.theme-dark');
+
+    &::after {
+      background-image:
+        linear-gradient(45deg, theme('colors.darkmode.body') 25%, transparent 105%),
+        linear-gradient(-45deg, theme('colors.darkmode.body') 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, theme('colors.darkmode.body') 75%),
+        linear-gradient(-45deg, transparent 75%, theme('colors.darkmode.body') 75%);
+    }
+  }
+
   .partners-slider-wrapper {
     overflow: hidden;
     -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
@@ -7,10 +44,12 @@
   }
 
   .partners-track {
+    @apply bg-white dark:bg-black;
     animation: scroll 40s linear infinite;
     &:hover {
       animation-play-state: paused;
     }
+    padding-bottom: 30px;
   }
 
   .partner-logo {
@@ -19,7 +58,8 @@
     transition: all 0.3s ease-in-out;
   }
 
-  .partner-logo-link:hover .partner-logo {
+  .partner-logo-link:hover .partner-logo,
+  .partner-logo-link.is-highlighted .partner-logo {
     filter: grayscale(0%);
     opacity: 1;
     transform: scale(1.05);
@@ -42,9 +82,15 @@
 }
 
 .contribution-bubble {
-  @apply absolute top-0 left-0 bg-dark dark:bg-darkmode-theme-dark text-white dark:text-darkmode-text text-xs font-semibold p-2 rounded-lg shadow-lg z-20 dark:border-2 dark:border-darkmode-border;
-  @apply opacity-0 invisible transition-opacity duration-300 ease-in-out;
+  @apply absolute top-0 left-0 dark:bg-darkmode-theme-dark text-white dark:text-darkmode-text rounded-lg shadow-lg z-40 dark:border-2 dark:border-darkmode-border;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--color-primary-new) 40%, black) 0%, color-mix(in srgb, var(--color-secondary-new) 40%, black) 100%);
+  @apply opacity-0 invisible transition-opacity ease-in-out;
+  transition-duration: 300ms;
   will-change: opacity, transform;
+  max-width: 280px;
+  padding: 0.75rem;
+  text-align: left;
+  font-weight: 400;
 
   &.visible {
     @apply opacity-100;
@@ -56,9 +102,30 @@
     content: '';
     @apply absolute top-full left-1/2 -translate-x-1/2;
     @apply w-0 h-0 border-x-8 border-x-transparent border-t-8;
-    border-top-color: theme('colors.dark');
+    border-top-color: color-mix(in srgb, var(--color-secondary-new) 40%, black);
   }
 }
+
+.bubble-title {
+  @apply font-bold text-sm mb-1 text-white;
+}
+
+.bubble-description {
+  @apply text-xs text-gray-300 dark:text-white leading-snug;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.bubble-separator {
+  @apply h-px bg-gray-600 dark:bg-gray-500 my-2;
+}
+
+.bubble-contributions {
+  @apply text-xs font-semibold;
+}
+
 
 // Dark mode styles for the bubble's tail to add a border
 .dark .contribution-bubble {
@@ -76,5 +143,47 @@
   &::after {
     border-top-color: theme('colors.darkmode.theme-dark');
     margin-top: -2px;
+  }
+}
+
+.byline-paragraph {
+  @apply inline-flex items-center rounded-bl-lg rounded-br-lg px-4 py-2;
+
+  &::before, &::after {
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 16px;
+    flex-shrink: 0;
+    background-size: 8px 8px;
+    background-color: var(--color-secondary-new);
+  }
+
+  &::before {
+    margin-right: 0.75rem;
+    background-image:
+      linear-gradient(45deg, theme('colors.body') 25%, transparent 25%),
+      linear-gradient(-45deg, theme('colors.body') 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, theme('colors.body') 75%),
+      linear-gradient(-45deg, transparent 75%, theme('colors.body') 75%);
+  }
+  &::after {
+    margin-left: 0.75rem;
+    background-image:
+      linear-gradient(45deg, theme('colors.body') 25%, transparent 25%),
+      linear-gradient(-45deg, theme('colors.body') 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, theme('colors.body') 75%),
+      linear-gradient(-45deg, transparent 75%, theme('colors.body') 75%);
+  }
+
+  .dark & {
+    &::before, &::after {
+      background-color: var(--color-primary-new);
+      background-image:
+        linear-gradient(45deg, theme('colors.darkmode.body') 25%, transparent 25%),
+        linear-gradient(-45deg, theme('colors.darkmode.body') 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, theme('colors.darkmode.body') 75%),
+        linear-gradient(-45deg, transparent 75%, theme('colors.darkmode.body') 75%);
+    }
   }
 }

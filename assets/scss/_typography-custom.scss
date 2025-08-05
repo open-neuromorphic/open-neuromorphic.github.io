@@ -1,4 +1,5 @@
 // assets/scss/_typography-custom.scss
+// assets/scss/_typography-custom.scss
 
 // Define link colors as variables
 $link-color: var(--color-primary-new);
@@ -124,6 +125,7 @@ a {
 
 // REFACTORED: Centralized Link Styling
 .styled-link,
+.byline-link,
 .content :is(:where(a):not(:where([class~="not-prose"], [class~="not-prose"] *, .btn))),
 section a:not(.breadcrumb-link-parent, .social-link-container, .btn, .hardware-card-wide-link, .social-icon, .no-style),
 section a.social-link-container .social-link-text,
