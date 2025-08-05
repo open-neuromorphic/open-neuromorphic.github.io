@@ -3,13 +3,13 @@
   {{ range $index, $authorNameFromFrontmatter := . }}
     {{ $nameForProcessing := $authorNameFromFrontmatter | replaceRE "[.]" "" }}
     {{ $nameForProcessing = $nameForProcessing | replaceRE "ć" "c" | replaceRE "Ć" "C" }}
-    {{ $contributorSlug := $nameForProcessing | anchorize }}
-    {{ $contributorPagePath := printf "contributors/%s" $contributorSlug }}
-    {{ $contributorPage := site.GetPage $contributorPagePath }}
+    {{ $contributor_slug := $nameForProcessing | anchorize }}
+    {{ $contributor_page_path := printf "contributors/%s" $contributor_slug }}
+    {{ $contributor_page := site.GetPage $contributor_page_path }}
 
     {{- /* Output author name or link */ -}}
-    {{- if $contributorPage -}}
-      <a href="{{ $contributorPage.RelPermalink }}">{{ $authorNameFromFrontmatter }}</a>
+    {{- if $contributor_page -}}
+      <a href="{{ $contributor_page.RelPermalink }}">{{ $authorNameFromFrontmatter }}</a>
     {{- else -}}
       {{- $authorNameFromFrontmatter -}}
     {{- end -}}

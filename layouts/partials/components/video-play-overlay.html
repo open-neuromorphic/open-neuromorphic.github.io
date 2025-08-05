@@ -1,0 +1,19 @@
+{{ $size_class := .size_class | default "w-16 h-16" }}
+{{ $icon_size_class := .icon_size_class | default "w-8 h-8" }}
+{{ $rounding_class := .rounding_class | default "rounded-md" }}
+
+<div class="absolute inset-0 group flex items-center justify-center overflow-hidden {{ $rounding_class }}">
+  <!-- Localized contrast background that expands on hover -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+              w-24 h-24 bg-black/30 rounded-full blur-lg
+              transition-all duration-300 ease-in-out
+              group-hover:w-[150%] group-hover:h-[150%] group-hover:rounded-md group-hover:blur-sm group-hover:bg-black/40">
+  </div>
+
+  <!-- Play button itself, sits on top -->
+  <div class="{{ $size_class }} bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white
+              opacity-80 group-hover:opacity-100 group-hover:scale-110 group-hover:bg-white/30
+              transform transition-all duration-300 z-10">
+    <svg class="{{ $icon_size_class }} ml-1" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
+  </div>
+</div>
