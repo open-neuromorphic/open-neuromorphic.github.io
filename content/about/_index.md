@@ -53,7 +53,7 @@ ONM is dedicated to providing a comprehensive ecosystem for the neuromorphic com
 
 ## Our Governance: The Executive Committee
 
-As Open Neuromorphic has grown, so has the need for a structure to support our community and guide our initiatives. In 2024, we established our first **Executive Committee** to provide leadership, coordinate activities, and ensure the sustainable growth of ONM. This step formalizes our commitment to transparency and community empowerment, as outlined in our [Organisational Charter](charter/).
+As Open Neuromorphic has grown, so has the need for a structure to support our community and guide our initiatives. In 2025, we established our first **Executive Committee** to provide leadership, coordinate activities, and ensure the sustainable growth of ONM. This step formalizes our commitment to transparency and community empowerment, as outlined in our [Organisational Charter](charter/).
 
 {{< display_executive_committee >}}
 
