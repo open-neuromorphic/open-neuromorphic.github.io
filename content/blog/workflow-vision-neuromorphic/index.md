@@ -134,3 +134,10 @@ The future of neuromorphic computing isn't just about better algorithms or faste
 What would help *you* build better neuromorphic technologies? Do you agree or disagree with the points in this post? Join the conversation on [Discord](https://discord.gg/hUygPUdD8E), contribute on [GitHub](https://github.com/open-neuromorphic), or connect with us on [LinkedIn](https://www.linkedin.com/company/open-neuromorphic). Together, we can transform how neuromorphic research gets done.
 
 *This is the second post in our strategic vision series. Read the [first post](https://open-neuromorphic.org/blog/strategic-vision-open-neuromorphic/) on our foundational vision for open neuromorphic computing.*
+
+### Additional reading
+
+1. [Kudithipudi, D. et al. Neuromorphic computing at scale. Nature 637, 801–812 (2025)](https://www.nature.com/articles/s41586-024-08253-8).
+2. [Muir, D. R. & Sheik, S. The road to commercial success for neuromorphic technologies. Nat Commun 16, 3586 (2025)](https://www.nature.com/articles/s41467-025-57352-1).
+3. [Schuman, C. D. et al. Opportunities for neuromorphic computing algorithms and applications. Nat Comput Sci 2, 10–19 (2022)](https://www.nature.com/articles/s43588-021-00184-y).
+4. [Pedersen, J. E. et al. Neuromorphic intermediate representation: A unified instruction set for interoperable brain-inspired computing. Nat Commun 15, 8122 (2024)](https://www.nature.com/articles/s41467-024-52259-9).
