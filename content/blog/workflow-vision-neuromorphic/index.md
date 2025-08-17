@@ -1,6 +1,6 @@
 ---
 title: "From Idea to Implementation: Reimagining the Neuromorphic Workflow"
-date: 2025-08-12
+date: 2025-08-17
 description: "Comparing neuromorphic and conventional ML workflows reveals a massive infrastructure gap—and big opportunity to accelerate the field."
 image: typewriter.jpg
 image_attribution:
