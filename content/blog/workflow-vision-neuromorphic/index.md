@@ -16,9 +16,6 @@ tags: ["strategic-vision", "workflow", "infrastructure", "community"]
 
 **TL;DR:** Neuromorphic computing has incredible potential, but our development workflow is far behind conventional machine learning. While ML researchers can go from idea to deployment in days, neuromorphic researchers often spend months just getting their algorithms running on hardware. This infrastructure gap isn't just frustrating—it's fundamentally limiting the field's progress. We need to unite around the tools, standards, and ecosystem that will unleash neuromorphic computing's true potential.
 
-The post is the second in a series of three posts that lay out the **Open Neuromorphic Strategic Initiative**. [Last post presented the **Open source vision**](/blog/strategic-vision-open-neuromorphic/) and the subsequent post will announce **new initiatives** that will be kickstarted by the [newly elected Executive Committee](/neuromorphic-computing/initiatives/executive-committee/).
-
-Join the discussion [on Discord](https://discord.gg/hUygPUdD8E), star us [on GitHub](https://github.com/open-neuromorphic/), follow us [on LinkedIn](https://www.linkedin.com/company/98345683/), and give us a watch [on YouTube](https://www.youtube.com/@openneuromorphic).
 
 ---
 
@@ -112,9 +109,9 @@ This isn't just a dream—it's a roadmap. As a community, Open Neuromorphic is u
 
 This isn't just talk. We have been *hard* at work behind the scenes to gather the bright minds of the community. The next post will reveal what that entails exactly. 
 
-**The transformation starts with you.** Every researcher who adopts [NIR](https://neuroir.org), every company that opens their APIs, every developer who contributes a tool—each action breaks down the barriers that have held us back.
+**The transformation starts with you.** Every researcher who adopts [NIR](https://open-neuromorphic.org/neuromorphic-computing/software/data-tools/neuromorphic-intermediate-representation/), every company that opens their APIs, every developer who contributes a tool—each action breaks down the barriers that have held us back.
 
-**Researchers:** Use open standards like [NIR](https://neuroir.org), share your code and datasets, build on others' work instead of starting from scratch.
+**Researchers:** Use open standards like [NIR](https://open-neuromorphic.org/neuromorphic-computing/software/data-tools/neuromorphic-intermediate-representation/), share your code and datasets, build on others' work instead of starting from scratch.
 
 **Industry:** Implement community standards in your hardware tools, provide APIs that work with existing frameworks, invest in the ecosystem that benefits everyone.
 
@@ -132,8 +129,8 @@ The conventional ML community didn't achieve its current momentum by accident. T
 
 The future of neuromorphic computing isn't just about better algorithms or faster hardware—it's about creating the infrastructure that will let a thousand innovations bloom. That infrastructure starts with us, today.
 
-*This is the second post in our strategic vision series. Read the [first post](https://open-neuromorphic.org/blog/strategic-vision-open-neuromorphic/) on our foundational vision for open neuromorphic computing.*
-
 ---
 
-Ready to help build the future of neuromorphic computing? Join us on [Discord](https://discord.gg/hUygPUdD8E), contribute on [GitHub](https://github.com/open-neuromorphic), or connect with us on [LinkedIn](https://www.linkedin.com/company/open-neuromorphic). Together, we can transform how neuromorphic research gets done.
+What would help *you* build better neuromorphic technologies? Do you agree or disagree with the points in this post? Join the conversation on [Discord](https://discord.gg/hUygPUdD8E), contribute on [GitHub](https://github.com/open-neuromorphic), or connect with us on [LinkedIn](https://www.linkedin.com/company/open-neuromorphic). Together, we can transform how neuromorphic research gets done.
+
+*This is the second post in our strategic vision series. Read the [first post](https://open-neuromorphic.org/blog/strategic-vision-open-neuromorphic/) on our foundational vision for open neuromorphic computing.*
