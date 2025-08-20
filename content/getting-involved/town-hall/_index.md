@@ -5,7 +5,8 @@ description: "Join our weekly Open Neuromorphic Town Hall to catch up on the lat
 
 ## What is the Town Hall?
 
-The Open Neuromorphic Town Hall is a weekly meeting for the entire community. It serves as a replacement for the general recurring Hacking Hours, providing a dedicated space for us to connect, align, and discuss the direction of ONM.
+The Open Neuromorphic Town Hall is a weekly meeting for the entire community. 
+It serves to provide a dedicated space for us to connect, align, and discuss the direction of ONM.
 
 These sessions are an opportunity to:
 -   Get updates on ongoing initiatives from the Executive Committee and community leads.
