@@ -4,7 +4,7 @@
 <div class="px-7 pt-7 content-panel">
   <h3 class="pb-5 pt-5 text-xl">Next Hacking Hour</h3>
   {{ $recurringEventData := site.Data.recurring_events.events }}
-  {{ $hackingHourEvent := "" }}
+  {{ $hackingHourEvent := false }}
   {{ range $recurringEventData }}
     {{ if and (eq .id "hacking-hours") .active }}
       {{ $hackingHourEvent = . }}
@@ -49,6 +49,9 @@
         </div>
       </div>
     </div>
+    <div class="text-right pb-5 pt-5">
+      <a href="{{ $hackingHourEvent.location_url | default "https://discord.gg/hUygPUdD8E" }}" target="_blank" class="btn btn-new-primary btn-sm">Join on Discord</a>
+    </div>
   {{ else }}
     <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
       Hacking Hours are currently on a break. Check back soon for the new schedule!
@@ -56,9 +59,8 @@
     <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
       In the meantime, join our Discord to connect with the community and see what others are working on.
     </p>
+    <div class="text-right pb-5 pt-5">
+      <a href="https://discord.gg/hUygPUdD8E" target="_blank" class="btn btn-new-primary btn-sm">Join on Discord</a>
+    </div>
   {{ end }}
-
-  <div class="text-right pb-5 pt-5">
-    <a href="{{ $hackingHourEvent.location_url | default "https://discord.gg/hUygPUdD8E" }}" target="_blank" class="btn btn-new-primary btn-sm">Join on Discord</a>
-  </div>
 </div>

@@ -2,7 +2,7 @@ name: Deploy Hugo site to Pages
 
 on:
   push:
-    branches: ["main", "collaboration-network"]
+    branches: ["main", "townhall-and-hacking-hours"]
 
 
 permissions:

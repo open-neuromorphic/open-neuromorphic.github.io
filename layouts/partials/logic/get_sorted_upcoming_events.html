@@ -37,6 +37,13 @@
         {{ end }}
       {{ end }}
     {{ $nextOccurrenceDate := $now.AddDate 0 0 (int $daysToAdd) }}
+    
+    {{ $detailsPage := "" }}
+    {{ with .details_page_link }}
+      {{ $pagePath := strings.TrimSuffix "/" . | strings.TrimPrefix "/" }}
+      {{ $detailsPage = site.GetPage $pagePath }}
+    {{ end }}
+    
     {{ $allUpcomingEvents = $allUpcomingEvents | append (dict
         "Title" .title
         "Description" .description
@@ -44,7 +51,7 @@
         "StartTime" .start_time
         "EndTime" .end_time
         "TimeZone" .time_zone
-        "Permalink" (.details_page_link | relLangURL)
+        "Permalink" (cond (ne $detailsPage nil) $detailsPage.RelPermalink (.details_page_link | relLangURL))
         "IsRecurring" true
         "Host" .host
         "LocationName" .location_name
