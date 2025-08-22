@@ -45,54 +45,40 @@
 
         <div class="community-projects-list-view">
           {{ if $projectsWithIssues }}
-          {{/* --- START: New Quick Nav & Tags Section --- */}}
-          {{ $tagCounts := dict }}
-          {{ range $projectsWithIssues }}
-          {{ with .issues }}
-          {{ range . }}
-          {{ with .tags }}
-          {{ range . }}
-          {{ $tag := . }}
-          {{ $currentCount := index $tagCounts $tag | default 0 }}
-          {{ $tagCounts = merge $tagCounts (dict $tag (add $currentCount 1)) }}
-          {{ end }}
-          {{ end }}
-          {{ end }}
-          {{ end }}
-          {{ end }}
+          {{/* --- START: Refactored Nav & Tags Section --- */}}
 
-          {{ $sortedTags := slice }}
-          {{ range $tag, $count := $tagCounts }}
-          {{ $sortedTags = $sortedTags | append (dict "tag" $tag "count" $count) }}
-          {{ end }}
+          {{/* --- Quick Links to Projects (Non-sticky) --- */}}
+          <div class="mb-12 p-6 bg-theme-light dark:bg-darkmode-theme-light rounded-lg shadow-md border border-border dark:border-darkmode-border">
+            <h3 class="text-xl font-bold mb-4">Projects with Open Issues</h3>
+            <div class="flex flex-wrap gap-x-4 gap-y-2">
+              {{ range $projectsWithIssues }}
+              <a href="#{{ .name | anchorize }}" class="styled-link">{{ .name }}</a>
+              {{ end }}
+            </div>
+          </div>
+
+          {{/* --- Sticky Tag Filter Panel --- */}}
+          {{ $tagCounts := dict }}
+          {{ range $projectsWithIssues }}{{ with .issues }}{{ range . }}{{ with .tags }}{{ range . }}
+          {{ $tag := . }}{{ $currentCount := index $tagCounts $tag | default 0 }}{{ $tagCounts = merge $tagCounts (dict $tag (add $currentCount 1)) }}
+          {{ end }}{{ end }}{{ end }}{{ end }}{{ end }}
+          {{ $sortedTags := slice }}{{ range $tag, $count := $tagCounts }}{{ $sortedTags = $sortedTags | append (dict "tag" $tag "count" $count) }}{{ end }}
           {{ $sortedTags = sort $sortedTags "tag" "asc" }}
 
-          <div class="quick-nav-section mb-12 p-6 bg-theme-light dark:bg-darkmode-theme-light rounded-lg shadow-md border border-border dark:border-darkmode-border">
-            <h3 class="text-xl font-bold mb-4">Quick Navigation</h3>
-
-            <div class="mb-6">
-              <h4 class="text-md font-semibold mb-2 text-gray-700 dark:text-gray-300">Projects with Open Issues:</h4>
-              <div class="flex flex-wrap gap-x-4 gap-y-2">
-                {{ range $projectsWithIssues }}
-                <a href="#{{ .name | anchorize }}" class="styled-link">{{ .name }}</a>
-                {{ end }}
-              </div>
+          {{ if $sortedTags }}
+          <div class="sticky top-24 z-20 mb-12 p-4 bg-theme-light dark:bg-darkmode-theme-light rounded-lg shadow-md border border-border dark:border-darkmode-border">
+            <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
+              <h4 class="text-md font-semibold text-gray-700 dark:text-gray-300 flex-shrink-0">Filter by Tag:</h4>
+              {{ range $sortedTags }}
+              <span class="cursor-pointer text-xs font-medium px-2.5 py-1 rounded-full bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-300 hover:bg-indigo-200 dark:hover:bg-indigo-800 transition-colors">
+                      {{ .tag | title }}: <span class="font-bold">{{ .count }}</span>
+                    </span>
+              {{ end }}
             </div>
-
-            {{ if $sortedTags }}
-            <div>
-              <h4 class="text-md font-semibold mb-2 text-gray-700 dark:text-gray-300">Filter by Tag:</h4>
-              <div class="flex flex-wrap gap-2">
-                {{ range $sortedTags }}
-                <span class="cursor-pointer text-xs font-medium px-2.5 py-1 rounded-full bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-300 hover:bg-indigo-200 dark:hover:bg-indigo-800 transition-colors">
-                        {{ .tag | title }}: <span class="font-bold">{{ .count }}</span>
-                      </span>
-                {{ end }}
-              </div>
-            </div>
-            {{ end }}
           </div>
-          {{/* --- END: New Quick Nav & Tags Section --- */}}
+          {{ end }}
+          {{/* --- END: Refactored Nav & Tags Section --- */}}
+
 
           <h2 id="outstanding-issues" class="text-3xl font-bold mb-8 border-b border-border dark:border-darkmode-border pb-4">Outstanding Issues</h2>
           <div class="space-y-12">
