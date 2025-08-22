@@ -1,0 +1,106 @@
+# This file lists open-source projects and specific "help wanted" issues
+# for the Open Neuromorphic community coding initiative.
+# The `repo` field should be in the format 'owner/repository'.
+
+[[projects]]
+name = "Faery"
+slug = "faery"
+repo = "aestream/faery"
+pypi_id = "faery"
+description = "Event streaming multitool with an efficient Rust core."
+issues = [
+  { title = "Add documentation", url = "https://github.com/aestream/faery/issues/4", tags = ["documentation", "good first issue"] },
+  { title = "Add UDP I/O", url = "https://github.com/aestream/faery/issues/3", tags = ["feature", "networking"] },
+  { title = "Add GPU frames via DLPack", url = "https://github.com/aestream/faery/issues/2", tags = ["feature", "performance"] }
+]
+completed_issues = [
+  { title = "PR #10", url = "https://github.com/aestream/faery/pull/10" },
+  { title = "PR #15", url = "https://github.com/aestream/faery/pull/15" },
+  { title = "PR #16", url = "https://github.com/aestream/faery/pull/16" },
+  { title = "PR #22", url = "https://github.com/aestream/faery/pull/22" }
+]
+
+[[projects]]
+name = "Neuromorphic Intermediate Representation (NIR)"
+slug = "neuromorphic-intermediate-representation"
+repo = "neuromorphs/NIR"
+pypi_id = "nir"
+description = "A neuromorphic continuous-time instruction set."
+issues = [
+  { title = "Add an (opset) version to Python objects", url = "https://github.com/neuromorphs/NIR/issues/136", tags = ["enhancement"] },
+  { title = "Notebook docs run with wrong dependencies", url = "https://github.com/neuromorphs/NIR/issues/106", tags = ["bug", "documentation"] }
+]
+completed_issues = [
+    { title = "PR #76", url = "https://github.com/neuromorphs/nir/pull/76" },
+    { title = "PR #104", url = "https://github.com/neuromorphs/nir/pull/104" },
+    { title = "PR #122", url = "https://github.com/neuromorphs/NIR/pull/122" },
+    { title = "PR #124", url = "https://github.com/neuromorphs/NIR/pull/124" },
+    { title = "PR #128", url = "https://github.com/neuromorphs/NIR/pull/128" },
+    { title = "PR #130", url = "https://github.com/neuromorphs/NIR/pull/130" },
+    { title = "PR #143", url = "https://github.com/neuromorphs/NIR/pull/143" },
+    { title = "PR #153", url = "https://github.com/neuromorphs/NIR/pull/153" },
+    { title = "PR #156", url = "https://github.com/neuromorphs/NIR/pull/156" }
+]
+
+[[projects]]
+name = "NIRTorch"
+slug = "nirtorch"
+repo = "neuromorphs/NIRTorch"
+pypi_id = "nirtorch"
+description = "PyTorch-NIR integration library."
+issues = []
+completed_issues = [
+    { title = "PR #28", url = "https://github.com/neuromorphs/nirtorch/pull/28" },
+    { title = "PR #33", url = "https://github.com/neuromorphs/nirtorch/pull/33" },
+    { title = "PR #34", url = "https://github.com/neuromorphs/NIRTorch/pull/34" },
+    { title = "PR #36", url = "https://github.com/neuromorphs/NIRTorch/pull/36" },
+    { title = "PR #39", url = "https://github.com/neuromorphs/NIRTorch/pull/39" },
+    { title = "PR #40", url = "https://github.com/neuromorphs/NIRTorch/pull/40" },
+    { title = "PR #41", url = "https://github.com/neuromorphs/NIRTorch/pull/41" }
+]
+
+[[projects]]
+name = "NIRViz"
+slug = "" # No page exists for this project yet
+repo = "open-neuromorphic/nirviz"
+pypi_id = "nirviz"
+description = "NIR visualization for Python and CLI."
+issues = []
+completed_issues = []
+
+[[projects]]
+name = "Norse"
+slug = "norse"
+repo = "norse/norse"
+pypi_id = "norse"
+description = "A functional spiking neural network simulator for deep learning."
+issues = [
+    { title = "Speech commands loading broken", url = "https://github.com/norse/norse/issues/383", tags = ["bug", "dataset"] },
+    { title = "Improve docs", url = "https://github.com/norse/norse/issues/374", tags = ["documentation"] },
+    { title = "ipywidgets package missing when executing notebook for documentation", url = "https://github.com/norse/norse/issues/373", tags = ["bug", "documentation"] },
+    { title = "Require an example that using STDP to train the SNN", url = "https://github.com/norse/norse/issues/366", tags = ["example", "good first issue"] }
+]
+completed_issues = [
+    { title = "PR #409", url = "https://github.com/norse/norse/pull/409" },
+    { title = "PR #422", url = "https://github.com/norse/norse/pull/422" }
+]
+
+[[projects]]
+name = "snnTorch"
+slug = "snntorch"
+repo = "jeshraghian/snntorch"
+pypi_id = "snntorch"
+description = "Deep and online learning with spiking neural networks in Python."
+issues = []
+completed_issues = []
+
+[[projects]]
+name = "open-neuromorphic.github.io"
+slug = "" # Not a software project
+repo = "open-neuromorphic/open-neuromorphic.github.io"
+pypi_id = ""
+description = "The ONM community website."
+issues = []
+completed_issues = [
+    { title = "PR #169", url = "https://github.com/open-neuromorphic/open-neuromorphic.github.io/pull/169" }
+]

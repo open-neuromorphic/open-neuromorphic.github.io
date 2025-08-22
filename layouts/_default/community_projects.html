@@ -1,0 +1,169 @@
+{{ define "main" }}
+{{ partial "page-header" . }}
+
+<section class="section pt-6">
+  <div class="container">
+
+    {{/* --- Section 1: Full-width Hacking Hours Promo --- */}}
+    <div class="row justify-center">
+      <div class="lg:col-10 mb-12">
+        {{ partial "custom/hacking-hours-software-promo.html" . }}
+      </div>
+    </div>
+
+    {{/* --- Section 2: Two-column layout for Bounty Board and Sidebar --- */}}
+    <div class="row lg:items-stretch">
+
+      {{/* --- Main Content Column (Bounty Board) --- */}}
+      <article class="lg:col-8">
+        <div class="content mb-12">
+          {{ .Content }}
+        </div>
+
+        {{/* --- Logic to filter and sort projects --- */}}
+        {{ $projectsWithIssues := slice }}
+        {{ $projectsWithOnlyCompleted := slice }}
+        {{ range site.Data.community_projects.projects }}
+        {{ $has_issues := ge (len .issues) 1 }}
+        {{ $has_completed := ge (len .completed_issues) 1 }}
+
+        {{ if $has_issues }}
+        {{ $projectsWithIssues = $projectsWithIssues | append . }}
+        {{ else if $has_completed }}
+        {{ $projectsWithOnlyCompleted = $projectsWithOnlyCompleted | append . }}
+        {{ end }}
+        {{ end }}
+
+        {{/* Helper to map slugs to page objects for linking */}}
+        {{ $softwarePagesBySlug := newScratch }}
+        {{ range where site.RegularPages "Type" "neuromorphic-software" }}
+        {{ $page := . }}
+        {{ with .File }}
+        {{ $softwarePagesBySlug.Set (path.Base .Dir) $page }}
+        {{ end }}
+        {{ end }}
+
+        <div class="community-projects-list-view">
+          {{ if $projectsWithIssues }}
+          {{/* --- START: New Quick Nav & Tags Section --- */}}
+          {{ $tagCounts := dict }}
+          {{ range $projectsWithIssues }}
+          {{ with .issues }}
+          {{ range . }}
+          {{ with .tags }}
+          {{ range . }}
+          {{ $tag := . }}
+          {{ $currentCount := index $tagCounts $tag | default 0 }}
+          {{ $tagCounts = merge $tagCounts (dict $tag (add $currentCount 1)) }}
+          {{ end }}
+          {{ end }}
+          {{ end }}
+          {{ end }}
+          {{ end }}
+
+          {{ $sortedTags := slice }}
+          {{ range $tag, $count := $tagCounts }}
+          {{ $sortedTags = $sortedTags | append (dict "tag" $tag "count" $count) }}
+          {{ end }}
+          {{ $sortedTags = sort $sortedTags "tag" "asc" }}
+
+          <div class="quick-nav-section mb-12 p-6 bg-theme-light dark:bg-darkmode-theme-light rounded-lg shadow-md border border-border dark:border-darkmode-border">
+            <h3 class="text-xl font-bold mb-4">Quick Navigation</h3>
+
+            <div class="mb-6">
+              <h4 class="text-md font-semibold mb-2 text-gray-700 dark:text-gray-300">Projects with Open Issues:</h4>
+              <div class="flex flex-wrap gap-x-4 gap-y-2">
+                {{ range $projectsWithIssues }}
+                <a href="#{{ .name | anchorize }}" class="styled-link">{{ .name }}</a>
+                {{ end }}
+              </div>
+            </div>
+
+            {{ if $sortedTags }}
+            <div>
+              <h4 class="text-md font-semibold mb-2 text-gray-700 dark:text-gray-300">Filter by Tag:</h4>
+              <div class="flex flex-wrap gap-2">
+                {{ range $sortedTags }}
+                <span class="cursor-pointer text-xs font-medium px-2.5 py-1 rounded-full bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-300 hover:bg-indigo-200 dark:hover:bg-indigo-800 transition-colors">
+                        {{ .tag | title }}: <span class="font-bold">{{ .count }}</span>
+                      </span>
+                {{ end }}
+              </div>
+            </div>
+            {{ end }}
+          </div>
+          {{/* --- END: New Quick Nav & Tags Section --- */}}
+
+          <h2 id="outstanding-issues" class="text-3xl font-bold mb-8 border-b border-border dark:border-darkmode-border pb-4">Outstanding Issues</h2>
+          <div class="space-y-12">
+            {{ range $projectsWithIssues }}
+            <div id="{{ .name | anchorize }}">
+              {{ partial "custom/project_bounty_item.html" (dict "project" . "softwarePages" $softwarePagesBySlug) }}
+            </div>
+            {{ end }}
+          </div>
+          {{ end }}
+
+          {{ if $projectsWithOnlyCompleted }}
+          <h2 id="past-contributions" class="text-3xl font-bold my-8 pt-8 border-t border-border dark:border-darkmode-border">Past Contributions</h2>
+          <div class="space-y-12">
+            {{ range $projectsWithOnlyCompleted }}
+            <div id="{{ .name | anchorize }}">
+              {{ partial "custom/project_bounty_item.html" (dict "project" . "softwarePages" $softwarePagesBySlug) }}
+            </div>
+            {{ end }}
+          </div>
+          {{ end }}
+        </div>
+
+        <div class="mt-16">
+          {{ partial "components/content-contribute-cta.html" (dict
+          "icon" "brands discord"
+          "title" "Ready to <span class=\"gradient-text\">Get Involved?</span>"
+          "description" "The best way to start is to pick an issue and start a conversation. Join our Discord to connect with project maintainers and the wider community."
+          "link" "https://discord.gg/hUygPUdD8E"
+          "link_text" "Join the Discussion on Discord"
+          ) }}
+        </div>
+      </article>
+
+      {{/* --- Sidebar Column with Hierarchical ToC and Sharing --- */}}
+      <aside class="lg:col-4 hidden lg:block">
+        <div class="mb-6">
+          {{ partial "components/og-preview.html" . }}
+        </div>
+        <div class="sticky top-24 space-y-6">
+          <div class="px-3 pt-5 pb-5 content-panel">
+            <strong class="text-xl">On This Page</strong>
+            <nav id="TableOfContents" class="mt-4">
+              <ul>
+                {{ if $projectsWithIssues }}
+                <li>
+                  <a href="#outstanding-issues">Outstanding Issues</a>
+                  <ul>
+                    {{ range $projectsWithIssues }}
+                    <li><a href="#{{ .name | anchorize }}">{{ .name }}</a></li>
+                    {{ end }}
+                  </ul>
+                </li>
+                {{ end }}
+                {{ if $projectsWithOnlyCompleted }}
+                <li>
+                  <a href="#past-contributions">Past Contributions</a>
+                  <ul>
+                    {{ range $projectsWithOnlyCompleted }}
+                    <li><a href="#{{ .name | anchorize }}">{{ .name }}</a></li>
+                    {{ end }}
+                  </ul>
+                </li>
+                {{ end }}
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+{{ end }}
