@@ -64,27 +64,23 @@
     </div>
 
     <!-- Metadata Line -->
-    <div class="flex flex-wrap items-baseline gap-x-4 gap-y-2 text-sm text-gray-500 dark:text-gray-400">
-      <a href="https://github.com/{{ $project.repo }}" target="_blank" rel="noopener" class="flex-shrink-0">
-        <img src="https://img.shields.io/github/stars/{{ $project.repo }}" alt="GitHub Stars" class="h-5">
-      </a>
-
-      {{ with $project.completed_issues }}
-      {{ if gt (len .) 0 }}
-      <div>
-        <span class="font-semibold mr-1.5">Completed:</span><span class="inline-block">
-          {{ $numIssues := len . }}
-          {{ range $index, $issue := . }}
-          <a href="{{ .url }}" target="_blank" rel="noopener" class="styled-link whitespace-nowrap">
-            {{- .title -}}
-            {{- partial "icon.html" (dict "style" "solid" "name" "arrow-up-right-from-square" "class" "inline-block ml-1.5 align-middle" "width" "0.8em" "height" "0.8em") -}}
-          </a>{{ if lt $index (sub $numIssues 1) }}, {{ end }}
-          {{ end }}
-        </span>
+    {{ with $project.completed_issues }}
+    {{ if gt (len .) 0 }}
+    <div class="flex items-start gap-x-3 text-sm text-gray-700 dark:text-gray-300 mt-3">
+      {{ partial "icon.html" (dict "style" "solid" "name" "code-branch" "class" "h-4 w-4 mt-[3px] flex-shrink-0") }}
+      <div class="leading-relaxed">
+        <span class="font-semibold mr-1.5">Completed:</span>
+        {{ $numIssues := len . }}
+        {{ range $index, $issue := . }}
+        <a href="{{ .url }}" target="_blank" rel="noopener" class="styled-link whitespace-nowrap">
+          {{- .title -}}
+          {{- partial "icon.html" (dict "style" "solid" "name" "arrow-up-right-from-square" "class" "inline-block ml-1.5 align-middle" "width" "0.8em" "height" "0.8em") -}}
+        </a>{{ if lt $index (sub $numIssues 1) }}, {{ end }}
+        {{ end }}
       </div>
-      {{ end }}
-      {{ end }}
     </div>
+    {{ end }}
+    {{ end }}
   </div>
 
   <!-- Open Issues List -->
