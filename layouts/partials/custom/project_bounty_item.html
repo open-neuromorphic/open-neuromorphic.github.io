@@ -35,19 +35,19 @@
       {{ partial "icon.html" (dict "style" "solid" "name" "graduation-cap" "class" "h-4 w-4 mt-[3px] flex-shrink-0") }}
       <div class="leading-relaxed">
         <span class="font-medium">Explore educational resources:</span>
-        <div class="inline-flex flex-wrap gap-x-2">
-          {{ $resource_parts := slice }}
-          {{ if gt $workshop_count 0 }}
-          {{ $resource_parts = $resource_parts | append (printf `<a href="%s" class="styled-link">Workshops: %d</a>` $software_page.RelPermalink $workshop_count) }}
-          {{ end }}
-          {{ if gt $hacking_hour_count 0 }}
-          {{ $resource_parts = $resource_parts | append (printf `<a href="%s" class="styled-link">Hacking Hours: %d</a>` $software_page.RelPermalink $hacking_hour_count) }}
-          {{ end }}
-          {{ if gt $blog_count 0 }}
-          {{ $resource_parts = $resource_parts | append (printf `<a href="%s" class="styled-link">Blogs: %d</a>` $software_page.RelPermalink $blog_count) }}
-          {{ end }}
-          {{ delimit $resource_parts ", " | safeHTML }}.
-        </div>
+        <span class="inline">
+              {{ $resource_parts := slice }}
+              {{ if gt $workshop_count 0 }}
+                {{ $resource_parts = $resource_parts | append (printf `<a href="%s" class="styled-link">Workshops: %d</a>` $software_page.RelPermalink $workshop_count) }}
+              {{ end }}
+              {{ if gt $hacking_hour_count 0 }}
+                {{ $resource_parts = $resource_parts | append (printf `<a href="%s" class="styled-link">Hacking Hours: %d</a>` $software_page.RelPermalink $hacking_hour_count) }}
+              {{ end }}
+              {{ if gt $blog_count 0 }}
+                {{ $resource_parts = $resource_parts | append (printf `<a href="%s" class="styled-link">Blogs: %d</a>` $software_page.RelPermalink $blog_count) }}
+              {{ end }}
+              {{ delimit $resource_parts ", " | safeHTML }}.
+            </span>
       </div>
     </div>
     {{ end }}
@@ -71,17 +71,17 @@
 
       {{ with $project.completed_issues }}
       {{ if gt (len .) 0 }}
-      <div class="completed-tasks-inline flex items-center flex-wrap">
+      <div class="completed-tasks-inline flex items-baseline flex-wrap">
         <span class="font-semibold mr-2 flex-shrink-0">Completed:</span>
-        <div class="flex flex-wrap gap-x-1.5">
+        <p class="inline">
           {{ $numIssues := len . }}
           {{ range $index, $issue := . }}
           <a href="{{ .url }}" target="_blank" rel="noopener" class="styled-link">
             {{- .title -}}
-            {{- partial "icon.html" (dict "style" "solid" "name" "arrow-up-right-from-square" "class" "inline-block ml-[.5] pb-[.2]" "width" "0.8em" "height" "0.6em") -}}
-          </a>{{ if lt $index (sub $numIssues 1) }},{{ end }}
+            {{- partial "icon.html" (dict "style" "solid" "name" "arrow-up-right-from-square" "class" "inline-block ml-1.5 align-middle" "width" "0.8em" "height" "0.8em") -}}
+          </a>{{ if lt $index (sub $numIssues 1) }}, {{ end }}
           {{ end }}
-        </div>
+        </p>
       </div>
       {{ end }}
       {{ end }}
@@ -97,7 +97,7 @@
         <div class="flex-grow">
           <a href="{{ .url }}" target="_blank" rel="noopener" class="styled-link font-medium">
             {{- .title -}}
-            {{- partial "icon.html" (dict "style" "solid" "name" "arrow-up-right-from-square" "class" "inline-block ml-[.5] pb-[.2]" "width" "0.8em" "height" "0.6em") -}}
+            {{- partial "icon.html" (dict "style" "solid" "name" "arrow-up-right-from-square" "class" "inline-block ml-1.5 align-middle" "width" "0.8em" "height" "0.8em") -}}
           </a>
           {{ with .tags }}
           <div class="flex flex-wrap gap-1.5 mt-1.5">
