@@ -43,20 +43,27 @@ Code
 
 {{< /details >}}
 
-
 ## Become a Supporter
 
 If your project, lab, or company is interested in joining our mission, we would love to hear from you. We offer various levels of partnership, including direct sponsorship of open-source development.
 
 <div id="bounties" class="pt-1"></div>
 
-### Sponsoring Bounties and Projects
+### Sponsoring Open-Source Development
 
-One of the most direct ways to support the open-source neuromorphic ecosystem is by sponsoring development. When you click the "Sponsor" button on our [Community Coding Projects board](/getting-involved/solving-neuromorphic-computings-key-challenges/), you can help fund work on that specific tool.
+Supporting the open-source tools that power neuromorphic research is one of the most impactful ways to accelerate the entire field. When you click the "Sponsor" button on our [Community Coding Projects board](/getting-involved/solving-neuromorphic-computings-key-challenges/), you are showing interest in funding a solution. Here’s how you can help:
 
-Sponsorship allows us to:
--   **Create Bounties:** Attach financial rewards to critical "help wanted" issues, incentivizing developers to contribute.
--   **Support Maintainers:** Provide resources to the dedicated teams who maintain these essential software libraries.
--   **Accelerate Progress:** Directly fund solutions to the key challenges holding back the field.
+**1. Sponsor Projects Directly**
 
-To learn more about becoming a supporter or sponsoring a specific project, please reach out to us at [contact@open-neuromorphic.org](mailto:contact@open-neuromorphic.org).
+Many of the projects in our network accept direct financial support. This is a great way to help the tools you rely on the most. We encourage you to visit their GitHub repositories and look for "Sponsor" buttons or other information on how to contribute financially.
+
+**2. Sponsor Open Neuromorphic to Coordinate a Solution**
+
+If you want to fund a solution to a specific problem, you can sponsor Open Neuromorphic to manage the process. By sponsoring ONM, you fund the organizational effort required to solve key challenges. We will:
+- Work with the community and project maintainers to scope out the problem.
+- Define a clear solution and map out the required work.
+- Manage a bounty to incentivize and reward developers for implementing the solution.
+
+This ensures that contributions are effective, well-coordinated, and aligned with the ecosystem's needs.
+
+Unsure which path is right for you, or want to discuss a broader partnership? Please reach out to us at [contact@open-neuromorphic.org](mailto:contact@open-neuromorphic.org), and we can help guide you.
