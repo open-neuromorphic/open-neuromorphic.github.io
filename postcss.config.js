@@ -20,6 +20,20 @@ const purgecssOptions = {
     'bubble-separator',
     'bubble-contributions',
     'is-highlighted',
+    // --- ADDITIONS START HERE ---
+    // Safelist all button classes (e.g., btn-outline-primary) and their variants (dark, hover)
+    // to prevent their complex SCSS-defined states from being purged.
+    /^btn-/,
+    // Safelist classes that are dynamically added by JavaScript for the active filter tags.
+    // PurgeCSS cannot find these by scanning the source files.
+    'bg-indigo-600',
+    'text-white',
+    // Note: dark: and hover: variants of the above classes are typically kept
+    // by PurgeCSS if the base class is safelisted, but we add the regexes below
+    // to be absolutely certain.
+    /^dark:bg-indigo-/,
+    /^hover:bg-indigo-/,
+    /^dark:hover:bg-indigo-/,
   ],
 };
 
