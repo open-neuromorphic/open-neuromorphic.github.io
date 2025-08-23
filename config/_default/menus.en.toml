@@ -39,18 +39,18 @@ description = "Discover SNN frameworks and event-based data tools."
 
 [[main]]
 parent = "explore-resources"
-name = "Community Resources"
-url = "/neuromorphic-computing/community-resources/"
-weight = 5
+name = "Key Challenges Mission Board"
+url = "/getting-involved/solving-neuromorphic-computings-key-challenges/"
+weight = 4
 [main.params]
-icon = "fas fa-share-nodes"
-description = "A curated list of community-led blogs, channels, and projects."
+icon = "fas fa-bullseye"
+description = "Tackle key problems in neuromorphic computing with community-driven projects."
 
 [[main]]
 parent = "explore-resources" # Match the identifier
 name = "Hacking Hours"
 url = "/neuromorphic-computing/software/hacking-hours/"
-weight = 6
+weight = 5
 [main.params]
 icon = "fas fa-terminal"
 description = "Live coding sessions exploring neuromorphic software."
@@ -60,7 +60,7 @@ description = "Live coding sessions exploring neuromorphic software."
 parent = "explore-resources" # Match the identifier
 name = "Student Talks"
 url = "/neuromorphic-computing/student-talks/"
-weight = 7
+weight = 6
 [main.params]
 icon = "fas fa-graduation-cap"
 description = "Presentations by students and early-career researchers."
@@ -70,7 +70,7 @@ description = "Presentations by students and early-career researchers."
 parent = "explore-resources" # Match the identifier
 name = "Workshops"
 url = "/workshops/"
-weight = 8
+weight = 7
 [main.params]
 icon = "fas fa-chalkboard-user"
 description = "Expert-led workshops on key neuromorphic topics."
@@ -79,7 +79,7 @@ description = "Expert-led workshops on key neuromorphic topics."
 parent = "explore-resources" # Add this new entry
 name = "Contributors"
 url = "/contributors/"
-weight = 9
+weight = 8
 [main.params]
 icon = "fas fa-user-group"
 description = "Meet the people building the Open Neuromorphic community."
@@ -108,12 +108,6 @@ weight = 2
 
 [[main]]
 parent = "About"
-name = "Key Challenges Mission Board"
-url = "/getting-involved/solving-neuromorphic-computings-key-challenges/"
-weight = 4
-
-[[main]]
-parent = "About"
 name = "Volunteer Opportunities"
 url = "/volunteer-opportunities/"
 weight = 3
@@ -129,6 +123,12 @@ parent = "About"
 name = "ONM Initiatives"
 url = "/neuromorphic-computing/initiatives/"
 weight = 5
+
+[[main]]
+parent = "About"
+name = "Community Resources"
+url = "/neuromorphic-computing/community-resources/"
+weight = 6
 
 
 # --- New Footer Menus (replace the old [[footer]], [[footer_explore]], [[footer_legal]]) ---
