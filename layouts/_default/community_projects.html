@@ -56,7 +56,7 @@
             <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
               <h4 class="text-sm font-semibold text-gray-700 dark:text-gray-300 flex-shrink-0">Projects:</h4>
               {{ range $projectsWithIssues }}
-              <a href="#{{ .name | anchorize }}" class="text-xs font-medium px-2.5 py-1 rounded-full bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300 hover:bg-purple-200 dark:hover:bg-purple-800 transition-colors no-underline">
+              <a href="#{{ .name | anchorize }}" class="project-filter-link text-sm font-medium px-2.5 py-1 rounded-full bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300 hover:bg-purple-200 dark:hover:bg-purple-800 transition-colors no-underline">
                 {{ .name }}
               </a>
               {{ end }}
@@ -76,10 +76,10 @@
           {{/* --- END: Refactored Sticky Filter Section --- */}}
 
 
-          <h2 id="outstanding-issues" class="text-3xl font-bold mb-8 border-b border-border dark:border-darkmode-border pb-4">Outstanding Issues</h2>
+          <h2 id="outstanding-issues" class="text-3xl font-bold mb-8 border-b border-border dark:border-darkmode-border pb-4" style="scroll-margin-top: 29rem;">Outstanding Issues</h2>
           <div class="space-y-12">
             {{ range $projectsWithIssues }}
-            <div id="{{ .name | anchorize }}" class="project-container" style="scroll-margin-top: 12rem;">
+            <div id="{{ .name | anchorize }}" class="project-container" style="scroll-margin-top: 9rem;">
               {{ partial "custom/project_bounty_item.html" (dict "project" . "softwarePages" $softwarePagesBySlug) }}
             </div>
             {{ end }}
@@ -91,7 +91,7 @@
             <h2 id="past-contributions" class="text-3xl font-bold my-8 pt-8 border-t border-border dark:border-darkmode-border">Past Contributions</h2>
             <div class="space-y-12">
               {{ range $projectsWithOnlyCompleted }}
-              <div id="{{ .name | anchorize }}" class="project-container" style="scroll-margin-top: 12rem;">
+              <div id="{{ .name | anchorize }}" class="project-container" style="scroll-margin-top: 29rem;">
                 {{ partial "custom/project_bounty_item.html" (dict "project" . "softwarePages" $softwarePagesBySlug) }}
               </div>
               {{ end }}
@@ -157,7 +157,16 @@
     const clearButton = document.getElementById('clear-filter-btn');
     const projectContainers = document.querySelectorAll('.project-container');
     const pastContributionsSection = document.getElementById('past-contributions-section');
+    const projectLinks = document.querySelectorAll('.project-filter-link');
     let activeTag = null;
+
+    projectLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (activeTag) {
+          clearFilter();
+        }
+      });
+    });
 
     filterTags.forEach(tag => {
       tag.addEventListener('click', () => {
@@ -170,7 +179,11 @@
         activeTag = selectedTag;
         updateTagStyles(selectedTag);
         clearButton.classList.remove('hidden');
-        applyFilter(selectedTag);
+        const firstVisibleProject = applyFilter(selectedTag);
+
+        if (firstVisibleProject) {
+          firstVisibleProject.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
       });
     });
 
@@ -179,6 +192,7 @@
     }
 
     function applyFilter(selectedTag) {
+      let firstVisibleProject = null;
       if (pastContributionsSection) {
         pastContributionsSection.style.display = 'none';
       }
@@ -196,8 +210,16 @@
           }
         });
 
-        project.style.display = projectHasVisibleIssue ? 'block' : 'none';
+        if (projectHasVisibleIssue) {
+          project.style.display = 'block';
+          if (!firstVisibleProject) {
+            firstVisibleProject = project;
+          }
+        } else {
+          project.style.display = 'none';
+        }
       });
+      return firstVisibleProject;
     }
 
     function clearFilter() {

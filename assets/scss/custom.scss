@@ -262,3 +262,9 @@ code {
     0 calc(-1 * var(--glow-size)) var(--glow-size) var(--glow-color-dark),
     0 var(--glow-size) var(--glow-size) var(--glow-color-dark);
 }
+
+.filter-tag, .project-filter-link, #clear-filter-btn {
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10+ and Edge */
+  user-select: none; /* Standard syntax */
+}
