@@ -148,26 +148,7 @@
             </nav>
           </div>
 
-          {{/* --- Page Maintainer Card --- */}}
-          {{ $jens := site.GetPage "contributors/jens-e-pedersen" }}
-          {{ if $jens }}
-          <div class="px-4 pt-5 pb-5 content-panel">
-            <strong class="text-xl">Page Maintainer</strong>
-            <div class="mt-4">
-              <a href="{{ $jens.RelPermalink }}" class="group flex items-center gap-4 text-left p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-darkmode-theme-dark transition-colors">
-                <div class="flex-shrink-0">
-                  {{ with $jens.Params.image }}
-                  {{ partial "image" (dict "Src" . "Context" $jens "Alt" $jens.Title "Class" "w-16 h-16 rounded-full object-cover" "Command" "Fill" "Size" "64x64") }}
-                  {{ end }}
-                </div>
-                <div>
-                  <h5 class="font-bold text-dark dark:text-darkmode-dark group-hover:text-primary dark:group-hover:text-darkmode-primary">{{ $jens.Title }}</h5>
-                  <p class="text-xs text-text dark:text-darkmode-text">Contact for questions or suggestions regarding this mission board.</p>
-                </div>
-              </a>
-            </div>
-          </div>
-          {{ end }}
+          {{ partial "components/page-maintainers.html" . }}
 
           {{/* --- Sponsor Placeholder Card --- */}}
           {{ $supportersPage := site.GetPage "supporters" }}
