@@ -238,3 +238,27 @@ code {
 .copy-code-button.copied {
   @apply bg-green-600/80 text-white;
 }
+
+.filter-panel-glow {
+  --glow-size: 15px;
+  --glow-color-light: theme('colors.body');
+  --glow-color-dark: theme('colors.darkmode.body');
+
+  box-shadow:
+    /* Standard shadow for depth */
+    0 10px 15px -3px rgba(0, 0, 0, 0.07),
+    0 4px 6px -4px rgba(0, 0, 0, 0.07),
+      /* Glow effect to fade out scrolling content */
+    0 calc(-1 * var(--glow-size)) var(--glow-size) var(--glow-color-light),
+    0 var(--glow-size) var(--glow-size) var(--glow-color-light);
+}
+
+.dark .filter-panel-glow {
+  box-shadow:
+    /* Darker shadow for depth in dark mode */
+    0 10px 15px -3px rgba(0, 0, 0, 0.3),
+    0 4px 6px -4px rgba(0, 0, 0, 0.3),
+      /* Glow effect for dark mode */
+    0 calc(-1 * var(--glow-size)) var(--glow-size) var(--glow-color-dark),
+    0 var(--glow-size) var(--glow-size) var(--glow-color-dark);
+}
