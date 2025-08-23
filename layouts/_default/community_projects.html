@@ -262,14 +262,25 @@
     }
 
     function updateTagStyles(selectedTag) {
+      const defaultClasses = [
+        'bg-indigo-100', 'text-indigo-800', 'dark:bg-indigo-900', 'dark:text-indigo-300',
+        'hover:bg-indigo-200', 'dark:hover:bg-indigo-800'
+      ];
+      const selectedClasses = [
+        'bg-indigo-600', 'text-white', 'dark:bg-indigo-500', 'dark:text-white',
+        'hover:bg-indigo-700', 'dark:hover:bg-indigo-600'
+      ];
+
       filterTags.forEach(tag => {
         const isSelected = tag.dataset.tag === selectedTag;
-        tag.classList.toggle('bg-indigo-500', isSelected);
-        tag.classList.toggle('text-white', isSelected);
-        tag.classList.toggle('dark:bg-indigo-400', isSelected);
-        tag.classList.toggle('dark:text-black', isSelected);
-        tag.classList.toggle('bg-indigo-100', !isSelected);
-        tag.classList.toggle('dark:bg-indigo-900', !isSelected);
+
+        tag.classList.remove(...defaultClasses, ...selectedClasses);
+
+        if (isSelected) {
+          tag.classList.add(...selectedClasses);
+        } else {
+          tag.classList.add(...defaultClasses);
+        }
       });
     }
   });
