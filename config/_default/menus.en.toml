@@ -108,6 +108,12 @@ weight = 2
 
 [[main]]
 parent = "About"
+name = "Key Challenges Mission Board"
+url = "/getting-involved/solving-neuromorphic-computings-key-challenges/"
+weight = 4
+
+[[main]]
+parent = "About"
 name = "Volunteer Opportunities"
 url = "/volunteer-opportunities/"
 weight = 3

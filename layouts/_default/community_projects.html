@@ -1,18 +1,21 @@
 {{ define "main" }}
 {{ partial "page-header" . }}
 
-{{/* --- DEFINE PROJECT LISTS AT THE TOP FOR GLOBAL TEMPLATE SCOPE --- */}}
-{{ $projectsWithIssues := slice }}
-{{ $projectsWithOnlyCompleted := slice }}
+{{/* --- DEFINE PROJECT LISTS USING SCRATCH FOR ROBUST SCOPE --- */}}
+{{ .Scratch.Set "projectsWithIssues" slice }}
+{{ .Scratch.Set "projectsWithOnlyCompleted" slice }}
 {{ range site.Data.community_projects.projects }}
 {{ $has_issues := ge (len .issues) 1 }}
 {{ $has_completed := ge (len .completed_issues) 1 }}
 {{ if $has_issues }}
-{{ $projectsWithIssues = $projectsWithIssues | append . }}
+{{ $.Scratch.Add "projectsWithIssues" . }}
 {{ else if $has_completed }}
-{{ $projectsWithOnlyCompleted = $projectsWithOnlyCompleted | append . }}
+{{ $.Scratch.Add "projectsWithOnlyCompleted" . }}
 {{ end }}
 {{ end }}
+{{ $projectsWithIssues := .Scratch.Get "projectsWithIssues" }}
+{{ $projectsWithOnlyCompleted := .Scratch.Get "projectsWithOnlyCompleted" }}
+
 
 <section class="section pt-6">
   <div class="container">
