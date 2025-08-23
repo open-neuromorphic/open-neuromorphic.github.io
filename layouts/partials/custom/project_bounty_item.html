@@ -20,22 +20,22 @@
     {{/* --- START: Educational Resource Counts --- */}}
     {{ $slug := $project.slug }}
     {{ if and $slug $software_page }}
-    {{ $workshops := where site.RegularPages "Section" "workshops" }}
-    {{ $hacking_hours := where site.RegularPages "Type" "hacking-hours" }}
-    {{ $blogs := where site.RegularPages "Section" "blog" }}
+      {{ $workshops := where site.RegularPages "Section" "workshops" }}
+      {{ $hacking_hours := where site.RegularPages "Type" "hacking-hours" }}
+      {{ $blogs := where site.RegularPages "Section" "blog" }}
 
-    {{ $workshop_count := len (where $workshops ".Params.software_tags" "intersect" (slice $slug)) }}
-    {{ $hacking_hour_count := len (where $hacking_hours ".Params.software_tags" "intersect" (slice $slug)) }}
-    {{ $blog_count := len (where $blogs ".Params.software_tags" "intersect" (slice $slug)) }}
+      {{ $workshop_count := len (where $workshops ".Params.software_tags" "intersect" (slice $slug)) }}
+      {{ $hacking_hour_count := len (where $hacking_hours ".Params.software_tags" "intersect" (slice $slug)) }}
+      {{ $blog_count := len (where $blogs ".Params.software_tags" "intersect" (slice $slug)) }}
 
-    {{ $has_resources := or (gt $workshop_count 0) (or (gt $hacking_hour_count 0) (gt $blog_count 0)) }}
+      {{ $has_resources := or (gt $workshop_count 0) (or (gt $hacking_hour_count 0) (gt $blog_count 0)) }}
 
-    {{ if $has_resources }}
-    <div class="flex items-start gap-x-3 text-sm text-gray-700 dark:text-gray-300 mb-3">
-      {{ partial "icon.html" (dict "style" "solid" "name" "graduation-cap" "class" "h-4 w-4 mt-[3px] flex-shrink-0") }}
-      <div class="leading-relaxed">
-        <span class="font-medium">Explore educational resources:</span>
-        <span class="inline">
+      {{ if $has_resources }}
+        <div class="flex items-start gap-x-3 text-sm text-gray-700 dark:text-gray-300 mb-3">
+          {{ partial "icon.html" (dict "style" "solid" "name" "graduation-cap" "class" "h-4 w-4 mt-[3px] flex-shrink-0") }}
+          <div class="leading-relaxed">
+            <span class="font-medium">Explore educational resources:</span>
+            <span class="inline">
               {{ $resource_parts := slice }}
               {{ if gt $workshop_count 0 }}
                 {{ $resource_parts = $resource_parts | append (printf `<a href="%s" class="styled-link">Workshops: %d</a>` $software_page.RelPermalink $workshop_count) }}
@@ -48,9 +48,9 @@
               {{ end }}
               {{ delimit $resource_parts ", " | safeHTML }}.
             </span>
-      </div>
-    </div>
-    {{ end }}
+          </div>
+        </div>
+      {{ end }}
     {{ end }}
     {{/* --- END: Educational Resource Counts --- */}}
 
@@ -58,28 +58,28 @@
     <div class="space-y-2 mb-3">
       {{/* Description Row */}}
       <div class="flex items-start gap-x-3">
-        {{ partial "icon.html" (dict "style" "regular" "name" "file-lines" "class" "h-4 w-4 text-gray-500 dark:text-gray-400 mt-[3px] flex-shrink-0") }}
+        {{ partial "icon.html" (dict "style" "regular" "name" "file-lines" "class" "h-4 w-4 mt-[3px] flex-shrink-0") }}
         <p class="text-md text-gray-600 dark:text-gray-400 leading-relaxed">{{ $project.description }}</p>
       </div>
     </div>
 
     <!-- Metadata Line -->
     {{ with $project.completed_issues }}
-    {{ if gt (len .) 0 }}
-    <div class="flex items-start gap-x-3 text-sm text-gray-700 dark:text-gray-300 mt-3">
-      {{ partial "icon.html" (dict "style" "solid" "name" "code-branch" "class" "h-4 w-4 mt-[3px] flex-shrink-0") }}
-      <div class="leading-relaxed">
-        <span class="font-semibold mr-1.5">Completed:</span>
-        {{ $numIssues := len . }}
-        {{ range $index, $issue := . }}
-        <a href="{{ .url }}" target="_blank" rel="noopener" class="styled-link whitespace-nowrap">
-          {{- .title -}}
-          {{- partial "icon.html" (dict "style" "solid" "name" "arrow-up-right-from-square" "class" "inline-block ml-1.5 align-middle" "width" "0.8em" "height" "0.8em") -}}
-        </a>{{ if lt $index (sub $numIssues 1) }}, {{ end }}
-        {{ end }}
-      </div>
-    </div>
-    {{ end }}
+      {{ if gt (len .) 0 }}
+        <div class="flex items-start gap-x-3 text-sm text-gray-700 dark:text-gray-300 mt-3">
+          {{ partial "icon.html" (dict "style" "solid" "name" "code-branch" "class" "h-4 w-4 mt-[3px] flex-shrink-0") }}
+          <div class="leading-relaxed">
+            <span class="font-semibold mr-1.5">Completed:</span>
+            {{ $numIssues := len . }}
+            {{ range $index, $issue := . }}
+            <a href="{{ .url }}" target="_blank" rel="noopener" class="styled-link whitespace-nowrap">
+              {{- .title -}}
+              {{- partial "icon.html" (dict "style" "solid" "name" "arrow-up-right-from-square" "class" "inline-block ml-1.5 align-middle" "width" "0.8em" "height" "0.8em") -}}
+            </a>{{ if lt $index (sub $numIssues 1) }}, {{ end }}
+            {{ end }}
+          </div>
+        </div>
+      {{ end }}
     {{ end }}
   </div>
 
@@ -97,7 +97,7 @@
           {{ with .tags }}
           <div class="flex flex-wrap gap-1.5 mt-1.5">
             {{ range . }}
-            <span class="text-xs font-medium px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">{{ . }}</span>
+            <span data-issue-tag="{{ . }}" class="text-xs font-medium px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">{{ . }}</span>
             {{ end }}
           </div>
           {{ end }}

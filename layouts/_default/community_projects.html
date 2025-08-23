@@ -1,6 +1,19 @@
 {{ define "main" }}
 {{ partial "page-header" . }}
 
+{{/* --- DEFINE PROJECT LISTS AT THE TOP FOR GLOBAL TEMPLATE SCOPE --- */}}
+{{ $projectsWithIssues := slice }}
+{{ $projectsWithOnlyCompleted := slice }}
+{{ range site.Data.community_projects.projects }}
+{{ $has_issues := ge (len .issues) 1 }}
+{{ $has_completed := ge (len .completed_issues) 1 }}
+{{ if $has_issues }}
+{{ $projectsWithIssues = $projectsWithIssues | append . }}
+{{ else if $has_completed }}
+{{ $projectsWithOnlyCompleted = $projectsWithOnlyCompleted | append . }}
+{{ end }}
+{{ end }}
+
 <section class="section pt-6">
   <div class="container">
 
@@ -20,20 +33,6 @@
           {{ .Content }}
         </div>
 
-        {{/* --- Logic to filter and sort projects --- */}}
-        {{ $projectsWithIssues := slice }}
-        {{ $projectsWithOnlyCompleted := slice }}
-        {{ range site.Data.community_projects.projects }}
-        {{ $has_issues := ge (len .issues) 1 }}
-        {{ $has_completed := ge (len .completed_issues) 1 }}
-
-        {{ if $has_issues }}
-        {{ $projectsWithIssues = $projectsWithIssues | append . }}
-        {{ else if $has_completed }}
-        {{ $projectsWithOnlyCompleted = $projectsWithOnlyCompleted | append . }}
-        {{ end }}
-        {{ end }}
-
         {{/* Helper to map slugs to page objects for linking */}}
         {{ $softwarePagesBySlug := newScratch }}
         {{ range where site.RegularPages "Type" "neuromorphic-software" }}
@@ -45,19 +44,7 @@
 
         <div class="community-projects-list-view">
           {{ if $projectsWithIssues }}
-          {{/* --- START: Refactored Nav & Tags Section --- */}}
-
-          {{/* --- Quick Links to Projects (Non-sticky) --- */}}
-          <div class="mb-12 p-6 bg-theme-light dark:bg-darkmode-theme-light rounded-lg shadow-md border border-border dark:border-darkmode-border">
-            <h3 class="text-xl font-bold mb-4">Projects with Open Issues</h3>
-            <div class="flex flex-wrap gap-x-4 gap-y-2">
-              {{ range $projectsWithIssues }}
-              <a href="#{{ .name | anchorize }}" class="styled-link">{{ .name }}</a>
-              {{ end }}
-            </div>
-          </div>
-
-          {{/* --- Sticky Tag Filter Panel --- */}}
+          {{/* --- START: Refactored Sticky Filter Section --- */}}
           {{ $tagCounts := dict }}
           {{ range $projectsWithIssues }}{{ with .issues }}{{ range . }}{{ with .tags }}{{ range . }}
           {{ $tag := . }}{{ $currentCount := index $tagCounts $tag | default 0 }}{{ $tagCounts = merge $tagCounts (dict $tag (add $currentCount 1)) }}
@@ -65,25 +52,34 @@
           {{ $sortedTags := slice }}{{ range $tag, $count := $tagCounts }}{{ $sortedTags = $sortedTags | append (dict "tag" $tag "count" $count) }}{{ end }}
           {{ $sortedTags = sort $sortedTags "tag" "asc" }}
 
-          {{ if $sortedTags }}
-          <div class="sticky top-24 z-20 mb-12 p-4 bg-theme-light dark:bg-darkmode-theme-light rounded-lg shadow-md border border-border dark:border-darkmode-border">
+          <div class="sticky top-24 z-20 mb-12 p-4 bg-theme-light dark:bg-darkmode-theme-light rounded-lg shadow-md border border-border dark:border-darkmode-border space-y-3">
             <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
-              <h4 class="text-md font-semibold text-gray-700 dark:text-gray-300 flex-shrink-0">Filter by Tag:</h4>
+              <h4 class="text-sm font-semibold text-gray-700 dark:text-gray-300 flex-shrink-0">Projects:</h4>
+              {{ range $projectsWithIssues }}
+              <a href="#{{ .name | anchorize }}" class="text-xs font-medium px-2.5 py-1 rounded-full bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300 hover:bg-purple-200 dark:hover:bg-purple-800 transition-colors no-underline">
+                {{ .name }}
+              </a>
+              {{ end }}
+            </div>
+            {{ if $sortedTags }}
+            <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
+              <h4 class="text-sm font-semibold text-gray-700 dark:text-gray-300 flex-shrink-0">Filters:</h4>
               {{ range $sortedTags }}
-              <span class="cursor-pointer text-xs font-medium px-2.5 py-1 rounded-full bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-300 hover:bg-indigo-200 dark:hover:bg-indigo-800 transition-colors">
+              <span data-tag="{{ .tag }}" class="filter-tag cursor-pointer text-xs font-medium px-2.5 py-1 rounded-full bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-300 hover:bg-indigo-200 dark:hover:bg-indigo-800 transition-colors">
                       {{ .tag | title }}: <span class="font-bold">{{ .count }}</span>
                     </span>
               {{ end }}
+              <button id="clear-filter-btn" class="hidden btn btn-sm btn-outline-primary !text-xs !py-0.5 !px-2">&times; Clear</button>
             </div>
+            {{ end }}
           </div>
-          {{ end }}
-          {{/* --- END: Refactored Nav & Tags Section --- */}}
+          {{/* --- END: Refactored Sticky Filter Section --- */}}
 
 
           <h2 id="outstanding-issues" class="text-3xl font-bold mb-8 border-b border-border dark:border-darkmode-border pb-4">Outstanding Issues</h2>
           <div class="space-y-12">
             {{ range $projectsWithIssues }}
-            <div id="{{ .name | anchorize }}">
+            <div id="{{ .name | anchorize }}" class="project-container" style="scroll-margin-top: 12rem;">
               {{ partial "custom/project_bounty_item.html" (dict "project" . "softwarePages" $softwarePagesBySlug) }}
             </div>
             {{ end }}
@@ -91,13 +87,15 @@
           {{ end }}
 
           {{ if $projectsWithOnlyCompleted }}
-          <h2 id="past-contributions" class="text-3xl font-bold my-8 pt-8 border-t border-border dark:border-darkmode-border">Past Contributions</h2>
-          <div class="space-y-12">
-            {{ range $projectsWithOnlyCompleted }}
-            <div id="{{ .name | anchorize }}">
-              {{ partial "custom/project_bounty_item.html" (dict "project" . "softwarePages" $softwarePagesBySlug) }}
+          <div id="past-contributions-section">
+            <h2 id="past-contributions" class="text-3xl font-bold my-8 pt-8 border-t border-border dark:border-darkmode-border">Past Contributions</h2>
+            <div class="space-y-12">
+              {{ range $projectsWithOnlyCompleted }}
+              <div id="{{ .name | anchorize }}" class="project-container" style="scroll-margin-top: 12rem;">
+                {{ partial "custom/project_bounty_item.html" (dict "project" . "softwarePages" $softwarePagesBySlug) }}
+              </div>
+              {{ end }}
             </div>
-            {{ end }}
           </div>
           {{ end }}
         </div>
@@ -152,5 +150,83 @@
     </div>
   </div>
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterTags = document.querySelectorAll('.filter-tag');
+    const clearButton = document.getElementById('clear-filter-btn');
+    const projectContainers = document.querySelectorAll('.project-container');
+    const pastContributionsSection = document.getElementById('past-contributions-section');
+    let activeTag = null;
+
+    filterTags.forEach(tag => {
+      tag.addEventListener('click', () => {
+        const selectedTag = tag.dataset.tag;
+
+        if (activeTag === selectedTag) {
+          clearFilter();
+          return;
+        }
+        activeTag = selectedTag;
+        updateTagStyles(selectedTag);
+        clearButton.classList.remove('hidden');
+        applyFilter(selectedTag);
+      });
+    });
+
+    if(clearButton) {
+      clearButton.addEventListener('click', clearFilter);
+    }
+
+    function applyFilter(selectedTag) {
+      if (pastContributionsSection) {
+        pastContributionsSection.style.display = 'none';
+      }
+      projectContainers.forEach(project => {
+        const issues = project.querySelectorAll('.issue-item');
+        let projectHasVisibleIssue = false;
+
+        issues.forEach(issue => {
+          const hasTag = issue.querySelector(`[data-issue-tag="${selectedTag}"]`);
+          if (hasTag) {
+            issue.style.display = 'flex';
+            projectHasVisibleIssue = true;
+          } else {
+            issue.style.display = 'none';
+          }
+        });
+
+        project.style.display = projectHasVisibleIssue ? 'block' : 'none';
+      });
+    }
+
+    function clearFilter() {
+      activeTag = null;
+      updateTagStyles(null);
+      clearButton.classList.add('hidden');
+      if (pastContributionsSection) {
+        pastContributionsSection.style.display = 'block';
+      }
+      projectContainers.forEach(project => {
+        project.style.display = 'block';
+        project.querySelectorAll('.issue-item').forEach(issue => {
+          issue.style.display = 'flex';
+        });
+      });
+    }
+
+    function updateTagStyles(selectedTag) {
+      filterTags.forEach(tag => {
+        const isSelected = tag.dataset.tag === selectedTag;
+        tag.classList.toggle('bg-indigo-500', isSelected);
+        tag.classList.toggle('text-white', isSelected);
+        tag.classList.toggle('dark:bg-indigo-400', isSelected);
+        tag.classList.toggle('dark:text-black', isSelected);
+        tag.classList.toggle('bg-indigo-100', !isSelected);
+        tag.classList.toggle('dark:bg-indigo-900', !isSelected);
+      });
+    }
+  });
+</script>
 
 {{ end }}
