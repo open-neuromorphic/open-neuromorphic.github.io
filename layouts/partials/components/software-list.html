@@ -78,6 +78,7 @@
         </div>
 
         <p class="mb-4 text-text dark:text-darkmode-text">{{ $page.Params.description }}</p>
+{{ partial "custom/software_resource_counts.html" (dict "page" $page "is_single" false) }}
 
         
 
