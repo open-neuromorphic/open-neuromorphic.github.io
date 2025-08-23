@@ -22,6 +22,7 @@ fontawesome_svgs:
   - { style: solid, name: chevron-right }
   - { style: solid, name: chevron-down }
   - { style: solid, name: arrow-up-right-from-square }
+  - { style: solid, name: heart }
   - { style: brands, name: discord }
   - { style: brands, name: github }
   - { style: brands, name: twitter }

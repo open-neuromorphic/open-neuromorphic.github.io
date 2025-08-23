@@ -168,6 +168,22 @@
             </div>
           </div>
           {{ end }}
+
+          {{/* --- Sponsor Placeholder Card --- */}}
+          {{ $supportersPage := site.GetPage "supporters" }}
+          {{ if $supportersPage }}
+          <a href="{{ $supportersPage.RelPermalink }}#bounties" class="group block">
+            <div class="p-6 content-panel text-center border-2 border-dashed border-gray-300 dark:border-gray-600 hover:border-primary dark:hover:border-darkmode-primary hover:bg-gray-50 dark:hover:bg-darkmode-theme-dark/50 transition-all">
+              {{ partial "icon.html" (dict "style" "solid" "name" "heart" "class" "text-primary dark:text-darkmode-primary text-3xl mx-auto mb-3") }}
+              <h4 class="font-bold text-dark dark:text-darkmode-dark">Sponsor this Space</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Feature your brand here and support the open-source neuromorphic community.</p>
+              <span class="mt-3 inline-block font-semibold text-primary dark:text-darkmode-primary text-sm group-hover:underline">
+                Learn More &rarr;
+              </span>
+            </div>
+          </a>
+          {{ end }}
+
         </div>
       </aside>
 
