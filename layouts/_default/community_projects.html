@@ -83,7 +83,7 @@
           <div class="space-y-12">
             {{ range $projectsWithIssues }}
             <div id="{{ .name | anchorize }}" class="project-container" style="scroll-margin-top: 9rem;">
-              {{ partial "custom/project_bounty_item.html" (dict "project" . "softwarePages" $softwarePagesBySlug) }}
+              {{ partial "custom/project_bounty_item.html" (dict "page" $ "project" . "softwarePages" $softwarePagesBySlug) }}
             </div>
             {{ end }}
           </div>
@@ -95,7 +95,7 @@
             <div class="space-y-12">
               {{ range $projectsWithOnlyCompleted }}
               <div id="{{ .name | anchorize }}" class="project-container" style="scroll-margin-top: 29rem;">
-                {{ partial "custom/project_bounty_item.html" (dict "project" . "softwarePages" $softwarePagesBySlug) }}
+                {{ partial "custom/project_bounty_item.html" (dict "page" $ "project" . "softwarePages" $softwarePagesBySlug) }}
               </div>
               {{ end }}
             </div>

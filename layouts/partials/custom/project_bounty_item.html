@@ -1,3 +1,4 @@
+{{ $page_context := .page }}
 {{ $project := .project }}
 {{ $softwarePages := .softwarePages }}
 
@@ -103,8 +104,8 @@
           {{ end }}
         </div>
         <div class="flex-shrink-0">
-          <a href="{{ "/supporters/#bounties" | relLangURL }}" title="Learn about Sponsoring" class="btn btn-sm btn-new-outline !px-3 !py-1 !text-xs">
-          Sponsor
+          <a href="{{ (site.GetPage `supporters`).RelPermalink }}#bounties" title="Learn about Sponsoring" class="btn btn-sm btn-new-outline !px-3 !py-1 !text-xs">
+            Sponsor
           </a>
         </div>
       </li>
