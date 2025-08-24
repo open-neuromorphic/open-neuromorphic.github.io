@@ -243,7 +243,8 @@ code {
   --glow-size: 15px;
   --glow-color-light: theme('colors.body');
   --glow-color-dark: theme('colors.darkmode.body');
-
+  border-bottom: 3px solid rgba(57, 57, 57, 0.3);
+  border-top: 3px solid rgba(57, 57, 57, 0.3);
   box-shadow:
     /* Standard shadow for depth */
     0 10px 15px -3px rgba(0, 0, 0, 0.07),
