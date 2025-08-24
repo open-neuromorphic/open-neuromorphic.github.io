@@ -1,8 +1,10 @@
 ---
-title: "Open Neuromorphic Organisational Charter"
+title: "ONM Organisational Charter"
 description: "The official Organisational Charter for Open Neuromorphic (ONM), outlining our mission, governance, membership, and decision-making processes."
 date: 2025-05-18
 draft: false
+showTableOfContents: true
+aliases: ["/about/charter/"]
 ---
 
 ## Preamble
