@@ -10,7 +10,7 @@ Welcome to the governance hub for Open Neuromorphic (ONM). As a community-driven
 <p class="mb-8">The foundational texts that guide our community's operations and values.</p>
 
 <div class="space-y-4">
-  <a href="/about/governance/organisational-charter/" class="group no-style block p-6 bg-theme-light dark:bg-darkmode-theme-light border border-border dark:border-darkmode-border rounded-lg hover:border-primary dark:hover:border-darkmode-primary transition-all duration-200 shadow-md hover:shadow-lg">
+  <a href="./organisational-charter/" class="group no-style block p-6 bg-theme-light dark:bg-darkmode-theme-light border border-border dark:border-darkmode-border rounded-lg hover:border-primary dark:hover:border-darkmode-primary transition-all duration-200 shadow-md hover:shadow-lg">
     <div class="flex justify-between items-center">
       <div>
         <h3 class="text-xl font-semibold text-dark dark:text-darkmode-dark group-hover:text-primary dark:group-hover:text-darkmode-primary styled-link">Organisational Charter</h3>
@@ -23,7 +23,7 @@ Welcome to the governance hub for Open Neuromorphic (ONM). As a community-driven
       </span>
     </div>
   </a>
-  <a href="/about/governance/fellowship-charter/" class="group no-style block p-6 bg-theme-light dark:bg-darkmode-theme-light border border-border dark:border-darkmode-border rounded-lg hover:border-primary dark:hover:border-darkmode-primary transition-all duration-200 shadow-md hover:shadow-lg">
+  <a href="./fellowship-charter/" class="group no-style block p-6 bg-theme-light dark:bg-darkmode-theme-light border border-border dark:border-darkmode-border rounded-lg hover:border-primary dark:hover:border-darkmode-primary transition-all duration-200 shadow-md hover:shadow-lg">
     <div class="flex justify-between items-center">
       <div>
         <h3 class="text-xl font-semibold text-dark dark:text-darkmode-dark group-hover:text-primary dark:group-hover:text-darkmode-primary styled-link">Fellowship Charter</h3>
@@ -55,7 +55,7 @@ Welcome to the governance hub for Open Neuromorphic (ONM). As a community-driven
 <p class="mb-8">A key way to contribute and earn fellowship is by leading a community initiative. Use these resources to get started.</p>
 
 <div class="space-y-4">
-    <a href="/about/governance/submission-instructions/" class="group no-style block p-6 bg-theme-light dark:bg-darkmode-theme-light border border-border dark:border-darkmode-border rounded-lg hover:border-primary dark:hover:border-darkmode-primary transition-all duration-200 shadow-md hover:shadow-lg">
+    <a href="./submission-instructions/" class="group no-style block p-6 bg-theme-light dark:bg-darkmode-theme-light border border-border dark:border-darkmode-border rounded-lg hover:border-primary dark:hover:border-darkmode-primary transition-all duration-200 shadow-md hover:shadow-lg">
     <div class="flex justify-between items-center">
       <div>
         <h3 class="text-xl font-semibold text-dark dark:text-darkmode-dark group-hover:text-primary dark:group-hover:text-darkmode-primary styled-link">Submission Guide</h3>
@@ -68,7 +68,7 @@ Welcome to the governance hub for Open Neuromorphic (ONM). As a community-driven
       </span>
     </div>
   </a>
-    <a href="/about/governance/initiative-template/" class="group no-style block p-6 bg-theme-light dark:bg-darkmode-theme-light border border-border dark:border-darkmode-border rounded-lg hover:border-primary dark:hover:border-darkmode-primary transition-all duration-200 shadow-md hover:shadow-lg">
+    <a href="./initiative-template/" class="group no-style block p-6 bg-theme-light dark:bg-darkmode-theme-light border border-border dark:border-darkmode-border rounded-lg hover:border-primary dark:hover:border-darkmode-primary transition-all duration-200 shadow-md hover:shadow-lg">
     <div class="flex justify-between items-center">
       <div>
         <h3 class="text-xl font-semibold text-dark dark:text-darkmode-dark group-hover:text-primary dark:group-hover:text-darkmode-primary styled-link">Proposal Template</h3>
