@@ -1,21 +1,16 @@
 {{ define "main" }}
   {{ partial "page-header" . }}
-  <section class="section pt-7">
+  <section class="section pt-6">
     <div class="container">
       <div class="row lg:items-stretch">
-        
-        {{/* Main Content Area */}}
-        <div class="lg:col-8">
-          <div class="content">
+        <article class="lg:col-8">
+          <div class="content mb-10">
             {{ .Content }}
           </div>
-        </div>
-        
-        {{/* Sidebar Area */}}
+        </article>
         <aside class="lg:col-4 hidden lg:block">
           {{ partial "about/governance-sidebar.html" . }}
         </aside>
-
       </div>
     </div>
   </section>

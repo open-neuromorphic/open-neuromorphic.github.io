@@ -3,19 +3,16 @@
   <section class="section pt-7">
     <div class="container">
       <div class="row lg:items-stretch">
-        
-        {{/* Main Content Area */}}
         <div class="lg:col-8">
           <div class="content">
             {{ .Content }}
           </div>
         </div>
-        
-        {{/* Sidebar Area */}}
         <aside class="lg:col-4 hidden lg:block">
-          {{ partial "about/governance-sidebar.html" . }}
+          <div class="sticky top-24">
+            {{ partial "about/governance-sidebar.html" . }}
+          </div>
         </aside>
-
       </div>
     </div>
   </section>
