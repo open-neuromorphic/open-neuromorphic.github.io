@@ -1,7 +1,6 @@
 ---
 title: "ONM Governance & Fellowship"
 description: "The central hub for Open Neuromorphic's governance documents, including our organisational charter, fellowship program details, and initiative proposal process."
-aliases: ["/about/fellowship/"]
 ---
 
 Welcome to the governance hub for Open Neuromorphic. As a community-driven organization, we are committed to transparency, collaboration, and clear processes that empower our members. This section contains the documents that define our structure, mission, and how you can get involved in shaping our future.
