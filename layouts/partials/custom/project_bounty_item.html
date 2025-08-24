@@ -39,13 +39,13 @@
         <span class="inline">
               {{ $resource_parts := slice }}
               {{ if gt $workshop_count 0 }}
-                {{ $resource_parts = $resource_parts | append (printf `<a href="%s" class="styled-link">Workshops: %d</a>` $software_page.RelPermalink $workshop_count) }}
+                {{ $resource_parts = $resource_parts | append (printf `<a href="%s#related-content" class="styled-link">Workshops: %d</a>` $software_page.RelPermalink $workshop_count) }}
               {{ end }}
               {{ if gt $hacking_hour_count 0 }}
-                {{ $resource_parts = $resource_parts | append (printf `<a href="%s" class="styled-link">Hacking Hours: %d</a>` $software_page.RelPermalink $hacking_hour_count) }}
+                {{ $resource_parts = $resource_parts | append (printf `<a href="%s#related-content" class="styled-link">Hacking Hours: %d</a>` $software_page.RelPermalink $hacking_hour_count) }}
               {{ end }}
               {{ if gt $blog_count 0 }}
-                {{ $resource_parts = $resource_parts | append (printf `<a href="%s" class="styled-link">Blogs: %d</a>` $software_page.RelPermalink $blog_count) }}
+                {{ $resource_parts = $resource_parts | append (printf `<a href="%s#related-content" class="styled-link">Blogs: %d</a>` $software_page.RelPermalink $blog_count) }}
               {{ end }}
               {{ delimit $resource_parts ", " | safeHTML }}.
             </span>
