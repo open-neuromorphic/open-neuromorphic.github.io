@@ -1,0 +1,60 @@
+{{ $page := .page }}
+{{ $is_single := .is_single | default false }}
+
+{{ $slug := "" }}
+{{ if $page.File }}{{ $slug = path.Base $page.File.Dir }}{{ end }}
+
+{{ if $slug }}
+  {{/* --- Data Fetching and Counting --- */}}
+  {{ $workshops := where site.RegularPages "Section" "workshops" }}
+  {{ $hacking_hours := where site.RegularPages "Type" "hacking-hours" }}
+  {{ $blogs := where site.RegularPages "Section" "blog" }}
+  {{ $student_talks := where site.RegularPages "Type" "student-talks" }}
+
+  {{ $workshop_count := len (where $workshops ".Params.software_tags" "intersect" (slice $slug)) }}
+  {{ $hacking_hour_count := len (where $hacking_hours ".Params.software_tags" "intersect" (slice $slug)) }}
+  {{ $blog_count := len (where $blogs ".Params.software_tags" "intersect" (slice $slug)) }}
+  {{ $student_talk_count := len (where $student_talks ".Params.software_tags" "intersect" (slice $slug)) }}
+
+  {{ $mission_board_items := 0 }}
+  {{ range site.Data.community_projects.projects }}
+    {{ if eq .slug $slug }}
+      {{ $mission_board_items = len .issues }}
+    {{ end }}
+  {{ end }}
+
+  {{ $total_resources := add $workshop_count $hacking_hour_count $blog_count $student_talk_count $mission_board_items }}
+
+  {{ if gt $total_resources 0 }}
+    {{/* --- Link Generation Logic --- */}}
+    {{ $link_base := cond $is_single "" $page.RelPermalink }}
+    {{ $link_related := printf "%s#related-content" $link_base }}
+    {{ $link_mission := printf "%s#mission-board" $link_base }}
+
+  <div class="educational-resources {{ if $is_single }}mt-4 pt-4 border-t border-border dark:border-darkmode-border{{ else }}mb-4{{ end }}">
+    <div class="flex items-start gap-x-3 text-sm text-gray-700 dark:text-gray-300">
+      {{ partial "icon.html" (dict "style" "solid" "name" "graduation-cap" "class" "h-4 w-4 mt-[3px] flex-shrink-0") }}
+      <div class="leading-relaxed">
+        <span class="font-medium">Community Resources:</span>
+        <div class="flex flex-wrap gap-x-2 gap-y-1.5 mt-1.5">
+          {{ if gt $workshop_count 0 }}
+            <a href="{{ $link_related }}" class="text-xs font-medium px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300 hover:bg-blue-200 dark:hover:bg-blue-800 no-underline">Workshops: {{ $workshop_count }}</a>
+          {{ end }}
+          {{ if gt $hacking_hour_count 0 }}
+            <a href="{{ $link_related }}" class="text-xs font-medium px-2 py-0.5 rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300 hover:bg-green-200 dark:hover:bg-green-800 no-underline">Hacking Hours: {{ $hacking_hour_count }}</a>
+          {{ end }}
+          {{ if gt $blog_count 0 }}
+            <a href="{{ $link_related }}" class="text-xs font-medium px-2 py-0.5 rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300 hover:bg-yellow-200 dark:hover:bg-yellow-800 no-underline">Blog Posts: {{ $blog_count }}</a>
+          {{ end }}
+          {{ if gt $student_talk_count 0 }}
+             <a href="{{ $link_related }}" class="text-xs font-medium px-2 py-0.5 rounded-full bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300 hover:bg-purple-200 dark:hover:bg-purple-800 no-underline">Student Talks: {{ $student_talk_count }}</a>
+          {{ end }}
+          {{ if gt $mission_board_items 0 }}
+            <a href="{{ $link_mission }}" class="text-xs font-medium px-2 py-0.5 rounded-full bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300 hover:bg-red-200 dark:hover:bg-red-800 no-underline">Help Wanted: {{ $mission_board_items }}</a>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+  {{ end }}
+{{ end }}
