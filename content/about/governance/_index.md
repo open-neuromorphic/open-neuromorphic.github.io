@@ -6,7 +6,7 @@ aliases: ["/about/fellowship/"]
 
 Welcome to the governance hub for Open Neuromorphic. As a community-driven organization, we are committed to transparency, collaboration, and clear processes that empower our members. This section contains the documents that define our structure, mission, and how you can get involved in shaping our future.
 
-ONM governance operations occur and are officially kept in the [communications](https://github.com/open-neuromorphic/communications/tree/main/docs) repository.
+ONM governance operations occur and are officially kept by the secretary in the [communications](https://github.com/open-neuromorphic/communications/tree/main/docs) repository.
 
 <h2 class="h3 mt-12 mb-6">Core Governance Documents</h2>
 <p class="mb-8">The foundational texts that guide our community's operations and values.</p>
