@@ -1,8 +1,10 @@
+{{ $page_context := .page_context }}
 {{ $icon := .icon | default "solid pen-to-square" }}
 {{ $title := .title | default "Have an idea? <span class=\"gradient-text\">Share your voice.</span>" }}
 {{ $description := .description | default "Open Neuromorphic is a community-driven platform. We invite you to share your research, tutorials, or insights with a global audience of neuromorphic enthusiasts." }}
 {{ $link := .link | default "/getting-involved/" }}
 {{ $link_text := .link_text | default "Learn How to Contribute" }}
+{{ $is_external_link := hasPrefix $link "http" }}
 
 <div class="p-8 rounded-lg bg-theme-light dark:bg-darkmode-theme-light shadow-lg">
   <div class="flex flex-col md:flex-row items-center text-center md:text-left gap-8">
@@ -17,9 +19,25 @@
       <p class="text-lg text-gray-600 dark:text-gray-400 mb-4">
         {{ $description | markdownify }}
       </p>
-      <a href="{{ $link | relLangURL }}" class="btn btn-new-primary">
-        {{ $link_text }}
-      </a>
+      <div class="mt-4 flex flex-wrap gap-4 items-center justify-center md:justify-start">
+        <a href="{{ if not $is_external_link }}{{ $link | relLangURL }}{{ else }}{{ $link }}{{ end }}"
+           class="btn btn-new-primary"
+           {{ if $is_external_link }}target="_blank" rel="noopener"{{ end }}>
+          {{ $link_text }}
+        </a>
+        
+        {{ with $page_context }}
+            {{ if and .IsPage .File }}
+                {{ with .File.Path }}
+                    {{ $dev_url := printf "https://github.dev/open-neuromorphic/open-neuromorphic.github.io/blob/main/content/%s" . }}
+                    <a href="{{ $dev_url }}" target="_blank" rel="noopener" class="btn btn-new-outline">
+                        Edit this page
+                        {{ partial "icon.html" (dict "style" "solid" "name" "arrow-up-right-from-square" "class" "ml-1.5 h-3.5 w-3.5") }}
+                    </a>
+                {{ end }}
+            {{ end }}
+        {{ end }}
+      </div>
     </div>
   </div>
 </div>

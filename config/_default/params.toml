@@ -40,19 +40,19 @@ preloader = "" # use jpg, png, svg or gif format.
 # Navigation button
 [navigation_button]
 enable = true
-label = "Join Discord (2100+ joined)"
+label = "Join Discord"
+label_sub = "(2100+ joined)"
 link = "https://discord.gg/hUygPUdD8E"
 
 # search
-# search module: https://github.com/gethugothemes/hugo-modules/tree/master/search
 [search]
-enable = false
-primary_color = "#121212"
-include_sections = ["blog"]
-show_image = true
+enable = true
+primary_color = "#667eea"
+include_sections = ["blog", "workshops", "neuromorphic-computing/hardware", "neuromorphic-computing/software", "contributors", "getting-involved", "neuromorphic-computing/initiatives", "volunteer-opportunities"]
+show_image = false
 show_description = true
-show_tags = false
-show_categories = false
+show_tags = true
+show_categories = true
 
 
 # seo meta data for OpenGraph / Twitter Card

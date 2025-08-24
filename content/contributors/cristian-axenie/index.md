@@ -2,7 +2,13 @@
 title: "Cristian Axenie"
 description: "Professor of AI at TH Nürnberg, leading Cognitive Neurocomputing. Focuses on sustainable, efficient intelligent algorithms for sensor fusion and control."
 image: "cristian-axiene.jpeg"
-social: []
+social:
+  - icon: "fa-brands fa-linkedin"
+    link: "https://www.linkedin.com/in/caxenie/"
+    title: "linkedin"
+  - icon: "fa-solid fa-graduation-cap"
+    link: "https://scholar.google.com/citations?user=K3C2IbMAAAAJ&hl=en"
+    title: "scholar"
 draft: false
 ---
 Dr. Axenie is Professor of Artificial Intelligence and Research Group Leader in Cognitive Neurocomputing at the Technische Hochschule Nürnberg Georg Simon Ohm in Germany.

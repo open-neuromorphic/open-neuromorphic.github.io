@@ -18,6 +18,10 @@
     {{ with partial "structured-markup/contributor.html" . }}
       {{ $jsonLDs = $jsonLDs | append . }}
     {{ end }}
+  {{ else if eq .Type "neuromorphic-software" }}
+    {{ with partial "structured-markup/software.html" . }}
+      {{ $jsonLDs = $jsonLDs | append . }}
+    {{ end }}
   {{ end }}
 {{ end }}
 

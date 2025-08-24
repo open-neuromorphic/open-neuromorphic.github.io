@@ -1,0 +1,10 @@
+.copy-og-url-btn.copied {
+  background-color: theme('colors.green.500') !important;
+  border-color: theme('colors.green.500') !important;
+  color: white !important;
+
+  &:hover {
+    background-color: theme('colors.green.600') !important;
+    border-color: theme('colors.green.600') !important;
+  }
+}

@@ -19,7 +19,7 @@
           {{ end }}
           <div class="flex items-center mt-1">
               {{ partial "icon.html" (dict "style" "regular" "name" "calendar" "class" "mr-2") }}
-              <span>{{ dateFormat "Jan 2, 2006" .Date }}</span>
+              <span>{{ .Date.Format "January 2, 2006" }}</span>
           </div>
           <div class="flex items-center mt-1">
               {{ partial "icon.html" (dict "style" "regular" "name" "clock" "class" "mr-2") }}

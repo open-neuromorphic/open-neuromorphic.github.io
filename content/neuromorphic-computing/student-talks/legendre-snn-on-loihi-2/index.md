@@ -3,12 +3,9 @@ title: "Legendre-SNN on Loihi-2"
 author:
 - "Ramashish Gaurav"
 date: 2024-12-20
-start_time: 18:00
-end_time: 19:30
-time_zone: CET
 description: "Join us for a talk by Ramashish Gaurav, PhD student at Virginia Tech."
 upcoming: false
-video: A1egFLRw12c
+video: GE2GefISrME
 speaker_photo: ramashish.jpg
 image: poster.png
 type: "student-talks"

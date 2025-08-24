@@ -6,9 +6,6 @@ author:
 - Gregor Lenz
 - Cameron Barker
 date: 2023-09-26
-start_time: 18:00
-end_time: 19:30
-time_zone: CET
 description: Delve into the world of visual attention mechanisms with Giulia D'Angelo as she explores the interplay of bottom-up and top-down processes, offering insights into bio-inspired models for enhanced robotic perception and interaction.
 video: vwT_3bNNStg
 image: open-neuromorphic-thumbnail-giulia.png

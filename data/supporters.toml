@@ -1,0 +1,69 @@
+# Supporters of Open Neuromorphic
+# This file manages the list of projects and organizations that support our mission,
+# organized into tiers: Platinum, Gold, and Foundational.
+
+# [[platinum]]
+# name = "Platinum Supporter"
+# logo = "logo.png" # Path within the supporter's content bundle or static/images
+# page_path = "path/to/supporter/page/" # Optional link to a page on this site
+# website = "https://supporter.com" # External website link for the card
+# dark_logo_invert = false
+
+# [[gold]]
+# name = "Gold Supporter"
+# logo = "logo.png"
+# page_path = "path/to/supporter/page/"
+# website = "https://supporter.com"
+# dark_logo_invert = false
+
+
+# The Foundational Collaboration Network consists of open-source projects that
+# are integral to the neuromorphic ecosystem.
+[[foundational]]
+name = "AEStream"
+logo = "aestream.png"
+page_path = "neuromorphic-computing/software/data-tools/aestream/"
+dark_logo_invert = false
+
+[[foundational]]
+name = "BindsNET"
+logo = "bindsnet.jpg"
+page_path = "neuromorphic-computing/software/snn-frameworks/bindsnet/"
+dark_logo_invert = false
+
+[[foundational]]
+name = "Brian"
+logo = "brian.jpg"
+page_path = "neuromorphic-computing/software/snn-frameworks/brian/"
+dark_logo_invert = false
+
+[[foundational]]
+name = "Faery"
+logo = "faery.png" # No official logo found
+page_path = "neuromorphic-computing/software/data-tools/faery/"
+dark_logo_invert = false
+
+[[foundational]]
+name = "GeNN"
+logo = "genn.png" # No logo provided in the software page
+page_path = "neuromorphic-computing/software/snn-frameworks/genn/"
+dark_logo_invert = true
+
+[[foundational]]
+name = "Neuromorphic Intermediate Representation (NIR)"
+logo = "nir-logo.png"
+page_path = "neuromorphic-computing/software/data-tools/neuromorphic-intermediate-representation/"
+dark_logo_invert = false
+hero_display = { name = "NIRTorch", page_path = "neuromorphic-computing/software/snn-frameworks/nirtorch/" }
+
+[[foundational]]
+name = "snnTorch"
+logo = "snntorch.png"
+page_path = "neuromorphic-computing/software/snn-frameworks/snntorch/"
+dark_logo_invert = false
+
+[[foundational]]
+name = "Sottosoglia Podcast"
+logo = "sottosoglia-logo.png"
+page_path = "neuromorphic-computing/community-resources/sottosoglia-podcast/"
+dark_logo_invert = false

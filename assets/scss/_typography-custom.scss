@@ -1,12 +1,24 @@
 // assets/scss/_typography-custom.scss
+// assets/scss/_typography-custom.scss
+
+// Define link colors as variables
+$link-color: var(--color-primary-new);
+$link-hover-color: var(--color-secondary-new);
+$link-underline-color: color-mix(in srgb, var(--color-primary-new) 40%, transparent);
+$link-underline-hover-color: var(--color-secondary-new);
+
+$dark-link-color: var(--color-darkmode-primary);
+$dark-link-hover-color: #ffffff;
+$dark-link-underline-color: color-mix(in srgb, var(--color-darkmode-primary) 50%, transparent);
+$dark-link-underline-hover-color: #ffffff;
 
 // Gradient text class
 .gradient-text {
-    background: linear-gradient(135deg, var(--color-primary-new) 0%, var(--color-secondary-new) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent !important;
+  background: linear-gradient(135deg, var(--color-primary-new) 0%, var(--color-secondary-new) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent !important;
 }
 
 // Specific overrides for header navigation links if Tailwind classes aren't enough
@@ -111,14 +123,39 @@ a {
   overflow-wrap: break-word;
 }
 
+// REFACTORED: Centralized Link Styling
+.styled-link,
+.byline-link,
 .content :is(:where(a):not(:where([class~="not-prose"], [class~="not-prose"] *, .btn))),
-section a:not(.breadcrumb-link-parent, .social-link-container, .btn, .hardware-card-wide-link, .social-icon) {
+section a:not(.breadcrumb-link-parent, .social-link-container, .btn, .hardware-card-wide-link, .social-icon, .no-style),
+section a.social-link-container .social-link-text,
+.breadcrumb-link-text,
+.author-card-compact h4 a,
+.hardware-card-wide-link h3 {
   font-weight: inherit;
   color: inherit !important;
-  @include styled-link(#d7c7e3, #200435, #288b8c, #bcfbff);
-  &.social-link-container { text-decoration-line: none !important; }
+  text-decoration-line: underline !important;
+  text-decoration-thickness: 0.1em !important;
+  text-underline-offset: 3px !important;
+  transition: all 0.2s ease-in-out;
+  text-decoration-color: $link-underline-color !important;
+
+  &:hover {
+    text-decoration-color: $link-underline-hover-color !important;
+  }
+
+  .dark & {
+    text-decoration-color: $dark-link-underline-color !important;
+    &:hover {
+      text-decoration-color: $dark-link-underline-hover-color !important;
+    }
+  }
 }
 
+// Container for hardware card link, which contains the h3 we want styled
+.hardware-card-wide-link {
+  text-decoration: none !important;
+}
 
 h1 a, h2 a, h3 a, h4 a, h5 a {
   text-decoration: none !important;
@@ -133,19 +170,6 @@ h1 a, h2 a, h3 a, h4 a, h5 a {
   figcaption {
     color: #FFF;
   }
-
-.dark .content :is(:where(a):not(:where([class~="not-prose"], [class~="btn"], [class~="not-prose"] *))),
-.dark section a:not(.breadcrumb-link-parent, .social-link-container, .btn, .hardware-card-wide-link, .social-icon) {
-    color: inherit !important;
-}
-
-// --- Social Link Text (within a container) ---
-section a.social-link-container .social-link-text {
-    @include styled-link(#d7c7e3, #200435, #288b8c, #bcfbff);
-}
-.dark section a.social-link-container {
-    color: #bcfbff !important;
-}
 
   h1 a, h2 a, h3 a, h4 a, h5 a {
     color: #ffffff !important;
@@ -162,14 +186,9 @@ section a.social-link-container .social-link-text {
     color: #000 !important;
   }
 
-// --- Author Card Compact Links ---
-.author-card-compact h4 a {
-  @include styled-link(#d7c7e3, #200435, #288b8c, #bcfbff);
-  color: #200435 !important;
-  .dark & {
+  .author-card-compact h4 a {
     color: #bcfbff !important;
   }
-}
 
   .role-compact {
     @apply text-sm text-text dark:text-darkmode-text mt-1;
@@ -194,9 +213,6 @@ section a.social-link-container .social-link-text {
 // --- Breadcrumb Links ---
 a.breadcrumb-link-parent {
   text-decoration-line: none !important;
-}
-.breadcrumb-link-text {
-   @include styled-link(#d7c7e3, #200435, #288b8c, #bcfbff);
 }
 
 .image-attribution-caption {

@@ -4,9 +4,6 @@ author:
 - "Maxence Ernoult"
 - "Gregor Lenz"
 date: 2024-03-05
-start_time: 18:00
-end_time: 19:30
-time_zone: CET
 description: "Join us for a talk by Maxence Ernoult, Research Scientist at Rain, on accelerating inference and training at the edge."
 upcoming: false
 video: _Jyhu97HiP4

@@ -7,9 +7,6 @@ website: https://ml-genn.readthedocs.io/en/latest/
 dependencies: GeNN
 field_of_application: Machine learning
 source_code: https://github.com/genn-team/ml_genn
-stars_widget_url: https://img.shields.io/github/stars/genn-team/ml_genn.svg?style=social
-stars: 24
-version_widget_url: https://img.shields.io/github/release/genn-team/ml_genn.svg?label=github%20release
 license: LGPL-2.1
 supports_hardware: False
 supports_NIR: False
@@ -17,6 +14,8 @@ language: Python
 maintainer: James Knight
 draft: false
 ---
+
+
 
 ## Overview
 **mlGeNN** is a library for machine learning with Spiking Neural Networks (SNNs), built on the efficient foundation of the GeNN simulator. 

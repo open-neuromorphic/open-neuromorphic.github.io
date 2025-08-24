@@ -5,9 +5,6 @@ author:
 - "Petruț Bogdan"
 - "Jens E. Pedersen"
 date: 2024-10-08
-start_time: "18:00"
-end_time: "19:47" # 1h 46m 48s duration
-time_zone: "CET"
 description: "Alexandre Marcireau and Petruț Bogdan discuss the Faery library's integration and interaction with Innatera hardware and the Neuromorphic Intermediate Representation (NIR)."
 upcoming: false
 video: "1Jz3cj2y1k0"
@@ -15,6 +12,8 @@ speaker_photo: "images/speakers/multi-speaker-placeholder.png" # Placeholder, pl
 image: "faery-innatera-nir-hacking.jpg" # Placeholder, please create
 type: "hacking-hours"
 speaker_bio: "Alexandre Marcireau (International Center for Neuromorphic Systems, Western Sydney) and Petruț Bogdan (Innatera) are software developers active in the neuromorphic community, contributing to tools like Faery and exploring hardware-software co-design with platforms like Innatera and standards like NIR."
+software_tags: ["nengo", "aestream", "norse", "spyx", "faery", "neuromorphic-intermediate-representation", "nirtorch"]
+hardware_tags: ["pulsar-by-innatera","snp-by-innatera"]
 ---
 
 This Hacking Hour session features Alexandre Marcireau and Petruț Bogdan, hosted by Jens E. Pedersen. The discussion centers around the Faery event processing library, its application with Innatera's neuromorphic hardware, and its compatibility with the Neuromorphic Intermediate Representation (NIR) for broader interoperability.

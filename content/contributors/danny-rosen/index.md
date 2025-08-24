@@ -6,6 +6,9 @@ social:
   - icon: "fa-brands fa-linkedin"
     link: "https://www.linkedin.com/in/danny-rosen-67ba51162"
     title: "linkedin"
+  - icon: "fa-solid fa-graduation-cap"
+    link: "https://scholar.google.com/citations?user=2IzkE5QAAAAJ&hl=en"
+    title: "scholar"
 draft: false
 ---
 

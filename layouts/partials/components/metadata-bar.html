@@ -1,35 +1,70 @@
 {{ $ctx := .context | default . }}
 {{ $type := .type | default "general" }}
-<ul class="mb-4">
-  {{ if $ctx.Params.author }}
-  <li class="mr-4 inline-block">
-    {{ partial "icon.html" (dict "style" "regular" "name" "circle-user" "class" "mr-2") }}
-    {{ if eq $type "event" }}
-      {{ partial "components/author-links.html" $ctx }}
-    {{ else }}
-      {{ partial "components/author-links.html" $ctx }}
+
+{{ $hasInfo := or $ctx.Params.author $ctx.Date }}
+{{ $hasButtons := false }}
+{{ if eq $type "event" }}
+{{ $hasButtons = or $ctx.Params.speaker_slides $ctx.Params.speaker_notebook $ctx.Params.speaker_code $ctx.Params.speaker_paper $ctx.Params.video $ctx.Params.upcoming }}
+{{ end }}
+
+{{ if or $hasInfo $hasButtons }}
+<div class="metadata-container flex flex-wrap items-center justify-between gap-x-6 gap-y-3 mb-6 py-0">
+
+  <!-- Left side: Info (Author, Date) -->
+  <div class="info-items flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-gray-600 dark:text-gray-400">
+
+    {{ if $ctx.Params.author }}
+    <div class="author-item flex items-center">
+      {{ partial "icon.html" (dict "style" "regular" "name" "circle-user" "class" "mr-2") }}
+      <span>By {{ partial "components/author-links.html" $ctx }}</span>
+    </div>
     {{ end }}
-  </li>
-  {{ end }}
-  {{ if $ctx.Date }}
-  <li class="mr-4 inline-block">
-    {{ partial "icon.html" (dict "style" "regular" "name" "clock" "class" "mr-2") }}
-    {{ $ctx.Date.Format (site.Params.dateFormatSingle | default "January 2, 2006") }}
-    {{ if eq $type "event" }}
-      {{ if $ctx.Params.start_time }}
-        {{ $ctx.Params.start_time }}{{ if $ctx.Params.end_time }} - {{ $ctx.Params.end_time }}{{ end }} {{ $ctx.Params.time_zone }}
+
+    {{ if $ctx.Date }}
+    <div class="date-item flex items-center">
+      {{ partial "icon.html" (dict "style" "regular" "name" "calendar" "class" "mr-2") }}
+      <span>
+        {{- $ctx.Date.Format (site.Params.dateFormatSingle | default "January 2, 2006") -}}
+
+        {{- /* Show time for UPCOMING events */ -}}
+        {{- if and $ctx.Params.upcoming $ctx.Params.start_time -}}
+          <span class="mx-1 text-gray-400">·</span>
+          {{- $ctx.Params.start_time }}{{ if $ctx.Params.end_time }} - {{ $ctx.Params.end_time }}{{ end }} {{ $ctx.Params.time_zone -}}
+        {{- end -}}
+
+        {{- /* Show 'Updated' for non-events (like blog posts) */ -}}
+        {{- if and (ne $type "event") (ne $ctx.Lastmod $ctx.Date) -}}
+          <span class="italic text-gray-500 ml-2">(Updated {{ $ctx.Lastmod.Format (site.Params.dateFormatSingle | default "January 2, 2006") }})</span>
+        {{- end -}}
+      </span>
+    </div>
+    {{ end }}
+
+  </div>
+
+  <!-- Right side: Action Buttons -->
+  {{ if $hasButtons }}
+  <div class="action-buttons flex flex-wrap gap-2">
+    {{ with $ctx.Params.speaker_slides }}<a href="{{ . }}" target="_blank" rel="noopener" class="btn btn-sm btn-outline-primary">{{ partial "icon.html" (dict "style" "regular" "name" "images" "class" "mr-1.5") }}Slides</a>{{ end }}
+    {{ with $ctx.Params.speaker_notebook }}<a href="{{ . }}" target="_blank" rel="noopener" class="btn btn-sm btn-outline-primary">{{ partial "icon.html" (dict "style" "regular" "name" "folder" "class" "mr-1.5") }}Notebook</a>{{ end }}
+    {{ with $ctx.Params.speaker_code }}<a href="{{ . }}" target="_blank" rel="noopener" class="btn btn-sm btn-outline-primary">{{ partial "icon.html" (dict "style" "brands" "name" "github" "class" "mr-1.5") }}Code</a>{{ end }}
+    {{ with $ctx.Params.speaker_paper }}
+    <a href="{{ . }}" target="_blank" rel="noopener" class="btn btn-sm btn-outline-primary">
+      {{ partial "icon.html" (dict "style" "regular" "name" "file-lines" "class" "mr-1.5") }}Paper
+      {{ with $ctx.Params.paper_license }}
+      <span class="ml-1.5 text-xs opacity-75">({{ . }})</span>
       {{ end }}
-    {{ else if ne $ctx.Params.Lastmod $ctx.Params.Date }}
-      (Updated {{ $ctx.Params.Lastmod.Format (site.Params.dateFormatSingle | default "January 2, 2006") }})
+    </a>
     {{ end }}
-  </li>
+
+    {{ if $ctx.Params.upcoming }}
+    {{ $event_url := $ctx.Params.upcoming_url | default "https://www.youtube.com/@openneuromorphic" }}
+    <a href="{{ $event_url }}" target="_blank" rel="noopener" class="btn btn-sm btn-new-primary">{{ partial "icon.html" (dict "style" "regular" "name" "calendar" "class" "mr-1.5") }}Event Link</a>
+    {{ else if $ctx.Params.video }}
+    <a href="https://www.youtube.com/watch?v={{ $ctx.Params.video }}" target="_blank" rel="noopener" class="btn btn-sm btn-new-primary">{{ partial "icon.html" (dict "style" "brands" "name" "youtube" "class" "mr-1.5") }}Watch on YouTube</a>
+    {{ end }}
+  </div>
   {{ end }}
-  {{ if eq $type "event" }}
-  <li class="mr-4 inline-block">
-    {{ $slides := $ctx.Params.speaker_slides }}{{ if $slides }}<a href="{{ $slides }}" target="_blank" class="ms-1 btn btn-new-primary btn-sm">{{ partial "icon.html" (dict "style" "regular" "name" "images" "class" "mr-2") }}Slides</a>{{ end }}
-    {{ $notebook := $ctx.Params.speaker_notebook }}{{ if $notebook }}<a href="{{ $notebook }}" target="_blank" class="ms-1 btn btn-new-primary btn-sm">{{ partial "icon.html" (dict "style" "regular" "name" "folder" "class" "mr-2") }}Notebook</a>{{ end }}
-    {{ $code := $ctx.Params.speaker_code }}{{ if $code }}<a href="{{ $code }}" target="_blank" class="ms-1 btn btn-new-primary btn-sm">{{ partial "icon.html" (dict "style" "brands" "name" "github" "class" "mr-2") }}Code</a>{{ end }}
-    {{ if $ctx.Params.upcoming }}{{ if $ctx.Params.upcoming_url }}<a href="{{ $ctx.Params.upcoming_url }}" target="_blank" class="ms-1 btn btn-new-primary btn-sm">{{ partial "icon.html" (dict "style" "regular" "name" "calendar" "class" "mr-2") }}Event</a>{{ else }}<a href="https://www.youtube.com/@openneuromorphic" target="_blank" class="ms-1 btn btn-new-primary btn-sm">{{ partial "icon.html" (dict "style" "brands" "name" "youtube" "class" "mr-2") }}Event</a>{{ end }}{{ end }}
-  </li>
-  {{ end }}
-</ul>
+
+</div>
+{{ end }}

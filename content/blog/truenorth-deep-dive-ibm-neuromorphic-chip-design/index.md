@@ -9,18 +9,19 @@ author:
 tags: ["research", "hardware", "digital", "neuromorphic"]
 showTableOfContents: true
 math: true
+hardware_tags: ["truenorth-ibm"]
 show_author_bios: true
 ---
 
 ## Why do we want to emulate the brain?
 
-If you have ever read an article on neuromorphic computing, you might have noticed that in the introduction of each of these there is the same statement: "The brain is much powerful than any AI machine when it comes to cognitive tasks but it runs on a **10W** power budget!". This is absolutely true: neurons in the brain communicate among each other by means of **spikes**, which are short voltage pulses that propagate from one neuron to the other. The average spiking activity is estimated to be around **10Hz** (i.e. a spike every 100ms). This yields **very low processing power consumption**, since the activity in the brain results to be **really sparse** (at least, this is the hypothesis).
+If you have ever read an article on [neuromorphic computing](/neuromorphic-computing/), you might have noticed that in the introduction of each of these there is the same statement: "The brain is much powerful than any AI machine when it comes to cognitive tasks but it runs on a **10W** power budget!". This is absolutely true: neurons in the brain communicate among each other by means of **spikes**, which are short voltage pulses that propagate from one neuron to the other. The average spiking activity is estimated to be around **10Hz** (i.e. a spike every 100ms). This yields **very low processing power consumption**, since the activity in the brain results to be **really sparse** (at least, this is the hypothesis).
 
 How can the brain do all this? There are several reasons (or hypotheses, I should say):
 * the **3D connectivity** among neurons. While in nowadays chip we can place connections among logic gates and circuits only in the 2D space, in the brain we have the whole 3D space at our disposal; this allows the mammalian brain to reach a fanout in the order or **10 thousand connections** per neuron.
 * **extremely low power operation**. Trough thousands of years of evolution, the most power efficient "brain implementation" has won, since the ones that consume less energy to live are the ones that turn out to survive when there is no food (not entirely correct but I hope that true scientists won't kill me). The power density in the brain is estimated to be **10mW per squared centimeter**, while in a modern digital processor we easily reach **100W per squared centimeter**.
 
-Hence, IBM decide to try to emulate the brain with **TrueNorth**, a **4096 cores** chip packing **1 million neurons** and **256 million synapses**. Let's dive into its design!
+Hence, IBM decide to try to emulate the brain with **[TrueNorth](/neuromorphic-computing/hardware/truenorth-ibm/)**, a **4096 cores** chip packing **1 million neurons** and **256 million synapses**. Let's dive into its design!
 
 ## Introduction
 
@@ -42,7 +43,7 @@ zoomable="false"
 
 In general, in a GALS architecture, there is an array of processing elements (PEs) which are synchronised through a global clock. The local clocks in the PEs can be different for each of them, since each PE may be running at a different speed. When two different **clock domains** have to be interfaced, the communication among them is effectively asynchronous: **handshake** protocols have to be implement among these in order to guarantee proper global operation.
 
-In TrueNorth, as in [SpiNNaker](http://apt.cs.manchester.ac.uk/projects/SpiNNaker/SpiNNchip/), there is no global clock: the PEs, which are **neurosynaptic cores**, are interconnected through a **completely asynchronous network**. In this way, the chip operations is event-driven, since the network gets activated only when there are spikes (and other kind of events) to be transmitted.
+In TrueNorth, as in [SpiNNaker](/neuromorphic-computing/hardware/spinnaker-2-university-of-dresden/), there is no global clock: the PEs, which are **neurosynaptic cores**, are interconnected through a **completely asynchronous network**. In this way, the chip operations is event-driven, since the network gets activated only when there are spikes (and other kind of events) to be transmitted.
 
 ### Low power operation
 
@@ -202,7 +203,7 @@ There are some additional blocks, such as the Pseudo Random Number Generator (PR
 
 ### Neuron model
 
-Let's get to the equations now! The neuron model employed in TrueNorth is the **Leaky Integrate and Fire** (LIF) one. The update equation is the following:
+Let's get to the equations now! The neuron model employed in TrueNorth is the **[Leaky Integrate and Fire](/blog/spiking-neurons-digital-hardware-implementation/)** (LIF) one. The update equation is the following:
 
 {{< math >}}
 V_{j}[t] = V_{j}[t-1] + \sum_{i=0}^{255} A_{i}[t] \cdot w_{i,j} \cdot s_{j}^{G_{i}} - \lambda_{j}

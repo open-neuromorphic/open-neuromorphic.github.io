@@ -14,7 +14,6 @@ PROJECT_ROOT = Path(".").resolve()  # Get absolute path of current dir
 # Output files (relative to PROJECT_ROOT, placed in tmp/)
 TMP_DIR = PROJECT_ROOT / "tmp"
 FULL_OUTPUT_FILE = TMP_DIR / "output_full.txt"
-DIFF_OUTPUT_FILE = TMP_DIR / "output_diff.txt"
 LAYOUTS_OUTPUT_FILE = TMP_DIR / "output_layouts.txt"
 
 # Files/Directories to EXCLUDE (relative to PROJECT_ROOT)
@@ -42,7 +41,6 @@ EXCLUDED_FILES_PATTERNS = [
     "hugo_stats.json",
     ".hugo_build.lock",
     str(FULL_OUTPUT_FILE.name),
-    str(DIFF_OUTPUT_FILE.name),
     str(LAYOUTS_OUTPUT_FILE.name),
     "*.pyc",
     "*~", # Backup files
@@ -110,18 +108,15 @@ def should_include(filename: str) -> bool:
             return True
     return False
 
-def find_relevant_files(root: Path, checkpoint_mtime: float | None = None, mode: str = "full", with_public_html: bool = False) -> list[Path]:
+def find_relevant_files(root: Path, mode: str = "full", with_public_html: bool = False) -> list[Path]:
     """
     Walks the directory tree, applying include/exclude rules.
-    If checkpoint_mtime is provided, only includes files newer than it.
     If mode is "layouts", filters for files within "layouts" directories.
     If with_public_html is True and mode is "full", also includes HTML files from ./public.
     """
     initial_candidates = set() # Use a set to handle potential overlaps gracefully
 
     log(f"Scanning directory: {root} for mode '{mode}' (main scan)")
-    if checkpoint_mtime:
-        log(f"Filtering for files newer than: {datetime.fromtimestamp(checkpoint_mtime)}")
 
     for current_dir_str, dir_names, file_names in os.walk(root, topdown=True):
         current_path = Path(current_dir_str)
@@ -138,13 +133,6 @@ def find_relevant_files(root: Path, checkpoint_mtime: float | None = None, mode:
             if not should_include(filename):
                 continue
 
-            if checkpoint_mtime:
-                try:
-                    if file_path.stat().st_mtime <= checkpoint_mtime:
-                        continue
-                except OSError as e:
-                    log(f"Warning: Could not stat file {file_path}: {e}. Skipping.")
-                    continue
             initial_candidates.add(file_path.resolve()) # Store absolute paths
 
     log(f"Found {len(initial_candidates)} candidate files from main scan.")
@@ -158,15 +146,6 @@ def find_relevant_files(root: Path, checkpoint_mtime: float | None = None, mode:
             for item in public_dir.rglob('*.html'): # rglob for recursive search
                 if item.is_file():
                     public_file_path = item.resolve() # Ensure absolute path
-                    # Apply mtime filter for public HTML files too, if diff mode were to use this
-                    if checkpoint_mtime:
-                        try:
-                            if public_file_path.stat().st_mtime <= checkpoint_mtime:
-                                continue
-                        except OSError as e:
-                            log(f"Warning: Could not stat file {public_file_path}: {e}. Skipping.")
-                            continue
-
                     if public_file_path not in initial_candidates: # Add if not already picked up
                         initial_candidates.add(public_file_path)
                         public_html_added_count +=1
@@ -194,40 +173,22 @@ def find_relevant_files(root: Path, checkpoint_mtime: float | None = None, mode:
     return final_relevant_files_list
 
 
-def generate_header(mode: str, checkpoint_file: Path | None = None, with_public_html: bool = False) -> str:
+def generate_header(mode: str, with_public_html: bool = False) -> str:
     """Generates the header content for the output file."""
     common_instructions = """
 **Instructions for AI:**
 1.  **Analyze Structure:** Understand the Hugo project layout (config, content, layouts, assets, static structure).
-2.  **Focus on Code/Config:** Pay close attention to Hugo templates (.html), SCSS (.scss), JavaScript (.js), configuration files (.toml, .yaml, .json), Go module files (go.mod, go.sum), and Node config (package.json).
-3.  **Understand Content:** Review markdown content files (.md) for site text and structure.
-4.  **Identify Customizations:** Note custom logic in layouts, partials, shortcodes, SCSS, and JS compared to standard Hugo/theme practices.
-5.  **Note Dependencies:** Identify key dependencies from go.mod/go.sum and package.json.
-6.  **Image Files:** Files ending with common image extensions (e.g., .png, .jpg, .svg, .gif, .webp, .ico) are listed with their paths (e.g., '=== IMAGE FILE: path/to/image.ext ===') but their binary content is NOT included.
-7.  **Ignore Irrelevant Data:** Skip over binary data representations or verbose dependency code if accidentally included. Focus on the content provided below.
-8.  **Primary Goal:** Use this information to answer questions about the website's implementation, structure, features, styling, configuration, and potential areas for improvement or troubleshooting.
-9.  Provide Code with focus toward with minimal commenting
-10. dont include {{{{/* comments */}}}}, every time it confuses hugo and causes errors
-11. If we are copying or moving files, provide the bash command to accomplish this
-12. We don't need to make backups of files before big edits - there is sufficient rollback capability in dev environment
+2.  **Primary Goal:** Use this information to answer questions about the website's implementation, structure, features, styling, configuration, and potential areas for improvement or troubleshooting.
+3.  Provide Code with focus toward with minimal commenting
+4. dont include {{{{/* comments */}}}}, every time it confuses hugo and causes errors
+5. If we are copying or moving files, provide the bash command to accomplish this
+6. We don't need to make backups of files before big edits - there is sufficient rollback capability in dev environment
+7. If a solution is found for a particularly difficult issue, suggest updates to these instructions (generate_context.py)
+8. If code contains a code block, special handling may be required as the ``` often break the codeblock implementation
+9. Format code changes in a way that is most simple for an LLM (gemini, copilot) to integrate - this could be one single code block. It is not necessary to provide human instructions that highlight the specific lines being updated.
+10. indicate which file it is to be updated, outside of the file codeblock
 """
-    if mode == "diff":
-        checkpoint_ts_str = "ERROR: Checkpoint file missing!"
-        if checkpoint_file and checkpoint_file.exists():
-            checkpoint_mtime = checkpoint_file.stat().st_mtime
-            checkpoint_ts = datetime.fromtimestamp(checkpoint_mtime)
-            checkpoint_ts_str = checkpoint_ts.strftime('%Y-%m-%d %H:%M:%S %Z')
-
-        return f"""--- START OF PROJECT CONTEXT UPDATE  ---
-
-This file contains ONLY the content of key files that have been MODIFIED since the last full context checkpoint was generated. Image files are listed by path only.
-
-**Checkpoint File:** {checkpoint_file.relative_to(PROJECT_ROOT) if checkpoint_file else 'N/A'}
-**Checkpoint Timestamp:** {checkpoint_ts_str}
-{common_instructions.replace("1.  Analyze Structure...", "1.  **Apply Updates:** Use the content below to update your understanding of the project based on the changes since the checkpoint timestamp. Prioritize this information when it conflicts with previous context from the full checkpoint. Remember this is NOT the full project, only the changed files. Refer back to the full checkpoint if needed for unchanged files or broader structure.")}
---- MODIFIED FILE CONTENTS START ---
-"""
-    elif mode == "layouts":
+    if mode == "layouts":
         return f"""--- START OF PROJECT CONTEXT (Layouts Only) ---
 
 This file contains the content of files found within all 'layouts' directories in the project. Image files are listed by path only.
@@ -254,17 +215,14 @@ This file contains the content of key configuration, source code, layout, and co
 
 def generate_footer(mode: str) -> str:
     """Generates the footer content."""
-    if mode == "diff":
-        return "\n--- END OF PROJECT CONTEXT UPDATE ---"
-    elif mode == "layouts":
+    if mode == "layouts":
         return "\n--- END OF PROJECT LAYOUTS CONTEXT ---"
     else: # mode == "full"
         return "\n--- END OF PROJECT CONTEXT ---"
 
-def create_context_file(mode: str, with_public_html: bool):
+def generate_context(mode: str, with_public_html: bool):
     """Main function to generate the context file based on the mode."""
     log(f"Project Root: {PROJECT_ROOT}")
-    checkpoint_mtime = None
     target_output_file = None
 
     if mode == "full":
@@ -272,19 +230,6 @@ def create_context_file(mode: str, with_public_html: bool):
         log(f"Mode: Generating FULL context checkpoint -> {target_output_file.relative_to(PROJECT_ROOT)}")
         if with_public_html:
             log("Including HTML files from 'public' directory.")
-    elif mode == "diff":
-        target_output_file = DIFF_OUTPUT_FILE
-        log(f"Mode: Generating DIFF context based on {FULL_OUTPUT_FILE.relative_to(PROJECT_ROOT)} -> {target_output_file.relative_to(PROJECT_ROOT)}")
-        if not FULL_OUTPUT_FILE.exists():
-            log(f"Error: Checkpoint file '{FULL_OUTPUT_FILE}' not found. Please run with --full first.")
-            sys.exit(1)
-        try:
-            checkpoint_mtime = FULL_OUTPUT_FILE.stat().st_mtime
-        except OSError as e:
-             log(f"Error: Could not read checkpoint file timestamp {FULL_OUTPUT_FILE}: {e}")
-             sys.exit(1)
-        if with_public_html:
-            log("Note: --with-public-html is typically used with --full. For --diff, it will include public HTML files modified since the checkpoint if any.")
     elif mode == "layouts":
         target_output_file = LAYOUTS_OUTPUT_FILE
         log(f"Mode: Generating LAYOUTS context -> {target_output_file.relative_to(PROJECT_ROOT)}")
@@ -300,10 +245,10 @@ def create_context_file(mode: str, with_public_html: bool):
         log(f"Error: Could not create output directory {TMP_DIR}: {e}")
         sys.exit(1)
 
-    files_to_process = find_relevant_files(PROJECT_ROOT, checkpoint_mtime, mode=mode, with_public_html=with_public_html)
+    files_to_process = find_relevant_files(PROJECT_ROOT, mode=mode, with_public_html=with_public_html)
 
     log(f"Generating context file: {target_output_file.relative_to(PROJECT_ROOT)}")
-    header = generate_header(mode, FULL_OUTPUT_FILE if mode == "diff" else None, with_public_html if mode == "full" else False)
+    header = generate_header(mode, with_public_html if mode == "full" else False)
     footer = generate_footer(mode)
 
     try:
@@ -346,37 +291,29 @@ def create_context_file(mode: str, with_public_html: bool):
 def main():
     """Parses command line arguments and runs the script."""
     parser = argparse.ArgumentParser(
-        description="Generate a context file with project source code for AI analysis.",
+        description="Generate a context file with project source code for AI analysis. Defaults to '--full' if no mode is specified.",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=f"""
 Examples:
-  Generate a full context checkpoint:
+  Generate a full context checkpoint (default action):
+    {sys.argv[0]}
     {sys.argv[0]} --full
 
-  Generate a full context checkpoint and include HTML files from the 'public' directory:
+  Generate a full context and include HTML files from the 'public' directory:
     {sys.argv[0]} --full --with-public-html
-
-  Generate a context file with changes since the last full checkpoint:
-    {sys.argv[0]} --diff
 
   Generate a context file with only content from 'layouts' directories:
     {sys.argv[0]} --layouts
 """
     )
-    group = parser.add_mutually_exclusive_group(required=True)
+    # If no mode flag is given, args.mode will be None, and we'll default to 'full'.
+    group = parser.add_mutually_exclusive_group(required=False)
     group.add_argument(
         "-f", "--full",
         action="store_const",
         const="full",
         dest="mode",
         help=f"Generate the full project context checkpoint ({FULL_OUTPUT_FILE.relative_to(PROJECT_ROOT)})."
-    )
-    group.add_argument(
-        "-d", "--diff",
-        action="store_const",
-        const="diff",
-        dest="mode",
-        help=f"Generate context with files modified since the last full checkpoint ({DIFF_OUTPUT_FILE.relative_to(PROJECT_ROOT)})."
     )
     group.add_argument(
         "-l", "--layouts",
@@ -392,7 +329,11 @@ Examples:
     )
 
     args = parser.parse_args()
-    create_context_file(args.mode, args.with_public_html)
+
+    # Default to 'full' mode if no other mode is selected
+    mode = args.mode or "full"
+
+    generate_context(mode, args.with_public_html)
 
 if __name__ == "__main__":
     main()

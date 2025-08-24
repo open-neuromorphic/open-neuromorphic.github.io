@@ -1,7 +1,6 @@
 {{ define "main" }}
 {{ partial "page-header" . }}
 
-
 <section class="section pt-6 mt-0 pb-16">
   <div class="container">
 
@@ -40,13 +39,7 @@
     {{/* --- New Modern Recent Events Sections --- */}}
     {{/* Recent Workshops Section */}}
     {{ $workshops_all := where site.RegularPages "Section" "workshops" }}
-    {{ $workshops_past_valid_date := slice }}
-    {{ range $workshops_all }}
-      {{ if and (ne .Params.upcoming true) (.Date) (not .Date.IsZero) }}
-        {{ $workshops_past_valid_date = $workshops_past_valid_date | append . }}
-      {{ end }}
-    {{ end }}
-    {{ $workshops_sorted := sort $workshops_past_valid_date "Date" "desc" }}
+    {{ $workshops_sorted := partial "logic/get_past_events.html" $workshops_all }}
     {{ partial "custom/modern-recent-events-section.html" (dict
         "section_title" "Workshops"
         "section_subtitle" "Catch up on our latest expert-led sessions and community discussions."
@@ -59,13 +52,7 @@
 
     {{/* Recent Hacking Hours Section */}}
     {{ $hacking_hours_all := where site.RegularPages "Type" "hacking-hours" }}
-    {{ $hacking_hours_past_valid_date := slice }}
-    {{ range $hacking_hours_all }}
-      {{ if and (ne .Params.upcoming true) (.Date) (not .Date.IsZero) }}
-        {{ $hacking_hours_past_valid_date = $hacking_hours_past_valid_date | append . }}
-      {{ end }}
-    {{ end }}
-    {{ $hacking_hours_sorted := sort $hacking_hours_past_valid_date "Date" "desc" }}
+    {{ $hacking_hours_sorted := partial "logic/get_past_events.html" $hacking_hours_all }}
     {{ partial "custom/modern-recent-events-section.html" (dict
         "section_title" "Hacking Hours"
         "section_subtitle" "Review our latest live coding explorations into neuromorphic software and tools."
@@ -78,13 +65,7 @@
 
     {{/* Recent Student Talks Section */}}
     {{ $student_talks_all := where site.RegularPages "Type" "student-talks" }}
-    {{ $student_talks_past_valid_date := slice }}
-    {{ range $student_talks_all }}
-      {{ if and (ne .Params.upcoming true) (.Date) (not .Date.IsZero) }}
-        {{ $student_talks_past_valid_date = $student_talks_past_valid_date | append . }}
-      {{ end }}
-    {{ end }}
-    {{ $student_talks_sorted := sort $student_talks_past_valid_date "Date" "desc" }}
+    {{ $student_talks_sorted := partial "logic/get_past_events.html" $student_talks_all }}
     {{ partial "custom/modern-recent-events-section.html" (dict
         "section_title" "Student Talks"
         "section_subtitle" "Insights from students and early-career researchers in neuromorphic computing."
@@ -115,4 +96,3 @@
   </div>
 </section>
 {{ end }}
-

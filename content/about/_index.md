@@ -39,20 +39,21 @@ ONM is dedicated to providing a comprehensive ecosystem for the neuromorphic com
 
 *   **The Neuromorphic Hub:** Our curated guides to [Neuromorphic Hardware](/neuromorphic-computing/hardware/) and [Software](/neuromorphic-computing/software/) are designed to help you navigate the landscape and find the tools and platforms you need.
 *   **Educational Content & Events:**
-    *   Engaging **[Blog Posts](/blog/)** featuring insights, tutorials, and deep dives into neuromorphic topics.
-    *   Interactive **[Workshops](/workshops/)** and **[Student Talks](/neuromorphic-computing/student-talks/)** sessions with experts from academia and industry.
-    *   Live **[Hacking Hours](/neuromorphic-computing/software/hacking-hours/)** exploring software, tackling coding challenges, and discussing the latest developments.
+  *   Engaging **[Blog Posts](/blog/)** featuring insights, tutorials, and deep dives into neuromorphic topics.
+  *   Interactive **[Workshops](/workshops/)** and **[Student Talks](/neuromorphic-computing/student-talks/)** sessions with experts from academia and industry.
+  *   Live **[Hacking Hours](/neuromorphic-computing/software/hacking-hours/)** exploring software, tackling coding challenges, and discussing the latest developments.
 *   **A Collaborative Platform:**
-    *   Our **[GitHub organization](https://github.com/open-neuromorphic)** serves as a platform for open-source neuromorphic projects. We welcome new contributions and can help migrate existing projects.
-    *   A thriving **[Discord community](https://discord.gg/hUygPUdD8E)** for discussions, Q&A, networking, and real-time collaboration.
-*   **Clear Project Focus:** We concentrate on projects and resources related to:
-    *   Spiking Neural Networks (SNNs) for training, inference, Machine Learning, and neuroscience applications.
-    *   Event-based sensor data handling and processing.
-    *   Digital and mixed-signal neuromorphic hardware designs and concepts.
+  *   Our **[GitHub organization](https://github.com/open-neuromorphic)** serves as a platform for open-source neuromorphic projects. We welcome new contributions and can help migrate existing projects.
+  *   A thriving **[Discord community](https://discord.gg/hUygPUdD8E)** for discussions, Q&A, networking, and real-time collaboration.
+*   **A Broad and Inclusive Scope:** Our community embraces the full spectrum of neuromorphic engineering. We welcome projects and discussions spanning from computational neuroscience and biologically plausible models to performance-driven machine learning and hardware co-design. Our focus is on fostering collaboration across diverse areas, including:
+  *   Spiking Neural Network (SNN) frameworks for simulation, training, and inference.
+  *   Event-based sensor technology and data processing tools.
+  *   Digital, analog, and mixed-signal neuromorphic hardware.
+  *   Efforts to improve interoperability and create a more unified open-source ecosystem.
 
 ## Our Governance: The Executive Committee
 
-As Open Neuromorphic has grown, so has the need for a structure to support our community and guide our initiatives. In 2024, we established our first **Executive Committee** to provide leadership, coordinate activities, and ensure the sustainable growth of ONM. This step formalizes our commitment to transparency and community empowerment, as outlined in our [Organisational Charter](charter/).
+As Open Neuromorphic has grown, so has the need for a structure to support our community and guide our initiatives. In 2025, we established our first **Executive Committee** to provide leadership, coordinate activities, and ensure the sustainable growth of ONM. This step formalizes our commitment to transparency and community empowerment, as outlined in our [Organisational Charter](charter/).
 
 {{< display_executive_committee >}}
 
@@ -68,5 +69,6 @@ The heart of Open Neuromorphic is its community. Whether you're looking to learn
 *   **Engage with us** on our [Discord server](https://discord.gg/hUygPUdD8E).
 *   **Contribute** to our [website and projects on GitHub](https://github.com/open-neuromorphic/open-neuromorphic.github.io).
 *   **Share your knowledge** by giving a talk, writing a blog post, or leading an initiative.
+*   **Contact us** via email at [contact@open-neuromorphic.org](mailto:contact@open-neuromorphic.org) for partnerships or direct inquiries.
 
 Discover how you can make an impact by visiting our [Getting Involved](/getting-involved/) page. We're excited to have you as part of the Open Neuromorphic journey!

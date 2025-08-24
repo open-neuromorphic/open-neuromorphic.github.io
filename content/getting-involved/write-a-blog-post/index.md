@@ -15,17 +15,15 @@ Writing a blog post is one of the best ways to share your expertise, insights, o
 
 We offer two straightforward ways to submit your blog post. Choose the one that works best for you.
 
-### Method 1: The Simple Way (Discord)
+### Method 1: The Simple Way (Recommended)
 
 This is the easiest way to contribute. You write the content, and we'll handle the rest.
 
 1.  **Write your post** in a standard format like Markdown (`.md`), a Google Doc, or a simple text file.
 2.  **Gather your images** and other assets in a folder.
 3.  **Send it to us!**
-    -   **Discord:** Send a message to **Jens E. Pedersen**, **Justin Riddiough**, or **Danny Rosen** on our [Discord server](https://discord.gg/hUygPUdD8E).
-    -   **Discord:** Send a message to `#proposals-contributions`
-
-We will review your submission, format it for the website, and work with you on any edits before publishing.
+    -   **Discord:** Send a message to **Jens E. Pedersen**, **Justin Riddiough**, or **Danny Rosen** on our [Discord server](https://discord.gg/hUygPUdD8E), or post in the `#proposals-contributions` channel.
+    -   **Email:** Send your post and assets to [contact@open-neuromorphic.org](mailto:contact@open-neuromorphic.org).
 
 ### Method 2: The GitHub Way (Pull Request)
 

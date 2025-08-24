@@ -7,7 +7,6 @@ Thumbs.db
 npm-debug.log
 node_modules
 builds
-package-lock.json
 public
 resources
 .hugo_build.lock
@@ -20,8 +19,10 @@ yarn.lock
 /tmp/ogImageData.json
 /tmp/output_full.txt
 /tmp/
+.env
 
 # Ignore generated OG images and cache files
 content/**/*-og-*.jpg
 static/images/og-image-*.jpg
 tmp/og-cache-manifest.json
+/data/github_stars.json

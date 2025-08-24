@@ -1,0 +1,34 @@
+{{- $.Scratch.Add "index" slice -}}
+{{- $searchableSections := site.Params.search.include_sections | default (slice "blog") -}}
+{{- range where site.Pages "Kind" "in" (slice "page" "section" "home") -}}
+{{- $page := . -}}
+{{- if and (ne .Params.draft true) (ne .Params.exclude_sitemap true) -}}
+{{- $isSearchable := false -}}
+{{- if .IsHome -}}
+{{- $isSearchable = true -}}
+{{- else if .File -}}
+{{- range $searchableSections -}}
+{{- if hasPrefix $page.File.Path . -}}
+{{- $isSearchable = true -}}
+{{- end -}}
+{{- end -}}
+{{- end -}}
+
+{{- if $isSearchable -}}
+{{- $pathSegments := split (strings.TrimSuffix "/" .RelPermalink) "/" -}}
+{{- $priority := len $pathSegments -}}
+{{- if .IsHome }}{{ $priority = 0 }}{{ end -}}
+{{- $.Scratch.Add "index" (dict
+"title" .Title
+"description" .Description
+"permalink" .RelPermalink
+"tags" .Params.tags
+"categories" .Params.categories
+"content" (.Plain | truncate 2000)
+"priority" $priority
+)
+-}}
+{{- end -}}
+{{- end -}}
+{{- end -}}
+{{- $.Scratch.Get "index" | jsonify -}}

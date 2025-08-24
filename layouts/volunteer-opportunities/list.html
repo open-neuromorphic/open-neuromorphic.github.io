@@ -1,0 +1,27 @@
+{{ define "main" }}
+  {{ partial "page-header" . }}
+
+  <section class="section pt-8">
+    <div class="container">
+      <div class="content lg:col-10 mx-auto mb-12">
+        {{ .Content }}
+      </div>
+
+      {{ $roles := where .Site.RegularPages "Section" "volunteer-opportunities" }}
+      {{ if $roles }}
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {{ range sort $roles "Date" "desc" }}
+            <div class="h-full">
+              {{ partial "components/help-wanted-card.html" . }}
+            </div>
+          {{ end }}
+        </div>
+      {{ else }}
+        <div class="text-center p-8 bg-theme-light dark:bg-darkmode-theme-light rounded-lg shadow-md">
+          <p class="text-lg">There are currently no open volunteer positions. Please check back later or join our Discord to get involved in discussions!</p>
+        </div>
+      {{ end }}
+
+    </div>
+  </section>
+{{ end }}

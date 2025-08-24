@@ -1,48 +1,43 @@
 {{ define "main" }}
-  {{ partial "page-header" . }}
-  <section class="section pt-6">
-    <div class="container">
-      <div class="row lg:gx-8 lg:items-stretch">
-        <div class="lg:col-8">
-          <article class="content mb-10">
-            {{ .Content }}
-          </article>
+{{ partial "page-header" . }}
+<section class="section pt-6">
+  <div class="container">
+    <div class="row lg:gx-8 lg:items-stretch">
+      <div class="lg:col-8">
+        <article class="content mb-10">
+          {{ .Content }}
+        </article>
 
-          {{ $softwareSlug := .File.Dir | path.Base }}
-          {{ $relatedContent := slice }}
-          {{ range site.RegularPages }}
-            {{ $contentPage := . }}
-            {{ with .Params.software_tags }}
-              {{ if in . $softwareSlug }}
-                {{ $relatedContent = $relatedContent | append $contentPage }}
-              {{ end }}
-            {{ end }}
-          {{ end }}
-          {{ $relatedContent = sort $relatedContent "Date" "desc" }}
-          {{ partial "software/related-events.html" $relatedContent }}
-
-          {{ partial "components/content-contribute-cta.html" (dict
-            "icon" "solid code"
-            "title" "Help Improve this <span class='gradient-text'>Software Guide</span>"
-            "description" "Our software guide is maintained by the community. If you have updates, see an error, or want to suggest a new tool, please let us know by opening an issue on our GitHub repository."
-            "link" "https://github.com/open-neuromorphic/open-neuromorphic.github.io/issues/new/choose"
-            "link_text" "Suggest an Edit on GitHub"
-          ) }}
-
-          <div class="mt-8">
-             {{ partial "components/share-cta.html" . }}
-          </div>
+        <!-- At a Glance card for mobile/tablet -->
+        <div class="lg:hidden mb-8">
+          {{ partial "software/at-a-glance.html" . }}
         </div>
 
-        <aside class="lg:col-4">
-          <div class="pb-4">
-            {{ partial "components/og-preview.html" . }}
-          </div>
-          <div class="sticky top-24">
-            {{ partial "software/at-a-glance.html" . }}
-          </div>
-        </aside>
+        {{ partial "shared/related-content.html" . }}
+
+        {{ partial "components/content-contribute-cta.html" (dict
+        "page_context" .
+        "icon" "solid code"
+        "title" "Help Improve this <span class='gradient-text'>Software Guide</span>"
+        "description" "Our software guide is maintained by the community. If you have updates, see an error, or want to suggest a new tool, please let us know by opening an issue on our GitHub repository."
+        "link" "https://github.com/open-neuromorphic/open-neuromorphic.github.io/issues/new/choose"
+        "link_text" "Open an Issue"
+        ) }}
+
+        <div class="mt-8 lg:hidden">
+          {{ partial "components/share-cta.html" . }}
+        </div>
       </div>
+
+      <aside class="lg:col-4 mt-8 lg:mt-0 hidden lg:block">
+        <div class="pb-4">
+          {{ partial "components/og-preview.html" . }}
+        </div>
+        <div class="sticky top-24">
+          {{ partial "software/at-a-glance.html" . }}
+        </div>
+      </aside>
     </div>
-  </section>
+  </div>
+</section>
 {{ end }}

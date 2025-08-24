@@ -7,6 +7,7 @@ fontawesome_svgs:
   - { style: solid, name: rocket }
   - { style: solid, name: chalkboard-user }
   - { style: solid, name: user-group }
+  - { style: solid, name: share-nodes }
   - { style: solid, name: house }
   - { style: solid, name: magnifying-glass }
   - { style: solid, name: user }
@@ -18,6 +19,8 @@ fontawesome_svgs:
   - { style: solid, name: envelope }
   - { style: solid, name: moon }
   - { style: solid, name: sun }
+  - { style: solid, name: chevron-right }
+  - { style: solid, name: chevron-down }
   - { style: solid, name: arrow-up-right-from-square }
   - { style: brands, name: discord }
   - { style: brands, name: github }
@@ -31,7 +34,9 @@ fontawesome_svgs:
   - { style: brands, name: whatsapp }
   - { style: brands, name: telegram }
   - { style: regular, name: circle-user }
+  - { style: regular, name: file-lines }
   - { style: regular, name: clock }
   - { style: regular, name: calendar }
   - { style: regular, name: images }
   - { style: regular, name: folder }
+  - { style: regular, name: copy }

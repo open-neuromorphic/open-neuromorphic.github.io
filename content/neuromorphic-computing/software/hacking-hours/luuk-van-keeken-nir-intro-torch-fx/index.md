@@ -4,9 +4,6 @@ author:
   - "Luuk van Keeken"
   - "Jens E. Pedersen"
 date: 2024-12-02
-start_time: "18:00"
-end_time: "18:28" # 27m 31s duration
-time_zone: "CET"
 description: "Luuk van Keeken introduces the Neuromorphic Intermediate Representation (NIR) and demonstrates graph tracing using torch.fx."
 upcoming: false
 video: "FIqxexNQX4k"
@@ -14,6 +11,7 @@ speaker_photo: "images/speakers/luuk-van-keeken-placeholder.png"
 image: "luuk-van-keeken-nir-intro-torch-fx.jpg"
 type: "hacking-hours"
 speaker_bio: "Luuk van Keeken is a researcher/PhD student at KTH Royal Institute of Technology, focusing on neuromorphic computing, specifically related to the Neuromorphic Intermediate Representation (NIR) and its applications with frameworks like PyTorch."
+software_tags: ["snntorch", "norse"]
 ---
 
 Join Jens E. Pedersen for a Hacking Hour session with Luuk van Keeken. Luuk provides an insightful introduction to the Neuromorphic Intermediate Representation (NIR), discussing its goals and how it facilitates interoperability in the neuromorphic field. The session includes a practical demonstration of graph tracing techniques using `torch.fx` for PyTorch models.

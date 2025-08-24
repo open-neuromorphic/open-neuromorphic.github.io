@@ -1,0 +1,121 @@
+{{ define "main" }}
+{{ partial "page-header" . }}
+<section class="section pt-6">
+  <div class="container">
+    <div class="row lg:gx-8 lg:items-stretch">
+
+      {{/* Main Content Column */}}
+      <div class="lg:col-8">
+        {{/* --- NEW: Video Embed --- */}}
+        {{ if .Params.video }}
+        <div class="mb-6">
+          <div class="rounded-lg overflow-hidden shadow-lg">
+            {{ partial "youtube-lite.html" (dict "Id" .Params.video ) }}
+          </div>
+          {{ with .Params.website }}
+          {{ if in . "youtube.com" }}
+          <div class="text-center mt-4">
+            <a href="{{ . }}" target="_blank" rel="noopener" class="btn btn-new-primary">
+              {{ partial "icon.html" (dict "style" "brands" "name" "youtube" "class" "mr-2") }}
+              View YouTube Channel
+            </a>
+          </div>
+          {{ end }}
+          {{ end }}
+        </div>
+        {{ end }}
+        {{/* --- End Video Embed --- */}}
+
+        <article class="content mb-10">
+          {{ .Content }}
+        </article>
+
+        {{/* Resource Log Section */}}
+        {{ with .Params.resource_log }}
+        <div class="resource-log-section mt-12">
+          <h2 class="text-3xl font-bold mb-8">Resource Log & Updates</h2>
+          <div class="contributor-timeline">
+            {{ $currentYear := "" }}
+            {{ range . }}
+            {{ $logDate := time.AsTime .date }}
+            {{ $logYear := $logDate.Format "2006" }}
+            {{ if ne $logYear $currentYear }}
+            <div class="timeline-year">
+              <span>{{ $logYear }}</span>
+            </div>
+            {{ $currentYear = $logYear }}
+            {{ end }}
+            <div class="timeline-item">
+              <div class="timeline-item-content">
+                <div class="flex justify-between items-start gap-4">
+                  <div>
+                    <h4 class="text-xl font-semibold mb-1">
+                      {{ if .link }}
+                      <a href="{{ .link }}" target="_blank" rel="noopener" class="text-dark dark:text-darkmode-dark hover:text-primary dark:hover:text-darkmode-primary">{{ .title }}</a>
+                      {{ else }}
+                      {{ .title }}
+                      {{ end }}
+                    </h4>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">
+                      {{ $logDate.Format "January 2" }}
+                    </p>
+                  </div>
+                </div>
+                <p class="text-gray-600 dark:text-gray-400 mt-3 text-sm">{{ .description | markdownify }}</p>
+              </div>
+            </div>
+            {{ end }}
+          </div>
+        </div>
+        {{ end }}
+      </div>
+
+      {{/* Sidebar Column */}}
+      <aside class="lg:col-4 mt-8 lg:mt-0">
+        <div class="sticky top-24">
+          <div class="p-6 rounded-lg bg-theme-light dark:bg-darkmode-theme-light shadow-lg">
+            {{ with .Params.image }}
+            {{ with $.Resources.GetMatch . }}
+            <div class="p-2 bg-white dark:bg-gray-800 rounded-lg mb-4 flex justify-center">
+              <img src="{{ (.Fit "200x200").RelPermalink }}" alt="{{ $.Title }} logo" class="max-h-32 w-auto">
+            </div>
+            {{ end }}
+            {{ end }}
+
+            <h2 class="text-2xl font-bold text-center mb-4">{{ .Title }}</h2>
+
+            <a href="{{ .Params.website }}" target="_blank" rel="noopener" class="btn btn-new-primary w-full flex items-center justify-center">
+              Visit Resource {{ partial "icon.html" (dict "style" "solid" "name" "arrow-up-right-from-square" "class" "ml-2") }}
+            </a>
+
+            <div class="border-t border-border dark:border-darkmode-border pt-4 mt-4">
+              <dl class="text-sm text-text dark:text-darkmode-text space-y-2">
+                <div class="flex justify-between items-start">
+                  <dt class="font-semibold shrink-0 pr-2">Type:</dt>
+                  <dd class="text-right">{{ .Params.resource_type | default "N/A" }}</dd>
+                </div>
+                {{ with .Params.author }}
+                <div class="flex justify-between items-start">
+                  <dt class="font-semibold shrink-0 pr-2">Author(s):</dt>
+                  <dd class="text-right">
+                    {{ partial "components/author-links.html" $ }}
+                  </dd>
+                </div>
+                {{ end }}
+                {{ if .Params.is_supporter }}
+                <div class="flex justify-between items-start">
+                  <dt class="font-semibold shrink-0 pr-2">Status:</dt>
+                  <dd class="text-right font-semibold text-primary dark:text-darkmode-primary">Collaboration Network</dd>
+                </div>
+                {{ end }}
+              </dl>
+            </div>
+
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+{{ end }}

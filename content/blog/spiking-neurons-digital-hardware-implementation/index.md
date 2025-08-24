@@ -8,6 +8,7 @@ author:
   - "Fabrizio Ottati"
 image: banner.png
 tags: ["hardware", "digital", "spiking", "snn", "rtl", "verilog", "AI", "machine learning"]
+hardware_tags: ["loihi-2-intel", "loihi-intel"]
 show_author_bios: true
 ---
 

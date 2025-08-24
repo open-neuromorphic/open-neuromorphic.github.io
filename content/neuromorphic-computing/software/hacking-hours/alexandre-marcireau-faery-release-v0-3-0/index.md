@@ -4,9 +4,6 @@ author:
   - "Alexandre Marcireau"
   - "Jens E. Pedersen"
 date: 2024-11-05
-start_time: "18:00"
-end_time: "20:11" # 2h 10m 49s duration
-time_zone: "CET"
 description: "Alexandre Marcireau discusses the v0.3.0 release of Faery, an event processing library, in this Hacking Hour session."
 upcoming: false
 video: "Wz1s0dFp1II"
@@ -14,6 +11,7 @@ speaker_photo: "images/speakers/alexandre-marcireau-placeholder.png"
 image: "alexandre-marcireau-faery-release-v0-3-0.jpg"
 type: "hacking-hours"
 speaker_bio: "Alexandre Marcireau is a software developer and contributor in the neuromorphic computing space, known for his work on the Faery event processing library."
+software_tags: ["faery"]
 ---
 
 In this Hacking Hour, Jens E. Pedersen is joined by Alexandre Marcireau to explore the v0.3.0 release of Faery. Alexandre walks through the new features, improvements, and potential use cases of this event processing library designed for neuromorphic applications.
@@ -82,7 +80,7 @@ The discussion covered API development, build processes, and key features of the
 
 *   > "there's no no way to cheat this process like to get these apis right to get this code right you just have to go through these long arduous detailed discussions"
 *   > "I really think that like everything else it's a matter of experiment you don't until you try"
-*   > "it is in that intersection when you scrutinize things it's like when you when you when you put it out in the open you turn it around you rotate it a bit and you try to push one side and pull the other and see what happens that's where the the rubber hits the road"
+*   > "it is in that intersection when you scrutinize things it's like when you when you put it out in the open you turn it around you rotate it a bit and you try to push one side and pull the other and see what happens that's where the the rubber hits the road"
 *   > "you need a bit of both [theory and practice]... they're very complimentary"
 *   > "I think or I hope that we are essentially applying the scientific method when we build the API we're currently building together"
 *   Referring to MP4 conversion: > "this has been a tool I've been waiting for for five years"

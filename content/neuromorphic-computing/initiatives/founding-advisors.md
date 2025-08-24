@@ -10,9 +10,10 @@ author:
 - Charlotte Frenkel
 - Alexander Hadjiivanov
 - Alexander Henkes
+- Steven Abreu
 date: 2023-01-01
 draft: false
 type: initiatives
-# Add an image if you want one specific to this initiative's card/page
-# image: "images/hacking-hours-logo.png" 
 ---
+
+The Founding Advisors were a group of key community members who provided crucial guidance and support during the initial conception and structuring of Open Neuromorphic. Their expertise and early involvement helped shape the direction and collaborative spirit of the community.

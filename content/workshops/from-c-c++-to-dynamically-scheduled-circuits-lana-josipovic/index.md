@@ -5,9 +5,6 @@ author:
 - Fabrizio Ottati
 description: Explore the journey from C/C++ to Dynamically Scheduled Circuits with Lana Josipović, an expert in high-level synthesis and reconfigurable computing. Join her recorded workshop session on innovative hardware design techniques.
 date: 2023-07-19
-start_time: 18:00
-end_time: 19:30
-time_zone: CET
 video: mQU8iU0HyHw
 speaker_photo: lana-josipovic.jpg
 image: from-c-c++-to-dynamically-scheduled-circuits.png

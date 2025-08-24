@@ -1,0 +1,63 @@
+{{ $page_context := . }}
+{{ $softwareLD := dict
+"@context" "https://schema.org"
+"@type" "SoftwareApplication"
+"name" $page_context.Title
+"description" $page_context.Description
+"applicationCategory" (slice "DeveloperApplication" "ScienceApplication")
+"operatingSystem" "Linux, macOS, Windows"
+"offers" (dict
+"@type" "Offer"
+"price" "0"
+"priceCurrency" "USD"
+)
+"aggregateRating" (dict
+"@type" "AggregateRating"
+"ratingValue" "5"
+"ratingCount" "1"
+)
+}}
+
+{{ with $page_context.Params.license }}
+{{ $softwareLD = merge $softwareLD (dict "license" (printf "https://spdx.org/licenses/%s.html" .)) }}
+{{ end }}
+{{ with $page_context.Params.source_code }}
+{{ $softwareLD = merge $softwareLD (dict "codeRepository" .) }}
+{{ end }}
+{{ with $page_context.Params.website }}
+{{ $softwareLD = merge $softwareLD (dict "softwareHelp" .) }}
+{{ end }}
+{{ with $page_context.Params.language }}
+{{ $softwareLD = merge $softwareLD (dict "programmingLanguage" .) }}
+{{ end }}
+
+{{ with $page_context.Params.logo }}
+{{ with $page_context.Resources.GetMatch . }}
+{{ $softwareLD = merge $softwareLD (dict "logo" (dict "@type" "ImageObject" "url" .Permalink)) }}
+{{ end }}
+{{ end }}
+
+{{ with $page_context.Params.maintainer }}
+{{ $maintainerList := . }}
+{{ if not (reflect.IsSlice .) }}{{ $maintainerList = slice . }}{{ end }}
+
+{{ $authorsLD := slice }}
+{{ range $maintainerList }}
+{{ $authorName := . }}
+{{ $nameForProcessing := $authorName | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" }}
+{{ $contributorSlug := $nameForProcessing | anchorize }}
+{{ $contributorPage := site.GetPage (printf "contributors/%s" $contributorSlug) }}
+
+{{ $personDict := dict "@type" "Person" "name" $authorName }}
+{{ if $contributorPage }}
+{{ $personDict = merge $personDict (dict "url" ($contributorPage.Permalink | absLangURL)) }}
+{{ end }}
+{{ $authorsLD = $authorsLD | append $personDict }}
+{{ end }}
+
+{{ $authorKey := cond (eq (len $authorsLD) 1) "author" "author" }}
+{{ $authorValue := cond (eq (len $authorsLD) 1) (index $authorsLD 0) $authorsLD }}
+{{ $softwareLD = merge $softwareLD (dict $authorKey $authorValue) }}
+{{ end }}
+
+{{ return $softwareLD }}

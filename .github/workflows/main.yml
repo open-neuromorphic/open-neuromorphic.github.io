@@ -2,7 +2,8 @@ name: Deploy Hugo site to Pages
 
 on:
   push:
-    branches: ["main", "staging"]
+    branches: ["main", "townhall-and-hacking-hours"]
+
 
 permissions:
   contents: read
@@ -57,12 +58,17 @@ jobs:
             content/**/*-og-*.jpg
             static/images/og-image-*.jpg
             tmp/og-cache-manifest.json
-          key: ${{ runner.os }}-og-images-${{ hashFiles('**/content/**/index.md', '**/content/**/_index.md', 'assets/og-template/template.html', 'assets/images/ONM-logo.png') }}
+          key: ${{ runner.os }}-og-images-${{ hashFiles('**/content/**/index.md', '**/content/**/_index.md', 'assets/og-template/template.html', 'assets/og-template/event-template.html', 'assets/images/ONM-logo.png', 'scripts/collectOgData.js', 'scripts/generateOgImages.js') }}
           restore-keys: |
             ${{ runner.os }}-og-images-
 
       - name: Generate OG Images
         run: npm run og-images
+
+      - name: Fetch GitHub Stars
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm run fetch-stars
 
       - name: Determine Base URL
         id: base_url

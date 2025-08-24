@@ -55,6 +55,6 @@ Can't make it? You can transfer your vote to another attending member. Details o
 
 ## Get Involved!
 
-This is a significant milestone for Open Neuromorphic, driven by our commitment to building a sustainable and impactful open-source community. Your participation is vital! Please review the charter, consider running for a position, and plan to attend the AGM to cast your vote.
+This is a significant milestone for Open Neuromorphic, driven by our commitment to building a sustainable and impactful open-source community. Your participation is vital! Please review the charter, consider running for a position, and plan to attend the AGM to cast your vote on the [Executive Committee](/neuromorphic-computing/initiatives/executive-committee/).
 
 Let's shape the future of ONM together!

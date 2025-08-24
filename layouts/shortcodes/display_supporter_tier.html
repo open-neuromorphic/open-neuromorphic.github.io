@@ -1,0 +1,29 @@
+{{ $tier := .Get "tier" }}
+{{ $supporters := index site.Data.supporters $tier }}
+
+<div class="supporter-tier-section my-12">
+  <h2 class="text-3xl font-bold mb-8 text-center">{{ $tier | humanize | title }} Supporters</h2>
+
+  {{ if $supporters }}
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+    {{ range $supporters }}
+    {{ partial "components/supporter-card.html" . }}
+    {{ end }}
+  </div>
+  {{ else }}
+  <div class="text-center p-8 bg-theme-light dark:bg-darkmode-theme-light rounded-lg shadow-inner border border-dashed border-gray-300 dark:border-gray-600">
+    {{ if or (eq $tier "platinum") (eq $tier "gold") }}
+    <p class="text-lg text-gray-600 dark:text-gray-400">
+      Interested in becoming a supporter? <a href="mailto:contact@open-neuromorphic.org" class="styled-link">Contact us</a> to learn more.
+    </p>
+    {{ else }}
+    <p class="text-lg text-gray-600 dark:text-gray-400">
+      This tier is currently open. Be the first to support our mission!
+    </p>
+    <p class="mt-2 text-sm">
+      Interested in becoming a supporter? <a href="mailto:contact@open-neuromorphic.org" class="styled-link">Contact us</a> to learn more.
+    </p>
+    {{ end }}
+  </div>
+  {{ end }}
+</div>

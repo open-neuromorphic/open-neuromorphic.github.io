@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Event OG Image</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Roboto+Slab:wght@700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Inter", Arial, sans-serif;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .canvas {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background-color: #f9fafb;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+      padding: 4vmin;
+    }
+    .background {
+      position: absolute;
+      z-index: 1;
+      opacity: 0.15;
+      width: 150%;
+      height: auto;
+      right: -25%;
+      bottom: -10%;
+      transform: rotate(-15deg);
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-bottom: 2.5vmin;
+    }
+    .logo {
+      height: 10vmin;
+      width: auto;
+      margin-right: 2.5vmin;
+    }
+    .logo-text {
+      font-family: "Inter", sans-serif;
+      font-size: 5vmin;
+      line-height: 1.1;
+      font-weight: 800;
+      color: #1f2937;
+    }
+    .main-content {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      text-align: center;
+      gap: 2vmin;
+    }
+    .title {
+      font-weight: 800;
+      line-height: 1.2;
+      color: #1f2937;
+      margin: 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 4; /* More room for long titles */
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .description {
+      line-height: 1.4;
+      color: #4b5563;
+      margin: 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 6; /* Allow more lines for description */
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      word-wrap: break-word;
+    }
+    .speakers {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 45vmin; /* Adjusted to give text more space */
+    }
+    .speakers-container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 2vmin;
+      flex-wrap: wrap;
+      max-width: 95%;
+    }
+    .speaker-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5vmin;
+    }
+    .speaker-img {
+      border-radius: 50%;
+      object-fit: cover;
+      border: 0.7vmin solid white;
+      box-shadow: 0 0.5vmin 1.5vmin rgba(0,0,0,0.15);
+      flex-shrink: 0;
+    }
+    .speaker-name {
+      font-weight: 500;
+      color: #374151;
+      line-height: 1.2;
+      max-width: 100%;
+      word-wrap: break-word;
+    }
+    .event-details {
+      font-size: clamp(24px, 4.5vmin, 45px); /* Default size */
+      line-height: 1.4;
+      color: #4b5563;
+      margin: 0;
+      font-weight: 500;
+      text-shadow:
+        -2px -2px 6px white, 2px -2px 6px white,
+        -2px  2px 6px white, 2px  2px 6px white,
+        0    0   15px white, 0   0   25px white, 0 0 35px white;
+    }
+    .event-date {
+      font-weight: 700;
+      color: #667eea;
+    }
+    .footer {
+      font-size: clamp(18px, 3.5vmin, 35px);
+      font-weight: 500;
+      color: #667eea;
+      text-align: center;
+      flex-shrink: 0;
+      margin-top: 2.5vmin;
+    }
+  </style>
+</head>
+<body>
+<div class="canvas">
+  <img src="BACKGROUND_URL" class="background" alt="" />
+  <div class="header">
+    <img src="LOGO_SRC" alt="Logo" class="logo" />
+    <div class="logo-text">Open Neuromorphic</div>
+  </div>
+  <div class="main-content">
+    <h1 class="title">PAGE_TITLE</h1>
+    <p class="description">PAGE_DESCRIPTION</p>
+    <div class="speakers">
+      <div class="speakers-container">
+        <!-- SPEAKER_IMAGES_HTML will be injected here -->
+      </div>
+    </div>
+    <div class="event-details">
+      <div class="event-date">EVENT_DATE</div>
+      <div>EVENT_TIME</div>
+    </div>
+  </div>
+  <div class="footer">open-neuromorphic.org</div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const speakerContainer = document.querySelector('.speakers-container');
+    const descriptionEl = document.querySelector('.description');
+    const titleEl = document.querySelector('.title');
+    const eventDetailsEl = document.querySelector('.event-details');
+
+    if (!speakerContainer || !titleEl) return;
+    const speakerItems = speakerContainer.querySelectorAll('.speaker-item');
+    const speakerCount = speakerItems.length;
+
+    // Logic for description visibility
+    if (descriptionEl) {
+      if (!descriptionEl.textContent || descriptionEl.textContent.trim() === '') {
+        descriptionEl.style.display = 'none';
+      }
+    }
+
+    if (speakerCount >= 1 && speakerCount <= 6) {
+      // Larger sizes for 1-6 speakers
+      titleEl.style.fontSize = 'clamp(32px, 6.0vmin, 60px)';
+      if (descriptionEl) descriptionEl.style.fontSize = 'clamp(22px, 4.3vmin, 42px)';
+      // Reduced date/time size to give more room to description
+      if (eventDetailsEl) eventDetailsEl.style.fontSize = 'clamp(32px, 5.5vmin, 55px)';
+
+      let imgSize = '27vmin'; // Default for 4-6 speakers
+      let nameSize = 'clamp(20px, 3.5vmin, 32px)';
+
+      if (speakerCount === 1) { imgSize = '51vmin'; }
+      else if (speakerCount === 2) { imgSize = '37vmin'; }
+      else if (speakerCount === 3) { imgSize = '32vmin'; }
+
+      speakerItems.forEach(item => {
+        item.style.width = imgSize;
+        const img = item.querySelector('.speaker-img');
+        const name = item.querySelector('.speaker-name');
+        if (img) {
+          img.style.width = imgSize;
+          img.style.height = imgSize;
+        }
+        if (name) {
+          name.style.fontSize = nameSize;
+        }
+      });
+    } else { // 0 or 7+ speakers
+      // Smaller sizes for 7+ speakers
+      titleEl.style.fontSize = 'clamp(28px, 5.5vmin, 55px)';
+      if (descriptionEl) descriptionEl.style.fontSize = 'clamp(28px, 5.0vmin, 50px)';
+
+      let imgSize = '18vmin';
+      let nameSize = 'clamp(16px, 2.8vmin, 26px)';
+      if (speakerCount > 8) {
+        imgSize = '16vmin';
+        nameSize = 'clamp(14px, 2.5vmin, 24px)';
+      }
+
+      speakerItems.forEach(item => {
+        item.style.width = imgSize;
+        const img = item.querySelector('.speaker-img');
+        const name = item.querySelector('.speaker-name');
+        if (img) {
+          img.style.width = imgSize;
+          img.style.height = imgSize;
+        }
+        if (name) {
+          name.style.fontSize = nameSize;
+        }
+      });
+    }
+  });
+</script>
+
+</body>
+</html>

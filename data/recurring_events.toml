@@ -6,16 +6,31 @@ description = """
 Are you interested in neuromorphics and want to contribute to the open source community? ✨
 Then join the community coding sessions where we improve the neuromorphic software ecosystem, one issue at the time 🚀
 
-We'll meet every Monday from 16-18 CET on the Open Neuromorphic Discord server.
-
 Active projects and issues that need help are listed here: https://github.com/open-neuromorphic/coding
 """
 day_of_week = "Monday" # Case-sensitive, full day name
 start_time = "16:00"   # 24-hour format HH:MM
 end_time = "18:00"     # 24-hour format HH:MM
-time_zone = "CET/CEST"      # Or "CEST" as appropriate. Be mindful of DST.
+time_zone = "CEST"      # Or "CEST" as appropriate. Be mindful of DST.
 location_name = "Open Neuromorphic Discord"
 location_url = "https://discord.gg/hUygPUdD8E"
 details_page_link = "/neuromorphic-computing/software/hacking-hours/" # Link to the main Hacking Hours page
-active = true      # If false, this event won't be shown as upcoming
+active = false      # DEACTIVATED: This event will no longer appear as recurring
 image = "/images/hacking-hours-default-banner.png" # Optional default image
+
+[[events]]
+id = "town-hall" # Unique ID for this new recurring event
+title = "ONM Weekly Town Hall"
+host = "Jens E. Pedersen & ONM Community"
+description = """
+Join our weekly Town Hall to discuss community updates, propose new ideas, and connect with other members. This is an open forum for everyone in the Open Neuromorphic community.
+"""
+day_of_week = "Monday"
+start_time = "14:00"   # 2PM CEST
+end_time = "15:00"     # Assuming 1 hour
+time_zone = "CEST"
+location_name = "Open Neuromorphic Discord"
+location_url = "https://discord.gg/hUygPUdD8E"
+details_page_link = "/getting-involved/town-hall/"
+active = true
+image = "/images/getting-involved/getting-involved-og.jpg"

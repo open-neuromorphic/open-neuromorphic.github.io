@@ -1,11 +1,5 @@
 {{ $allPastHH := where site.RegularPages "Type" "hacking-hours" }}
-{{ $validDatePastHH := slice }}
-{{ range $allPastHH }}
-  {{ if and (ne .Params.upcoming true) (.Date) (not .Date.IsZero) }}
-    {{ $validDatePastHH = $validDatePastHH | append . }}
-  {{ end }}
-{{ end }}
-{{ $sortedPastHH := sort $validDatePastHH "Date" "Desc" }}
+{{ $sortedPastHH := partial "logic/get_past_events.html" $allPastHH }}
 {{ $mostRecentPastHH := "" }}
 {{ if $sortedPastHH }}{{ $mostRecentPastHH = index $sortedPastHH 0 }}{{ end }}
 
@@ -70,7 +64,7 @@
           {{ end }}
           <div class="flex-grow">
             <h4 class="text-lg font-semibold leading-tight"><a href="{{ $mostRecentPastHH.RelPermalink }}" class="text-primary dark:text-darkmode-primary hover:underline">{{ $mostRecentPastHH.Title }}</a></h4>
-            <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">{{ $mostRecentPastHH.Date.Format "Jan 2, 2006" }}</p>
+            <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">{{ $mostRecentPastHH.Date.Format "January 2, 2006" }}</p>
             <p class="text-sm text-gray-700 dark:text-gray-300">{{ $mostRecentPastHH.Description | truncate 80 }}</p>
           </div>
         </div>
@@ -92,7 +86,7 @@
         {{ end }}
         <p class="text-md font-semibold text-primary dark:text-darkmode-primary flex items-baseline">
             {{ partial "icon.html" (dict "style" "regular" "name" "calendar" "class" "mr-2") }}
-            {{ $upcomingHackingHourDetails.Date.Format "Monday, Jan 2, 2006" }}
+            {{ $upcomingHackingHourDetails.Date.Format "Monday, January 2, 2006" }}
         </p>
         <p class="text-sm text-gray-600 dark:text-gray-400 flex items-baseline">
             {{ partial "icon.html" (dict "style" "regular" "name" "clock" "class" "mr-2") }}

@@ -7,9 +7,7 @@ website: https://norse.github.io/norse/
 dependencies: PyTorch
 field_of_application: Bio-inspired Neural Networks
 source_code: https://github.com/norse/norse
-stars_widget_url: https://img.shields.io/github/stars/norse/norse.svg?style=social
-stars: 578
-version_widget_url: https://img.shields.io/pypi/v/norse.svg
+pypi_id: norse
 license: LGPL-3.0
 supports_hardware: False
 supports_NIR: True
@@ -19,6 +17,8 @@ maintainer:
   - Christian Pehle
 draft: false
 ---
+
+
 
 ## Overview
 **Norse** is a deep learning Python library used for simulating spiking neural networks (SNN)s that leverages PyTorch with bio-inspired neural networks. Norse is maintained 

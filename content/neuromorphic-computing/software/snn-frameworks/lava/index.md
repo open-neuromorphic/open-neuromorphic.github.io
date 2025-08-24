@@ -7,9 +7,7 @@ website: https://lava-nc.org/
 dependencies: 
 field_of_application: Neuro-inspired Applications
 source_code: https://github.com/lava-nc/lava
-stars_widget_url: https://img.shields.io/github/stars/lava-nc/lava.svg?style=social
-stars: 462
-version_widget_url: https://img.shields.io/pypi/v/lava-nc.svg
+pypi_id: lava-nc
 license: custom
 supports_hardware: True
 supports_NIR: True
@@ -17,6 +15,8 @@ language: Python
 maintainer: Intel NC team
 draft: false
 ---
+
+
 
 ## Overview
 **Lava** is an open-source software framework designed for neuromorphic computing, aiming to develop neuro-inspired applications and their mapping to neuromophic hardware. 

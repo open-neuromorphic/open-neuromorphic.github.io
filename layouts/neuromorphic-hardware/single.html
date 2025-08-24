@@ -22,13 +22,17 @@
           <div class="content mb-10">
             {{ .Content }}
           </div>
+          
+          {{ partial "shared/related-content.html" . }}
+
           <div class="max-w-4xl mx-auto mt-12 mb-16">
             {{ partial "components/content-contribute-cta.html" (dict
+            "page_context" .
             "icon" "solid microchip"
             "title" "Help Us <span class=\"gradient-text\">Improve this Guide</span>"
             "description" "Our hardware guide is community-maintained. If you know of a chip we should add, see an error, or have updated information, please let us know by opening an issue on our GitHub repository."
             "link" "https://github.com/open-neuromorphic/open-neuromorphic.github.io/issues/new/choose"
-            "link_text" "Suggest an Edit on GitHub"
+            "link_text" "Open an Issue"
             ) }}
           </div>
           {{ partial "components/share-cta.html" . }}

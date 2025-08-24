@@ -4,10 +4,7 @@ author:
 - Tobias Fischer
 - Jason Eshraghian
 date: 2024-04-18
-start_time: 23:00
 description: "Tobias Fischer shares advances in neuromorphic visual place recognition."
-end_time: 00:30
-time_zone: CET
 draft: false
 video: dTE6eDzwSJU
 upcoming: false
