@@ -9,17 +9,7 @@
           </div>
         </article>
         <aside class="lg:col-4 hidden lg:block">
-          
-          {{/* 1. Governance Guide (Non-Sticky) - This will now appear first. */}}
-          <div class="mb-6">
-            {{ partial "governance/sidebar-guide.html" . }}
-          </div>
-          
-          {{/* 2. Table of Contents (Sticky) - This will appear second and stick to the top. */}}
-          <div class="sticky top-24">
-            {{ partial "governance/sidebar-toc.html" . }}
-          </div>
-
+          {{ partial "about/governance-sidebar.html" . }}
         </aside>
       </div>
     </div>
