@@ -1,8 +1,6 @@
 [[projects]]
 name = "Faery"
 slug = "faery"
-repo = "aestream/faery"
-pypi_id = "faery"
 description = "Event streaming multitool with an efficient Rust core."
 issues = [
   { title = "Add documentation", url = "https://github.com/aestream/faery/issues/4", tags = ["documentation", "good first issue"] },
@@ -18,8 +16,6 @@ completed_issues = [
 [[projects]]
 name = "Neuromorphic Intermediate Representation (NIR)"
 slug = "neuromorphic-intermediate-representation"
-repo = "neuromorphs/NIR"
-pypi_id = "nir"
 description = "A neuromorphic continuous-time instruction set."
 issues = [
   { title = "Add an (opset) version to Python objects", url = "https://github.com/neuromorphs/NIR/issues/136", tags = ["enhancement"] },
@@ -39,8 +35,6 @@ completed_issues = [
 [[projects]]
 name = "NIRTorch"
 slug = "nirtorch"
-repo = "neuromorphs/NIRTorch"
-pypi_id = "nirtorch"
 description = "PyTorch-NIR integration library."
 issues = []
 completed_issues = [
@@ -55,16 +49,12 @@ completed_issues = [
 [[projects]]
 name = "NIRViz"
 slug = "" # No page exists for this project yet
-repo = "open-neuromorphic/nirviz"
-pypi_id = "nirviz"
 description = "NIR visualization for Python and CLI."
 issues = []
 completed_issues = []
 [[projects]]
 name = "Norse"
 slug = "norse"
-repo = "norse/norse"
-pypi_id = "norse"
 description = "A functional spiking neural network simulator for deep learning."
 issues = [
   { title = "Speech commands loading broken", url = "https://github.com/norse/norse/issues/383", tags = ["bug", "dataset"] },
@@ -79,16 +69,12 @@ completed_issues = [
 [[projects]]
 name = "snnTorch"
 slug = "snntorch"
-repo = "jeshraghian/snntorch"
-pypi_id = "snntorch"
 description = "Deep and online learning with spiking neural networks in Python."
 issues = []
 completed_issues = []
 [[projects]]
 name = "Tonic"
 slug = "tonic"
-repo = "neuromorphs/tonic"
-pypi_id = "tonic"
 description = "A PyTorch-like library for downloading and manipulating neuromorphic datasets."
 issues = [
   { title = "Seeking a New Maintainer", url = "/contributors/gregor-lenz/", tags = ["maintainer needed"] }
@@ -97,8 +83,6 @@ completed_issues = []
 [[projects]]
 name = "open-neuromorphic.github.io"
 slug = "" # Not a software project
-repo = "open-neuromorphic/open-neuromorphic.github.io"
-pypi_id = ""
 description = "The ONM community website."
 issues = []
 completed_issues = [
