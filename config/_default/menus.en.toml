@@ -39,12 +39,13 @@ description = "Discover SNN frameworks and event-based data tools."
 
 [[main]]
 parent = "explore-resources"
-name = "Key Challenges Mission Board"
-url = "/getting-involved/solving-neuromorphic-computings-key-challenges/"
+name = "ONM Initiaitives"
+url = "/neuromorphic-computing/initiatives/"
 weight = 4
+
 [main.params]
-icon = "fas fa-bullseye"
-description = "Tackle key problems in neuromorphic computing with community-driven projects."
+icon = "fas fa-rocket"
+description = "Explore ongoing efforts, projects, and contributions by the Open Neuromorphic community"
 
 [[main]]
 parent = "explore-resources" # Match the identifier
