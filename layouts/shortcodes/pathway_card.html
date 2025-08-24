@@ -1,66 +1,92 @@
 {{ $title := .Get "title" }}
 {{ $description := .Get "description" }}
 {{ $cta_text := .Get "cta_text" }}
-{{ $cta_link := .Get "cta_link" }}
+{{ $cta_link_path := .Get "cta_link" }}
 {{ $image_path := .Get "image" }}
 {{ $alt_text := .Get "alt_text" | default $title }}
 {{ $layout_class := .Get "layout_class" | default "" }}
 {{ $explore_links_str := .Get "explore_links" }}
 
+{{/* --- Robust Link Resolution --- */}}
+{{ $final_cta_link := "" }}
+{{ $is_external_cta := strings.HasPrefix $cta_link_path "http" }}
+{{ if $is_external_cta }}
+{{ $final_cta_link = $cta_link_path }}
+{{ else }}
+{{ with site.GetPage $cta_link_path }}
+{{ $final_cta_link = .RelPermalink }}
+{{ else }}
+{{ $final_cta_link = $cta_link_path | relLangURL }}
+{{ end }}
+{{ end }}
+
 {{ $explore_links := slice }}
 {{ if $explore_links_str }}
-    {{ $links_list := split $explore_links_str ";" }}
-    {{ range $link_pair_str := $links_list }}
-        {{ $pair := split $link_pair_str "|" }}
-        {{ if eq (len $pair) 2 }}
-            {{ $explore_links = $explore_links | append (dict "title" (index $pair 0) "url" (index $pair 1)) }}
-        {{ end }}
-    {{ end }}
+{{ $links_list := split $explore_links_str ";" }}
+{{ range $link_pair_str := $links_list }}
+{{ $pair := split $link_pair_str "|" }}
+{{ if eq (len $pair) 2 }}
+{{ $link_title := index $pair 0 }}
+{{ $link_path := index $pair 1 }}
+{{ $is_external := strings.HasPrefix $link_path "http" }}
+{{ $final_url := "" }}
+{{ if $is_external }}
+{{ $final_url = $link_path }}
+{{ else }}
+{{ with site.GetPage $link_path }}
+{{ $final_url = .RelPermalink }}
+{{ else }}
+{{ $final_url = $link_path | relLangURL }}
+{{ end }}
+{{ end }}
+{{ $explore_links = $explore_links | append (dict "title" $link_title "url" $final_url "is_external" $is_external) }}
+{{ end }}
+{{ end }}
 {{ end }}
 
 <div class="journey-ribbon-card {{ $layout_class }} my-12">
-    <div class="journey-ribbon-image-container">
-        {{ if $image_path }}
-            {{ $img_resource := "" }}
-            {{ $processed_img := "" }}
-            {{ if .Page.Resources.GetMatch $image_path }}
-                {{ $img_resource = .Page.Resources.GetMatch $image_path }}
-            {{ else }}
-                {{ $img_resource = resources.Get $image_path }}
-            {{ end }}
+  <div class="journey-ribbon-image-container">
+    {{ if $image_path }}
+    {{ $img_resource := "" }}
+    {{ $processed_img := "" }}
+    {{ if .Page.Resources.GetMatch $image_path }}
+    {{ $img_resource = .Page.Resources.GetMatch $image_path }}
+    {{ else }}
+    {{ $img_resource = resources.Get $image_path }}
+    {{ end }}
 
-            {{ if $img_resource }}
-                {{ $processed_img = $img_resource.Fill "250x250 Lanczos" }}
-            {{ end }}
+    {{ if $img_resource }}
+    {{ $processed_img = $img_resource.Fill "250x250 Lanczos" }}
+    {{ end }}
 
-            {{ if $processed_img }}
-                <img src="{{ $processed_img.RelPermalink }}" alt="{{ $alt_text }}" class="journey-ribbon-image">
-            {{ else if fileExists (printf "static%s" $image_path) }}
-                 <img src="{{ $image_path | relURL }}" alt="{{ $alt_text }}" class="journey-ribbon-image" style="width: 250px; height: 250px; object-fit: cover;">
-            {{ else }}
-                <div class="journey-ribbon-image bg-gray-200 dark:bg-darkmode-theme-dark flex items-center justify-center text-gray-500" style="width: 250px; height: 250px;">Image '{{ $image_path }}' not found</div>
-            {{ end }}
-        {{ else }}
-            <div class="journey-ribbon-image bg-gray-200 dark:bg-darkmode-theme-dark flex items-center justify-center text-gray-500" style="width: 250px; height: 250px;">No Image Provided</div>
-        {{ end }}
+    {{ if $processed_img }}
+    <img src="{{ $processed_img.RelPermalink }}" alt="{{ $alt_text }}" class="journey-ribbon-image">
+    {{ else if fileExists (printf "static%s" $image_path) }}
+    <img src="{{ $image_path | relURL }}" alt="{{ $alt_text }}" class="journey-ribbon-image" style="width: 250px; height: 250px; object-fit: cover;">
+    {{ else }}
+    <div class="journey-ribbon-image bg-gray-200 dark:bg-darkmode-theme-dark flex items-center justify-center text-gray-500" style="width: 250px; height: 250px;">Image '{{ $image_path }}' not found</div>
+    {{ end }}
+    {{ else }}
+    <div class="journey-ribbon-image bg-gray-200 dark:bg-darkmode-theme-dark flex items-center justify-center text-gray-500" style="width: 250px; height: 250px;">No Image Provided</div>
+    {{ end }}
+  </div>
+  <div class="journey-ribbon-content">
+    <h3 class="journey-ribbon-title">{{ $title }}</h3>
+    <p class="journey-ribbon-description">
+      {{ $description | markdownify }}
+    </p>
+    {{ if and $cta_text $final_cta_link }}
+    <div class="journey-ribbon-cta">
+      <a href="{{ $final_cta_link }}" class="btn btn-new-primary" {{ if $is_external_cta }}target="_blank" rel="noopener"{{ end }}>{{ $cta_text }}</a>
     </div>
-    <div class="journey-ribbon-content">
-        <h3 class="journey-ribbon-title">{{ $title }}</h3>
-        <p class="journey-ribbon-description">
-            {{ $description | markdownify }}
-        </p>
-        {{ if and $cta_text $cta_link }}
-        <div class="journey-ribbon-cta">
-            <a href="{{ $cta_link | relLangURL }}" class="btn btn-new-primary">{{ $cta_text }}</a>
-        </div>
-        {{ end }}
-        {{ if $explore_links }}
-        <h4 class="journey-ribbon-links-title">Explore Further:</h4>
-        <ul class="journey-ribbon-links">
-            {{ range $explore_links }}
-            <li><a href="{{ .url | relLangURL }}">{{ .title }}</a></li>
-            {{ end }}
-        </ul>
-        {{ end }}
-    </div>
+    {{ end }}
+    {{ if $explore_links }}
+    <h4 class="journey-ribbon-links-title">Explore Further:</h4>
+    <ul class="journey-ribbon-links">
+      {{ range $explore_links }}
+      <li><a href="{{ .url }}" {{ if .is_external }}target="_blank" rel="noopener"{{ end }}>{{ .title }}</a></li>
+      {{ end }}
+    </ul>
+    {{ end }}
+  </div>
 </div>
