@@ -51,6 +51,19 @@ ONM governance operations occur and are officially kept by the secretary in the 
       </span>
     </div>
   </a>
+  <a href="./open-definition/" class="group no-style block p-6 bg-theme-light dark:bg-darkmode-theme-light border border-border dark:border-darkmode-border rounded-lg hover:border-primary dark:hover:border-darkmode-primary transition-all duration-200 shadow-md hover:shadow-lg">
+    <div class="flex justify-between items-center">
+      <div>
+        <h3 class="text-xl font-semibold text-dark dark:text-darkmode-dark group-hover:text-primary dark:group-hover:text-darkmode-primary styled-link">ONM's Principles for Open Resources</h3>
+        <p class="text-text dark:text-darkmode-text mt-1">The definition of an open resource, outlining requirements for sharing, modification, and licensing.</p>
+      </div>
+      <span class="text-2xl text-primary dark:text-darkmode-primary transition-transform transform group-hover:translate-x-1 ml-4 no-underline">
+        <svg class="icon icon-arrow-right" fill="currentColor" aria-hidden="true" role="img" style="display: inline-block; vertical-align: middle; width: 1em; height: 1em;">
+          <use xlink:href="#icon-solid-arrow-right"></use>
+        </svg>
+      </span>
+    </div>
+  </a>
 </div>
 
 <h2 class="h3 mt-12 mb-6">Proposing an Initiative</h2>
