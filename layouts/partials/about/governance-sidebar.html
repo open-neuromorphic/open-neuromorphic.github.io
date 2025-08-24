@@ -1,0 +1,35 @@
+{{ $currentPage := . }}
+{{/* Define the static links for the Governance Guide, with the main portal page first */}}
+{{ $links := slice
+(dict "url" "/about/governance/" "title" "Governance & Fellowship")
+(dict "url" "/about/governance/organisational-charter/" "title" "Organisational Charter")
+(dict "url" "/about/governance/fellowship-charter/" "title" "Fellowship Charter")
+(dict "url" "/about/governance/submission-instructions/" "title" "Submission Instructions")
+(dict "url" "/about/governance/initiative-template/" "title" "Initiative Template")
+}}
+
+{{/* Governance Guide Card (will scroll off-screen) */}}
+<div class="px-3 pt-5 pb-5 content-panel mb-6">
+  <strong class="text-xl pl-3">Governance Guide</strong>
+  <nav id="TableOfContents" class="mt-4">
+    <ul>
+      {{ range $links }}
+      {{/* Check if the current page URL matches the link URL to set the active state */}}
+      {{ $isActive := eq ($currentPage.RelPermalink | strings.TrimRight "/") (strings.TrimRight .url "/") }}
+      <li class="{{ if $isActive }}active{{ end }}">
+        <a href="{{ .url | relLangURL }}">{{ .title }}</a>
+      </li>
+      {{ end }}
+    </ul>
+  </nav>
+</div>
+
+{{/* On This Page (Table of Contents) Card - will stick to the top */}}
+{{ if and .IsPage .Params.showTableOfContents (ne .TableOfContents `<nav id="TableOfContents"></nav>`) }}
+<div class="sticky top-24 px-3 pt-5 pb-5 content-panel">
+  <strong class="text-xl pl-3">On This Page</strong>
+  <div id="tableOfContentContainer" class="mt-4">
+    {{ .TableOfContents }}
+  </div>
+</div>
+{{ end }}

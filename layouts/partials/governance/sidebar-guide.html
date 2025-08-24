@@ -1,0 +1,22 @@
+{{ $currentPage := . }}
+{{ $links := slice
+  (dict "url" "/about/governance/" "title" "Governance & Fellowship")
+  (dict "url" "/about/governance/organisational-charter/" "title" "Organisational Charter")
+  (dict "url" "/about/governance/fellowship-charter/" "title" "Fellowship Charter")
+  (dict "url" "/about/governance/submission-instructions/" "title" "Submission Instructions")
+  (dict "url" "/about/governance/initiative-template/" "title" "Initiative Template")
+}}
+
+<div class="px-3 pt-5 pb-5 content-panel">
+  <strong class="text-xl pl-3">Governance Guide</strong>
+  <nav id="TableOfContents" class="mt-4">
+    <ul>
+      {{ range $links }}
+        {{ $isActive := eq ($currentPage.RelPermalink | strings.TrimRight "/") (strings.TrimRight .url "/") }}
+        <li class="{{ if $isActive }}active{{ end }}">
+          <a href="{{ .url | relLangURL }}">{{ .title }}</a>
+        </li>
+      {{ end }}
+    </ul>
+  </nav>
+</div>

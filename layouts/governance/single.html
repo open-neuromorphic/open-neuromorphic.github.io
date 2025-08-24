@@ -1,0 +1,27 @@
+{{ define "main" }}
+  {{ partial "page-header" . }}
+  <section class="section pt-6">
+    <div class="container">
+      <div class="row lg:items-stretch">
+        <article class="lg:col-8">
+          <div class="content mb-10">
+            {{ .Content }}
+          </div>
+        </article>
+        <aside class="lg:col-4 hidden lg:block">
+          
+          {{/* 1. Governance Guide (Non-Sticky) - This will now appear first. */}}
+          <div class="mb-6">
+            {{ partial "governance/sidebar-guide.html" . }}
+          </div>
+          
+          {{/* 2. Table of Contents (Sticky) - This will appear second and stick to the top. */}}
+          <div class="sticky top-24">
+            {{ partial "governance/sidebar-toc.html" . }}
+          </div>
+
+        </aside>
+      </div>
+    </div>
+  </section>
+{{ end }}
