@@ -6,8 +6,6 @@ aliases: ["/about/fellowship/"]
 
 Welcome to the governance hub for Open Neuromorphic (ONM). As a community-driven organization, we are committed to transparency, collaboration, and clear processes that empower our members. This section contains the official documents that define our structure, mission, and how you can get involved in shaping our future.
 
-Primary governance operations occur at [communications](https://github.com/open-neuromorphic/communications)
-
 <h2 class="h3 mt-12 mb-6">Core Governance Documents</h2>
 <p class="mb-8">The foundational texts that guide our community's operations and values.</p>
 
@@ -38,7 +36,7 @@ Primary governance operations occur at [communications](https://github.com/open-
       </span>
     </div>
   </a>
-  <a href="/code-of-conduct/" class="group no-style block p-6 bg-theme-light dark:bg-darkmode-theme-light border border-border dark:border-darkmode-border rounded-lg hover:border-primary dark:hover:border-darkmode-primary transition-all duration-200 shadow-md hover:shadow-lg">
+  <a href="{{< ref "/code-of-conduct" >}}" class="group no-style block p-6 bg-theme-light dark:bg-darkmode-theme-light border border-border dark:border-darkmode-border rounded-lg hover:border-primary dark:hover:border-darkmode-primary transition-all duration-200 shadow-md hover:shadow-lg">
     <div class="flex justify-between items-center">
       <div>
         <h3 class="text-xl font-semibold text-dark dark:text-darkmode-dark group-hover:text-primary dark:group-hover:text-darkmode-primary styled-link">Code of Conduct</h3>
@@ -83,7 +81,7 @@ Primary governance operations occur at [communications](https://github.com/open-
       </span>
     </div>
   </a>
-    <a href="/neuromorphic-computing/initiatives/" class="group no-style block p-6 bg-theme-light dark:bg-darkmode-theme-light border border-border dark:border-darkmode-border rounded-lg hover:border-primary dark:hover:border-darkmode-primary transition-all duration-200 shadow-md hover:shadow-lg">
+    <a href="{{< ref "/neuromorphic-computing/initiatives" >}}" class="group no-style block p-6 bg-theme-light dark:bg-darkmode-theme-light border border-border dark:border-darkmode-border rounded-lg hover:border-primary dark:hover:border-darkmode-primary transition-all duration-200 shadow-md hover:shadow-lg">
     <div class="flex justify-between items-center">
       <div>
         <h3 class="text-xl font-semibold text-dark dark:text-darkmode-dark group-hover:text-primary dark:group-hover:text-darkmode-primary styled-link">View Current Initiatives</h3>
