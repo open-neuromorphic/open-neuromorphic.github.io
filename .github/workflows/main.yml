@@ -84,10 +84,17 @@ jobs:
           echo "BASE_URL=$BASE_URL" >> $GITHUB_ENV
           echo "Determined BASE_URL: $BASE_URL"
 
+      - name: Modify hugo.toml
+        run: |
+          echo "Attempting to set baseURL to $BASE_URL in hugo.toml"
+          sed -i "s|baseURL = .*|baseURL = \"$BASE_URL\"|" hugo.toml
+          echo "hugo.toml after modification:"
+          cat hugo.toml
+
       - name: Build Hugo Site
         run: |
-          echo "Starting Hugo site build with baseURL: $BASE_URL"
-          hugo --gc --minify --buildFuture --templateMetrics --templateMetricsHints --forceSyncStatic -e production -b "$BASE_URL"
+          echo "Starting Hugo site build..."
+          npm run hugo-build
           echo "Hugo site build completed."
           echo "Contents of public directory after build:"
           ls -la public
