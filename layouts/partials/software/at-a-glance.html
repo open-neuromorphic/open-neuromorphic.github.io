@@ -23,6 +23,9 @@
     </a>
   </div>
 
+  {{/* --- MOVED: Resource counts are now here --- */}}
+  {{ partial "custom/software_resource_counts.html" (dict "page" $page "is_single" true) }}
+
   <div class="flex justify-center items-center space-x-2 mb-4">
     {{ $repo_path := "" }}
     {{ $is_github := false }}
@@ -130,7 +133,6 @@
       </div>
 
     </dl>
-  {{ partial "custom/software_resource_counts.html" (dict "page" $page "is_single" true) }}
   </div>
 
   <div class="border-t border-border dark:border-darkmode-border pt-4 mt-4 flex flex-wrap gap-2 justify-center">
