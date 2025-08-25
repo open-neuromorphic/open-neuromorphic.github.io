@@ -23,6 +23,6 @@ resource_log:
 
 This channel features the work of Stephen Downes, a leading researcher at Canada's National Research Council, specializing in online learning and new instructional media. He is a founder of the Massive Open Online Course (MOOC) and a key theorist behind connectivism.
 
-The principles of connectivism—which posits that knowledge exists in networks and learning is the process of building and navigating those networks—deeply influenced the design of the Open Neuromorphic website. The development team, particularly Justin Riddiough, drew from these ideas to create a user experience that provides context and encourages the formation of a personal mental model of the neuromorphic space.
+The principles of connectivism (which posits that knowledge exists in networks and learning is the process of building and navigating those networks) deeply influenced the design of the Open Neuromorphic website. The development drew from these ideas to create a user experience that provides context and encourages the formation of a personal mental model of the neuromorphic space.
 
 The parallels between connectivism's networked knowledge and the interconnected, brain-inspired architectures in neuromorphic computing make this a particularly relevant resource for our community.
