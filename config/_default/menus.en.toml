@@ -92,7 +92,7 @@ weight = 2
 [[main]]
 name = "About"
 hasChildren = true
-weight = 4 # No change needed
+weight = 4
 
 [[main]]
 parent = "About"
@@ -130,6 +130,12 @@ name = "Community Resources"
 url = "/neuromorphic-computing/community-resources/"
 weight = 6
 
+[[main]]
+parent = "About"
+name = "Governance & Fellowship"
+url = "/about/governance/"
+weight = 7
+
 
 # --- New Footer Menus (replace the old [[footer]], [[footer_explore]], [[footer_legal]]) ---
 
@@ -137,23 +143,23 @@ weight = 6
 [[footer_explore_new]]
 name = "Neuromorphic Computing Hub"
 url = "/neuromorphic-computing/"
-weight = 1 # Set to 1
+weight = 1
 [[footer_explore_new]]
 name = "Hardware Guide"
 url = "/neuromorphic-computing/hardware/"
-weight = 2 # Incremented from 1
+weight = 2
 [[footer_explore_new]]
 name = "Software Guide"
 url = "/neuromorphic-computing/software/"
-weight = 3 # Incremented from 2
+weight = 3
 [[footer_explore_new]]
 name = "ONM Blog"
 url = "/blog/"
-weight = 4 # Incremented from 3
+weight = 4
 [[footer_explore_new]]
 name = "ONM Initiatives"
 url = "/neuromorphic-computing/initiatives/"
-weight = 5 # Incremented from 4
+weight = 5
 
 # Community Column
 [[footer_community]]

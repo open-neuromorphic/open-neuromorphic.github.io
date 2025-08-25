@@ -1,0 +1,24 @@
+{{ $currentPage := . }}
+{{ $paths := slice
+  (dict "path" "/about/governance/")
+  (dict "path" "/about/governance/organisational-charter/")
+  (dict "path" "/about/governance/fellowship-charter/")
+  (dict "path" "/about/governance/submission-instructions/")
+  (dict "path" "/about/governance/initiative-template/")
+}}
+
+<div class="px-3 pt-5 pb-5 content-panel">
+  <strong class="text-xl pl-3">Governance Guide</strong>
+  <nav id="TableOfContents" class="mt-4">
+    <ul>
+      {{ range $paths }}
+        {{ with site.GetPage .path }}
+          {{ $isActive := eq ($currentPage.RelPermalink | strings.TrimRight "/") (strings.TrimRight .RelPermalink "/") }}
+          <li class="{{ if $isActive }}active{{ end }}">
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          </li>
+        {{ end }}
+      {{ end }}
+    </ul>
+  </nav>
+</div>

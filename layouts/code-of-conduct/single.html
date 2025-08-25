@@ -1,0 +1,32 @@
+{{ define "main" }}
+{{ partial "page-header" . }}
+<section class="section pt-6">
+  <div class="container">
+    <div class="row lg:items-stretch">
+
+      {{/* Main Content Area */}}
+      <article class="lg:col-8">
+        <div class="content mb-10">
+          {{ .Content }}
+        </div>
+        <div class="mt-16">
+          {{ partial "components/content-contribute-cta.html" (dict
+          "page_context" .
+          "icon" "brands github"
+          "title" "Help Improve This Document"
+          "description" "Our community documents are living resources. If you see an error or have a suggestion for improvement, please contribute by opening an issue or pull request."
+          "link" (printf "https://github.com/open-neuromorphic/open-neuromorphic.github.io/edit/main/content/%s" .File.Path)
+          "link_text" "Edit on GitHub"
+          ) }}
+        </div>
+      </article>
+
+      {{/* Sidebar Area */}}
+      <aside class="lg:col-4 hidden lg:block">
+        {{ partial "about/governance-sidebar.html" . }}
+      </aside>
+
+    </div>
+  </div>
+</section>
+{{ end }}
