@@ -8,6 +8,7 @@ Before you start, please read our [Code of Conduct](https://github.com/open-neur
 
 ## Table of Contents
 - [Ways to Contribute](#ways-to-contribute)
+- [Finding a Task: The Mission Board](#finding-a-task-the-mission-board)
 - [Getting Started: Local Development Setup](#getting-started-local-development-setup)
 - [How to Submit Changes](#how-to-submit-changes)
   - [Reporting Bugs and Suggesting Enhancements](#reporting-bugs-and-suggesting-enhancements)
@@ -33,6 +34,10 @@ There are many ways to contribute to the ONM website:
 *   **Improving Code:** Help us improve the website's templates, styles, or functionality.
 
 For a more user-friendly overview of how to get involved with the community, please visit our [Getting Involved page](https://open-neuromorphic.org/getting-involved/).
+
+## Finding a Task: The Mission Board
+
+If you're looking for high-impact ways to contribute to the broader open-source neuromorphic ecosystem, a great place to start is our **[Community Coding Projects](https://open-neuromorphic.org/getting-involved/community-coding-projects/)**. This page lists critical "help wanted" issues from key projects in our community, offering a direct path to making a meaningful contribution.
 
 ## Getting Started: Local Development Setup
 
@@ -195,5 +200,7 @@ Please follow a conventional commit format to keep the history clean and underst
 *   `chore`: Build process or tooling changes (e.g., `chore: Upgrade Tailwind CSS to v3.4`).
 
 ---
+
+If you're looking for high-impact ways to contribute to the broader open-source neuromorphic ecosystem, a great place to start is our **[Community Coding Projects](https://open-neuromorphic.org/getting-involved/community-coding-projects/)**. This page lists critical "help wanted" issues from key projects in our community, offering a direct path to making a meaningful contribution.
 
 Thank you again for your interest in contributing. We look forward to your pull requests!

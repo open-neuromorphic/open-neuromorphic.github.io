@@ -13,6 +13,10 @@
           {{ partial "software/at-a-glance.html" . }}
         </div>
 
+        {{ $slug := "" }}
+        {{ if .File }}{{ $slug = path.Base .File.Dir }}{{ end }}
+        {{ partial "custom/software_mission_board_promo.html" (dict "project_slug" $slug "id" "mission-board") }}
+
         {{ partial "shared/related-content.html" . }}
 
         {{ partial "components/content-contribute-cta.html" (dict

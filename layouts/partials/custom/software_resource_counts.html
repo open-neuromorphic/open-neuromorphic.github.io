@@ -1,0 +1,84 @@
+{{ $page := .page }}
+{{ $is_single := .is_single | default false }}
+
+{{ $slug := "" }}
+{{ if $page.File }}{{ $slug = path.Base $page.File.Dir }}{{ end }}
+
+{{ if $slug }}
+{{/* --- Data Fetching and Counting --- */}}
+{{ $workshops := where site.RegularPages "Section" "workshops" }}
+{{ $hacking_hours := where site.RegularPages "Type" "hacking-hours" }}
+{{ $blogs := where site.RegularPages "Section" "blog" }}
+{{ $student_talks := where site.RegularPages "Type" "student-talks" }}
+
+{{ $workshop_count := len (where $workshops ".Params.software_tags" "intersect" (slice $slug)) }}
+{{ $hacking_hour_count := len (where $hacking_hours ".Params.software_tags" "intersect" (slice $slug)) }}
+{{ $blog_count := len (where $blogs ".Params.software_tags" "intersect" (slice $slug)) }}
+{{ $student_talk_count := len (where $student_talks ".Params.software_tags" "intersect" (slice $slug)) }}
+
+{{ $mission_board_items := 0 }}
+{{ range site.Data.community_projects.projects }}
+{{ if eq .slug $slug }}
+{{ $mission_board_items = len .issues }}
+{{ end }}
+{{ end }}
+
+{{ $total_resources := add $workshop_count $hacking_hour_count $blog_count $student_talk_count $mission_board_items }}
+
+{{ if gt $total_resources 0 }}
+{{/* --- Link Generation Logic --- */}}
+{{ $link_base := cond $is_single "" $page.RelPermalink }}
+{{ $link_related := printf "%s#related-content" $link_base }}
+{{ $link_mission := printf "%s#mission-board" $link_base }}
+
+<div class="community-resources-actions {{ if $is_single }}my-4{{ else }}mb-4{{ end }}">
+  <div class="{{ if $is_single }}grid grid-cols-2 gap-2{{ else }}flex flex-wrap items-center gap-2{{ end }}">
+    {{ if gt $workshop_count 0 }}
+    <a href="{{ $link_related }}" class="btn btn-sm btn-outline-primary group !text-xs !py-1 !px-2.5 flex items-center {{ if $is_single }}justify-between w-full{{ else }}w-auto{{ end }}">
+                <span class="flex items-center">
+                    {{ partial "icon.html" (dict "style" "solid" "name" "chalkboard-user" "class" "mr-1.5") }}
+                    Workshops
+                </span>
+      <span class="font-bold bg-gray-200 dark:bg-gray-700 rounded px-1.5 ml-1.5 transition-colors group-hover:bg-white group-hover:text-primary dark:group-hover:bg-darkmode-body dark:group-hover:text-darkmode-primary">{{ $workshop_count }}</span>
+    </a>
+    {{ end }}
+    {{ if gt $hacking_hour_count 0 }}
+    <a href="{{ $link_related }}" class="btn btn-sm btn-outline-primary group !text-xs !py-1 !px-2.5 flex items-center {{ if $is_single }}justify-between w-full{{ else }}w-auto{{ end }}">
+                <span class="flex items-center">
+                    {{ partial "icon.html" (dict "style" "solid" "name" "terminal" "class" "mr-1.5") }}
+                    Hacking Hours
+                </span>
+      <span class="font-bold bg-gray-200 dark:bg-gray-700 rounded px-1.5 ml-1.5 transition-colors group-hover:bg-white group-hover:text-primary dark:group-hover:bg-darkmode-body dark:group-hover:text-darkmode-primary">{{ $hacking_hour_count }}</span>
+    </a>
+    {{ end }}
+    {{ if gt $blog_count 0 }}
+    <a href="{{ $link_related }}" class="btn btn-sm btn-outline-primary group !text-xs !py-1 !px-2.5 flex items-center {{ if $is_single }}justify-between w-full{{ else }}w-auto{{ end }}">
+                <span class="flex items-center">
+                    {{ partial "icon.html" (dict "style" "regular" "name" "file-lines" "class" "mr-1.5") }}
+                    Blog Posts
+                </span>
+      <span class="font-bold bg-gray-200 dark:bg-gray-700 rounded px-1.5 ml-1.5 transition-colors group-hover:bg-white group-hover:text-primary dark:group-hover:bg-darkmode-body dark:group-hover:text-darkmode-primary">{{ $blog_count }}</span>
+    </a>
+    {{ end }}
+    {{ if gt $student_talk_count 0 }}
+    <a href="{{ $link_related }}" class="btn btn-sm btn-outline-primary group !text-xs !py-1 !px-2.5 flex items-center {{ if $is_single }}justify-between w-full{{ else }}w-auto{{ end }}">
+                <span class="flex items-center">
+                    {{ partial "icon.html" (dict "style" "solid" "name" "graduation-cap" "class" "mr-1.5") }}
+                    Student Talks
+                </span>
+      <span class="font-bold bg-gray-200 dark:bg-gray-700 rounded px-1.5 ml-1.5 transition-colors group-hover:bg-white group-hover:text-primary dark:group-hover:bg-darkmode-body dark:group-hover:text-darkmode-primary">{{ $student_talk_count }}</span>
+    </a>
+    {{ end }}
+    {{ if gt $mission_board_items 0 }}
+    <a href="{{ $link_mission }}" class="btn btn-sm btn-outline-primary group !text-xs !py-1 !px-2.5 flex items-center {{ if $is_single }}justify-between w-full{{ else }}w-auto{{ end }} !border-red-500 !text-red-600 dark:!border-red-400 dark:!text-red-400 hover:!bg-red-500 hover:!text-white dark:hover:!bg-red-400 dark:hover:!text-black">
+                <span class="flex items-center">
+                    {{ partial "icon.html" (dict "style" "solid" "name" "rocket" "class" "mr-1.5") }}
+                    Help Wanted
+                </span>
+      <span class="font-bold bg-red-100 dark:bg-red-900 rounded px-1.5 ml-1.5 transition-colors group-hover:bg-white group-hover:text-red-600 dark:group-hover:bg-red-200 dark:group-hover:text-red-700">{{ $mission_board_items }}</span>
+    </a>
+    {{ end }}
+  </div>
+</div>
+{{ end }}
+{{ end }}
