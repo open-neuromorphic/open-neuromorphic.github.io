@@ -62,8 +62,8 @@ logo = "snntorch.png"
 page_path = "neuromorphic-computing/software/snn-frameworks/snntorch/"
 dark_logo_invert = false
 
-[[foundational]]
-name = "Sottosoglia Podcast"
-logo = "sottosoglia-logo.png"
-page_path = "neuromorphic-computing/community-resources/sottosoglia-podcast/"
-dark_logo_invert = false
+#[[foundational]]
+#name = "Sottosoglia Podcast"
+#logo = "sottosoglia-logo.png"
+#page_path = "neuromorphic-computing/community-resources/sottosoglia-podcast/"
+#dark_logo_invert = false
