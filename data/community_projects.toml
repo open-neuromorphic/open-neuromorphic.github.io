@@ -5,21 +5,6 @@ repo = "bindsnet/bindsnet"
 description = "Built on top of PyTorch, used for simulating SNNs, geared towards ML and reinforcement learning."
 completed_issues = [ ]
 
-  [[projects.issues]]
-  title = "Dosidicus"
-  url = "https://github.com/BindsNET/bindsnet/pull/713"
-  tags = [ ]
-
-  [[projects.issues]]
-  title = "Lowering precision"
-  url = "https://github.com/BindsNET/bindsnet/pull/707"
-  tags = [ ]
-
-  [[projects.issues]]
-  title = "Reward Modulated STDP Breakout Example"
-  url = "https://github.com/BindsNET/bindsnet/issues/706"
-  tags = [ ]
-
 [[projects]]
 name = "Brian"
 slug = "brian"
@@ -27,41 +12,11 @@ repo = "brian-team/brian2"
 description = "Free, open-source simulator for SNNs, written in Python, focusing on ease of use and flexibility."
 completed_issues = [ ]
 
-  [[projects.issues]]
-  title = "Fix iSTDP update rule (Eq.15): swap pre/post trace handling"
-  url = "https://github.com/brian-team/brian2/pull/1671"
-  tags = [ ]
-
-  [[projects.issues]]
-  title = "chore(deps): bump actions/download-artifact from 4.2.1 to 5.0.0"
-  url = "https://github.com/brian-team/brian2/pull/1670"
-  tags = [ "dependencies", "github_actions" ]
-
-  [[projects.issues]]
-  title = "chore(deps): bump actions/cache from 4.2.3 to 4.2.4"
-  url = "https://github.com/brian-team/brian2/pull/1669"
-  tags = [ "dependencies", "github_actions" ]
-
 [[projects]]
 name = "Faery"
 slug = "faery"
 repo = "aestream/faery"
 description = "Event streaming multitool with an efficient Rust core."
-
-  [[projects.issues]]
-  title = "Build"
-  url = "https://github.com/aestream/faery/pull/33"
-  tags = [ ]
-
-  [[projects.issues]]
-  title = "Fix broken Windows workflow"
-  url = "https://github.com/aestream/faery/issues/32"
-  tags = [ ]
-
-  [[projects.issues]]
-  title = "Bug in cli `filter` command"
-  url = "https://github.com/aestream/faery/issues/29"
-  tags = [ "bug" ]
 
   [[projects.completed_issues]]
   title = "PR #10"
@@ -86,42 +41,12 @@ repo = "genn-team/genn"
 description = "Simulator for SNN models focusing on networks, not on individual neuron morphology. Optimised for accelerated simulations on computational backends including NVIDIA GPUs."
 completed_issues = [ ]
 
-  [[projects.issues]]
-  title = "NMake (Windows): robust CUDA lib path resolution for Conda & system installs"
-  url = "https://github.com/genn-team/genn/pull/705"
-  tags = [ ]
-
-  [[projects.issues]]
-  title = "Host timing"
-  url = "https://github.com/genn-team/genn/pull/701"
-  tags = [ "enhancement", "documentation" ]
-
-  [[projects.issues]]
-  title = "Support NMake build system for building generated code"
-  url = "https://github.com/genn-team/genn/pull/700"
-  tags = [ "enhancement", "windows" ]
-
 [[projects]]
 name = "mlGeNN"
 slug = "ml_genn"
 repo = "genn-team/ml_genn"
 description = "Framework for machine learning with SNNs built on the GeNN simulator. Focused on ease of use in combination with computational efficiency derived from GeNN."
 completed_issues = [ ]
-
-  [[projects.issues]]
-  title = "Added option to have k_reg per population"
-  url = "https://github.com/genn-team/ml_genn/pull/159"
-  tags = [ "enhancement", "EventProp" ]
-
-  [[projects.issues]]
-  title = "DropOut"
-  url = "https://github.com/genn-team/ml_genn/issues/158"
-  tags = [ "enhancement", "EventProp" ]
-
-  [[projects.issues]]
-  title = "neuron_filter for VarRecorder throws error"
-  url = "https://github.com/genn-team/ml_genn/issues/153"
-  tags = [ "bug" ]
 
 [[projects]]
 name = "NIR"
@@ -186,21 +111,6 @@ slug = "nirtorch"
 repo = "neuromorphs/NIRTorch"
 description = "PyTorch-NIR integration library."
 
-  [[projects.issues]]
-  title = "Fix multi-node recurrent import (e.g. NIR paper SRNN network)"
-  url = "https://github.com/neuromorphs/NIRTorch/pull/48"
-  tags = [ ]
-
-  [[projects.issues]]
-  title = "Add support for padding in SumPool2d"
-  url = "https://github.com/neuromorphs/NIRTorch/issues/44"
-  tags = [ ]
-
-  [[projects.issues]]
-  title = "Consider graph validation when parsing NIR graphs"
-  url = "https://github.com/neuromorphs/NIRTorch/issues/37"
-  tags = [ ]
-
   [[projects.completed_issues]]
   title = "PR #28"
   url = "https://github.com/neuromorphs/nirtorch/pull/28"
@@ -242,21 +152,6 @@ slug = "norse"
 repo = "norse/norse"
 description = "A functional spiking neural network simulator for deep learning."
 
-  [[projects.issues]]
-  title = "Importing Recurrent nodes from NIR does not work"
-  url = "https://github.com/norse/norse/issues/427"
-  tags = [ ]
-
-  [[projects.issues]]
-  title = "Align code formatting in git, github workflows, and pyproject"
-  url = "https://github.com/norse/norse/issues/425"
-  tags = [ ]
-
-  [[projects.issues]]
-  title = "Improve NIR mapping"
-  url = "https://github.com/norse/norse/issues/418"
-  tags = [ ]
-
   [[projects.completed_issues]]
   title = "PR #409"
   url = "https://github.com/norse/norse/pull/409"
@@ -271,16 +166,6 @@ slug = ""
 repo = "open-neuromorphic/open-neuromorphic.github.io"
 description = "The ONM community website."
 
-  [[projects.issues]]
-  title = "Community Mission Board Integration"
-  url = "https://github.com/open-neuromorphic/open-neuromorphic.github.io/pull/315"
-  tags = [ ]
-
-  [[projects.issues]]
-  title = "Updating benchmarks to add Rockpool JAX-accelerated benchmarks"
-  url = "https://github.com/open-neuromorphic/open-neuromorphic.github.io/pull/185"
-  tags = [ ]
-
   [[projects.completed_issues]]
   title = "PR #169"
   url = "https://github.com/open-neuromorphic/open-neuromorphic.github.io/pull/169"
@@ -292,21 +177,6 @@ repo = "jeshraghian/snntorch"
 description = "Deep and online learning with spiking neural networks in Python."
 completed_issues = [ ]
 
-  [[projects.issues]]
-  title = "Migrate from setup.py to pyproject.toml, add uv support"
-  url = "https://github.com/jeshraghian/snntorch/pull/396"
-  tags = [ ]
-
-  [[projects.issues]]
-  title = "nir: fix import of IF node"
-  url = "https://github.com/jeshraghian/snntorch/pull/395"
-  tags = [ ]
-
-  [[projects.issues]]
-  title = "CUDA out of memory error after 36 epochs"
-  url = "https://github.com/jeshraghian/snntorch/issues/394"
-  tags = [ ]
-
 [[projects]]
 name = "Tonic"
 slug = "tonic"
@@ -315,16 +185,6 @@ description = "A PyTorch-like library for downloading and manipulating neuromorp
 completed_issues = [ ]
 
   [[projects.issues]]
-  title = "Issue on page /generated/tonic.datasets.POKERDVS.html"
+  title = "Find new maintainer"
   url = "https://github.com/neuromorphs/tonic/issues/309"
-  tags = [ ]
-
-  [[projects.issues]]
-  title = "Discord invite link is broken"
-  url = "https://github.com/neuromorphs/tonic/issues/308"
-  tags = [ ]
-
-  [[projects.issues]]
-  title = "Using Poetry"
-  url = "https://github.com/neuromorphs/tonic/pull/307"
   tags = [ ]
