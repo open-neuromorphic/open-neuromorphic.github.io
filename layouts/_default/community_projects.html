@@ -180,15 +180,15 @@
     const pastContributionsSection = document.getElementById('past-contributions-section');
     const projectLinks = document.querySelectorAll('.project-filter-link');
     const stickyFilterPanel = document.querySelector('.filter-panel-glow');
-    const toc = document.getElementById('TableOfContents'); // Get ToC container
+    const toc = document.getElementById('TableOfContents');
     let activeTag = null;
 
-    // --- REVISED: Accurate scroll function ---
+    // --- Accurate scroll function ---
     function scrollToElementWithOffset(element) {
       if (!element || !stickyFilterPanel) return;
       const stickyHeaderBottom = stickyFilterPanel.getBoundingClientRect().bottom;
       const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.scrollY - stickyHeaderBottom - 20; // 20px extra padding
+      const offsetPosition = elementPosition + window.scrollY - stickyHeaderBottom - 20; // 20px padding
 
       window.scrollTo({
         top: offsetPosition,
@@ -196,36 +196,31 @@
       });
     }
 
-    // --- Project link click handler ---
-    projectLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
+    // --- In-page link click handler ---
+    function handleAnchorClick(e) {
+      const link = e.currentTarget;
+      const targetId = link.getAttribute('href');
+      if (targetId.startsWith('#')) {
         e.preventDefault();
-        const targetId = link.getAttribute('href');
         const targetElement = document.querySelector(targetId);
-
-        if (activeTag) {
-          clearFilter();
-        }
         if (targetElement) {
           scrollToElementWithOffset(targetElement);
-          history.pushState(null, null, targetId); // Update URL hash
+          history.pushState(null, null, targetId);
         }
+      }
+    }
+
+    projectLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        if (activeTag) clearFilter();
+        handleAnchorClick(e);
       });
     });
 
-    // --- NEW: Table of Contents link click handler ---
     if (toc) {
       toc.addEventListener('click', (e) => {
         const link = e.target.closest('a');
-        if (link && link.getAttribute('href').startsWith('#')) {
-          e.preventDefault();
-          const targetId = link.getAttribute('href');
-          const targetElement = document.querySelector(targetId);
-          if (targetElement) {
-            scrollToElementWithOffset(targetElement);
-            history.pushState(null, null, targetId); // Update URL hash
-          }
-        }
+        if (link) handleAnchorClick({ currentTarget: link, preventDefault: () => e.preventDefault() });
       });
     }
 
@@ -233,7 +228,6 @@
     filterTags.forEach(tag => {
       tag.addEventListener('click', () => {
         const selectedTag = tag.dataset.tag;
-
         if (activeTag === selectedTag) {
           clearFilter();
           return;
@@ -241,9 +235,7 @@
         activeTag = selectedTag;
         updateTagStyles(selectedTag);
         if(clearButton) clearButton.classList.remove('hidden');
-
         const firstVisibleProject = applyFilter(selectedTag);
-
         if (firstVisibleProject) {
           scrollToElementWithOffset(firstVisibleProject);
         }
@@ -254,33 +246,33 @@
       clearButton.addEventListener('click', clearFilter);
     }
 
+    // --- NEW: Handle URL hash on initial page load ---
+    const initialHash = window.location.hash;
+    if (initialHash) {
+      // Use a small timeout to ensure the browser's default jump
+      // has completed before we apply our corrected scroll.
+      setTimeout(() => {
+        const targetElement = document.querySelector(initialHash);
+        if (targetElement) {
+          scrollToElementWithOffset(targetElement);
+        }
+      }, 100); // 100ms delay is usually sufficient
+    }
+
+
     function applyFilter(selectedTag) {
       let firstVisibleProject = null;
-      if (pastContributionsSection) {
-        pastContributionsSection.style.display = 'none';
-      }
+      if (pastContributionsSection) pastContributionsSection.style.display = 'none';
       projectContainers.forEach(project => {
         const issues = project.querySelectorAll('.issue-item');
         let projectHasVisibleIssue = false;
-
         issues.forEach(issue => {
           const hasTag = issue.querySelector(`[data-issue-tag="${selectedTag}"]`);
-          if (hasTag) {
-            issue.style.display = 'flex';
-            projectHasVisibleIssue = true;
-          } else {
-            issue.style.display = 'none';
-          }
+          issue.style.display = hasTag ? 'flex' : 'none';
+          if (hasTag) projectHasVisibleIssue = true;
         });
-
-        if (projectHasVisibleIssue) {
-          project.style.display = 'block';
-          if (!firstVisibleProject) {
-            firstVisibleProject = project;
-          }
-        } else {
-          project.style.display = 'none';
-        }
+        project.style.display = projectHasVisibleIssue ? 'block' : 'none';
+        if (projectHasVisibleIssue && !firstVisibleProject) firstVisibleProject = project;
       });
       return firstVisibleProject;
     }
@@ -289,9 +281,7 @@
       activeTag = null;
       updateTagStyles(null);
       if(clearButton) clearButton.classList.add('hidden');
-      if (pastContributionsSection) {
-        pastContributionsSection.style.display = 'block';
-      }
+      if (pastContributionsSection) pastContributionsSection.style.display = 'block';
       projectContainers.forEach(project => {
         project.style.display = 'block';
         project.querySelectorAll('.issue-item').forEach(issue => {
@@ -301,23 +291,12 @@
     }
 
     function updateTagStyles(selectedTag) {
-      const defaultClasses = [
-        'bg-indigo-100', 'text-indigo-800', 'dark:bg-indigo-900', 'dark:text-indigo-300',
-        'hover:bg-indigo-200', 'dark:hover:bg-indigo-800'
-      ];
-      const selectedClasses = [
-        'bg-indigo-600', 'text-white', 'dark:bg-indigo-500', 'dark:text-white',
-        'hover:bg-indigo-700', 'dark:hover:bg-indigo-600'
-      ];
-
+      const defaultClasses = ['bg-indigo-100', 'text-indigo-800', 'dark:bg-indigo-900', 'dark:text-indigo-300', 'hover:bg-indigo-200', 'dark:hover:bg-indigo-800'];
+      const selectedClasses = ['bg-indigo-600', 'text-white', 'dark:bg-indigo-500', 'dark:text-white', 'hover:bg-indigo-700', 'dark:hover:bg-indigo-600'];
       filterTags.forEach(tag => {
         const isSelected = tag.dataset.tag === selectedTag;
         tag.classList.remove(...defaultClasses, ...selectedClasses);
-        if (isSelected) {
-          tag.classList.add(...selectedClasses);
-        } else {
-          tag.classList.add(...defaultClasses);
-        }
+        tag.classList.add(...(isSelected ? selectedClasses : defaultClasses));
       });
     }
   });
