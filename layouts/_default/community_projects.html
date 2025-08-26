@@ -235,9 +235,9 @@
         activeTag = selectedTag;
         updateTagStyles(selectedTag);
         if(clearButton) clearButton.classList.remove('hidden');
-        const firstVisibleIssue = applyFilter(selectedTag);
-        if (firstVisibleIssue) {
-          scrollToElementWithOffset(firstVisibleIssue);
+        const firstVisibleElement = applyFilter(selectedTag);
+        if (firstVisibleElement) {
+          scrollToElementWithOffset(firstVisibleElement);
         }
       });
     });
@@ -259,10 +259,10 @@
       }, 100); // 100ms delay is usually sufficient
     }
 
-
     function applyFilter(selectedTag) {
-      let firstVisibleIssueItem = null;
+      let firstVisibleProject = null;
       if (pastContributionsSection) pastContributionsSection.style.display = 'none';
+
       projectContainers.forEach(project => {
         const issues = project.querySelectorAll('.issue-item');
         let projectHasVisibleIssue = false;
@@ -271,14 +271,17 @@
           issue.style.display = hasTag ? 'flex' : 'none';
           if (hasTag) {
             projectHasVisibleIssue = true;
-            if (!firstVisibleIssueItem) {
-              firstVisibleIssueItem = issue;
-            }
           }
         });
+
         project.style.display = projectHasVisibleIssue ? 'block' : 'none';
+
+        if (projectHasVisibleIssue && !firstVisibleProject) {
+          firstVisibleProject = project;
+        }
       });
-      return firstVisibleIssueItem;
+
+      return firstVisibleProject;
     }
 
     function clearFilter() {
