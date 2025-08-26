@@ -79,10 +79,10 @@
           {{/* --- END: Refactored Sticky Filter Section --- */}}
 
 
-          <h2 id="outstanding-issues" class="text-3xl font-bold mb-8 border-b border-border dark:border-darkmode-border pb-4" style="scroll-margin-top: 29rem;">Outstanding Issues</h2>
+          <h2 id="outstanding-issues" class="text-3xl font-bold mb-8 border-b border-border dark:border-darkmode-border pb-4" >Outstanding Issues</h2>
           <div class="space-y-12">
             {{ range $projectsWithIssues }}
-            <div id="{{ .name | anchorize }}" class="project-container" style="scroll-margin-top: 9rem;">
+            <div id="{{ .name | anchorize }}" class="project-container" >
               {{ partial "custom/project_bounty_item.html" (dict "page" $ "project" . "softwarePages" $softwarePagesBySlug) }}
             </div>
             {{ end }}
@@ -94,7 +94,7 @@
             <h2 id="past-contributions" class="text-3xl font-bold my-8 pt-8 border-t border-border dark:border-darkmode-border">Past Contributions</h2>
             <div class="space-y-12">
               {{ range $projectsWithOnlyCompleted }}
-              <div id="{{ .name | anchorize }}" class="project-container" style="scroll-margin-top: 29rem;">
+              <div id="{{ .name | anchorize }}" class="project-container" >
                 {{ partial "custom/project_bounty_item.html" (dict "page" $ "project" . "softwarePages" $softwarePagesBySlug) }}
               </div>
               {{ end }}
@@ -179,16 +179,57 @@
     const projectContainers = document.querySelectorAll('.project-container');
     const pastContributionsSection = document.getElementById('past-contributions-section');
     const projectLinks = document.querySelectorAll('.project-filter-link');
+    const stickyFilterPanel = document.querySelector('.filter-panel-glow');
+    const toc = document.getElementById('TableOfContents'); // Get ToC container
     let activeTag = null;
 
+    // --- REVISED: Accurate scroll function ---
+    function scrollToElementWithOffset(element) {
+      if (!element || !stickyFilterPanel) return;
+      const stickyHeaderBottom = stickyFilterPanel.getBoundingClientRect().bottom;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - stickyHeaderBottom - 20; // 20px extra padding
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+
+    // --- Project link click handler ---
     projectLinks.forEach(link => {
-      link.addEventListener('click', () => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+
         if (activeTag) {
           clearFilter();
+        }
+        if (targetElement) {
+          scrollToElementWithOffset(targetElement);
+          history.pushState(null, null, targetId); // Update URL hash
         }
       });
     });
 
+    // --- NEW: Table of Contents link click handler ---
+    if (toc) {
+      toc.addEventListener('click', (e) => {
+        const link = e.target.closest('a');
+        if (link && link.getAttribute('href').startsWith('#')) {
+          e.preventDefault();
+          const targetId = link.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            scrollToElementWithOffset(targetElement);
+            history.pushState(null, null, targetId); // Update URL hash
+          }
+        }
+      });
+    }
+
+    // --- Filter tag click handler ---
     filterTags.forEach(tag => {
       tag.addEventListener('click', () => {
         const selectedTag = tag.dataset.tag;
@@ -199,11 +240,12 @@
         }
         activeTag = selectedTag;
         updateTagStyles(selectedTag);
-        clearButton.classList.remove('hidden');
+        if(clearButton) clearButton.classList.remove('hidden');
+
         const firstVisibleProject = applyFilter(selectedTag);
 
         if (firstVisibleProject) {
-          firstVisibleProject.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          scrollToElementWithOffset(firstVisibleProject);
         }
       });
     });
@@ -246,7 +288,7 @@
     function clearFilter() {
       activeTag = null;
       updateTagStyles(null);
-      clearButton.classList.add('hidden');
+      if(clearButton) clearButton.classList.add('hidden');
       if (pastContributionsSection) {
         pastContributionsSection.style.display = 'block';
       }
@@ -270,9 +312,7 @@
 
       filterTags.forEach(tag => {
         const isSelected = tag.dataset.tag === selectedTag;
-
         tag.classList.remove(...defaultClasses, ...selectedClasses);
-
         if (isSelected) {
           tag.classList.add(...selectedClasses);
         } else {
@@ -282,5 +322,4 @@
     }
   });
 </script>
-
 {{ end }}
