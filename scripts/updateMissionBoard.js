@@ -51,15 +51,40 @@ async function updateMissionBoard() {
   }
 
   for (const project of data.projects) {
+    // Preserve manually added issues that might not be "open" or "latest"
+    const manualIssues = project.issues || [];
+
     if (project.repo) {
       console.log(`- Fetching latest 3 open issues for ${project.repo}...`);
-      const issues = await fetchLatestIssuesForRepo(project.repo);
-      project.issues = issues;
-      console.log(`  Found ${issues.length} open issue(s).`);
+      const fetchedIssues = await fetchLatestIssuesForRepo(project.repo);
+      console.log(`  Found ${fetchedIssues.length} open issue(s).`);
+
+      // Combine and deduplicate issues, giving precedence to manually added ones
+      const combinedIssues = [];
+      const seenUrls = new Set();
+
+      // Add manual issues first
+      for (const issue of manualIssues) {
+        if (issue.url && !seenUrls.has(issue.url)) {
+          combinedIssues.push(issue);
+          seenUrls.add(issue.url);
+        }
+      }
+
+      // Add fetched issues if they are not already in the list
+      for (const issue of fetchedIssues) {
+        if (issue.url && !seenUrls.has(issue.url)) {
+          combinedIssues.push(issue);
+          seenUrls.add(issue.url);
+        }
+      }
+
+      project.issues = combinedIssues;
+
     } else {
       console.log(`- Skipping ${project.name} (missing 'repo' key).`);
-      // Ensure 'issues' is an empty array if not fetched, to avoid stale data
-      project.issues = [];
+      // Keep existing issues if no repo is defined
+      project.issues = manualIssues;
     }
   }
 
