@@ -70,12 +70,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run fetch-stars
 
-
       - name: Update Mission Board
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT_FOR_ISSUES }}
+          PAT_FOR_ISSUES: ${{ secrets.PAT_FOR_ISSUES }}
         run: npm run update-mission-board
-
 
       - name: Determine Base URL
         id: base_url
