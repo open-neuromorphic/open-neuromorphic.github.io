@@ -5,8 +5,8 @@
 {{ .Scratch.Set "projectsWithIssues" slice }}
 {{ .Scratch.Set "projectsWithOnlyCompleted" slice }}
 {{ range site.Data.community_projects.projects }}
-{{ $has_issues := ge (len .issues) 1 }}
-{{ $has_completed := ge (len .completed_issues) 1 }}
+{{ $has_issues := and .issues (gt (len .issues) 0) }}
+{{ $has_completed := and .completed_issues (gt (len .completed_issues) 0) }}
 {{ if $has_issues }}
 {{ $.Scratch.Add "projectsWithIssues" . }}
 {{ else if $has_completed }}

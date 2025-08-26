@@ -19,7 +19,9 @@
 {{ $mission_board_items := 0 }}
 {{ range site.Data.community_projects.projects }}
 {{ if eq .slug $slug }}
-{{ $mission_board_items = len .issues }}
+{{ with .issues }}
+{{ $mission_board_items = len . }}
+{{ end }}
 {{ end }}
 {{ end }}
 
