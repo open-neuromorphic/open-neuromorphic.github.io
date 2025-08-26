@@ -5,10 +5,10 @@ const path = require('path');
 const toml = require('@iarna/toml');
 
 const TOML_PATH = path.join(process.cwd(), 'data', 'community_projects.toml');
-const GITHUB_TOKEN = process.env.GH_TOKEN_FOR_ISSUES;
+const GITHUB_TOKEN = process.env.PAT_FOR_ISSUES;
 
 if (!GITHUB_TOKEN) {
-  console.error('ERROR: GH_TOKEN_FOR_ISSUES environment variable is not set.');
+  console.error('ERROR: PAT_FOR_ISSUES environment variable is not set.');
   process.exit(1);
 }
 
