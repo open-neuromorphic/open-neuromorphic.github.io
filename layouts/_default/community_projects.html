@@ -235,9 +235,9 @@
         activeTag = selectedTag;
         updateTagStyles(selectedTag);
         if(clearButton) clearButton.classList.remove('hidden');
-        const firstVisibleProject = applyFilter(selectedTag);
-        if (firstVisibleProject) {
-          scrollToElementWithOffset(firstVisibleProject);
+        const firstVisibleIssue = applyFilter(selectedTag);
+        if (firstVisibleIssue) {
+          scrollToElementWithOffset(firstVisibleIssue);
         }
       });
     });
@@ -261,7 +261,7 @@
 
 
     function applyFilter(selectedTag) {
-      let firstVisibleProject = null;
+      let firstVisibleIssueItem = null;
       if (pastContributionsSection) pastContributionsSection.style.display = 'none';
       projectContainers.forEach(project => {
         const issues = project.querySelectorAll('.issue-item');
@@ -269,12 +269,16 @@
         issues.forEach(issue => {
           const hasTag = issue.querySelector(`[data-issue-tag="${selectedTag}"]`);
           issue.style.display = hasTag ? 'flex' : 'none';
-          if (hasTag) projectHasVisibleIssue = true;
+          if (hasTag) {
+            projectHasVisibleIssue = true;
+            if (!firstVisibleIssueItem) {
+              firstVisibleIssueItem = issue;
+            }
+          }
         });
         project.style.display = projectHasVisibleIssue ? 'block' : 'none';
-        if (projectHasVisibleIssue && !firstVisibleProject) firstVisibleProject = project;
       });
-      return firstVisibleProject;
+      return firstVisibleIssueItem;
     }
 
     function clearFilter() {
