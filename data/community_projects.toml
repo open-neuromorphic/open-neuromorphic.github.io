@@ -185,6 +185,6 @@ description = "A PyTorch-like library for downloading and manipulating neuromorp
 completed_issues = [ ]
 
   [[projects.issues]]
-  title = "Find new maintainer"
-  url = "https://github.com/neuromorphs/tonic/issues/309"
+  title = "Find new maintainer: Contact Gregor Lenz"
+  url = "https://open-neuromorphic.org/contributors/gregor-lenz/"
   tags = [ ]

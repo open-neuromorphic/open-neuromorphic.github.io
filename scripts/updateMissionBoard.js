@@ -18,7 +18,7 @@ const headers = {
 };
 
 async function fetchLatestIssuesForRepo(repo) {
-  // Fetch the 3 most recently created open issues.
+  // Fetch the 3 most recently created open issues, regardless of labels.
   const url = `https://api.github.com/repos/${repo}/issues?state=open&sort=created&direction=desc&per_page=3`;
   try {
     const response = await fetch(url, { headers });
@@ -51,19 +51,19 @@ async function updateMissionBoard() {
   }
 
   for (const project of data.projects) {
-    // Preserve manually added issues that might not be "open" or "latest"
+    // Keep a copy of any issues manually defined in the TOML file.
     const manualIssues = project.issues || [];
 
     if (project.repo) {
-      console.log(`- Fetching latest 3 open issues for ${project.repo}...`);
+      console.log(`- Fetching up to 3 of the latest open issues for ${project.repo}...`);
       const fetchedIssues = await fetchLatestIssuesForRepo(project.repo);
-      console.log(`  Found ${fetchedIssues.length} open issue(s).`);
+      console.log(`  Fetched ${fetchedIssues.length} issue(s) from GitHub.`);
 
-      // Combine and deduplicate issues, giving precedence to manually added ones
+      // Combine manually defined issues with freshly fetched ones, ensuring no duplicates.
       const combinedIssues = [];
       const seenUrls = new Set();
 
-      // Add manual issues first
+      // Add manual issues first to give them priority.
       for (const issue of manualIssues) {
         if (issue.url && !seenUrls.has(issue.url)) {
           combinedIssues.push(issue);
@@ -71,7 +71,7 @@ async function updateMissionBoard() {
         }
       }
 
-      // Add fetched issues if they are not already in the list
+      // Add newly fetched issues if they haven't already been added.
       for (const issue of fetchedIssues) {
         if (issue.url && !seenUrls.has(issue.url)) {
           combinedIssues.push(issue);
@@ -80,10 +80,11 @@ async function updateMissionBoard() {
       }
 
       project.issues = combinedIssues;
+      console.log(`  Total issues for ${project.name}: ${combinedIssues.length} (after deduplication).`);
 
     } else {
-      console.log(`- Skipping ${project.name} (missing 'repo' key).`);
-      // Keep existing issues if no repo is defined
+      console.log(`- Skipping ${project.name} (no 'repo' key). Manual issues will be preserved.`);
+      // If no repo is specified, just keep the manually defined issues.
       project.issues = manualIssues;
     }
   }
