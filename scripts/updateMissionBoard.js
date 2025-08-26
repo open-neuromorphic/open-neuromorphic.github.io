@@ -19,14 +19,18 @@ const headers = {
 
 async function fetchLatestIssuesForRepo(repo) {
   // Fetch the 3 most recently created open issues, regardless of labels.
-  const url = `https://api.github.com/repos/${repo}/issues?state=open&sort=created&direction=desc&per_page=3`;
+  const url = `https://api.github.com/repos/${repo}/issues?state=open&sort=created&direction=desc&per_page=10`; // Fetch more to filter out PRs
   try {
     const response = await fetch(url, { headers });
     if (!response.ok) {
       console.error(`Failed to fetch issues for ${repo}: ${response.statusText}`);
       return [];
     }
-    const issues = await response.json();
+    const items = await response.json();
+
+    // Filter out pull requests and take the top 3 results.
+    const issues = items.filter(item => !item.pull_request).slice(0, 3);
+
     // Map the API response to the format needed in our TOML file
     return issues.map(issue => ({
       title: issue.title,
