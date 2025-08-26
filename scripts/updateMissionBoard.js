@@ -92,7 +92,7 @@ async function updateMissionBoard() {
   const newTomlContent = toml.stringify(data);
   await fs.writeFile(TOML_PATH, newTomlContent);
 
-  console.log('✅ Mission board update complete. File data/community_projects.toml has been overwritten. ');
+  console.log('✅ Mission board update complete. File data/community_projects.toml has been overwritten.');
 }
 
 updateMissionBoard().catch(error => {
