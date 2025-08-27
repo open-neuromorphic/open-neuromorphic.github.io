@@ -15,16 +15,13 @@ By tackling these issues, you can help support vital open-source tools, prevent 
 Are you a maintainer in the neuromorphic ecosystem? We invite you to connect with us to feature your project's tasks and guide community contributions. Here’s how you can get involved:
 
 #### Step 1: Tag Your GitHub Issues
-Our automated system scans for specific tags to populate this board. To have your tasks appear, please add one or more of the following labels to relevant open issues in your GitHub repository:
+Our automated system uses a priority-based approach to select issues for this board.
 
--   `onm-collab`: For tasks that align with Open Neuromorphic's collaborative goals.
--   `good first issue`: Ideal for newcomers looking to make their first contribution.
--   `documentation`: For tasks related to improving documentation.
--   `bug`: For fixing known issues.
--   `enhancement`: For new features or improvements.
--   `testing`: For adding or improving tests.
+-   **Primary Method (Recommended):** Add the `onm-collab` label to issues you'd like to feature. The system will prioritize the three most recent open issues with this tag. This is the best way to signal that a task is aligned with our community's collaborative goals.
 
-The script will automatically pull the three most recent open issues that have at least one of these tags.
+-   **Fallback Method:** If a project has no open issues tagged with `onm-collab`, the system will automatically select the three most recent open issues, regardless of their labels.
+
+While not required for selection, we still recommend using tags like `good first issue`, `documentation`, `bug`, `enhancement`, and `testing` to help contributors find tasks that match their skills.
 
 #### Step 2: Add Persistent Links (Optional)
 If you have important links like a **sponsorship page**, an **onboarding guide**, or other resources you'd like to feature permanently on your project's card, please reach out to us.
