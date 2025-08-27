@@ -79,7 +79,7 @@
           {{/* --- END: Refactored Sticky Filter Section --- */}}
 
 
-          <h2 id="outstanding-issues" class="text-3xl font-bold mb-8 border-b border-border dark:border-darkmode-border pb-4" >Outstanding Issues</h2>
+          <h2 id="mission-board" class="text-3xl font-bold mb-8 border-b border-border dark:border-darkmode-border pb-4" >Mission Board</h2>
           <div class="space-y-12">
             {{ range $projectsWithIssues }}
             <div id="{{ .name | anchorize }}" class="project-container" >
@@ -126,7 +126,7 @@
               <ul>
                 {{ if $projectsWithIssues }}
                 <li>
-                  <a href="#outstanding-issues">Outstanding Issues</a>
+                  <a href="#mission-board">Mission Board</a>
                   <ul>
                     {{ range $projectsWithIssues }}
                     <li><a href="#{{ .name | anchorize }}">{{ .name }}</a></li>
