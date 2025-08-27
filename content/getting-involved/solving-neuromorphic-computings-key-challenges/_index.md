@@ -12,7 +12,7 @@ Welcome to the Open Neuromorphic Mission Board! The progress of neuromorphic com
 By tackling these issues, you can help support vital open-source tools, prevent maintainer burnout, and directly contribute to the future of the field.
 
 {{< details summary="Project Maintainers: Add Your Project's Tasks" >}}
-Are you a maintainer in the neuromorphic ecosystem? We invite you to connect with us to feature your project's tasks and guide community contributions. Here’s how you can get involved:
+Are you a maintainer in the neuromorphic ecosystem? We invite you to connect with us to feature your project's tasks and guide community contributions. This board is automatically updated daily to reflect the latest open issues from participating projects. Here’s how you can get involved:
 
 #### Step 1: Tag Your GitHub Issues
 Our automated system uses a priority-based approach to select issues for this board.
