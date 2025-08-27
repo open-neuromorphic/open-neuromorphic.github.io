@@ -17,9 +17,11 @@ const headers = {
   'Authorization': `token ${GITHUB_TOKEN}`,
 };
 
+const ALLOWED_TAGS = new Set(['good first issue', 'documentation', 'bug', 'enhancement', 'testing']);
+
 async function fetchLatestIssuesForRepo(repo) {
-  // Fetch the 3 most recently created open issues, regardless of labels.
-  const url = `https://api.github.com/repos/${repo}/issues?state=open&sort=created&direction=desc&per_page=10`; // Fetch more to filter out PRs
+  // Fetch the 10 most recently created open issues to ensure we find 3 after filtering out PRs.
+  const url = `https://api.github.com/repos/${repo}/issues?state=open&sort=created&direction=desc&per_page=10`;
   try {
     const response = await fetch(url, { headers });
     if (!response.ok) {
@@ -31,11 +33,13 @@ async function fetchLatestIssuesForRepo(repo) {
     // Filter out pull requests and take the top 3 results.
     const issues = items.filter(item => !item.pull_request).slice(0, 3);
 
-    // Map the API response to the format needed in our TOML file
+    // Map the API response, filtering the tags to only include allowed ones.
     return issues.map(issue => ({
       title: issue.title,
       url: issue.html_url,
-      tags: issue.labels.map(l => l.name),
+      tags: issue.labels
+        .map(l => l.name)
+        .filter(name => ALLOWED_TAGS.has(name.toLowerCase())),
     }));
   } catch (error) {
     console.error(`Error fetching issues for ${repo}:`, error);
