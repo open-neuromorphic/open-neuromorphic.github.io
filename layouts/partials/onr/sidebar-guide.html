@@ -1,11 +1,11 @@
 {{ $currentPage := . }}
 {{/* Define the paths to the main ONR program pages */}}
 {{ $paths := slice
-  "/neuromorphic-computing/research/"
-  "/neuromorphic-computing/research/submitter-guide/"
-  "/neuromorphic-computing/research/reviewer-guide/"
-  "/neuromorphic-computing/research/review-criteria/"
-  "/neuromorphic-computing/research/badge-system/"
+"/neuromorphic-computing/research/"
+"/neuromorphic-computing/research/submitter-guide/"
+"/neuromorphic-computing/research/reviewer-guide/"
+"/neuromorphic-computing/research/review-criteria/"
+"/neuromorphic-computing/research/badge-system/"
 }}
 
 {{/* ONR Guide Card */}}
@@ -14,22 +14,25 @@
   <nav id="TableOfContents" class="mt-4">
     <ul>
       {{ range $paths }}
-        {{ with site.GetPage . }}
-          {{ $isActive := eq ($currentPage.RelPermalink | strings.TrimRight "/") (strings.TrimRight .RelPermalink "/") }}
-          <li class="{{ if $isActive }}active{{ end }}">
-            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-          </li>
-        {{ end }}
+      {{ with site.GetPage . }}
+      {{ $isActive := eq ($currentPage.RelPermalink | strings.TrimRight "/") (strings.TrimRight .RelPermalink "/") }}
+      <li class="{{ if $isActive }}active{{ end }}">
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+      </li>
+      {{ end }}
       {{ end }}
     </ul>
   </nav>
 </div>
 
-{{/* NEW: Display Program Lead Card */}}
+{{/* Display Program Lead Card only on the research list page (which is a "section" kind) */}}
+{{ if .IsSection }}
 {{ $researchSection := site.GetPage "neuromorphic-computing/research" }}
 {{ with $researchSection }}
-  {{ partial "onr/program-lead.html" . }}
+{{ partial "onr/program-lead.html" . }}
 {{ end }}
+{{ end }}
+
 
 {{/* On This Page (Table of Contents) Card */}}
 {{ if and .IsPage .Params.showTableOfContents (ne .TableOfContents `<nav id="TableOfContents"></nav>`) }}
