@@ -1,15 +1,28 @@
 {{ $page := . }}
-<section class="hero-section pt-16 pb-12 md:pt-24 md:pb-20 text-center">
+
+{{/* The entire hero block is now a single section with the diamond pattern */}}
+<section class="hero-section pt-6 pb-12 md:pt-10 md:pb-20">
   <div class="container mx-auto px-6">
-    <h1 class="text-4xl md:text-6xl font-extrabold mb-6 text-text dark:text-darkmode-text">
-      <span class="gradient-text">Open Neuromorphic Research</span>
-    </h1>
-    <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-10 max-w-3xl mx-auto">
-      {{ $page.Description }}
-    </p>
-    <div class="space-x-4">
-      <a href="{{ "/neuromorphic-computing/research/submitter-guide/" | relLangURL }}" class="btn btn-new-primary text-lg">Submit Your Work</a>
-      <a href="{{ "/neuromorphic-computing/research/reviewer-guide/" | relLangURL }}" class="btn btn-new-outline text-lg">Become a Reviewer</a>
+
+    {{/* Breadcrumbs at the top, now inside the hero-section */}}
+    <div class="flex flex-wrap items-center justify-between gap-y-2 mb-8 text-left">
+      {{ partial "components/breadcrumb" (dict "Context" . ) }}
+      {{ partial "components/edit-page-link.html" . }}
     </div>
+
+    {{/* Main hero content, with added top margin for spacing */}}
+    <div class="text-center mt-8 md:mt-12">
+      <h1 class="text-4xl md:text-6xl font-extrabold mb-6 text-text dark:text-darkmode-text">
+        <span class="gradient-text">Open Neuromorphic Research</span>
+      </h1>
+      <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-10 max-w-3xl mx-auto">
+        {{ $page.Description }}
+      </p>
+      <div class="space-x-4">
+        <a href="{{ "/neuromorphic-computing/research/submitter-guide/" | relLangURL }}" class="btn btn-new-primary text-lg">Submit Your Work</a>
+        <a href="{{ "/neuromorphic-computing/research/reviewer-guide/" | relLangURL }}" class="btn btn-new-outline text-lg">Become a Reviewer</a>
+      </div>
+    </div>
+
   </div>
 </section>

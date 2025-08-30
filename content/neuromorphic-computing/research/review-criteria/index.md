@@ -7,7 +7,7 @@ type: "research"
 
 This document details the official review criteria for the Open Neuromorphic Research (ONR) program. It is to be used by both submitters preparing their work and reviewers evaluating submissions.
 
-### Core Principles
+## Core Principles
 
 Reviewers are expected to adhere to the following principles, inspired by the broader open science movement:
 
@@ -16,7 +16,7 @@ Reviewers are expected to adhere to the following principles, inspired by the br
 3.  **I will treat the review as a discourse... and provide constructive criticism.** (Constructiveness)
 4.  **I will be an ambassador for the practice of open science.** (Advocacy)
 
-### Evaluation Rubric
+## Evaluation Rubric
 
 | Category | Criteria | Reviewer Questions |
 |---|---|---|
@@ -31,12 +31,12 @@ Reviewers are expected to adhere to the following principles, inspired by the br
 
 ---
 
-### Reviewer Recommendation
+## Reviewer Recommendation
 
 -   [ ] **Accept:** The submission meets the criteria and is ready for the "ONM Community Approved" badge.
 -   [ ] **Recommend Modifications:** The submission is promising but requires specific, actionable changes before it can be accepted.
 
-### Reviewer Comments
+## Reviewer Comments
 
 Please provide brief, constructive feedback addressing:
 -   **Strengths** of the submission.

@@ -1,19 +1,53 @@
 {{ define "main" }}
-  {{ partial "page-header" . }}
-  <section class="section pt-6">
-    <div class="container">
-      <div class="row lg:items-stretch">
-        <article class="lg:col-8">
-          <div class="content mb-10">
-            {{ .Content }}
+{{ partial "page-header" . }}
+<section class="section pt-6">
+  <div class="container">
+    <div class="row lg:items-stretch">
+      <article class="lg:col-8">
+        <div class="content mb-10">
+          {{ .Content }}
+        </div>
+      </article>
+      <aside class="lg:col-4 hidden lg:block">
+        {{/* --- Non-Sticky Sidebar Items --- */}}
+
+        {{ $currentPage := . }}
+        {{ $paths := slice
+        "/neuromorphic-computing/research/"
+        "/neuromorphic-computing/research/submitter-guide/"
+        "/neuromorphic-computing/research/reviewer-guide/"
+        "/neuromorphic-computing/research/review-criteria/"
+        "/neuromorphic-computing/research/badge-system/"
+        }}
+        <div class="px-3 pt-5 pb-5 content-panel mb-6">
+          <strong class="text-xl pl-3">ONR Program Guide</strong>
+          <nav id="TableOfContents" class="mt-4">
+            <ul>
+              {{ range $paths }}
+              {{ with site.GetPage . }}
+              {{ $isActive := eq ($currentPage.RelPermalink | strings.TrimRight "/") (strings.TrimRight .RelPermalink "/") }}
+              <li class="{{ if $isActive }}active{{ end }}">
+                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+              </li>
+              {{ end }}
+              {{ end }}
+            </ul>
+          </nav>
+        </div>
+
+        {{/* --- Sticky Table of Contents --- */}}
+        {{ if and .IsPage .Params.showTableOfContents (ne .TableOfContents `<nav id="TableOfContents"></nav>`) }}
+        <div class="sticky top-24">
+          <div class="px-3 pt-5 pb-5 content-panel">
+            <strong class="text-xl pl-3">On This Page</strong>
+            <div id="tableOfContentContainer" class="mt-4">
+              {{ .TableOfContents }}
+            </div>
           </div>
-        </article>
-        <aside class="lg:col-4 hidden lg:block">
-          <div class="sticky top-24">
-            {{ partial "onr/sidebar-guide.html" . }}
-          </div>
-        </aside>
-      </div>
+        </div>
+        {{ end }}
+      </aside>
     </div>
-  </section>
+  </div>
+</section>
 {{ end }}

@@ -1,21 +1,29 @@
 {{ define "main" }}
-  {{/* Use the new grand header instead of the default one */}}
-  {{ partial "onr/page-header-hero.html" . }}
+{{/* Use the new grand header instead of the default one */}}
+{{ partial "onr/page-header-hero.html" . }}
 
-  <section class="section pt-12">
-    <div class="container">
-      <div class="row lg:items-stretch">
-        <div class="lg:col-8">
-          <div class="content">
-            {{ .Content }}
-          </div>
+<section class="section pt-12">
+  <div class="container">
+    <div class="row lg:items-stretch">
+      <div class="lg:col-8">
+        <div class="content">
+          {{ .Content }}
         </div>
-        <aside class="lg:col-4 hidden lg:block">
-          <div class="sticky top-24">
-            {{ partial "onr/sidebar-guide.html" . }}
-          </div>
-        </aside>
+        <div class="mt-16">
+          {{ partial "components/share-cta.html" . }}
+        </div>
       </div>
+      <aside class="lg:col-4 hidden lg:block">
+        {{/* --- Non-Sticky Sidebar Item --- */}}
+        <div class="mb-6">
+          {{ partial "components/og-preview.html" . }}
+        </div>
+        {{/* --- Sticky Items --- */}}
+        <div class="sticky top-24">
+          {{ partial "onr/sidebar-guide.html" . }}
+        </div>
+      </aside>
     </div>
-  </section>
+  </div>
+</section>
 {{ end }}

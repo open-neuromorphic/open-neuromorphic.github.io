@@ -5,7 +5,7 @@ showTableOfContents: true
 type: "research"
 ---
 
-### The "ONM Community Approved" Badge
+## The "ONM Community Approved" Badge
 
 The "ONM Community Approved" badge is a mark of quality and trust within the neuromorphic ecosystem. It signifies that a project, paper, or resource has successfully passed the Open Neuromorphic Research (ONR) community peer-review process.
 
