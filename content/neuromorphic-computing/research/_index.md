@@ -3,6 +3,7 @@ title: "Open Neuromorphic Research (ONR)"
 description: "A community-driven peer review program to validate and highlight reproducible, high-impact research in neuromorphic computing. Discover community-approved papers and learn how to submit your work."
 type: "research"
 layout: "list"
+program_lead: "danny-rosen"
 ---
 
 Welcome to the Open Neuromorphic Research (ONR) hub. This initiative is designed to foster open, reproducible, and high-quality research within the neuromorphic community through a transparent peer-review process.

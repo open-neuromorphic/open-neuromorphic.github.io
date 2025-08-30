@@ -25,6 +25,12 @@
   </nav>
 </div>
 
+{{/* NEW: Display Program Lead Card */}}
+{{ $researchSection := site.GetPage "neuromorphic-computing/research" }}
+{{ with $researchSection }}
+  {{ partial "onr/program-lead.html" . }}
+{{ end }}
+
 {{/* On This Page (Table of Contents) Card */}}
 {{ if and .IsPage .Params.showTableOfContents (ne .TableOfContents `<nav id="TableOfContents"></nav>`) }}
 <div class="sticky top-24 px-3 pt-5 pb-5 content-panel">
