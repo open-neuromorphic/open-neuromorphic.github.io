@@ -19,7 +19,12 @@
             {{ end }}
           </div>
           <div class="text-center mt-12">
+            {{ $papersRegistryPage := site.GetPage "neuromorphic-computing/research/papers" }}
+            {{ if $papersRegistryPage }}
+            <a href="{{ $papersRegistryPage.RelPermalink }}" class="btn btn-new-primary">View Full Research Registry</a>
+            {{ else }}
             <a href="{{ "/neuromorphic-computing/research/papers/" | relLangURL }}" class="btn btn-new-primary">View Full Research Registry</a>
+            {{ end }}
           </div>
         </div>
 
