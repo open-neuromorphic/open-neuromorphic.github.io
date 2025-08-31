@@ -22,8 +22,8 @@
         {{ $submitterPage := site.GetPage "neuromorphic-computing/research/guide/submitter-guide" }}
         {{ $reviewerPage := site.GetPage "neuromorphic-computing/research/guide/reviewer-guide" }}
 
-        <a href="{{ if $submitterPage }}{{ $submitterPage.RelPermalink }}{{ else }}{{ "/neuromorphic-computing/research/guide/submitter-guide/" | relLangURL }}{{ end }}" class="btn btn-new-primary text-lg">Submit Your Work</a>
-        <a href="{{ if $reviewerPage }}{{ $reviewerPage.RelPermalink }}{{ else }}{{ "/neuromorphic-computing/research/guide/reviewer-guide/" | relLangURL }}{{ end }}" class="btn btn-new-outline text-lg">Become a Reviewer</a>
+        <a href="{{ $submitterPage.RelPermalink }}" class="btn btn-new-primary text-lg">Submit Your Work</a>
+        <a href="{{ $reviewerPage.RelPermalink }}" class="btn btn-new-outline text-lg">Become a Reviewer</a>
       </div>
     </div>
 
