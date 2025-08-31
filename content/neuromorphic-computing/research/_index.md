@@ -11,7 +11,7 @@ Welcome to the Open Neuromorphic Research (ONR) hub. This initiative is designed
 Our goal is to create a trusted registry of community-vetted projects, papers, and tools that exemplify the best practices of open science.
 
 <div class="space-y-4 my-8">
-  <a href="../research/submitter-guide/" class="group no-style block p-6 bg-theme-light dark:bg-darkmode-theme-light rounded-lg shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+  <a href="./guide/submitter-guide/" class="group no-style block p-6 bg-theme-light dark:bg-darkmode-theme-light rounded-lg shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
     <div class="flex justify-between items-center">
       <div>
         <h3 class="text-xl font-semibold text-dark dark:text-darkmode-dark styled-link">Submitter's Guide</h3>
@@ -22,7 +22,7 @@ Our goal is to create a trusted registry of community-vetted projects, papers, a
       </span>
     </div>
   </a>
-  <a href="../research/reviewer-guide/" class="group no-style block p-6 bg-theme-light dark:bg-darkmode-theme-light rounded-lg shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+  <a href="./guide/reviewer-guide/" class="group no-style block p-6 bg-theme-light dark:bg-darkmode-theme-light rounded-lg shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
     <div class="flex justify-between items-center">
       <div>
         <h3 class="text-xl font-semibold text-dark dark:text-darkmode-dark styled-link">Reviewer's Guide</h3>
@@ -33,7 +33,7 @@ Our goal is to create a trusted registry of community-vetted projects, papers, a
       </span>
     </div>
   </a>
-    <a href="../research/review-criteria/" class="group no-style block p-6 bg-theme-light dark:bg-darkmode-theme-light rounded-lg shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+    <a href="./guide/review-criteria/" class="group no-style block p-6 bg-theme-light dark:bg-darkmode-theme-light rounded-lg shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
     <div class="flex justify-between items-center">
       <div>
         <h3 class="text-xl font-semibold text-dark dark:text-darkmode-dark styled-link">Official Review Criteria</h3>
@@ -46,11 +46,11 @@ Our goal is to create a trusted registry of community-vetted projects, papers, a
   </a>
 </div>
 
-### Why a Community Review Program?
+<h3>Why a Community Review Program?</h3>
 
 By establishing a clear set of standards and a transparent review process, we aim to:
-- **Increase Trust:** Provide a clear signal of quality for community-vetted projects.
-- **Promote Reproducibility:** Encourage best practices in documenting and sharing research.
-- **Accelerate Innovation:** Make it easier for researchers to build upon each other's work.
+- <strong>Increase Trust:</strong> Provide a clear signal of quality for community-vetted projects.
+- <strong>Promote Reproducibility:</strong> Encourage best practices in documenting and sharing research.
+- <strong>Accelerate Innovation:</strong> Make it easier for researchers to build upon each other's work.
 
 Navigate using the links in the sidebar to learn more about how to participate as a submitter or a reviewer.
