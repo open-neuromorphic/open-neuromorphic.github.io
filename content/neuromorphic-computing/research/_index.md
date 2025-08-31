@@ -1,5 +1,5 @@
 ---
-title: "Open Neuromorphic Research (ONR)"
+title: "Open Neuromorphic Research"
 description: "A community-driven peer review program to validate and highlight reproducible, high-impact research in neuromorphic computing. Discover community-approved papers and learn how to submit your work."
 type: "research"
 layout: "list"
