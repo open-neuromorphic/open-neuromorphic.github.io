@@ -10,20 +10,101 @@
           {{ .Content }}
         </div>
 
-        <div id="recent-research" class="mt-16">
-          <h2 class="text-3xl font-bold mb-8 text-center">Recent Approved Research</h2>
+        {{/* --- ONR Updates Section --- */}}
+        {{ $recent_papers_filtered := slice }}
+        {{ range where site.RegularPages "Type" "research-papers" }}
+        {{ if .Date }}{{ $recent_papers_filtered = $recent_papers_filtered | append . }}{{ end }}
+        {{ end }}
+
+        {{ $onr_blog_posts_filtered := slice }}
+        {{ $blog_pages_with_onr_tag := where (where site.RegularPages "Section" "blog") ".Params.tags" "intersect" (slice "onr" "ONR") }}
+        {{ range $blog_pages_with_onr_tag }}
+        {{ if .Date }}{{ $onr_blog_posts_filtered = $onr_blog_posts_filtered | append . }}{{ end }}
+        {{ end }}
+
+        {{ $updates_combined := $recent_papers_filtered | append $onr_blog_posts_filtered }}
+        {{ $updates := sort $updates_combined "Date" "desc" }}
+
+        <div id="onr-updates" class="mt-12">
+          <h2 class="text-3xl font-bold mb-8 text-center" id="recent-updates">Recent ONR Updates</h2>
           <div class="space-y-8">
-            {{ $recent_papers := first 3 (where site.RegularPages "Type" "research-papers").ByDate.Reverse }}
-            {{ range $recent_papers }}
+            {{ range first 3 $updates }}
+            {{ if eq .Type "research-papers" }}
             {{ .Render "card" }}
+            {{ else if eq .Section "blog" }}
+            <div class="p-6 bg-theme-light dark:bg-darkmode-theme-light rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+              <div class="flex flex-col h-full">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="text-xl font-bold text-dark dark:text-darkmode-dark pr-4"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+                  <span class="flex-shrink-0 text-xs font-semibold bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300 px-2.5 py-1 rounded-full">Blog Post</span>
+                </div>
+                <div class="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                  By {{ partial "components/author-links.html" . }} on {{ .Date.Format "Jan 2, 2006" }}
+                </div>
+                <p class="text-text dark:text-darkmode-text text-sm mb-4 flex-grow">{{ .Description }}</p>
+                <div class="mt-auto">
+                  <a href="{{ .RelPermalink }}" class="btn btn-sm btn-new-outline">Read Post</a>
+                </div>
+              </div>
+            </div>
+            {{ end }}
             {{ end }}
           </div>
           <div class="text-center mt-12">
-            {{ $papersRegistryPage := site.GetPage "neuromorphic-computing/research/papers" }}
-            {{ if $papersRegistryPage }}
-            <a href="{{ $papersRegistryPage.RelPermalink }}" class="btn btn-new-primary">View Full Research Registry</a>
-            {{ else }}
-            <a href="{{ "/neuromorphic-computing/research/papers/" | relLangURL }}" class="btn btn-new-primary">View Full Research Registry</a>
+            <div class="flex flex-wrap justify-center gap-4">
+              {{ with site.GetPage "neuromorphic-computing/research/papers" }}
+              <a href="{{ .RelPermalink }}" class="btn btn-new-primary">View Full Research Registry</a>
+              {{ end }}
+              {{ with site.GetPage "tags/onr" }}
+              <a href="{{ .RelPermalink }}" class="btn btn-new-outline">View all ONR Blog Posts</a>
+              {{ end }}
+            </div>
+          </div>
+        </div>
+        {{/* --- End ONR Updates Section --- */}}
+
+        {{/* --- Guide Links Section --- */}}
+        <div class="mt-16">
+          <h2 class="text-3xl font-bold mb-8 text-center">How to Participate</h2>
+          <div class="space-y-4 my-8">
+            {{ with site.GetPage "neuromorphic-computing/research/guide/submitter-guide" }}
+            <a href="{{ .RelPermalink }}" class="group no-style block p-6 bg-theme-light dark:bg-darkmode-theme-light rounded-lg shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+              <div class="flex justify-between items-center">
+                <div>
+                  <h3 class="text-xl font-semibold text-dark dark:text-darkmode-dark styled-link">{{ .Title }}</h3>
+                  <p class="text-text dark:text-darkmode-text mt-1">{{ .Params.description | default "Learn how to prepare and submit your work for community review." }}</p>
+                </div>
+                <span class="text-2xl text-primary dark:text-darkmode-primary transition-transform transform group-hover:translate-x-1 ml-4 no-underline">
+                    <svg class="icon icon-arrow-right" fill="currentColor" aria-hidden="true" role="img" style="display: inline-block; vertical-align: middle; width: 1em; height: 1em;"><use xlink:href="#icon-solid-arrow-right"></use></svg>
+                  </span>
+              </div>
+            </a>
+            {{ end }}
+            {{ with site.GetPage "neuromorphic-computing/research/guide/reviewer-guide" }}
+            <a href="{{ .RelPermalink }}" class="group no-style block p-6 bg-theme-light dark:bg-darkmode-theme-light rounded-lg shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+              <div class="flex justify-between items-center">
+                <div>
+                  <h3 class="text-xl font-semibold text-dark dark:text-darkmode-dark styled-link">{{ .Title }}</h3>
+                  <p class="text-text dark:text-darkmode-text mt-1">{{ .Params.description | default "Understand the workflow and principles for providing constructive feedback." }}</p>
+                </div>
+                <span class="text-2xl text-primary dark:text-darkmode-primary transition-transform transform group-hover:translate-x-1 ml-4 no-underline">
+                    <svg class="icon icon-arrow-right" fill="currentColor" aria-hidden="true" role="img" style="display: inline-block; vertical-align: middle; width: 1em; height: 1em;"><use xlink:href="#icon-solid-arrow-right"></use></svg>
+                  </span>
+              </div>
+            </a>
+            {{ end }}
+            {{ with site.GetPage "neuromorphic-computing/research/guide/review-criteria" }}
+            <a href="{{ .RelPermalink }}" class="group no-style block p-6 bg-theme-light dark:bg-darkmode-theme-light rounded-lg shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+              <div class="flex justify-between items-center">
+                <div>
+                  <h3 class="text-xl font-semibold text-dark dark:text-darkmode-dark styled-link">{{ .Title }}</h3>
+                  <p class="text-text dark:text-darkmode-text mt-1">{{ .Params.description | default "The evaluation rubric used to assess all ONR submissions." }}</p>
+                </div>
+                <span class="text-2xl text-primary dark:text-darkmode-primary transition-transform transform group-hover:translate-x-1 ml-4 no-underline">
+                    <svg class="icon icon-arrow-right" fill="currentColor" aria-hidden="true" role="img" style="display: inline-block; vertical-align: middle; width: 1em; height: 1em;"><use xlink:href="#icon-solid-arrow-right"></use></svg>
+                  </span>
+              </div>
+            </a>
             {{ end }}
           </div>
         </div>
