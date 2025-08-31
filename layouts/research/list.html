@@ -9,6 +9,20 @@
         <div class="content">
           {{ .Content }}
         </div>
+
+        <div id="recent-research" class="mt-16">
+          <h2 class="text-3xl font-bold mb-8 text-center">Recent Approved Research</h2>
+          <div class="space-y-8">
+            {{ $recent_papers := first 3 (where site.RegularPages "Type" "research-papers").ByDate.Reverse }}
+            {{ range $recent_papers }}
+            {{ .Render "card" }}
+            {{ end }}
+          </div>
+          <div class="text-center mt-12">
+            <a href="{{ "/neuromorphic-computing/research/papers/" | relLangURL }}" class="btn btn-new-primary">View Full Research Registry</a>
+          </div>
+        </div>
+
         <div class="mt-16">
           {{ partial "components/share-cta.html" . }}
         </div>

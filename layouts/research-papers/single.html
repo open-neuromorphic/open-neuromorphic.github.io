@@ -1,0 +1,51 @@
+{{ define "main" }}
+{{ partial "page-header" . }}
+
+<section class="section pt-6">
+  <div class="container">
+    <div class="row lg:items-stretch">
+      <article class="lg:col-8">
+        {{ partial "components/metadata-bar.html" (dict "context" . "type" "blog") }}
+        <div class="content-panel p-6 mb-8">
+            <h2 class="text-2xl font-bold mb-4">Resource Details</h2>
+            <dl class="space-y-3 text-text dark:text-darkmode-text">
+                {{ with .Params.resource_link }}
+                <div>
+                    <dt class="font-semibold">Link to Resource</dt>
+                    <dd><a href="{{ . }}" target="_blank" rel="noopener" class="styled-link break-all">{{ . }}</a></dd>
+                </div>
+                {{ end }}
+                {{ with .Params.publication_venue }}
+                <div>
+                    <dt class="font-semibold">Publication</dt>
+                    <dd>{{ . }}</dd>
+                </div>
+                {{ end }}
+                {{ with .Params.doi }}
+                <div>
+                    <dt class="font-semibold">DOI</dt>
+                    <dd><a href="https://doi.org/{{ . }}" target="_blank" rel="noopener" class="styled-link">{{ . }}</a></dd>
+                </div>
+                {{ end }}
+                {{ with .Params.review_date }}
+                <div>
+                    <dt class="font-semibold">Community Approved On</dt>
+                    <dd>{{ (. | time.AsTime).Format "January 2, 2006" }}</dd>
+                </div>
+                {{ end }}
+            </dl>
+        </div>
+        <div class="content mb-10">
+          {{ .Content }}
+        </div>
+        {{ partial "components/share-cta.html" . }}
+      </article>
+      <aside class="lg:col-4 hidden lg:block">
+        <div class="sticky top-24">
+          {{ partial "onr/sidebar-guide.html" . }}
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+{{ end }}
