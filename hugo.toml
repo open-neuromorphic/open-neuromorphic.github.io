@@ -80,7 +80,8 @@ maxAge = "720h"
 [markup]
 [markup.goldmark.renderer]
 unsafe = true
-hardWraps = true
+hardWraps = false
+
 
 [markup.highlight]
 style = 'github-dark' # see https://xyproto.github.io/splash/docs/all.html
