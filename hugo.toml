@@ -80,7 +80,7 @@ maxAge = "720h"
 [markup]
 [markup.goldmark.renderer]
 unsafe = true
-hardWraps = false
+hardWraps = true
 
 
 [markup.highlight]
