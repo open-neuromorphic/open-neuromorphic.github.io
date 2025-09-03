@@ -24,4 +24,5 @@ on hardware including NVIDIA GPUs. GeNN uses code generation with various 'backe
 Networks are described using a simple Python API and built out of model components that can be fully customized. The behaviour of neurons, synapses, plasticity mechanisms, initialisation methods and connectivity construction are defined using Python strings containing a C-like language called GeNNCode. Users can fully customise these components. GeNN provides extensive documentation and tutorials.
 
 GeNN focusses on flexibility and performance on a single GPU, providing unique features for offloading initialisation to the GPU and even generating connectivity on the fly, allowing very large models (millions of neurons and billions of synapses to be simulated on a single GPU.
+
 Because of this flexibility, GeNN has been used across a wide range of applications from simulating large-scale models of cortex to training recurrent SNNs using gradient-based learning for machine learning tasks.
