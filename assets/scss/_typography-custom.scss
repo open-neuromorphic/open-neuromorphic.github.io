@@ -131,7 +131,8 @@ section a:not(.breadcrumb-link-parent, .social-link-container, .btn, .hardware-c
 section a.social-link-container .social-link-text,
 .breadcrumb-link-text,
 .author-card-compact h4 a,
-.hardware-card-wide-link h3 {
+.hardware-card-wide-link h3,
+.resource-card-link h3 {
   font-weight: inherit;
   color: inherit !important;
   text-decoration-line: underline !important;
@@ -153,7 +154,8 @@ section a.social-link-container .social-link-text,
 }
 
 // Container for hardware card link, which contains the h3 we want styled
-.hardware-card-wide-link {
+.hardware-card-wide-link,
+.resource-card-link {
   text-decoration: none !important;
 }
 
