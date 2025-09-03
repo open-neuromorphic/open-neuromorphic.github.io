@@ -1,7 +1,7 @@
 {{ $role := . }}
-<a href="{{ $role.RelPermalink }}" class="block h-full p-6 bg-theme-light dark:bg-darkmode-theme-light rounded-lg shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+<a href="{{ $role.RelPermalink }}" class="resource-card-link no-style group block h-full p-6 bg-theme-light dark:bg-darkmode-theme-light rounded-lg shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
   <div class="flex flex-col h-full">
-    <h3 class="text-xl font-bold mb-2 text-dark dark:text-darkmode-dark">{{ $role.Title }}</h3>
+    <h3 class="text-xl font-bold mb-2 text-dark dark:text-darkmode-dark transition-colors group-hover:text-primary dark:group-hover:text-darkmode-primary">{{ $role.Title }}</h3>
     <div class="flex items-center text-xs text-gray-500 dark:text-gray-400 mb-3">
       <span>{{ $role.Params.role_type }}</span>
       <span class="mx-2">|</span>
