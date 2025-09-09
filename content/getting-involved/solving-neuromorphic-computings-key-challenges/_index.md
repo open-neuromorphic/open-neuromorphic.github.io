@@ -17,9 +17,9 @@ Are you a maintainer in the neuromorphic ecosystem? We invite you to connect wit
 #### Step 1: Tag Your GitHub Issues
 Our automated system uses a priority-based approach to select issues for this board.
 
--   **Primary Method (Recommended):** Add the `onm-collab` label to issues you'd like to feature. The system will prioritize the three most recent open issues with this tag. This is the best way to signal that a task is aligned with our community's collaborative goals.
+-   **Primary Method (Recommended):** Add the `help wanted` label to issues you'd like to feature. The system will prioritize the three most recent open issues with this tag. This is the best way to signal that a task is aligned with our community's collaborative goals.
 
--   **Fallback Method:** If a project has no open issues tagged with `onm-collab`, the system will automatically select the three most recent open issues, regardless of their labels.
+-   **Fallback Method:** If a project has no open issues tagged with `help wanted`, the system will automatically select the three most recent open issues, regardless of their labels.
 
 While not required for selection, we still recommend using tags like `good first issue`, `documentation`, `bug`, `enhancement`, and `testing` to help contributors find tasks that match their skills.
 
