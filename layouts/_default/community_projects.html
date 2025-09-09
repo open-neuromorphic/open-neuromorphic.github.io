@@ -1,0 +1,286 @@
+{{ define "main" }}
+{{ partial "page-header" . }}
+
+{{/* --- DEFINE PROJECT LISTS USING SCRATCH FOR ROBUST SCOPE --- */}}
+{{ .Scratch.Set "projectsWithIssues" slice }}
+{{ .Scratch.Set "projectsWithOnlyCompleted" slice }}
+{{ range site.Data.community_projects.projects }}
+{{ $has_issues := ge (len .issues) 1 }}
+{{ $has_completed := ge (len .completed_issues) 1 }}
+{{ if $has_issues }}
+{{ $.Scratch.Add "projectsWithIssues" . }}
+{{ else if $has_completed }}
+{{ $.Scratch.Add "projectsWithOnlyCompleted" . }}
+{{ end }}
+{{ end }}
+{{ $projectsWithIssues := .Scratch.Get "projectsWithIssues" }}
+{{ $projectsWithOnlyCompleted := .Scratch.Get "projectsWithOnlyCompleted" }}
+
+
+<section class="section pt-6">
+  <div class="container">
+
+    {{/* --- Section 1: Full-width Hacking Hours Promo --- */}}
+    <div class="row justify-center">
+      <div class="lg:col-10 mb-12">
+        {{ partial "custom/hacking-hours-software-promo.html" . }}
+      </div>
+    </div>
+
+    {{/* --- Section 2: Two-column layout for Bounty Board and Sidebar --- */}}
+    <div class="row lg:items-stretch">
+
+      {{/* --- Main Content Column (Bounty Board) --- */}}
+      <article class="lg:col-8">
+        <div class="content mb-12">
+          {{ .Content }}
+        </div>
+
+        {{/* Helper to map slugs to page objects for linking */}}
+        {{ $softwarePagesBySlug := newScratch }}
+        {{ range where site.RegularPages "Type" "neuromorphic-software" }}
+        {{ $page := . }}
+        {{ with .File }}
+        {{ $softwarePagesBySlug.Set (path.Base .Dir) $page }}
+        {{ end }}
+        {{ end }}
+
+        <div class="community-projects-list-view">
+          {{ if $projectsWithIssues }}
+          {{/* --- START: Refactored Sticky Filter Section --- */}}
+          {{ $tagCounts := dict }}
+          {{ range $projectsWithIssues }}{{ with .issues }}{{ range . }}{{ with .tags }}{{ range . }}
+          {{ $tag := . }}{{ $currentCount := index $tagCounts $tag | default 0 }}{{ $tagCounts = merge $tagCounts (dict $tag (add $currentCount 1)) }}
+          {{ end }}{{ end }}{{ end }}{{ end }}{{ end }}
+          {{ $sortedTags := slice }}{{ range $tag, $count := $tagCounts }}{{ $sortedTags = $sortedTags | append (dict "tag" $tag "count" $count) }}{{ end }}
+          {{ $sortedTags = sort $sortedTags "tag" "asc" }}
+
+          <div class="filter-panel-glow sticky top-24 z-20 mb-12 p-4 bg-theme-light dark:bg-darkmode-theme-light rounded-lg border border-border dark:border-darkmode-border space-y-3">
+            <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
+              <h4 class="text-sm font-semibold text-gray-700 dark:text-gray-300 flex-shrink-0">Projects:</h4>
+              {{ range $projectsWithIssues }}
+              <a href="#{{ .name | anchorize }}" class="project-filter-link text-sm font-medium px-2.5 py-1 rounded-full bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300 hover:bg-purple-200 dark:hover:bg-purple-800 transition-colors no-underline">
+                {{ .name }}
+              </a>
+              {{ end }}
+            </div>
+            {{ if $sortedTags }}
+            <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
+              <h4 class="text-sm font-semibold text-gray-700 dark:text-gray-300 flex-shrink-0">Filters:</h4>
+              {{ range $sortedTags }}
+              <span data-tag="{{ .tag }}" class="filter-tag cursor-pointer text-xs font-medium px-2.5 py-1 rounded-full bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-300 hover:bg-indigo-200 dark:hover:bg-indigo-800 transition-colors">
+                      {{ .tag | title }}: <span class="font-bold">{{ .count }}</span>
+                    </span>
+              {{ end }}
+              <button id="clear-filter-btn" class="hidden btn btn-sm btn-outline-primary !text-xs !py-0.5 !px-2">&times; Clear</button>
+            </div>
+            {{ end }}
+          </div>
+          {{/* --- END: Refactored Sticky Filter Section --- */}}
+
+
+          <h2 id="outstanding-issues" class="text-3xl font-bold mb-8 border-b border-border dark:border-darkmode-border pb-4" style="scroll-margin-top: 29rem;">Outstanding Issues</h2>
+          <div class="space-y-12">
+            {{ range $projectsWithIssues }}
+            <div id="{{ .name | anchorize }}" class="project-container" style="scroll-margin-top: 9rem;">
+              {{ partial "custom/project_bounty_item.html" (dict "page" $ "project" . "softwarePages" $softwarePagesBySlug) }}
+            </div>
+            {{ end }}
+          </div>
+          {{ end }}
+
+          {{ if $projectsWithOnlyCompleted }}
+          <div id="past-contributions-section">
+            <h2 id="past-contributions" class="text-3xl font-bold my-8 pt-8 border-t border-border dark:border-darkmode-border">Past Contributions</h2>
+            <div class="space-y-12">
+              {{ range $projectsWithOnlyCompleted }}
+              <div id="{{ .name | anchorize }}" class="project-container" style="scroll-margin-top: 29rem;">
+                {{ partial "custom/project_bounty_item.html" (dict "page" $ "project" . "softwarePages" $softwarePagesBySlug) }}
+              </div>
+              {{ end }}
+            </div>
+          </div>
+          {{ end }}
+        </div>
+
+        <div class="mt-16">
+          {{ partial "components/content-contribute-cta.html" (dict
+          "icon" "brands discord"
+          "title" "Ready to <span class=\"gradient-text\">Get Involved?</span>"
+          "description" "The best way to start is to pick an issue and start a conversation. Join our Discord to connect with project maintainers and the wider community."
+          "link" "https://discord.gg/hUygPUdD8E"
+          "link_text" "Join the Discussion on Discord"
+          ) }}
+        </div>
+      </article>
+
+      {{/* --- Sidebar Column with Hierarchical ToC and Sharing --- */}}
+      <aside class="lg:col-4 hidden lg:block">
+        <div class="mb-6">
+          {{ partial "components/og-preview.html" . }}
+        </div>
+        <div class="sticky top-24 space-y-6">
+          <div class="px-3 pt-5 pb-5 content-panel">
+            <strong class="text-xl">On This Page</strong>
+            <nav id="TableOfContents" class="mt-4">
+              <ul>
+                {{ if $projectsWithIssues }}
+                <li>
+                  <a href="#outstanding-issues">Outstanding Issues</a>
+                  <ul>
+                    {{ range $projectsWithIssues }}
+                    <li><a href="#{{ .name | anchorize }}">{{ .name }}</a></li>
+                    {{ end }}
+                  </ul>
+                </li>
+                {{ end }}
+                {{ if $projectsWithOnlyCompleted }}
+                <li>
+                  <a href="#past-contributions">Past Contributions</a>
+                  <ul>
+                    {{ range $projectsWithOnlyCompleted }}
+                    <li><a href="#{{ .name | anchorize }}">{{ .name }}</a></li>
+                    {{ end }}
+                  </ul>
+                </li>
+                {{ end }}
+              </ul>
+            </nav>
+          </div>
+
+          {{ partial "components/page-maintainers.html" . }}
+
+          {{/* --- Sponsor Placeholder Card --- */}}
+          {{ $supportersPage := site.GetPage "supporters" }}
+          {{ if $supportersPage }}
+          <a href="{{ $supportersPage.RelPermalink }}#bounties" class="group block">
+            <div class="p-6 content-panel text-center border-2 border-dashed border-gray-300 dark:border-gray-600 hover:border-primary dark:hover:border-darkmode-primary hover:bg-gray-50 dark:hover:bg-darkmode-theme-dark/50 transition-all">
+              {{ partial "icon.html" (dict "style" "solid" "name" "heart" "class" "text-primary dark:text-darkmode-primary text-3xl mx-auto mb-3") }}
+              <h4 class="font-bold text-dark dark:text-darkmode-dark">Sponsor this Space</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Feature your brand here and support the open-source neuromorphic community.</p>
+              <span class="mt-3 inline-block font-semibold text-primary dark:text-darkmode-primary text-sm group-hover:underline">
+                Learn More &rarr;
+              </span>
+            </div>
+          </a>
+          {{ end }}
+
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterTags = document.querySelectorAll('.filter-tag');
+    const clearButton = document.getElementById('clear-filter-btn');
+    const projectContainers = document.querySelectorAll('.project-container');
+    const pastContributionsSection = document.getElementById('past-contributions-section');
+    const projectLinks = document.querySelectorAll('.project-filter-link');
+    let activeTag = null;
+
+    projectLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (activeTag) {
+          clearFilter();
+        }
+      });
+    });
+
+    filterTags.forEach(tag => {
+      tag.addEventListener('click', () => {
+        const selectedTag = tag.dataset.tag;
+
+        if (activeTag === selectedTag) {
+          clearFilter();
+          return;
+        }
+        activeTag = selectedTag;
+        updateTagStyles(selectedTag);
+        clearButton.classList.remove('hidden');
+        const firstVisibleProject = applyFilter(selectedTag);
+
+        if (firstVisibleProject) {
+          firstVisibleProject.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    if(clearButton) {
+      clearButton.addEventListener('click', clearFilter);
+    }
+
+    function applyFilter(selectedTag) {
+      let firstVisibleProject = null;
+      if (pastContributionsSection) {
+        pastContributionsSection.style.display = 'none';
+      }
+      projectContainers.forEach(project => {
+        const issues = project.querySelectorAll('.issue-item');
+        let projectHasVisibleIssue = false;
+
+        issues.forEach(issue => {
+          const hasTag = issue.querySelector(`[data-issue-tag="${selectedTag}"]`);
+          if (hasTag) {
+            issue.style.display = 'flex';
+            projectHasVisibleIssue = true;
+          } else {
+            issue.style.display = 'none';
+          }
+        });
+
+        if (projectHasVisibleIssue) {
+          project.style.display = 'block';
+          if (!firstVisibleProject) {
+            firstVisibleProject = project;
+          }
+        } else {
+          project.style.display = 'none';
+        }
+      });
+      return firstVisibleProject;
+    }
+
+    function clearFilter() {
+      activeTag = null;
+      updateTagStyles(null);
+      clearButton.classList.add('hidden');
+      if (pastContributionsSection) {
+        pastContributionsSection.style.display = 'block';
+      }
+      projectContainers.forEach(project => {
+        project.style.display = 'block';
+        project.querySelectorAll('.issue-item').forEach(issue => {
+          issue.style.display = 'flex';
+        });
+      });
+    }
+
+    function updateTagStyles(selectedTag) {
+      const defaultClasses = [
+        'bg-indigo-100', 'text-indigo-800', 'dark:bg-indigo-900', 'dark:text-indigo-300',
+        'hover:bg-indigo-200', 'dark:hover:bg-indigo-800'
+      ];
+      const selectedClasses = [
+        'bg-indigo-600', 'text-white', 'dark:bg-indigo-500', 'dark:text-white',
+        'hover:bg-indigo-700', 'dark:hover:bg-indigo-600'
+      ];
+
+      filterTags.forEach(tag => {
+        const isSelected = tag.dataset.tag === selectedTag;
+
+        tag.classList.remove(...defaultClasses, ...selectedClasses);
+
+        if (isSelected) {
+          tag.classList.add(...selectedClasses);
+        } else {
+          tag.classList.add(...defaultClasses);
+        }
+      });
+    }
+  });
+</script>
+
+{{ end }}
