@@ -51,7 +51,7 @@ If your project, lab, or company is interested in joining our mission, we would 
 
 ### Sponsoring Open-Source Development
 
-Supporting the open-source tools that power neuromorphic research is one of the most impactful ways to accelerate the entire field. When you click the "Sponsor" button on our [Community Coding Projects board](/getting-involved/solving-neuromorphic-computings-key-challenges/), you are showing interest in funding a solution. Here’s how you can help:
+Supporting the open-source tools that power neuromorphic research is one of the most impactful ways to accelerate the entire field. When you click the "Sponsor" button on our [Mission Board](/getting-involved/solving-neuromorphic-computings-key-challenges/), you are showing interest in funding a solution. Here’s how you can help:
 
 **1. Sponsor Projects Directly**
 

@@ -29,6 +29,6 @@
   </div>
 
   <div class="flex-shrink-0 text-center p-3 border-t border-border dark:border-darkmode-border bg-white/50 dark:bg-black/20">
-    <a href="{{ "getting-involved/community-coding-projects/" | relLangURL }}" class="btn btn-sm btn-new-primary">View Full Project Board</a>
+    {{ $p := site.GetPage "getting-involved/solving-neuromorphic-computings-key-challenges" }}<a href="{{ $p.RelPermalink }}" class="btn btn-sm btn-new-primary">View All Challenges</a>
   </div>
 </div>
