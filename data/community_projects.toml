@@ -146,7 +146,7 @@ description = "A functional spiking neural network simulator for deep learning."
   url = "https://github.com/norse/norse/pull/422"
 
 [[projects]]
-name = "open-neuromorphic.github.io"
+name = "ONM Website"
 slug = ""
 repo = "open-neuromorphic/open-neuromorphic.github.io"
 description = "The ONM community website."

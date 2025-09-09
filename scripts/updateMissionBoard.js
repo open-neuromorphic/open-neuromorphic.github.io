@@ -20,32 +20,53 @@ const headers = {
 const ALLOWED_TAGS = new Set(['good first issue', 'documentation', 'bug', 'enhancement', 'testing']);
 
 async function fetchLatestIssuesForRepo(repo) {
-  // Fetch the 10 most recently created open issues to ensure we find 3 after filtering out PRs.
-  const url = `https://api.github.com/repos/${repo}/issues?state=open&sort=created&direction=desc&per_page=10`;
+  const HELP_WANTED_LABEL = 'help wanted';
+  let issues = [];
+
+  // First, try to fetch up to 3 issues with the 'help wanted' label.
+  const helpWantedUrl = `https://api.github.com/repos/${repo}/issues?state=open&sort=created&direction=desc&per_page=3&labels=${encodeURIComponent(HELP_WANTED_LABEL)}`;
+
   try {
-    const response = await fetch(url, { headers });
-    if (!response.ok) {
-      console.error(`Failed to fetch issues for ${repo}: ${response.statusText}`);
-      return [];
+    const response = await fetch(helpWantedUrl, { headers });
+    if (response.ok) {
+      const fetchedIssues = await response.json();
+      issues = fetchedIssues.filter(item => !item.pull_request);
+    } else if (response.status !== 404) { // A 404 is acceptable if the label doesn't exist on the repo.
+      console.warn(`Could not fetch 'help wanted' issues for ${repo}: ${response.statusText}`);
     }
-    const items = await response.json();
-
-    // Filter out pull requests and take the top 3 results.
-    const issues = items.filter(item => !item.pull_request).slice(0, 3);
-
-    // Map the API response, filtering the tags to only include allowed ones.
-    return issues.map(issue => ({
-      title: issue.title,
-      url: issue.html_url,
-      tags: issue.labels
-        .map(l => l.name)
-        .filter(name => ALLOWED_TAGS.has(name.toLowerCase())),
-    }));
   } catch (error) {
-    console.error(`Error fetching issues for ${repo}:`, error);
-    return [];
+    console.error(`Error fetching 'help wanted' issues for ${repo}:`, error);
   }
+
+  // If 'help wanted' issues are found, use them. Otherwise, fall back to the latest open issues.
+  if (issues.length > 0) {
+    console.log(`  Found ${issues.length} 'help wanted' issue(s) for ${repo}.`);
+  } else {
+    // Fallback: Fetch the 3 most recent open issues regardless of labels.
+    const generalUrl = `https://api.github.com/repos/${repo}/issues?state=open&sort=created&direction=desc&per_page=10`; // Fetch more to filter out PRs
+    try {
+      const response = await fetch(generalUrl, { headers });
+      if (response.ok) {
+        const generalIssues = await response.json();
+        issues = generalIssues.filter(item => !item.pull_request).slice(0, 3);
+      } else {
+        console.warn(`Could not fetch general issues for ${repo}: ${response.statusText}`);
+      }
+    } catch (error) {
+      console.error(`Error fetching general issues for ${repo}:`, error);
+    }
+  }
+
+  // Map the final list of issues to our desired format.
+  return issues.map(issue => ({
+    title: issue.title,
+    url: issue.html_url,
+    tags: issue.labels
+      .map(l => l.name)
+      .filter(name => ALLOWED_TAGS.has(name.toLowerCase())),
+  }));
 }
+
 
 async function updateMissionBoard() {
   console.log('Starting mission board update...');
