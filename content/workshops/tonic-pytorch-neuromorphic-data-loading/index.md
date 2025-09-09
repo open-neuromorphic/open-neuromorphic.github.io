@@ -1,15 +1,16 @@
 ---
 title: "Tonic: Building the PyTorch Vision of Neuromorphic Data Loading"
 author:
-- "Gregor Lenz"
-date: 2024-09-29T20:00:00+02:00
+  - "Gregor Lenz"
+date: 2024-09-29
+start_time: "20:00"
+end_time: "21:30"
+time_zone: "CEST"
 description: "Discover how Tonic provides a PyTorch-compatible framework for loading and transforming neuromorphic datasets, making event-based data as accessible as traditional computer vision datasets."
 upcoming: true
-upcoming_url: "https://www.youtube.com/watch?v=OVKFJUUuijI"
-video: ""
-image: ""
-speaker_photo: "gregor-lenz.jpeg"
-speaker_bio: "Gregor Lenz is a maintainer of Tonic, a specialized Python package for managing and transforming neuromorphic datasets. His work focuses on making neuromorphic data processing as accessible and standardized as traditional computer vision workflows through PyTorch-compatible interfaces."
+upcoming_url: "https://www.youtube.com/@openneuromorphic"
+type: "workshops"
+show_author_bios: true
 software_tags: ["tonic"]
 ---
 
