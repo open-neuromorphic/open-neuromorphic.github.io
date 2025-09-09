@@ -7,7 +7,7 @@
 {{ end }}
 {{ end }}
 
-{{ if and $project_data (gt (len $project_data.issues) 0) }}
+{{ if and $project_data (isset $project_data "issues") (gt (len $project_data.issues) 0) }}
 <div {{ with $id }}id="{{ . }}"{{ end }} class="mission-board-promo content-panel p-4 my-6 border-l-4 border-primary dark:border-darkmode-primary bg-indigo-50 dark:bg-darkmode-theme-dark/50">
   <h4 class="text-lg font-bold mb-2 text-dark dark:text-darkmode-dark flex items-center">
     {{ partial "icon.html" (dict "style" "solid" "name" "rocket" "class" "mr-2 text-primary dark:text-darkmode-primary") }}
