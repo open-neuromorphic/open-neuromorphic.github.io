@@ -25,7 +25,7 @@ cta_link="/volunteer-opportunities/"
 image="developer-path.jpeg"
 alt_text="Developers collaborating on code"
 layout_class="reverse"
-explore_links="Key Challenges Mission Board|/getting-involved/solving-neuromorphic-computings-key-challenges/;Join an Initiative|/neuromorphic-computing/initiatives/;Attend Hacking Hours|/neuromorphic-computing/software/hacking-hours/;Contribute on GitHub|https://github.com/open-neuromorphic;Community Coding Projects|/getting-involved/community-coding-projects/"
+explore_links="Key Challenges Mission Board|/getting-involved/solving-neuromorphic-computings-key-challenges/;Join an Initiative|/neuromorphic-computing/initiatives/;Attend Hacking Hours|/neuromorphic-computing/software/hacking-hours/;Contribute on GitHub|https://github.com/open-neuromorphic"
 >}}
 
 {{< pathway_card

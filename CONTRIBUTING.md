@@ -37,7 +37,7 @@ For a more user-friendly overview of how to get involved with the community, ple
 
 ## Finding a Task: The Mission Board
 
-If you're looking for high-impact ways to contribute to the broader open-source neuromorphic ecosystem, a great place to start is our **[Community Coding Projects](https://open-neuromorphic.org/getting-involved/community-coding-projects/)**. This page lists critical "help wanted" issues from key projects in our community, offering a direct path to making a meaningful contribution.
+If you're looking for high-impact ways to contribute to the broader open-source neuromorphic ecosystem, a great place to start is our **[Mission Board](https://open-neuromorphic.org/getting-involved/solving-neuromorphic-computings-key-challenges/)**. This page lists critical "help wanted" issues from key projects in our community, offering a direct path to making a meaningful contribution.
 
 ## Getting Started: Local Development Setup
 
@@ -201,6 +201,6 @@ Please follow a conventional commit format to keep the history clean and underst
 
 ---
 
-If you're looking for high-impact ways to contribute to the broader open-source neuromorphic ecosystem, a great place to start is our **[Community Coding Projects](https://open-neuromorphic.org/getting-involved/community-coding-projects/)**. This page lists critical "help wanted" issues from key projects in our community, offering a direct path to making a meaningful contribution.
+If you're looking for high-impact ways to contribute to the broader open-source neuromorphic ecosystem, a great place to start is our **[Mission Board](https://open-neuromorphic.org/getting-involved/solving-neuromorphic-computings-key-challenges/)**. This page lists critical "help wanted" issues from key projects in our community, offering a direct path to making a meaningful contribution.
 
 Thank you again for your interest in contributing. We look forward to your pull requests!
