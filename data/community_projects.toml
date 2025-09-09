@@ -54,21 +54,6 @@ slug = "neuromorphic-intermediate-representation"
 repo = "neuromorphs/NIR"
 description = "A neuromorphic continuous-time instruction set."
 
-  [[projects.issues]]
-  title = "Added lava to NIR Oxford example and documentation"
-  url = "https://github.com/neuromorphs/NIR/pull/165"
-  tags = [ ]
-
-  [[projects.issues]]
-  title = "Improved LAVA <> NIR interface "
-  url = "https://github.com/neuromorphs/NIR/pull/164"
-  tags = [ ]
-
-  [[projects.issues]]
-  title = "raise exception when user tries to create neurons with scalar parameters"
-  url = "https://github.com/neuromorphs/NIR/pull/162"
-  tags = [ ]
-
   [[projects.completed_issues]]
   title = "PR #76"
   url = "https://github.com/neuromorphs/nir/pull/76"
