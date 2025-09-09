@@ -1,4 +1,3 @@
-// scripts/fetchGithubStars.js
 require('dotenv').config(); // <-- ADD THIS LINE AT THE TOP
 const fs = require('fs/promises');
 const path = require('path');
@@ -58,22 +57,32 @@ async function fetchStars() {
       const content = await fs.readFile(file, 'utf8');
       const sourceUrl = extractFrontMatter(content);
 
-      if (sourceUrl && sourceUrl.includes('github.com')) {
-        const repoPathMatch = sourceUrl.match(/github\.com\/([^/]+\/[^/]+)/);
-        if (repoPathMatch && repoPathMatch[1]) {
-          const repoPath = repoPathMatch[1].replace(/\.git$/, '');
-          const apiUrl = `https://api.github.com/repos/${repoPath}`;
+      if (sourceUrl) {
+        try {
+          const parsedUrl = new URL(sourceUrl);
+          // Securely check if the hostname is exactly 'github.com'
+          if (parsedUrl.hostname === 'github.com') {
+            // Extract path, remove leading '/' and optional '.git' suffix
+            const repoPath = parsedUrl.pathname.substring(1).replace(/\.git$/, '');
 
-          const response = await fetch(apiUrl, { headers });
-          if (!response.ok) {
-            console.warn(`Failed to fetch ${repoPath}: ${response.statusText}`);
-            return;
+            // Ensure the path looks like 'user/repo'
+            if (repoPath.split('/').length === 2 && repoPath.split('/')[1] !== '') {
+              const apiUrl = `https://api.github.com/repos/${repoPath}`;
+
+              const response = await fetch(apiUrl, { headers });
+              if (!response.ok) {
+                console.warn(`Failed to fetch ${repoPath}: ${response.statusText}`);
+                return;
+              }
+              const data = await response.json();
+              if (data.stargazers_count !== undefined) {
+                starsData[repoPath] = data.stargazers_count;
+                console.log(`- Fetched ${data.stargazers_count} stars for ${repoPath}`);
+              }
+            }
           }
-          const data = await response.json();
-          if (data.stargazers_count !== undefined) {
-            starsData[repoPath] = data.stargazers_count;
-            console.log(`- Fetched ${data.stargazers_count} stars for ${repoPath}`);
-          }
+        } catch (e) {
+          // Silently ignore invalid URLs, as they are not what we're looking for.
         }
       }
     } catch (error) {
