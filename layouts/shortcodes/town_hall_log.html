@@ -1,0 +1,40 @@
+{{ $past_events := site.Data.town_halls.past_events | default slice }}
+{{ if $past_events }}
+<div class="past-town-halls-section mt-12">
+  <h2 class="text-3xl font-bold mb-8">Past Town Hall Recordings</h2>
+  <div class="space-y-8">
+    {{ range sort $past_events "date" "desc" }}
+    <div class="event-card-simple bg-white dark:bg-darkmode-theme-light rounded-xl p-4 shadow-md hover:shadow-lg transition-all duration-300 ease-in-out">
+      <div class="flex flex-col gap-4">
+        <div class="w-full rounded-lg overflow-hidden">
+          {{ partial "youtube-lite.html" (dict "Id" .youtube_id) }}
+        </div>
+        <div class="flex-grow">
+          <h4 class="text-lg font-semibold mb-1 leading-tight">{{ .title }}</h4>
+          <p class="text-xs text-gray-500 dark:text-gray-300 mb-2">
+            {{ partial "icon.html" (dict "style" "regular" "name" "calendar" "class" "mr-1.5") }}
+            {{ (time.AsTime .date).Format "January 2, 2006" }}
+          </p>
+          {{ with .participants }}
+          <p class="text-sm text-gray-600 dark:text-gray-400">
+            <span class="font-semibold">Participants:</span>
+            {{ $page_context := $.Page }}
+            {{ $numParticipants := len . }}
+            {{ range $index, $participantName := . }}
+            {{ $nameForProcessing := $participantName | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" }}
+            {{ $contributor_slug := $nameForProcessing | anchorize }}
+            {{ $contributor_page_path := printf "contributors/%s" $contributor_slug }}
+            {{ $contributor_page := site.GetPage $contributor_page_path }}
+            {{ if $contributor_page }}<a href="{{ $contributor_page.RelPermalink }}" class="styled-link">{{ $participantName }}</a>{{ else }}{{ $participantName }}{{ end }}{{ if lt $index (sub $numParticipants 1) }}, {{ end }}
+            {{ end }}
+          </p>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+    {{ end }}
+  </div>
+</div>
+{{ else }}
+<p>No past town hall recordings have been logged yet.</p>
+{{ end }}
