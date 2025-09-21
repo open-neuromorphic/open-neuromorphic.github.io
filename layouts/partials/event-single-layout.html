@@ -8,13 +8,37 @@
     <article class="row justify-center">
       <div class="lg:col-8 mb-7">
         <div class="mb-4">
-          {{ $image := $page_context.Params.image }}
+          {{ $image_to_render := "" }}
+          {{ $image_found := false }}
+
+
+          {{ with $page_context.Params.image }}
+          {{ $image_to_render = . }}
+          {{ $image_found = true }}
+          {{ end }}
+
+
+          {{ if not $image_found }}
+          {{ if .File }}
+          {{ $pageSlug := path.Base .File.Dir }}
+          {{ $ogImageName := printf "%s-og-16x9.jpg" $pageSlug }}
+          {{ with .Resources.GetMatch $ogImageName }}
+          {{ $image_to_render = .Name }}
+          {{ $image_found = true }}
+          {{ end }}
+          {{ end }}
+          {{ end }}
+
+
+          {{ if not $image_found }}
+          {{ $image_to_render = "images/workshop-thumbnail-default.png" }}
+          {{ end }}
+
+
           {{ if $page_context.Params.video }}
           {{ partial "youtube-lite.html" (dict "Id" $page_context.Params.video ) }}
-          {{ else if $image }}
-          {{ partial "image" (dict "Src" $image "Context" $page_context "Alt" $page_context.Title "Class" "w-full rounded") }}
           {{ else }}
-          {{ partial "image" (dict "Src" "images/workshop-thumbnail-default.png" "Alt" $page_context.Title "Class" "w-full rounded") }}
+          {{ partial "image" (dict "Src" $image_to_render "Context" $page_context "Alt" $page_context.Title "Class" "w-full rounded") }}
           {{ end }}
         </div>
         {{ partial "components/metadata-bar.html" (dict "context" $page_context "type" "event") }}
@@ -41,7 +65,7 @@
         "title" "Inspired? <span class=\"gradient-text\">Share your work.</span>"
         "description" "Share your expertise with the community by speaking at a workshop, student talk, or hacking hour. It's a great way to get feedback and help others learn."
         "link" "/getting-involved/share-your-work/"
-        "link_text" "Learn How to Present"
+        "link_text" "Learn How to Host"
         ) }}
       </div>
     </article>
