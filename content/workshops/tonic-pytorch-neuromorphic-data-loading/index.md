@@ -2,7 +2,7 @@
 title: "Tonic: Building the PyTorch Vision of Neuromorphic Data Loading"
 author:
   - "Gregor Lenz"
-date: 2024-09-29
+date: 2025-09-29
 start_time: "20:00"
 end_time: "21:30"
 time_zone: "CEST"
