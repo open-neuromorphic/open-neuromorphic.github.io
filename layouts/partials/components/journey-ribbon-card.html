@@ -1,0 +1,65 @@
+{{ $ribbon := . }}
+{{ $image_to_display_src := $ribbon.default_image_path | relURL }}
+{{ $alt_text_for_image := $ribbon.alt_text }}
+{{ $contributor_page_resource := "" }}
+
+{{ if $ribbon.primary_contributor_name }}
+{{ $nameForProcessing := $ribbon.primary_contributor_name | replaceRE "[.]" "" }}
+{{ $nameForProcessing = $nameForProcessing | replaceRE "ć" "c" | replaceRE "Ć" "C" }}
+{{ $contributor_slug := $nameForProcessing | anchorize }}
+{{ $contributor_page_path := printf "contributors/%s" $contributor_slug }}
+{{ $contributor_page_resource = site.GetPage $contributor_page_path }}
+
+{{ if $contributor_page_resource }}
+{{ with $contributor_page_resource.Params.image }}
+{{ $contributor_image_filename_from_frontmatter := . }}
+{{ $bundled_image := $contributor_page_resource.Resources.GetMatch $contributor_image_filename_from_frontmatter }}
+{{ if $bundled_image }}
+{{ $processed_contributor_img := $bundled_image.Fill "250x250 Lanczos" }}
+{{ $image_to_display_src = $processed_contributor_img.RelPermalink }}
+{{ $alt_text_for_image = printf "Profile image of %s" $contributor_page_resource.Title }}
+{{ else }}
+{{ $asset_image_check_path := strings.TrimPrefix "/" $contributor_image_filename_from_frontmatter }}
+{{ $asset_img := resources.Get $asset_image_check_path }}
+{{ if $asset_img }}
+{{ $processed_contributor_img := $asset_img.Fill "250x250 Lanczos" }}
+{{ $image_to_display_src = $processed_contributor_img.RelPermalink }}
+{{ $alt_text_for_image = printf "Profile image of %s" $contributor_page_resource.Title }}
+{{ else if (fileExists (printf "static%s" $contributor_image_filename_from_frontmatter)) }}
+{{ $image_to_display_src = $contributor_image_filename_from_frontmatter | relURL }}
+{{ $alt_text_for_image = printf "Profile image of %s" $contributor_page_resource.Title }}
+{{ end }}
+{{ end }}
+{{ end }}
+{{ end }}
+{{ end }}
+
+<div class="journey-ribbon-card {{ $ribbon.layout_class }}">
+  <div class="journey-ribbon-image-container">
+    <img src="{{ $image_to_display_src }}" alt="{{ $alt_text_for_image }}" class="journey-ribbon-image">
+  </div>
+  <div class="journey-ribbon-content">
+    <p class="journey-ribbon-contributor">
+      {{ $ribbon.contributor_text_prefix -}}
+      {{- if $contributor_page_resource -}}
+      <a href="{{ $contributor_page_resource.RelPermalink }}">{{ $ribbon.primary_contributor_name }}</a>
+      {{- else -}}
+      {{- $ribbon.primary_contributor_name -}}
+      {{- end -}}
+      {{- $ribbon.contributor_text_suffix | safeHTML -}}
+    </p>
+    <h3 class="journey-ribbon-title">{{ $ribbon.title }}</h3>
+    <p class="journey-ribbon-description">
+      {{ $ribbon.description }}
+    </p>
+    <div class="journey-ribbon-cta">
+      <a href="{{ $ribbon.cta_link | relLangURL }}" class="btn btn-new-primary">{{ $ribbon.cta_text }}</a>
+    </div>
+    <h4 class="journey-ribbon-links-title">Explore Further:</h4>
+    <ul class="journey-ribbon-links">
+      {{ range $ribbon.explore_links }}
+      <li><a href="{{ .url | relLangURL }}">{{ .title }}</a></li>
+      {{ end }}
+    </ul>
+  </div>
+</div>

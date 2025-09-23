@@ -1,0 +1,44 @@
+{{ $sortedAllUpcomingEvents := . }}
+<h3 class="text-2xl font-bold mb-6 text-center lg:text-left text-text dark:text-darkmode-text">Upcoming Events</h3>
+{{ if $sortedAllUpcomingEvents }}
+  {{ range first 3 $sortedAllUpcomingEvents }}
+  <div class="event-card-simple bg-white dark:bg-darkmode-theme-light rounded-xl p-4 shadow-md hover:shadow-lg transition-all duration-300 ease-in-out mb-4">
+    <span class="date-badge mb-2 inline-block text-xs">{{ .Date.Format "Jan 02, 2006" }}</span>
+    <h4 class="text-lg font-semibold mb-1">
+      <a href="{{ .Permalink }}" class="text-text dark:text-darkmode-dark hover:text-[var(--color-primary-new)]">{{ .Title }}</a>
+    </h4>
+    <p class="text-xs text-gray-600 dark:text-gray-400 mb-2">
+      {{ .Description | truncate 80 }}
+    </p>
+    <p class="text-xs text-gray-500 dark:text-gray-300">
+      {{ partial "icon.html" (dict "style" "regular" "name" "clock" "class" "mr-1") }} {{ .StartTime }} - {{ .EndTime }} {{ .TimeZone }}
+      {{ if .IsRecurring }}
+      <br/>{{ partial "icon.html" (dict "style" "solid" "name" "location-dot" "class" "mr-1") }} <a href="{{ .LocationURL }}" target="_blank" class="hover:underline">{{ .LocationName }}</a> (Recurring)
+      {{ else if .Authors }}
+      <br/>{{ partial "icon.html" (dict "style" "regular" "name" "circle-user" "class" "mr-1") }}
+      {{ $numAuthors := len .Authors }}
+      {{ range $i, $authorName := .Authors }}
+      {{ $nameForProcessing := $authorName | replaceRE "[.]" "" }}
+      {{ $nameForProcessing = $nameForProcessing | replaceRE "ć" "c" | replaceRE "Ć" "C" }}
+      {{ $contributor_slug := $nameForProcessing | anchorize }}
+      {{ $contributor_page_path := printf "contributors/%s" $contributor_slug }}
+      {{ $contributor_page := site.GetPage $contributor_page_path }}
+      {{ if $contributor_page }}<a href="{{ $contributor_page.RelPermalink }}">{{ $authorName }}</a>{{ else }}{{ $authorName }}{{ end }}{{ if lt $i (sub $numAuthors 1) }}, {{ end }}
+      {{ end }}
+      {{ end }}
+    </p>
+    <a href="{{ .Permalink }}" class="font-semibold text-xs text-[var(--color-primary-new)] hover:underline block mt-2">
+      View Details {{ partial "icon.html" (dict "style" "solid" "name" "arrow-right" "class" "ml-1") }}
+    </a>
+  </div>
+  {{ end }}
+  {{ if gt (len $sortedAllUpcomingEvents) 3 }}
+  <div class="text-center lg:text-left mt-4">
+    <a href="{{ "workshops/" | relLangURL }}" class="btn btn-sm btn-new-outline">More Events...</a>
+  </div>
+  {{ end }}
+{{ else }}
+  <div class="event-card-simple bg-white dark:bg-darkmode-theme-light rounded-xl p-6 shadow-md">
+    <p class="text-gray-600 dark:text-gray-400">No upcoming events scheduled at the moment. Check back soon!</p>
+  </div>
+{{ end }}

@@ -24,7 +24,7 @@ const SIZES = [
   { width: 1200, height: 900, suffix: '4x3' },
   { width: 1080, height: 1080, suffix: '1x1' },
 ];
-const EVENT_SIZE = { width: 627, height: 1200, suffix: 'portrait' };
+const EVENT_SIZE = { width: 1280, height: 1600, suffix: 'portrait' }; // New dimensions for upcoming events
 
 // --- Helper Functions ---
 async function pathExists(path) {
@@ -41,18 +41,18 @@ async function ensureDir(dirPath) {
 }
 
 function createHash(data) {
-    return crypto.createHash('sha256').update(data).digest('hex');
+  return crypto.createHash('sha256').update(data).digest('hex');
 }
 
 function slugify(text) {
-    if (!text) return '';
-    // This mimics Hugo's `urlize` function more closely for consistency.
-    return text.toString().toLowerCase()
-        .replace(/\s+/g, '-')           // Replace spaces with -
-        .replace(/[^\w\-]+/g, '')       // Remove all non-word chars except -
-        .replace(/\-\-+/g, '-')         // Replace multiple - with single -
-        .replace(/^-+/, '')             // Trim - from start of text
-        .replace(/-+$/, '');            // Trim - from end of text
+  if (!text) return '';
+  // This mimics Hugo's `urlize` function more closely for consistency.
+  return text.toString().toLowerCase()
+    .replace(/\s+/g, '-')           // Replace spaces with -
+    .replace(/[^\w\-]+/g, '')       // Remove all non-word chars except -
+    .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+    .replace(/^-+/, '')             // Trim - from start of text
+    .replace(/-+$/, '');            // Trim - from end of text
 }
 
 async function findMarkdownFiles(dir) {
@@ -71,57 +71,57 @@ async function findMarkdownFiles(dir) {
 }
 
 function parseFrontMatter(content) {
-    const fmMatch = content.match(/^---\s*([\s\S]*?)\s*---/);
-    if (!fmMatch) return {};
+  const fmMatch = content.match(/^---\s*([\s\S]*?)\s*---/);
+  if (!fmMatch) return {};
 
-    const data = {};
-    const lines = fmMatch[1].split('\n');
-    let currentKey = '';
-    let inArray = false;
+  const data = {};
+  const lines = fmMatch[1].split('\n');
+  let currentKey = '';
+  let inArray = false;
 
-    for (const line of lines) {
-        const arrayItemMatch = line.match(/^\s*-\s*"?([^"#]*)"?\s*(#.*)?$/);
-        if (inArray && arrayItemMatch) {
-            data[currentKey].push(arrayItemMatch[1].trim().replace(/^['"]|['"]$/g, ''));
-            continue;
-        }
-
-        const keyMatch = line.match(/^([a-zA-Z0-9_]+):/);
-        if (keyMatch) {
-            inArray = false;
-        }
-
-        const simpleMatch = line.match(/^([a-zA-Z0-9_]+):\s*(.*)/);
-        if (simpleMatch) {
-            currentKey = simpleMatch[1].trim();
-            let valueString = simpleMatch[2].trim();
-            inArray = false;
-
-            const commentIndex = valueString.indexOf('#');
-            if (commentIndex > -1) {
-              valueString = valueString.substring(0, commentIndex).trim();
-            }
-
-            let value = valueString;
-
-            if (value === '') {
-                 if (line.includes(':')) {
-                    inArray = true;
-                    data[currentKey] = [];
-                 }
-                 continue;
-            }
-
-            if (value === 'true') data[currentKey] = true;
-            else if (value === 'false') data[currentKey] = false;
-            else if (value.startsWith('[') && value.endsWith(']')) {
-                 data[currentKey] = value.replace(/[\[\]"]/g, '').split(',').map(s => s.trim().replace(/^['"]|['"]$/g, '')).filter(Boolean);
-            } else {
-                data[currentKey] = value.replace(/^['"]|['"]$/g, '');
-            }
-        }
+  for (const line of lines) {
+    const arrayItemMatch = line.match(/^\s*-\s*"?([^"#]*)"?\s*(#.*)?$/);
+    if (inArray && arrayItemMatch) {
+      data[currentKey].push(arrayItemMatch[1].trim().replace(/^['"]|['"]$/g, ''));
+      continue;
     }
-    return data;
+
+    const keyMatch = line.match(/^([a-zA-Z0-9_]+):/);
+    if (keyMatch) {
+      inArray = false;
+    }
+
+    const simpleMatch = line.match(/^([a-zA-Z0-9_]+):\s*(.*)/);
+    if (simpleMatch) {
+      currentKey = simpleMatch[1].trim();
+      let valueString = simpleMatch[2].trim();
+      inArray = false;
+
+      const commentIndex = valueString.indexOf('#');
+      if (commentIndex > -1) {
+        valueString = valueString.substring(0, commentIndex).trim();
+      }
+
+      let value = valueString;
+
+      if (value === '') {
+        if (line.includes(':')) {
+          inArray = true;
+          data[currentKey] = [];
+        }
+        continue;
+      }
+
+      if (value === 'true') data[currentKey] = true;
+      else if (value === 'false') data[currentKey] = false;
+      else if (value.startsWith('[') && value.endsWith(']')) {
+        data[currentKey] = value.replace(/[\[\]"]/g, '').split(',').map(s => s.trim().replace(/^['"]|['"]$/g, '')).filter(Boolean);
+      } else {
+        data[currentKey] = value.replace(/^['"]|['"]$/g, '');
+      }
+    }
+  }
+  return data;
 }
 
 
@@ -140,19 +140,19 @@ async function getImageDataUri(filePath) {
 }
 
 async function getContributorImagePath(authorName) {
-    if (!authorName) return null;
-    const slug = slugify(authorName);
-    const contributorDir = join(CONTENT_ROOT_DIR, 'contributors', slug);
-    const mdPath = join(contributorDir, 'index.md');
+  if (!authorName) return null;
+  const slug = slugify(authorName);
+  const contributorDir = join(CONTENT_ROOT_DIR, 'contributors', slug);
+  const mdPath = join(contributorDir, 'index.md');
 
-    if (await pathExists(mdPath)) {
-        const content = await readFile(mdPath, 'utf8');
-        const fm = parseFrontMatter(content);
-        if (fm.image) {
-            return join(contributorDir, fm.image);
-        }
+  if (await pathExists(mdPath)) {
+    const content = await readFile(mdPath, 'utf8');
+    const fm = parseFrontMatter(content);
+    if (fm.image) {
+      return join(contributorDir, fm.image);
     }
-    return null;
+  }
+  return null;
 }
 
 // --- Main Script ---
@@ -225,52 +225,52 @@ async function collectData() {
       let contentType = fm.type || section;
       if (pathParts.includes('hacking-hours')) contentType = 'hacking-hours';
       if (pathParts.includes('student-talks')) contentType = 'student-talks';
-      
+
       const isEventCategory = ['workshops', 'student-talks', 'hacking-hours'].includes(contentType);
       const isSingleEventPage = isEventCategory && isSinglePage;
 
       let pageOutputs = SIZES.map(size => ({
-          path: join(pageDirectory, `${basename(pageDirectory)}-og-${size.suffix}.${OUTPUT_FORMAT}`),
-          width: size.width,
-          height: size.height,
-          template: 'default'
+        path: join(pageDirectory, `${basename(pageDirectory)}-og-${size.suffix}.${OUTPUT_FORMAT}`),
+        width: size.width,
+        height: size.height,
+        template: 'default'
       }));
 
       let contentToHash = title + description;
       let pageData = { title, description, outputs: pageOutputs };
 
       if (isSingleEventPage) {
-          const og16x9Output = pageOutputs.find(o => o.path.endsWith('-og-16x9.jpg'));
-          if (og16x9Output) {
-              og16x9Output.template = 'youtube';
-              og16x9Output.width = 1280;
-              og16x9Output.height = 720;
-          }
+        const og16x9Output = pageOutputs.find(o => o.path.endsWith('-og-16x9.jpg'));
+        if (og16x9Output) {
+          og16x9Output.template = 'youtube';
+          og16x9Output.width = 1280;
+          og16x9Output.height = 720;
+        }
 
-          const isUpcomingEvent = upcoming === true;
-          pageData.eventDate = new Date(date).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-          pageData.eventTime = isUpcomingEvent ? `${start_time} - ${end_time} ${time_zone}` : '';
-          
-          let speakers = [];
-          if (author && Array.isArray(author)) {
-            for (const name of author) {
-                const imgPath = await getContributorImagePath(name);
-                const dataUri = imgPath ? await getImageDataUri(imgPath) : null;
-                speakers.push({ name: name, imageUri: dataUri });
-            }
-          }
-          pageData.speakers = speakers;
+        const isUpcomingEvent = upcoming === true;
+        pageData.eventDate = new Date(date).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+        pageData.eventTime = isUpcomingEvent ? `${start_time} - ${end_time} ${time_zone}` : '';
 
-          if (isUpcomingEvent) {
-              pageOutputs.push({
-                  path: join(pageDirectory, `${basename(pageDirectory)}-og-${EVENT_SIZE.suffix}.${OUTPUT_FORMAT}`),
-                  width: EVENT_SIZE.width,
-                  height: EVENT_SIZE.height,
-                  template: 'event'
-              });
+        let speakers = [];
+        if (author && Array.isArray(author)) {
+          for (const name of author) {
+            const imgPath = await getContributorImagePath(name);
+            const dataUri = imgPath ? await getImageDataUri(imgPath) : null;
+            speakers.push({ name: name, imageUri: dataUri });
           }
-          
-          contentToHash += pageData.eventDate + pageData.eventTime + speakers.map(s => s.imageUri || '').join('');
+        }
+        pageData.speakers = speakers;
+
+        if (isUpcomingEvent) {
+          pageOutputs.push({
+            path: join(pageDirectory, `${basename(pageDirectory)}-og-${EVENT_SIZE.suffix}.${OUTPUT_FORMAT}`),
+            width: EVENT_SIZE.width,
+            height: EVENT_SIZE.height,
+            template: 'event'
+          });
+        }
+
+        contentToHash += pageData.eventDate + pageData.eventTime + speakers.map(s => s.imageUri || '').join('');
       }
 
       const finalHash = createHash(contentToHash + globalHash);
