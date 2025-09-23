@@ -1,0 +1,66 @@
+{{ with . }}
+  <h3 class="text-2xl font-bold mb-6 text-center lg:text-left text-text dark:text-darkmode-text">Recent Event</h3>
+  <div class="event-card-simple bg-white dark:bg-darkmode-theme-light rounded-xl p-4 shadow-md hover:shadow-lg transition-all duration-300 ease-in-out mb-8">
+
+    {{/* --- MODIFIED Thumbnail Logic --- */}}
+    {{ $img_resource := "" }}
+
+    {{/* 1. Prioritize the generated OG image */}}
+    {{ if .File }}
+    {{ $page_slug := path.Base .File.Dir }}
+    {{ $og_image_name := printf "%s-og-16x9.jpg" $page_slug }}
+    {{ $img_resource = .Resources.GetMatch $og_image_name }}
+    {{ end }}
+
+    {{/* 2. Fallback to the front matter 'image' parameter if OG not found */}}
+    {{ if not $img_resource }}
+    {{ with .Params.image }}
+    {{ $image_param := . }}
+    {{ $img_resource = $.Resources.GetMatch $image_param }}
+    {{ if not $img_resource }}
+    {{ $asset_path := strings.TrimPrefix "/" $image_param }}
+    {{ $img_resource = resources.Get $asset_path }}
+    {{ end }}
+    {{ if not $img_resource }}
+    {{ if fileExists (printf "static/%s" (strings.TrimPrefix "/" $image_param)) }}
+    {{ $img_resource = resources.Get (strings.TrimPrefix "/" $image_param) }}
+    {{ end }}
+    {{ end }}
+    {{ end }}
+    {{ end }}
+
+    {{/* 3. Final fallback to a default image */}}
+    {{ if not $img_resource }}
+    {{ $img_resource = resources.Get "images/workshop-thumbnail-default.png" }}
+    {{ end }}
+
+    {{/* Process and render the selected image */}}
+    {{ if $img_resource }}
+    {{ $processed_img := $img_resource.Fit "504x280 Lanczos" }}
+    <a href="{{ .Permalink }}" class="block mb-4 relative group">
+      <img src="{{ $processed_img.RelPermalink }}" alt="{{ .Title }}" class="w-full rounded object-cover">
+      {{ if .Params.video }}
+      {{ partial "components/video-play-overlay.html" (dict "rounding_class" "rounded") }}
+      {{ end }}
+    </a>
+    {{ end }}
+    {{/* --- END MODIFIED Thumbnail Logic --- */}}
+
+
+    <div>
+      <span class="date-badge mb-1 inline-block text-xs">{{ .Date.Format "Jan 02, 2006" }}</span>
+      <h4 class="text-lg font-semibold mb-1 leading-tight">
+        <a href="{{ .Permalink }}" class="text-text dark:text-darkmode-dark hover:text-[var(--color-primary-new)]">{{ .Title }}</a>
+      </h4>
+      {{ if .Params.author }}
+      <p class="text-xs text-gray-500 dark:text-gray-300">
+        {{ partial "icon.html" (dict "style" "regular" "name" "circle-user" "class" "mr-1") }}
+        {{ partial "components/author-links.html" . }}
+      </p>
+      {{ end }}
+      <a href="{{ .Permalink }}" class="font-semibold text-xs text-[var(--color-primary-new)] hover:underline block mt-2">
+        View Details {{ partial "icon.html" (dict "style" "solid" "name" "arrow-right" "class" "ml-1") }}
+      </a>
+    </div>
+  </div>
+{{ end }}
