@@ -1,0 +1,87 @@
+{{ $past_events := sort site.Data.town_halls.past_events "date" "desc" }}
+{{ $latest_recording := "" }}
+{{ if $past_events }}{{ $latest_recording = index $past_events 0 }}{{ end }}
+
+{{ $recurringEventData := site.Data.recurring_events.events }}
+{{ $upcoming_details := "" }}
+{{ range $recurringEventData }}
+  {{ if and (eq .id "town-hall") .active }}
+    {{ $now := now }}
+    {{ $daysMap := dict "Sunday" 0 "Monday" 1 "Tuesday" 2 "Wednesday" 3 "Thursday" 4 "Friday" 5 "Saturday" 6 }}
+    {{ $targetDayKey := .day_of_week | default "Monday" }}
+    {{ $targetDayIndex := index $daysMap $targetDayKey | default 1 }}
+    {{ $currentDayIndex := int $now.Weekday }}
+    {{ $daysToAdd := sub $targetDayIndex $currentDayIndex }}
+    {{ if lt $daysToAdd 0 }}{{ $daysToAdd = add $daysToAdd 7 }}{{ end }}
+    {{ if eq $daysToAdd 0 }}
+      {{ $eventStartHour := int (substr .start_time 0 2) }}
+      {{ $eventStartMinute := int (substr .start_time 3 2) }}
+      {{ $nowHour := $now.Hour }}
+      {{ $nowMinute := $now.Minute }}
+      {{ if or (gt $nowHour $eventStartHour) (and (eq $nowHour $eventStartHour) (ge $nowMinute $eventStartMinute)) }}
+        {{ $daysToAdd = 7 }}
+      {{ end }}
+    {{ end }}
+    {{ $nextOccurrenceDate := $now.AddDate 0 0 (int $daysToAdd) }}
+    {{ $upcoming_details = dict
+        "Title" .title
+        "Date" $nextOccurrenceDate
+        "StartTime" .start_time
+        "EndTime" .end_time
+        "TimeZone" .time_zone
+        "Permalink" (.details_page_link | relLangURL)
+        "Description" .description
+        "LocationName" .location_name
+        "LocationURL" .location_url
+    }}
+  {{ end }}
+{{ end }}
+
+<section class="section pt-0 pb-16">
+    <div class="container">
+        <div class="town-hall-promo bg-theme-light dark:bg-darkmode-theme-light p-6 rounded-lg shadow-lg">
+            <div class="promo-content-wrapper md:flex md:items-start md:space-x-6">
+
+                {{ if $latest_recording }}
+                <div class="past-event-promo flex-1 mb-6 md:mb-0 {{ if $upcoming_details }}md:border-r md:border-gray-300 dark:md:border-gray-600 md:pr-6{{ end }}">
+                    <h3 class="text-xl font-bold mb-3 text-text dark:text-darkmode-text">Latest Town Hall Recording</h3>
+                    <div class="flex flex-col gap-3">
+                        <div class="w-full rounded-lg overflow-hidden">
+                            {{ partial "youtube-lite.html" (dict "Id" $latest_recording.youtube_id) }}
+                        </div>
+                        <div class="flex-grow">
+                            <h4 class="text-lg font-semibold leading-tight">{{ $latest_recording.title }}</h4>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mb-2">{{ (time.AsTime $latest_recording.date).Format "January 2, 2006" }}</p>
+                             {{ $townHallPage := site.GetPage "getting-involved/town-hall" }}
+                             <a href="{{ if $townHallPage }}{{ $townHallPage.RelPermalink }}{{ else }}{{ "/getting-involved/town-hall/" | relLangURL }}{{ end }}" class="font-semibold text-xs text-[var(--color-primary-new)] hover:underline block mt-2">
+                                View All Recordings {{ partial "icon.html" (dict "style" "solid" "name" "arrow-right" "class" "ml-1") }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {{ end }}
+
+                {{ if $upcoming_details }}
+                <div class="upcoming-event-promo flex-1">
+                    <h3 class="text-xl font-bold mb-3 text-text dark:text-darkmode-text">Next Session</h3>
+                    <p class="text-md font-semibold text-primary dark:text-darkmode-primary flex items-baseline">
+                        {{ partial "icon.html" (dict "style" "regular" "name" "calendar" "class" "mr-2") }}
+                        {{ $upcoming_details.Date.Format "Monday, January 2, 2006" }}
+                    </p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 flex items-baseline">
+                        {{ partial "icon.html" (dict "style" "regular" "name" "clock" "class" "mr-2") }}
+                        {{ $upcoming_details.StartTime }} - {{ $upcoming_details.EndTime }} {{ $upcoming_details.TimeZone }}
+                    </p>
+                    <p class="text-sm text-gray-700 dark:text-gray-300 mt-2">{{ $upcoming_details.Description | markdownify | plainify | truncate 100 }}</p>
+                    <div class="mt-4">
+                        <a href="{{ $upcoming_details.LocationURL }}" target="_blank" class="btn btn-sm btn-new-primary">
+                           {{ partial "icon.html" (dict "style" "brands" "name" "youtube" "class" "mr-2") }} Watch on YouTube
+                        </a>
+                    </div>
+                </div>
+                {{ end }}
+
+            </div>
+        </div>
+    </div>
+</section>
