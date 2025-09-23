@@ -1,0 +1,37 @@
+{{ $href := .Get "href" | default "#" }}
+{{ $title := .Get "title" | default "Missing Title" }}
+{{ $page := .Page }}
+
+{{ $final_href := "" }}
+{{ if strings.HasPrefix $href "http" }}
+{{ $final_href = $href }}
+{{ else if strings.HasPrefix $href "./" }}
+{{ with $page.GetPage (strings.TrimPrefix "./" $href) }}
+{{ $final_href = .RelPermalink }}
+{{ end }}
+{{ else }}
+{{ with site.GetPage $href }}
+{{ $final_href = .RelPermalink }}
+{{ end }}
+{{ end }}
+
+{{ if not $final_href }}
+{{ warnf "link_card on page %q could not resolve href %q. Falling back to raw href." $page.File.Path $href }}
+{{ $final_href = $href | relLangURL }}
+{{ end }}
+
+<div class="link-card group relative">
+  <div class="flex justify-between items-center">
+    <div>
+      <h3 class="link-card__title">{{ $title }}</h3>
+      <p class="link-card__description">{{ .Inner | markdownify | chomp }}</p>
+    </div>
+    <span class="link-card__arrow">
+      {{ partial "icon.html" (dict "style" "solid" "name" "arrow-right") }}
+    </span>
+  </div>
+
+  <a href="{{ $final_href }}" class="absolute inset-0 z-10" aria-label="Read more about {{ $title }}">
+    <span class="sr-only">Read more about {{ $title }}</span>
+  </a>
+</div>
