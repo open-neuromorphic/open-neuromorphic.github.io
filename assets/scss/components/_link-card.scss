@@ -1,0 +1,26 @@
+// assets/scss/components/_link-card.scss
+
+.link-card {
+  // Base styling for the card, copied from your original HTML
+  @apply block p-6 bg-theme-light dark:bg-darkmode-theme-light rounded-lg shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300;
+
+  // 1. Remove underline from the entire <a> block.
+  text-decoration: none !important;
+
+  &__title {
+    @apply text-xl font-semibold text-dark dark:text-darkmode-dark;
+    // 2. Re-apply the specific underline style ONLY to the title.
+    // This leverages the centralized link styling from _typography-custom.scss
+    @apply styled-link;
+  }
+
+  &__description {
+    @apply text-text dark:text-darkmode-text mt-1;
+    // 3. Ensure the description text NEVER has an underline.
+    text-decoration: none !important;
+  }
+
+  &__arrow {
+    @apply text-2xl text-primary dark:text-darkmode-primary transition-transform transform group-hover:translate-x-1 ml-4;
+  }
+}

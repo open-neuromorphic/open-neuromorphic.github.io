@@ -1,3 +1,4 @@
+{{/* layouts/partials/components/metadata-bar.html */}}
 {{ $ctx := .context | default . }}
 {{ $type := .type | default "general" }}
 
@@ -13,9 +14,33 @@
   <!-- Left side: Info (Author, Date) -->
   <div class="info-items flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-gray-600 dark:text-gray-400">
 
-    {{ if $ctx.Params.author }}
+    {{ with $ctx.Params.author }}
     <div class="author-item flex items-center">
-      {{ partial "icon.html" (dict "style" "regular" "name" "circle-user" "class" "mr-2") }}
+      {{/* Author Photos Section */}}
+      <div class="flex flex-shrink-0 in mr-3">
+        {{ range . }}
+        {{ $nameForProcessing := . | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" }}
+        {{ $contributorSlug := $nameForProcessing | anchorize }}
+        {{ $contributorPage := site.GetPage (printf "contributors/%s" $contributorSlug) }}
+
+        {{ if and $contributorPage $contributorPage.Params.image }}
+        {{ with $contributorPage.Resources.GetMatch $contributorPage.Params.image }}
+        <img class="h-8 w-8 rounded-full object-cover border-2 border-white dark:border-darkmode-body" src="{{ (.Fill "64x64").RelPermalink }}" alt="Photo of {{ $contributorPage.Title }}" title="{{ $contributorPage.Title }}">
+        {{ else }}
+        {{/* Fallback for image defined in front matter but not found in page bundle */}}
+        <div class="h-8 w-8 rounded-full bg-gray-200 dark:bg-darkmode-theme-dark flex items-center justify-center border-2 border-white dark:border-darkmode-body" title="{{ . }}">
+          {{ partial "icon.html" (dict "style" "solid" "name" "user" "class" "text-base text-gray-400") }}
+        </div>
+        {{ end }}
+        {{ else }}
+        {{/* Fallback for author with no profile or no image in profile */}}
+        <div class="h-8 w-8 rounded-full bg-gray-200 dark:bg-darkmode-theme-dark flex items-center justify-center border-2 border-white dark:border-darkmode-body" title="{{ . }}">
+          {{ partial "icon.html" (dict "style" "solid" "name" "user" "class" "text-base text-gray-400") }}
+        </div>
+        {{ end }}
+        {{ end }}
+      </div>
+      {{/* Author Names Section (using existing partial) */}}
       <span>By {{ partial "components/author-links.html" $ctx }}</span>
     </div>
     {{ end }}
@@ -24,25 +49,25 @@
     <div class="date-item flex items-center">
       {{ partial "icon.html" (dict "style" "regular" "name" "calendar" "class" "mr-2") }}
       <span>
-        {{- $ctx.Date.Format (site.Params.dateFormatSingle | default "January 2, 2006") -}}
+        {{ $ctx.Date.Format (site.Params.dateFormatSingle | default "January 2, 2006") }}
 
-        {{- /* Show time for UPCOMING events */ -}}
-        {{- if and $ctx.Params.upcoming $ctx.Params.start_time -}}
+        {{/* Show time ONLY for UPCOMING events */}}
+        {{ if and $ctx.Params.upcoming $ctx.Params.start_time }}
           <span class="mx-1 text-gray-400">·</span>
           {{- $ctx.Params.start_time }}{{ if $ctx.Params.end_time }} - {{ $ctx.Params.end_time }}{{ end }} {{ $ctx.Params.time_zone -}}
-        {{- end -}}
+        {{ end }}
 
-        {{- /* Show 'Updated' for non-events (like blog posts) */ -}}
-        {{- if and (ne $type "event") (ne $ctx.Lastmod $ctx.Date) -}}
+        {{/* Show 'Updated' for non-events (like blog posts) */}}
+        {{ if and (ne $type "event") (ne $ctx.Lastmod $ctx.Date) }}
           <span class="italic text-gray-500 ml-2">(Updated {{ $ctx.Lastmod.Format (site.Params.dateFormatSingle | default "January 2, 2006") }})</span>
-        {{- end -}}
+        {{ end }}
       </span>
     </div>
     {{ end }}
 
   </div>
 
-  <!-- Right side: Action Buttons -->
+  <!-- Right side: Action Buttons (Only for events) -->
   {{ if $hasButtons }}
   <div class="action-buttons flex flex-wrap gap-2">
     {{ with $ctx.Params.speaker_slides }}<a href="{{ . }}" target="_blank" rel="noopener" class="btn btn-sm btn-outline-primary">{{ partial "icon.html" (dict "style" "regular" "name" "images" "class" "mr-1.5") }}Slides</a>{{ end }}
@@ -51,17 +76,15 @@
     {{ with $ctx.Params.speaker_paper }}
     <a href="{{ . }}" target="_blank" rel="noopener" class="btn btn-sm btn-outline-primary">
       {{ partial "icon.html" (dict "style" "regular" "name" "file-lines" "class" "mr-1.5") }}Paper
-      {{ with $ctx.Params.paper_license }}
-      <span class="ml-1.5 text-xs opacity-75">({{ . }})</span>
-      {{ end }}
+      {{ with $ctx.Params.paper_license }}<span class="ml-1.5 text-xs opacity-75">({{ . }})</span>{{ end }}
     </a>
     {{ end }}
 
     {{ if $ctx.Params.upcoming }}
     {{ $event_url := $ctx.Params.upcoming_url | default "https://www.youtube.com/@openneuromorphic" }}
-    <a href="{{ $event_url }}" target="_blank" rel="noopener" class="btn btn-sm btn-new-primary">{{ partial "icon.html" (dict "style" "regular" "name" "calendar" "class" "mr-1.5") }}Event Link</a>
+    <a href="{{ $event_url }}" target="_blank" rel="noopener" class="btn btn-sm btn-primary">{{ partial "icon.html" (dict "style" "regular" "name" "calendar" "class" "mr-1.5") }}Event Link</a>
     {{ else if $ctx.Params.video }}
-    <a href="https://www.youtube.com/watch?v={{ $ctx.Params.video }}" target="_blank" rel="noopener" class="btn btn-sm btn-new-primary">{{ partial "icon.html" (dict "style" "brands" "name" "youtube" "class" "mr-1.5") }}Watch on YouTube</a>
+    <a href="https://www.youtube.com/watch?v={{ $ctx.Params.video }}" target="_blank" rel="noopener" class="btn btn-sm btn-primary">{{ partial "icon.html" (dict "style" "brands" "name" "youtube" "class" "mr-1.5") }}Watch on YouTube</a>
     {{ end }}
   </div>
   {{ end }}

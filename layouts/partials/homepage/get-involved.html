@@ -1,0 +1,16 @@
+<section class="section pt-8">
+  <div class="container">
+    <h2 class="section-title">Ways to Get Involved</h2>
+    <p class="section-subtitle">
+      Whether you want to learn, build, or share, there's a place for you in the Open Neuromorphic community.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {{ range site.Data.homepage.involvement_pathways }}
+        <div>
+          {{ partial "components/involvement-card.html" . }}
+        </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
