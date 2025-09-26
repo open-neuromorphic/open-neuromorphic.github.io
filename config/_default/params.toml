@@ -35,7 +35,7 @@ homepageTitle = "Open Neuromorphic is a global community fostering education, re
 [navigation_button]
 enable = true
 label = "Join Discord"
-label_sub = "(2100+ joined)"
+label_sub = "(2400+ joined)"
 link = "https://discord.gg/hUygPUdD8E"
 
 # search
