@@ -23,6 +23,7 @@ maintainer: Electronic Visions Group
 It supports arbitrary topologies, and complex plasticity rules.
 
 Custom cell types are available allowing fine-grained access to the configuration of the available neuron circuits on hardware.
+
 Additionally, cell types parameterized through model parameters use automated calibration to find suitable hardware configurations for desired behavior.
 
 Due to the real-time nature of the emulation, experiment protocol definition and execution are separated, while dynamic reconfiguration of hardware entities during the experiment runtime is offered.

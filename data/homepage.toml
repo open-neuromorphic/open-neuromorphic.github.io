@@ -1,0 +1,70 @@
+# data/homepage.toml
+
+# --- "Start Your Journey" Section Content ---
+[[journey_ribbons]]
+  title = "Understanding SNN Frameworks"
+  description = "Dive into our comprehensive benchmarks of Spiking Neural Network libraries. Essential reading for choosing the right tools for your research and optimizing your SNN models."
+  cta_link = "/blog/spiking-neural-network-framework-benchmarking/" # Use Hugo-friendly paths
+  cta_text = "Read Benchmark Post"
+  contributor_text_prefix = "Insight by "
+  primary_contributor_name = "Gregor Lenz"
+  contributor_text_suffix = ", Kade Heckel, et al."
+  default_image_path = "blog/spiking-neural-network-framework-benchmarking/neurons-race.png"
+  alt_text = "SNN Framework Benchmarks"
+  layout_class = ""
+  explore_links = [
+    { title = "SNN Software Guide", url = "/neuromorphic-computing/software/snn-frameworks/" },
+    { title = "Hands-On with snnTorch", url = "/workshops/hands-on-with-snntorch-jason-eshraghian/" }
+  ]
+
+[[journey_ribbons]]
+  title = "Bio-Inspired Visual Attention"
+  description = "Explore how visual attention mechanisms, inspired by the human visual system, can enhance robotic perception and interaction for efficient real-world applications."
+  cta_link = "/workshops/whats-catching-your-eye-visual-attention-mechanism-giulia-dangelo/"
+  cta_text = "Watch Workshop"
+  contributor_text_prefix = "Workshop by "
+  primary_contributor_name = "Giulia D'Angelo"
+  contributor_text_suffix = ""
+  default_image_path = "workshops/whats-catching-your-eye-visual-attention-mechanism-giulia-dangelo/open-neuromorphic-thumbnail-giulia.png"
+  alt_text = "Visual Attention Mechanism Workshop"
+  layout_class = "reverse"
+  explore_links = [
+    { title = "Efficient Event Data Compression", url = "/blog/efficient-compression-event-based-data-neuromorphic-applications/" },
+    { title = "Neuromorphic Hardware Guide", url = "/neuromorphic-computing/hardware/" }
+  ]
+
+[[journey_ribbons]]
+  title = "Essential Reads in Digital Neuromorphic Hardware"
+  description = "A curated list of influential papers and theses on digital neuromorphic hardware designs. An invaluable resource for course material and staying current with research trends."
+  cta_link = "/blog/digital-neuromorphic-hardware-read-list/"
+  cta_text = "Access the Reading List"
+  contributor_text_prefix = "Curated by "
+  primary_contributor_name = "Fabrizio Ottati"
+  contributor_text_suffix = ""
+  default_image_path = "blog/digital-neuromorphic-hardware-read-list/banner.png"
+  alt_text = "Neuromorphic Hardware Reading"
+  layout_class = ""
+  explore_links = [
+    { title = "NIR Workshop: Unifying Neuromorphic Tools", url = "/workshops/neuromorphic-intermediate-representation/" },
+    { title = "About Open Neuromorphic & Our Mission", url = "/about/" }
+  ]
+
+
+# --- "Ways to Get Involved" Section Content ---
+[[involvement_pathways]]
+  title = "Learn & Discuss"
+  description = "Join our community discussions, attend expert workshops, and explore our learning resources to deepen your understanding of neuromorphic computing."
+  icon = "fas fa-comments"
+  link = "/getting-involved/"
+
+[[involvement_pathways]]
+  title = "Contribute & Code"
+  description = "Lead or join community-driven projects. ONM Initiatives are a great way to make a direct impact, from developing new tools to organizing events. Find an active project and start contributing."
+  icon = "fas fa-code-branch"
+  link = "/getting-involved/"
+
+[[involvement_pathways]]
+  title = "Share & Present"
+  description = "Showcase your research by giving a workshop or student talk. Share your expertise by writing a blog post and contributing to our collective knowledge base."
+  icon = "fas fa-chalkboard-user"
+  link = "/getting-involved/"

@@ -1,0 +1,24 @@
+{{ $sortedAllUpcomingEvents := partial "logic/get_sorted_upcoming_events.html" . }}
+{{ $all_events := where site.RegularPages "Type" "in" (slice "workshops" "student-talks" "hacking-hours") }}
+{{ $sorted_past_events := partial "logic/get_past_events.html" $all_events }}
+{{ $most_recent_past_event := cond (gt (len $sorted_past_events) 0) (index $sorted_past_events 0) "" }}
+
+<section class="mt-8 mb-14">
+  <div class="container mx-auto px-6">
+    <h2 class="section-title">What's New at ONM</h2>
+    <p class="section-subtitle">Stay up-to-date with the latest workshops, blog posts, and community highlights.</p>
+    <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
+
+      <!-- Events Column -->
+      <div class="lg:col-span-1">
+        {{ partial "homepage/whats-new/recent-event.html" $most_recent_past_event }}
+        {{ partial "homepage/whats-new/upcoming-events.html" $sortedAllUpcomingEvents }}
+      </div>
+
+      <!-- Blog Posts Column -->
+      <div class="lg:col-span-2">
+        {{ partial "homepage/whats-new/recent-insights.html" . }}
+      </div>
+    </div>
+  </div>
+</section>

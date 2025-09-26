@@ -1,10 +1,10 @@
 <footer class="footer bg-gray-800 dark:bg-black text-gray-300 pt-16 pb-8 relative overflow-hidden">
   {{ with resources.Get "images/ONM.png" }}
-    {{ $watermark_webp := .Process "webp" }}
-    <div
-      class="absolute bottom-0 right-0 w-[1500px] h-[1500px] bg-no-repeat bg-contain bg-right-bottom opacity-[0.06] dark:opacity-[0.2] z-0 pointer-events-none"
-      style="background-image: url('{{ $watermark_webp.RelPermalink }}'); transform: translate(5%, 5%) rotate(-10deg);">
-    </div>
+  {{ $watermark_webp := .Process "webp" }}
+  <div
+    class="absolute bottom-0 right-0 w-[1500px] h-[1500px] bg-no-repeat bg-contain bg-right-bottom opacity-[0.06] dark:opacity-[0.2] z-0 pointer-events-none"
+    style="background-image: url('{{ $watermark_webp.RelPermalink }}'); transform: translate(5%, 5%) rotate(-10deg);">
+  </div>
   {{ end }}
   <div class="container relative z-10">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
@@ -19,12 +19,12 @@
         </p>
         <ul class="social-icons flex justify-center md:justify-start space-x-3">
           {{ range site.Data.social.main }}
-            <li>
-              <a target="_blank" aria-label="{{ .name }}" rel="nofollow noopener" href="{{ .link | safeURL }}" class="bg-gray-700 hover:bg-[var(--color-primary-new)] text-white">
-                {{ $iconData := partial "helpers/parse-fa-class.html" .icon }}
-                {{ partial "icon.html" (dict "style" $iconData.style "name" $iconData.name) }}
-              </a>
-            </li>
+          <li>
+            <a target="_blank" aria-label="{{ .name }}" rel="nofollow noopener" href="{{ .link | safeURL }}" class="bg-gray-700 hover:bg-[var(--color-primary-new)] text-white">
+              {{ $iconData := partial "helpers/parse-fa-class.html" .icon }}
+              {{ partial "icon.html" (dict "style" $iconData.style "name" $iconData.name) }}
+            </a>
+          </li>
           {{ end }}
         </ul>
       </div>
@@ -35,13 +35,13 @@
         <nav aria-label="Explore our resources">
           <ul class="footer-link-list">
             {{ range site.Menus.footer_explore_new.ByWeight }}
-              <li>
-                {{ $is_external := findRE `^http` .URL }}
-                <a href="{{ .URL | relLangURL }}" class="footer-link" {{ if $is_external }}target="_blank" rel="noopener"{{ end }}>
-                  {{- .Name -}}
-                  {{- if $is_external -}}{{- partial "icon.html" (dict "style" "solid" "name" "arrow-up-right-from-square" "class" "inline-block align-baseline ml-1 h-[0.8em] w-[0.8em]") -}}{{- end -}}
-                </a>
-              </li>
+            <li>
+              {{ $is_external := findRE `^http` .URL }}
+              <a href="{{ .URL | relLangURL }}" class="footer-link" {{ if $is_external }}target="_blank" rel="noopener"{{ end }}>
+                {{- .Name -}}
+                {{- if $is_external -}}{{- partial "icon.html" (dict "style" "solid" "name" "arrow-up-right-from-square" "class" "inline-block align-baseline ml-1 h-[0.8em] w-[0.8em]") -}}{{- end -}}
+              </a>
+            </li>
             {{ end }}
           </ul>
         </nav>
@@ -53,13 +53,13 @@
         <nav aria-label="Community links">
           <ul class="footer-link-list">
             {{ range site.Menus.footer_community.ByWeight }}
-              <li>
-                {{ $is_external := findRE `^http` .URL }}
-                <a href="{{ .URL | relLangURL }}" class="footer-link" {{ if $is_external }}target="_blank" rel="noopener"{{ end }}>
-                  {{- .Name -}}
-                  {{- if $is_external -}}{{- partial "icon.html" (dict "style" "solid" "name" "arrow-up-right-from-square" "class" "inline-block align-baseline ml-1 h-[0.8em] w-[0.8em]") -}}{{- end -}}
-                </a>
-              </li>
+            <li>
+              {{ $is_external := findRE `^http` .URL }}
+              <a href="{{ .URL | relLangURL }}" class="footer-link" {{ if $is_external }}target="_blank" rel="noopener"{{ end }}>
+                {{- .Name -}}
+                {{- if $is_external -}}{{- partial "icon.html" (dict "style" "solid" "name" "arrow-up-right-from-square" "class" "inline-block align-baseline ml-1 h-[0.8em] w-[0.8em]") -}}{{- end -}}
+              </a>
+            </li>
             {{ end }}
           </ul>
         </nav>
@@ -71,13 +71,13 @@
         <nav aria-label="About and legal information">
           <ul class="footer-link-list">
             {{ range site.Menus.footer_legal_new.ByWeight }}
-             <li>
-                {{ $is_external := findRE `^http` .URL }}
-                <a href="{{ .URL | relLangURL }}" class="footer-link" {{ if $is_external }}target="_blank" rel="noopener"{{ end }}>
-                  {{- .Name -}}
-                  {{- if $is_external -}}{{- partial "icon.html" (dict "style" "solid" "name" "arrow-up-right-from-square" "class" "inline-block align-baseline ml-1 h-[0.8em] w-[0.8em]") -}}{{- end -}}
-                </a>
-              </li>
+            <li>
+              {{ $is_external := findRE `^http` .URL }}
+              <a href="{{ .URL | relLangURL }}" class="footer-link" {{ if $is_external }}target="_blank" rel="noopener"{{ end }}>
+                {{- .Name -}}
+                {{- if $is_external -}}{{- partial "icon.html" (dict "style" "solid" "name" "arrow-up-right-from-square" "class" "inline-block align-baseline ml-1 h-[0.8em] w-[0.8em]") -}}{{- end -}}
+              </a>
+            </li>
             {{ end }}
           </ul>
         </nav>
@@ -88,6 +88,9 @@
     <div class="footer-bottom-bar">
       <p>
         {{ site.Params.copyright | markdownify }} | Site Built By: <a href="https://visioninit.dev">VisionInit</a>
+      </p>
+      <p class="mt-2">
+        Content licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener" class="hover:underline">CC BY-SA 4.0</a> unless otherwise noted.
       </p>
     </div>
   </div>

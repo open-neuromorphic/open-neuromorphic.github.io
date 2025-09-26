@@ -1,0 +1,31 @@
+<h3 class="text-2xl font-bold mb-6 text-center lg:text-left text-text dark:text-darkmode-text">Recent Insights</h3>
+<div class="space-y-6">
+  {{ $recentBlogPosts := first 3 (where site.RegularPages.ByDate.Reverse "Section" "blog") }}
+  {{ range $recentBlogPosts }}
+  <article class="news-card">
+    <h4 class="text-xl font-semibold mb-1">
+      <a href="{{ .RelPermalink }}" class="text-text dark:text-darkmode-dark hover:text-[var(--color-primary-new)]">{{ .Title }}</a>
+    </h4>
+    <ul class="news-meta text-xs text-gray-500 dark:text-gray-400 mb-2 flex flex-wrap items-center leading-tight">
+      <li class="mr-3 flex items-center">
+        {{ partial "icon.html" (dict "style" "regular" "name" "calendar" "class" "mr-1.5") }}
+        <span>{{ .Date.Format "January 2, 2006" }}</span>
+      </li>
+      {{ if .Params.author }}
+      <li class="flex items-center">
+        {{ partial "icon.html" (dict "style" "regular" "name" "circle-user" "class" "mr-1.5") }}
+        <span>By {{ partial "components/author-links.html" . }}</span>
+      </li>
+      {{ end }}
+    </ul>
+    <p class="news-summary">{{ .Description | truncate 120 }}</p>
+  </article>
+  {{ else }}
+  <div class="news-card">
+    <p class="text-gray-600 dark:text-gray-400">No recent blog posts. Stay tuned for new content!</p>
+  </div>
+  {{ end }}
+</div>
+<div class="text-center lg:text-right mt-8">
+  <a href="{{ "blog/" | relLangURL }}" class="btn btn-new-primary">Explore All Posts</a>
+</div>

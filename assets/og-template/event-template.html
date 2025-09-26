@@ -27,7 +27,7 @@
       display: flex;
       flex-direction: column;
       box-sizing: border-box;
-      padding: 4vmin;
+      padding: 4vmin 6vmin; /* Reduced top/bottom padding */
     }
     .background {
       position: absolute;
@@ -44,10 +44,10 @@
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      margin-bottom: 2.5vmin;
+      margin-bottom: 2vmin;
     }
     .logo {
-      height: 10vmin;
+      height: 9vmin;
       width: auto;
       margin-right: 2.5vmin;
     }
@@ -62,9 +62,9 @@
       flex-grow: 1;
       display: flex;
       flex-direction: column;
-      justify-content: space-around;
+      justify-content: space-evenly;
       text-align: center;
-      gap: 2vmin;
+      gap: 1.0vmin; /* Tightened gap */
     }
     .title {
       font-weight: 800;
@@ -72,7 +72,7 @@
       color: #1f2937;
       margin: 0;
       display: -webkit-box;
-      -webkit-line-clamp: 4; /* More room for long titles */
+      -webkit-line-clamp: 4;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
@@ -81,7 +81,7 @@
       color: #4b5563;
       margin: 0;
       display: -webkit-box;
-      -webkit-line-clamp: 6; /* Allow more lines for description */
+      -webkit-line-clamp: 6;
       -webkit-box-orient: vertical;
       overflow: hidden;
       word-wrap: break-word;
@@ -90,7 +90,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 45vmin; /* Adjusted to give text more space */
+      min-height: 30vmin;
     }
     .speakers-container {
       display: flex;
@@ -121,10 +121,10 @@
       word-wrap: break-word;
     }
     .event-details {
-      font-size: clamp(24px, 4.5vmin, 45px); /* Default size */
+      font-size: clamp(24px, 4.5vmin, 45px);
       line-height: 1.4;
       color: #4b5563;
-      margin: 0;
+      margin: 1vmin 0 0 0;
       font-weight: 500;
       text-shadow:
         -2px -2px 6px white, 2px -2px 6px white,
@@ -141,7 +141,6 @@
       color: #667eea;
       text-align: center;
       flex-shrink: 0;
-      margin-top: 2.5vmin;
     }
   </style>
 </head>
@@ -179,26 +178,29 @@
     const speakerItems = speakerContainer.querySelectorAll('.speaker-item');
     const speakerCount = speakerItems.length;
 
-    // Logic for description visibility
-    if (descriptionEl) {
-      if (!descriptionEl.textContent || descriptionEl.textContent.trim() === '') {
-        descriptionEl.style.display = 'none';
-      }
+    if (descriptionEl && (!descriptionEl.textContent || descriptionEl.textContent.trim() === '')) {
+      descriptionEl.style.display = 'none';
     }
 
     if (speakerCount >= 1 && speakerCount <= 6) {
-      // Larger sizes for 1-6 speakers
-      titleEl.style.fontSize = 'clamp(32px, 6.0vmin, 60px)';
-      if (descriptionEl) descriptionEl.style.fontSize = 'clamp(22px, 4.3vmin, 42px)';
-      // Reduced date/time size to give more room to description
-      if (eventDetailsEl) eventDetailsEl.style.fontSize = 'clamp(32px, 5.5vmin, 55px)';
+      let imgSize, nameSize;
 
-      let imgSize = '27vmin'; // Default for 4-6 speakers
-      let nameSize = 'clamp(20px, 3.5vmin, 32px)';
+      if (speakerCount === 1) {
+        titleEl.style.fontSize = 'clamp(44px, 7.2vmin, 78px)';
+        if (descriptionEl) descriptionEl.style.fontSize = 'clamp(28px, 4.5vmin, 48px)';
+        if (eventDetailsEl) eventDetailsEl.style.fontSize = 'clamp(38px, 6.0vmin, 60px)';
+        imgSize = '28vmin'; // Final reduced image size
+        nameSize = 'clamp(24px, 4.0vmin, 38px)';
+      } else {
+        titleEl.style.fontSize = 'clamp(46px, 7.2vmin, 78px)';
+        if (descriptionEl) descriptionEl.style.fontSize = 'clamp(30px, 4.8vmin, 50px)';
+        if (eventDetailsEl) eventDetailsEl.style.fontSize = 'clamp(38px, 6.0vmin, 60px)';
 
-      if (speakerCount === 1) { imgSize = '51vmin'; }
-      else if (speakerCount === 2) { imgSize = '37vmin'; }
-      else if (speakerCount === 3) { imgSize = '32vmin'; }
+        if (speakerCount === 2) { imgSize = '28vmin'; }
+        else if (speakerCount === 3) { imgSize = '24vmin'; }
+        else { imgSize = '22vmin'; }
+        nameSize = 'clamp(20px, 3.6vmin, 34px)';
+      }
 
       speakerItems.forEach(item => {
         item.style.width = imgSize;
@@ -213,15 +215,14 @@
         }
       });
     } else { // 0 or 7+ speakers
-      // Smaller sizes for 7+ speakers
-      titleEl.style.fontSize = 'clamp(28px, 5.5vmin, 55px)';
-      if (descriptionEl) descriptionEl.style.fontSize = 'clamp(28px, 5.0vmin, 50px)';
+      titleEl.style.fontSize = 'clamp(32px, 6.0vmin, 65px)';
+      if (descriptionEl) descriptionEl.style.fontSize = 'clamp(28px, 4.8vmin, 50px)';
 
-      let imgSize = '18vmin';
-      let nameSize = 'clamp(16px, 2.8vmin, 26px)';
+      let imgSize = '20vmin';
+      let nameSize = 'clamp(18px, 3.2vmin, 28px)';
       if (speakerCount > 8) {
-        imgSize = '16vmin';
-        nameSize = 'clamp(14px, 2.5vmin, 24px)';
+        imgSize = '18vmin';
+        nameSize = 'clamp(16px, 2.8vmin, 26px)';
       }
 
       speakerItems.forEach(item => {
