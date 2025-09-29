@@ -2,13 +2,14 @@
 title: "Tonic: Building the PyTorch Vision of Neuromorphic Data Loading"
 author:
   - "Gregor Lenz"
+  - "Jens E. Pedersen"
 date: 2025-09-29
 start_time: "20:00"
 end_time: "21:30"
 time_zone: "CEST"
 description: "Discover how Tonic provides a PyTorch-compatible framework for loading and transforming neuromorphic datasets, making event-based data as accessible as traditional computer vision datasets."
-upcoming: true
-upcoming_url: "https://www.youtube.com/@openneuromorphic"
+upcoming: false
+video: kh2KE8aprAQ
 type: "workshops"
 show_author_bios: true
 software_tags: ["tonic"]
