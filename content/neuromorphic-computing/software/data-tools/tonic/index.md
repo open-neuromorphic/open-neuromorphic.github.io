@@ -19,10 +19,15 @@ draft: false
 ---
 
 
-
 ## Overview
 Tonic is a specialized Python package designed to facilitate the downloading and manipulation of neuromorphic datasets, particularly focusing on event-based vision and audio data. It is fully compatible with PyTorch Vision/Audio and offers a range of event transformations, making it a flexible tool for working with neuromorphic data. The package includes a variety of publicly available datasets and provides efficient ways to manage and transform these datasets for various applications.
 
 The documentation for Tonic includes tutorials on loading and augmenting images alongside events, caching data for faster loading, batching for event data, and slicing datasets for manageable processing. Additionally, it provides API references for its neuromorphic datasets and event transformations, supporting file parsers for various formats. For those new to the field or seeking to deepen their understanding, Tonic offers reading material on neuromorphic cameras, spiking neural networks, and associated simulators.
 
 Tonic is an open-source project and encourages community involvement, offering guidelines for contributions and communication channels for collaboration. The project outlines its journey and updates in its release notes, giving insight into its evolution and the community behind it.
+
+### Introduction video
+
+The founder of Tonic, Gregor Lenz, motivates Tonic, explains what it does, and walks through live examples and tutorials.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/kh2KE8aprAQ?si=QfNSFfAwvhUcKTUh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
