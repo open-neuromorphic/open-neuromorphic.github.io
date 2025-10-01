@@ -2,7 +2,7 @@
 title: "Neuromorphic drivers"
 type: neuromorphic-software
 description: "Python and Rust libraries to interact with event cameras in real-time."
-logo: "faery.png"
+logo: "neuromorphic-drivers.png"
 website: "https://github.com/neuromorphicsystems/neuromorphic-drivers"
 dependencies: "NumPy, Rust"
 field_of_application: "Drivers"
