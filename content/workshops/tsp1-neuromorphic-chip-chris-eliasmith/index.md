@@ -9,7 +9,7 @@ time_zone: "EST"
 description: "Join Chris Eliasmith for an in-depth exploration of the TSP1 neuromorphic chip from Applied Brain Research. Learn about this groundbreaking hardware platform and its implications for brain-inspired computing."
 upcoming: true
 video: ""
-image: "tsp1-workshop-banner.png"
+image: "ABR-TSP1-Chip.jpg"
 type: "workshops"
 show_author_bios: true
 hardware_tags: ["tsp1"]

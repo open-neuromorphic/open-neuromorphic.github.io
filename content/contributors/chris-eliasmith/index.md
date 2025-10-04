@@ -1,7 +1,7 @@
 ---
 title: "Chris Eliasmith"
 description: "Professor, Canada Research Chair in Theoretical Neuroscience, and co-creator of the Nengo neural simulator. Research focuses on large-scale brain modelling and neuromorphic engineering."
-image: "chris-eliasmith.png"
+image: "chris-eliasmith.jpg"
 social:
   - icon: "fa fa-house"
     link: "https://compneuro.uwaterloo.ca/people/chris-eliasmith.html"
