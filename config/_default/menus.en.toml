@@ -136,6 +136,12 @@ name = "Governance & Fellowship"
 url = "/about/governance/"
 weight = 7
 
+[[main]]
+parent = "About"
+name = "Submit to ONR"
+url = "/submit-to-onr/"
+weight = 8
+
 
 # --- New Footer Menus (replace the old [[footer]], [[footer_explore]], [[footer_legal]]) ---
 
@@ -204,3 +210,7 @@ weight = 3
 name = "Terms & Conditions"
 url = "/terms-conditions/"
 weight = 4
+[[footer_legal_new]]
+name = "Submit to ONR"
+url = "/submit-to-onr/"
+weight = 5
