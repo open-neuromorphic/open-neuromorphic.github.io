@@ -2,7 +2,7 @@
 title: "NeuroTorch"
 type: neuromorphic-software
 description: PyTorch based library combining machine learning and neuroscience through spiking and biologically inspired neural dynamics.
-logo: neurotorch.svg
+logo: neurotorch.png
 website: https://neurotorch.github.io/NeuroTorch/
 dependencies: PyTorch
 field_of_application: Machine Learning
