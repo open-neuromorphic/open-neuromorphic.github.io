@@ -187,7 +187,7 @@ link = "https://discord.gg/hUygPUdD8E"
 [search]
 enable = true
 primary_color = "#667eea"
-include_sections = ["blog", "workshops", "neuromorphic-computing", "contributors", "getting-involved", "volunteer-opportunities"]
+include_sections = ["blog", "workshops", "neuromorphic-computing", "contributors", "getting-involved", "volunteer-opportunities", "submit-to-onr"]
 show_image = false
 show_description = true
 show_tags = true
