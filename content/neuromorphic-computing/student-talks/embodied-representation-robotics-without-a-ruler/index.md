@@ -8,6 +8,7 @@ end_time: "09:15"
 time_zone: "EST"
 description: "Join us for an insightful student talk on Embodied Visuomotor Representation by Levi Burner. Discover how we can embody the sense of distance/scale in a robot through its actions! and not rely on its calibration."
 upcoming: true
+upcoming_url: "https://virginiatech.zoom.us/j/84900584594"
 video: ""
 type: "student-talks"
 show_author_bios: true
