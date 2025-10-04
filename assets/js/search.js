@@ -156,7 +156,10 @@
   function renderResults(results, query) {
     searchResults.innerHTML = '';
     if (results.length === 0) {
-      searchResults.innerHTML = `<div class="text-center text-gray-500 py-4">No results found for "${query}"</div>`;
+      const noResultsDiv = document.createElement('div');
+      noResultsDiv.className = 'text-center text-gray-500 py-4';
+      noResultsDiv.textContent = `No results found for "${query}"`;
+      searchResults.appendChild(noResultsDiv);
       return;
     }
 

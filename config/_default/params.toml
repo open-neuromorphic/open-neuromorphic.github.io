@@ -31,17 +31,11 @@ copyright = "© 2022 - 2025 Open Neuromorphic"
 
 homepageTitle = "Open Neuromorphic is a global community fostering education, research, and open-source collaboration in brain-inspired AI and hardware. "
 
-# Preloader
-# preloader module: https://github.com/gethugothemes/hugo-modules/tree/master/components/preloader
-[preloader]
-enable = false
-preloader = "" # use jpg, png, svg or gif format.
-
 # Navigation button
 [navigation_button]
 enable = true
 label = "Join Discord"
-label_sub = "(2100+ joined)"
+label_sub = "(2400+ joined)"
 link = "https://discord.gg/hUygPUdD8E"
 
 # search

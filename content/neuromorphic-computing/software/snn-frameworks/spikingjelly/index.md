@@ -19,14 +19,8 @@ draft: false
 
 
 ## Overview
-**SpikingJelly** is an open-source deep learning framework designed for Spiking Neural Networks (SNNs) based on PyTorch. It leverages PyTorch's user-friendly
-interface and computational capabilities, including GPU acceleration. This integration makes SpikingJelly an accessible and powerful tool for both researchers and practitioners
-in the fields of neuroscience and artificial intelligence.
+**SpikingJelly** is an open-source deep learning framework designed for Spiking Neural Networks (SNNs) based on PyTorch. It leverages PyTorch's user-friendly interface and computational capabilities, including GPU acceleration. This integration makes SpikingJelly an accessible and powerful tool for both researchers and practitioners in the fields of neuroscience and artificial intelligence.
 
-It aims to bring brain-inspired intelligence to neuromorphic chips with high energy efficiency by incorporating neural dynamics and spike properties. SpikingJelly is unique in that 
-it addresses the need for automatic differentiation, parallel computation acceleration, and integration of neuromorphic datasets in the spiking deep learning. The framework provides
-a full-stack toolkit for preprocessing neuromorphic datasets, constructing deep SNNs, optimizing parameters, and deploying on neuromorphic chips.
+It aims to bring brain-inspired intelligence to neuromorphic chips with high energy efficiency by incorporating neural dynamics and spike properties. SpikingJelly is unique in that it addresses the need for automatic differentiation, parallel computation acceleration, and integration of neuromorphic datasets in the spiking deep learning. The framework provides a full-stack toolkit for preprocessing neuromorphic datasets, constructing deep SNNs, optimizing parameters, and deploying on neuromorphic chips.
 
-Developed by the Multimedia Learning Group, Institute of Digital Media (NELVT) at Peking University, and Peng Cheng Laboratory, SpikingJelly is contributing to the evolution of
-energy-efficient, spike-based machine intelligence systems. It is a valuable tool for advancing SNN research, offering a blend of accessibility and powerful computational
-tools for exploring the dynamic world of spiking neural networks.
+Developed by the Multimedia Learning Group, Institute of Digital Media (NELVT) at Peking University, and Peng Cheng Laboratory, SpikingJelly is contributing to the evolution of energy-efficient, spike-based machine intelligence systems. It is a valuable tool for advancing SNN research, offering a blend of accessibility and powerful computational tools for exploring the dynamic world of spiking neural networks.

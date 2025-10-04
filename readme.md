@@ -67,6 +67,8 @@ It covers everything you need to know, including:
 
 For community discussions and questions, join us on our [Discord server](https://discord.gg/hUygPUdD8E).
 
-## 📄 License
+## Licensing
 
-The website's theme and code are licensed under the MIT License. See the [LICENSE](https://github.com/open-neuromorphic/open-neuromorphic.github.io/blob/main/LICENSE) file for more details. Content contributed to the site is shared under the same license unless otherwise specified.
+The source code for this website, including the Hugo theme, templates, and scripts, is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
+
+Unless otherwise specified, all content on this website, including blog posts, articles, and images, is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License (CC-BY-SA 4.0)](http://creativecommons.org/licenses/by-sa/4.0/).

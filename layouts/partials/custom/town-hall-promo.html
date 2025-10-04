@@ -1,0 +1,60 @@
+{{ $recurringEventData := site.Data.recurring_events.events }}
+{{ $townHallEvent := "" }}
+{{ range $recurringEventData }}
+  {{ if and (eq .id "town-hall") .active }}
+    {{ $townHallEvent = . }}
+  {{ end }}
+{{ end }}
+
+{{ if $townHallEvent }}
+  {{ $now := now }}
+  {{ $daysMap := dict "Sunday" 0 "Monday" 1 "Tuesday" 2 "Wednesday" 3 "Thursday" 4 "Friday" 5 "Saturday" 6 }}
+  {{ $targetDayKey := $townHallEvent.day_of_week | default "Monday" }}
+  {{ $targetDayIndex := index $daysMap $targetDayKey | default 1 }}
+  {{ $currentDayIndex := int $now.Weekday }}
+  {{ $daysToAdd := sub $targetDayIndex $currentDayIndex }}
+  {{ if lt $daysToAdd 0 }}{{ $daysToAdd = add $daysToAdd 7 }}{{ end }}
+  {{ if eq $daysToAdd 0 }}
+    {{ $eventStartHour := int (substr $townHallEvent.start_time 0 2) }}
+    {{ $eventStartMinute := int (substr $townHallEvent.start_time 3 2) }}
+    {{ $nowHour := $now.Hour }}
+    {{ $nowMinute := $now.Minute }}
+    {{ if or (gt $nowHour $eventStartHour) (and (eq $nowHour $eventStartHour) (ge $nowMinute $eventStartMinute)) }}
+      {{ $daysToAdd = 7 }}
+    {{ end }}
+  {{ end }}
+  {{ $nextOccurrenceDate := $now.AddDate 0 0 (int $daysToAdd) }}
+
+  <h3 class="text-2xl font-bold mb-6 text-center lg:text-left text-text dark:text-darkmode-text">Weekly Town Hall</h3>
+  <div class="event-card-simple bg-white dark:bg-darkmode-theme-light rounded-xl p-4 shadow-md hover:shadow-lg transition-all duration-300 ease-in-out">
+    {{ with $townHallEvent.image }}
+      {{ $img_resource := resources.Get (strings.TrimPrefix "/" .) }}
+      {{ if $img_resource }}
+        {{ $processed_img := $img_resource.Fill "504x280 Lanczos" }}
+        <a href="{{ $townHallEvent.details_page_link | relLangURL }}" class="block mb-4 relative group">
+          <img src="{{ $processed_img.RelPermalink }}" alt="Town Hall Promo" class="w-full rounded object-cover">
+        </a>
+      {{ end }}
+    {{ end }}
+    <div>
+      <span class="date-badge mb-1 inline-block text-xs">{{ $nextOccurrenceDate.Format "Mon, Jan 2, 2006" }}</span>
+      <h4 class="text-lg font-semibold mb-1 leading-tight">
+        <a href="{{ $townHallEvent.details_page_link | relLangURL }}" class="text-text dark:text-darkmode-dark hover:text-[var(--color-primary-new)]">{{ $townHallEvent.title }}</a>
+      </h4>
+      <p class="text-xs text-gray-500 dark:text-gray-300">
+        {{ partial "icon.html" (dict "style" "regular" "name" "clock" "class" "mr-1") }} {{ $townHallEvent.start_time }} - {{ $townHallEvent.end_time }} {{ $townHallEvent.time_zone }}
+        <br/>{{ partial "icon.html" (dict "style" "solid" "name" "location-dot" "class" "mr-1") }} <a href="{{ $townHallEvent.location_url }}" target="_blank" class="hover:underline">{{ $townHallEvent.location_name }}</a> (Recurring)
+      </p>
+      <div class="prose prose-sm dark:prose-invert max-w-none mt-2">
+         {{ $townHallEvent.description | markdownify }}
+      </div>
+      <a href="{{ $townHallEvent.details_page_link | relLangURL }}" class="font-semibold text-xs text-[var(--color-primary-new)] hover:underline block mt-2">
+        View Past Recordings {{ partial "icon.html" (dict "style" "solid" "name" "arrow-right" "class" "ml-1") }}
+      </a>
+    </div>
+  </div>
+{{ else }}
+  <div class="event-card-simple bg-white dark:bg-darkmode-theme-light rounded-xl p-6 shadow-md">
+    <p class="text-gray-600 dark:text-gray-400">Our weekly Town Hall is on a break. Check back soon!</p>
+  </div>
+{{ end }}

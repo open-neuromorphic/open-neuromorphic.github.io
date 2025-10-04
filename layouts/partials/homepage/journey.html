@@ -1,0 +1,11 @@
+<section class="mt-8 mb-14">
+  <div class="container mx-auto px-6">
+    <h2 class="section-title">Start Your Journey</h2>
+    <p class="section-subtitle">Whether you're new to the field, a seasoned researcher, or an industry professional, find your path within ONM through these community highlights.</p>
+
+    {{ range site.Data.homepage.journey_ribbons }}
+      {{/* Pass the current ribbon's data to the journey ribbon card partial */}}
+      {{ partial "components/journey-ribbon-card.html" . }}
+    {{ end }}
+  </div>
+</section>
