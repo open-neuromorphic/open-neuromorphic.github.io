@@ -8,6 +8,25 @@ aliases:
 
 Sharing your knowledge with the community is one of the most impactful ways to contribute. We are always looking for passionate individuals to present their work, lead a tutorial, or spark a discussion. You don't need to be a seasoned presenter—our team is here to handle the hosting logistics and support you every step of the way.
 
+## Submit to the Open Neuromorphic Research Program
+
+Looking to get your research recognized and reviewed by the community? Consider submitting your work to our **Open Neuromorphic Research (ONR) Program**—a community-driven peer review initiative that validates and highlights reproducible, high-impact research.
+
+### What is the ONR Program?
+
+The ONR Program provides a transparent peer-review process for open-source neuromorphic projects. Approved submissions receive the "ONM Community Approved" badge and are featured in our approved research registry.
+
+### Why Submit?
+
+-   **Gain Visibility:** Get your work recognized by the community
+-   **Build Trust:** Earn the community-approved badge
+-   **Get Expert Feedback:** Receive constructive review from volunteer experts
+-   **Permanent Recognition:** Featured in our approved research registry with a certificate page
+
+### Ready to Submit?
+
+Visit our [Call for Papers page](/neuromorphic-computing/initiatives/call-for-papers-onr/) to learn about submission requirements, the review process, and how to get started.
+
 ## Event Formats
 
 You can contribute by speaking or leading a session in one of our established formats:
