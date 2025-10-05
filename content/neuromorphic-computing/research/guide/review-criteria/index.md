@@ -33,8 +33,8 @@ Reviewers are expected to adhere to the following principles, inspired by the br
 
 ## Reviewer Recommendation
 
--   [ ] **Accept:** The submission meets the criteria and is ready for the "ONM Community Approved" badge.
--   [ ] **Recommend Modifications:** The submission is promising but requires specific, actionable changes before it can be accepted.
+-   **Accept:** The submission meets the criteria and is ready for the "ONM Community Approved" badge.
+-   **Recommend Modifications:** The submission is promising but requires specific, actionable changes before it can be accepted.
 
 ## Reviewer Comments
 
