@@ -58,7 +58,7 @@ No specific prerequisites are required, though familiarity with neural networks 
 ## Resources
 
 - [Applied Brain Research Technology Page](https://www.appliedbrainresearch.com/technology)
-- [Nengo Neural Simulator](https://open-neuromorphic.org/neuromorphic-computing/software/snn-frameworks/nengo/)
+- [Nengo Neural Simulator](../../neuromorphic-computing/software/snn-frameworks/nengo/)
 - [Centre for Theoretical Neuroscience](https://uwaterloo.ca/centre-for-theoretical-neuroscience/)
 
 ## Registration
