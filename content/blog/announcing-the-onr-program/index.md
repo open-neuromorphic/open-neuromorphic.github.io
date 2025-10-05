@@ -2,7 +2,7 @@
 title: "Announcing Open Neuromorphic Research, a Community-Driven Peer Review Program"
 date: 2025-08-31
 description: "Introducing the ONR Program: A community-driven peer review initiative to foster open, reproducible, and high-impact research in neuromorphic computing."
-image: "onr-announcement-banner.png"
+image: "img.png"
 draft: false
 author:
   - "Jens E. Pedersen"
