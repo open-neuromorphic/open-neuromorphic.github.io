@@ -78,6 +78,7 @@ jobs:
         env:
           PAT_FOR_ISSUES: ${{ secrets.PAT_FOR_ISSUES }}
         run: npm run update-mission-board
+        continue-on-error: true
 
       # 4. Dynamically configure the site's baseURL based on the deployment branch.
       - name: Determine Base URL
