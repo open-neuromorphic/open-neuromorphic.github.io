@@ -2,9 +2,9 @@
 title: "The TSP1 Neuromorphic Chip: Advancing Brain-Inspired Computing"
 author:
 - "Chris Eliasmith"
-date: 2025-02-15
-start_time: "18:00"
-end_time: "19:30"
+date: 2025-11-11
+start_time: "8:00"
+end_time: "9:00"
 time_zone: "EST"
 description: "Join Chris Eliasmith for an in-depth exploration of the TSP1 neuromorphic chip from Applied Brain Research. Learn about this groundbreaking hardware platform and its implications for brain-inspired computing."
 upcoming: true
