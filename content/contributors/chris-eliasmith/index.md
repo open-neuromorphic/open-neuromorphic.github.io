@@ -4,13 +4,13 @@ description: "Professor, Canada Research Chair in Theoretical Neuroscience, and 
 image: "chris-eliasmith.jpg"
 social:
   - icon: "fa fa-house"
-    link: "https://compneuro.uwaterloo.ca/people/chris-eliasmith.html"
+    link: "https://watarts.uwaterloo.ca/~celiasmi/"
     title: "website"
   - icon: "fa-brands fa-github"
     link: "https://github.com/ctn-waterloo"
     title: "github"
   - icon: "fa-solid fa-graduation-cap"
-    link: "https://scholar.google.com/citations?user=Dcy8n7UAAAAJ&hl=en"
+    link: "https://scholar.google.com/citations?user=KOBO-6QAAAAJ&hl=en"
     title: "scholar"
 draft: false
 ---

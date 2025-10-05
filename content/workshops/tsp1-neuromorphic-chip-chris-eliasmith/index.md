@@ -14,8 +14,6 @@ type: "workshops"
 show_author_bios: true
 hardware_tags: ["tsp1"]
 software_tags: ["nengo"]
-speaker_photo: "chris-eliasmith.jpg"
-speaker_bio: "Dr. Chris Eliasmith is a Professor at the University of Waterloo and co-founder of Applied Brain Research. He is the Director of the Centre for Theoretical Neuroscience and holds a Canada Research Chair in Theoretical Neuroscience. Dr. Eliasmith is renowned for his work on the Neural Engineering Framework (NEF) and the Semantic Pointer Architecture (SPA), which provide principled methods for building large-scale brain models. His research focuses on understanding how the brain computes and using those principles to build neuromorphic systems. He is the author of \"How to Build a Brain\" and has led the development of Spaun, one of the world's largest functional brain models."
 ---
 
 ## About This Workshop
@@ -60,7 +58,7 @@ No specific prerequisites are required, though familiarity with neural networks 
 ## Resources
 
 - [Applied Brain Research Technology Page](https://www.appliedbrainresearch.com/technology)
-- [Nengo Neural Simulator](https://www.nengo.ai/)
+- [Nengo Neural Simulator](https://open-neuromorphic.org/neuromorphic-computing/software/snn-frameworks/nengo/)
 - [Centre for Theoretical Neuroscience](https://uwaterloo.ca/centre-for-theoretical-neuroscience/)
 
 ## Registration
