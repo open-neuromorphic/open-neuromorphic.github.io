@@ -1,0 +1,97 @@
+{{/* Promotional Banner for Open Neuromorphic Research Call for Papers */}}
+
+<section class="section pt-0 pb-16">
+    <div class="container">
+        <div class="onr-cfp-promo bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-900/20 dark:to-indigo-900/20 p-8 rounded-lg shadow-lg border-2 border-purple-200 dark:border-purple-700">
+            <div class="promo-content-wrapper flex flex-col items-center text-center">
+                
+                {{/* Header with badge icon */}}
+                <div class="mb-6">
+                    <div class="inline-block p-3 bg-purple-100 dark:bg-purple-800/50 rounded-full mb-3">
+                        {{ partial "icon.html" (dict "style" "solid" "name" "award" "class" "text-4xl text-purple-600 dark:text-purple-400") }}
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-extrabold mb-3">
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600 dark:from-purple-400 dark:to-indigo-400">
+                            Call for Papers
+                        </span>
+                    </h2>
+                    <h3 class="text-xl md:text-2xl font-semibold text-gray-700 dark:text-gray-300">
+                        Open Neuromorphic Research Initiative
+                    </h3>
+                </div>
+
+                {{/* Description */}}
+                <div class="max-w-3xl mx-auto mb-6">
+                    <p class="text-lg text-gray-700 dark:text-gray-300 mb-4">
+                        Submit your open-source neuromorphic computing research for <strong>community peer review</strong> and recognition. 
+                        Earn the <strong class="text-purple-700 dark:text-purple-400">ONM Community Approved badge</strong> and be featured in our approved research registry.
+                    </p>
+                    <p class="text-base text-gray-600 dark:text-gray-400">
+                        We welcome research codebases, datasets, educational tools, hardware libraries, and more. 
+                        Submissions are accepted on a <strong>rolling basis</strong>.
+                    </p>
+                </div>
+
+                {{/* Key Benefits */}}
+                <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-8">
+                    <div class="bg-white dark:bg-darkmode-theme-light p-4 rounded-lg shadow">
+                        <div class="text-purple-600 dark:text-purple-400 text-2xl mb-2">
+                            {{ partial "icon.html" (dict "style" "solid" "name" "eye" "class" "") }}
+                        </div>
+                        <h4 class="font-bold text-sm mb-1 text-gray-800 dark:text-gray-200">Gain Visibility</h4>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Get recognized by the community</p>
+                    </div>
+                    <div class="bg-white dark:bg-darkmode-theme-light p-4 rounded-lg shadow">
+                        <div class="text-indigo-600 dark:text-indigo-400 text-2xl mb-2">
+                            {{ partial "icon.html" (dict "style" "solid" "name" "certificate" "class" "") }}
+                        </div>
+                        <h4 class="font-bold text-sm mb-1 text-gray-800 dark:text-gray-200">Build Trust</h4>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Earn the community badge</p>
+                    </div>
+                    <div class="bg-white dark:bg-darkmode-theme-light p-4 rounded-lg shadow">
+                        <div class="text-purple-600 dark:text-purple-400 text-2xl mb-2">
+                            {{ partial "icon.html" (dict "style" "solid" "name" "rocket" "class" "") }}
+                        </div>
+                        <h4 class="font-bold text-sm mb-1 text-gray-800 dark:text-gray-200">Accelerate Science</h4>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Contribute to open research</p>
+                    </div>
+                </div>
+
+                {{/* Call to Action Buttons */}}
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    {{ $cfpPage := site.GetPage "neuromorphic-computing/initiatives/call-for-papers-onr" }}
+                    {{ if $cfpPage }}
+                    <a href="{{ $cfpPage.RelPermalink }}" class="btn btn-new-primary text-lg px-8 py-3">
+                        {{ partial "icon.html" (dict "style" "solid" "name" "paper-plane" "class" "mr-2") }}
+                        Submit Your Work
+                    </a>
+                    {{ else }}
+                    <a href="/neuromorphic-computing/initiatives/call-for-papers-onr/" class="btn btn-new-primary text-lg px-8 py-3">
+                        {{ partial "icon.html" (dict "style" "solid" "name" "paper-plane" "class" "mr-2") }}
+                        Submit Your Work
+                    </a>
+                    {{ end }}
+                    
+                    <a href="https://github.com/open-neuromorphic/open-neuromorphic.github.io/pull/360" target="_blank" rel="noopener" class="btn btn-new-outline text-lg px-8 py-3">
+                        {{ partial "icon.html" (dict "style" "regular" "name" "book-open" "class" "mr-2") }}
+                        View Full Guidelines
+                    </a>
+                </div>
+
+                {{/* Additional link to become a reviewer */}}
+                <div class="mt-6">
+                    <p class="text-sm text-gray-600 dark:text-gray-400">
+                        Want to help review submissions? 
+                        {{ $cfpPage := site.GetPage "neuromorphic-computing/initiatives/call-for-papers-onr" }}
+                        {{ if $cfpPage }}
+                        <a href="{{ $cfpPage.RelPermalink }}" class="text-purple-600 dark:text-purple-400 hover:underline font-semibold">Learn about becoming a reviewer</a>
+                        {{ else }}
+                        <a href="/neuromorphic-computing/initiatives/call-for-papers-onr/" class="text-purple-600 dark:text-purple-400 hover:underline font-semibold">Learn about becoming a reviewer</a>
+                        {{ end }}
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
