@@ -1,8 +1,8 @@
 ---
 title: "Announcing Open Neuromorphic Research, a Community-Driven Peer Review Program"
-date: 2025-10-04
+date: 2025-08-31
 description: "Introducing the ONR Program: A community-driven peer review initiative to foster open, reproducible, and high-impact research in neuromorphic computing."
-image: "img.png"
+image: "onr-announcement-banner.png"
 draft: false
 author:
   - "Jens E. Pedersen"
@@ -12,9 +12,11 @@ tags: ["onr", "community", "open science", "research"]
 showTableOfContents: true
 ---
 
-## Announcing the Open Neuromorphic Research (ONR) Program
+## Announcing Open Neuromorphic Research 
 
 Open Neuromorphic is excited to launch the **Open Neuromorphic Research (ONR) Program**, a new community-driven initiative designed to promote and validate open and reproducible research in the neuromorphic field.
+
+To explore the full program, including how to submit your work, the review process, and our registry of approved research, visit the official **[ONR Hub](/neuromorphic-computing/research/)**.
 
 ### Why a Community Peer Review Program?
 
@@ -29,9 +31,9 @@ By participating, you can:
 
 The ONR program is built on a transparent review process managed through OpenReview. We welcome submissions of all kinds, from research papers and codebases to datasets and educational tools.
 
-1.  **Submit Your Work:** Use our straightforward submission process to share your project with the community.
+1.  **Submit Your Work:** Follow our [**Submitter's Guide**](/neuromorphic-computing/research/guide/submitter-guide/) to share your project through our guided process on OpenReview.
 2.  **Community Review:** Your submission will be evaluated by a panel of volunteer reviewers based on our [official review criteria](/neuromorphic-computing/research/guide/review-criteria/), focusing on clarity, reproducibility, and impact.
-3.  **Get Recognized:** Approved projects are added to our [Approved Research Registry](/neuromorphic-computing/research/papers/) and receive the official ONR badge.
+3.  **Get Recognized:** Approved projects are awarded the "ONM Community Approved" badge and showcased with a dedicated **certificate page** in our [Approved Research Registry](/neuromorphic-computing/research/papers/).
 
 ### Get Involved!
 
