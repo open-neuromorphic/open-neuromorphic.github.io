@@ -18,7 +18,23 @@
         {{ range first 3 $sortedAllUpcomingEvents }}
         <div class="md:col-6 lg:col-4 mb-8 flex">
           <div class="event-card-simple bg-white dark:bg-darkmode-theme-light rounded-xl p-4 shadow-md hover:shadow-lg transition-all duration-300 ease-in-out h-full flex flex-col w-full">
-            <span class="date-badge mb-2 inline-block text-xs self-start">{{ .Date.Format "Jan 02, 2006" }}</span>
+            <div class="flex items-center justify-between mb-2 w-full">
+              <span class="date-badge text-xs">{{ .Date.Format "Jan 02, 2006" }}</span>
+              {{ with .EventType }}
+              {{ $linkMap := dict
+              "Workshops" "/workshops/"
+              "Student Talks" "/neuromorphic-computing/student-talks/"
+              "Hacking Hours" "/neuromorphic-computing/software/hacking-hours/"
+              "Town Hall" "/getting-involved/town-hall/"
+              }}
+              {{ $eventLink := index $linkMap . }}
+              {{ if $eventLink }}
+              <a href="{{ $eventLink | relLangURL }}" class="event-type-tag-link">{{ . }}</a>
+              {{ else }}
+              <span class="event-type-tag-link cursor-default">{{ . }}</span>
+              {{ end }}
+              {{ end }}
+            </div>
             <h4 class="text-lg font-semibold mb-1 flex-grow">
               <a href="{{ .Permalink }}" class="text-text dark:text-darkmode-dark hover:text-[var(--color-primary-new)]">{{ .Title }}</a>
             </h4>
