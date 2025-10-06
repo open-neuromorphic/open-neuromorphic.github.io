@@ -2,6 +2,7 @@
 title: "The TSP1 Neuromorphic Chip: Advancing Brain-Inspired Computing"
 author:
 - "Chris Eliasmith"
+- "Danny Rosen"
 date: 2025-11-11
 start_time: "8:00"
 end_time: "9:00"
