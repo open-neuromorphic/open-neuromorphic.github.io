@@ -1,5 +1,5 @@
 ---
-title: "Student Talk: Embodied Representation: Robotics without a Ruler"
+title: "Embodied Representation: Robotics without a Ruler"
 author:
   - "Levi Burner"
 date: 2025-10-07
