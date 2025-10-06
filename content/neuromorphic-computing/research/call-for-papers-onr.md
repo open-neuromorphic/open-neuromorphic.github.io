@@ -1,5 +1,5 @@
 ---
-title: "Call for Papers - Open Neuromorphic Research"
+title: "Call for Papers"
 description: "Submit your open-source neuromorphic computing research for community peer review and recognition. Join our initiative to promote reproducible, high-impact science in the neuromorphic field."
 date: 2025-10-05
 draft: false
