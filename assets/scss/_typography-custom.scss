@@ -127,7 +127,7 @@ a {
 .styled-link,
 .byline-link,
 .content :is(:where(a):not(:where([class~="not-prose"], [class~="not-prose"] *, .btn))),
-section a:not(.breadcrumb-link-parent, .social-link-container, .btn, .hardware-card-wide-link, .social-icon, .no-style, .project-filter-link),
+section a:not(.breadcrumb-link-parent, .social-link-container, .btn, .hardware-card-wide-link, .social-icon, .no-style, .project-filter-link, .event-type-tag-link),
 section a.social-link-container .social-link-text,
 .breadcrumb-link-text,
 .author-card-compact h4 a,

@@ -19,7 +19,6 @@ Before your fork can deploy a staging site, you must enable GitHub Pages and set
 
 ![img.png](static/images/img.png)
 
-
 #### Step 2: Create a Local `staging` Branch
 
 If you don't already have one, create a local `staging` branch. It's best to base this off the latest version of the main repository's `main` branch.
@@ -54,23 +53,30 @@ git push origin staging
 
 Pushing to the `staging` branch triggers the `Deploy Hugo site to Pages` GitHub Action. Once the action completes, your staging site will be live. You can find the URL in your fork's repository settings on the same **Settings > Pages** screen you configured in Step 1.
 
-## Handling the `PAT_FOR_ISSUES` Secret
+## Optional: Enabling the Mission Board on Your Staging Site
 
-Our GitHub Actions workflow includes a step to automatically update the "Mission Board" by fetching open issues from project repositories. This step requires a secret key called `PAT_FOR_ISSUES` (a Personal Access Token).
+Our website includes a "Mission Board" page that automatically fetches open issues from various community projects using the GitHub API. This process requires a Personal Access Token (PAT) stored in a secret called `PAT_FOR_ISSUES`.
 
-Since forks do not have this secret, the **"Update Mission Board" step will fail, causing the entire build to stop.** This will prevent your staging site from deploying.
+While the main repository has this secret, your fork does not. The build workflow is configured to `continue-on-error`, so the build will succeed, and your site will deploy correctly. However, the Mission Board page on your staging site will not be updated with the latest issues.
 
-**To fix this**, you can simply tell the workflow to continue even if this specific step fails. Add `continue-on-error: true` to the "Update Mission Board" step in the `.github/workflows/main.yml` file within your `staging` branch.
+If you need to test the full functionality of the Mission Board on your staging site, you can create your own PAT and add it to your fork:
 
-```yaml
-      - name: Update Mission Board
-        env:
-          PAT_FOR_ISSUES: ${{ secrets.PAT_FOR_ISSUES }}
-        run: npm run update-mission-board
-        continue-on-error: true # Add this line
-```
+1.  **Generate a Personal Access Token:**
+  *   Go to your GitHub **Developer settings** > **Personal access tokens** > **Tokens (classic)**.
+  *   Click **Generate new token**.
+  *   Give it a descriptive name (e.g., "ONM Mission Board").
+  *   Set an expiration date.
+  *   Under **Scopes**, select the `public_repo` scope. This is all that's needed.
+  *   Click **Generate token** and copy the token value.
 
-This change ensures that a failure in fetching issues won't block the deployment of your staging site. The Mission Board page on your preview site may not have the latest issues, but the rest of the site will build and deploy correctly.
+2.  **Add the Secret to Your Fork:**
+  *   Navigate to your forked repository's **Settings** > **Secrets and variables** > **Actions**.
+  *   Click **New repository secret**.
+  *   Set the **Name** to `PAT_FOR_ISSUES`.
+  *   Paste your copied token into the **Value** field.
+  *   Click **Add secret**.
+
+After setting this up, future deployments from your `staging` branch will have a fully functional and up-to-date Mission Board.
 
 ## Resetting Your Staging Branch
 
@@ -111,8 +117,7 @@ To ensure links work correctly in both production and staging environments, alwa
 
 **Robust Method (Recommended):**
 ```go-html-template
-{{ $page := site.GetPage "path/to/page"; $page.RelPermalink }}
-```
+{{ $page := site.GetPage "path/to/page"; $page.RelPermalink }}```
 
 **Fragile Method (Avoid):**
 ```go-html-template

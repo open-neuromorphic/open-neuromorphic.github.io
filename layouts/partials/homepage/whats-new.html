@@ -6,13 +6,74 @@
 <section class="mt-8 mb-14">
   <div class="container mx-auto px-6">
     <h2 class="section-title">What's New at ONM</h2>
-    <p class="section-subtitle">Stay up-to-date with the latest workshops, blog posts, and community highlights.</p>
-    <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
+    <p class="section-subtitle">Stay up-to-date with the latest events, articles, and community highlights.</p>
 
-      <!-- Events Column -->
+    <!-- =================================================
+         UPCOMING EVENTS ROW
+    ====================================================== -->
+    {{ if $sortedAllUpcomingEvents }}
+    <div class="upcoming-events-section mb-16">
+      <h3 class="text-2xl font-bold mb-8 text-center text-text dark:text-darkmode-text">Upcoming Events</h3>
+      <div class="row justify-center">
+        {{ range first 3 $sortedAllUpcomingEvents }}
+        <div class="md:col-6 lg:col-4 mb-8 flex">
+          <div class="event-card-simple bg-white dark:bg-darkmode-theme-light rounded-xl p-4 shadow-md hover:shadow-lg transition-all duration-300 ease-in-out h-full flex flex-col w-full">
+            <div class="flex items-center justify-between mb-2 w-full">
+              <span class="date-badge text-xs">{{ .Date.Format "Jan 02, 2006" }}</span>
+              {{ with .EventType }}
+              {{ $linkMap := dict
+              "Workshops" "/workshops/"
+              "Student Talks" "/neuromorphic-computing/student-talks/"
+              "Hacking Hours" "/neuromorphic-computing/software/hacking-hours/"
+              "Town Hall" "/getting-involved/town-hall/"
+              }}
+              {{ $eventLink := index $linkMap . }}
+              {{ if $eventLink }}
+              <a href="{{ $eventLink | relLangURL }}" class="event-type-tag-link">{{ . }}</a>
+              {{ else }}
+              <span class="event-type-tag-link cursor-default">{{ . }}</span>
+              {{ end }}
+              {{ end }}
+            </div>
+            <h4 class="text-lg font-semibold mb-1 flex-grow">
+              <a href="{{ .Permalink }}" class="text-text dark:text-darkmode-dark hover:text-[var(--color-primary-new)]">{{ .Title }}</a>
+            </h4>
+            <p class="text-xs text-gray-600 dark:text-gray-400 mb-2">
+              {{ .Description | truncate 80 }}
+            </p>
+            <p class="text-xs text-gray-500 dark:text-gray-300">
+              {{ partial "icon.html" (dict "style" "regular" "name" "clock" "class" "mr-1") }} {{ .StartTime }} - {{ .EndTime }} {{ .TimeZone }}
+              {{ if .IsRecurring }}
+              <br/>{{ partial "icon.html" (dict "style" "solid" "name" "location-dot" "class" "mr-1") }} <a href="{{ .LocationURL }}" target="_blank" class="hover:underline">{{ .LocationName }}</a> (Recurring)
+              {{ else if .Authors }}
+              <br/>{{ partial "icon.html" (dict "style" "regular" "name" "circle-user" "class" "mr-1") }}
+              {{- /* Logic to link authors */ -}}
+              {{ $numAuthors := len .Authors }}{{ range $i, $authorName := .Authors }}{{ $nameForProcessing := $authorName | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" }}{{ $contributor_slug := $nameForProcessing | anchorize }}{{ $contributor_page := site.GetPage (printf "contributors/%s" $contributor_slug) }}{{ if $contributor_page }}<a href="{{ $contributor_page.RelPermalink }}">{{ $authorName }}</a>{{ else }}{{ $authorName }}{{ end }}{{ if lt $i (sub $numAuthors 1) }}, {{ end }}{{ end }}
+              {{ end }}
+            </p>
+            <a href="{{ .Permalink }}" class="font-semibold text-xs text-[var(--color-primary-new)] hover:underline block mt-auto pt-2 self-start">
+              View Details {{ partial "icon.html" (dict "style" "solid" "name" "arrow-right" "class" "ml-1") }}
+            </a>
+          </div>
+        </div>
+        {{ end }}
+      </div>
+      {{ $workshopsPage := site.GetPage "workshops" }}
+      {{ if and $workshopsPage (gt (len $sortedAllUpcomingEvents) 3) }}
+      <div class="text-center mt-0">
+        <a href="{{ $workshopsPage.RelPermalink }}" class="btn btn-new-outline">View All Events</a>
+      </div>
+      {{ end }}
+    </div>
+    {{ end }}
+
+    <!-- =================================================
+         RECENT ACTIVITY GRID
+    ====================================================== -->
+    <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Recent Event Column -->
       <div class="lg:col-span-1">
         {{ partial "homepage/whats-new/recent-event.html" $most_recent_past_event }}
-        {{ partial "homepage/whats-new/upcoming-events.html" $sortedAllUpcomingEvents }}
       </div>
 
       <!-- Blog Posts Column -->
