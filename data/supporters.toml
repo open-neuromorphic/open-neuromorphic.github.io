@@ -62,6 +62,13 @@ logo = "snntorch.png"
 page_path = "neuromorphic-computing/software/snn-frameworks/snntorch/"
 dark_logo_invert = false
 
+[[foundational]]
+name = "Neuromorphic Drivers"
+logo = "neuromorphic-drivers.png"
+page_path = "neuromorphic-computing/software/data-tools/neuromorphic-drivers/"
+dark_logo_invert = true
+
+
 #[[foundational]]
 #name = "Sottosoglia Podcast"
 #logo = "sottosoglia-logo.png"
