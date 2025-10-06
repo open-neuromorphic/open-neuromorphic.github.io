@@ -47,10 +47,19 @@ icon = "fas fa-bullseye"
 description = "Tackle key problems in neuromorphic computing with community-driven projects."
 
 [[main]]
+parent = "explore-resources"
+name = "Community Peer Review (ONR)"
+url = "/neuromorphic-computing/research/"
+weight = 5
+[main.params]
+icon = "fas fa-award"
+description = "A community-driven peer review program for open and reproducible research."
+
+[[main]]
 parent = "explore-resources" # Match the identifier
 name = "Hacking Hours"
 url = "/neuromorphic-computing/software/hacking-hours/"
-weight = 5
+weight = 6
 [main.params]
 icon = "fas fa-terminal"
 description = "Live coding sessions exploring neuromorphic software."
@@ -60,7 +69,7 @@ description = "Live coding sessions exploring neuromorphic software."
 parent = "explore-resources" # Match the identifier
 name = "Student Talks"
 url = "/neuromorphic-computing/student-talks/"
-weight = 6
+weight = 7
 [main.params]
 icon = "fas fa-graduation-cap"
 description = "Presentations by students and early-career researchers."
@@ -70,7 +79,7 @@ description = "Presentations by students and early-career researchers."
 parent = "explore-resources" # Match the identifier
 name = "Workshops"
 url = "/workshops/"
-weight = 7
+weight = 8
 [main.params]
 icon = "fas fa-chalkboard-user"
 description = "Expert-led workshops on key neuromorphic topics."
@@ -79,7 +88,7 @@ description = "Expert-led workshops on key neuromorphic topics."
 parent = "explore-resources" # Add this new entry
 name = "Contributors"
 url = "/contributors/"
-weight = 8
+weight = 9
 [main.params]
 icon = "fas fa-user-group"
 description = "Meet the people building the Open Neuromorphic community."
@@ -157,9 +166,13 @@ name = "ONM Blog"
 url = "/blog/"
 weight = 4
 [[footer_explore_new]]
+name = "Community Peer Review (ONR)"
+url = "/neuromorphic-computing/research/"
+weight = 5
+[[footer_explore_new]]
 name = "ONM Initiatives"
 url = "/neuromorphic-computing/initiatives/"
-weight = 5
+weight = 6
 
 # Community Column
 [[footer_community]]
@@ -183,9 +196,13 @@ name = "Contributors"
 url = "/contributors/"
 weight = 5
 [[footer_community]]
+name = "Community Peer Review (ONR)"
+url = "/neuromorphic-computing/research/"
+weight = 6
+[[footer_community]]
 name = "Join Our Discord"
 url = "https://discord.gg/hUygPUdD8E"
-weight = 6
+weight = 7
 
 # About & Legal Column
 [[footer_legal_new]]

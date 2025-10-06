@@ -1,24 +1,23 @@
 {{ define "main" }}
 
-  {{/* 1. Hero Section */}}
-  {{ partial "homepage/hero.html" . }}
+{{/* 1. Hero Section */}}
+{{ partial "homepage/hero.html" . }}
 
-  {{/* 2. Community Partners Slider */}}
-  {{ partial "components/community-partners.html" . }}
+{{/* 2. Community Partners Slider */}}
+{{ partial "components/community-partners.html" . }}
 
-  {{/* 3. "What's New" - Events & Blog Posts */}}
-  {{ partial "homepage/whats-new.html" . }}
+{{/* 3. "What's New" - Events & Blog Posts */}}
+{{ partial "homepage/whats-new.html" . }}
 
   {{/* ONR Call for Papers Promotional Banner */}}
   {{ partial "custom/homepage-onr-cfp-promo.html" . }}
 
-  {{ partial "custom/homepage-town-hall-promo.html" . }}
+{{ partial "custom/homepage-town-hall-promo.html" . }}
 
+{{/* 4. "Start Your Journey" Section (Data-driven) */}}
+{{ partial "homepage/journey.html" . }}
 
-  {{/* 4. "Start Your Journey" Section (Data-driven) */}}
-  {{ partial "homepage/journey.html" . }}
-
-  {{/* 5. "Ways to Get Involved" Section (Data-driven) */}}
-  {{ partial "homepage/get-involved.html" . }}
+{{/* 5. "Ways to Get Involved" Section (Data-driven) */}}
+{{ partial "homepage/get-involved.html" . }}
 
 {{ end }}

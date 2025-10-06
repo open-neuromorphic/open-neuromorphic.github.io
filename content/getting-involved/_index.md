@@ -14,7 +14,7 @@ cta_link="/getting-involved/share-your-work/"
 image="student-path.jpeg"
 alt_text="A person presenting at a workshop"
 layout_class=""
-explore_links="ONM Workshops|/workshops/;Student Talks|/neuromorphic-computing/student-talks/;Write for Our Blog|/getting-involved/write-a-blog-post/"
+explore_links="ONM Workshops|/workshops/;Student Talks|/neuromorphic-computing/student-talks/;Write for Our Blog|/getting-involved/write-a-blog-post/;Submit Your Research (ONR)|/neuromorphic-computing/research/"
 >}}
 
 {{< pathway_card
