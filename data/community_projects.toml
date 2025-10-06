@@ -173,3 +173,10 @@ completed_issues = [ ]
   title = "Find new maintainer: Contact Gregor Lenz"
   url = "https://open-neuromorphic.org/contributors/gregor-lenz/"
   tags = [ ]
+
+[[projects]]
+name = "Neuromorphic Drivers"
+slug = "neuromorphic-drivers"
+repo = "https://github.com/neuromorphicsystems/neuromorphic-drivers"
+description = "Python and Rust libraries to interact with event cameras in real-time."
+completed_issues = [ ]
