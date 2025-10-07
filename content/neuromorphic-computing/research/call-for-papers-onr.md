@@ -1,7 +1,7 @@
 ---
-title: "Open Neuromorphic Research (ONR) Initiative"
+title: "Call for Papers"
 description: "Participate in the ONR Initiative: Submit your open-source neuromorphic computing research for transparent community peer review, recognition, and DOI assignment. Join us to promote reproducible, high-impact science in the neuromorphic field."
-date: 2025-10-05
+date: 2025-10-13
 draft: false
 type: initiatives
 legacy: false
@@ -11,8 +11,8 @@ The **Open Neuromorphic Research (ONR) Initiative** invites researchers, develop
 
 ## ONR Guidelines and Submission Portal
 
-- **ONR Guidelines:** See the [ONR Submission Guidelines](https://open-neuromorphic.github.io/about/onr-guidelines/) for complete documentation about requirements, review criteria, and the badge system. *(If this page is not yet published, please update the link once available.)*
-- **ONR on OpenReview:** Submit and track your projects via the [ONR Group on OpenReview](https://openreview.net/group?id=ONR).
+- **ONR Guidelines:** See the [ONR Submission Guidelines](/neuromorphic-computing/research/guide/submitter-guide/) for complete documentation about requirements, review criteria, and the badge system.
+- **ONR on OpenReview:** Submit and track your projects via the [ONR Venue on OpenReview](https://openreview.net/group?id=ONR).
 
 ## Why Participate?
 
@@ -22,7 +22,6 @@ By joining the ONR Initiative, you can:
 - **Build Trust:** Earn the "ONM Community Approved" badge for your project
 - **Accelerate Science:** Contribute to a shared ecosystem of reliable and reusable research
 - **Get Constructive Feedback:** Receive expert review from community volunteers
-- **Receive a DOI:** Approved projects are eligible for DOI assignment, providing a permanent record of community endorsement
 - **Showcase Excellence:** Featured projects receive a dedicated certificate page in our Approved Research Registry
 
 ## What Can You Submit?
@@ -41,11 +40,11 @@ Submissions may take the form of Git repositories, Jupyter notebooks, IEEE-forma
 
 The submission process is straightforward:
 
-1. **Prepare Your Submission:** Review the detailed submission guidelines in the [ONR Guidelines](https://open-neuromorphic.github.io/about/onr-guidelines/) for requirements and formatting.
+1. **Prepare Your Submission:** Review the detailed submission guidelines in the [ONR Submission Guidelines](../guide/submitter-guide) for requirements and formatting.
 2. **Create OpenReview Profiles:** Ensure all authors have OpenReview accounts at [OpenReview.net](https://openreview.net/)
 3. **Submit via OpenReview:** Use the [ONR Group submission portal](https://openreview.net/group?id=ONR) to upload your work
 4. **Community Review:** Your submission will be evaluated by 3-5 volunteer reviewers based on established review criteria (review time may vary depending on submission size)
-5. **Receive Recognition:** Approved projects receive the ONM Community Approved badge, a certificate page, and may receive a DOI
+5. **Receive Recognition:** Approved projects receive the ONM Community Approved badge, a certificate page, and/or a publication on ONR's OpenReview venue
 
 ## Review Criteria
 
@@ -59,21 +58,21 @@ All submissions are evaluated based on:
 - **Openness:** Uses permissive licensing and open tools
 - **Community Value:** Has potential to benefit students, researchers, or developers
 
-Complete review criteria and evaluation rubric are available in the [ONR Guidelines](https://open-neuromorphic.github.io/about/onr-guidelines/).
+Complete review criteria and evaluation rubric are available in the [ONR Review Criteria](../guide/review-criteria).
 
 ## Timeline
 
 - **Submissions:** Accepted on a rolling basis
-- **Review Process:** Typically 1 month from submission, depending on submission size
+- **Review Process:** Typically 1 month from submission (depending on submission size)
 - **Decisions:** Clear feedback provided for all submissions
 
 ## Get Involved
 
 Whether you're ready to submit your work or want to contribute as a reviewer:
 
-- **Submit Your Work:** Review the comprehensive Submitter's Guide in the [ONR Guidelines](https://open-neuromorphic.github.io/about/onr-guidelines/)
+- **Submit Your Work:** Review the comprehensive Submitter's Guide in the [ONR Guidelines](../guide/submitter-guide)
 - **Become a Reviewer:** Learn about the review process and sign up as a volunteer reviewer
-- **Ask Questions:** Join the discussion in the `#onr-program` channel on our [Discord Server](https://discord.gg/hUygPUdD8E)
+- **Ask Questions:** Join the discussion in the `#onr-program` channel on our [Discord Server](https://discord.com/channels/1044548629622439977/1424511666426745023)
 - **Email Us:** For specific inquiries, contact us at [contact@open-neuromorphic.org](mailto:contact@open-neuromorphic.org)
 
 ## About the Initiative
@@ -84,8 +83,4 @@ The ONR Initiative was launched to address the need for transparency, reproducib
 - **Promote Reproducibility:** Encourage best practices in documenting and sharing research
 - **Accelerate Innovation:** Make it easier for researchers to build upon each other's work
 
-The program includes a badge system where approved projects can display the "ONM Community Approved" badge, linking to a permanent certificate page that serves as the official record of community endorsement. Approved submissions may also receive a DOI.
-
----
-
-**Note:** This ONR Initiative is part of the comprehensive ONR program documentation, now located in the research module. Please refer to the official ONR guidelines for the most up-to-date details and information.
+The program includes a badge system where approved projects can display the "ONM Community Approved" badge, linking to a permanent certificate page that serves as the official record of community endorsement.
