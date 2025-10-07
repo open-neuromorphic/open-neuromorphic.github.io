@@ -1,6 +1,6 @@
 ---
 title: "Announcing Open Neuromorphic Research, a Community-Driven Peer Review Program"
-date: 2025-08-31
+date: 2025-10-12
 description: "Introducing the ONR Program: A community-driven peer review initiative to foster open, reproducible, and high-impact research in neuromorphic computing."
 image: "img.png"
 draft: false
@@ -14,7 +14,7 @@ showTableOfContents: true
 
 ## Announcing the Open Neuromorphic Research (ONR) Program
 
-Open Neuromorphic is excited to launch the **Open Neuromorphic Research (ONR) Program**, a new community-driven initiative designed to promote and validate open and reproducible research in the neuromorphic field.
+Open Neuromorphic is excited to launch the **Open Neuromorphic Research (ONR) Program**, a new community-driven initiative designed to promote open and reproducible research in Neuromorphic Computing.
 
 To explore the full program, including how to submit your work, the review process, and our registry of approved research, visit the official **[ONR Hub]({{< ref "/neuromorphic-computing/research" >}})**.
 
