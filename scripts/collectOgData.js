@@ -270,7 +270,7 @@ async function collectData() {
           });
         }
 
-        contentToHash += pageData.eventDate + pageData.eventTime + speakers.map(s => s.imageUri || '').join('');
+        contentToHash += pageData.eventDate + pageData.eventTime + JSON.stringify(speakers);
       }
 
       const finalHash = createHash(contentToHash + globalHash);

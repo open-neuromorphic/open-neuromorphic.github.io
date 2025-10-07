@@ -129,7 +129,7 @@ async function generateImages() {
                       </div>
                     `;
                 }
-                
+
                 speakersHtml = `<div class="speakers-container" style="gap: ${speakerContainerGap};">${photosHtml}</div>${textHtml}`;
 
                 htmlContent = youtubeTemplateContent
@@ -151,7 +151,7 @@ async function generateImages() {
                   .replace('BACKGROUND_URL', jsonData.backgroundDataUri || '')
                   .replace('PAGE_TITLE', title)
                   .replace('PAGE_DESCRIPTION', description || '')
-                  .replace('<!-- SPEAKER_IMAGES_HTML will be injected here -->', `<div class="speakers-container">${speakersHtml}</div>`)
+                  .replace('<!-- SPEAKER_IMAGES_HTML will be injected here -->', speakersHtml)
                   .replace('EVENT_DATE', eventDate || '')
                   .replace('EVENT_TIME', eventTime || '');
             }
