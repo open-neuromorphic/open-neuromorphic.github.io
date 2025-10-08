@@ -7,7 +7,6 @@ website: https://neucom-aps.github.io/axon-sdk/
 dependencies: Numpy
 field_of_application: Neuromorphic Computing
 source_code: https://github.com/neucom-aps/axon-sdk
-pypi_id: ...
 license: GPL-3.0
 supports_hardware: False
 supports_NIR: False
