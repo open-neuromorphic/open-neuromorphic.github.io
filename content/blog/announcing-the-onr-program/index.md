@@ -30,6 +30,7 @@ Whether you’re submitting a research paper, codebase, dataset, or educational 
 We accept open-source neuromorphic projects including:
 
 - Research codebases (e.g. SNN models, simulators)
+- Publication-style papers
 - Datasets and preprocessing pipelines
 - Educational resources, tutorials, and docs
 - Hardware libraries (e.g. for Loihi, Speck, etc.)
@@ -67,7 +68,7 @@ Details available in the [Review Criteria]({{< ref "/neuromorphic-computing/rese
 
 - [Submit Your Work]({{< ref "/neuromorphic-computing/research/guide/submitter-guide" >}})
 - [Become a Reviewer]({{< ref "/neuromorphic-computing/research/guide/reviewer-guide" >}})
-- Join the `#onr-program` channel on our [Discord](https://discord.com/invite/VaNHpJdTHA)
+- Join the `#onr-program` channel on our [Discord](https://discord.gg/SJaUrzgg)
 - Contact us at [contact@open-neuromorphic.org](mailto:contact@open-neuromorphic.org)
 
 ## About ONR
