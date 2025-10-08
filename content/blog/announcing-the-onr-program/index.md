@@ -1,7 +1,7 @@
 ---
-title: "Announcing Open Neuromorphic Research, a Community-Driven Peer Review Program"
-date: 2025-08-31
-description: "Introducing the ONR Program: A community-driven peer review initiative to foster open, reproducible, and high-impact research in neuromorphic computing."
+title: "Open Neuromorphic Research (ONR): Community Peer Review for Open Science"
+date: 2025-10-12
+description: "Submit your open-source neuromorphic projects for transparent community review and recognition through the ONR Program."
 image: "img.png"
 draft: false
 author:
@@ -12,34 +12,66 @@ tags: ["onr", "community", "open science", "research"]
 showTableOfContents: true
 ---
 
-## Announcing the Open Neuromorphic Research (ONR) Program
+# Call for Papers: Open Neuromorphic Research (ONR) Program
 
-Open Neuromorphic is excited to launch the **Open Neuromorphic Research (ONR) Program**, a new community-driven initiative designed to promote and validate open and reproducible research in the neuromorphic field.
+Open Neuromorphic is launching the **Open Neuromorphic Research (ONR)** program: a peer review initiative designed to highlight open, reproducible, and high-impact work in neuromorphic computing. Submissions are reviewed by volunteers from the community and, if approved, receive the **ONM Community Approved** badge along with a certificate page in our [Approved Research Registry]({{< ref "/neuromorphic-computing/research/papers" >}}).
 
-To explore the full program, including how to submit your work, the review process, and our registry of approved research, visit the official **[ONR Hub]({{< ref "/neuromorphic-computing/research" >}})**.
+Whether you’re submitting a research paper, codebase, dataset, or educational tool, ONR gives you a pathway to visibility, constructive feedback, and community validation.
 
-### Why a Community Peer Review Program?
+## Why Participate?
 
-In our rapidly evolving field, transparency, reproducibility, and collaboration are more important than ever. The ONR program aims to address this by establishing a trusted, community-led peer-review process. Our goal is to create a curated registry of high-quality research that exemplifies the best practices of open science.
+- **Get Recognized**: Approved projects receive a badge and are showcased in our registry  
+- **Get Reviewed**: Receive constructive feedback from expert volunteers  
+- **Build Trust**: Show your commitment to open, transparent science  
+- **Accelerate the Field**: Help build a shared ecosystem of reproducible tools
 
-By participating, you can:
--   **Gain Visibility:** Get your work recognized and highlighted by the community.
--   **Build Trust:** Earn the "ONM Community Approved" badge for your project.
--   **Accelerate Science:** Contribute to a shared ecosystem of reliable and reusable research.
+## What Can You Submit?
 
-### How It Works
+We accept open-source neuromorphic projects including:
 
-The ONR program is built on a transparent review process managed through OpenReview. We welcome submissions of all kinds, from research papers and codebases to datasets and educational tools.
+- Research codebases (e.g. SNN models, simulators)
+- Datasets and preprocessing pipelines
+- Educational resources, tutorials, and docs
+- Hardware libraries (e.g. for Loihi, Speck, etc.)
+- Analysis or visualization tools
 
-1.  **Submit Your Work:** Follow our [**Submitter's Guide**]({{< ref "/neuromorphic-computing/research/guide/submitter-guide" >}}) to share your project through our guided process on OpenReview.
-2.  **Community Review:** Your submission will be evaluated by a panel of volunteer reviewers based on our [official review criteria]({{< ref "/neuromorphic-computing/research/guide/review-criteria" >}}), focusing on clarity, reproducibility, and impact.
-3.  **Get Recognized:** Approved projects are awarded the "ONM Community Approved" badge and showcased with a dedicated **certificate page** in our [Approved Research Registry]({{< ref "/neuromorphic-computing/research/papers" >}}).
+Submissions may be GitHub repositories, Jupyter notebooks, whitepapers, or IEEE-formatted papers. All submissions must meet our [Definition of Open]({{< ref "/about/governance/open-definition" >}}).
 
-### Get Involved!
+## How It Works
 
-Whether you're a researcher with a project to share or an expert willing to lend your time as a reviewer, there's a place for you in the ONR program.
+1. **Prepare Your Submission**: Follow the [Submitter's Guide]({{< ref "/neuromorphic-computing/research/guide/submitter-guide" >}})
+2. **Submit via OpenReview**: Use the [ONR Submission Portal](https://openreview.net/group?id=ONR)
+3. **Community Review**: Your submission is reviewed by 3–5 volunteers, based on criteria like clarity, reproducibility, and contribution
+4. **Receive Recognition**: Approved projects are awarded a badge and added to our public registry
 
--   [**Learn How to Submit Your Work**]({{< ref "/neuromorphic-computing/research/guide/submitter-guide" >}})
--   [**Become a Reviewer**]({{< ref "/neuromorphic-computing/research/guide/reviewer-guide" >}})
+## Review Criteria
 
-Join us in building a more open and collaborative future for neuromorphic computing. We look forward to seeing your contributions!
+Reviews focus on:
+
+- **Relevance** to neuromorphic computing  
+- **Clarity** and documentation  
+- **Reproducibility** of code/methods  
+- **Technical rigor**  
+- **Openness** (permissive license, transparent methods)  
+- **Community value** (benefit to students, researchers, etc.)
+
+Details available in the [Review Criteria]({{< ref "/neuromorphic-computing/research/guide/review-criteria" >}}).
+
+## Timeline
+
+- **Submissions**: Accepted on a rolling basis  
+- **Review turnaround**: Typically within 1 month (depending on submission size)
+- **Decisions**: Constructive feedback provided for all submissions.  Submissions are either accepted or revisions are requested.
+
+## Get Involved
+
+- [Submit Your Work]({{< ref "/neuromorphic-computing/research/guide/submitter-guide" >}})
+- [Become a Reviewer]({{< ref "/neuromorphic-computing/research/guide/reviewer-guide" >}})
+- Join the `#onr-program` channel on our [Discord](https://discord.com/invite/VaNHpJdTHA)
+- Contact us at [contact@open-neuromorphic.org](mailto:contact@open-neuromorphic.org)
+
+## About ONR
+
+The ONR initiative supports transparent, community-led peer review in neuromorphic computing. Our mission is to elevate high-quality, open-source projects and promote practices that make research more reproducible, collaborative, and impactful.
+
+For all details, visit the [ONR Hub]({{< ref "/neuromorphic-computing/research" >}}).
