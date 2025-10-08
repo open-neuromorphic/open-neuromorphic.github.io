@@ -9,7 +9,7 @@ Welcome to the Open Neuromorphic community! We thrive on collaboration and welco
 {{< pathway_card
 title="Share Your Knowledge"
 description="Educate and inspire the community by sharing your work. We provide a platform for you to present research, lead workshops, or publish articles. Our team helps with logistics and promotion, making it easy to contribute."
-cta_text="Propose a Talk or Post"
+cta_text="Propose a Talk or Submit your Work"
 cta_link="/getting-involved/share-your-work/"
 image="student-path.jpeg"
 alt_text="A person presenting at a workshop"
