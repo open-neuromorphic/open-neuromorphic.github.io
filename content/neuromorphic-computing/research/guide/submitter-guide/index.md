@@ -7,8 +7,6 @@ type: "research"
 
 Welcome to the Open Neuromorphic Research (ONR) Initiative! This guide outlines how to submit your work for review and inclusion in our Community Peer Review Program. Submissions are accepted on a rolling basis.
 
----
-
 ## What Can You Submit?
 
 We welcome open-source neuromorphic projects of all kinds, including but not limited to:
@@ -28,8 +26,6 @@ Submissions may take the form of:
 Your project must satisfy Open Neuromorphic's [Definition of Open](/about/governance/open-definition/).
 
 We especially encourage well-documented Jupyter notebooks that walk through core functionality, demonstrate reproducibility, or explain concepts interactively. Also, please try to submit source files of figures if possible.
-
----
 
 ## How to Submit
 
@@ -90,13 +86,9 @@ You will be required to provide the following information:
 
 Your submission will be reviewed by a panel of 3–5 ONM volunteer reviewers. You'll receive confirmation and an estimated timeline for decisions.
 
----
-
 ## Review Criteria
 
 Projects are evaluated based on our official [Review Criteria](/neuromorphic-computing/research/guide/review-criteria/), which prioritizes openness, impact, clarity, and reproducibility.
-
----
 
 ## Outcomes
 
@@ -104,8 +96,6 @@ We expect to provide decisions within one month of submission.
 
 -   **If approved**, your project will receive an "ONM Community Approved" badge and will be featured in the ONR program registry.
 -   **If not yet approved**, you’ll receive actionable feedback and may revise and resubmit.
-
----
 
 ## Questions?
 

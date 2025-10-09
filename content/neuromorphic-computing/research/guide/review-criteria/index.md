@@ -29,8 +29,6 @@ Reviewers are expected to adhere to the following principles, inspired by the br
 | **7. Compliance** | Adheres to ONR submission guidelines. | Are the format, structure, and metadata correct? |
 | **8. Community Value** | Has potential to be reused, extended, or learned from by the ONM community. | Would this benefit students, researchers, or developers? |
 
----
-
 ## Reviewer Recommendation
 
 -   **Accept:** The submission meets the criteria and is ready for the "ONM Community Approved" badge.
