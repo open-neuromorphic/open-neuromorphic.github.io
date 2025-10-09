@@ -8,24 +8,28 @@ author:
   - "Jens E. Pedersen"
   - "Justin Riddiough"
   - "Danny Rosen"
-tags: ["onr", "community", "open science", "research"]
+tags: ["onr"]
 showTableOfContents: true
+image_attribution:
+  text: "Photo by"
+  author: "tarry_not"
+  url: "https://pixabay.com/illustrations/network-points-technology-6088549/"
 ---
 
-# Call for Papers: Open Neuromorphic Research (ONR) Program
+## Call for Papers: Open Neuromorphic Research
 
 Open Neuromorphic is launching the **Open Neuromorphic Research (ONR)** program: a peer review initiative designed to highlight open, reproducible, and high-impact work in neuromorphic computing. Submissions are reviewed by volunteers from the community and, if approved, receive the **ONM Community Approved** badge along with a certificate page in our [Approved Research Registry]({{< ref "/neuromorphic-computing/research/papers" >}}).
 
 Whether you’re submitting a research paper, codebase, dataset, or educational tool, ONR gives you a pathway to visibility, constructive feedback, and community validation.
 
-## Why Participate?
+### Why Participate?
 
 - **Get Recognized**: Approved projects receive a badge and are showcased in our registry  
 - **Get Reviewed**: Receive constructive feedback from expert volunteers  
 - **Build Trust**: Show your commitment to open, transparent science  
 - **Accelerate the Field**: Help build a shared ecosystem of reproducible tools
 
-## What Can You Submit?
+### What Can You Submit?
 
 We accept open-source neuromorphic projects including:
 
@@ -45,7 +49,7 @@ Submissions may be GitHub repositories, Jupyter notebooks, whitepapers, or IEEE-
 3. **Community Review**: Your submission is reviewed by 3–5 volunteers, based on criteria like clarity, reproducibility, and contribution
 4. **Receive Recognition**: Approved projects are awarded a badge and added to our public registry
 
-## Review Criteria
+### Review Criteria
 
 Reviews focus on:
 
@@ -58,7 +62,7 @@ Reviews focus on:
 
 Details available in the [Review Criteria]({{< ref "/neuromorphic-computing/research/guide/review-criteria" >}}).
 
-## Timeline
+### Timeline
 
 - **Submissions**: Accepted on a rolling basis  
 - **Review turnaround**: Typically within 1 month (depending on submission size)
