@@ -269,3 +269,22 @@ code {
   -ms-user-select: none; /* IE 10+ and Edge */
   user-select: none; /* Standard syntax */
 }
+
+.event-type-tag-link {
+  @apply inline-block font-semibold no-underline rounded-full text-xs transition-transform transform;
+  background: linear-gradient(135deg, var(--color-primary-new) 0%, var(--color-secondary-new) 100%);
+  color: white !important;
+  padding-top: 0.125rem !important;    /* Equivalent to py-0.5 */
+  padding-bottom: 0.125rem !important; /* Equivalent to py-0.5 */
+  padding-left: 0.625rem !important;   /* Equivalent to px-2.5 */
+  padding-right: 0.625rem !important;  /* Equivalent to px-2.5 */
+
+  &:hover {
+    @apply -translate-y-px shadow-md;
+  }
+
+  .dark & {
+    background: linear-gradient(135deg, theme('colors.darkmode.primary') 0%, color-mix(in srgb, theme('colors.darkmode.primary') 80%, black) 100%);
+    color: theme('colors.darkmode.text') !important;
+  }
+}
