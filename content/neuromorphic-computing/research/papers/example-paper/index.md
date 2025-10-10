@@ -11,24 +11,22 @@ review_date: "2025-08-20"
 onr_badge: true
 ---
 
-### This is an Example Certificate Page
+## This is an Example Certificate Page
 
 This page demonstrates what a certificate for a project approved by the **Open Neuromorphic Research (ONR)** program looks like. It serves as a template for prospective submitters to see how their work will be showcased after a successful community peer review.
 
 A real certificate page would feature the actual abstract and a detailed overview of the approved resource. Below is an explanation of the sections you can expect to see.
 
----
+##  Anatomy of a Certificate Page
 
-### Anatomy of a Certificate Page
-
-#### **Resource Details**
+### **Resource Details**
 The sidebar on this page contains key metadata and links related to the project:
 *   **Link to Resource:** A direct link to the primary resource (e.g., a GitHub repository, an arXiv pre-print, or a project website).
 *   **Publication Venue & DOI:** If applicable, details about formal publication.
 *   **Authors:** The names of the contributors, linking to their profiles on the ONM website.
 *   **ONR Badge & Embed Code:** A markdown snippet for the author to display the "ONM Community Approved" badge in their own project.
 
-#### **Abstract & Resource Overview**
+### **Abstract & Resource Overview**
 The main content area on a real certificate page is dedicated to showcasing the work itself. Instead of the example text below, this section would contain the actual abstract from the paper and a detailed overview of the resource, explaining its significance and how the community can use it.
 
 > #### **Example Abstract**

@@ -29,14 +29,6 @@ Each project that successfully passes the ONR review is granted a permanent "cer
 -   A link to the public peer-review discussion on OpenReview.
 -   The date of community approval.
 
-The badge that you display on your project will link directly to this certificate page.
+The badge that you display on your project will link directly to this certificate page. 
 
-## How to Display the Badge
-
-Once your submission is approved and your certificate page is live, you are encouraged to display the badge prominently in your project's `README.md` file on GitHub or on your project's website.
-
-The badge should link to your specific certificate page on `open-neuromorphic.org`.
-
-**Markdown Template:**
-```markdown
-[![Open Neuromorphic Research](https://img.shields.io/badge/Community%20Approved-Open%20Neuromorphic-8A2BE2)](https://open-neuromorphic.org/path/to/your/certificate/page/)
+See an [example certificate](/neuromorphic-computing/research/papers/example-paper/).
