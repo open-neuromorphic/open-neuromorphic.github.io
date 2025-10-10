@@ -3,6 +3,7 @@ title: "Example: An ONR Certificate Page"
 date: 2025-10-09
 description: "This is an example of what a certificate page for an ONM Community Approved resource looks like. It demonstrates the structure and information provided for recognized projects."
 draft: false
+noindex: true
 type: "research-papers"
 resource_link: "https://arxiv.org/abs/2109.12894"
 publication_venue: "Example Publication Venue, 2025"
