@@ -39,4 +39,4 @@ The badge should link to your specific certificate page on `open-neuromorphic.or
 
 **Markdown Template:**
 ```markdown
-[![ONM Community Approved](https://img.shields.io/badge/Community%20Approved-Open%20Neuromorphic-8A2BE2)](https://open-neuromorphic.org/path/to/your/certificate/page/)
+[![Open Neuromorphic Research](https://img.shields.io/badge/Community%20Approved-Open%20Neuromorphic-8A2BE2)](https://open-neuromorphic.org/path/to/your/certificate/page/)
