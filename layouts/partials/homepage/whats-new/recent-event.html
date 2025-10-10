@@ -2,50 +2,59 @@
   <h3 class="text-2xl font-bold mb-6 text-center lg:text-left text-text dark:text-darkmode-text">Recent Event</h3>
   <div class="event-card-simple bg-white dark:bg-darkmode-theme-light rounded-xl p-4 shadow-md hover:shadow-lg transition-all duration-300 ease-in-out mb-8">
 
-    {{/* --- MODIFIED Thumbnail Logic --- */}}
+    {{/* --- REVISED Thumbnail Logic --- */}}
     {{ $img_resource := "" }}
+    {{ $img_alt := .Title }}
 
-    {{/* 1. Prioritize the generated OG image */}}
-    {{ if .File }}
-    {{ $page_slug := path.Base .File.Dir }}
-    {{ $og_image_name := printf "%s-og-16x9.jpg" $page_slug }}
-    {{ $img_resource = .Resources.GetMatch $og_image_name }}
-    {{ end }}
-
-    {{/* 2. Fallback to the front matter 'image' parameter if OG not found */}}
-    {{ if not $img_resource }}
+    {{/* 1. Check for `image` in front matter */}}
     {{ with .Params.image }}
-    {{ $image_param := . }}
-    {{ $img_resource = $.Resources.GetMatch $image_param }}
+      {{ $image_param := . }}
+      {{ with $.Resources.GetMatch $image_param }}
+        {{ $img_resource = . }}
+      {{ else }}
+        {{ $asset_path := strings.TrimPrefix "/" $image_param }}
+        {{ with resources.Get $asset_path }}
+          {{ $img_resource = . }}
+        {{ else }}
+          {{ if fileExists (printf "static/%s" $asset_path) }}
+            {{ with resources.Get $asset_path }}
+              {{ $img_resource = . }}
+            {{ end }}
+          {{ end }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+
+    {{/* 2. Fallback to the auto-generated OG image */}}
     {{ if not $img_resource }}
-    {{ $asset_path := strings.TrimPrefix "/" $image_param }}
-    {{ $img_resource = resources.Get $asset_path }}
-    {{ end }}
-    {{ if not $img_resource }}
-    {{ if fileExists (printf "static/%s" (strings.TrimPrefix "/" $image_param)) }}
-    {{ $img_resource = resources.Get (strings.TrimPrefix "/" $image_param) }}
-    {{ end }}
-    {{ end }}
-    {{ end }}
+      {{ if .File }}
+        {{ $page_slug := path.Base .File.Dir }}
+        {{ $og_image_name := printf "%s-og-16x9.jpg" $page_slug }}
+        {{ with .Resources.GetMatch $og_image_name }}
+          {{ $img_resource = . }}
+        {{ end }}
+      {{ end }}
     {{ end }}
 
     {{/* 3. Final fallback to a default image */}}
     {{ if not $img_resource }}
-    {{ $img_resource = resources.Get "images/workshop-thumbnail-default.png" }}
+      {{ with resources.Get "images/workshop-thumbnail-default.png" }}
+        {{ $img_resource = . }}
+        {{ $img_alt = "Default Open Neuromorphic Event Thumbnail" }}
+      {{ end }}
     {{ end }}
 
     {{/* Process and render the selected image */}}
     {{ if $img_resource }}
-    {{ $processed_img := $img_resource.Fit "504x280 Lanczos" }}
-    <a href="{{ .Permalink }}" class="block mb-4 relative group">
-      <img src="{{ $processed_img.RelPermalink }}" alt="{{ .Title }}" class="w-full rounded object-cover">
-      {{ if .Params.video }}
-      {{ partial "components/video-play-overlay.html" (dict "rounding_class" "rounded") }}
-      {{ end }}
-    </a>
+      {{ $processed_img := $img_resource.Fit "504x280 Lanczos" }}
+      <a href="{{ .Permalink }}" class="block mb-4 relative group">
+        <img src="{{ $processed_img.RelPermalink }}" alt="{{ $img_alt }}" class="w-full rounded object-cover">
+        {{ if .Params.video }}
+          {{ partial "components/video-play-overlay.html" (dict "rounding_class" "rounded") }}
+        {{ end }}
+      </a>
     {{ end }}
-    {{/* --- END MODIFIED Thumbnail Logic --- */}}
-
+    {{/* --- END REVISED Thumbnail Logic --- */}}
 
     <div>
       <span class="date-badge mb-1 inline-block text-xs">{{ .Date.Format "Jan 02, 2006" }}</span>

@@ -35,37 +35,53 @@
 
           <!-- Inner flex for image and text block of the featured event -->
           <div class="featured-recent-event-item flex flex-col md:flex-row md:space-x-4">
-            {{/* Image Part */}}
-            {{ $image_param := $featured_event.Params.image }}
+            {{/* --- REVISED Thumbnail Logic --- */}}
             {{ $img_thumb_path := "" }}
             {{ $img_alt := $featured_event.Title }}
+            {{ $img_resource := "" }}
 
-            {{ if $image_param }}
-              {{ $resource := $featured_event.Resources.GetMatch $image_param }}
-              {{ if $resource }}
-                {{ $img_thumb_path = ($resource.Fill "150x84 Lanczos").RelPermalink }}
+            {{/* 1. Check for `image` in front matter */}}
+            {{ with $featured_event.Params.image }}
+              {{ $image_param := . }}
+              {{ with $featured_event.Resources.GetMatch $image_param }}
+                {{ $img_resource = . }}
               {{ else }}
                 {{ $asset_or_static_path := strings.TrimPrefix "/" $image_param }}
-                {{ $asset_resource := resources.Get $asset_or_static_path }}
-                {{ if $asset_resource }}
-                  {{ $img_thumb_path = ($asset_resource.Fill "150x84 Lanczos").RelPermalink }}
-                {{ else if fileExists (printf "static/%s" $asset_or_static_path) }}
-                  {{ $static_img_res := resources.Get $asset_or_static_path }}
-                  {{ if $static_img_res }}
-                    {{ $img_thumb_path = ($static_img_res.Fill "150x84 Lanczos").RelPermalink }}
-                  {{ else }}
-                    {{ $img_thumb_path = ($image_param | relLangURL) }}
+                {{ with resources.Get $asset_or_static_path }}
+                  {{ $img_resource = . }}
+                {{ else }}
+                  {{ if fileExists (printf "static/%s" $asset_or_static_path) }}
+                    {{ with resources.Get $asset_or_static_path }}
+                      {{ $img_resource = . }}
+                    {{ end }}
                   {{ end }}
                 {{ end }}
               {{ end }}
             {{ end }}
 
-            {{ if not $img_thumb_path }}
-                {{ with resources.Get "images/workshop-thumbnail-default.png" }}
-                    {{ $img_thumb_path = (.Fill "150x84 Lanczos").RelPermalink }}
-                    {{ $img_alt = "Default Open Neuromorphic Event Thumbnail" }}
+            {{/* 2. If no front matter image, check for auto-generated OG image */}}
+            {{ if not $img_resource }}
+              {{ if $featured_event.File }}
+                {{ $page_slug := path.Base $featured_event.File.Dir }}
+                {{ $og_image_name := printf "%s-og-16x9.jpg" $page_slug }}
+                {{ with $featured_event.Resources.GetMatch $og_image_name }}
+                  {{ $img_resource = . }}
                 {{ end }}
+              {{ end }}
             {{ end }}
+
+            {{/* 3. Final fallback to the default placeholder */}}
+            {{ if not $img_resource }}
+              {{ with resources.Get "images/workshop-thumbnail-default.png" }}
+                {{ $img_resource = . }}
+                {{ $img_alt = "Default Open Neuromorphic Event Thumbnail" }}
+              {{ end }}
+            {{ end }}
+
+            {{ if $img_resource }}
+              {{ $img_thumb_path = ($img_resource.Fill "150x84 Lanczos").RelPermalink }}
+            {{ end }}
+            {{/* --- END REVISED Thumbnail Logic --- */}}
 
             {{ if $img_thumb_path }}
               <div class="flex-shrink-0 w-full md:w-[150px] mb-4 md:mb-0 text-center md:text-left">
@@ -131,6 +147,4 @@
         <a href="{{ $view_all_link | relLangURL }}" class="btn btn-new-primary">{{ $view_all_text }}</a>
     </div>
   {{ end }}
-
-  {{/* REMOVED the old centered "View All" button from here */}}
 </div>
