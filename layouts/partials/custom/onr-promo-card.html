@@ -1,0 +1,28 @@
+{{ $onr_page := site.GetPage "neuromorphic-computing/research" }}
+{{ if $onr_page }}
+<div class="onr-promo-card p-8 rounded-lg bg-theme-light dark:bg-darkmode-theme-light shadow-lg border-l-4 border-primary dark:border-darkmode-primary">
+  <div class="flex flex-col md:flex-row items-center text-center md:text-left gap-8">
+    <div class="flex-shrink-0">
+      {{ partial "icon.html" (dict "style" "solid" "name" "award" "class" "text-6xl text-primary dark:text-darkmode-primary") }}
+    </div>
+    <div class="flex-grow">
+      <h2 class="text-3xl font-bold mb-2">
+        <span class="gradient-text">Open Neuromorphic Research</span>
+      </h2>
+      <p class="text-lg text-gray-600 dark:text-gray-400 mb-4">
+        Our community-driven peer review program for open, reproducible, and high-impact research. Get your work recognized with the "ONM Community Approved" badge.
+      </p>
+      <div class="mt-4 flex flex-wrap gap-4 items-center justify-center md:justify-start">
+        <a href="{{ $onr_page.RelPermalink }}" class="btn btn-new-primary">
+          Explore the ONR Program
+        </a>
+        {{ with site.GetPage "neuromorphic-computing/research/guide/submitter-guide" }}
+        <a href="{{ .RelPermalink }}" class="btn btn-new-outline">
+          Submit Your Work
+        </a>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</div>
+{{ end }}

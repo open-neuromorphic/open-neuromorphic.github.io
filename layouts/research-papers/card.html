@@ -1,0 +1,16 @@
+{{ $paper := . }}
+<div class="p-6 bg-theme-light dark:bg-darkmode-theme-light rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+    <div class="flex flex-col h-full">
+        <div class="flex justify-between items-start mb-2">
+            <h3 class="text-xl font-bold text-dark dark:text-darkmode-dark pr-4"><a href="{{ $paper.RelPermalink }}">{{ $paper.Title }}</a></h3>
+            <span class="flex-shrink-0 text-xs font-semibold bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300 px-2.5 py-1 rounded-full">{{ $paper.Date.Format "Jan 2006" }}</span>
+        </div>
+        <div class="text-sm text-gray-600 dark:text-gray-400 mb-3">
+            By {{ partial "components/author-links.html" $paper }}
+        </div>
+        <p class="text-text dark:text-darkmode-text text-sm mb-4 flex-grow">{{ $paper.Description }}</p>
+        <div class="mt-auto">
+            <a href="{{ $paper.RelPermalink }}" class="btn btn-sm btn-new-outline">View Details</a>
+        </div>
+    </div>
+</div>

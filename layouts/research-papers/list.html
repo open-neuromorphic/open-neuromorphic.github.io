@@ -1,0 +1,27 @@
+{{ define "main" }}
+{{ partial "page-header" . }}
+
+<section class="section pt-8">
+  <div class="container">
+    <div class="row lg:items-stretch">
+      <div class="lg:col-8">
+        <div class="content mb-8">
+          {{ .Content }}
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {{ $paginator := .Paginate .Pages }}
+          {{ range $paginator.Pages }}
+            {{ .Render "card" }}
+          {{ end }}
+        </div>
+        {{ partial "components/pagination.html" . }}
+      </div>
+      <aside class="lg:col-4 hidden lg:block">
+        <div class="sticky top-24">
+          {{ partial "onr/sidebar-guide.html" . }}
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+{{ end }}
