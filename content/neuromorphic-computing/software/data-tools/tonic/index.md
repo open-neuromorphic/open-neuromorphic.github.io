@@ -30,4 +30,4 @@ Tonic is an open-source project and encourages community involvement, offering g
 
 The founder of Tonic, Gregor Lenz, motivates Tonic, explains what it does, and walks through live examples and tutorials.
 
-{< youtube-lite id="kh2KE8aprAQ" >}}
+{{< youtube-lite id="kh2KE8aprAQ" >}}
