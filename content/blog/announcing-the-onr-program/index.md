@@ -20,7 +20,10 @@ image_attribution:
 
 Open Neuromorphic is launching [**Open Neuromorphic Research**](/neuromorphic-computing/research) a peer review initiative designed to highlight open, reproducible, and high-impact work in neuromorphic computing. Submissions are reviewed by volunteers from the community and, if approved, receive the **ONM Community Approved** badge along with a certificate page in our [Approved Research Registry]({{< ref "/neuromorphic-computing/research/papers" >}}).
 
+{{< youtube-lite id="kh2KE8aprAQ" >}}
+
 Whether you’re submitting a research paper, codebase, dataset, or educational tool, ONR gives you a pathway to visibility, constructive feedback, and community validation.
+
 
 ### Why Participate?
 
