@@ -86,6 +86,7 @@ You will be required to provide the following information:
 
 Your submission will be reviewed by a panel of 3–5 ONM volunteer reviewers. You'll receive confirmation and an estimated timeline for decisions.
 
+> Note: Submissions that do not meet the basic requirements (e.g., scope, clarity, or compliance with the Definition of Open) may be desk rejected without further review.
 ## Review Criteria
 
 Projects are evaluated based on our official [Review Criteria](/neuromorphic-computing/research/guide/review-criteria/), which prioritizes openness, impact, clarity, and reproducibility.
