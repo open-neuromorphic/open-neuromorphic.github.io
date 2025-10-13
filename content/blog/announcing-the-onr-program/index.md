@@ -18,7 +18,7 @@ image_attribution:
 
 ## Call for Papers: Open Neuromorphic Research
 
-Open Neuromorphic is launching [**Open Neuromorphic Research**](/neuromorphic-computing/research) a peer review initiative designed to highlight open, reproducible, and high-impact work in neuromorphic computing. Submissions are reviewed by volunteers from the community and, if approved, receive the **ONM Community Approved** badge along with a certificate page in our [Approved Research Registry]({{< ref "/neuromorphic-computing/research/papers" >}}).
+Open Neuromorphic is launching [**Open Neuromorphic Research**]({{< ref "/neuromorphic-computing/research/" >}}) a peer review initiative designed to highlight open, reproducible, and high-impact work in neuromorphic computing. Submissions are reviewed by volunteers from the community and, if approved, receive the **ONM Community Approved** badge along with a certificate page in our [Approved Research Registry]({{< ref "/neuromorphic-computing/research/papers" >}}).
 
 {{< youtube-lite id="kh2KE8aprAQ" >}}
 
