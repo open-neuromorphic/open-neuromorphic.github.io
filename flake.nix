@@ -18,6 +18,7 @@
             go_1_24
             nodejs_22
             git
+            #pkgs.nodePackages.postcss-cli
             chromium
             bash-completion
             ncurses # Provides 'tput' for colors
