@@ -4,9 +4,6 @@ author:
   - "Alexandre Marcireau"
   - "Jens E. Pedersen"
 date: 2025-10-14
-start_time: "15:00"
-end_time: "17:00"
-time_zone: "CEST"
 show_author_bios: true
 description: "A guide on how to contribute to Faery with Alexandre Marcireau and host Jens E. Pedersen."
 upcoming: false
