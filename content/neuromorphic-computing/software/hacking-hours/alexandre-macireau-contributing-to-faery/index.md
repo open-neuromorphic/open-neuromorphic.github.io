@@ -4,12 +4,14 @@ author:
   - "Alexandre Marcireau"
   - "Jens E. Pedersen"
 date: 2025-10-14
+start_time: "15:00"
+end_time: "17:00"
+time_zone: "CEST"
+show_author_bios: true
 description: "A guide on how to contribute to Faery with Alexandre Marcireau and host Jens E. Pedersen."
 upcoming: true
-speaker_photo: "images/speakers/alexandre-marcireau-placeholder.png" # Can reuse if same speaker
 image: "logo.png"
 type: "hacking-hours"
-speaker_bio: "Alexandre Marcireau is a software developer and contributor in the neuromorphic computing space, known for his work on neuromorphic drivers and the Faery event processing library."
 software_tags: ["faery"]
 ---
 
