@@ -30,4 +30,4 @@ Reviewers should be guided by our four core principles:
 3.  Provide **constructive criticism**.
 4.  Be an **ambassador for open science**.
 
-All submissions are evaluated against the official [ONR Review Criteria](/neuromorphic-computing/research/review-criteria/). Please familiarize yourself with this rubric before beginning your review.
+All submissions are evaluated against the official [ONR Review Criteria]({{< ref "/neuromorphic-computing/research/review-criteria/" >}}). Please familiarize yourself with this rubric before beginning your review.

@@ -23,7 +23,7 @@ Submissions may take the form of:
 -   **IEEE-formatted papers** (PDF)
 -   **Technical whitepapers** or overview documents (PDF or web-hosted)
 
-Your project must satisfy Open Neuromorphic's [Definition of Open](/about/governance/open-definition/).
+Your project must satisfy Open Neuromorphic's [Definition of Open]({{< ref "/about/governance/open-definition/" >}}).
 
 We especially encourage well-documented Jupyter notebooks that walk through core functionality, demonstrate reproducibility, or explain concepts interactively. Also, please try to submit source files of figures if possible.
 
@@ -89,7 +89,7 @@ Your submission will be reviewed by a panel of 3–5 ONM volunteer reviewers. Yo
 > Note: Submissions that do not meet the basic requirements (e.g., scope, clarity, or compliance with the Definition of Open) may be desk rejected without further review.
 ## Review Criteria
 
-Projects are evaluated based on our official [Review Criteria](/neuromorphic-computing/research/guide/review-criteria/), which prioritizes openness, impact, clarity, and reproducibility.
+Projects are evaluated based on our official [Review Criteria]({{< ref "/neuromorphic-computing/research/review-criteria/" >}}), which prioritizes openness, impact, clarity, and reproducibility.
 
 ## Outcomes
 
