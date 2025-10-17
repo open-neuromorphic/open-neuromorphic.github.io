@@ -10,7 +10,7 @@ social:
     link: "https://bmsemi.io"
     title: "website"
   - icon: "fa-solid fa-graduation-cap"
-    link: "https://scholar.google.com/citations?view_op=view_citation&citation_for_view=8Fu56vHc3eI:u-x6o8ySG0sC" # Placeholder link to the paper, should be updated with actual scholar profile if found
+    link: "https://scholar.google.com/citations?user=PF8sCegAAAAJ&hl=en"
 draft: false
 ---
 
