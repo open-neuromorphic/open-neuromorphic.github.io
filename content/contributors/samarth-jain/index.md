@@ -1,7 +1,7 @@
 ---
 title: "Samarth Jain"
 description: "Co-Founder at BM LABS, focusing on open-source compatible neuromorphic IPs for in-memory compute, stemming from his student research project and Nature Communications publication."
-image: "samarth-jain.jpg"
+image: "samarth.jpeg"
 social:
   - icon: "fa-brands fa-linkedin"
     link: "https://www.linkedin.com/company/bm-semi/"

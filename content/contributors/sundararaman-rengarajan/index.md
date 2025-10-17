@@ -1,7 +1,7 @@
 ---
 title: "Sundararaman Rengarajan"
 description: "An active member of the Open Neuromorphic community, serving as an events coordinator and host for workshops and student talks."
-image: "sundararaman-rengarajan.jpg"
+image: "sundar.jpeg"
 social:
   - icon: "fa-brands fa-linkedin"
     link: "https://www.linkedin.com/in/sundararaman-rengarajan/" # Placeholder, assumed from name

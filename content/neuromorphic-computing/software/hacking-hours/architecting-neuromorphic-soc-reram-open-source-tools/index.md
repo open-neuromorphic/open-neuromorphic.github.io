@@ -3,7 +3,7 @@ title: "Architecting Neuromorphic SoCs with ReRAM and Open-Source Tools"
 author:
   - "Samarth Jain"
   - "Sundararaman Rengarajan"
-  - "C-Erastus Toe"
+  - "Erastus Toe"
 date: 2025-10-19
 start_time: "11:00"
 end_time: "12:00"
