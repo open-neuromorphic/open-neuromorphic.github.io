@@ -12,9 +12,10 @@ description: "Dive into open-source ASIC design in this hands-on talk. Learn to 
 upcoming: true
 type: "hacking-hours"
 show_author_bios: true
+software_tags: []
 ---
 
-Join us for a special student talk with Samarth Jain, Co-Founder of BM LABS, for a technical deep-dive into designing neuromorphic hardware with open-source tools. This session provides a practical guide to architecting a System-on-Chip (SoC) and introduces the **NVM Power-Up Design Contest**—a unique opportunity to get your design fabricated for free.
+Join us for a special Hacking Hour with Samarth Jain, Co-Founder of BM LABS, for a technical deep-dive into designing neuromorphic hardware with open-source tools. This session provides a practical guide to architecting a System-on-Chip (SoC) and introduces the **NVM Power-Up Design Contest**—a unique opportunity to get your design fabricated for free.
 
 ### What You'll Learn:
 
