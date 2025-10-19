@@ -5,13 +5,9 @@ author:
   - "Sundararaman Rengarajan"
   - "Erastus Toe"
 date: 2025-10-19
-start_time: "11:00"
-end_time: "12:00"
-time_zone: "ET"
 description: "Dive into open-source ASIC design in this hands-on talk. Learn to architect a System-on-Chip (SoC) by integrating ReRAM NVM IP with the Caravel platform on SkyWater SKY130, using tools like OpenLane2."
-upcoming: true
+upcoming: false
 video: 'Z8dR05q7hII'
-upcoming_url: 'https://www.youtube.com/watch?v=Z8dR05q7hII'
 type: "hacking-hours"
 show_author_bios: true
 software_tags: []
