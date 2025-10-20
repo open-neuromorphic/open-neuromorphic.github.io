@@ -1,0 +1,64 @@
+{{ $show_heading := .show_heading | default true }}
+{{ $endorsements := site.Data.endorsements.endorsements }}
+{{ if $endorsements }}
+<div class="endorsements-section {{ if $show_heading }}mt-16{{ else }}mt-12{{ end }}">
+  {{ if $show_heading }}
+  <h3 class="text-3xl font-bold text-center mb-10 text-dark dark:text-darkmode-dark">
+    Endorsed by Leaders in Neuromorphic Computing
+  </h3>
+  {{ end }}
+
+  <div id="endorsement-slideshow" class="relative overflow-hidden mx-auto max-w-4xl" style="min-height: 200px;">
+    {{ range $index, $endorsement := $endorsements }}
+    <div class="endorsement-slide absolute inset-0 transition-opacity duration-1000 ease-in-out {{ if ne $index 0 }}opacity-0 invisible{{ else }}opacity-100 visible{{ end }}">
+      <div class="endorsement-card bg-theme-light dark:bg-darkmode-theme-light p-6 rounded-lg shadow-lg flex flex-col md:flex-row items-start gap-6 h-full">
+        <!-- Left side: Author Info -->
+        <div class="flex-shrink-0 w-full md:w-1/4">
+          <div class="flex items-center md:flex-col md:items-start">
+              {{ if .image }}
+              <img src="{{ .image }}" alt="Photo of {{ .name }}" class="w-20 h-20 rounded-full object-cover bg-gray-200 mb-0 md:mb-4 mr-4 md:mr-0 flex-shrink-0">
+              {{ end }}
+              <div class="text-left">
+                <p class="font-bold text-dark dark:text-darkmode-dark leading-tight">{{ .name }}</p>
+                <p class="text-sm text-gray-600 dark:text-gray-400 leading-tight">{{ .title }}</p>
+              </div>
+          </div>
+        </div>
+
+        <!-- Right side: Quote -->
+        <div class="text-text dark:text-darkmode-text text-lg italic flex-grow relative border-t md:border-t-0 md:border-l border-border dark:border-darkmode-border pt-6 md:pt-0 md:pl-6">
+          <span class="absolute -top-4 md:top-0 -left-1 md:-left-7 text-6xl font-serif text-gray-300 dark:text-gray-700 opacity-75">&ldquo;</span>
+          <p class="pl-2">
+            {{ .quote | markdownify | chomp }}
+          </p>
+        </div>
+      </div>
+    </div>
+    {{ end }}
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const slideshow = document.getElementById('endorsement-slideshow');
+      if (!slideshow) return;
+
+      const slides = slideshow.querySelectorAll('.endorsement-slide');
+      if (slides.length <= 1) return;
+
+      let currentSlide = 0;
+
+      function showNextSlide() {
+        slides[currentSlide].classList.remove('visible', 'opacity-100');
+        slides[currentSlide].classList.add('invisible', 'opacity-0');
+
+        currentSlide = (currentSlide + 1) % slides.length;
+
+        slides[currentSlide].classList.remove('invisible', 'opacity-0');
+        slides[currentSlide].classList.add('visible', 'opacity-100');
+      }
+
+      setInterval(showNextSlide, 7000); // Change slide every 7 seconds
+    });
+  </script>
+</div>
+{{ end }}
