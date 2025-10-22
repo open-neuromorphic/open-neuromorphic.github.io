@@ -9,7 +9,7 @@ contact: "contact@open-neuromorphic.org"
 ---
 
 ## Role Overview
-The Open Neuromorphic Research (ONR) program is our community-driven peer-review initiative designed to validate and showcase high-impact, reproducible work in neuromorphic computing. As a Research Reviewer, you will play a crucial role in upholding the standards of open science and providing valuable feedback to authors. This is a high-impact opportunity to contribute your expertise and help elevate the quality of research in our field.
+The Open Neuromorphic Research (ONR) program is our community-driven peer-review initiative designed to validate and showcase high-impact, reproducible work in neuromorphic computing. As a Research Reviewer, you will play a crucial role in upholding the standards of open science and providing valuable feedback to authors. This is a high-impact opportunity to contribute your expertise, work alongside leaders in the field, and help elevate the quality of research in our community.
 
 ## Responsibilities
 - Evaluate submissions (papers, code, datasets) against the official [ONR Review Criteria](/neuromorphic-computing/research/guide/review-criteria/), focusing on clarity, reproducibility, technical rigor, and community value.
