@@ -1,6 +1,6 @@
 ---
 title: "Announcing Open Neuromorphic Research: Community Peer Review for Open Science"
-date: 2025-10-12
+date: 2025-10-20
 description: "Submit your open-source neuromorphic projects for transparent community review and recognition through the ONR Program."
 image: "onr_thumbnail.png"
 draft: false
