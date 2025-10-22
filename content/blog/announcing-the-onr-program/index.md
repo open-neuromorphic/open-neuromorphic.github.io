@@ -12,8 +12,7 @@ tags: ["onr"]
 showTableOfContents: true
 image_attribution:
   text: "Photo by"
-  author: "tarry_not"
-  url: "https://pixabay.com/illustrations/network-points-technology-6088549/"
+  author: "Manavya"
 ---
 
 ## Call for Papers: Open Neuromorphic Research
