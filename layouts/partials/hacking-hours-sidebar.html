@@ -3,64 +3,42 @@
 </div>
 <div class="px-7 pt-7 content-panel">
   <h3 class="pb-5 pt-5 text-xl">Next Hacking Hour</h3>
-  {{ $recurringEventData := site.Data.recurring_events.events }}
-  {{ $hackingHourEvent := false }}
-  {{ range $recurringEventData }}
-    {{ if and (eq .id "hacking-hours") .active }}
-      {{ $hackingHourEvent = . }}
-    {{ end }}
-  {{ end }}
 
-  {{ if $hackingHourEvent }}
-    {{ $now := now }}
-    {{ $daysMap := dict "Sunday" 0 "Monday" 1 "Tuesday" 2 "Wednesday" 3 "Thursday" 4 "Friday" 5 "Saturday" 6 }}
-    {{ $targetDayKey := $hackingHourEvent.day_of_week | default "Monday" }}
-    {{ $targetDayIndex := index $daysMap $targetDayKey | default 1 }}
-    {{ $currentDayIndex := int $now.Weekday }}
-    {{ $daysToAdd := sub $targetDayIndex $currentDayIndex }}
-    {{ if lt $daysToAdd 0 }}{{ $daysToAdd = add $daysToAdd 7 }}{{ end }}
-    {{ if eq $daysToAdd 0 }}
-      {{ $eventStartHour := int (substr $hackingHourEvent.start_time 0 2) }}
-      {{ $eventStartMinute := int (substr $hackingHourEvent.start_time 3 2) }}
-      {{ $nowHour := $now.Hour }}
-      {{ $nowMinute := $now.Minute }}
-      {{ if or (gt $nowHour $eventStartHour) (and (eq $nowHour $eventStartHour) (ge $nowMinute $eventStartMinute)) }}
-        {{ $daysToAdd = 7 }}
+  {{ $upcoming_talks := where (where .Site.RegularPages "Type" "hacking-hours") ".Params.upcoming" true }}
+
+  {{ if gt (len $upcoming_talks) 0 }}
+  {{ range sort $upcoming_talks ".Date" | first 1 }}
+  <div class="mb-4">
+    <a href="{{ .Permalink }}" class="block font-semibold hover:text-primary dark:hover:text-darkmode-primary">{{ .Title }}</a>
+    <div class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+      {{ if .Params.author }}
+      <div class="flex items-center">
+        {{ partial "icon.html" (dict "style" "regular" "name" "circle-user" "class" "mr-2") }}
+        <span>{{ delimit .Params.author ", " }}</span>
+      </div>
       {{ end }}
-    {{ end }}
-    {{ $nextOccurrenceDate := $now.AddDate 0 0 (int $daysToAdd) }}
-
-    <div class="mb-4 pb-6">
-      <div>
-        <h4 class="font-semibold text-lg">{{ $hackingHourEvent.title }}</h4>
-        {{ if $hackingHourEvent.host }}
-        <p class="text-sm text-gray-600 dark:text-gray-400">
-          Hosted by: {{ $hackingHourEvent.host }}
-        </p>
-        {{ end }}
-        <p class="text-sm mt-1 flex items-center">
-            {{ partial "icon.html" (dict "style" "regular" "name" "calendar" "class" "mr-2") }}Next: {{ $nextOccurrenceDate.Format "Mon, Jan 2, 2006" }}
-        </p>
-        <p class="text-sm flex items-center">
-            {{ partial "icon.html" (dict "style" "regular" "name" "clock" "class" "mr-2") }}{{ $hackingHourEvent.start_time }} - {{ $hackingHourEvent.end_time }} {{ $hackingHourEvent.time_zone }}
-        </p>
-        <div class="text-sm mt-2">
-          {{ $hackingHourEvent.description | markdownify }}
-        </div>
+      <div class="flex items-center mt-1">
+        {{ partial "icon.html" (dict "style" "regular" "name" "calendar" "class" "mr-2") }}
+        <span>{{ .Date.Format "January 2, 2006" }}</span>
+      </div>
+      <div class="flex items-center mt-1">
+        {{ partial "icon.html" (dict "style" "regular" "name" "clock" "class" "mr-2") }}
+        <span>{{ .Params.start_time }} - {{ .Params.end_time}} {{ .Params.time_zone }}</span>
       </div>
     </div>
-    <div class="text-right pb-5 pt-5">
-      <a href="{{ $hackingHourEvent.location_url | default "https://discord.gg/hUygPUdD8E" }}" target="_blank" class="btn btn-new-primary btn-sm">Join on Discord</a>
-    </div>
-  {{ else }}
-    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
-      Hacking Hours are currently on a break. Check back soon for the new schedule!
-    </p>
-    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
-      In the meantime, join our Discord to connect with the community and see what others are working on.
-    </p>
-    <div class="text-right pb-5 pt-5">
-      <a href="https://discord.gg/hUygPUdD8E" target="_blank" class="btn btn-new-primary btn-sm">Join on Discord</a>
-    </div>
+  </div>
   {{ end }}
+  {{ else }}
+  <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+    No Hacking Hours are currently scheduled. Check back soon for new events!
+  </p>
+  <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+    In the meantime, join our Discord to connect with the community and see what others are working on.
+  </p>
+  {{ end }}
+
+  <div class="text-right pb-5 pt-5">
+    {{ $hacking_hours_page := site.GetPage "/neuromorphic-computing/software/hacking-hours" }}
+    <a href="{{ $hacking_hours_page.RelPermalink }}" class="btn btn-new-primary btn-sm">View Schedule</a>
+  </div>
 </div>

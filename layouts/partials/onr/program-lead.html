@@ -1,0 +1,28 @@
+{{ $lead_slug := .Params.program_lead }}
+{{ if $lead_slug }}
+  {{ $lead_page := site.GetPage (printf "contributors/%s" $lead_slug) }}
+  {{ if $lead_page }}
+    <div class="px-4 pt-5 pb-5 content-panel mb-6">
+      <strong class="text-xl">
+        ONR Program Lead
+      </strong>
+      <div class="mt-4 space-y-3">
+        <a href="{{ $lead_page.RelPermalink }}" class="group flex items-center gap-4 text-left p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-darkmode-theme-dark transition-colors">
+          <div class="flex-shrink-0">
+            {{ with $lead_page.Params.image }}
+              {{ partial "image" (dict "Src" . "Context" $lead_page "Alt" $lead_page.Title "Class" "w-16 h-16 rounded-full object-cover" "Command" "Fill" "Size" "64x64") }}
+            {{ else }}
+              <div class="w-16 h-16 rounded-full bg-gray-200 dark:bg-darkmode-theme-dark flex items-center justify-center">
+                {{ partial "icon.html" (dict "style" "solid" "name" "user" "class" "text-2xl text-gray-400") }}
+              </div>
+            {{ end }}
+          </div>
+          <div>
+            <h5 class="font-bold text-dark dark:text-darkmode-dark group-hover:text-primary dark:group-hover:text-darkmode-primary">{{ $lead_page.Title }}</h5>
+            <p class="text-xs text-text dark:text-darkmode-text">Contact for questions or suggestions regarding the ONR program.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  {{ end }}
+{{ end }}
