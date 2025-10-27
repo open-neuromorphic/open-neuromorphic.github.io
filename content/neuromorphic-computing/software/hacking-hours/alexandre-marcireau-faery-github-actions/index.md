@@ -7,10 +7,8 @@ date: 2024-09-30
 description: "Learn about using GitHub Actions for CI/CD with the Faery event processing library, presented by Alexandre Marcireau."
 upcoming: false
 video: "BGclcb7u4PQ"
-speaker_photo: "images/speakers/alexandre-marcireau-placeholder.png" # Can reuse
 image: "alexandre-marcireau-faery-github-actions.jpg"
 type: "hacking-hours"
-speaker_bio: "Alexandre Marcireau is a software developer and contributor in the neuromorphic computing space, known for his work on the Faery event processing library and its development workflows."
 software_tags: ["faery"]
 ---
 

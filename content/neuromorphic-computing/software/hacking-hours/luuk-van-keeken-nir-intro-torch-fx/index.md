@@ -7,10 +7,8 @@ date: 2024-12-02
 description: "Luuk van Keeken introduces the Neuromorphic Intermediate Representation (NIR) and demonstrates graph tracing using torch.fx."
 upcoming: false
 video: "FIqxexNQX4k"
-speaker_photo: "images/speakers/luuk-van-keeken-placeholder.png"
 image: "luuk-van-keeken-nir-intro-torch-fx.jpg"
 type: "hacking-hours"
-speaker_bio: "Luuk van Keeken is a researcher/PhD student at KTH Royal Institute of Technology, focusing on neuromorphic computing, specifically related to the Neuromorphic Intermediate Representation (NIR) and its applications with frameworks like PyTorch."
 software_tags: ["snntorch", "norse"]
 ---
 

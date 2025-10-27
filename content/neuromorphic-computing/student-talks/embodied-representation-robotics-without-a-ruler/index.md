@@ -7,7 +7,6 @@ description: "Join us for an insightful student talk on Embodied Visuomotor Repr
 upcoming: false
 video: "08v-Kyn96SU"
 type: "student-talks"
-show_author_bios: true
 software_tags: []
 
 ---

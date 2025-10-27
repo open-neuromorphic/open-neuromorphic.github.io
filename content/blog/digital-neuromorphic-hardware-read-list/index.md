@@ -8,7 +8,6 @@ image: banner.png
 draft: false
 tags: ["research", "hardware", "digital", "neuromorphic", "snn", "AI"]
 hardware_tags: ["truenorth-ibm", "loihi-intel", "loihi-2-intel", "odin-frenkel"]
-show_author_bios: true
 ---
 
 Here's a list of articles and theses related to digital hardware designs for neuomorphic applications. I plan to update it regularly. To be redirected directly to the sources, click on the titles! 

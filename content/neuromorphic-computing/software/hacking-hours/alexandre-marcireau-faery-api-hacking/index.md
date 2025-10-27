@@ -7,10 +7,8 @@ date: 2024-10-29
 description: "A deep dive into hacking and extending the Faery API with Alexandre Marcireau and host Jens E. Pedersen."
 upcoming: false
 video: "bkwC0ygMous"
-speaker_photo: "images/speakers/alexandre-marcireau-placeholder.png" # Can reuse if same speaker
 image: "alexandre-marcireau-faery-api-hacking.jpg"
 type: "hacking-hours"
-speaker_bio: "Alexandre Marcireau is a software developer and contributor in the neuromorphic computing space, known for his work on the Faery event processing library."
 software_tags: ["faery"]
 ---
 

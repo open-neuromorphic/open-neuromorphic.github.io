@@ -9,7 +9,6 @@ description: "Dive into open-source ASIC design in this hands-on talk. Learn to 
 upcoming: false
 video: 'Z8dR05q7hII'
 type: "hacking-hours"
-show_author_bios: true
 software_tags: []
 ---
 

@@ -11,7 +11,6 @@ upcoming: true # Set to 'true' for future events. Change to 'false' after the ev
 video: ""      # After the event, add the YouTube video ID (e.g., "dQw4w9WgXcQ").
 image: "workshop-banner.png" # Main banner image (1200x630px ideal for sharing). Place in this workshop's folder.
 type: "workshops" # IMPORTANT: Do not change this line for workshop events.
-show_author_bios: true # Set to true to display author bios from contributor profiles.
 # Optional: Add the file name (slug) of any software pages this event is related to.
 # e.g., ["spyx", "snntorch"]
 software_tags: []
