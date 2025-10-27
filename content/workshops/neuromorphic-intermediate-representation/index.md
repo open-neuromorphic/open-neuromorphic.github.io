@@ -6,9 +6,7 @@ author:
   - Jason Eshraghian
   - Felix Bauer
 date: 2024-02-05
-speaker_photo: aaron-spieler.jpeg
 video: A96rInDg8zo
-speaker_bio: "This talk will be given jointly by Felix Bauer, Jason Eshraghian, Jens E. Pedersen, and Bernhard Vogginger"
 speaker_code: "https://github.com/neuromorphs/nir"
 image: neuromorphic-intermediate-representation.png
 description: "We show how to use the Neuromorphic Intermediate Representation to migrate your spiking model onto neuromorphic hardware."

@@ -11,7 +11,6 @@ description: "Discover how Tonic provides a PyTorch-compatible framework for loa
 upcoming: false
 video: kh2KE8aprAQ
 type: "workshops"
-show_author_bios: true
 software_tags: ["tonic"]
 ---
 

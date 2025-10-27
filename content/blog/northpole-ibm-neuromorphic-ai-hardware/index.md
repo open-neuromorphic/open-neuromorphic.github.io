@@ -8,7 +8,6 @@ showTableOfContents: true
 author:
   - Fabrizio Ottati
 hardware_tags: ["northpole-ibm","truenorth-ibm"]
-show_author_bios: true
 ---
 
 [NorthPole](/neuromorphic-computing/hardware/northpole-ibm) is the new shiny artificial intelligence (AI) accelerator developed by IBM.

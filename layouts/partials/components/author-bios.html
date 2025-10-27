@@ -1,8 +1,6 @@
-{{ with .Params.show_author_bios }}
-{{ if . }}
 <div class="author-bios-section mt-12 pt-8">
   <h2 class="text-3xl font-bold mb-8">About the Author{{ if gt (len $.Params.author) 1 }}s{{ end }}</h2>
-  {{ with $.Params.author }}
+  {{ with .Params.author }}
   {{ $authors := . }}
   {{ range $index, $authorName := $authors }}
   {{ $isFirstAuthor := eq $index 0 }}
@@ -55,5 +53,3 @@
 {{ end }}
 {{ end }}
 </div>
-{{ end }}
-{{ end }}

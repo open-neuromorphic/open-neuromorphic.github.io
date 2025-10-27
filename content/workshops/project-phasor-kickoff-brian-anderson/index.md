@@ -15,8 +15,6 @@ video: vZ0mlHpSeD0
 speaker_slides: https://drive.google.com/drive/folders/1RHIv9JaBvOLeo0MveBvnEAkqKe2Vc9_I?usp=drive_link
 image: project-phasor-kickoff.png
 description: "Brian Anderson and others discuss the newly launched Project Phasor, aiming to organize efforts towards neuromorphic and NeuroAI virtualization and compilation."
-speaker_photo: brian.jpg
-speaker_bio: "Brian Anderson is a Neuromorphic Engineer with experience from industry heavy-hitters such as ML Commons, Intel Labs, Google, and NVIDIA. He has pioneered neuromorphic engineering methods and championed neuromorphic technologies in the industry and academia alike. A position he is well suited for, given his degrees in Electrical Engineering and Computer Science from MIT."
 ---
 
 Project Phasor ([https://www.project-phasor.org/](https://www.project-phasor.org/)) is a collaborative initiative launched to address key gaps and inefficiencies within the neuromorphic and NeuroAI ecosystem. This kickoff session, featuring contributions from Brian Anderson, Florence Lee, Jason Eshraghian, Dylan Muir, Jamie Knight, William Zeng, Petrut Bogdan, and Blessing Effiong, outlines the project's ambitious goals and proposed efforts.

@@ -11,7 +11,6 @@ author:
   - Terry Stewart
   - Marcel Stimberg
 date: 2025-07-30
-show_author_bios: true
 description: "Join leading maintainers of neuromorphic software libraries for a panel discussion on building open-source infrastructure, sharing lessons learned, and shaping the future of the neuromorphic ecosystem."
 upcoming: false
 video: "kZqVe3547r8"

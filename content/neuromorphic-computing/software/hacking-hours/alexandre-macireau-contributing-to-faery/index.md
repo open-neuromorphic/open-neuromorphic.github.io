@@ -4,7 +4,6 @@ author:
   - "Alexandre Marcireau"
   - "Jens E. Pedersen"
 date: 2025-10-14
-show_author_bios: true
 description: "A guide on how to contribute to Faery with Alexandre Marcireau and host Jens E. Pedersen."
 upcoming: false
 video: "Wt8JPTs-fA8"

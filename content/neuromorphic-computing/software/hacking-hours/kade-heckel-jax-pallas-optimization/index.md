@@ -7,10 +7,8 @@ date: 2024-10-15
 description: "Kade Heckel discusses optimizing GPU/TPU code using JAX and Pallas in this Hacking Hour session."
 upcoming: false
 video: "pRqRYcjufjA"
-speaker_photo: "images/speakers/kade-heckel-placeholder.png" # Placeholder, please replace
 image: "kade-heckel-jax-pallas-optimization.jpg" # Placeholder, please create
 type: "hacking-hours"
-speaker_bio: "Kade Heckel is a researcher and developer focusing on high-performance computing for neural networks, with expertise in JAX and related optimization tools like Pallas. He is the creator of Spyx, a JAX-based spiking neural network library."
 software_tags: ["spyx"]
 ---
 

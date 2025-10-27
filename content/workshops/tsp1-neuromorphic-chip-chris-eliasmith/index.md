@@ -12,7 +12,6 @@ upcoming: true
 video: ""
 image: "ABR-TSP1-Chip.jpg"
 type: "workshops"
-show_author_bios: true
 hardware_tags: ["tsp1"]
 software_tags: ["nengo"]
 ---

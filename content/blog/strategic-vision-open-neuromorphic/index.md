@@ -13,7 +13,6 @@ author:
   - Jens E. Pedersen
   - Danny Rosen
   - Justin Riddiough
-show_author_bios: true
 ---
 
 **TL;DR** We are reorganizing the Open Neuromorphic community around our vision for an **open and accessible neuromorphic ecosystem**.
