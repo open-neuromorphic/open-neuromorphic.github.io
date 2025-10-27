@@ -1,12 +1,25 @@
+{{ $ctx := . }}
+{{ $title_override := "" }}
+{{ if reflect.IsMap . }}
+  {{ $ctx = .context }}
+  {{ $title_override = .title }}
+{{ end }}
+
 <div class="author-bios-section mt-12 pt-8">
-  <h2 class="text-3xl font-bold mb-8">About the Author{{ if gt (len $.Params.author) 1 }}s{{ end }}</h2>
-  {{ with .Params.author }}
+  <h2 class="text-3xl font-bold mb-8">
+    {{ if $title_override }}
+      {{ $title_override }}
+    {{ else }}
+      About the Author{{ if gt (len $ctx.Params.author) 1 }}s{{ end }}
+    {{ end }}
+  </h2>
+  {{ with $ctx.Params.author }}
   {{ $authors := . }}
   {{ range $index, $authorName := $authors }}
   {{ $isFirstAuthor := eq $index 0 }}
   {{ $nameForSlug := $authorName | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" }}
   {{ $contributorSlug := $nameForSlug | anchorize }}
-  {{ $contributorPage := $.Site.GetPage (printf "contributors/%s" $contributorSlug) }}
+  {{ $contributorPage := site.GetPage (printf "contributors/%s" $contributorSlug) }}
 
   <div class="author-bio-item mb-8 flex flex-col {{ if $isFirstAuthor }}md:flex-row{{ else }}md:flex-row{{ end }} items-start gap-6">
     {{ if $contributorPage }}

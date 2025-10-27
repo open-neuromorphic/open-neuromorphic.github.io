@@ -50,13 +50,16 @@
         {{ partial $sidebar_content_partial $page_context }}
       </div>
 
-      {{ if .Params.show_author_bios }}
-      <div class="lg:col-10 mx-auto">
-        {{ partial "components/author-bios.html" . }}
-      </div>
-      {{ else }}
-      {{ partial "components/speaker-details.html" . }}
+      {{ $title := "About the Speaker" }}
+      {{ with .Params.author }}
+      {{ if gt (len .) 1 }}
+      {{ $title = "About the Speakers" }}
       {{ end }}
+      {{ end }}
+
+      <div class="lg:col-10 mx-auto">
+        {{ partial "components/author-bios.html" (dict "context" . "title" $title) }}
+      </div>
 
       <div class="lg:col-12 mt-16">
         {{ partial "components/content-contribute-cta.html" (dict
