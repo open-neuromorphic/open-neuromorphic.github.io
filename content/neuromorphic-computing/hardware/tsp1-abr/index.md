@@ -3,10 +3,10 @@ active_product: true
 title: "TSP1 - Applied Brain Research"
 description: "Explore TSP1 by Applied Brain Research, a neuromorphic time series processor designed for ultra-low power edge AI applications featuring state-space network processing for real-time speech recognition and biosignal classification."
 type: neuromorphic-hardware
-image: tp1.jpg
+image: tp1.png
 organization:
   group_name: null
-  org_logo: abr.jpg
+  org_logo: abr.png
   org_name: Applied Brain Research
   org_website: https://www.appliedbrainresearch.com/
   product_page_link: https://www.appliedbrainresearch.com/product
@@ -21,8 +21,8 @@ product:
   on_chip_learning: false
   power: <2mW (keyword spotting), <50mW (full vocabulary speech recognition)
   release_year: 2025
+  announce_date: 2025-11-15 
   release_date: 2025-11-15
-  announce_date: 2024-09-09
   software: NengoEdge
   interfaces: I2C, SPI, I2S, PDM, GPIO, UART
   package: 2.16mm x 3mm, 35-pin WLCSP package
