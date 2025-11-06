@@ -1,7 +1,7 @@
 ---
 active_product: true
 title: "TSP1 - Applied Brain Research"
-description: "Explore TSP1 by Applied Brain Research, a neuromorphic time series processor designed for ultra-low power edge AI applications featuring state-space network processing for real-time speech recognition and biosignal classification."
+description: "Explore TSP1 by Applied Brain Research, a Time Series Processor designed for ultra-low power edge AI applications featuring state-space network processing for real-time speech recognition and biosignal classification."
 type: neuromorphic-hardware
 image: tp1.png
 organization:
@@ -20,15 +20,12 @@ product:
   weight_bits: "4-bit or 8-bit"
   on_chip_learning: false
   power: <2mW (keyword spotting), <50mW (full vocabulary speech recognition)
-  release_year: 2025
-  announce_date: 2025-11-15 
-  release_date: 2025-11-15
-  software: NengoEdge
+  announce_date: 2025-09-01 
   interfaces: I2C, SPI, I2S, PDM, GPIO, UART
   package: 2.16mm x 3mm, 35-pin WLCSP package
   status:
     announced: true
-    released: true
+    released: false
     retired: false
 product_name: TSP1
 summary: The TSP1 is a time-series neural network accelerator chip designed for ultra-low power edge AI applications, delivering full vocabulary speech recognition at 100x lower power than traditional edge GPU solutions while supporting state-space network processing for real-time time-series inference.
@@ -40,14 +37,14 @@ summary: The TSP1 is a time-series neural network accelerator chip designed for 
 
 The Applied Brain Research TSP1 is a groundbreaking time-series neural network accelerator designed to bring advanced AI capabilities to battery-powered edge devices. The chip enables natural voice interfaces, biosignal classification, and other sensor signal processing applications with unprecedented power efficiency. Based on ABR's patented state-space model processing technology, including the Legendre Memory Unit (LMU), the TSP1 represents a paradigm shift in how time-series data is processed at the edge.
 
-The TSP1 was publicly demonstrated in September 2024 as the world's first self-contained single-chip solution for full vocabulary automatic speech recognition, showcasing both English and Mandarin implementations. The chip delivers 100x lower power consumption compared to edge GPU solutions while supporting AI models 10-100x larger than other low-power edge AI hardware.
+The TSP1 was publicly demonstrated in September 2025 as the world's first self-contained single-chip solution for full vocabulary automatic speech recognition, showcasing both English and Mandarin implementations. The chip delivers 100x lower power consumption compared to edge GPU solutions while supporting AI models 10-100x larger than other low-power edge AI hardware.
 
 ## Architecture
 
 The TSP1 features a specialized architecture optimized for time-series processing:
 
 **Processing Core:**
-- High-efficiency neural network processing element fabric based on ABR's proprietary state-space network architecture
+- High-efficiency neural processing element fabric based on ABR's proprietary state-space network architecture
 - 32-bit RISC microcontroller unit (MCU) for control and preprocessing
 - Supports up to 9 million 8-bit or 18 million 4-bit state-space neural network parameters
 - Integrated weight memory and SRAM for on-chip model storag
@@ -57,7 +54,7 @@ The TSP1 features a specialized architecture optimized for time-series processin
 - Voltage range: VDD 1.65-3.6V with integrated 0.8V core DC-DC supply
 - Keyword spotting trigger function: <2mW
 - Full vocabulary speech recognition: <50mW
-- Low latency inference: <20ms
+- Low latency inference for full vocabulary ASR: <120ms
 - Integrated low-power PMU and clock management
 
 **Interfaces:**
