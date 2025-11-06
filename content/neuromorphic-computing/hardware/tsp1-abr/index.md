@@ -3,7 +3,7 @@ active_product: true
 title: "TSP1 - Applied Brain Research"
 description: "Explore TSP1 by Applied Brain Research, a Time Series Processor designed for ultra-low power edge AI applications featuring state-space network processing for real-time speech recognition and biosignal classification."
 type: neuromorphic-hardware
-image: tp1.png
+image: tsp1.png
 organization:
   group_name: null
   org_logo: abr.png
