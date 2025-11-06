@@ -21,6 +21,8 @@ product:
   on_chip_learning: false
   power: <2mW (keyword spotting), <50mW (full vocabulary speech recognition)
   announce_date: 2025-09-01 
+  release_year: 2025
+  release_date: "2025-09-21" # Placeholder
   interfaces: I2C, SPI, I2S, PDM, GPIO, UART
   package: 2.16mm x 3mm, 35-pin WLCSP package
   status:
