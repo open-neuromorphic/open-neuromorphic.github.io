@@ -1,8 +1,8 @@
 ---
 title: "The TSP1 Neural Network Accelerator Chip: Advancing Brain-Inspired Computing"
 author:
-- "Chris Eliasmith"
-- "Danny Rosen"
+  - "Chris Eliasmith"
+  - "Danny Rosen"
 date: 2025-11-11
 start_time: "8:00"
 end_time: "9:00"
@@ -40,7 +40,7 @@ The **TSP1 (Time Series Processor 1)** represents a significant advancement in b
 - **Scalable architecture** for building large-scale AI applications
 - **Native support** for temporal dynamics and time series processing
 
-This hardware platform enables researchers and developers to deploy sophisticated cognitive models and neural networks in real-world applications where power efficiency and real-time performance are critical.
+This hardware platform enables researchers and developers to deploy sophisticated AI applications and neural networks in real-world applications where power efficiency and real-time performance are critical.
 
 ## Who Should Attend
 
@@ -60,7 +60,6 @@ His research focuses on large-scale brain modelling, neural dynamics, efficient 
 ## Resources
 
 - [Applied Brain Research Technology Page](https://www.appliedbrainresearch.com/technology)
-- [Nengo Neural Simulator](../../neuromorphic-computing/software/snn-frameworks/nengo/)
 - [Centre for Theoretical Neuroscience](https://uwaterloo.ca/centre-for-theoretical-neuroscience/)
 
 ## Registration
