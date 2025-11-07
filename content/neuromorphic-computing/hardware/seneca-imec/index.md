@@ -7,7 +7,7 @@ organization:
   group_name: null
   org_logo: imec.png
   org_name: imec
-  org_website: null
+  org_website: https://www.imec-int.com/en/the-netherlands
   product_page_link: https://imec-publications.be/entities/publication/0ad2a426-20f0-4fc4-b41b-35de4b55f9c9
   social_media_links:
     linkedin: https://www.linkedin.com/company/imec-the-netherlands
