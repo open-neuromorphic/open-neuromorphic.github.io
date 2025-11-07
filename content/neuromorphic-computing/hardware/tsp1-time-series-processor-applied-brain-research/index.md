@@ -1,7 +1,7 @@
 ---
 active_product: true
 title: "TSP1 - Applied Brain Research"
-description: "Explore TSP1 by Applied Brain Research, a Time Series Processor designed for ultra-low power edge AI applications featuring state-space network processing for real-time speech recognition and biosignal classification."
+description: "Explore Time Series Processor 1 (TSP1) by Applied Brain Research, a Time Series Processor designed for ultra-low power edge AI applications featuring state-space network processing for real-time speech recognition and biosignal classification."
 type: neuromorphic-hardware
 image: tsp1.png
 organization:
@@ -30,16 +30,14 @@ product:
     released: false
     retired: false
 product_name: TSP1
-summary: The TSP1 is a time-series neural network accelerator chip designed for ultra-low power edge AI applications, delivering full vocabulary speech recognition at 100x lower power than traditional edge GPU solutions while supporting state-space network processing for real-time time-series inference.
+summary: The TSP1 is a time-series, brain-inspired chip designed for ultra-low power edge AI applications, delivering full vocabulary speech recognition at <50mW, supporting state-space network processing for real-time time-series inference.
 
 ---
 
 
 ## Overview
 
-The Applied Brain Research TSP1 is a groundbreaking time-series neural network accelerator designed to bring advanced AI capabilities to battery-powered edge devices. The chip enables natural voice interfaces, biosignal classification, and other sensor signal processing applications with unprecedented power efficiency. Based on ABR's patented state-space model processing technology, including the Legendre Memory Unit (LMU), the TSP1 represents a paradigm shift in how time-series data is processed at the edge.
-
-The TSP1 was publicly demonstrated in September 2025 as the world's first self-contained single-chip solution for full vocabulary automatic speech recognition, showcasing both English and Mandarin implementations. The chip delivers 100x lower power consumption compared to edge GPU solutions while supporting AI models 10-100x larger than other low-power edge AI hardware.
+The Applied Brain Research TSP1 is a time-series neural network accelerator designed to bring AI capabilities to battery-powered edge devices. The chip enables natural voice interfaces, biosignal classification, and other sensor signal processing applications with low power consumption. Based on ABR's patented state-space model processing technology, including the Legendre Memory Unit (LMU).
 
 ## Architecture
 
@@ -49,7 +47,7 @@ The TSP1 features a specialized architecture optimized for time-series processin
 - High-efficiency neural processing element fabric based on ABR's proprietary state-space network architecture
 - 32-bit RISC microcontroller unit (MCU) for control and preprocessing
 - Supports up to 9 million 8-bit or 18 million 4-bit state-space neural network parameters
-- Integrated weight memory and SRAM for on-chip model storag
+- Integrated weight memory and SRAM for on-chip model storage
 - Secure on-chip non-volatile storage for networks and firmware
 
 **Power and Performance:**
