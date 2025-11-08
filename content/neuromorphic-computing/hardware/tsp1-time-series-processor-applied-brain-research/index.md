@@ -43,28 +43,27 @@ The Applied Brain Research TSP1 is a time-series neural network accelerator desi
 
 The TSP1 features a specialized architecture optimized for time-series processing:
 
-**Processing Core:**
+### Processing Core
 - High-efficiency neural processing element fabric based on ABR's proprietary state-space network architecture
 - 32-bit RISC microcontroller unit (MCU) for control and preprocessing
 - Supports up to 9 million 8-bit or 18 million 4-bit state-space neural network parameters
 - Integrated weight memory and SRAM for on-chip model storage
 - Secure on-chip non-volatile storage for networks and firmware
 
-**Power and Performance:**
+### Power and Performance
 - Voltage range: VDD 1.65-3.6V with integrated 0.8V core DC-DC supply
 - Keyword spotting trigger function: <2mW
 - Full vocabulary speech recognition: <50mW
 - Low latency inference for full vocabulary ASR: <120ms
 - Integrated low-power PMU and clock management
 
-**Interfaces:**
+### Interfaces
 - Up to 4 stereo audio inputs
 - One TDM streaming output
 - SPI and I2C master interfaces for sensor integration
 - I2C and SPI target interface for host CPU communication
 - Multiple programmable GPIO pins
 - UART support
-
-**Package Options:**
+### Package Options
 - 42-pin WLCSP (0.5mm pitch)
 - 44-pin QFN package
