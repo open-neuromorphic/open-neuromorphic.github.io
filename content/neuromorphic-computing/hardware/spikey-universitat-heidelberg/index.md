@@ -34,7 +34,6 @@ summary: The Spikey chip is an accelerated spiking neuromorphic system integrati
   384 integrate-and-fire neurons, 98k plastic synapses, and event routing.
   It enables fast emulation of complex neural dynamics and exploration of STDP-type synaptic plasticity.
 title: Spikey — Heidelberg University
-type: neuromorphic-hardware
 ---
 
 The Spikey accelerated neuromorphic system is an integrated circuit architecture for emulating biologically-inspired spiking neural networks.
