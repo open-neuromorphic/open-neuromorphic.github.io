@@ -8,10 +8,8 @@ date: 2024-10-08
 description: "Alexandre Marcireau and Petruț Bogdan discuss the Faery library's integration and interaction with Innatera hardware and the Neuromorphic Intermediate Representation (NIR)."
 upcoming: false
 video: "1Jz3cj2y1k0"
-speaker_photo: "images/speakers/multi-speaker-placeholder.png" # Placeholder, please replace
 image: "faery-innatera-nir-hacking.jpg" # Placeholder, please create
 type: "hacking-hours"
-speaker_bio: "Alexandre Marcireau (International Center for Neuromorphic Systems, Western Sydney) and Petruț Bogdan (Innatera) are software developers active in the neuromorphic community, contributing to tools like Faery and exploring hardware-software co-design with platforms like Innatera and standards like NIR."
 software_tags: ["nengo", "aestream", "norse", "spyx", "faery", "neuromorphic-intermediate-representation", "nirtorch"]
 hardware_tags: ["pulsar-by-innatera","snp-by-innatera"]
 ---

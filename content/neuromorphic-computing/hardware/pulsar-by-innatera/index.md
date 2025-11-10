@@ -13,7 +13,7 @@ organization:
   social_media_links:
     linkedin: "https://www.linkedin.com/company/innatera/"
 product:
-  announced_date: "2025-05-21" # Based on T1, will use this as placeholder
+  announced_date: 2025-05-21
   applications: "Wearables, Hearables, Smart Home, IoT, Industrial Monitoring"
   chip_type: "Mixed-signal"
   neurons: "N/A" # Specific numbers not on page
@@ -23,7 +23,7 @@ product:
   on_chip_learning: false
   power: "< 1mW (microwatt levels)"
   release_year: 2025
-  release_date: "2025-05-21" # Placeholder
+  release_date: 2025-05-21
   software: "Talamo SDK"
   status:
     announced: true

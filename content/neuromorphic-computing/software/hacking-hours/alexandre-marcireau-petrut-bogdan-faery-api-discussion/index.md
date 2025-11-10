@@ -8,10 +8,8 @@ date: 2024-10-22
 description: "An in-depth discussion on the Faery API with Alexandre Marcireau, Petruț Bogdan, and host Jens E. Pedersen."
 upcoming: false
 video: "GVJb6oFJhpA"
-speaker_photo: "images/speakers/multi-speaker-placeholder.png" # Placeholder for multiple speakers
 image: "faery-api-discussion-marcireau-bogdan.jpg"
 type: "hacking-hours"
-speaker_bio: "Alexandre Marcireau and Petruț Bogdan are developers and contributors in the neuromorphic software community, with a focus on event-based data processing tools like Faery."
 software_tags: ["faery"]
 ---
 

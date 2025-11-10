@@ -7,10 +7,8 @@ date: 2024-11-05
 description: "Alexandre Marcireau discusses the v0.3.0 release of Faery, an event processing library, in this Hacking Hour session."
 upcoming: false
 video: "Wz1s0dFp1II"
-speaker_photo: "images/speakers/alexandre-marcireau-placeholder.png"
 image: "alexandre-marcireau-faery-release-v0-3-0.jpg"
 type: "hacking-hours"
-speaker_bio: "Alexandre Marcireau is a software developer and contributor in the neuromorphic computing space, known for his work on the Faery event processing library."
 software_tags: ["faery"]
 ---
 

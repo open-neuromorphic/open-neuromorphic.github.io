@@ -14,7 +14,6 @@ author:
   - "Danny Rosen"
 tags: ["community", "open-source", "collaboration", "supporters", "infrastructure", "strategic-vision"]
 software_tags: ["bindsnet", "brian", "genn", "faery", "neuromorphic-intermediate-representation", "nirtorch", "aestream", "snntorch"]
-show_author_bios: true
 ---
 
 Our recent community panel, "[Open-Source Neuromorphic Research Infrastructure](/workshops/open-source-neuromorphic-infrastructure/)," was a tremendous success. Organized by ONM Chair Jens E Pedersen and brilliantly hosted by Giulia D'Angelo, the event brought together the maintainers of the most critical tools in our field for a much-needed discussion on building a more unified, competitive, and accessible ecosystem.

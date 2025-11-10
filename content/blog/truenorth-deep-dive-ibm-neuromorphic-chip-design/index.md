@@ -10,7 +10,6 @@ tags: ["research", "hardware", "digital", "neuromorphic"]
 showTableOfContents: true
 math: true
 hardware_tags: ["truenorth-ibm"]
-show_author_bios: true
 ---
 
 ## Why do we want to emulate the brain?

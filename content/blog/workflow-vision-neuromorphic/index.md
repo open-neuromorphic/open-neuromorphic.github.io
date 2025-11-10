@@ -10,7 +10,6 @@ image_attribution:
 draft: false
 author: ["Jens E. Pedersen", "Danny Rosen", "Justin Riddiough"]
 showTableOfContents: true
-show_author_bios: true
 tags: ["strategic-vision", "workflow", "infrastructure", "community"]
 ---
 
