@@ -37,7 +37,6 @@ summary: The BrainScaleS-2 is an accelerated spiking neuromorphic system-on-chip
   of synaptic plasticity rules. The architecture supports training of deep spiking
   and non-spiking neural networks using hybrid techniques like surrogate gradients.
 title: BrainScaleS-2 — Heidelberg University
-type: neuromorphic-hardware
 software_tags: ['hxtorch','jaxsnn','pynn-brainscales2']
 ---
 
