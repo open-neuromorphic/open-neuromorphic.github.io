@@ -8,8 +8,8 @@ start_time: "8:00"
 end_time: "9:00"
 time_zone: "EST"
 description: "Join Chris Eliasmith for an in-depth exploration of the TSP1 chip from Applied Brain Research. Learn about this groundbreaking hardware platform and its implications for brain-inspired computing."
-upcoming: true
-video: ""
+upcoming: false
+video: "gk-ieigCkmM"
 aliases:
   - /workshops/tsp1-neural-chip-chris-eliasmith/
 image: "ABR-TSP1-Chip.jpg"
