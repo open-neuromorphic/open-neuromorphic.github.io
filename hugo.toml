@@ -180,7 +180,7 @@ preloader = "" # use jpg, png, svg or gif format.
 [navigation_button]
 enable = true
 label = "Join Discord"
-label_sub = "(2400+ joined)"
+label_sub = "(2500+ joined)"
 link = "https://discord.gg/hUygPUdD8E"
 
 # search
