@@ -4,56 +4,68 @@
 {{ $default_image_path := .default_image_path | default "images/workshop-thumbnail-default.png" }}
 
 {{ $image_param := $ctx.Params.image }}
+
+{{/* Fallback: Check for generated OG image in bundle if explicit image is missing */}}
+{{ if not $image_param }}
+{{ if $ctx.File }}
+{{ $pageSlug := path.Base $ctx.File.Dir }}
+{{ $ogImageName := printf "%s-og-16x9.jpg" $pageSlug }}
+{{ with $ctx.Resources.GetMatch $ogImageName }}
+{{ $image_param = .Name }}
+{{ end }}
+{{ end }}
+{{ end }}
+
 {{ $video_id := $ctx.Params.video }}
 
 {{ $base_class := "event-card" }}
 {{ $variant_class := printf "%s--%s" $base_class $variant }}
 
 <div class="{{ $base_class }} {{ $variant_class }} {{ if eq $variant "wide" }}row{{ end }}">
-  {{/* Media Column */}}
-  <div class="{{ if eq $variant "wide" }}lg:col-4 md:col-12{{ end }} {{ $base_class }}__media-container">
+{{/* Media Column */}}
+<div class="{{ if eq $variant "wide" }}lg:col-4 md:col-12{{ end }} {{ $base_class }}__media-container">
 
-    {{ if and (eq $variant "featured") $video_id }}
-      <div class="mb-4 rounded">
-        {{ partial "youtube-lite.html" (dict "Id" $video_id) }}
-      </div>
-    {{ else if $image_param }}
-      <a href="{{ $ctx.RelPermalink }}" class="{{ $base_class }}__image-link relative block group">
-        {{ partial "image" (dict "Src" $image_param "Context" $ctx "Alt" $ctx.Title "Class" (printf "%s__image" $base_class) "Size" $image_size) }}
-        {{ if $video_id }}
-          {{ partial "components/video-play-overlay.html" (dict "rounding_class" "rounded") }}
-        {{ end }}
-      </a>
-    {{ else }}
-      <a href="{{ $ctx.RelPermalink }}" class="{{ $base_class }}__image-link relative block group">
-        {{ partial "image" (dict "Src" $default_image_path "Alt" $ctx.Title "Class" (printf "%s__image %s__image--default" $base_class $base_class) "Size" $image_size) }}
-        {{ if $video_id }}
-          {{ partial "components/video-play-overlay.html" (dict "rounding_class" "rounded") }}
-        {{ end }}
-      </a>
-    {{ end }}
-  </div>
+{{ if and (eq $variant "featured") $video_id }}
+<div class="mb-4 rounded">
+  {{ partial "youtube-lite.html" (dict "Id" $video_id) }}
+</div>
+{{ else if $image_param }}
+<a href="{{ $ctx.RelPermalink }}" class="{{ $base_class }}__image-link relative block group">
+  {{ partial "image" (dict "Src" $image_param "Context" $ctx "Alt" $ctx.Title "Class" (printf "%s__image" $base_class) "Size" $image_size) }}
+  {{ if $video_id }}
+  {{ partial "components/video-play-overlay.html" (dict "rounding_class" "rounded") }}
+  {{ end }}
+</a>
+{{ else }}
+<a href="{{ $ctx.RelPermalink }}" class="{{ $base_class }}__image-link relative block group">
+  {{ partial "image" (dict "Src" $default_image_path "Alt" $ctx.Title "Class" (printf "%s__image %s__image--default" $base_class $base_class) "Size" $image_size) }}
+  {{ if $video_id }}
+  {{ partial "components/video-play-overlay.html" (dict "rounding_class" "rounded") }}
+  {{ end }}
+</a>
+{{ end }}
+</div>
 
-  {{/* Content Column */}}
-  <div class="{{ if eq $variant "wide" }}lg:col-8 md:col-12{{ end }} {{ $base_class }}__content-container">
-    <h4 class="{{ $base_class }}__title {{ if eq $variant "wide" }}mb-3 md:pt-4 lg:pt-0{{ else }}mb-3{{ end }}">
-      <a href="{{ $ctx.RelPermalink }}">{{ $ctx.Title }}</a>
-    </h4>
-    <ul class="{{ $base_class }}__meta-list">
-      <li class="{{ $base_class }}__meta-item inline-flex items-center">
-        {{ partial "icon.html" (dict "style" "regular" "name" "circle-user" "class" "mr-2") }}{{ partial "components/author-links.html" $ctx }}
-      </li>
-      {{ if $ctx.Date }}
-      <li class="{{ $base_class }}__meta-item inline-flex items-center">
-        {{ partial "icon.html" (dict "style" "regular" "name" "calendar" "class" "mr-2") }}{{ $ctx.Date.Format "January 2, 2006" }}
-      </li>
-      {{ end }}
-      {{ if $ctx.Params.upcoming }}
-      <li class="{{ $base_class }}__meta-item inline-flex items-center">
-        {{ partial "icon.html" (dict "style" "regular" "name" "clock" "class" "mr-2") }}{{ $ctx.Params.start_time }} - {{ $ctx.Params.end_time }} {{ $ctx.Params.time_zone }}
-      </li>
-      {{ end }}
-    </ul>
-    <p class="{{ $base_class }}__description {{ if eq $variant "wide" }}mb-2{{ else }}mb-6{{ end }}">{{ $ctx.Description }}</p>
-  </div>
+{{/* Content Column */}}
+<div class="{{ if eq $variant "wide" }}lg:col-8 md:col-12{{ end }} {{ $base_class }}__content-container">
+<h4 class="{{ $base_class }}__title {{ if eq $variant "wide" }}mb-3 md:pt-4 lg:pt-0{{ else }}mb-3{{ end }}">
+<a href="{{ $ctx.RelPermalink }}">{{ $ctx.Title }}</a>
+</h4>
+<ul class="{{ $base_class }}__meta-list">
+  <li class="{{ $base_class }}__meta-item inline-flex items-center">
+    {{ partial "icon.html" (dict "style" "regular" "name" "circle-user" "class" "mr-2") }}{{ partial "components/author-links.html" $ctx }}
+  </li>
+  {{ if $ctx.Date }}
+  <li class="{{ $base_class }}__meta-item inline-flex items-center">
+    {{ partial "icon.html" (dict "style" "regular" "name" "calendar" "class" "mr-2") }}{{ $ctx.Date.Format "January 2, 2006" }}
+  </li>
+  {{ end }}
+  {{ if $ctx.Params.upcoming }}
+  <li class="{{ $base_class }}__meta-item inline-flex items-center">
+    {{ partial "icon.html" (dict "style" "regular" "name" "clock" "class" "mr-2") }}{{ $ctx.Params.start_time }} - {{ $ctx.Params.end_time }} {{ $ctx.Params.time_zone }}
+  </li>
+  {{ end }}
+</ul>
+<p class="{{ $base_class }}__description {{ if eq $variant "wide" }}mb-2{{ else }}mb-6{{ end }}">{{ $ctx.Description }}</p>
+</div>
 </div>
