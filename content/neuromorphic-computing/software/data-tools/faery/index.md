@@ -3,7 +3,7 @@ title: "Faery"
 type: neuromorphic-software
 description: "A modern, fast, and friendly Python library for processing event-based camera data, with a focus on streaming and interoperability."
 logo: "faery.png"
-website: "https://faery.readthedocs.io/"
+website: "https://aestream.github.io/faery/"
 dependencies: "NumPy, Rust"
 field_of_application: "Data Processing"
 source_code: "https://github.com/aestream/faery"
