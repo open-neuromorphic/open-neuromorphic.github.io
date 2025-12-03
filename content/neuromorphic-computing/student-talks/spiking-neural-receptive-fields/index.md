@@ -1,7 +1,7 @@
 ---
 title: "Spiking Neural Receptive Fields" 
 author:
-  - "Jens E. Pedersen" 
+  - "Jens E Pedersen" 
 date: 2025-12-05 # Date of the student talk (YYYY-MM-DD).
 start_time: "08:00" # Event start time (24-hour format HH:MM).
 end_time: "09:15"   # Event end time (24-hour format HH:MM).
