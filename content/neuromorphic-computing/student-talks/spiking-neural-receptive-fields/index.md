@@ -1,7 +1,7 @@
 ---
-title: "Student Talk: Spiking Neural Receptive Fields" 
+title: "Spiking Neural Receptive Fields" 
 author:
-  - "Jens Egholm Pedersen" 
+  - "Jens E. Pedersen" 
 date: 2025-12-05 # Date of the student talk (YYYY-MM-DD).
 start_time: "08:00" # Event start time (24-hour format HH:MM).
 end_time: "09:15"   # Event end time (24-hour format HH:MM).
@@ -10,7 +10,6 @@ description: "Join us for an insightful student talk on Spiking Neural Receptive
 upcoming: true 
 upcoming_url: "https://dtudk.zoom.us/j/68487370163"
 video: ""       # After the event, add the YouTube video ID (e.g., "dQw4w9WgXcQ").
-image: "student-talk-banner.png" # Main banner image (1200x630px ideal for sharing). Place in this student talk's folder.
 type: "student-talks" 
 
 # Optional: Add links to slides, code, or notebooks if available after the student talk.
