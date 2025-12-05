@@ -1,0 +1,102 @@
+name: "New Software Tool"
+description: "Submit a new framework, library, or data tool for the Software Guide."
+title: "[Software]: <Name of Software>"
+labels: ["content", "software"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for contributing to the Open Neuromorphic Software Guide!
+
+  - type: input
+    id: software_name
+    attributes:
+      label: Software Name
+      placeholder: "e.g. snnTorch"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Short Description
+      description: A concise summary for the card preview and SEO (120-160 characters).
+    validations:
+      required: true
+
+  - type: input
+    id: repository
+    attributes:
+      label: Source Code URL (GitHub/GitLab)
+      placeholder: "https://github.com/org/repo"
+    validations:
+      required: true
+
+  - type: input
+    id: website
+    attributes:
+      label: Documentation/Website URL
+      placeholder: "https://..."
+
+  - type: input
+    id: pypi_id
+    attributes:
+      label: PyPI Package Name (if applicable)
+      description: Used to generate the version badge.
+      placeholder: "e.g. snntorch"
+
+  - type: input
+    id: language
+    attributes:
+      label: Programming Language
+      placeholder: "e.g. Python, C++"
+    validations:
+      required: true
+
+  - type: input
+    id: license
+    attributes:
+      label: License
+      placeholder: "e.g. MIT, GPL-3.0, Apache-2.0"
+    validations:
+      required: true
+
+  - type: input
+    id: dependencies
+    attributes:
+      label: Key Dependencies
+      placeholder: "e.g. PyTorch, JAX, NumPy"
+
+  - type: input
+    id: field_of_application
+    attributes:
+      label: Field of Application
+      placeholder: "e.g. Machine Learning, Neuroscience, Data Processing"
+
+  - type: checkboxes
+    id: capabilities
+    attributes:
+      label: Capabilities
+      options:
+        - label: Supports Neuromorphic Hardware
+        - label: Supports NIR (Neuromorphic Intermediate Representation)
+
+  - type: textarea
+    id: maintainers
+    attributes:
+      label: Maintainer(s)
+      description: Name of the primary maintainer or organization.
+    validations:
+      required: true
+
+  - type: textarea
+    id: overview
+    attributes:
+      label: Detailed Overview
+      description: |
+        Please provide a detailed overview.
+        - What problem does it solve?
+        - Key features?
+        - Who is it for?
+    validations:
+      required: true
