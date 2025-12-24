@@ -11,15 +11,39 @@
     </div>
 
     {{ $all_hardware := where .Site.RegularPages "Type" "neuromorphic-hardware" }}
-    {{ $grouped_by_year := $all_hardware.GroupByParam "product.release_year" }}
-    {{ $sorted_groups := sort $grouped_by_year "Key" "desc" }}
+
+    {{/* --- LOGIC: Manual Grouping for robustness across Hugo versions --- */}}
+    {{ $groups := dict }}
+
+    {{ range $all_hardware }}
+    {{ if and .Params.product .Params.product.release_year }}
+    {{/* Force year to string to ensure consistent grouping keys */}}
+    {{ $year := printf "%v" .Params.product.release_year }}
+
+    {{/* Get existing slice for this year, or create empty one */}}
+    {{ $list := index $groups $year | default slice }}
+    {{ $list = $list | append . }}
+
+    {{/* Merge back into map */}}
+    {{ $groups = merge $groups (dict $year $list) }}
+    {{ end }}
+    {{ end }}
+
+    {{/* Extract keys (years) and sort them descending */}}
+    {{ $years := slice }}
+    {{ range $k, $v := $groups }}
+    {{ $years = $years | append $k }}
+    {{ end }}
+    {{ $sorted_years := sort $years "value" "desc" }}
 
     <ul class="max-w-4xl mx-auto list-none p-0">
-      {{ range $sorted_groups }}
+      {{ range $year := $sorted_years }}
+      {{ $pages := index $groups $year }}
       <li class="year-section mb-12 text-center">
-        <h2 class="text-3xl font-bold mb-6 pb-2 border-primary dark:border-darkmode-primary">{{ .Key }}</h2>
+        <h2 class="text-3xl font-bold mb-6 pb-2 border-primary dark:border-darkmode-primary">{{ $year }}</h2>
         <ul class="text-left space-y-6 list-none p-0">
-          {{ $sorted_pages_in_year := sort .Pages ".Params.product.release_date" "desc" }}
+          {{/* Sort pages within the year by specific date */}}
+          {{ $sorted_pages_in_year := sort $pages ".Params.product.release_date" "desc" }}
           {{ range $sorted_pages_in_year }}
           <li>
             {{ partial "components/hardware-card-wide.html" . }}
@@ -64,18 +88,20 @@
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const details = document.querySelector('#glossary details');
-    const summary = details.querySelector('summary');
-    const icon = summary.querySelector('.float-right');
+    if(details) {
+      const summary = details.querySelector('summary');
+      const icon = summary.querySelector('.float-right');
 
-    details.addEventListener('toggle', function() {
-      if (details.open) {
-        icon.textContent = '−';
-        icon.style.transform = 'rotate(0deg)';
-      } else {
-        icon.textContent = '+';
-        icon.style.transform = 'rotate(0deg)';
-      }
-    });
+      details.addEventListener('toggle', function() {
+        if (details.open) {
+          icon.textContent = '−';
+          icon.style.transform = 'rotate(0deg)';
+        } else {
+          icon.textContent = '+';
+          icon.style.transform = 'rotate(0deg)';
+        }
+      });
+    }
   });
 </script>
 {{ end }}
