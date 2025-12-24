@@ -17,6 +17,18 @@ type: "student-talks"
 speaker_slides: "https://jepedersen.dk/posts/talks/202512_onm_nrf/"
 speaker_paper: "https://www.nature.com/articles/s41467-025-63493-0" # External link
 # speaker_notebook: "my-notebook.ipynb" # Place in folder
+
+production_credits:
+  - name: "Justin Riddiough"
+    role: "Technical Oversight"
+  - name: "Chaitanya Gambali"
+    role: "Event Operations"
+  - name: "Sundararaman Rengarajan"
+    role: "Video & Media Operations"
+  - name: "Liam O'Sullivan"
+    role: "Scheduling & Coordination"
+  - name: "Marcos Mendoza"
+    role: "Social Media Promotion"
 ---
 
 Jens's published work, "Covariant spatio-temporal receptive fields for spiking neural networks” [2], addresses a fundamental challenge in neuromorphic computing: the lack of theoretical frameworks to guide efficient implementations. The work demonstrates that leaky integrator and leaky integrate-and-fire neuron models are provably covariant to a large class of geometric transformations, with two important implications: (1) we can build reliable and scalable neuromorphic computational pipelines and (2) we can solve spatio-temporal problems much more efficiently than conventional deep learning methods. The paper demonstrates a regression problem where spiking neural networks significantly outperform comparable non-neuromorphic networks, even when the latter have access to multiple frames. Additionally, by imbuing the network with spatio-temporal priors their performance improves by 42.4% for leaky integrators and 20.3% for leaky integrate-and-fire models. This work establishes a principled computational framework connecting scale-space theory, visual neuroscience, and neuromorphic engineering, paving the way for theoretically grounded event-based processing systems.
