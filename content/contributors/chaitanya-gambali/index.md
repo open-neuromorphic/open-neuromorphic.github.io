@@ -10,7 +10,7 @@ social:
     link: "https://www.linkedin.com/in/gs-chaitanya/"
     title: "linkedin"
   - icon: "fa-solid fa-graduation-cap"
-    link: "https://scholar.google.com/citations?user=J_I1-ZoAAAAJ&hl=en" # Inferred from search results
+    link: "https://scholar.google.com/citations?user=aC66lQQAAAAJ&hl=en"
     title: "scholar"
 draft: false
 ---

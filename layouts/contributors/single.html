@@ -1,3 +1,4 @@
+{{/* layouts/contributors/single.html */}}
 {{ define "main" }}
 {{ partial "page-header" . }}
 
@@ -36,7 +37,36 @@
         <h2 class="text-3xl font-semibold mb-8 text-center lg:text-left">Contributions</h2>
 
         {{ $contributorName := .Title }}
-        {{ $authoredPages := where site.RegularPages "Params.author" "intersect" (slice $contributorName) }}
+
+        {{/* --- UPDATED LOGIC START: Find authored pages AND credited pages --- */}}
+        {{ $allRelevantPages := where site.RegularPages "Type" "in" (slice "blog" "workshops" "student-talks" "hacking-hours" "initiatives") }}
+        {{ $authoredPages := slice }}
+
+        {{ range $allRelevantPages }}
+        {{ $page := . }}
+        {{ $isMatch := false }}
+
+        {{/* Check Author */}}
+        {{ if $page.Params.author }}
+        {{ if in $page.Params.author $contributorName }}
+        {{ $isMatch = true }}
+        {{ end }}
+        {{ end }}
+
+        {{/* Check Production Credits */}}
+        {{ if and (not $isMatch) $page.Params.production_credits }}
+        {{ range $page.Params.production_credits }}
+        {{ if eq .name $contributorName }}
+        {{ $isMatch = true }}
+        {{ end }}
+        {{ end }}
+        {{ end }}
+
+        {{ if $isMatch }}
+        {{ $authoredPages = $authoredPages | append $page }}
+        {{ end }}
+        {{ end }}
+        {{/* --- UPDATED LOGIC END --- */}}
 
         {{/* Section 1: Initiatives */}}
         {{ $initiatives_unsorted := where $authoredPages "Type" "eq" "initiatives" }}
@@ -54,7 +84,7 @@
         </div>
         {{ end }}
 
-        {{/* Section 2: Combined Timeline of Other Contributions - CORRECTED LOGIC */}}
+        {{/* Section 2: Combined Timeline of Other Contributions */}}
         {{ $otherContributions := slice }}
         {{ range $authoredPages }}
         {{ if not (in $initiatives .) }}
@@ -87,6 +117,18 @@
                     <p class="text-sm text-gray-500 dark:text-gray-400">
                       {{ .Date.Format "January 2" }}
                     </p>
+
+                    {{/* Show specific role if it was a production credit */}}
+                    {{ $creditRole := "" }}
+                    {{ range .Params.production_credits }}
+                    {{ if eq .name $contributorName }}
+                    {{ $creditRole = .role }}
+                    {{ end }}
+                    {{ end }}
+
+                    {{ if $creditRole }}
+                    <p class="text-xs text-primary dark:text-darkmode-primary font-medium mt-1">Role: {{ $creditRole }}</p>
+                    {{ end }}
                   </div>
                   {{/* Right side: Badge */}}
                   <span class="timeline-item-badge flex-shrink-0">
