@@ -2,30 +2,35 @@
 {{ if $maintainer_slugs }}
 {{ $maintainers := slice }}
 {{ range $maintainer_slugs }}
-  {{ $page := site.GetPage (printf "contributors/%s" .) }}
-  {{ if $page }}{{ $maintainers = $maintainers | append $page }}{{ end }}
+{{ $page := site.GetPage (printf "contributors/%s" .) }}
+{{ if $page }}{{ $maintainers = $maintainers | append $page }}{{ end }}
 {{ end }}
+
+{{ $title := "Guide Curator" }}
+{{ if eq .Type "neuromorphic-hardware" }}{{ $title = "Hardware Curator" }}{{ end }}
+{{ if eq .Type "neuromorphic-software" }}{{ $title = "Software Curator" }}{{ end }}
+{{ if eq .Layout "community_projects" }}{{ $title = "Mission Board Operations" }}{{ end }}
 
 {{ if $maintainers }}
 <div class="px-4 pt-5 pb-5 content-panel">
   <strong class="text-xl">
-    Mission Board Operations
+    {{ $title }}
   </strong>
   <div class="mt-4 space-y-3">
     {{ range $maintainer := $maintainers }}
     <a href="{{ $maintainer.RelPermalink }}" class="group flex items-center gap-4 text-left p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-darkmode-theme-dark transition-colors">
       <div class="flex-shrink-0">
         {{ with $maintainer.Params.image }}
-          {{ partial "image" (dict "Src" . "Context" $maintainer "Alt" $maintainer.Title "Class" "w-16 h-16 rounded-full object-cover" "Command" "Fill" "Size" "64x64") }}
+        {{ partial "image" (dict "Src" . "Context" $maintainer "Alt" $maintainer.Title "Class" "w-16 h-16 rounded-full object-cover" "Command" "Fill" "Size" "64x64") }}
         {{ else }}
-          <div class="w-16 h-16 rounded-full bg-gray-200 dark:bg-darkmode-theme-dark flex items-center justify-center">
-            {{ partial "icon.html" (dict "style" "solid" "name" "user" "class" "text-2xl text-gray-400") }}
-          </div>
+        <div class="w-16 h-16 rounded-full bg-gray-200 dark:bg-darkmode-theme-dark flex items-center justify-center">
+          {{ partial "icon.html" (dict "style" "solid" "name" "user" "class" "text-2xl text-gray-400") }}
+        </div>
         {{ end }}
       </div>
       <div>
         <h5 class="font-bold text-dark dark:text-darkmode-dark group-hover:text-primary dark:group-hover:text-darkmode-primary">{{ $maintainer.Title }}</h5>
-        <p class="text-xs text-text dark:text-darkmode-text">Contact for questions or suggestions regarding this mission board.</p>
+        <p class="text-xs text-text dark:text-darkmode-text">Contact for questions or suggestions regarding this directory.</p>
       </div>
     </a>
     {{ end }}

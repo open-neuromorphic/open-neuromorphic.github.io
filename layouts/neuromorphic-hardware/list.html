@@ -3,81 +3,79 @@
 
 <section class="section pt-8">
   <div class="container">
-    <div class="prose dark:prose-invert max-w-none mx-auto text-center mb-12">
-      <p class="text-lg">
-        Welcome to the Open Neuromorphic Hardware Guide. This directory provides a comprehensive overview of neuromorphic hardware, from pioneering past projects to the latest commercial and research chips. Each entry includes key specifications, architectural details, and links to relevant publications.
-        For definitions of common terms, please see the <a href="#glossary">glossary</a> below.
-      </p>
-    </div>
+    <div class="row gx-5">
+      <!-- Hardware List Column -->
+      <div class="lg:col-8">
+        <div class="prose dark:prose-invert max-w-none mb-12 text-center mx-auto">
+          <p class="text-lg">
+            Welcome to the Open Neuromorphic Hardware Guide. This directory provides a comprehensive overview of neuromorphic hardware, from pioneering past projects to the latest commercial and research chips. Each entry includes key specifications, architectural details, and links to relevant publications.
+            For definitions of common terms, please see the <a href="#glossary">glossary</a> below.
+          </p>
+        </div>
 
-    {{ $all_hardware := where .Site.RegularPages "Type" "neuromorphic-hardware" }}
+        {{ $all_hardware := where .Site.RegularPages "Type" "neuromorphic-hardware" }}
+        {{ $groups := dict }}
+        {{ range $all_hardware }}
+        {{ if and .Params.product .Params.product.release_year }}
+        {{ $year := printf "%v" .Params.product.release_year }}
+        {{ $list := index $groups $year | default slice }}
+        {{ $list = $list | append . }}
+        {{ $groups = merge $groups (dict $year $list) }}
+        {{ end }}
+        {{ end }}
 
-    {{/* --- LOGIC: Manual Grouping for robustness across Hugo versions --- */}}
-    {{ $groups := dict }}
+        {{ $years := slice }}
+        {{ range $k, $v := $groups }}{{ $years = $years | append $k }}{{ end }}
+        {{ $sorted_years := sort $years "value" "desc" }}
 
-    {{ range $all_hardware }}
-    {{ if and .Params.product .Params.product.release_year }}
-    {{/* Force year to string to ensure consistent grouping keys */}}
-    {{ $year := printf "%v" .Params.product.release_year }}
-
-    {{/* Get existing slice for this year, or create empty one */}}
-    {{ $list := index $groups $year | default slice }}
-    {{ $list = $list | append . }}
-
-    {{/* Merge back into map */}}
-    {{ $groups = merge $groups (dict $year $list) }}
-    {{ end }}
-    {{ end }}
-
-    {{/* Extract keys (years) and sort them descending */}}
-    {{ $years := slice }}
-    {{ range $k, $v := $groups }}
-    {{ $years = $years | append $k }}
-    {{ end }}
-    {{ $sorted_years := sort $years "value" "desc" }}
-
-    <ul class="max-w-4xl mx-auto list-none p-0">
-      {{ range $year := $sorted_years }}
-      {{ $pages := index $groups $year }}
-      <li class="year-section mb-12 text-center">
-        <h2 class="text-3xl font-bold mb-6 pb-2 border-primary dark:border-darkmode-primary">{{ $year }}</h2>
-        <ul class="text-left space-y-6 list-none p-0">
-          {{/* Sort pages within the year by specific date */}}
-          {{ $sorted_pages_in_year := sort $pages ".Params.product.release_date" "desc" }}
-          {{ range $sorted_pages_in_year }}
-          <li>
-            {{ partial "components/hardware-card-wide.html" . }}
+        <ul class="list-none p-0">
+          {{ range $year := $sorted_years }}
+          {{ $pages := index $groups $year }}
+          <li class="year-section mb-12">
+            <h2 class="text-3xl font-bold mb-6 pb-2 border-b border-border dark:border-darkmode-border text-center lg:text-left">{{ $year }}</h2>
+            <ul class="space-y-6 list-none p-0">
+              {{ $sorted_pages_in_year := sort $pages ".Params.product.release_date" "desc" }}
+              {{ range $sorted_pages_in_year }}
+              <li>{{ partial "components/hardware-card-wide.html" . }}</li>
+              {{ end }}
+            </ul>
           </li>
           {{ end }}
         </ul>
-      </li>
-      {{ end }}
-    </ul>
 
-    <div class="max-w-4xl mx-auto mt-12 mb-16">
-      {{ partial "components/content-contribute-cta.html" (dict
-      "icon" "solid microchip"
-      "title" "Help Us <span class=\"gradient-text\">Improve this Guide</span>"
-      "description" "Our hardware guide is community-maintained. If you know of a chip we should add, see an error, or have updated information, please let us know by opening an issue on our GitHub repository."
-      "link" "https://github.com/open-neuromorphic/open-neuromorphic.github.io/issues/new/choose"
-      "link_text" "Suggest an Edit on GitHub"
-      ) }}
+        <div class="mt-12 mb-16">
+          {{ partial "components/content-contribute-cta.html" (dict
+          "icon" "solid microchip"
+          "title" "Help Us <span class=\"gradient-text\">Improve this Guide</span>"
+          "description" "Our hardware guide is community-maintained. If you know of a chip we should add, see an error, or have updated information, please let us know by opening an issue on our GitHub repository."
+          "link" "https://github.com/open-neuromorphic/open-neuromorphic.github.io/issues/new/choose"
+          "link_text" "Suggest an Edit on GitHub"
+          ) }}
+        </div>
+      </div>
+
+      <!-- Sidebar Column -->
+      <aside class="lg:col-4">
+        <div class="sticky top-24 space-y-6">
+          {{ partial "components/og-preview.html" . }}
+          {{ partial "components/page-maintainers.html" . }}
+        </div>
+      </aside>
     </div>
 
+    <!-- Original Glossary Position -->
     <div id="glossary" class="pt-12 max-w-4xl mx-auto">
       <h2 class="text-3xl font-bold text-center mb-8">Glossary of Terms</h2>
-      <details class="bg-theme-light dark:bg-darkmode-theme-light rounded-lg shadow-md p-6 cursor-pointer">
-        <summary class="font-semibold text-xl text-dark dark:text-darkmode-dark list-none">
-          <span class="summary-title">Click to expand/collapse glossary</span>
-          <span class="float-right transition-transform duration-300 transform group-open:rotate-180">+</span>
+      <details class="bg-theme-light dark:bg-darkmode-theme-light rounded-lg shadow-md p-6 cursor-pointer group">
+        <summary class="font-semibold text-xl text-dark dark:text-darkmode-dark list-none flex justify-between items-center">
+          <span>Click to expand/collapse glossary</span>
+          <span class="float-right transition-transform duration-300 text-2xl">+</span>
         </summary>
         <div class="mt-4 grid md:grid-cols-2 gap-x-8 gap-y-4 prose dark:prose-invert max-w-none">
-          {{ with .Params.glossary }}
-          {{ range . }}
+          {{ range .Params.glossary }}
           <div class="glossary-item">
             <p><strong>{{ .term }}:</strong> {{ .definition | markdownify }}</p>
           </div>
-          {{ end }}
           {{ end }}
         </div>
       </details>
@@ -90,16 +88,9 @@
     const details = document.querySelector('#glossary details');
     if(details) {
       const summary = details.querySelector('summary');
-      const icon = summary.querySelector('.float-right');
-
-      details.addEventListener('toggle', function() {
-        if (details.open) {
-          icon.textContent = '−';
-          icon.style.transform = 'rotate(0deg)';
-        } else {
-          icon.textContent = '+';
-          icon.style.transform = 'rotate(0deg)';
-        }
+      const icon = summary.querySelector('span:last-child');
+      details.addEventListener('toggle', () => {
+        icon.textContent = details.open ? '−' : '+';
       });
     }
   });
