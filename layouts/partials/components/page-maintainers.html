@@ -12,29 +12,54 @@
 {{ if eq .Layout "community_projects" }}{{ $title = "Mission Board Operations" }}{{ end }}
 
 {{ if $maintainers }}
-<div class="px-4 pt-5 pb-5 content-panel">
-  <strong class="text-xl">
-    {{ $title }}
-  </strong>
-  <div class="mt-4 space-y-3">
-    {{ range $maintainer := $maintainers }}
-    <a href="{{ $maintainer.RelPermalink }}" class="group flex items-center gap-4 text-left p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-darkmode-theme-dark transition-colors">
-      <div class="flex-shrink-0">
-        {{ with $maintainer.Params.image }}
-        {{ partial "image" (dict "Src" . "Context" $maintainer "Alt" $maintainer.Title "Class" "w-16 h-16 rounded-full object-cover" "Command" "Fill" "Size" "64x64") }}
-        {{ else }}
-        <div class="w-16 h-16 rounded-full bg-gray-200 dark:bg-darkmode-theme-dark flex items-center justify-center">
-          {{ partial "icon.html" (dict "style" "solid" "name" "user" "class" "text-2xl text-gray-400") }}
+<div class="space-y-6">
+  <div class="px-4 pt-5 pb-5 content-panel">
+    <strong class="text-xl">
+      {{ $title }}
+    </strong>
+    <div class="mt-4 space-y-3">
+      {{ range $maintainer := $maintainers }}
+      <div class="flex items-center gap-4 text-left p-2">
+        <div class="flex-shrink-0">
+          <a href="{{ $maintainer.RelPermalink }}">
+            {{ with $maintainer.Params.image }}
+            {{ partial "image" (dict "Src" . "Context" $maintainer "Alt" $maintainer.Title "Class" "w-16 h-16 rounded-full object-cover" "Command" "Fill" "Size" "64x64") }}
+            {{ else }}
+            <div class="w-16 h-16 rounded-full bg-gray-200 dark:bg-darkmode-theme-dark flex items-center justify-center">
+              {{ partial "icon.html" (dict "style" "solid" "name" "user" "class" "text-2xl text-gray-400") }}
+            </div>
+            {{ end }}
+          </a>
         </div>
-        {{ end }}
+        <div>
+          <h5 class="font-bold text-dark dark:text-darkmode-dark">
+            <a href="{{ $maintainer.RelPermalink }}" class="hover:text-primary dark:hover:text-darkmode-primary">{{ $maintainer.Title }}</a>
+          </h5>
+          <p class="text-xs text-text dark:text-darkmode-text leading-tight">Currently maintaining this directory.</p>
+        </div>
       </div>
-      <div>
-        <h5 class="font-bold text-dark dark:text-darkmode-dark group-hover:text-primary dark:group-hover:text-darkmode-primary">{{ $maintainer.Title }}</h5>
-        <p class="text-xs text-text dark:text-darkmode-text">Contact for questions or suggestions regarding this directory.</p>
-      </div>
-    </a>
-    {{ end }}
+      {{ end }}
+    </div>
+
+    <div class="mt-4 pt-4 border-t border-border dark:border-darkmode-border">
+      <p class="text-xs text-gray-600 dark:text-gray-400 mb-3">
+        Have a request or found an error?
+      </p>
+      <a href="https://github.com/open-neuromorphic/open-neuromorphic.github.io/issues" target="_blank" rel="noopener" class="btn btn-sm btn-new-outline w-full text-center">
+        {{ partial "icon.html" (dict "style" "brands" "name" "github" "class" "mr-2") }} Open a GitHub Issue
+      </a>
+    </div>
   </div>
+
+  {{/* Call to action for more curators */}}
+  {{ with site.GetPage "/volunteer-opportunities/hardware-software-guide-curator/" }}
+  <a href="{{ .RelPermalink }}" class="group block">
+    <div class="p-4 content-panel border-2 border-dashed border-primary/30 hover:border-primary transition-colors text-center">
+      <p class="text-sm font-semibold text-primary dark:text-darkmode-primary mb-1">Passionate about this guide?</p>
+      <p class="text-xs text-text dark:text-darkmode-text group-hover:underline">We're looking for expert curators. Join the team &rarr;</p>
+    </div>
+  </a>
+  {{ end }}
 </div>
 {{ end }}
 {{ end }}
