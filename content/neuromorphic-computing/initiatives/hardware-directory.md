@@ -8,6 +8,17 @@ author:
   - Danny Rosen
   - Alexander Hadjiivanov
   - José Antonio
+active_contributors:
+  - year: 2024
+    names: 
+      - Gregor Lenz
+      - Justin Riddiough
+      - Danny Rosen
+      - Alexander Hadjiivanov
+  - year: 2025
+    names: 
+      - Justin Riddiough
+      - José Antonio
 date: 2024-01-01
 draft: false
 type: initiatives

@@ -14,172 +14,192 @@
       ) }}
     </div>
 
-    {{- .Scratch.Set "contributorContent" (dict) -}}
+    {{/* --- STEP 1: SCAN CONTENT AND NORMALIZE CONTRIBUTIONS --- */}}
+    {{/* We build a map: Slug -> Slice of Contribution Objects {Page, Year, Role} */}}
+    {{- .Scratch.Set "contributorMap" (dict) -}}
+
     {{- $contentSectionsToScan := slice "blog" "workshops" -}}
     {{- $contentTypesToScan := slice "hacking-hours" "initiatives" "student-talks" -}}
-
-    {{/* --- UPDATED LOGIC START --- */}}
-    {{/* Get all pages that might have contributors (authors OR credits) */}}
+    
+    {{/* Get all pages that might have contributors */}}
     {{- $allPotentialPages := where site.RegularPages "Type" "in" (union $contentSectionsToScan $contentTypesToScan) -}}
 
-    {{- range $allPotentialPages -}}
-    {{- $page := . -}}
+    {{- range $page := $allPotentialPages -}}
+      {{- if or $page.Date (not $page.Date.IsZero) -}}
+      
+        {{/* Logic Branch A: Page has 'active_contributors' (Granular Year Control) */}}
+        {{- if $page.Params.active_contributors -}}
+          {{- range $yearBlock := $page.Params.active_contributors -}}
+            {{- $year := string $yearBlock.year -}}
+            {{- range $name := $yearBlock.names -}}
+              {{- $slug := $name | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" | anchorize -}}
+              {{- $contribObj := dict "Page" $page "Year" $year "Role" "Contributor" -}}
+              
+              {{- $currentMap := $.Scratch.Get "contributorMap" -}}
+              {{- $existing := index $currentMap $slug | default slice -}}
+              {{- $.Scratch.SetInMap "contributorMap" $slug ($existing | append $contribObj) -}}
+            {{- end -}}
+          {{- end -}}
+        
+        {{/* Logic Branch B: Standard Page (Authors + Credits + Legacy Date Ranges) */}}
+        {{- else -}}
+          {{- $yearsToCredit := slice ($page.Date.Format "2006") -}}
+          
+          {{/* Handle Legacy Initiatives Date Ranges */}}
+          {{- if and (eq (lower $page.Type) "initiatives") $page.Params.legacy -}}
+             {{- $dateEndVal := "" -}}
+             {{- if isset $page.Params "date_end" }}{{ $dateEndVal = $page.Params.date_end }}{{ else if isset $page.Params "date-end" }}{{ $dateEndVal = index $page.Params "date-end" }}{{ end -}}
+             {{- with $dateEndVal -}}
+                {{- with time.AsTime . -}}
+                   {{- $startYear := $page.Date.Format "2006" | int -}}
+                   {{- $endYear := .Year -}}
+                   {{- if gt $endYear $startYear -}}
+                      {{- range seq (add $startYear 1) $endYear -}}
+                        {{- $yearsToCredit = $yearsToCredit | append (string .) -}}
+                      {{- end -}}
+                   {{- end -}}
+                {{- end -}}
+             {{- end -}}
+          {{- end -}}
 
-    {{- if and $page.Date (not $page.Date.IsZero) -}}
+          {{/* Loop through calculated years (usually just one) */}}
+          {{- range $year := $yearsToCredit -}}
+            
+            {{/* 1. Authors */}}
+            {{- if $page.Params.author -}}
+              {{- $authors := cond (reflect.IsSlice $page.Params.author) $page.Params.author (slice $page.Params.author) -}}
+              {{- range $authorName := $authors -}}
+                {{- $slug := $authorName | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" | anchorize -}}
+                {{- $contribObj := dict "Page" $page "Year" $year "Role" "Author" -}}
+                {{- $currentMap := $.Scratch.Get "contributorMap" -}}
+                {{- $existing := index $currentMap $slug | default slice -}}
+                {{/* Deduplicate: Check if we already added this page for this year/slug (simple check) */}}
+                {{- $alreadyExists := false -}}
+                {{- range $e := $existing -}}
+                   {{- if and (eq $e.Page $page) (eq $e.Year $year) (eq $e.Role "Author") -}}{{ $alreadyExists = true }}{{- end -}}
+                {{- end -}}
+                {{- if not $alreadyExists -}}
+                   {{- $.Scratch.SetInMap "contributorMap" $slug ($existing | append $contribObj) -}}
+                {{- end -}}
+              {{- end -}}
+            {{- end -}}
 
-    {{/* 1. Process Authors */}}
-    {{- if $page.Params.author -}}
-    {{- $authors := cond (reflect.IsSlice $page.Params.author) $page.Params.author (slice $page.Params.author) -}}
-    {{- range $authorName := $authors -}}
-    {{- $nameForProcessing := $authorName | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" -}}
-    {{- $slug := $nameForProcessing | anchorize -}}
-
-    {{- $currentMap := $.Scratch.Get "contributorContent" -}}
-    {{- $existingContributions := index $currentMap $slug | default (slice) -}}
-    {{/* Avoid duplicates if someone is listed twice on one page */}}
-    {{- if not (in $existingContributions $page) -}}
-    {{- $newContributions := $existingContributions | append $page -}}
-    {{- $.Scratch.SetInMap "contributorContent" $slug $newContributions -}}
-    {{- end -}}
-    {{- end -}}
-    {{- end -}}
-
-    {{/* 2. Process Production Credits */}}
-    {{- if $page.Params.production_credits -}}
-    {{- range $credit := $page.Params.production_credits -}}
-    {{- $nameForProcessing := $credit.name | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" -}}
-    {{- $slug := $nameForProcessing | anchorize -}}
-
-    {{- $currentMap := $.Scratch.Get "contributorContent" -}}
-    {{- $existingContributions := index $currentMap $slug | default (slice) -}}
-    {{/* Avoid duplicates if someone is author AND credit on same page */}}
-    {{- if not (in $existingContributions $page) -}}
-    {{- $newContributions := $existingContributions | append $page -}}
-    {{- $.Scratch.SetInMap "contributorContent" $slug $newContributions -}}
-    {{- end -}}
-    {{- end -}}
+            {{/* 2. Production Credits */}}
+            {{- if $page.Params.production_credits -}}
+              {{- range $credit := $page.Params.production_credits -}}
+                {{- $slug := $credit.name | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" | anchorize -}}
+                {{- $contribObj := dict "Page" $page "Year" $year "Role" $credit.role -}}
+                {{- $currentMap := $.Scratch.Get "contributorMap" -}}
+                {{- $existing := index $currentMap $slug | default slice -}}
+                {{- $.Scratch.SetInMap "contributorMap" $slug ($existing | append $contribObj) -}}
+              {{- end -}}
+            {{- end -}}
+            
+          {{- end -}} {{/* End Year Loop */}}
+        {{- end -}} {{/* End Branch B */}}
+      {{- end -}}
     {{- end -}}
 
-    {{- end -}}
-    {{- end -}}
-    {{/* --- UPDATED LOGIC END --- */}}
-
-    {{- $allContributorProfiles := where site.RegularPages "Section" "contributors" -}}
-    {{- $contributorContentMap := .Scratch.Get "contributorContent" -}}
-
+    {{/* --- STEP 2: AGGREGATE YEARS --- */}}
+    {{- $contributorMap := .Scratch.Get "contributorMap" -}}
     {{- $allYearsSlice := slice -}}
-    {{- range $slug, $pages := $contributorContentMap -}}
-    {{- range $page := $pages -}}
-    {{- $allYearsSlice = $allYearsSlice | append ($page.Date.Format "2006") -}}
-    {{- if and (eq (lower $page.Type) "initiatives") $page.Params.legacy -}}
-    {{- $dateEndVal := "" -}}
-    {{- if isset $page.Params "date_end" }}{{ $dateEndVal = $page.Params.date_end }}{{ else if isset $page.Params "date-end" }}{{ $dateEndVal = index $page.Params "date-end" }}{{ end -}}
-    {{- with $dateEndVal -}}
-    {{- with time.AsTime . -}}
-    {{- range seq ($page.Date.Format "2006" | int) .Year -}}
-    {{- $allYearsSlice = $allYearsSlice | append (string .) -}}
-    {{- end -}}
-    {{- end -}}
-    {{- end -}}
-    {{- end -}}
-    {{- end -}}
+    
+    {{- range $slug, $contributions := $contributorMap -}}
+      {{- range $c := $contributions -}}
+        {{- $allYearsSlice = $allYearsSlice | append $c.Year -}}
+      {{- end -}}
     {{- end -}}
     {{- $uniqueYearsSorted := $allYearsSlice | uniq | sort | collections.Reverse -}}
 
+    {{/* --- STEP 3: RENDER BY YEAR --- */}}
     {{- $contributionSectionDefs := slice
-    (dict "id" "blog" "plural" "Blog Posts" "matchField" "Section")
-    (dict "id" "workshops" "plural" "Workshops" "matchField" "Section")
-    (dict "id" "student-talks" "plural" "Student Talks" "matchField" "Type")
-    (dict "id" "hacking-hours" "plural" "Hacking Hours" "matchField" "Type")
+      (dict "id" "blog" "plural" "Blog Posts" "matchField" "Section")
+      (dict "id" "workshops" "plural" "Workshops" "matchField" "Section")
+      (dict "id" "student-talks" "plural" "Student Talks" "matchField" "Type")
+      (dict "id" "hacking-hours" "plural" "Hacking Hours" "matchField" "Type")
     -}}
 
     {{- range $year_str := $uniqueYearsSorted -}}
-    {{- $current_loop_year := int $year_str -}}
-    <div class="year-section mb-6">
-      <h2 class="text-3xl text-center font-bold mb-10 pb-2">{{ $year_str }} Contributors</h2>
-      {{- $contributorsInThisYear := slice -}}
-      {{- range $contributorProfilePage := $allContributorProfiles -}}
-      {{- $contributorName := $contributorProfilePage.Title -}}
-      {{- $nameForProcessing := $contributorName | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" -}}
-      {{- $slug := $nameForProcessing | anchorize -}}
+      <div class="year-section mb-6">
+        <h2 class="text-3xl text-center font-bold mb-10 pb-2">{{ $year_str }} Contributors</h2>
+        
+        {{- $contributorsInThisYear := slice -}}
+        {{- $allContributorProfiles := where site.RegularPages "Section" "contributors" -}}
 
-      {{- with index $contributorContentMap $slug -}}
-      {{- $authoredPages := . -}}
-      {{- $contributionsThisYearBadges := dict -}}
-      {{- $initiativesLedThisYear := slice -}}
-      {{- range $contentPage := $authoredPages -}}
-      {{- $contentItemStartYear := $contentPage.Date.Format "2006" | int -}}
-      {{- $isActualInitiativePage := eq (lower $contentPage.Type) "initiatives" -}}
-      {{- $countThisItemForThisYearLoop := false -}}
-      {{- if $isActualInitiativePage -}}
-      {{- if $contentPage.Params.legacy -}}
-      {{- $endYear := $contentItemStartYear -}}
-      {{- $dateEndVal := "" -}}
-      {{- if isset $contentPage.Params "date_end" }}{{ $dateEndVal = $contentPage.Params.date_end }}{{ else if isset $contentPage.Params "date-end" }}{{ $dateEndVal = index $contentPage.Params "date-end" }}{{ end -}}
-      {{- with $dateEndVal -}}{{- with time.AsTime . -}}{{- $endYear = .Year -}}{{- end -}}{{- end -}}
-      {{- if and (ge $current_loop_year $contentItemStartYear) (le $current_loop_year $endYear) -}}
-      {{- $countThisItemForThisYearLoop = true -}}
-      {{- end -}}
-      {{- else -}}
-      {{- if ge $current_loop_year $contentItemStartYear -}}{{- $countThisItemForThisYearLoop = true -}}{{- end -}}
-      {{- end -}}
-      {{- else -}}
-      {{- if eq $current_loop_year $contentItemStartYear -}}{{- $countThisItemForThisYearLoop = true -}}{{- end -}}
-      {{- end -}}
-      {{- if $countThisItemForThisYearLoop -}}
-      {{- if $isActualInitiativePage -}}
-      {{- $initiativesLedThisYear = $initiativesLedThisYear | append $contentPage -}}
-      {{- else -}}
-      {{- range $def := $contributionSectionDefs -}}
-      {{- $matchValue := cond (eq $def.matchField "Section") $contentPage.Section $contentPage.Type -}}
-      {{- if eq (lower $matchValue) (lower $def.id) -}}
-      {{- $currentCount := index $contributionsThisYearBadges $def.plural | default 0 -}}
-      {{- $contributionsThisYearBadges = merge $contributionsThisYearBadges (dict $def.plural (add $currentCount 1)) -}}
-      {{- end -}}
-      {{- end -}}
-      {{- end -}}
-      {{- end -}}
-      {{- end -}}
+        {{- range $profile := $allContributorProfiles -}}
+          {{- $nameForProcessing := $profile.Title | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" -}}
+          {{- $slug := $nameForProcessing | anchorize -}}
+          
+          {{- $allContributions := index $contributorMap $slug -}}
+          {{- if $allContributions -}}
+            
+            {{/* Filter contributions for THIS year */}}
+            {{- $myContributionsThisYear := slice -}}
+            {{- range $c := $allContributions -}}
+              {{- if eq $c.Year $year_str -}}
+                {{- $myContributionsThisYear = $myContributionsThisYear | append $c -}}
+              {{- end -}}
+            {{- end -}}
 
-      {{- $badgeCount := 0 -}}
-      {{- range $key, $value := $contributionsThisYearBadges -}}
-      {{- $badgeCount = add $badgeCount $value -}}
-      {{- end -}}
-      {{- $totalContributionsThisYear := add (len $initiativesLedThisYear) $badgeCount -}}
+            {{- if gt (len $myContributionsThisYear) 0 -}}
+              {{- $badges := dict -}}
+              {{- $initiativesLed := slice -}}
+              
+              {{- range $c := $myContributionsThisYear -}}
+                {{- $page := $c.Page -}}
+                {{- if eq (lower $page.Type) "initiatives" -}}
+                  {{/* Dedup initiatives */}}
+                  {{- if not (in $initiativesLed $page) -}}
+                    {{- $initiativesLed = $initiativesLed | append $page -}}
+                  {{- end -}}
+                {{- else -}}
+                  {{- range $def := $contributionSectionDefs -}}
+                    {{- $matchValue := cond (eq $def.matchField "Section") $page.Section $page.Type -}}
+                    {{- if eq (lower $matchValue) (lower $def.id) -}}
+                      {{- $currentCount := index $badges $def.plural | default 0 -}}
+                      {{- $badges = merge $badges (dict $def.plural (add $currentCount 1)) -}}
+                    {{- end -}}
+                  {{- end -}}
+                {{- end -}}
+              {{- end -}}
+              
+              {{- $badgeCount := 0 -}}
+              {{- range $k, $v := $badges -}}{{ $badgeCount = add $badgeCount $v }}{{- end -}}
+              {{- $total := add (len $initiativesLed) $badgeCount -}}
+              
+              {{- $contributorsInThisYear = $contributorsInThisYear | append (dict
+                  "profile" $profile
+                  "badges" $badges
+                  "initiatives_led" $initiativesLed
+                  "has_initiatives" (gt (len $initiativesLed) 0)
+                  "total" $total
+                )
+              -}}
+            {{- end -}}
+          {{- end -}}
+        {{- end -}}
 
-      {{- if gt $totalContributionsThisYear 0 -}}
-      {{- $contributorsInThisYear = $contributorsInThisYear | append (dict
-      "profile" $contributorProfilePage
-      "badges" $contributionsThisYearBadges
-      "initiatives_led" $initiativesLedThisYear
-      "has_initiatives_this_year" (gt (len $initiativesLedThisYear) 0)
-      "total" $totalContributionsThisYear
-      )
-      -}}
-      {{- end -}}
-      {{- end -}}
-      {{- end -}}
-
-      {{- $sortedContributorsInThisYear := sort $contributorsInThisYear "has_initiatives_this_year" "desc" "total" "desc" -}}
-      {{- if $sortedContributorsInThisYear -}}
-      <div class="row">
-        {{- range $contribData := $sortedContributorsInThisYear -}}
-        <div class="md:col-6 lg:col-4 mb-8 flex flex-col">
-          {{- partial "components/author-card.html" (dict
-          "context" $contribData.profile
-          "variant" "compact"
-          "contribution_badges" $contribData.badges
-          "initiatives_led" $contribData.initiatives_led
-          "total_contributions" $contribData.total
-          )
-          -}}
+        {{- $sortedContributors := sort $contributorsInThisYear "has_initiatives" "desc" "total" "desc" -}}
+        
+        {{- if $sortedContributors -}}
+        <div class="row">
+          {{- range $data := $sortedContributors -}}
+          <div class="md:col-6 lg:col-4 mb-8 flex flex-col">
+            {{- partial "components/author-card.html" (dict
+            "context" $data.profile
+            "variant" "compact"
+            "contribution_badges" $data.badges
+            "initiatives_led" $data.initiatives_led
+            "total_contributions" $data.total
+            )
+            -}}
+          </div>
+          {{- end -}}
         </div>
+        {{- else -}}
+        <p class="italic text-gray-600 dark:text-darkmode-light/80 text-center">No contributors found for {{ $year_str }}.</p>
         {{- end -}}
       </div>
-      {{- else -}}
-      <p class="italic text-gray-600 dark:text-darkmode-light/80">No contributors with categorized content found for {{ $year_str }}.</p>
-      {{- end -}}
-    </div>
     {{- end -}}
   </div>
 </section>
