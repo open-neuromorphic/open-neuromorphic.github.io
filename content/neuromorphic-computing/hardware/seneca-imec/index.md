@@ -17,9 +17,6 @@ product:
   announced_date: 2022-03-01
   applications: Extreme edge applications
   chip_type: Digital
-  neurons: 32000
-  synapses: 256000
-  weight_bits:
   activation_bits: null
   on_chip_learning: true
   power: 
