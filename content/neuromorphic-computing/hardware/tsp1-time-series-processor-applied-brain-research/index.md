@@ -9,7 +9,7 @@ organization:
   org_logo: abr.png
   org_name: Applied Brain Research
   org_website: https://www.appliedbrainresearch.com/
-  product_page_link: https://www.appliedbrainresearch.com/product
+  product_page_link: https://www.appliedbrainresearch.com/state-space-accelerator
   social_media_links:
     linkedin: https://www.linkedin.com/company/applied-brain-research/
     twitter: https://x.com/abr_inc
