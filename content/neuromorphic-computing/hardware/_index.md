@@ -2,6 +2,8 @@
 title: Neuromorphic Hardware Guide
 description: Explore cutting-edge neuromorphic chips and architectures, featuring innovative designs and advanced neural processing technologies.
 type: "neuromorphic-hardware"
+maintainers:
+  - "jose-antonio"
 glossary:
 - term: Spiking Neural Network (SNN)
   definition: A type of artificial neural network that closely models the spiking behavior of biological neurons, utilizing discrete spikes or pulses of activity for information processing.

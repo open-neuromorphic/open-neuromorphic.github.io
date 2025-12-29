@@ -27,7 +27,7 @@ production_credits:
     role: "Video & Media Operations"
   - name: "Liam O'Sullivan"
     role: "Scheduling & Coordination"
-  - name: "Marcos Mendoza"
+  - name: "Marcos Ordonez"
     role: "Social Media Promotion"
 ---
 

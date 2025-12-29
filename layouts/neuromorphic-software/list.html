@@ -1,36 +1,41 @@
 {{ define "main" }}
-  {{ partial "page-header" . }}
+{{ partial "page-header" . }}
 
-  <section class="section pt-8">
-    <div class="container">
-      {{/* Display Hacking Hours promo partial only on the main software list page */}}
-      {{ if eq .File.Path (path.Join "neuromorphic-computing" "software" "_index.md") }}
-        <div class="row"> {{/* Wrap promo in its own row */}}
-          <div class="col-12 mb-8 mt-0">
-            {{ partial "custom/hacking-hours-software-promo.html" . }}
-          </div>
-        </div>
-      {{ end }}
-
-      <div class="row gx-5"> {{/* This row contains the main software list and categories sidebar */}}
-        <div class="lg:col-8">
-          {{ partial "components/software-list" . }}
-        </div>
-        <div class="lg:col-4 pl-0">
-          {{ partial "components/software-categories" . }}
-        </div>
+<section class="section pt-8">
+  <div class="container">
+    {{ if eq .File.Path (path.Join "neuromorphic-computing" "software" "_index.md") }}
+    <div class="row">
+      <div class="col-12 mb-8 mt-0">
+        {{ partial "custom/hacking-hours-software-promo.html" . }}
       </div>
-
-      <div class="mt-16">
-        {{ partial "components/content-contribute-cta.html" (dict
-          "icon" "solid code"
-          "title" "Know a Tool <span class=\"gradient-text\">We Missed?</span>"
-          "description" "Help us keep the software guide comprehensive and up-to-date. Suggest new frameworks, data tools, or corrections by opening an issue on our GitHub repository."
-          "link" "https://github.com/open-neuromorphic/open-neuromorphic.github.io/issues/new/choose"
-          "link_text" "Suggest an Addition on GitHub"
-        ) }}
-      </div>
-
     </div>
-  </section>
+    {{ end }}
+
+    <div class="row gx-5">
+      <!-- Main List -->
+      <div class="lg:col-8">
+        {{ partial "components/software-list" . }}
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-4">
+        <div class="sticky top-24 space-y-6">
+          {{ partial "components/og-preview.html" . }}
+          {{ partial "components/software-categories" . }}
+          {{ partial "components/page-maintainers.html" . }}
+        </div>
+      </aside>
+    </div>
+
+    <div class="mt-16">
+      {{ partial "components/content-contribute-cta.html" (dict
+      "icon" "solid code"
+      "title" "Know a Tool <span class=\"gradient-text\">We Missed?</span>"
+      "description" "Help us keep the software guide comprehensive and up-to-date. Suggest new frameworks, data tools, or corrections by opening an issue on our GitHub repository."
+      "link" "https://github.com/open-neuromorphic/open-neuromorphic.github.io/issues/new/choose"
+      "link_text" "Suggest an Addition on GitHub"
+      ) }}
+    </div>
+  </div>
+</section>
 {{ end }}
