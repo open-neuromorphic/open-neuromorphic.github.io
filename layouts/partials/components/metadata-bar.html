@@ -66,21 +66,21 @@
   <!-- Right side: Action Buttons -->
   {{ if $hasButtons }}
   <div class="action-buttons flex flex-wrap gap-2">
-    {{ with $ctx.Params.speaker_slides }}<a href="{{ . }}" target="_blank" rel="noopener" class="btn btn-sm btn-outline-primary">{{ partial "icon.html" (dict "style" "regular" "name" "images" "class" "mr-1.5") }}Slides</a>{{ end }}
-    {{ with $ctx.Params.speaker_notebook }}<a href="{{ . }}" target="_blank" rel="noopener" class="btn btn-sm btn-outline-primary">{{ partial "icon.html" (dict "style" "regular" "name" "folder" "class" "mr-1.5") }}Notebook</a>{{ end }}
-    {{ with $ctx.Params.speaker_code }}<a href="{{ . }}" target="_blank" rel="noopener" class="btn btn-sm btn-outline-primary">{{ partial "icon.html" (dict "style" "brands" "name" "github" "class" "mr-1.5") }}Code</a>{{ end }}
+    {{ with $ctx.Params.speaker_slides }}<a href="{{ . }}" target="_blank" rel="noopener" class="btn btn-sm btn-outline-primary inline-flex items-center justify-center">{{ partial "icon.html" (dict "style" "regular" "name" "images" "class" "mr-1.5" "width" "1.25em" "height" "1.25em") }}Slides</a>{{ end }}
+    {{ with $ctx.Params.speaker_notebook }}<a href="{{ . }}" target="_blank" rel="noopener" class="btn btn-sm btn-outline-primary inline-flex items-center justify-center">{{ partial "icon.html" (dict "style" "regular" "name" "folder" "class" "mr-1.5" "width" "1.25em" "height" "1.25em") }}Notebook</a>{{ end }}
+    {{ with $ctx.Params.speaker_code }}<a href="{{ . }}" target="_blank" rel="noopener" class="btn btn-sm btn-outline-primary inline-flex items-center justify-center">{{ partial "icon.html" (dict "style" "brands" "name" "github" "class" "mr-1.5" "width" "1.25em" "height" "1.25em") }}Code</a>{{ end }}
     {{ with $ctx.Params.speaker_paper }}
-    <a href="{{ . }}" target="_blank" rel="noopener" class="btn btn-sm btn-outline-primary">
-      {{ partial "icon.html" (dict "style" "regular" "name" "file-lines" "class" "mr-1.5") }}Paper
+    <a href="{{ . }}" target="_blank" rel="noopener" class="btn btn-sm btn-outline-primary inline-flex items-center justify-center">
+      {{ partial "icon.html" (dict "style" "regular" "name" "file-lines" "class" "mr-1.5" "width" "1.25em" "height" "1.25em") }}Paper
       {{ with $ctx.Params.paper_license }}<span class="ml-1.5 text-xs opacity-75">({{ . }})</span>{{ end }}
     </a>
     {{ end }}
 
     {{ if $ctx.Params.upcoming }}
     {{ $event_url := $ctx.Params.upcoming_url | default "https://www.youtube.com/@openneuromorphic" }}
-    <a href="{{ $event_url }}" target="_blank" rel="noopener" class="btn btn-sm btn-primary">{{ partial "icon.html" (dict "style" "regular" "name" "calendar" "class" "mr-1.5") }}Event Link</a>
+    <a href="{{ $event_url }}" target="_blank" rel="noopener" class="btn btn-sm btn-new-primary inline-flex items-center justify-center">{{ partial "icon.html" (dict "style" "regular" "name" "calendar" "class" "mr-1.5" "width" "1.25em" "height" "1.25em") }}Event Link</a>
     {{ else if $ctx.Params.video }}
-    <a href="https://www.youtube.com/watch?v={{ $ctx.Params.video }}" target="_blank" rel="noopener" class="btn btn-sm btn-primary">{{ partial "icon.html" (dict "style" "brands" "name" "youtube" "class" "mr-1.5") }}Watch on YouTube</a>
+    <a href="https://www.youtube.com/watch?v={{ $ctx.Params.video }}" target="_blank" rel="noopener" class="btn btn-sm btn-new-primary inline-flex items-center justify-center">{{ partial "icon.html" (dict "style" "brands" "name" "youtube" "class" "mr-1.5" "width" "1.25em" "height" "1.25em") }}Watch on YouTube</a>
     {{ end }}
   </div>
   {{ end }}
