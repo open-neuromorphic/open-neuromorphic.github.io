@@ -1,3 +1,4 @@
+{{/* layouts/contributors/list.html */}}
 {{ define "main" }}
 {{ partial "page-header" . }}
 <section class="section pt-6 contributors-list-section">
@@ -17,20 +18,51 @@
     {{- $contentSectionsToScan := slice "blog" "workshops" -}}
     {{- $contentTypesToScan := slice "hacking-hours" "initiatives" "student-talks" -}}
 
-    {{- range where site.RegularPages "Params.author" "!=" nil -}}
+    {{/* --- UPDATED LOGIC START --- */}}
+    {{/* Get all pages that might have contributors (authors OR credits) */}}
+    {{- $allPotentialPages := where site.RegularPages "Type" "in" (union $contentSectionsToScan $contentTypesToScan) -}}
+
+    {{- range $allPotentialPages -}}
     {{- $page := . -}}
-    {{- $isRelevantPage := or (in $contentSectionsToScan $page.Section) (in $contentTypesToScan $page.Type) -}}
-    {{- if and $isRelevantPage $page.Date (not $page.Date.IsZero) -}}
+
+    {{- if and $page.Date (not $page.Date.IsZero) -}}
+
+    {{/* 1. Process Authors */}}
+    {{- if $page.Params.author -}}
     {{- $authors := cond (reflect.IsSlice $page.Params.author) $page.Params.author (slice $page.Params.author) -}}
     {{- range $authorName := $authors -}}
-    {{- $slug := $authorName | anchorize -}}
+    {{- $nameForProcessing := $authorName | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" -}}
+    {{- $slug := $nameForProcessing | anchorize -}}
+
     {{- $currentMap := $.Scratch.Get "contributorContent" -}}
     {{- $existingContributions := index $currentMap $slug | default (slice) -}}
+    {{/* Avoid duplicates if someone is listed twice on one page */}}
+    {{- if not (in $existingContributions $page) -}}
     {{- $newContributions := $existingContributions | append $page -}}
     {{- $.Scratch.SetInMap "contributorContent" $slug $newContributions -}}
     {{- end -}}
     {{- end -}}
     {{- end -}}
+
+    {{/* 2. Process Production Credits */}}
+    {{- if $page.Params.production_credits -}}
+    {{- range $credit := $page.Params.production_credits -}}
+    {{- $nameForProcessing := $credit.name | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" -}}
+    {{- $slug := $nameForProcessing | anchorize -}}
+
+    {{- $currentMap := $.Scratch.Get "contributorContent" -}}
+    {{- $existingContributions := index $currentMap $slug | default (slice) -}}
+    {{/* Avoid duplicates if someone is author AND credit on same page */}}
+    {{- if not (in $existingContributions $page) -}}
+    {{- $newContributions := $existingContributions | append $page -}}
+    {{- $.Scratch.SetInMap "contributorContent" $slug $newContributions -}}
+    {{- end -}}
+    {{- end -}}
+    {{- end -}}
+
+    {{- end -}}
+    {{- end -}}
+    {{/* --- UPDATED LOGIC END --- */}}
 
     {{- $allContributorProfiles := where site.RegularPages "Section" "contributors" -}}
     {{- $contributorContentMap := .Scratch.Get "contributorContent" -}}
@@ -68,7 +100,9 @@
       {{- $contributorsInThisYear := slice -}}
       {{- range $contributorProfilePage := $allContributorProfiles -}}
       {{- $contributorName := $contributorProfilePage.Title -}}
-      {{- $slug := $contributorName | anchorize -}}
+      {{- $nameForProcessing := $contributorName | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" -}}
+      {{- $slug := $nameForProcessing | anchorize -}}
+
       {{- with index $contributorContentMap $slug -}}
       {{- $authoredPages := . -}}
       {{- $contributionsThisYearBadges := dict -}}
