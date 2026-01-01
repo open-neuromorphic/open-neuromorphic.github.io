@@ -66,7 +66,9 @@
           {{ else if $page.Params.pypi_id }}
           <img class="h-5" src="https://img.shields.io/pypi/v/{{ $page.Params.pypi_id }}.svg" alt="PyPI Version">
           {{ else if $is_github }}
-          <img class="h-5" src="https://img.shields.io/github/v/release/{{ $repo_path }}" alt="GitHub Release">
+          <img class="h-5" src="https://img.shields.io/github/last-commit/{{ $repo_path }}?label=last%20commit" alt="GitHub Last Commit">
+          {{ else if $is_gitlab }}
+          <img class="h-5" src="https://img.shields.io/gitlab/last-commit/{{ $repo_path }}?label=last%20commit" alt="GitLab Last Commit">
           {{ end }}
 
           {{ if $is_github }}
