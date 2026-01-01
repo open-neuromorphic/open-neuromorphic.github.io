@@ -41,20 +41,10 @@
     {{ $repo_path = replace $repo_path ".git" "" }}
     {{ end }}
 
-    {{ if .version_badge_url_override }}
-    <img src="{{ .version_badge_url_override }}" alt="Version Badge" class="inline-block h-5">
-    {{ else if .pypi_id }}
-    <img src="https://img.shields.io/pypi/v/{{ .pypi_id }}.svg" alt="PyPI Version" class="inline-block h-5">
-    {{ else if $is_github }}
-    <img src="https://img.shields.io/github/last-commit/{{ $repo_path }}?label=last%20commit" alt="GitHub Last Commit" class="inline-block h-5">
-    {{ else if $is_gitlab }}
-    <img src="https://img.shields.io/gitlab/last-commit/{{ $repo_path }}?label=last%20commit" alt="GitLab Last Commit" class="inline-block h-5">
-    {{ end }}
-
     {{ if $is_github }}
     <img src="https://img.shields.io/github/stars/{{ $repo_path }}.svg?style=social" alt="GitHub Stars" class="inline-block h-5">
     {{ else if $is_gitlab }}
-    <img src="https://img.shields.io/gitlab/stars/{{ $repo_path }}.svg?style=social" alt="GitLab Stars">
+    <img src="https://img.shields.io/gitlab/stars/{{ $repo_path }}.svg?style=social" alt="GitLab Stars" class="inline-block h-5">
     {{ end }}
   </div>
 
