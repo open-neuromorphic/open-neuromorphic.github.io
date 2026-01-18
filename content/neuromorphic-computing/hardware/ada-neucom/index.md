@@ -21,10 +21,6 @@ product:
   announced_date: "2025-11-01"
   applications: "Event-based Vision, Robotics, Automotive, AR/VR, Industrial IoT"
   chip_type: "Digital"
-  neurons: "N/A"
-  synapses: "N/A"
-  weight_bits: null
-  activation_bits: null
   on_chip_learning: false
   power: "Sub-milliwatt"
   release_year: 2026
