@@ -2,7 +2,7 @@
 title: "ADA - Neucom"
 description: "Neucom's ADA is a programmable neuromorphic processor for event-based vision preprocessing, using interval-coded computation to process DVS streams at sub-milliwatt power with sub-millisecond latency."
 image: "ada.png"
-draft: true
+draft: false
 active_product: true
 type: "neuromorphic-hardware"
 
