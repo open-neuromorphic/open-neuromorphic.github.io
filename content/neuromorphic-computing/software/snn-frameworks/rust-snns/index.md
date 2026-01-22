@@ -20,4 +20,4 @@ draft: false
 ## Overview
 **Rust SNNs** is a Rust crate designed for spiking neural network simulations with neurotransmission, spike trains, spike-timing–dependent plasticity (STDP), attractors, reward-modulated dynamics and lattice-connected neurons. Rust SNNs includes models of LIF, Hodgkin–Huxley and Izhikevich neurons.
 
-It uses traits to describe neuron and synapse dynamics and it can be extended it with custom neurotransmitters, receptors or neuron models while staying strongly typed.
+It uses traits to describe neuron and synapse dynamics and it can be extended with custom neurotransmitters, receptors or neuron models while staying strongly typed.
