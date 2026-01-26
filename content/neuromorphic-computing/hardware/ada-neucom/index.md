@@ -55,7 +55,7 @@ ADA is designed as a reconfigurable processor fabric rather than a fixed-functio
 
 **Attention Mechanisms**: The chip includes hardware for saliency mapping, object tracking, and optical flow estimation inspired by cortical visual pathways. These modules implement bio-inspired attention to prioritize regions of interest.
 
-The processor is fabricated on a 28nm CMOS process and designed as IP for integration into larger SoCs via standard digital interfaces.
+The processor is fabricated on a 22nm CMOS process and designed as IP for integration into larger SoCs via standard digital interfaces.
 
 ## Software and Tools
 
@@ -78,4 +78,4 @@ The processor targets applications where event-based sensors are used but prepro
 - **Industrial Monitoring**: Predictive maintenance and anomaly detection using efficient encoding of vibration and motion events
 - **Space Applications**: Object tracking in extreme lighting conditions where high dynamic range is required
 
-As of November 2025, ADA is available as a virtual prototype and FPGA implementation for partner evaluation. First silicon is scheduled for Q1 2026.
+As of November 2025, ADA is available as a virtual prototype and FPGA implementation for partner evaluation. Tapeout is scheduled for Q2-Q3 2026.
