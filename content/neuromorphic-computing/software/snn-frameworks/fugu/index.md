@@ -1,8 +1,7 @@
 ---
-title: "Fugu - Composable Spiking Neural Network Framework"
+title: "Fugu"
 type: "neuromorphic-software"
 description: "Python library for building platform-agnostic spiking neural networks using composable computational graphs with support for simulators and neuromorphic hardware."
-logo: "fugu-logo.png"
 website: "https://sandialabs.github.io/Fugu/"
 dependencies: "NumPy, NetworkX, Pandas"
 field_of_application: "Machine Learning, Graph Analysis, Scientific Computing"
