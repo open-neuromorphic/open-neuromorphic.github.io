@@ -20,6 +20,6 @@ draft: false
 
 The framework uses a compositional approach where small computational kernels called Bricks combine into larger computational graphs called Scaffolds. This hierarchical design supports pre and post processing operations and helps identify parameter spaces where neural approaches offer computational advantages for tasks like sorting, optimization, and graph analytics.
 
-Fugu functions as a managed intermediate representation between Python and neuromorphic hardware compilers. Networks compile to multiple backends including a reference simulator for small networks, [Intel Loihi](https://open-neuromorphic.org/neuromorphic-computing/hardware/loihi-intel/) for neuromorphic hardware deployment, and an optional STACS backend using Charm++ for large-scale HPC simulations.
+Fugu functions as a managed intermediate representation between Python and neuromorphic hardware compilers. Networks compile to multiple backends including a reference simulator for small networks, [Intel Loihi](/neuromorphic-computing/hardware/loihi-intel/) for neuromorphic hardware deployment, and an optional STACS backend using Charm++ for large-scale HPC simulations.
 
 The framework targets three user types: developers building applications by combining existing Bricks, extenders creating new spiking algorithms as Bricks, and platform developers implementing new backends. Fugu includes Jupyter notebook examples demonstrating algorithm translations and supports applications in machine learning, graph analytics, and scientific computing.
