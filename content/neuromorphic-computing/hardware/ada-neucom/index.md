@@ -59,7 +59,7 @@ The processor is fabricated on a 22nm CMOS process and designed as IP for integr
 
 ## Software and Tools
 
-ADA is programmed using the [Axon SDK](https://open-neuromorphic.org/neuromorphic-computing/software/snn-frameworks/axon/), an open-source development kit. The SDK allows developers to describe computational pipelines in Python, PyTorch, or C, which are then compiled into spiking neural networks deployable on the hardware.
+ADA is programmed using the [Axon SDK](/neuromorphic-computing/software/snn-frameworks/axon/), an open-source development kit. The SDK allows developers to describe computational pipelines in Python, PyTorch, or C, which are then compiled into spiking neural networks deployable on the hardware.
 
 The toolkit includes:
 - A network simulator for algorithm development
