@@ -1,7 +1,10 @@
 ---
 title: "Announcing the 2026 Open Neuromorphic Executive Committee"
 date: 2026-02-14T09:00:00-05:00
-author: "Open Neuromorphic"
+author:
+  - Justin Riddiough
+  - Alexandre Marcireau
+  - Effiong Blessing
 tags: ["Community", "Announcements", "Governance"]
 description: "Meet the new leadership team elected with a mandate to evolve ONM's structure and drive key initiatives in education and open science."
 image: "" # Will fallback to generated OG image
