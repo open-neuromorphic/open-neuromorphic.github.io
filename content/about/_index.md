@@ -3,17 +3,17 @@ title: "About Open Neuromorphic"
 image: ONM.png
 description: "Learn about Open Neuromorphic: our mission, community, governance with our Executive Committee, and how our founders sparked this collaborative hub for neuromorphic computing."
 executive_committee:
-  - name: "Jens E. Pedersen"
-    role: "Chair"
-    # contributor_slug: "jens-egholm-pedersen" # Optional: if name doesn't urlize correctly
   - name: "Justin Riddiough"
+    role: "Chair"
+    contributor_slug: "justin-riddiough"
+  - name: "Alexandre Marcireau"
     role: "Vice-Chair"
-    # contributor_slug: "justin-riddiough" # Optional
-  - name: "Danny Rosen"
+    contributor_slug: "alexandre-marcireau"
+  - name: "Effiong Blessing"
     role: "Secretary"
-    # contributor_slug: "danny-rosen" # Optional
+    contributor_slug: "effiong-blessing"
 
-founders: # New section added here
+founders:
   - name: "Fabrizio Ottati"
     member_id: 1
     # contributor_slug: "fabrizio-ottati" # Optional, if needed by author-card correctly
@@ -39,17 +39,17 @@ ONM is dedicated to providing a comprehensive ecosystem for the neuromorphic com
 
 *   **The Neuromorphic Hub:** Our curated guides to [Neuromorphic Hardware](/neuromorphic-computing/hardware/) and [Software](/neuromorphic-computing/software/) are designed to help you navigate the landscape and find the tools and platforms you need.
 *   **Educational Content & Events:**
-  *   Engaging **[Blog Posts](/blog/)** featuring insights, tutorials, and deep dives into neuromorphic topics.
-  *   Interactive **[Workshops](/workshops/)** and **[Student Talks](/neuromorphic-computing/student-talks/)** sessions with experts from academia and industry.
-  *   Live **[Hacking Hours](/neuromorphic-computing/software/hacking-hours/)** exploring software, tackling coding challenges, and discussing the latest developments.
+*   Engaging **[Blog Posts](/blog/)** featuring insights, tutorials, and deep dives into neuromorphic topics.
+*   Interactive **[Workshops](/workshops/)** and **[Student Talks](/neuromorphic-computing/student-talks/)** sessions with experts from academia and industry.
+*   Live **[Hacking Hours](/neuromorphic-computing/software/hacking-hours/)** exploring software, tackling coding challenges, and discussing the latest developments.
 *   **A Collaborative Platform:**
-  *   Our **[GitHub organization](https://github.com/open-neuromorphic)** serves as a platform for open-source neuromorphic projects. We welcome new contributions and can help migrate existing projects.
-  *   A thriving **[Discord community](https://discord.gg/hUygPUdD8E)** for discussions, Q&A, networking, and real-time collaboration.
+*   Our **[GitHub organization](https://github.com/open-neuromorphic)** serves as a platform for open-source neuromorphic projects. We welcome new contributions and can help migrate existing projects.
+*   A thriving **[Discord community](https://discord.gg/hUygPUdD8E)** for discussions, Q&A, networking, and real-time collaboration.
 *   **A Broad and Inclusive Scope:** Our community embraces the full spectrum of neuromorphic engineering. We welcome projects and discussions spanning from computational neuroscience and biologically plausible models to performance-driven machine learning and hardware co-design. Our focus is on fostering collaboration across diverse areas, including:
-  *   Spiking Neural Network (SNN) frameworks for simulation, training, and inference.
-  *   Event-based sensor technology and data processing tools.
-  *   Digital, analog, and mixed-signal neuromorphic hardware.
-  *   Efforts to improve interoperability and create a more unified open-source ecosystem.
+*   Spiking Neural Network (SNN) frameworks for simulation, training, and inference.
+*   Event-based sensor technology and data processing tools.
+*   Digital, analog, and mixed-signal neuromorphic hardware.
+*   Efforts to improve interoperability and create a more unified open-source ecosystem.
 
 ## Our Governance: The Executive Committee
 
