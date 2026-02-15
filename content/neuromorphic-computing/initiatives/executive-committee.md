@@ -21,7 +21,7 @@ executive_committee:
     contributor_slug: "effiong-blessing"
 ---
 
-The individuals below form the current Executive Committee for Open Neuromorphic, elected on **February 1st, 2026**. This committee is responsible for the operational and strategic guidance of ONM, as outlined in our charter.
+The individuals below form the current Executive Committee for Open Neuromorphic, elected on **February 8th, 2026**. This committee is responsible for the operational and strategic guidance of ONM, as outlined in our charter.
 
 {{< display_executive_committee >}}
 
