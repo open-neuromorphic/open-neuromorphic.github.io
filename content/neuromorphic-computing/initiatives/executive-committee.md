@@ -6,7 +6,24 @@ author:
   - Justin Riddiough
   - Alexandre Marcireau
   - Effiong Blessing
-date: 2026-02-14 # Date of election/start of term
+active_contributors:
+  - year: 2026
+    roles:
+      - name: "Justin Riddiough"
+        role: "Chair"
+      - name: "Alexandre Marcireau"
+        role: "Vice-Chair"
+      - name: "Effiong Blessing"
+        role: "Secretary"
+  - year: 2025
+    roles:
+      - name: "Jens E. Pedersen"
+        role: "Chair (May 18, 2025 - Feb 8, 2026)"
+      - name: "Justin Riddiough"
+        role: "Vice-Chair (May 18, 2025 - Feb 8, 2026)"
+      - name: "Danny Rosen"
+        role: "Secretary (May 18, 2025 - Feb 8, 2026)"
+date: 2026-02-14
 draft: false
 type: initiatives
 executive_committee:
@@ -27,3 +44,10 @@ The individuals below form the current Executive Committee for Open Neuromorphic
 
 The Executive Committee's roles, responsibilities, and the community's governance structure are detailed in the **[Open Neuromorphic Organisational Charter](/about/governance/organisational-charter/)**.
 This charter was formally adopted by the committee following their election.
+
+## Past Committees
+
+**2025-2026 Term (May 18, 2025 - Feb 8, 2026)**
+*   **Chair:** Jens E. Pedersen
+*   **Vice-Chair:** Justin Riddiough
+*   **Secretary:** Danny Rosen
