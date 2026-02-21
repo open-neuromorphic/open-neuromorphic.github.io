@@ -34,7 +34,7 @@ executive_committee:
     role: "Vice-Chair"
     contributor_slug: "alexandre-marcireau"
   - name: "Effiong Blessing"
-    role: "Secretary"
+    role: "Secretary Chair"
     contributor_slug: "effiong-blessing"
 ---
 
