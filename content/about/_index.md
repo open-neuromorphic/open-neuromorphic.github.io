@@ -27,7 +27,7 @@ founders:
 
 ## Our Journey & Vision
 
-Open Neuromorphic (ONM) began as a spark – a collective of **open-source** enthusiasts from academia, industry, and individual contributors passionate about advancing neuromorphic computing. What started as a loose network of collaborators, many of whom had never met in person, has blossomed into a vibrant global community.
+Open Neuromorphic (ONM) began as a spark – a collective of **open source** enthusiasts from academia, industry, and individual contributors passionate about advancing neuromorphic computing. What started as a loose network of collaborators, many of whom had never met in person, has blossomed into a vibrant global community.
 
 > Our shared passion is for building, sharing, and learning about tools and technologies that propel the neuromorphic field forward. We believe in the power of open collaboration and shared ownership of this vision.
 
@@ -43,13 +43,13 @@ ONM is dedicated to providing a comprehensive ecosystem for the neuromorphic com
 *   Interactive **[Workshops](/workshops/)** and **[Student Talks](/neuromorphic-computing/student-talks/)** sessions with experts from academia and industry.
 *   Live **[Hacking Hours](/neuromorphic-computing/software/hacking-hours/)** exploring software, tackling coding challenges, and discussing the latest developments.
 *   **A Collaborative Platform:**
-*   Our **[GitHub organization](https://github.com/open-neuromorphic)** serves as a platform for open-source neuromorphic projects. We welcome new contributions and can help migrate existing projects.
+*   Our **[GitHub organization](https://github.com/open-neuromorphic)** serves as a platform for open source neuromorphic projects. We welcome new contributions and can help migrate existing projects.
 *   A thriving **[Discord community](https://discord.gg/hUygPUdD8E)** for discussions, Q&A, networking, and real-time collaboration.
 *   **A Broad and Inclusive Scope:** Our community embraces the full spectrum of neuromorphic engineering. We welcome projects and discussions spanning from computational neuroscience and biologically plausible models to performance-driven machine learning and hardware co-design. Our focus is on fostering collaboration across diverse areas, including:
 *   Spiking Neural Network (SNN) frameworks for simulation, training, and inference.
 *   Event-based sensor technology and data processing tools.
 *   Digital, analog, and mixed-signal neuromorphic hardware.
-*   Efforts to improve interoperability and create a more unified open-source ecosystem.
+*   Efforts to improve interoperability and create a more unified open source ecosystem.
 
 ## Our Governance: The Executive Committee
 
@@ -59,7 +59,7 @@ As Open Neuromorphic has grown, so has the need for a structure to support our c
 
 ## Our Founders
 
-Open Neuromorphic was brought to life through the vision and dedication of its founders. Their initial efforts and passion for open-source collaboration laid the groundwork for the thriving community we are today. We are immensely grateful for their pioneering spirit.
+Open Neuromorphic was brought to life through the vision and dedication of its founders. Their initial efforts and passion for open source collaboration laid the groundwork for the thriving community we are today. We are immensely grateful for their pioneering spirit.
 
 {{< display_founders >}}
 
