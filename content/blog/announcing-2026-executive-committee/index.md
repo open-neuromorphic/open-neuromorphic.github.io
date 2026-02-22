@@ -1,13 +1,12 @@
 ---
 title: "Announcing the 2026 Open Neuromorphic Executive Committee"
-date: 2026-02-14T09:00:00-05:00
+date: 2026-02-22T09:00:00-05:00
 author:
   - Justin Riddiough
   - Alexandre Marcireau
   - Effiong Blessing
 tags: ["Community", "Announcements", "Governance"]
 description: "Meet the new leadership team elected with a mandate to evolve ONM's structure and drive key initiatives in education and open science."
-image: "" # Will fallback to generated OG image
 ---
 
 As Open Neuromorphic continues to grow as a central hub for researchers, students, and engineers, we are excited to announce the ratification of the **2026 Executive Committee**.
@@ -29,8 +28,9 @@ Alexandre joins the committee as Vice-Chair. As a respected researcher in the ev
 > *"We need to balance inclusivity with scientific standards. I look forward to helping ONM become a credible, authoritative resource where open science can thrive."*
 
 ### **Secretary: Effiong Blessing**
-Effiong has been elected Secretary. With a strong background in collaborative projects (including leadership within **Project Phaser**), Effiong will focus on communications and community engagement. Her priorities include expanding our educational pipelines and fostering engagement through competitions.
-> *"I am excited to help build structured pathways—like our upcoming 'Zero to Silicon' series—that take students from curiosity to contribution."*
+Effiong Blessing is a PhD candidate in Computer Science specializing in neuromorphic computing and brain-inspired AI. Her work sits at the intersection of spiking neural networks, hybrid SNN-LLM architectures, energy-efficient AI systems and cross-modal neuromorphic systems. She co-leads Project PHASOR, a multi-institutional neuromorphic computing initiative, and is an active member of the NIH BRAIN Initiative NeuroAI community.
+
+As Secretary of Open Neuromorphic, she focuses on community engagement, educational pipelines, and competitions — including the upcoming Zero to Silicon series designed to take students from curiosity to contribution.
 
 ---
 
@@ -46,4 +46,4 @@ The new committee has already begun work on several key initiatives discussed du
 1.  **Educational Pipelines:** Developing the **"Zero to Silicon"** series and hybrid events to create clear on-ramps for undergraduates.
 2.  **Open Source Advocacy:** Continuing to highlight open tools while encouraging proprietary groups to engage with the community transparently.
 3.  **Knowledge Retention:** Exploring tools to better capture technical discussions in Discord, turning ephemeral chats into permanent resources.
-4.  **Community Competitions:** Collaborating with partners like Project Phaser to introduce benchmarking competitions that drive innovation.
+4.  **Community Competitions:** Collaborating with partners like Project PHASOR to introduce benchmarking competitions that drive innovation.
