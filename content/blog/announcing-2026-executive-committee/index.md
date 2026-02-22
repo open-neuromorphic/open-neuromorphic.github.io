@@ -27,10 +27,10 @@ Previously serving as Vice-Chair, Justin has been elected as the new Chair. He b
 Alexandre joins the committee as Vice-Chair. As a respected researcher in the event-based vision space, he will focus on scientific integrity and quality control. His aim is to ensure our initiatives align with academic rigor while bridging the gap between established research standards and open community growth.
 > *"We need to balance inclusivity with scientific standards. I look forward to helping ONM become a credible, authoritative resource where open science can thrive."*
 
-### **Secretary: Effiong Blessing**
+### **Secretary Chair: Effiong Blessing**
 Effiong Blessing is a PhD candidate in Computer Science specializing in neuromorphic computing and brain-inspired AI. Her work sits at the intersection of spiking neural networks, hybrid SNN-LLM architectures, energy-efficient AI systems and cross-modal neuromorphic systems. She co-leads Project PHASOR, a multi-institutional neuromorphic computing initiative, and is an active member of the NIH BRAIN Initiative NeuroAI community.
 
-As Secretary of Open Neuromorphic, she focuses on community engagement, educational pipelines, and competitions — including the upcoming Zero to Silicon series designed to take students from curiosity to contribution.
+As Secretary Chair of Open Neuromorphic, she focuses on community engagement, educational pipelines, and competitions — including the upcoming Zero to Silicon series designed to take students from curiosity to contribution.
 
 ---
 
