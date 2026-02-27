@@ -5,6 +5,7 @@ author:
   - Justin Riddiough
   - Alexandre Marcireau
   - Effiong Blessing
+image: onm-exec-committee-2026.webp
 tags: ["Community", "Announcements", "Governance"]
 description: "Meet the new leadership team elected with a mandate to evolve ONM's structure and drive key initiatives in education and open science."
 ---
