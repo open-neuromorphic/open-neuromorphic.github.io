@@ -33,8 +33,6 @@ Effiong Blessing is a PhD candidate in Computer Science specializing in neuromor
 
 As Secretary Chair of Open Neuromorphic, she focuses on community engagement, educational pipelines, and competitions — including the upcoming Zero to Silicon series designed to take students from curiosity to contribution.
 
----
-
 ## A Mandate for Evolution
 The 2026 General Assembly discussed moving away from a traditional hierarchy to better reflect the collaborative nature of open source. The new committee is tasked with exploring these changes and drafting updates to the Charter. This shift aims to distribute decision-making among leaders with specific domain expertise rather than concentrating it in a single title.
 
