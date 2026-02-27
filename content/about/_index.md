@@ -2,6 +2,7 @@
 title: "About Open Neuromorphic"
 image: ONM.png
 description: "Learn about Open Neuromorphic: our mission, community, governance with our Executive Committee, and how our founders sparked this collaborative hub for neuromorphic computing."
+showTableOfContents: true
 executive_committee:
   - name: "Justin Riddiough"
     role: "Chair"
@@ -12,17 +13,34 @@ executive_committee:
   - name: "Effiong Blessing"
     role: "Secretary"
     contributor_slug: "effiong-blessing"
-
+    
+voting_members:
+  - name: "Gregor Lenz"
+    role: "Founder & Voting Member"
+  - name: "Fabrizio Ottati"
+    role: "Founder & Voting Member"
+  - name: "Jason Eshraghian"
+    role: "Founder & Voting Member"
+  - name: "Justin Riddiough"
+  - name: "Alexandre Marcireau"
+  - name: "Effiong Blessing"
+    contributor_slug: "effiong-blessing"
+  - name: "Jens E. Pedersen"
+  - name: "Danny Rosen"
+  - name: "Giulia D'Angelo"
+    contributor_slug: "giulia-dangelo"
+  - name: "Ramashish Gaurav"
+  - name: "Dylan Muir"
+  - name: "Michael Furlong"
+  - name: "James Knight"
+  - name: "Alexander Hadjiivanov"
 founders:
   - name: "Fabrizio Ottati"
     member_id: 1
-    # contributor_slug: "fabrizio-ottati" # Optional, if needed by author-card correctly
   - name: "Jason Eshraghian"
     member_id: 3
-    # contributor_slug: "jason-eshraghian" # Optional
   - name: "Gregor Lenz"
     member_id: 2
-    # contributor_slug: "gregor-lenz" # Optional
 ---
 
 ## Our Journey & Vision
@@ -32,6 +50,25 @@ Open Neuromorphic (ONM) began as a spark – a collective of **open source** ent
 > Our shared passion is for building, sharing, and learning about tools and technologies that propel the neuromorphic field forward. We believe in the power of open collaboration and shared ownership of this vision.
 
 Our vision is to be the central, community-driven hub for anyone interested in neuromorphic computing – from curious newcomers to seasoned researchers and developers. We aim to break down barriers, foster innovation, and make neuromorphic technology accessible to all.
+
+## Our Governance: The Executive Committee
+
+As Open Neuromorphic has grown, so has the need for a structure to support our community and guide our initiatives. In 2025, we established our first **Executive Committee** to provide leadership, coordinate activities, and ensure the sustainable growth of ONM. This step formalizes our commitment to transparency and community empowerment, as outlined in our [Organisational Charter](charter/).
+
+{{< display_executive_committee >}}
+
+## Voting Members
+
+The Open Neuromorphic community is steered by our dedicated voting members. These individuals have demonstrated a sustained commitment to open science and actively participate in our governance, peer review, and community initiatives.
+
+{{< display_voting_members >}}
+
+## Our Founders
+
+Open Neuromorphic was brought to life through the vision and dedication of its founders. Their initial efforts and passion for open source collaboration laid the groundwork for the thriving community we are today. We are immensely grateful for their pioneering spirit.
+
+{{< display_founders >}}
+
 
 ## What We Offer
 
@@ -51,23 +88,11 @@ ONM is dedicated to providing a comprehensive ecosystem for the neuromorphic com
 *   Digital, analog, and mixed-signal neuromorphic hardware.
 *   Efforts to improve interoperability and create a more unified open source ecosystem.
 
-## Our Governance: The Executive Committee
-
-As Open Neuromorphic has grown, so has the need for a structure to support our community and guide our initiatives. In 2025, we established our first **Executive Committee** to provide leadership, coordinate activities, and ensure the sustainable growth of ONM. This step formalizes our commitment to transparency and community empowerment, as outlined in our [Organisational Charter](charter/).
-
-{{< display_executive_committee >}}
-
-## Our Founders
-
-Open Neuromorphic was brought to life through the vision and dedication of its founders. Their initial efforts and passion for open source collaboration laid the groundwork for the thriving community we are today. We are immensely grateful for their pioneering spirit.
-
-{{< display_founders >}}
-
 ## Join Us & Get Involved!
 
 The heart of Open Neuromorphic is its community. Whether you're looking to learn, contribute your expertise, or find collaborators, there's a place for you here.
 *   **Engage with us** on our [Discord server](https://discord.gg/hUygPUdD8E).
-*   **Contribute** to our [website and projects on GitHub](https://github.com/open-neuromorphic/open-neuromorphic.github.io).
+*   **Contribute** to our[website and projects on GitHub](https://github.com/open-neuromorphic/open-neuromorphic.github.io).
 *   **Share your knowledge** by giving a talk, writing a blog post, or leading an initiative.
 *   **Contact us** via email at [contact@open-neuromorphic.org](mailto:contact@open-neuromorphic.org) for partnerships or direct inquiries.
 
