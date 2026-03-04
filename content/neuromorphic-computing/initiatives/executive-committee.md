@@ -3,27 +3,51 @@ title: "Executive Committee"
 description: "The elected Executive Committee of Open Neuromorphic, responsible for guiding the community and its initiatives."
 legacy: false
 author:
-- Jens E. Pedersen
-- Justin Riddiough
-- Danny Rosen
-date: 2025-05-18 # Date of election/start of term
+  - Justin Riddiough
+  - Alexandre Marcireau
+  - Effiong Blessing
+active_contributors:
+  - year: 2026
+    roles:
+      - name: "Justin Riddiough"
+        role: "Chair"
+      - name: "Alexandre Marcireau"
+        role: "Vice-Chair"
+      - name: "Effiong Blessing"
+        role: "Secretary"
+  - year: 2025
+    roles:
+      - name: "Jens E. Pedersen"
+        role: "Chair (May 18, 2025 - Feb 8, 2026)"
+      - name: "Justin Riddiough"
+        role: "Vice-Chair (May 18, 2025 - Feb 8, 2026)"
+      - name: "Danny Rosen"
+        role: "Secretary (May 18, 2025 - Feb 8, 2026)"
+date: 2026-02-14
 draft: false
 type: initiatives
 executive_committee:
-  - name: "Jens E. Pedersen"
-    role: "Chair"
-    # contributor_slug: "jens-egholm-pedersen"
   - name: "Justin Riddiough"
+    role: "Chair"
+    contributor_slug: "justin-riddiough"
+  - name: "Alexandre Marcireau"
     role: "Vice-Chair"
-    # contributor_slug: "justin-riddiough"
-  - name: "Danny Rosen"
-    role: "Secretary"
-    # contributor_slug: "danny-rosen"
+    contributor_slug: "alexandre-marcireau"
+  - name: "Effiong Blessing"
+    role: "Secretary Chair"
+    contributor_slug: "effiong-blessing"
 ---
 
-The individuals below form the current Executive Committee for Open Neuromorphic, elected on **May 18th, 2025**. This committee is responsible for the operational and strategic guidance of ONM, as outlined in our charter.
+The individuals below form the current Executive Committee for Open Neuromorphic, elected on **February 8th, 2026**. This committee is responsible for the operational and strategic guidance of ONM, as outlined in our charter.
 
 {{< display_executive_committee >}}
 
-The Executive Committee's roles, responsibilities, and the community's governance structure are detailed in the **[Open Neuromorphic Organisational Charter](/about/charter/)**.
+The Executive Committee's roles, responsibilities, and the community's governance structure are detailed in the **[Open Neuromorphic Organisational Charter](/about/governance/organisational-charter/)**.
 This charter was formally adopted by the committee following their election.
+
+## Past Committees
+
+**2025-2026 Term (May 18, 2025 - Feb 8, 2026)**
+*   **Chair:** Jens E. Pedersen
+*   **Vice-Chair:** Justin Riddiough
+*   **Secretary:** Danny Rosen

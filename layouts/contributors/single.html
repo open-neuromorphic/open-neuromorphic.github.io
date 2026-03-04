@@ -37,44 +37,54 @@
         <h2 class="text-3xl font-semibold mb-8 text-center lg:text-left">Contributions</h2>
 
         {{ $contributorName := .Title }}
-        
+
         {{/* --- Step 1: Collect all relevant contribution objects {Page, Year, Role} --- */}}
         {{ $contributions := slice }}
         {{ $allRelevantPages := where site.RegularPages "Type" "in" (slice "blog" "workshops" "student-talks" "hacking-hours" "initiatives") }}
 
         {{ range $page := $allRelevantPages }}
-           {{ $isMatch := false }}
-           {{ $role := "" }}
-           {{ $year := $page.Date.Format "2006" }}
+        {{ $isMatch := false }}
+        {{ $role := "" }}
+        {{ $year := $page.Date.Format "2006" }}
 
-           {{/* Check Active Contributors (Granular Year override) */}}
-           {{ if $page.Params.active_contributors }}
-              {{ range $yearBlock := $page.Params.active_contributors }}
-                 {{ if in $yearBlock.names $contributorName }}
-                    {{ $contributions = $contributions | append (dict "Page" $page "Year" (string $yearBlock.year) "Role" "Contributor") }}
-                    {{ $isMatch = true }}
-                 {{ end }}
-              {{ end }}
-           {{ end }}
+        {{/* Check Active Contributors (Granular Year override) */}}
+        {{ if $page.Params.active_contributors }}
+        {{ range $yearBlock := $page.Params.active_contributors }}
+        {{ if $yearBlock.names }}
+        {{ if in $yearBlock.names $contributorName }}
+        {{ $contributions = $contributions | append (dict "Page" $page "Year" (string $yearBlock.year) "Role" "Contributor") }}
+        {{ $isMatch = true }}
+        {{ end }}
+        {{ end }}
+        {{ if $yearBlock.roles }}
+        {{ range $r := $yearBlock.roles }}
+        {{ if eq $r.name $contributorName }}
+        {{ $contributions = $contributions | append (dict "Page" $page "Year" (string $yearBlock.year) "Role" $r.role) }}
+        {{ $isMatch = true }}
+        {{ end }}
+        {{ end }}
+        {{ end }}
+        {{ end }}
+        {{ end }}
 
-           {{/* If no granular match, check standard fields */}}
-           {{ if not $isMatch }}
-              {{/* Authors */}}
-              {{ if and $page.Params.author (in $page.Params.author $contributorName) }}
-                 {{ $contributions = $contributions | append (dict "Page" $page "Year" $year "Role" "Author") }}
-                 {{ $isMatch = true }}
-              {{ end }}
-              
-              {{/* Credits */}}
-              {{ if and (not $isMatch) $page.Params.production_credits }}
-                 {{ range $page.Params.production_credits }}
-                    {{ if eq .name $contributorName }}
-                       {{ $contributions = $contributions | append (dict "Page" $page "Year" $year "Role" .role) }}
-                       {{ $isMatch = true }}
-                    {{ end }}
-                 {{ end }}
-              {{ end }}
-           {{ end }}
+        {{/* If no granular match, check standard fields */}}
+        {{ if not $isMatch }}
+        {{/* Authors */}}
+        {{ if and $page.Params.author (in $page.Params.author $contributorName) }}
+        {{ $contributions = $contributions | append (dict "Page" $page "Year" $year "Role" "Author") }}
+        {{ $isMatch = true }}
+        {{ end }}
+
+        {{/* Credits */}}
+        {{ if and (not $isMatch) $page.Params.production_credits }}
+        {{ range $page.Params.production_credits }}
+        {{ if eq .name $contributorName }}
+        {{ $contributions = $contributions | append (dict "Page" $page "Year" $year "Role" .role) }}
+        {{ $isMatch = true }}
+        {{ end }}
+        {{ end }}
+        {{ end }}
+        {{ end }}
         {{ end }}
 
         {{/* --- Step 2: Separate Initiatives --- */}}
@@ -82,17 +92,17 @@
         {{ $timelineContributions := slice }}
 
         {{ range $c := $contributions }}
-           {{ if eq $c.Page.Type "initiatives" }}
-              {{/* Deduplicate initiatives for the top card view (show once even if multiple years) */}}
-              {{ $found := false }}
-              {{ range $i := $initiativeContributions }}{{ if eq $i.Page $c.Page }}{{ $found = true }}{{ end }}{{ end }}
-              {{ if not $found }}{{ $initiativeContributions = $initiativeContributions | append $c }}{{ end }}
-              
-              {{/* Also add to timeline? Usually initiatives are kept separate at top, but if they have specific years now, maybe timeline is good? 
-                 Let's keep the existing design: Initiatives cards at top, everything else in timeline. */}}
-           {{ else }}
-              {{ $timelineContributions = $timelineContributions | append $c }}
-           {{ end }}
+        {{ if eq $c.Page.Type "initiatives" }}
+        {{/* Deduplicate initiatives for the top card view (show once even if multiple years) */}}
+        {{ $found := false }}
+        {{ range $i := $initiativeContributions }}{{ if eq $i.Page $c.Page }}{{ $found = true }}{{ end }}{{ end }}
+        {{ if not $found }}{{ $initiativeContributions = $initiativeContributions | append $c }}{{ end }}
+
+        {{/* Also add to timeline? Usually initiatives are kept separate at top, but if they have specific years now, maybe timeline is good?
+        Let's keep the existing design: Initiatives cards at top, everything else in timeline. */}}
+        {{ else }}
+        {{ $timelineContributions = $timelineContributions | append $c }}
+        {{ end }}
         {{ end }}
 
         {{/* Render Initiatives */}}
@@ -118,14 +128,14 @@
           <div class="contributor-timeline">
             {{ $currentYear := "" }}
             {{ range $item := $sortedTimelineItems }}
-            
+
             {{ if ne $item.Year $currentYear }}
             <div class="timeline-year">
               <span>{{ $item.Year }}</span>
             </div>
             {{ $currentYear = $item.Year }}
             {{ end }}
-            
+
             <div class="timeline-item">
               <div class="timeline-item-content">
                 <div class="flex justify-between items-start gap-4">
@@ -134,15 +144,13 @@
                     <h4 class="text-xl font-semibold mb-1">
                       <a href="{{ $item.Page.RelPermalink }}" class="text-dark dark:text-darkmode-dark hover:text-primary dark:hover:text-darkmode-primary">{{ $item.Page.Title }}</a>
                     </h4>
-                    
-                    {{/* For standard posts, show full date. For annual initiatives, maybe just year or "Active 202X"? 
-                       Since we are in the timeline view, let's stick to standard date formatting if available, or just generic if it's an override. */}}
+
                     <p class="text-sm text-gray-500 dark:text-gray-400">
-                       {{ if eq $item.Role "Contributor" }}
-                          Active in {{ $item.Year }}
-                       {{ else }}
-                          {{ $item.Page.Date.Format "January 2" }}
-                       {{ end }}
+                      {{ if or (eq $item.Page.Type "initiatives") (eq $item.Role "Contributor") }}
+                      Active in {{ $item.Year }}
+                      {{ else }}
+                      {{ $item.Page.Date.Format "January 2" }}
+                      {{ end }}
                     </p>
 
                     {{ if and (ne $item.Role "Author") (ne $item.Role "Contributor") }}
