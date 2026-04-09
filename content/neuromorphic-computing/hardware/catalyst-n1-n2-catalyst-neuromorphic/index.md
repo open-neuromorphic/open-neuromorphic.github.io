@@ -58,6 +58,7 @@ Primary target is Zynq UltraScale+ (validated on ZU5EV via Vivado 2025.2, also t
 |------|-------|---------|-------------|
 | February 2026 | [Catalyst N1: A 128-Core Neuromorphic Processor](https://doi.org/10.5281/zenodo.18727094) | Henry Shulayev Barnes | Zenodo (preprint) |
 | February 2026 | [Catalyst N2: Programmable Neuron Microcode](https://doi.org/10.5281/zenodo.18728256) | Henry Shulayev Barnes | Zenodo (preprint) |
+| March 2026 | [Catalyst N3: Neuromorphic Processor Architecture](https://zenodo.org/records/18881283) | Henry Shulayev Barnes | Zenodo (preprint) |
 
 ## Availability
 
