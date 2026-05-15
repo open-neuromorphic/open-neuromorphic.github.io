@@ -63,7 +63,7 @@ TEXEL includes a device-agnostic BEOL interface. Each plastic synapse includes c
 
 The interface targets current-based BEOL devices with two or three terminals. In a device-integrated configuration, each plastic synapse would use a pair of devices to represent a binary synaptic weight: one positive device and one negative device. During a read operation, a differential normalizer compares the currents through the two devices and converts the difference into a current suitable for the downstream Differential Pair Integrator (DPI) synapse circuit.
 
-The interface supports operation voltages up to 5 V, read-write pulse widths from 10 ns to 100 ms, and debug options for monitoring device behavior. This flexibility adds silicon area overhead, reflecting TEXEL's focus on compatibility and observability over density.
+The interface supports operation voltages up to 5 V, read-write pulse widths from 10 ns to 100 ms, and debug options for monitoring device behavior. 
 
 ## Demonstrations
 
