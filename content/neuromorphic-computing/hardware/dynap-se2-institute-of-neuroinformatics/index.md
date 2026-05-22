@@ -24,6 +24,7 @@ product:
   on_chip_learning: false
   power: ~5 mW
   release_date: null
+  release_year: 2023
   software: Rockpool, Samna
   status:
     announced: true

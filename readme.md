@@ -2,14 +2,14 @@
 
 ![Build Status](https://github.com/open-neuromorphic/open-neuromorphic.github.io/actions/workflows/main.yml/badge.svg)
 
-This repository contains the source code for the official **Open Neuromorphic (ONM)** website, live at [open-neuromorphic.org](https://open-neuromorphic.org). Our goal is to foster a collaborative community around neuromorphic computing by providing educational content, resources, and a platform for sharing knowledge and projects.
+This repository contains the source code for the official [Open Neuromorphic](https://open-neuromorphic.org) website. Our goal is to foster a collaborative community around neuromorphic computing by providing educational content, resources, and a platform for sharing knowledge and projects.
 
 ## ✨ Key Features
 
 *   **Static Site Generation:** Built with the [Hugo](https://gohugo.io/) (Extended) for speed and security.
 *   **Modern Styling:** Styled with [Tailwind CSS](https://tailwindcss.com/) for a utility-first workflow.
 *   **Community Focused:** Features contributor profiles, workshops, student talks, and community-led initiatives.
-*   **Resource Hubs:** Curated guides for [Neuromorphic Hardware](/neuromorphic-computing/hardware/) and [Software](/neuromorphic-computing/software/).
+*   **Resource Hubs:** Curated guides for [Neuromorphic Hardware](https://open-neuromorphic.org/neuromorphic-computing/hardware/) and [Software](https://open-neuromorphic.org/neuromorphic-computing/software/).
 *   **Automated Deployments:** CI/CD pipeline using GitHub Actions for automated builds and deployments.
 *   **Dynamic OG Images:** Automatically generated Open Graph images for better social sharing.
 *   **Image Attribution:** Simple front matter configuration to give credit for banner images.

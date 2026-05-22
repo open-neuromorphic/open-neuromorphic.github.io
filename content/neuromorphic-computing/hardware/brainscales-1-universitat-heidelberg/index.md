@@ -36,7 +36,6 @@ summary: The BrainScaleS-1 is an accelerated spiking neuromorphic system integra
   and event routing on a silicon wafer substrate. It enables fast emulation of
   complex neural dynamics and exploration of STDP-type synaptic plasticity.
 title: BrainScaleS-1 — Heidelberg University
-type: neuromorphic-hardware
 ---
 
 The BrainScaleS-1 accelerated neuromorphic system is an wafer-scale integrated circuit architecture for emulating biologically-inspired spiking neural networks.

@@ -32,5 +32,5 @@ time_zone = "CEST"
 location_name = "YouTube Live"
 location_url = "https://www.youtube.com/@openneuromorphic"
 details_page_link = "/getting-involved/town-hall/"
-active = true
+active = false
 image = "/images/getting-involved/getting-involved-og.jpg"

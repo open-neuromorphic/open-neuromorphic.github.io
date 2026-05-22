@@ -1,0 +1,111 @@
+name: "New Hardware Entry"
+description: "Submit a new neuromorphic chip or hardware system for the Hardware Guide."
+title: "[Hardware]: <Name of Hardware>"
+labels: ["content", "hardware"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for contributing to the Open Neuromorphic Hardware Guide!
+        Please fill out the details below to match the schema used on the website.
+
+  - type: input
+    id: product_name
+    attributes:
+      label: Product Name
+      description: The name of the chip or board (e.g., "Loihi 2").
+      placeholder: "e.g. Akida"
+    validations:
+      required: true
+
+  - type: input
+    id: manufacturer
+    attributes:
+      label: Manufacturer / Organization
+      description: The company or university lab behind the hardware.
+      placeholder: "e.g. Intel"
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Short Summary
+      description: A 2-3 sentence summary for the card preview (approx. 160 characters).
+    validations:
+      required: true
+
+  - type: input
+    id: website
+    attributes:
+      label: Product/Organization Website
+      placeholder: "https://..."
+
+  - type: dropdown
+    id: chip_type
+    attributes:
+      label: Chip Type
+      options:
+        - Digital
+        - Mixed-signal
+        - Analog
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: status
+    attributes:
+      label: Development Status
+      options:
+        - Announced
+        - Released (Available for research/purchase)
+        - Retired / End of Life
+    validations:
+      required: true
+
+  - type: input
+    id: release_date
+    attributes:
+      label: Release Year/Date
+      placeholder: "YYYY or YYYY-MM-DD"
+
+  - type: input
+    id: neuron_count
+    attributes:
+      label: Neuron Count
+      placeholder: "e.g. 1 million"
+
+  - type: input
+    id: synapse_count
+    attributes:
+      label: Synapse Count
+      placeholder: "e.g. 128 million"
+
+  - type: input
+    id: power
+    attributes:
+      label: Power Consumption
+      placeholder: "e.g. ~1 W or 30 mW"
+
+  - type: input
+    id: software
+    attributes:
+      label: Supported Software/SDK
+      placeholder: "e.g. Lava, MetaTF, PyNN"
+
+  - type: textarea
+    id: detailed_description
+    attributes:
+      label: Detailed Description / Overview
+      description: Provide a few paragraphs describing the architecture, unique features, and use cases. This will form the main body of the page.
+    validations:
+      required: true
+
+  - type: textarea
+    id: publications
+    attributes:
+      label: Related Publications
+      description: List relevant papers (Title, Authors, Venue, Link).
+      placeholder: |
+        - [Paper Title](link) by Author et al., Venue/Year

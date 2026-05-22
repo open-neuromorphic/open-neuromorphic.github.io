@@ -11,7 +11,10 @@ license: GPL-3.0
 supports_hardware: False
 supports_NIR: False
 language: Python
-maintainer: Neucom
+maintainer:
+    - Iñigo Lara
+    - Francesco Sheiban
+    - Dmitri Lyalikov
 draft: false
 ---
 

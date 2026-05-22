@@ -42,23 +42,28 @@
           {{ end }}
         </div>
         {{ partial "components/metadata-bar.html" (dict "context" $page_context "type" "event") }}
+
         <div class="content">
           {{ $page_context.Content }}
         </div>
+
+        {{/* --- Moved: About the Speaker --- */}}
+        {{ $title := "About the Speaker" }}
+        {{ with .Params.author }}
+        {{ if gt (len .) 1 }}
+        {{ $title = "About the Speakers" }}
+        {{ end }}
+        {{ end }}
+
+        {{ partial "components/author-bios.html" (dict "context" . "title" $title) }}
+
+        {{/* --- Production Credits --- */}}
+        {{ partial "components/production-credits.html" $page_context }}
+
       </div>
+
       <div class="lg:col-4 mb-14">
         {{ partial $sidebar_content_partial $page_context }}
-      </div>
-
-      {{ $title := "About the Speaker" }}
-      {{ with .Params.author }}
-      {{ if gt (len .) 1 }}
-      {{ $title = "About the Speakers" }}
-      {{ end }}
-      {{ end }}
-
-      <div class="lg:col-10 mx-auto">
-        {{ partial "components/author-bios.html" (dict "context" . "title" $title) }}
       </div>
 
       <div class="lg:col-12 mt-16">

@@ -19,6 +19,11 @@ software_tags: []
 # speaker_slides: "slides.pdf"
 # speaker_code: "https://github.com/example/repo" # External link
 # speaker_notebook: "my-notebook.ipynb" # Place in folder
+
+# Optional: Production credits for community members who helped organize/produce the event
+# production_credits:
+#   - name: "Contributor Name"
+#     role: "Role (e.g. Technical Oversight, Event Operations, Video Editing)"
 ---
 
 Detailed workshop abstract or information goes here.

@@ -3,6 +3,7 @@ title: "Social Media Engagement"
 description: "Curating and sharing ONM news, workshop announcements, blog posts, and relevant neuromorphic content across our social media platforms (e.g., Twitter, LinkedIn) to broaden our reach and engage with the wider community."
 author: 
 - Giulia D'Angelo
+- Marcos Ordonez
 date: 2023-01-03
 type: initiatives
 legacy: false

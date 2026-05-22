@@ -36,7 +36,6 @@ summary: ROLLS is a reconfigurable neuromorphic chip with 256 silicon neurons an
   of neural systems with adaptive behaviors using analog neuron/synapse circuits with
   added digital configuration logic for flexibility.
 title: ROLLS - INI
-type: neuromorphic-hardware
 ---
 
 The ROLLS chip implements key requirements for online learning and adaptive behavior in neuromorphic systems, with highly flexible digital configuration options.

@@ -61,14 +61,6 @@
           {{ $repo_path = replace $repo_path ".git" "" }}
           {{ end }}
 
-          {{ if $page.Params.version_badge_url_override }}
-          <img class="h-5" src="{{ $page.Params.version_badge_url_override }}" alt="Version Badge">
-          {{ else if $page.Params.pypi_id }}
-          <img class="h-5" src="https://img.shields.io/pypi/v/{{ $page.Params.pypi_id }}.svg" alt="PyPI Version">
-          {{ else if $is_github }}
-          <img class="h-5" src="https://img.shields.io/github/v/release/{{ $repo_path }}" alt="GitHub Release">
-          {{ end }}
-
           {{ if $is_github }}
           <img class="h-5" src="https://img.shields.io/github/stars/{{ $repo_path }}.svg?style=social" alt="GitHub Stars">
           {{ else if $is_gitlab }}

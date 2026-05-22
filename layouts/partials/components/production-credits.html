@@ -1,0 +1,44 @@
+{{ with .Params.production_credits }}
+<div class="production-credits-section mt-12 pt-8">
+  <h3 class="text-2xl font-bold mb-6">Event Production & Support</h3>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    {{ range . }}
+      {{ $name := .name }}
+      {{ $role := .role }}
+
+      {{ $nameForSlug := $name | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" }}
+      {{ $contributorSlug := $nameForSlug | anchorize }}
+      {{ $contributorPage := site.GetPage (printf "contributors/%s" $contributorSlug) }}
+
+      <div class="flex items-center gap-3 p-3 rounded-lg bg-gray-50 dark:bg-darkmode-theme-light/30">
+        <div class="flex-shrink-0">
+          {{ if and $contributorPage $contributorPage.Params.image }}
+            {{ with $contributorPage.Resources.GetMatch $contributorPage.Params.image }}
+              <img src="{{ (.Fill "48x48 Lanczos").RelPermalink }}" alt="{{ $name }}" class="w-10 h-10 rounded-full object-cover">
+            {{ end }}
+          {{ else }}
+            <div class="w-10 h-10 rounded-full bg-gray-200 dark:bg-darkmode-theme-dark flex items-center justify-center text-gray-400">
+              {{ partial "icon.html" (dict "style" "solid" "name" "user" "class" "text-sm") }}
+            </div>
+          {{ end }}
+        </div>
+
+        <div>
+          <div class="font-semibold text-dark dark:text-darkmode-dark leading-tight">
+            {{ if $contributorPage }}
+              <a href="{{ $contributorPage.RelPermalink }}" class="hover:text-primary dark:hover:text-darkmode-primary transition-colors">
+                {{ $name }}
+              </a>
+            {{ else }}
+              {{ $name }}
+            {{ end }}
+          </div>
+          <div class="text-xs text-gray-600 dark:text-gray-400 font-medium">
+            {{ $role }}
+          </div>
+        </div>
+      </div>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

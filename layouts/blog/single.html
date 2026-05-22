@@ -7,7 +7,7 @@
         {{ $image:= .Params.image }}
         {{ if $image }}
         <div class="mb-6">
-          {{ partial "image" (dict "Src" $image "Context" .Page "Alt" .Title "Class" "w-full rounded" "Size" "1280x720" "Command" "Crop") }}
+          {{ partial "image" (dict "Src" $image "Context" .Page "Alt" .Title "Class" "w-full rounded" "Size" "1280x720" "Command" "Fill") }}
           {{ partial "components/image-attribution.html" . }}
         </div>
         {{ end }}
@@ -16,7 +16,7 @@
           {{ .Content }}
         </div>
         {{ partial "components/share-cta.html" . }}
-       
+
         {{ partial "components/author-bios.html" . }}
 
         <div class="mt-16">
