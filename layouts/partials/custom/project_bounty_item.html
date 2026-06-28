@@ -2,7 +2,8 @@
 {{ $project := .project }}
 {{ $softwarePages := .softwarePages }}
 
-{{ $fetched := index site.Data.fetched_issues $project.repo | default slice }}
+{{ $fetched := slice }}
+{{ if $project.repo }}{{ $fetched = index site.Data.fetched_issues $project.repo | default slice }}{{ end }}
 {{ $manual := $project.issues | default slice }}
 {{ $all_issues := $manual }}
 {{ range $fi := $fetched }}

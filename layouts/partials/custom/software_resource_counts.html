@@ -18,7 +18,8 @@
 {{ $mission_board_items := 0 }}
 {{ range site.Data.community_projects.projects }}
 {{ if eq .slug $slug }}
-{{ $fetched := index site.Data.fetched_issues .repo | default slice }}
+{{ $fetched := slice }}
+{{ if .repo }}{{ $fetched = index site.Data.fetched_issues .repo | default slice }}{{ end }}
 {{ $manual := .issues | default slice }}
 {{ $all_issues := $manual }}
 {{ range $fi := $fetched }}

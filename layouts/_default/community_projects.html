@@ -6,7 +6,8 @@
 {{ .Scratch.Set "projectsWithOnlyCompleted" slice }}
 
 {{ range site.Data.community_projects.projects }}
-{{ $fetched := index site.Data.fetched_issues .repo | default slice }}
+{{ $fetched := slice }}
+{{ if .repo }}{{ $fetched = index site.Data.fetched_issues .repo | default slice }}{{ end }}
 {{ $manual := .issues | default slice }}
 {{ $all_issues := $manual }}
 {{ range $fi := $fetched }}
@@ -53,7 +54,8 @@
           {{ if $projectsWithIssues }}
           {{ $tagCounts := dict }}
           {{ range site.Data.community_projects.projects }}
-          {{ $fetched := index site.Data.fetched_issues .repo | default slice }}
+          {{ $fetched := slice }}
+          {{ if .repo }}{{ $fetched = index site.Data.fetched_issues .repo | default slice }}{{ end }}
           {{ $manual := .issues | default slice }}
           {{ $all_issues := $manual }}
           {{ range $fi := $fetched }}

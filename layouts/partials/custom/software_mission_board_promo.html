@@ -9,7 +9,8 @@
 
 {{ $all_issues := slice }}
 {{ if $project_data }}
-{{ $fetched := index site.Data.fetched_issues $project_data.repo | default slice }}
+{{ $fetched := slice }}
+{{ if $project_data.repo }}{{ $fetched = index site.Data.fetched_issues $project_data.repo | default slice }}{{ end }}
 {{ $manual := $project_data.issues | default slice }}
 {{ $all_issues = $manual }}
 {{ range $fi := $fetched }}

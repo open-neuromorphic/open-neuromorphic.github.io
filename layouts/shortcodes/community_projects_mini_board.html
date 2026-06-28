@@ -3,7 +3,8 @@
   <div class="flex-grow p-4 h-full overflow-y-auto">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {{ range site.Data.community_projects.projects }}
-      {{ $fetched := index site.Data.fetched_issues .repo | default slice }}
+      {{ $fetched := slice }}
+      {{ if .repo }}{{ $fetched = index site.Data.fetched_issues .repo | default slice }}{{ end }}
       {{ $manual := .issues | default slice }}
       {{ $all_issues := $manual }}
       {{ range $fi := $fetched }}
