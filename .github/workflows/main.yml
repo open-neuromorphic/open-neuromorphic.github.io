@@ -35,7 +35,7 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version: ${{ env.GO_VERSION }}
-          cache: true
+          cache: false
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
