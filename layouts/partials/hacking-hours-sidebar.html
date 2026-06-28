@@ -4,7 +4,14 @@
 <div class="px-7 pt-7 content-panel">
   <h3 class="pb-5 pt-5 text-xl">Next Hacking Hour</h3>
 
-  {{ $upcoming_talks := where (where .Site.RegularPages "Type" "hacking-hours") ".Params.upcoming" true }}
+  {{ $now := now }}
+  {{ $yesterday := $now.AddDate 0 0 -1 }}
+  {{ $upcoming_talks := slice }}
+  {{ range where (where .Site.RegularPages "Type" "hacking-hours") ".Params.upcoming" true }}
+  {{ if ge .Date.Unix $yesterday.Unix }}
+  {{ $upcoming_talks = $upcoming_talks | append . }}
+  {{ end }}
+  {{ end }}
 
   {{ if gt (len $upcoming_talks) 0 }}
   {{ range sort $upcoming_talks ".Date" | first 1 }}

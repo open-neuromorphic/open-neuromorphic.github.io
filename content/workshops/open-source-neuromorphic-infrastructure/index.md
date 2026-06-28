@@ -10,7 +10,7 @@ author:
   - Dylan Muir
   - Terry Stewart
   - Marcel Stimberg
-date: 2026-07-30
+date: 2025-07-30
 description: "Join leading maintainers of neuromorphic software libraries for a panel discussion on building open-source infrastructure, sharing lessons learned, and shaping the future of the neuromorphic ecosystem."
 upcoming: true
 video: "kZqVe3547r8"
