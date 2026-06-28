@@ -53,14 +53,12 @@
   }
 }
 
-
 .nav-dropdown.active .nav-dropdown-list {
   @apply lg:bg-white dark:lg:bg-darkmode-theme-dark;
 }
 .nav-dropdown-list {
   @apply lg:bg-white dark:lg:bg-darkmode-theme-dark;
 }
-
 
 div.chart {
   max-width: 100%;
@@ -168,7 +166,6 @@ code {
   }
 }
 
-
 .content-panel {
   @apply bg-theme-light dark:bg-darkmode-theme-light rounded-lg shadow-md;
 }
@@ -179,35 +176,6 @@ code {
 
 .meta-icon-img {
   @apply inline h-[30px];
-}
-
-.author-card-compact {
-  @apply bg-theme-light dark:bg-darkmode-theme-light rounded-lg p-4 text-center shadow;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  height: 100%;
-}
-
-.author-card-compact .image-80 {
-  width: 80px;
-  height: 80px;
-}
-
-.author-card-compact .image-100 {
-  width: 100px;
-  height: 100px;
-}
-
-.software-hacking-hours-promo {
-  .past-event-promo {
-    .flex {
-      img {
-        flex-shrink: 0;
-      }
-    }
-  }
 }
 
 .section-title {
@@ -224,67 +192,4 @@ code {
 
 .details-shortcode[open] > summary .details-marker {
   transform: rotate(90deg);
-}
-
-.copy-code-button {
-  @apply absolute top-2 right-2 p-1.5 rounded-md bg-gray-700/50 text-gray-300;
-  @apply opacity-0 group-hover:opacity-100 transition-opacity duration-200;
-}
-
-.copy-code-button:hover {
-  @apply bg-gray-600 text-white;
-}
-
-.copy-code-button.copied {
-  @apply bg-green-600/80 text-white;
-}
-
-.filter-panel-glow {
-  --glow-size: 20px;
-  --glow-color-light: theme('colors.body');
-  --glow-color-dark: theme('colors.darkmode.body');
-  border-bottom: 3px solid rgba(57, 57, 57, 0.3);
-  border-top: 3px solid rgba(57, 57, 57, 0.3);
-  box-shadow:
-    /* Standard shadow for depth */
-    0 10px 15px -3px rgba(0, 0, 0, 0.07),
-    0 4px 6px -4px rgba(0, 0, 0, 0.07),
-      /* Glow effect to fade out scrolling content */
-    0 calc(-1 * var(--glow-size)) var(--glow-size) var(--glow-color-light),
-    0 var(--glow-size) var(--glow-size) var(--glow-color-light);
-}
-
-.dark .filter-panel-glow {
-  box-shadow:
-    /* Darker shadow for depth in dark mode */
-    0 10px 15px -3px rgba(0, 0, 0, 0.3),
-    0 4px 6px -4px rgba(0, 0, 0, 0.3),
-      /* Glow effect for dark mode */
-    0 calc(-1 * var(--glow-size)) var(--glow-size) var(--glow-color-dark),
-    0 var(--glow-size) var(--glow-size) var(--glow-color-dark);
-}
-
-.filter-tag, .project-filter-link, #clear-filter-btn {
-  -webkit-user-select: none; /* Safari */
-  -ms-user-select: none; /* IE 10+ and Edge */
-  user-select: none; /* Standard syntax */
-}
-
-.event-type-tag-link {
-  @apply inline-block font-semibold no-underline rounded-full text-xs transition-transform transform;
-  background: linear-gradient(135deg, var(--color-primary-new) 0%, var(--color-secondary-new) 100%);
-  color: white !important;
-  padding-top: 0.125rem !important;    /* Equivalent to py-0.5 */
-  padding-bottom: 0.125rem !important; /* Equivalent to py-0.5 */
-  padding-left: 0.625rem !important;   /* Equivalent to px-2.5 */
-  padding-right: 0.625rem !important;  /* Equivalent to px-2.5 */
-
-  &:hover {
-    @apply -translate-y-px shadow-md;
-  }
-
-  .dark & {
-    background: linear-gradient(135deg, theme('colors.darkmode.primary') 0%, color-mix(in srgb, theme('colors.darkmode.primary') 80%, black) 100%);
-    color: theme('colors.darkmode.text') !important;
-  }
 }

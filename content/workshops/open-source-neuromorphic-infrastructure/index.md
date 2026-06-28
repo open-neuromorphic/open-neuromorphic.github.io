@@ -12,7 +12,7 @@ author:
   - Marcel Stimberg
 date: 2025-07-30
 description: "Join leading maintainers of neuromorphic software libraries for a panel discussion on building open-source infrastructure, sharing lessons learned, and shaping the future of the neuromorphic ecosystem."
-upcoming: false
+upcoming: true
 video: "kZqVe3547r8"
 image: "tools.png"
 software_tags: ["neuromorphic-intermediate-representation","bindsnet", "snntorch", "brian", "genn", "jaxsnn", "nengo", "norse", "rockpool", "tonic"]

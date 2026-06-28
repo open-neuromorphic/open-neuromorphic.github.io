@@ -148,6 +148,12 @@ def find_relevant_files(root: Path, mode: str = "full", with_public_html: bool =
 def generate_header(mode: str) -> str:
     """Generates the header content for the output file."""
     common_instructions = """
+  **CRITICAL AI CODING REQUIREMENTS:**
+  1. **Token Efficiency:** DO NOT use decorative comment blocks (e.g., `// ---------`). Keep comments dense.
+  2. **No File Headers:** Just provide the raw code inside the markdown fenced block. Provide filename before block.
+  3. **Commit Messages:** Provide commit message at end of response with **WHY** and **GOAL** of code changes
+  4. **Complete Files:** Always provide complete file content in responses — never truncated snippets or diffs
+
 **Instructions for AI:**
 1.  **Analyze Structure:** Understand the Hugo project layout (config, content, layouts, assets, static structure).
 2.  **Primary Goal:** Use this information to answer questions about the website's implementation, structure, features, styling, configuration, and potential areas for improvement or troubleshooting.

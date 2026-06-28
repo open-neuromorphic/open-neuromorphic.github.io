@@ -1,7 +1,6 @@
 (function () {
   'use strict';
 
-  // --- Search Modal ---
   const searchModal = document.querySelector('[data-search-modal]');
   const searchTriggers = document.querySelectorAll('[data-target="search-modal"]');
   const searchClose = document.querySelector('[data-search-close]');
@@ -16,7 +15,6 @@
   let isFuseInitialized = false;
   let debounceTimer;
 
-  // Function to load a script dynamically
   function loadScript(src) {
     return new Promise((resolve, reject) => {
       const script = document.createElement('script');
@@ -30,7 +28,6 @@
   async function initFuse() {
     if (isFuseInitialized) return;
     try {
-      // Check if Fuse is loaded, if not, load it.
       if (typeof Fuse === 'undefined') {
         if (!window.fuseJSSrc) {
           throw new Error('Fuse.js library source URL not provided via window.fuseJSSrc');
@@ -56,23 +53,19 @@
         ],
         includeMatches: true,
         minMatchCharLength: 2,
-        threshold: 0.2, // Stricter search threshold
+        threshold: 0.2,
         sortFn: (a, b) => {
-          // Primary sort: by score (ascending, lower is better)
           if (a.score !== b.score) {
             return a.score - b.score;
           }
-          // Secondary sort: by priority (ascending, lower is better)
           if (a.item.priority !== b.item.priority) {
             return a.item.priority - b.item.priority;
           }
-          // Tertiary sort: by original index in the list
           return a.refIndex - b.refIndex;
         }
       };
       fuse = new Fuse(searchData, options);
       isFuseInitialized = true;
-      console.log('Fuse.js initialized.');
     } catch (e) {
       console.error('Failed to initialize Fuse.js:', e);
     }
@@ -83,7 +76,7 @@
     searchModal.classList.add('flex');
     searchInput.focus();
     document.body.style.overflow = 'hidden';
-    initFuse(); // Initialize on first open
+    initFuse();
   };
 
   const hideModal = () => {
@@ -116,7 +109,6 @@
     if (e.key === 'Escape' && !searchModal.classList.contains('hidden')) {
       hideModal();
     }
-    // Hotkey: Ctrl+K or Cmd+K
     if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
       e.preventDefault();
       showModal();
@@ -138,18 +130,13 @@
           return;
         }
 
-        // --- Google Analytics Event Tracking ---
         if (typeof gtag === 'function') {
-          gtag('event', 'search', {
-            search_term: query
-          });
-          console.log(`GA Event sent: search, search_term: ${query}`);
+          gtag('event', 'search', { search_term: query });
         }
-        // -----------------------------------------
 
         const results = fuse.search(query, { limit: 20 });
         renderResults(results, query);
-      }, 500); // Wait 500ms after user stops typing
+      }, 500);
     });
   }
 
@@ -187,7 +174,6 @@
           const start = Math.max(0, contentMatch.indices[0][0] - 30);
           const end = Math.min(item.content.length, contentMatch.indices[0][1] + 30);
           let snippet = item.content.substring(start, end);
-          // Adjust indices for snippet
           const adjustedIndices = contentMatch.indices.map(([i, j]) => [i - start, j - start]);
           description = (start > 0 ? '...' : '') + highlight(snippet, adjustedIndices) + (end < item.content.length ? '...' : '');
         }
@@ -216,5 +202,4 @@
     result += text.substring(lastIndex);
     return result;
   }
-
 })();

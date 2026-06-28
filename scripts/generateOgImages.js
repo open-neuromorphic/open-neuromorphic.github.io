@@ -1,4 +1,3 @@
-// scripts/generateOgImages.js
 const puppeteer = require('puppeteer');
 const { join } = require('path');
 const { readFile, writeFile, unlink, stat } = require('fs/promises');
@@ -17,11 +16,19 @@ async function pathExists(path) {
   try { await stat(path); return true; } catch { return false; }
 }
 
+function escapeHtml(unsafe) {
+  return (unsafe || "").toString()
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
 async function generateImages() {
   const startTime = Date.now();
   console.log('🖼️  Starting OG Image Generation with Caching...');
 
-  // --- Pre-flight checks ---
   if (!(await pathExists(INPUT_JSON_PATH))) {
     throw new Error(`❌ Data file not found: ${INPUT_JSON_PATH}. Run collect script first.`);
   }
@@ -29,7 +36,6 @@ async function generateImages() {
     throw new Error(`❌ OG template(s) not found.`);
   }
 
-  // --- Read data, templates, and cache manifest ---
   const defaultTemplateContent = await readFile(TEMPLATE_PATH, 'utf8');
   const eventTemplateContent = await readFile(EVENT_TEMPLATE_PATH, 'utf8');
   const youtubeTemplateContent = await readFile(YOUTUBE_TEMPLATE_PATH, 'utf8');
@@ -49,7 +55,6 @@ async function generateImages() {
     return;
   }
 
-  // --- Launch Puppeteer and create ONE reusable page ---
   const browser = await puppeteer.launch({
     headless: true,
     args: ['--no-sandbox', '--disable-setuid-sandbox'],
@@ -60,7 +65,6 @@ async function generateImages() {
   let errorCount = 0;
   let skippedCount = 0;
 
-  // --- Process each page ---
   for (const pageData of jsonData.pages) {
     const { title, description, outputs, finalHash, eventDate, eventTime, speakers } = pageData;
 
@@ -69,7 +73,6 @@ async function generateImages() {
       continue;
     }
 
-    // Process each output size for the current page
     for (const output of outputs) {
       const { path: outputPath, width, height, template } = output;
 
@@ -79,7 +82,7 @@ async function generateImages() {
 
         if (fileAlreadyExists && isCacheValid) {
           skippedCount++;
-          newCache[outputPath] = finalHash; // Keep valid entry
+          newCache[outputPath] = finalHash;
           continue;
         }
 
@@ -87,80 +90,80 @@ async function generateImages() {
 
         let htmlContent;
         if (template === 'event' || template === 'youtube') {
-            let allSpeakers = speakers || [];
-            let speakersWithPhotos = allSpeakers.filter(s => s.imageUri);
-            let speakersWithoutPhotos = allSpeakers.filter(s => !s.imageUri);
+          let allSpeakers = speakers || [];
+          let speakersWithPhotos = allSpeakers.filter(s => s.imageUri);
+          let speakersWithoutPhotos = allSpeakers.filter(s => !s.imageUri);
 
-            let speakersHtml;
-            if (template === 'youtube') {
-                const speakerCount = speakersWithPhotos.length;
-                let speakerImgSize, speakerNameSize, speakerContainerGap;
+          let speakersHtml;
+          if (template === 'youtube') {
+            const speakerCount = speakersWithPhotos.length;
+            let speakerImgSize, speakerNameSize, speakerContainerGap;
 
-                if (speakerCount > 6) {
-                    speakerImgSize = '110px';
-                    speakerNameSize = '18px';
-                    speakerContainerGap = '10px';
-                } else if (speakerCount > 4) {
-                    speakerImgSize = '130px';
-                    speakerNameSize = '20px';
-                    speakerContainerGap = '15px';
-                } else {
-                    speakerImgSize = '160px';
-                    speakerNameSize = '24px';
-                    speakerContainerGap = '25px';
-                }
+            if (speakerCount > 6) {
+              speakerImgSize = '110px';
+              speakerNameSize = '18px';
+              speakerContainerGap = '10px';
+            } else if (speakerCount > 4) {
+              speakerImgSize = '130px';
+              speakerNameSize = '20px';
+              speakerContainerGap = '15px';
+            } else {
+              speakerImgSize = '160px';
+              speakerNameSize = '24px';
+              speakerContainerGap = '25px';
+            }
 
-                const photosHtml = speakersWithPhotos.map(speaker => `
+            const photosHtml = speakersWithPhotos.map(speaker => `
                   <div class="speaker-item">
-                    <img src="${speaker.imageUri}" class="speaker-img" alt="Photo of ${speaker.name}" style="width: ${speakerImgSize}; height: ${speakerImgSize};" />
-                    <div class="speaker-name" style="font-size: ${speakerNameSize};">${speaker.name}</div>
+                    <img src="${speaker.imageUri}" class="speaker-img" alt="Photo of ${escapeHtml(speaker.name)}" style="width: ${speakerImgSize}; height: ${speakerImgSize};" />
+                    <div class="speaker-name" style="font-size: ${speakerNameSize};">${escapeHtml(speaker.name)}</div>
                   </div>
                 `).join('');
 
-                let textHtml = '';
-                if (speakersWithoutPhotos.length > 0) {
-                    const otherSpeakersTitle = speakersWithPhotos.length > 0 ? 'With' : 'Speakers';
-                    textHtml = `
+            let textHtml = '';
+            if (speakersWithoutPhotos.length > 0) {
+              const otherSpeakersTitle = speakersWithPhotos.length > 0 ? 'With' : 'Speakers';
+              textHtml = `
                       <div class="speakers-without-photos">
                         <h3 class="other-speakers-title">${otherSpeakersTitle}:</h3>
                         <ul class="other-speakers-list">
-                          ${speakersWithoutPhotos.map(s => `<li>${s.name}</li>`).join('')}
+                          ${speakersWithoutPhotos.map(s => `<li>${escapeHtml(s.name)}</li>`).join('')}
                         </ul>
                       </div>
                     `;
-                }
+            }
 
-                speakersHtml = `<div class="speakers-container" style="gap: ${speakerContainerGap};">${photosHtml}</div>${textHtml}`;
+            speakersHtml = `<div class="speakers-container" style="gap: ${speakerContainerGap};">${photosHtml}</div>${textHtml}`;
 
-                htmlContent = youtubeTemplateContent
-                  .replace('LOGO_SRC', jsonData.logoDataUri)
-                  .replace('BACKGROUND_URL', jsonData.backgroundDataUri || '')
-                  .replace('PAGE_TITLE', title)
-                  .replace('<!-- SPEAKERS_HTML will be injected here -->', speakersHtml);
+            htmlContent = youtubeTemplateContent
+              .replaceAll('LOGO_SRC', jsonData.logoDataUri)
+              .replaceAll('BACKGROUND_URL', jsonData.backgroundDataUri || '')
+              .replaceAll('PAGE_TITLE', escapeHtml(title))
+              .replaceAll('<!-- SPEAKERS_HTML will be injected here -->', speakersHtml);
 
-            } else { // 'event' template
-                speakersHtml = allSpeakers.map(speaker => `
+          } else { // 'event' template
+            speakersHtml = allSpeakers.map(speaker => `
                   <div class="speaker-item">
-                    ${speaker.imageUri ? `<img src="${speaker.imageUri}" class="speaker-img" alt="Photo of ${speaker.name}" />` : ''}
-                    <div class="speaker-name">${speaker.name}</div>
+                    ${speaker.imageUri ? `<img src="${speaker.imageUri}" class="speaker-img" alt="Photo of ${escapeHtml(speaker.name)}" />` : ''}
+                    <div class="speaker-name">${escapeHtml(speaker.name)}</div>
                   </div>
                 `).join('');
 
-                htmlContent = eventTemplateContent
-                  .replace('LOGO_SRC', jsonData.logoDataUri)
-                  .replace('BACKGROUND_URL', jsonData.backgroundDataUri || '')
-                  .replace('PAGE_TITLE', title)
-                  .replace('PAGE_DESCRIPTION', description || '')
-                  .replace('<!-- SPEAKER_IMAGES_HTML will be injected here -->', speakersHtml)
-                  .replace('EVENT_DATE', eventDate || '')
-                  .replace('EVENT_TIME', eventTime || '');
-            }
+            htmlContent = eventTemplateContent
+              .replaceAll('LOGO_SRC', jsonData.logoDataUri)
+              .replaceAll('BACKGROUND_URL', jsonData.backgroundDataUri || '')
+              .replaceAll('PAGE_TITLE', escapeHtml(title))
+              .replaceAll('PAGE_DESCRIPTION', escapeHtml(description || ''))
+              .replaceAll('<!-- SPEAKER_IMAGES_HTML will be injected here -->', speakersHtml)
+              .replaceAll('EVENT_DATE', eventDate || '')
+              .replaceAll('EVENT_TIME', eventTime || '');
+          }
         } else { // 'default' template
-            htmlContent = defaultTemplateContent
-              .replace('LOGO_SRC', jsonData.logoDataUri)
-              .replace('BACKGROUND_URL', jsonData.backgroundDataUri || '')
-              .replace('PAGE_TITLE', title)
-              .replace('PAGE_DESCRIPTION', description);
+          htmlContent = defaultTemplateContent
+            .replaceAll('LOGO_SRC', jsonData.logoDataUri)
+            .replaceAll('BACKGROUND_URL', jsonData.backgroundDataUri || '')
+            .replaceAll('PAGE_TITLE', escapeHtml(title))
+            .replaceAll('PAGE_DESCRIPTION', escapeHtml(description));
         }
 
         await page.setContent(htmlContent, { waitUntil: 'domcontentloaded' });
@@ -203,7 +206,7 @@ async function generateImages() {
     }
   }
   if (cleanedCount > 0) {
-      console.log(`🗑️  Cleaned up ${cleanedCount} stale OG image(s).`);
+    console.log(`🗑️  Cleaned up ${cleanedCount} stale OG image(s).`);
   }
 
   await writeFile(CACHE_MANIFEST_PATH, JSON.stringify(newCache, null, 2));

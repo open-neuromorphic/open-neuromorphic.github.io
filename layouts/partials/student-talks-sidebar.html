@@ -4,37 +4,44 @@
 <div class="px-7 pt-7 content-panel">
   <h3 class="pb-5 pt-5 text-xl">Upcoming Student Talks</h3>
 
-  {{ $upcoming_talks := where (where .Site.RegularPages "Type" "student-talks") ".Params.upcoming" true }}
+  {{ $now := now }}
+  {{ $yesterday := $now.AddDate 0 0 -1 }}
+  {{ $upcoming_talks := slice }}
+  {{ range where (where .Site.RegularPages "Type" "student-talks") ".Params.upcoming" true }}
+  {{ if ge .Date.Unix $yesterday.Unix }}
+  {{ $upcoming_talks = $upcoming_talks | append . }}
+  {{ end }}
+  {{ end }}
 
   {{ if gt (len $upcoming_talks) 0 }}
-    {{ range sort $upcoming_talks ".Date" }}
-      <div class="mb-4">
-        <a href="{{ .Permalink }}" class="block font-semibold hover:text-primary dark:hover:text-darkmode-primary">{{ .Title }}</a>
-        <div class="text-sm text-gray-600 dark:text-gray-400 mt-1">
-          {{ if .Params.author }}
-          <div class="flex items-center">
-              {{ partial "icon.html" (dict "style" "regular" "name" "circle-user" "class" "mr-2") }}
-              <span>{{ delimit .Params.author ", " }}</span>
-          </div>
-          {{ end }}
-          <div class="flex items-center mt-1">
-              {{ partial "icon.html" (dict "style" "regular" "name" "calendar" "class" "mr-2") }}
-              <span>{{ .Date.Format "January 2, 2006" }}</span>
-          </div>
-          <div class="flex items-center mt-1">
-              {{ partial "icon.html" (dict "style" "regular" "name" "clock" "class" "mr-2") }}
-              <span>{{ .Params.start_time }} - {{ .Params.end_time}} {{ .Params.time_zone }}</span>
-          </div>
-        </div>
+  {{ range sort $upcoming_talks ".Date" }}
+  <div class="mb-4">
+    <a href="{{ .Permalink }}" class="block font-semibold hover:text-primary dark:hover:text-darkmode-primary">{{ .Title }}</a>
+    <div class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+      {{ if .Params.author }}
+      <div class="flex items-center">
+        {{ partial "icon.html" (dict "style" "regular" "name" "circle-user" "class" "mr-2") }}
+        <span>{{ delimit .Params.author ", " }}</span>
       </div>
-    {{ end }}
+      {{ end }}
+      <div class="flex items-center mt-1">
+        {{ partial "icon.html" (dict "style" "regular" "name" "calendar" "class" "mr-2") }}
+        <span>{{ .Date.Format "January 2, 2006" }}</span>
+      </div>
+      <div class="flex items-center mt-1">
+        {{ partial "icon.html" (dict "style" "regular" "name" "clock" "class" "mr-2") }}
+        <span>{{ .Params.start_time }} - {{ .Params.end_time}} {{ .Params.time_zone }}</span>
+      </div>
+    </div>
+  </div>
+  {{ end }}
   {{ else }}
-    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
-      There are no student talks scheduled at the moment.
-    </p>
-    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
-      If you are a student or early-career researcher, this is a great platform to present your work, share your findings, and get valuable feedback from the community.
-    </p>
+  <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+    There are no student talks scheduled at the moment.
+  </p>
+  <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+    If you are a student or early-career researcher, this is a great platform to present your work, share your findings, and get valuable feedback from the community.
+  </p>
   {{ end }}
 
   <div class="text-right pb-5 pt-5">
