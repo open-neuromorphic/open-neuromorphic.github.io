@@ -63,13 +63,13 @@
       </aside>
     </div>
 
-    <!-- Original Glossary Position -->
+    <!-- Glossary -->
     <div id="glossary" class="pt-12 max-w-4xl mx-auto">
       <h2 class="text-3xl font-bold text-center mb-8">Glossary of Terms</h2>
       <details class="bg-theme-light dark:bg-darkmode-theme-light rounded-lg shadow-md p-6 cursor-pointer group">
         <summary class="font-semibold text-xl text-dark dark:text-darkmode-dark list-none flex justify-between items-center">
           <span>Click to expand/collapse glossary</span>
-          <span class="float-right transition-transform duration-300 text-2xl">+</span>
+          <span class="float-right transition-transform duration-300 text-2xl group-open:rotate-45">+</span>
         </summary>
         <div class="mt-4 grid md:grid-cols-2 gap-x-8 gap-y-4 prose dark:prose-invert max-w-none">
           {{ range .Params.glossary }}
@@ -82,17 +82,4 @@
     </div>
   </div>
 </section>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const details = document.querySelector('#glossary details');
-    if(details) {
-      const summary = details.querySelector('summary');
-      const icon = summary.querySelector('span:last-child');
-      details.addEventListener('toggle', () => {
-        icon.textContent = details.open ? '−' : '+';
-      });
-    }
-  });
-</script>
 {{ end }}

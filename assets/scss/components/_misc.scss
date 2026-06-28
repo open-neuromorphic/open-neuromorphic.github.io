@@ -1,0 +1,77 @@
+.copy-code-button {
+  @apply absolute top-2 right-2 p-1.5 rounded-md bg-gray-700/50 text-gray-300;
+  @apply opacity-0 group-hover:opacity-100 transition-opacity duration-200;
+}
+
+.copy-code-button:hover {
+  @apply bg-gray-600 text-white;
+}
+
+.copy-code-button.copied {
+  @apply bg-green-600/80 text-white;
+}
+
+.filter-panel-glow {
+  --glow-size: 20px;
+  --glow-color-light: theme('colors.body');
+  --glow-color-dark: theme('colors.darkmode.body');
+  border-bottom: 3px solid rgba(57, 57, 57, 0.3);
+  border-top: 3px solid rgba(57, 57, 57, 0.3);
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.07),
+    0 4px 6px -4px rgba(0, 0, 0, 0.07),
+    0 calc(-1 * var(--glow-size)) var(--glow-size) var(--glow-color-light),
+    0 var(--glow-size) var(--glow-size) var(--glow-color-light);
+}
+
+.dark .filter-panel-glow {
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.3),
+    0 4px 6px -4px rgba(0, 0, 0, 0.3),
+    0 calc(-1 * var(--glow-size)) var(--glow-size) var(--glow-color-dark),
+    0 var(--glow-size) var(--glow-size) var(--glow-color-dark);
+}
+
+.filter-tag {
+  @apply cursor-pointer text-xs font-medium px-2.5 py-1 rounded-full transition-colors;
+  @apply bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-300 hover:bg-indigo-200 dark:hover:bg-indigo-800;
+
+  &.is-active {
+    @apply bg-indigo-600 text-white dark:bg-indigo-500 dark:text-white hover:bg-indigo-700 dark:hover:bg-indigo-600;
+  }
+}
+
+.project-filter-link, #clear-filter-btn {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.event-type-tag-link {
+  @apply inline-block font-semibold no-underline rounded-full text-xs transition-transform transform;
+  background: linear-gradient(135deg, var(--color-primary-new) 0%, var(--color-secondary-new) 100%);
+  color: white !important;
+  padding: 0.125rem 0.625rem !important;
+
+  &:hover {
+    @apply -translate-y-px shadow-md;
+  }
+
+  .dark & {
+    background: linear-gradient(135deg, theme('colors.darkmode.primary') 0%, color-mix(in srgb, theme('colors.darkmode.primary') 80%, black) 100%);
+    color: theme('colors.darkmode.text') !important;
+  }
+}
+
+.software-hacking-hours-promo {
+  .past-event-promo {
+    .flex {
+      img {
+        flex-shrink: 0;
+      }
+      div h4 a {
+        font-size: 1.1rem;
+      }
+    }
+  }
+}

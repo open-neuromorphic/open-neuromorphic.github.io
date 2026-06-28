@@ -1,9 +1,6 @@
-// assets/js/main.js
-// main script
 (function () {
   "use strict";
 
-  // --- Mobile Nav Toggle ---
   const body = document.body;
   const navToggler = document.getElementById("nav-toggler");
   const navOverlay = document.getElementById("mobile-nav-overlay");
@@ -23,14 +20,12 @@
     navCloseBtn.addEventListener("click", toggleNav);
   }
 
-  // Close on Escape key
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && body.classList.contains('is-mobile-nav-open')) {
       toggleNav();
     }
   });
 
-  // --- Contribution Bubbles for Community Partners ---
   const initContributionBubbles = () => {
     const section = document.querySelector('.community-partners-section');
     const bubbleContainer = document.querySelector('.bubbles-container');
@@ -39,7 +34,6 @@
     const partnersWithContributions = Array.from(section.querySelectorAll('.partner-logo-link[data-contributions]'));
     if (partnersWithContributions.length === 0) return;
 
-    // --- Logic for randomly appearing bubbles ---
     const MAX_BUBBLES = 3;
     const BUBBLE_LIFETIME = 4000;
     const BUBBLE_INTERVAL = 2000;
@@ -102,7 +96,6 @@
       setTimeout(() => { recentlyHidden.delete(partner); }, COOLDOWN_PERIOD);
     };
 
-    // --- NEW: Hover-triggered bubble logic ---
     let hoverBubble = document.createElement('div');
     hoverBubble.className = 'contribution-bubble';
     bubbleContainer.appendChild(hoverBubble);
@@ -111,12 +104,10 @@
     partnersWithContributions.forEach(partner => {
       partner.addEventListener('mouseenter', () => {
         isHovering = true;
-        // Hide any random bubbles that might be showing
         activeBubbles.forEach((bubble, p) => hideBubble(p, bubble));
 
         hoverBubble.innerHTML = setBubbleContent(partner);
 
-        // Position calculation must happen *after* content is set
         const partnerRect = partner.getBoundingClientRect();
         const containerRect = bubbleContainer.getBoundingClientRect();
         const left = partnerRect.left - containerRect.left + (partnerRect.width / 2) - (hoverBubble.offsetWidth / 2);
@@ -132,9 +123,7 @@
       });
     });
 
-    // --- Modified interval for random bubbles ---
     setInterval(() => {
-      // Pause random bubbles if user is hovering or max bubbles are already shown
       if (isHovering || activeBubbles.size >= MAX_BUBBLES) return;
 
       const rect = section.getBoundingClientRect();
@@ -155,8 +144,6 @@
     }, BUBBLE_INTERVAL);
   };
 
-
-  // --- Copy Code Block ---
   const initCopyCodeButtons = () => {
     const codeBlocks = document.querySelectorAll('.code-block-wrapper');
     codeBlocks.forEach(wrapper => {
@@ -174,7 +161,7 @@
             setTimeout(() => {
               button.classList.remove('copied');
               button.querySelector('.copy-text').classList.remove('hidden');
-              button.querySelector('.copied-text').add('hidden');
+              button.querySelector('.copied-text').classList.add('hidden');
             }, 2000);
           }).catch(err => {
             console.error('Failed to copy text: ', err);
@@ -185,7 +172,6 @@
     });
   };
 
-  // --- OG Image Assets Modal ---
   const initOgImageModal = () => {
     const modal = document.getElementById('og-image-modal');
     const modalContent = document.getElementById('og-modal-content');
@@ -215,8 +201,7 @@
     });
 
     window.openOgModal = (imageUrls) => {
-      modalContent.innerHTML = ''; // Clear previous content
-
+      modalContent.innerHTML = '';
       if (!imageUrls || imageUrls.length === 0) {
         modalContent.innerHTML = '<p class="text-center col-span-full">No social media assets found for this page.</p>';
       } else {
@@ -255,21 +240,146 @@
     });
   };
 
-  // Wait for the DOM to be fully loaded to initialize
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      initCopyCodeButtons();
-      initOgImageModal();
-      if (window.innerWidth > 768) { // Only run on larger screens
-        initContributionBubbles();
+  const initMissionBoardFilters = () => {
+    const filterTags = document.querySelectorAll('.filter-tag');
+    const clearButton = document.getElementById('clear-filter-btn');
+    const projectContainers = document.querySelectorAll('.project-container');
+    const pastContributionsSection = document.getElementById('past-contributions-section');
+    const projectLinks = document.querySelectorAll('.project-filter-link');
+    const stickyFilterPanel = document.querySelector('.filter-panel-glow');
+    const toc = document.getElementById('TableOfContents');
+
+    if (filterTags.length === 0 || projectContainers.length === 0) return;
+    let activeTag = null;
+
+    function scrollToElementWithOffset(element) {
+      if (!element || !stickyFilterPanel) return;
+      const stickyHeaderBottom = stickyFilterPanel.getBoundingClientRect().bottom;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - stickyHeaderBottom - 20;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+
+    function handleAnchorClick(e) {
+      const link = e.currentTarget;
+      const targetId = link.getAttribute('href');
+      if (targetId && targetId.startsWith('#')) {
+        e.preventDefault();
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          scrollToElementWithOffset(targetElement);
+          history.pushState(null, null, targetId);
+        }
       }
+    }
+
+    projectLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        if (activeTag) clearFilter();
+        handleAnchorClick(e);
+      });
     });
-  } else {
+
+    if (toc) {
+      toc.addEventListener('click', (e) => {
+        const link = e.target.closest('a');
+        if (link) handleAnchorClick({ currentTarget: link, preventDefault: () => e.preventDefault() });
+      });
+    }
+
+    function applyFilter(selectedTag) {
+      let firstVisibleProject = null;
+      if (pastContributionsSection) pastContributionsSection.style.display = 'none';
+
+      projectContainers.forEach(project => {
+        const issues = project.querySelectorAll('.issue-item');
+        let projectHasVisibleIssue = false;
+        issues.forEach(issue => {
+          const hasTag = issue.querySelector(`[data-issue-tag="${selectedTag}"]`);
+          issue.style.display = hasTag ? 'flex' : 'none';
+          if (hasTag) {
+            projectHasVisibleIssue = true;
+          }
+        });
+
+        project.style.display = projectHasVisibleIssue ? 'block' : 'none';
+
+        if (projectHasVisibleIssue && !firstVisibleProject) {
+          firstVisibleProject = project;
+        }
+      });
+
+      return firstVisibleProject;
+    }
+
+    function clearFilter() {
+      activeTag = null;
+      updateTagStyles(null);
+      if(clearButton) clearButton.classList.add('hidden');
+      if (pastContributionsSection) pastContributionsSection.style.display = 'block';
+      projectContainers.forEach(project => {
+        project.style.display = 'block';
+        project.querySelectorAll('.issue-item').forEach(issue => {
+          issue.style.display = 'flex';
+        });
+      });
+    }
+
+    function updateTagStyles(selectedTag) {
+      filterTags.forEach(tag => {
+        tag.classList.toggle('is-active', tag.dataset.tag === selectedTag);
+      });
+    }
+
+    filterTags.forEach(tag => {
+      tag.addEventListener('click', () => {
+        const selectedTag = tag.dataset.tag;
+        if (activeTag === selectedTag) {
+          clearFilter();
+          return;
+        }
+        activeTag = selectedTag;
+        updateTagStyles(selectedTag);
+        if(clearButton) clearButton.classList.remove('hidden');
+        const firstVisibleElement = applyFilter(selectedTag);
+        if (firstVisibleElement) {
+          scrollToElementWithOffset(firstVisibleElement);
+        }
+      });
+    });
+
+    if(clearButton) {
+      clearButton.addEventListener('click', clearFilter);
+    }
+
+    const initialHash = window.location.hash;
+    if (initialHash) {
+      setTimeout(() => {
+        const targetElement = document.querySelector(initialHash);
+        if (targetElement) {
+          scrollToElementWithOffset(targetElement);
+        }
+      }, 100);
+    }
+  };
+
+  const initAll = () => {
     initCopyCodeButtons();
     initOgImageModal();
-    if (window.innerWidth > 768) { // Only run on larger screens
+    initMissionBoardFilters();
+    if (window.innerWidth > 768) {
       initContributionBubbles();
     }
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAll);
+  } else {
+    initAll();
   }
 
 })();

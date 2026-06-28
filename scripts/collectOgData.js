@@ -1,8 +1,8 @@
-// scripts/collectOgData.js
 const { join, dirname, basename, sep } = require('path');
 const { readdir, readFile, stat, mkdir, writeFile } = require('fs/promises');
 const mimeTypes = require('mime-types');
 const crypto = require('crypto');
+const matter = require('gray-matter');
 
 // --- Configuration ---
 const PROJECT_ROOT = process.cwd();
@@ -20,11 +20,11 @@ const YOUTUBE_TEMPLATE_PATH = join(PROJECT_ROOT, 'assets', 'og-template', 'youtu
 const HOMEPAGE_TITLE = "Advancing Neuromorphic Computing, Together.";
 const HOMEPAGE_DESCRIPTION = "Open Neuromorphic (ONM) is a global community fostering education, research, and open-source collaboration in brain-inspired AI and hardware.";
 const SIZES = [
-  { width: 1200, height: 630, suffix: '16x9' }, // Standard OG 1.91:1
+  { width: 1200, height: 630, suffix: '16x9' },
   { width: 1200, height: 900, suffix: '4x3' },
   { width: 1080, height: 1080, suffix: '1x1' },
 ];
-const EVENT_SIZE = { width: 1280, height: 1600, suffix: 'portrait' }; // New dimensions for upcoming events
+const EVENT_SIZE = { width: 1280, height: 1600, suffix: 'portrait' };
 
 // --- Helper Functions ---
 async function pathExists(path) {
@@ -46,13 +46,12 @@ function createHash(data) {
 
 function slugify(text) {
   if (!text) return '';
-  // This mimics Hugo's `urlize` function more closely for consistency.
   return text.toString().toLowerCase()
-    .replace(/\s+/g, '-')           // Replace spaces with -
-    .replace(/[^\w\-]+/g, '')       // Remove all non-word chars except -
-    .replace(/\-\-+/g, '-')         // Replace multiple - with single -
-    .replace(/^-+/, '')             // Trim - from start of text
-    .replace(/-+$/, '');            // Trim - from end of text
+    .replace(/\s+/g, '-')
+    .replace(/[^\w\-]+/g, '')
+    .replace(/\-\-+/g, '-')
+    .replace(/^-+/, '')
+    .replace(/-+$/, '');
 }
 
 async function findMarkdownFiles(dir) {
@@ -71,59 +70,12 @@ async function findMarkdownFiles(dir) {
 }
 
 function parseFrontMatter(content) {
-  const fmMatch = content.match(/^---\s*([\s\S]*?)\s*---/);
-  if (!fmMatch) return {};
-
-  const data = {};
-  const lines = fmMatch[1].split('\n');
-  let currentKey = '';
-  let inArray = false;
-
-  for (const line of lines) {
-    const arrayItemMatch = line.match(/^\s*-\s*"?([^"#]*)"?\s*(#.*)?$/);
-    if (inArray && arrayItemMatch) {
-      data[currentKey].push(arrayItemMatch[1].trim().replace(/^['"]|['"]$/g, ''));
-      continue;
-    }
-
-    const keyMatch = line.match(/^([a-zA-Z0-9_]+):/);
-    if (keyMatch) {
-      inArray = false;
-    }
-
-    const simpleMatch = line.match(/^([a-zA-Z0-9_]+):\s*(.*)/);
-    if (simpleMatch) {
-      currentKey = simpleMatch[1].trim();
-      let valueString = simpleMatch[2].trim();
-      inArray = false;
-
-      const commentIndex = valueString.indexOf('#');
-      if (commentIndex > -1) {
-        valueString = valueString.substring(0, commentIndex).trim();
-      }
-
-      let value = valueString;
-
-      if (value === '') {
-        if (line.includes(':')) {
-          inArray = true;
-          data[currentKey] = [];
-        }
-        continue;
-      }
-
-      if (value === 'true') data[currentKey] = true;
-      else if (value === 'false') data[currentKey] = false;
-      else if (value.startsWith('[') && value.endsWith(']')) {
-        data[currentKey] = value.replace(/[\[\]"]/g, '').split(',').map(s => s.trim().replace(/^['"]|['"]$/g, '')).filter(Boolean);
-      } else {
-        data[currentKey] = value.replace(/^['"]|['"]$/g, '');
-      }
-    }
+  try {
+    return matter(content).data || {};
+  } catch(e) {
+    return {};
   }
-  return data;
 }
-
 
 async function getImageDataUri(filePath) {
   try {
@@ -184,7 +136,6 @@ async function collectData() {
     pages: [],
   };
 
-  // 1. Add Homepage Data
   const homepageContentHash = createHash(HOMEPAGE_TITLE + HOMEPAGE_DESCRIPTION);
   const homepageFinalHash = createHash(homepageContentHash + globalHash);
   const homepageOgDir = join(STATIC_DIR, 'images');
@@ -204,7 +155,6 @@ async function collectData() {
     finalHash: homepageFinalHash
   });
 
-  // 2. Process Content Pages
   const markdownFiles = await findMarkdownFiles(CONTENT_ROOT_DIR);
   for (const mdFile of markdownFiles) {
     const pageDirectory = dirname(mdFile);
@@ -283,7 +233,6 @@ async function collectData() {
     }
   }
 
-  // 3. Write JSON Output
   await writeFile(OUTPUT_JSON_PATH, JSON.stringify(outputData, null, 2));
   console.log(`✅ Data for ${outputData.pages.length} pages collected and saved to ${OUTPUT_JSON_PATH}.`);
 }

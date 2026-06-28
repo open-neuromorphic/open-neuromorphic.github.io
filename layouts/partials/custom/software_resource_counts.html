@@ -5,7 +5,6 @@
 {{ if $page.File }}{{ $slug = path.Base $page.File.Dir }}{{ end }}
 
 {{ if $slug }}
-{{/* --- Data Fetching and Counting --- */}}
 {{ $workshops := where site.RegularPages "Section" "workshops" }}
 {{ $hacking_hours := where site.RegularPages "Type" "hacking-hours" }}
 {{ $blogs := where site.RegularPages "Section" "blog" }}
@@ -19,16 +18,21 @@
 {{ $mission_board_items := 0 }}
 {{ range site.Data.community_projects.projects }}
 {{ if eq .slug $slug }}
-{{ with .issues }}
-{{ $mission_board_items = len . }}
+{{ $fetched := index site.Data.fetched_issues .repo | default slice }}
+{{ $manual := .issues | default slice }}
+{{ $all_issues := $manual }}
+{{ range $fi := $fetched }}
+{{ $found := false }}
+{{ range $mi := $manual }}{{ if eq $mi.url $fi.url }}{{ $found = true }}{{ end }}{{ end }}
+{{ if not $found }}{{ $all_issues = $all_issues | append $fi }}{{ end }}
 {{ end }}
+{{ $mission_board_items = len $all_issues }}
 {{ end }}
 {{ end }}
 
 {{ $total_resources := add $workshop_count $hacking_hour_count $blog_count $student_talk_count $mission_board_items }}
 
 {{ if gt $total_resources 0 }}
-{{/* --- Link Generation Logic --- */}}
 {{ $link_base := cond $is_single "" $page.RelPermalink }}
 {{ $link_related := printf "%s#related-content" $link_base }}
 {{ $link_mission := printf "%s#mission-board" $link_base }}

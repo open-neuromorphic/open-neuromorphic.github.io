@@ -2,6 +2,15 @@
 {{ $project := .project }}
 {{ $softwarePages := .softwarePages }}
 
+{{ $fetched := index site.Data.fetched_issues $project.repo | default slice }}
+{{ $manual := $project.issues | default slice }}
+{{ $all_issues := $manual }}
+{{ range $fi := $fetched }}
+{{ $found := false }}
+{{ range $mi := $manual }}{{ if eq $mi.url $fi.url }}{{ $found = true }}{{ end }}{{ end }}
+{{ if not $found }}{{ $all_issues = $all_issues | append $fi }}{{ end }}
+{{ end }}
+
 <div class="project-item">
   <!-- Project Header -->
   <div class="project-header mb-4">
@@ -18,7 +27,6 @@
       {{ end }}
     </h3>
 
-    {{/* --- START: Educational Resource Counts --- */}}
     {{ $slug := $project.slug }}
     {{ if and $slug $software_page }}
     {{ $workshops := where site.RegularPages "Section" "workshops" }}
@@ -53,18 +61,14 @@
     </div>
     {{ end }}
     {{ end }}
-    {{/* --- END: Educational Resource Counts --- */}}
-
 
     <div class="space-y-2 mb-3">
-      {{/* Description Row */}}
       <div class="flex items-start gap-x-3">
         {{ partial "icon.html" (dict "style" "regular" "name" "file-lines" "class" "h-4 w-4 mt-[3px] flex-shrink-0") }}
         <p class="text-md text-gray-600 dark:text-gray-400 leading-relaxed">{{ $project.description }}</p>
       </div>
     </div>
 
-    <!-- Metadata Line -->
     {{ with $project.completed_issues }}
     {{ if gt (len .) 0 }}
     <div class="flex items-start gap-x-3 text-sm text-gray-700 dark:text-gray-300 mt-3">
@@ -84,11 +88,10 @@
     {{ end }}
   </div>
 
-  <!-- Open Issues List -->
   <div class="open-issues-list">
-    {{ if and $project.issues (gt (len $project.issues) 0) }}
+    {{ if and $all_issues (gt (len $all_issues) 0) }}
     <ul class="divide-y divide-border dark:divide-darkmode-border rounded-lg border border-border dark:border-darkmode-border bg-theme-light dark:bg-darkmode-theme-light/30 overflow-hidden">
-      {{ range $project.issues }}
+      {{ range $all_issues }}
       <li class="issue-item p-3 flex justify-between items-center gap-4">
         <div class="flex-grow">
           <a href="{{ .url }}" target="_blank" rel="noopener" class="styled-link font-medium">

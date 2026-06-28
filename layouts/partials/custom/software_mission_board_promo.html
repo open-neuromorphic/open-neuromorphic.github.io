@@ -7,7 +7,19 @@
 {{ end }}
 {{ end }}
 
-{{ if and $project_data (isset $project_data "issues") (gt (len $project_data.issues) 0) }}
+{{ $all_issues := slice }}
+{{ if $project_data }}
+{{ $fetched := index site.Data.fetched_issues $project_data.repo | default slice }}
+{{ $manual := $project_data.issues | default slice }}
+{{ $all_issues = $manual }}
+{{ range $fi := $fetched }}
+{{ $found := false }}
+{{ range $mi := $manual }}{{ if eq $mi.url $fi.url }}{{ $found = true }}{{ end }}{{ end }}
+{{ if not $found }}{{ $all_issues = $all_issues | append $fi }}{{ end }}
+{{ end }}
+{{ end }}
+
+{{ if and $project_data (gt (len $all_issues) 0) }}
 <div {{ with $id }}id="{{ . }}"{{ end }} class="mission-board-promo content-panel p-4 my-6 border-l-4 border-primary dark:border-darkmode-primary bg-indigo-50 dark:bg-darkmode-theme-dark/50">
   <h4 class="text-lg font-bold mb-2 text-dark dark:text-darkmode-dark flex items-center">
     {{ partial "icon.html" (dict "style" "solid" "name" "rocket" "class" "mr-2 text-primary dark:text-darkmode-primary") }}
@@ -17,7 +29,7 @@
     This project has outstanding issues on our community mission board where your help is needed to move the field forward.
   </p>
   <ul class="list-disc list-inside text-sm space-y-1 pl-1">
-    {{ range $project_data.issues }}
+    {{ range $all_issues }}
     <li>
       <a href="{{ .url }}" target="_blank" rel="noopener" class="styled-link">
         {{- .title -}}

@@ -5,7 +5,7 @@ author:
 - Gregor Lenz
 date: 2024-02-27
 draft: false
-upcoming: false
+upcoming: true
 video: q0shX-zCk4c
 image: elm-neuron-expressive-leaky-memory.png
 description: "Aaron tells us about the Expressive Leaky Memory (ELM) neuron model, a biologically inspired phenomenological model of a cortical neuron."
