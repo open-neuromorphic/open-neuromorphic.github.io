@@ -25,13 +25,23 @@ EXCLUDE_FILES = {
     ".DS_Store", "hugo_stats.json", ".hugo_build.lock",
     "package-lock.json", "yarn.lock", "pnpm-lock.yaml",
     "content_tagging_sheet.csv", "ai_context.md",
-    "LICENSE", "CODE_OF_CONDUCT.md", "CONTRIBUTING.md"
+    "LICENSE", "CODE_OF_CONDUCT.md", "CONTRIBUTING.md",
+    "readme.md", "CONTRIBUTING-Staging.MD", "theme.toml",
+    "flake.nix", "flake.lock", ".markdownlint.json",
+    ".prettierrc", ".jshintrc"
 }
 
-SOURCE_EXTENSIONS = {
-    ".html", ".md", ".toml", ".yaml", ".yml", ".json",
-    ".js", ".ts", ".scss", ".css", ".py", ".sh"
+EXCLUDE_EXTENSIONS = {
+    ".jpg", ".jpeg", ".png", ".webp", ".gif",
+    ".svg", ".ico", ".pdf", ".mp4", ".lock"
 }
+
+LAYOUT_EXTENSIONS = {
+    ".html", ".md", ".toml", ".yaml", ".yml",
+    ".json", ".js", ".ts", ".scss", ".css"
+}
+
+SCRIPTING_EXTENSIONS = {".py", ".sh"}
 
 def get_language(ext: str) -> str:
     mapping = {
@@ -67,30 +77,22 @@ def is_in_scope(rel_path: str, scope: str) -> bool:
     elif scope == "assets":
         return root_dir in ("assets", "static")
     elif scope == "config":
-        return root_dir in ("config", "data", "scripts") or rel_path in ("hugo.toml", "theme.toml", "package.json")
+        return root_dir in ("config", "data", "scripts") or rel_path in ("hugo.toml", "package.json")
     return True
 
-def generate_directory_map(root_dir: str) -> tuple[str, list]:
-    paths = []
-    for root, dirs, files in os.walk(root_dir):
-        new_dirs = []
-        for d in dirs:
-            full_dir = os.path.join(root, d)
-            rel_dir = os.path.relpath(full_dir, root_dir).replace("\\", "/")
-            if d in EXCLUDE_DIRS or any(rel_dir.startswith(ep) for ep in EXCLUDE_PATHS):
-                continue
-            new_dirs.append(d)
-        dirs[:] = new_dirs
+def extract_frontmatter_only(content: str) -> str:
+    """Return only the YAML frontmatter block from a markdown file."""
+    if content.startswith("---"):
+        end = content.find("---", 3)
+        if end != -1:
+            return content[:end + 3]
+    return content  # fallback: return all if no frontmatter found
 
-        for f in sorted(files):
-            if f in EXCLUDE_FILES:
-                continue
-            full_path = os.path.join(root, f)
-            rel_path = os.path.relpath(full_path, root_dir).replace("\\", "/")
-            paths.append(rel_path)
-
-    map_str = "## DIRECTORY MAP\n> *This is a structural map of the project. Some file contents may be omitted below to save space.* \n\n```text\n" + "\n".join(paths) + "\n```\n"
-    return map_str, paths
+def clean_toml_content(content: str) -> str:
+    """Strip decorative comment lines (e.g., #######...) from TOML files."""
+    lines = content.splitlines()
+    cleaned = [line for line in lines if not re.match(r'^\s*#{10,}', line)]
+    return "\n".join(cleaned)
 
 def build_git_history_section() -> str:
     lines = [
@@ -127,12 +129,14 @@ def build_git_history_section() -> str:
         lines.append(f"*(Could not read git history: {e})*")
     return "\n".join(lines)
 
-def bundle_source_files(root_dir: str, scope: str, since: str = None) -> tuple[str, list]:
-    lines = ["## CODEBASE SOURCE FILES\n"]
-    bundled_paths = []
+def gather_project_data(root_dir: str, scope: str, since: str = None, frontmatter_only: bool = False) -> tuple[str, str, int]:
     changed_files = get_changed_files_since(since) if since else None
+    map_paths = []
+    bundled_blocks = []
+    bundled_count = 0
 
     for root, dirs, files in os.walk(root_dir):
+        # Filter directories
         new_dirs = []
         for d in dirs:
             full_dir = os.path.join(root, d)
@@ -144,13 +148,28 @@ def bundle_source_files(root_dir: str, scope: str, since: str = None) -> tuple[s
         for f in sorted(files):
             if f in EXCLUDE_FILES:
                 continue
+
+            ext = os.path.splitext(f)[1].lower().strip()
+            if ext in EXCLUDE_EXTENSIONS:
+                continue
+
             full_path = os.path.join(root, f)
             rel_path = os.path.relpath(full_path, root_dir).replace("\\", "/")
-            ext = os.path.splitext(f)[1].lower().strip()
 
-            if ext not in SOURCE_EXTENSIONS or not is_in_scope(rel_path, scope):
-                continue
+            # Add to directory map
+            map_paths.append(rel_path)
+
+            # Check if file should be bundled
             if changed_files is not None and rel_path not in changed_files:
+                continue
+            if not is_in_scope(rel_path, scope):
+                continue
+
+            # Restrict scripting extensions to the scripts directory
+            if ext in SCRIPTING_EXTENSIONS and not rel_path.startswith("scripts/"):
+                continue
+            # Ensure the file is either a layout file or an allowed script
+            if ext not in LAYOUT_EXTENSIONS and ext not in SCRIPTING_EXTENSIONS:
                 continue
 
             try:
@@ -158,43 +177,64 @@ def bundle_source_files(root_dir: str, scope: str, since: str = None) -> tuple[s
                     content = file.read().strip()
                 if not content:
                     continue
+
+                # Apply data transformations to save tokens
+                if frontmatter_only and rel_path.startswith("content/") and ext == ".md":
+                    content = extract_frontmatter_only(content)
+                if ext == ".toml":
+                    content = clean_toml_content(content)
+
                 lang = get_language(ext)
-                lines.extend([f"### `{rel_path}`", f"```{lang}", content, "```", ""])
-                bundled_paths.append(rel_path)
+                bundled_blocks.extend([f"### `{rel_path}`", f"```{lang}", content, "```", ""])
+                bundled_count += 1
             except Exception:
                 pass
 
-    if not bundled_paths:
-        lines.append("> *No files matched the current scope and filter parameters.*")
-    return "\n".join(lines), bundled_paths
+    map_str = "## DIRECTORY MAP\n> *This is a structural map of the project.*\n\n```text\n" + "\n".join(map_paths) + "\n```\n"
+
+    bundle_str = "## CODEBASE SOURCE FILES\n\n"
+    if bundled_count == 0:
+        bundle_str += "> *No files matched the current scope and filter parameters.*\n"
+    else:
+        bundle_str += "\n".join(bundled_blocks)
+
+    return map_str, bundle_str, bundled_count
 
 def main():
     parser = argparse.ArgumentParser(description="Generate an economical AI context file for the ONM Hugo project.")
     parser.add_argument("--scope", choices=["all", "layouts", "content", "assets", "config"], default="all")
     parser.add_argument("--since", help="Only bundle files modified since a commit SHA or 'yesterday'.")
     parser.add_argument("--with-git-history", action="store_true", help="Include the last 10 git commits in the prompt.")
+    parser.add_argument("--frontmatter-only", action="store_true", help="For content .md files, include only frontmatter to save tokens.")
     args = parser.parse_args()
 
     ai_directive = """# SYSTEM PROMPT & CONTEXT
 
-**CRITICAL AI CODING REQUIREMENTS:**
-1. **Token Efficiency:** DO NOT use decorative comment blocks (e.g., `// ---------`). Keep code dense.
-2. **Complete Files:** Always provide complete file content in responses — never truncated snippets or diffs.
-3. **Commit Messages:** Provide a commit message at the end of your response with the **WHY** and **GOAL** of code changes.
-4. **Markdown Formatting:** Format code changes in a way that is easy to copy/paste (single code blocks with the filename indicated right above it).
-5. **Hugo Specific Links:** For internal links, always prefer `site.GetPage` and `.RelPermalink` over hardcoded paths with `relLangURL`. Hardcoded paths (`"/path/to/page/" | relLangURL`) break in sub-directory deployments. The robust method is `{{ $page := site.GetPage "path/to/page"; $page.RelPermalink }}`.
+STACK: Hugo (Extended) + TailwindCSS. Templates: Go HTML. Content: Markdown+frontmatter. Data: TOML/JSON. Build scripts: Node.js.
+
+RULES:
+1. No decorative comment blocks (e.g., `// ---`). Keep code dense.
+2. Always output complete file content — no truncated snippets or diffs.
+3. End every response with a commit message stating WHY and GOAL.
+4. One code block per file, filename as header immediately above.
+5. Internal links: `{{ $p := site.GetPage "path"; $p.RelPermalink }}` — never `relLangURL` with hardcoded paths (breaks subdirectory deploys).
 """
-    print("🔍 Generating directory map...")
-    dir_map_str, dir_paths = generate_directory_map(SCRIPT_DIR)
+
+    print(f"🔍 Crawling project directory and generating datasets (Scope: {args.scope})...")
     git_history_str = build_git_history_section() + "\n" if args.with_git_history else ""
-    print(f"📦 Bundling source files (Scope: {args.scope})...")
-    bundle_str, bundle_paths = bundle_source_files(SCRIPT_DIR, args.scope, args.since)
+
+    dir_map_str, bundle_str, bundled_count = gather_project_data(
+        SCRIPT_DIR,
+        args.scope,
+        args.since,
+        args.frontmatter_only
+    )
 
     output = "\n".join([ai_directive, dir_map_str, git_history_str, bundle_str])
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         f.write(output)
 
-    print(f"\n✅ Context generation complete! ({len(bundle_paths)} files bundled)")
+    print(f"\n✅ Context generation complete! ({bundled_count} files bundled)")
 
 if __name__ == "__main__":
     main()
