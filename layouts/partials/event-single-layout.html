@@ -28,17 +28,9 @@
           {{ $page_context.Content }}
         </div>
 
-        {{/* --- Moved: About the Speaker --- */}}
         {{ $title := "About the Speaker" }}
-        {{ with $page_context.Params.author }}
-        {{ if gt (len .) 1 }}
-        {{ $title = "About the Speakers" }}
-        {{ end }}
-        {{ end }}
-
-        {{ partial "components/author-bios.html" (dict "context" $page_context "title" $title) }}
-
-        {{/* --- Production Credits --- */}}
+        {{ with $page_context.Params.author }}{{ if gt (len .) 1 }}{{ $title = "About the Speakers" }}{{ end }}{{ end }}
+        {{ partial "components/author-bios.html" (dict "ctx" $page_context "title" $title) }}
         {{ partial "components/production-credits.html" $page_context }}
 
       </div>
@@ -69,7 +61,7 @@
       <div class="row">
         {{ range . }}
         <div class="lg:col-4">
-          {{ partial "components/event-card.html" (dict "Context" . "variant" "grid") }}
+          {{ partial "components/event-card.html" (dict "ctx" . "variant" "grid") }}
         </div>
         {{ end }}
       </div>

@@ -13,7 +13,7 @@
   {{ end }}
 
   {{ if $contributorPage }}
-  {{ partial "components/author-card.html" (dict "context" $contributorPage "variant" "compact" "role_override" (.role | default $role_default) "hide_contributions_info" true) }}
+  {{ partial "components/author-card.html" (dict "ctx" $contributorPage "variant" "compact" "role_override" (.role | default $role_default) "hide_contributions_info" true) }}
   {{ else }}
   <div class="author-card-compact">
     <div class="mx-auto mb-2 rounded-full object-cover bg-gray-200 dark:bg-darkmode-theme-dark flex items-center justify-center" style="width: 100px; height: 100px;">

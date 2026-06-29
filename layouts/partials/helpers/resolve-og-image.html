@@ -1,0 +1,78 @@
+{{/*
+INPUT CONTRACT
+ctx (Page) required — the Hugo page being rendered
+OUTPUT: string — absolute URL of the OG image
+*/}}
+{{ $ctx := . }}
+{{ $ogImageURL := "" }}
+{{ $pageSlug := "" }}
+
+{{ if $ctx.IsHome }}
+{{ $pageSlug = "og-image" }}
+{{ else if $ctx.File }}
+{{ $pageSlug = path.Base $ctx.File.Dir }}
+{{ else }}
+{{ $pageSlug = $ctx.Title | urlize }}
+{{ end }}
+
+{{ $ogImageNameWithExt := printf "%s-og-16x9.jpg" $pageSlug }}
+
+{{/* 1. Check page bundle */}}
+{{ if not $ogImageURL }}
+{{ if and (not $ctx.IsHome) $ctx.File }}
+{{ with $ctx.Resources.GetMatch $ogImageNameWithExt }}{{ $ogImageURL = .Permalink }}{{ end }}
+{{ end }}
+{{ end }}
+
+{{/* 2. Check static/images/[slug]-og-16x9.jpg */}}
+{{ if not $ogImageURL }}
+{{ $staticPath := printf "images/%s" $ogImageNameWithExt }}
+{{ if fileExists (printf "static/%s" $staticPath) }}{{ $ogImageURL = $staticPath | absURL }}{{ end }}
+{{ end }}
+
+{{/* 3. Check Front Matter params.image */}}
+{{ if not $ogImageURL }}
+{{ with $ctx.Params.image }}
+{{ with $ctx.Resources.GetMatch . }}
+{{ $ogImageURL = .Permalink }}
+{{ else }}
+{{ $staticImg := strings.TrimPrefix "/" . }}
+{{ if fileExists (printf "static/%s" $staticImg) }}
+{{ $ogImageURL = . | absURL }}
+{{ else if resources.Get . }}
+{{ $ogImageURL = (resources.Get .).Permalink }}
+{{ end }}
+{{ end }}
+{{ end }}
+{{ end }}
+
+{{/* 4. Check Site Meta Image */}}
+{{ if not $ogImageURL }}
+{{ with site.Params.metadata.image }}
+{{ $staticImg := strings.TrimPrefix "/" . }}
+{{ if fileExists (printf "static/%s" $staticImg) }}
+{{ $ogImageURL = . | absURL }}
+{{ else if resources.Get . }}
+{{ $ogImageURL = (resources.Get .).Permalink }}
+{{ end }}
+{{ end }}
+{{ end }}
+
+{{/* 5. Check Site Logo */}}
+{{ if not $ogImageURL }}
+{{ with site.Params.logo }}
+{{ if or (strings.HasSuffix . ".png") (strings.HasSuffix . ".jpg") (strings.HasSuffix . ".jpeg") }}
+{{ $staticLogo := strings.TrimPrefix "/" . }}
+{{ if fileExists (printf "static/%s" $staticLogo) }}
+{{ $ogImageURL = . | absURL }}
+{{ else if resources.Get . }}
+{{ $ogImageURL = (resources.Get .).Permalink }}
+{{ end }}
+{{ end }}
+{{ end }}
+{{ end }}
+
+{{/* 6. Default Fallback */}}
+{{ if not $ogImageURL }}{{ $ogImageURL = site.Params.defaultOgImage | absURL }}{{ end }}
+
+{{ return $ogImageURL }}

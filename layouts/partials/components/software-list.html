@@ -12,26 +12,30 @@
 
     {{ $pagesWithStars := slice }}
     {{ range $pagesToList }}
+    {{ $repo_path := "" }}
     {{ $is_github := false }}
-    {{ $repo_id := "" }}
+    {{ $is_gitlab := false }}
     {{ with .Params.source_code }}
     {{ if in . "github.com" }}
     {{ $is_github = true }}
-    {{ $repo_id = replace . "https://github.com/" "" }}
-    {{ $repo_id = replace $repo_id ".git" "" }}
+    {{ $repo_path = replace . "https://github.com/" "" }}
+    {{ else if in . "gitlab.com" }}
+    {{ $is_gitlab = true }}
+    {{ $repo_path = replace . "https://gitlab.com/" "" }}
     {{ end }}
+    {{ $repo_path = replace $repo_path ".git" "" }}
     {{ end }}
 
     {{ $stars := 0 }}
     {{ if isset .Params "stars" }}
     {{ $stars = .Params.stars }}
-    {{ else if and $is_github (ne $repo_id "") site.Data.github_stars }}
-    {{ with index site.Data.github_stars $repo_id }}
+    {{ else if and $is_github (ne $repo_path "") site.Data.github_stars }}
+    {{ with index site.Data.github_stars $repo_path }}
     {{ $stars = . }}
     {{ end }}
     {{ end }}
 
-    {{ $pagesWithStars = $pagesWithStars | append (dict "Page" . "Stars" $stars) }}
+    {{ $pagesWithStars = $pagesWithStars | append (dict "Page" . "Stars" $stars "RepoPath" $repo_path "IsGithub" $is_github "IsGitlab" $is_gitlab) }}
     {{ end }}
 
     {{ $sortedSoftwarePages := sort $pagesWithStars "Stars" "desc" }}
@@ -44,24 +48,10 @@
           <a href="{{ $page.Permalink }}" class="text-dark dark:text-darkmode-dark hover:text-primary dark:hover:text-darkmode-primary">{{ $page.Title }}</a>
         </h3>
         <div class="flex items-center space-x-2 flex-shrink-0">
-          {{ $repo_path := "" }}
-          {{ $is_github := false }}
-          {{ $is_gitlab := false }}
-          {{ with $page.Params.source_code }}
-          {{ if in . "github.com" }}
-          {{ $is_github = true }}
-          {{ $repo_path = replace . "https://github.com/" "" }}
-          {{ else if in . "gitlab.com" }}
-          {{ $is_gitlab = true }}
-          {{ $repo_path = replace . "https://gitlab.com/" "" }}
-          {{ end }}
-          {{ $repo_path = replace $repo_path ".git" "" }}
-          {{ end }}
-
-          {{ if $is_github }}
-          <img class="h-5" src="https://img.shields.io/github/stars/{{ $repo_path }}.svg?style=social" alt="GitHub Stars">
-          {{ else if $is_gitlab }}
-          <img class="h-5" src="https://img.shields.io/gitlab/stars/{{ $repo_path }}.svg?style=social" alt="GitLab Stars">
+          {{ if .IsGithub }}
+          <img class="h-5" src="https://img.shields.io/github/stars/{{ .RepoPath }}.svg?style=social" alt="GitHub Stars">
+          {{ else if .IsGitlab }}
+          <img class="h-5" src="https://img.shields.io/gitlab/stars/{{ .RepoPath }}.svg?style=social" alt="GitLab Stars">
           {{ end }}
         </div>
       </div>
@@ -71,7 +61,6 @@
       {{ partial "custom/software-resource-counts.html" (dict "page" $page "is_single" false) }}
 
       <div class="border-t border-border dark:border-darkmode-border pt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-
         <div class="flex items-center gap-3">
           {{ with $page.Params.maintainer }}
           {{ $maintainerList := . }}

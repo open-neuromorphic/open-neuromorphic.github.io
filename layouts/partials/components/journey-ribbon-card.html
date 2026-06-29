@@ -4,33 +4,11 @@
 {{ $contributor_page_resource := "" }}
 
 {{ if $ribbon.primary_contributor_name }}
-{{ $nameForProcessing := $ribbon.primary_contributor_name | replaceRE "[.]" "" }}
-{{ $nameForProcessing = $nameForProcessing | replaceRE "ć" "c" | replaceRE "Ć" "C" }}
-{{ $contributor_slug := $nameForProcessing | anchorize }}
-{{ $contributor_page_path := printf "contributors/%s" $contributor_slug }}
-{{ $contributor_page_resource = site.GetPage $contributor_page_path }}
-
-{{ if $contributor_page_resource }}
-{{ with $contributor_page_resource.Params.image }}
-{{ $contributor_image_filename_from_frontmatter := . }}
-{{ $bundled_image := $contributor_page_resource.Resources.GetMatch $contributor_image_filename_from_frontmatter }}
-{{ if $bundled_image }}
-{{ $processed_contributor_img := $bundled_image.Fill "250x250 Lanczos" }}
-{{ $image_to_display_src = $processed_contributor_img.RelPermalink }}
+{{ $contrib := partial "helpers/resolve-contributor.html" $ribbon.primary_contributor_name }}
+{{ $contributor_page_resource = $contrib.Page }}
+{{ if $contrib.ImageResource }}
+{{ $image_to_display_src = ($contrib.ImageResource.Fill "250x250 Lanczos").RelPermalink }}
 {{ $alt_text_for_image = printf "Profile image of %s" $contributor_page_resource.Title }}
-{{ else }}
-{{ $asset_image_check_path := strings.TrimPrefix "/" $contributor_image_filename_from_frontmatter }}
-{{ $asset_img := resources.Get $asset_image_check_path }}
-{{ if $asset_img }}
-{{ $processed_contributor_img := $asset_img.Fill "250x250 Lanczos" }}
-{{ $image_to_display_src = $processed_contributor_img.RelPermalink }}
-{{ $alt_text_for_image = printf "Profile image of %s" $contributor_page_resource.Title }}
-{{ else if (fileExists (printf "static%s" $contributor_image_filename_from_frontmatter)) }}
-{{ $image_to_display_src = $contributor_image_filename_from_frontmatter | relURL }}
-{{ $alt_text_for_image = printf "Profile image of %s" $contributor_page_resource.Title }}
-{{ end }}
-{{ end }}
-{{ end }}
 {{ end }}
 {{ end }}
 

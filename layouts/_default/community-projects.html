@@ -1,184 +1,181 @@
 {{ define "main" }}
-{{ partial "page-header" . }}
+  {{ partial "page-header" . }}
 
-{{ .Scratch.Set "projectsWithIssues" slice }}
-{{ .Scratch.Set "projectsWithOnlyCompleted" slice }}
+  {{ $projectsWithIssues := slice }}
+  {{ $projectsWithOnlyCompleted := slice }}
 
-{{ range site.Data.community_projects.projects }}
-{{ $fetched := slice }}
-{{ if .repo }}{{ $fetched = index site.Data.fetched_issues .repo | default slice }}{{ end }}
-{{ $manual := .issues | default slice }}
-{{ $all_issues := $manual }}
-{{ range $fi := $fetched }}
-{{ $found := false }}
-{{ range $mi := $manual }}{{ if eq $mi.url $fi.url }}{{ $found = true }}{{ end }}{{ end }}
-{{ if not $found }}{{ $all_issues = $all_issues | append $fi }}{{ end }}
-{{ end }}
+  {{ range site.Data.community_projects.projects }}
+    {{ $fetched := slice }}
+    {{ if .repo }}{{ $fetched = index site.Data.fetched_issues .repo | default slice }}{{ end }}
+    {{ $manual := .issues | default slice }}
+    {{ $all_issues := $manual }}
+    {{ range $fi := $fetched }}
+      {{ $found := false }}
+      {{ range $mi := $manual }}{{ if eq $mi.url $fi.url }}{{ $found = true }}{{ end }}{{ end }}
+      {{ if not $found }}{{ $all_issues = $all_issues | append $fi }}{{ end }}
+    {{ end }}
 
-{{ $has_issues := gt (len $all_issues) 0 }}
-{{ $has_completed := and .completed_issues (gt (len .completed_issues) 0) }}
+    {{ $has_issues := gt (len $all_issues) 0 }}
+    {{ $has_completed := and .completed_issues (gt (len .completed_issues) 0) }}
 
-{{ if $has_issues }}
-{{ $.Scratch.Add "projectsWithIssues" . }}
-{{ else if $has_completed }}
-{{ $.Scratch.Add "projectsWithOnlyCompleted" . }}
-{{ end }}
-{{ end }}
+    {{ if $has_issues }}
+      {{ $projectsWithIssues = $projectsWithIssues | append . }}
+    {{ else if $has_completed }}
+      {{ $projectsWithOnlyCompleted = $projectsWithOnlyCompleted | append . }}
+    {{ end }}
+  {{ end }}
 
-{{ $projectsWithIssues := .Scratch.Get "projectsWithIssues" }}
-{{ $projectsWithOnlyCompleted := .Scratch.Get "projectsWithOnlyCompleted" }}
-
-<section class="section pt-6">
-  <div class="container">
-    <div class="row justify-center">
-      <div class="lg:col-10 mb-12">
-        {{ partial "custom/hacking-hours-software-promo.html" . }}
-      </div>
-    </div>
-    <div class="row lg:items-stretch">
-      <article class="lg:col-8">
-        <div class="content mb-12">
-          {{ .Content }}
+  <section class="section pt-6">
+    <div class="container">
+      <div class="row justify-center">
+        <div class="lg:col-10 mb-12">
+          {{ partial "custom/hacking-hours-software-promo.html" . }}
         </div>
+      </div>
+      <div class="row lg:items-stretch">
+        <article class="lg:col-8">
+          <div class="content mb-12">
+            {{ .Content }}
+          </div>
 
-        {{ $softwarePagesBySlug := newScratch }}
-        {{ range where site.RegularPages "Type" "neuromorphic-software" }}
-        {{ $page := . }}
-        {{ with .File }}
-        {{ $softwarePagesBySlug.Set (path.Base .Dir) $page }}
-        {{ end }}
-        {{ end }}
-
-        <div class="community-projects-list-view">
-          {{ if $projectsWithIssues }}
-          {{ $tagCounts := dict }}
-          {{ range site.Data.community_projects.projects }}
-          {{ $fetched := slice }}
-          {{ if .repo }}{{ $fetched = index site.Data.fetched_issues .repo | default slice }}{{ end }}
-          {{ $manual := .issues | default slice }}
-          {{ $all_issues := $manual }}
-          {{ range $fi := $fetched }}
-          {{ $found := false }}
-          {{ range $mi := $manual }}{{ if eq $mi.url $fi.url }}{{ $found = true }}{{ end }}{{ end }}
-          {{ if not $found }}{{ $all_issues = $all_issues | append $fi }}{{ end }}
-          {{ end }}
-          {{ range $all_issues }}{{ with .tags }}{{ range . }}
-          {{ $tag := . }}{{ $currentCount := index $tagCounts $tag | default 0 }}{{ $tagCounts = merge $tagCounts (dict $tag (add $currentCount 1)) }}
-          {{ end }}{{ end }}{{ end }}
+          {{ $softwarePagesBySlug := newScratch }}
+          {{ range where site.RegularPages "Type" "neuromorphic-software" }}
+            {{ $page := . }}
+            {{ with .File }}
+              {{ $softwarePagesBySlug.Set (path.Base .Dir) $page }}
+            {{ end }}
           {{ end }}
 
-          {{ $sortedTags := slice }}{{ range $tag, $count := $tagCounts }}{{ $sortedTags = $sortedTags | append (dict "tag" $tag "count" $count) }}{{ end }}
-          {{ $sortedTags = sort $sortedTags "tag" "asc" }}
-
-          <div class="filter-panel-glow sticky top-24 z-20 mb-12 p-4 bg-theme-light dark:bg-darkmode-theme-light rounded-lg border border-border dark:border-darkmode-border space-y-3">
-            <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
-              <h4 class="text-sm font-semibold text-gray-700 dark:text-gray-300 flex-shrink-0">Projects:</h4>
-              {{ range $projectsWithIssues }}
-              <a href="#{{ .name | anchorize }}" class="project-filter-link text-sm font-medium px-2.5 py-1 rounded-full bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300 hover:bg-purple-200 dark:hover:bg-purple-800 transition-colors no-underline">
-                {{ .name }}
-              </a>
+          <div class="community-projects-list-view">
+            {{ if $projectsWithIssues }}
+              {{ $tagCounts := dict }}
+              {{ range site.Data.community_projects.projects }}
+                {{ $fetched := slice }}
+                {{ if .repo }}{{ $fetched = index site.Data.fetched_issues .repo | default slice }}{{ end }}
+                {{ $manual := .issues | default slice }}
+                {{ $all_issues := $manual }}
+                {{ range $fi := $fetched }}
+                  {{ $found := false }}
+                  {{ range $mi := $manual }}{{ if eq $mi.url $fi.url }}{{ $found = true }}{{ end }}{{ end }}
+                  {{ if not $found }}{{ $all_issues = $all_issues | append $fi }}{{ end }}
+                {{ end }}
+                {{ range $all_issues }}{{ with .tags }}{{ range . }}
+                  {{ $tag := . }}{{ $currentCount := index $tagCounts $tag | default 0 }}{{ $tagCounts = merge $tagCounts (dict $tag (add $currentCount 1)) }}
+                {{ end }}{{ end }}{{ end }}
               {{ end }}
-            </div>
-            {{ if $sortedTags }}
-            <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
-              <h4 class="text-sm font-semibold text-gray-700 dark:text-gray-300 flex-shrink-0">Filters:</h4>
-              {{ range $sortedTags }}
-              <span data-tag="{{ .tag }}" class="filter-tag cursor-pointer text-xs font-medium px-2.5 py-1 rounded-full transition-colors">
+
+              {{ $sortedTags := slice }}{{ range $tag, $count := $tagCounts }}{{ $sortedTags = $sortedTags | append (dict "tag" $tag "count" $count) }}{{ end }}
+              {{ $sortedTags = sort $sortedTags "tag" "asc" }}
+
+              <div class="filter-panel-glow sticky top-24 z-20 mb-12 p-4 bg-theme-light dark:bg-darkmode-theme-light rounded-lg border border-border dark:border-darkmode-border space-y-3">
+                <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
+                  <h4 class="text-sm font-semibold text-gray-700 dark:text-gray-300 flex-shrink-0">Projects:</h4>
+                  {{ range $projectsWithIssues }}
+                    <a href="#{{ .name | anchorize }}" class="project-filter-link text-sm font-medium px-2.5 py-1 rounded-full bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300 hover:bg-purple-200 dark:hover:bg-purple-800 transition-colors no-underline">
+                      {{ .name }}
+                    </a>
+                  {{ end }}
+                </div>
+                {{ if $sortedTags }}
+                  <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
+                    <h4 class="text-sm font-semibold text-gray-700 dark:text-gray-300 flex-shrink-0">Filters:</h4>
+                    {{ range $sortedTags }}
+                      <span data-tag="{{ .tag }}" class="filter-tag cursor-pointer text-xs font-medium px-2.5 py-1 rounded-full transition-colors">
                  {{ .tag | title }}: <span class="font-bold">{{ .count }}</span>
               </span>
-              {{ end }}
-              <button id="clear-filter-btn" class="hidden btn btn-sm btn-outline-primary !text-xs !py-0.5 !px-2">&times; Clear</button>
-            </div>
-            {{ end }}
-          </div>
-
-          <h2 id="outstanding-issues" class="text-3xl font-bold mb-8 border-b border-border dark:border-darkmode-border pb-4" >Outstanding Issues</h2>
-          <div class="space-y-12">
-            {{ range $projectsWithIssues }}
-            <div id="{{ .name | anchorize }}" class="project-container" >
-              {{ partial "custom/project-bounty-item.html" (dict "page" $ "project" . "softwarePages" $softwarePagesBySlug) }}
-            </div>
-            {{ end }}
-          </div>
-          {{ end }}
-
-          {{ if $projectsWithOnlyCompleted }}
-          <div id="past-contributions-section">
-            <h2 id="past-contributions" class="text-3xl font-bold my-8 pt-8 border-t border-border dark:border-darkmode-border">Past Contributions</h2>
-            <div class="space-y-12">
-              {{ range $projectsWithOnlyCompleted }}
-              <div id="{{ .name | anchorize }}" class="project-container" >
-                {{ partial "custom/project-bounty-item.html" (dict "page" $ "project" . "softwarePages" $softwarePagesBySlug) }}
+                    {{ end }}
+                    <button id="clear-filter-btn" class="hidden btn btn-sm btn-outline-primary !text-xs !py-0.5 !px-2">&times; Clear</button>
+                  </div>
+                {{ end }}
               </div>
-              {{ end }}
+
+              <h2 id="outstanding-issues" class="text-3xl font-bold mb-8 border-b border-border dark:border-darkmode-border pb-4" >Outstanding Issues</h2>
+              <div class="space-y-12">
+                {{ range $projectsWithIssues }}
+                  <div id="{{ .name | anchorize }}" class="project-container" >
+                    {{ partial "custom/project-bounty-item.html" (dict "page" $ "project" . "softwarePages" $softwarePagesBySlug) }}
+                  </div>
+                {{ end }}
+              </div>
+            {{ end }}
+
+            {{ if $projectsWithOnlyCompleted }}
+              <div id="past-contributions-section">
+                <h2 id="past-contributions" class="text-3xl font-bold my-8 pt-8 border-t border-border dark:border-darkmode-border">Past Contributions</h2>
+                <div class="space-y-12">
+                  {{ range $projectsWithOnlyCompleted }}
+                    <div id="{{ .name | anchorize }}" class="project-container" >
+                      {{ partial "custom/project-bounty-item.html" (dict "page" $ "project" . "softwarePages" $softwarePagesBySlug) }}
+                    </div>
+                  {{ end }}
+                </div>
+              </div>
+            {{ end }}
+          </div>
+
+          <div class="mt-16">
+            {{ partial "components/content-contribute-cta.html" (dict
+              "icon" "brands discord"
+              "title" "Ready to <span class=\"gradient-text\">Get Involved?</span>"
+              "description" "The best way to start is to pick an issue and start a conversation. Join our Discord to connect with project maintainers and the wider community."
+              "link" "https://discord.gg/hUygPUdD8E"
+              "link_text" "Join the Discussion on Discord"
+              ) }}
+          </div>
+        </article>
+
+        <aside class="lg:col-4 hidden lg:block">
+          <div class="mb-6">
+            {{ partial "components/og-preview.html" . }}
+          </div>
+          <div class="sticky top-24 space-y-6">
+            <div class="px-3 pt-5 pb-5 content-panel">
+              <strong class="text-xl">ONM Mission Board</strong>
+              <nav id="TableOfContents" class="mt-4">
+                <ul>
+                  {{ if $projectsWithIssues }}
+                    <li>
+                      <a href="#outstanding-issues">Outstanding Issues</a>
+                      <ul>
+                        {{ range $projectsWithIssues }}
+                          <li><a href="#{{ .name | anchorize }}">{{ .name }}</a></li>
+                        {{ end }}
+                      </ul>
+                    </li>
+                  {{ end }}
+                  {{ if $projectsWithOnlyCompleted }}
+                    <li>
+                      <a href="#past-contributions">Past Contributions</a>
+                      <ul>
+                        {{ range $projectsWithOnlyCompleted }}
+                          <li><a href="#{{ .name | anchorize }}">{{ .name }}</a></li>
+                        {{ end }}
+                      </ul>
+                    </li>
+                  {{ end }}
+                </ul>
+              </nav>
             </div>
-          </div>
-          {{ end }}
-        </div>
 
-        <div class="mt-16">
-          {{ partial "components/content-contribute-cta.html" (dict
-          "icon" "brands discord"
-          "title" "Ready to <span class=\"gradient-text\">Get Involved?</span>"
-          "description" "The best way to start is to pick an issue and start a conversation. Join our Discord to connect with project maintainers and the wider community."
-          "link" "https://discord.gg/hUygPUdD8E"
-          "link_text" "Join the Discussion on Discord"
-          ) }}
-        </div>
-      </article>
+            {{ partial "components/page-maintainers.html" . }}
 
-      <aside class="lg:col-4 hidden lg:block">
-        <div class="mb-6">
-          {{ partial "components/og-preview.html" . }}
-        </div>
-        <div class="sticky top-24 space-y-6">
-          <div class="px-3 pt-5 pb-5 content-panel">
-            <strong class="text-xl">ONM Mission Board</strong>
-            <nav id="TableOfContents" class="mt-4">
-              <ul>
-                {{ if $projectsWithIssues }}
-                <li>
-                  <a href="#outstanding-issues">Outstanding Issues</a>
-                  <ul>
-                    {{ range $projectsWithIssues }}
-                    <li><a href="#{{ .name | anchorize }}">{{ .name }}</a></li>
-                    {{ end }}
-                  </ul>
-                </li>
-                {{ end }}
-                {{ if $projectsWithOnlyCompleted }}
-                <li>
-                  <a href="#past-contributions">Past Contributions</a>
-                  <ul>
-                    {{ range $projectsWithOnlyCompleted }}
-                    <li><a href="#{{ .name | anchorize }}">{{ .name }}</a></li>
-                    {{ end }}
-                  </ul>
-                </li>
-                {{ end }}
-              </ul>
-            </nav>
-          </div>
-
-          {{ partial "components/page-maintainers.html" . }}
-
-          {{ $supportersPage := site.GetPage "supporters" }}
-          {{ if $supportersPage }}
-          <a href="{{ $supportersPage.RelPermalink }}#bounties" class="group block">
-            <div class="p-6 content-panel text-center border-2 border-dashed border-gray-300 dark:border-gray-600 hover:border-primary dark:hover:border-darkmode-primary hover:bg-gray-50 dark:hover:bg-darkmode-theme-dark/50 transition-all">
-              {{ partial "icon.html" (dict "style" "solid" "name" "heart" "class" "text-primary dark:text-darkmode-primary text-3xl mx-auto mb-3") }}
-              <h4 class="font-bold text-dark dark:text-darkmode-dark">Sponsor this Space</h4>
-              <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Feature your brand here and support the open-source neuromorphic community.</p>
-              <span class="mt-3 inline-block font-semibold text-primary dark:text-darkmode-primary text-sm group-hover:underline">
+            {{ $supportersPage := site.GetPage "supporters" }}
+            {{ if $supportersPage }}
+              <a href="{{ $supportersPage.RelPermalink }}#bounties" class="group block">
+                <div class="p-6 content-panel text-center border-2 border-dashed border-gray-300 dark:border-gray-600 hover:border-primary dark:hover:border-darkmode-primary hover:bg-gray-50 dark:hover:bg-darkmode-theme-dark/50 transition-all">
+                  {{ partial "icon.html" (dict "style" "solid" "name" "heart" "class" "text-primary dark:text-darkmode-primary text-3xl mx-auto mb-3") }}
+                  <h4 class="font-bold text-dark dark:text-darkmode-dark">Sponsor this Space</h4>
+                  <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Feature your brand here and support the open-source neuromorphic community.</p>
+                  <span class="mt-3 inline-block font-semibold text-primary dark:text-darkmode-primary text-sm group-hover:underline">
                 Learn More &rarr;
               </span>
-            </div>
-          </a>
-          {{ end }}
-        </div>
-      </aside>
+                </div>
+              </a>
+            {{ end }}
+          </div>
+        </aside>
 
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 {{ end }}

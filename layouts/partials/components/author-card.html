@@ -1,19 +1,15 @@
-{{ $ctx := . }}
-{{ $variant := "" }}
-{{ $role_override := "" }}
-{{ $contribution_badges := dict }}
-{{ $initiatives_led := slice }}
-{{ $total_contributions := 0 }}
-{{ $hide_contributions_info := false }}
-
+{{/* INPUT CONTRACT
+ctx                     (Page)   required — the contributor Hugo page
+variant                 (string) optional — "compact" | "default"
+role_override           (string) optional
+contribution_badges     (dict)   optional
+initiatives_led         (slice)  optional
+total_contributions     (int)    optional
+hide_contributions_info (bool)   optional
+*/}}
+{{ $ctx := . }}{{ $variant := "" }}{{ $role_override := "" }}{{ $contribution_badges := dict }}{{ $initiatives_led := slice }}{{ $total_contributions := 0 }}{{ $hide_contributions_info := false }}
 {{ if reflect.IsMap . }}
-{{ $ctx = .Context | default .context | default . }}
-{{ $variant = .variant | default "" }}
-{{ $role_override = .role_override | default "" }}
-{{ $contribution_badges = .contribution_badges }}
-{{ $initiatives_led = .initiatives_led }}
-{{ $total_contributions = .total_contributions | default 0 }}
-{{ $hide_contributions_info = .hide_contributions_info | default false }}
+{{ $ctx = .ctx }}{{ $variant = .variant | default "" }}{{ $role_override = .role_override | default "" }}{{ $contribution_badges = .contribution_badges }}{{ $initiatives_led = .initiatives_led }}{{ $total_contributions = .total_contributions | default 0 }}{{ $hide_contributions_info = .hide_contributions_info | default false }}
 {{ end }}
 
 {{ $is_compact := eq $variant "compact" }}

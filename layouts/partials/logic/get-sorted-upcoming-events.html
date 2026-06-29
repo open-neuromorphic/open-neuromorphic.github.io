@@ -1,3 +1,20 @@
+{{/*
+OUTPUT SCHEMA (slice of dicts):
+Title       string
+Description string
+Date        time.Time   — next occurrence for recurring; page.Date for frontmatter events
+StartTime   string      — "HH:MM"
+EndTime     string      — "HH:MM"
+TimeZone    string
+Permalink   string
+IsRecurring bool
+Authors     []string    — nil for recurring events, use Host instead
+Host        string      — nil for frontmatter events
+LocationName string     — nil for frontmatter events
+LocationURL  string     — nil for frontmatter events
+Image       string
+EventType   string      — human-readable type label
+*/}}
 {{ $allUpcomingEvents := slice }}
 {{ $now := now }}
 {{ $yesterdayStr := ($now.AddDate 0 0 -1).Format "20060102" }}
@@ -31,7 +48,6 @@
 {{ $currentDayIndex := int $now.Weekday }}
 {{ $daysToAdd := sub $targetDayIndex $currentDayIndex }}
 {{ if lt $daysToAdd 0 }}{{ $daysToAdd = add $daysToAdd 7 }}{{ end }}
-{{/* Further logic to adjust daysToAdd if event is today but already passed */}}
 {{ if eq $daysToAdd 0 }}
 {{ $eventStartHour := int (substr .start_time 0 2) }}
 {{ $eventStartMinute := int (substr .start_time 3 2) }}

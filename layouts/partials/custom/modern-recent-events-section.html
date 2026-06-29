@@ -1,4 +1,3 @@
-{{/* layouts/partials/custom/modern-recent-events-section.html */}}
 {{ $section_title := .section_title }}
 {{ $section_subtitle := .section_subtitle | default "" }}
 {{ $events_list := .events_list }}
@@ -52,7 +51,7 @@
             <p class="text-xs text-gray-500 dark:text-gray-400 mb-2">
               {{ partial "icon.html" (dict "style" "regular" "name" "calendar" "class" "mr-1") }}{{ $featured_event.Date.Format "January 2, 2006" }}
               {{ if $featured_event.Params.author }}
-              <span class="mx-1">|</span> {{ partial "icon.html" (dict "style" "regular" "name" "circle-user" "class" "mr-1") }}{{ partial "components/author-links.html" (dict "Params" $featured_event.Params "Site" $page_context.Site) }}
+              <span class="mx-1">|</span> {{ partial "icon.html" (dict "style" "regular" "name" "circle-user" "class" "mr-1") }}{{ partial "components/author-links.html" $featured_event }}
               {{ end }}
             </p>
             <p class="text-sm text-text dark:text-darkmode-text mb-3">

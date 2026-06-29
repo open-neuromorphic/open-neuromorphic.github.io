@@ -1,11 +1,11 @@
-{{ $ctx := . }}
-{{ $variant := "grid" }}
-{{ $image_size := "500x" }}
-
+{{/* INPUT CONTRACT
+ctx        (Page)   required — the event page
+variant    (string) optional — "grid" | "wide" | "featured", default "grid"
+image_size (string) optional — default "500x"
+*/}}
+{{ $ctx := . }}{{ $variant := "grid" }}{{ $image_size := "500x" }}
 {{ if reflect.IsMap . }}
-{{ $ctx = .Context | default .context | default . }}
-{{ $variant = .variant | default "grid" }}
-{{ $image_size = .image_size | default "500x" }}
+{{ $ctx = .ctx }}{{ $variant = .variant | default "grid" }}{{ $image_size = .image_size | default "500x" }}
 {{ end }}
 
 {{ $thumb := partial "helpers/resolve-thumbnail.html" $ctx }}
@@ -15,7 +15,6 @@
 {{ $variant_class := printf "%s--%s" $base_class $variant }}
 
 <div class="{{ $base_class }} {{ $variant_class }} {{ if eq $variant "wide" }}row{{ end }}">
-{{/* Media Column */}}
 <div class="{{ if eq $variant "wide" }}lg:col-4 md:col-12{{ end }} {{ $base_class }}__media-container">
 {{ if and (eq $variant "featured") $video_id }}
 <div class="mb-4 rounded">
@@ -36,7 +35,6 @@
 {{ end }}
 </div>
 
-{{/* Content Column */}}
 <div class="{{ if eq $variant "wide" }}lg:col-8 md:col-12{{ end }} {{ $base_class }}__content-container">
 <h4 class="{{ $base_class }}__title {{ if eq $variant "wide" }}mb-3 md:pt-4 lg:pt-0{{ else }}mb-3{{ end }}">
 <a href="{{ $ctx.RelPermalink }}">{{ $ctx.Title }}</a>

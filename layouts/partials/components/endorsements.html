@@ -1,9 +1,7 @@
-{{ $show_heading := true }}
-{{ if reflect.IsMap . }}
-{{ if isset . "show_heading" }}
-{{ $show_heading = .show_heading }}
-{{ end }}
-{{ end }}
+{{/* INPUT CONTRACT
+show_heading (bool) optional — default true
+*/}}
+{{ $show_heading := true }}{{ if reflect.IsMap . }}{{ if isset . "show_heading" }}{{ $show_heading = .show_heading }}{{ end }}{{ end }}
 
 {{ $endorsements := site.Data.endorsements.endorsements }}
 {{ if $endorsements }}
@@ -20,7 +18,6 @@
       <div class="endorsement-card bg-theme-light dark:bg-darkmode-theme-light p-6 rounded-lg shadow-lg flex flex-col md:flex-row items-start gap-6 h-full">
         <div class="flex-shrink-0 w-full md:w-1/4">
           <div class="flex items-center md:flex-col md:items-start">
-
             {{ $contrib := partial "helpers/resolve-contributor.html" $endorsement.name }}
             {{ if $contrib.ImageResource }}
             <img src="{{ ($contrib.ImageResource.Fill "160x160 Lanczos").RelPermalink }}" alt="Photo of {{ $endorsement.name }}" class="w-20 h-20 rounded-full object-cover bg-gray-200 mb-0 md:mb-4 mr-4 md:mr-0 flex-shrink-0" width="80" height="80">
@@ -29,14 +26,12 @@
               Photo
             </div>
             {{ end }}
-
             <div class="text-left">
               <p class="font-bold text-dark dark:text-darkmode-dark leading-tight">{{ $endorsement.name }}</p>
               <p class="text-sm text-gray-600 dark:text-gray-400 leading-tight">{{ $endorsement.title }}</p>
             </div>
           </div>
         </div>
-
         <div class="text-text dark:text-darkmode-text text-lg italic flex-grow relative border-t md:border-t-0 md:border-l border-border dark:border-darkmode-border pt-6 md:pt-0 md:pl-6">
           <span class="absolute -top-4 md:top-0 -left-1 md:-left-7 text-6xl font-serif text-gray-300 dark:text-gray-700 opacity-75">&ldquo;</span>
           <p class="pl-2">{{ $endorsement.quote | markdownify | chomp }}</p>

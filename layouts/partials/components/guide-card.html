@@ -1,19 +1,15 @@
-{{ $title := "" }}
-{{ $url_segment := "" }}
-{{ $icon := "" }}
-{{ $description := "" }}
-{{ $key_areas := slice }}
-{{ $cta_text := "" }}
-{{ $page_context := . }}
-
+{{/* INPUT CONTRACT
+ctx         (Page)   required — the Hugo page being rendered
+title       (string) required
+url         (string) required — segment to append
+icon        (string) required
+description (string) required
+key_areas   (slice)  optional
+cta_text    (string) required
+*/}}
+{{ $ctx := . }}{{ $title := "" }}{{ $url_segment := "" }}{{ $icon := "" }}{{ $description := "" }}{{ $key_areas := slice }}{{ $cta_text := "" }}
 {{ if reflect.IsMap . }}
-{{ $title = .title }}
-{{ $url_segment = .url }}
-{{ $icon = .icon }}
-{{ $description = .description }}
-{{ $key_areas = .key_areas }}
-{{ $cta_text = .cta_text }}
-{{ $page_context = .page_context | default .Context | default .context | default . }}
+{{ $ctx = .ctx }}{{ $title = .title }}{{ $url_segment = .url }}{{ $icon = .icon }}{{ $description = .description }}{{ $key_areas = .key_areas }}{{ $cta_text = .cta_text }}
 {{ end }}
 
 <div class="guide-card card-surface-interactive p-4 md:p-6 h-full flex flex-col">
@@ -34,7 +30,7 @@
   </div>
   {{ end }}
 
-  {{ $final_url := path.Join $page_context.RelPermalink $url_segment }}
+  {{ $final_url := path.Join $ctx.RelPermalink $url_segment }}
   <a href="{{ $final_url }}" class="btn btn-new-primary btn-sm mt-auto w-full md:w-auto md:self-start py-2 px-4 text-base">
     {{ $cta_text }} {{ partial "icon.html" (dict "style" "solid" "name" "arrow-right" "class" "ml-1 text-xs") }}
   </a>

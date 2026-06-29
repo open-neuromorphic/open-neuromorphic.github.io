@@ -1,17 +1,14 @@
+{{/* INPUT CONTRACT
+ctx   (Page)   required — the Hugo page being rendered
+title (string) optional — override title, default "About the Author(s)"
+*/}}
 {{ $ctx := . }}
 {{ $title_override := "" }}
-{{ if reflect.IsMap . }}
-{{ $ctx = .Context | default .context | default . }}
-{{ $title_override = .title | default "" }}
-{{ end }}
+{{ if reflect.IsMap . }}{{ $ctx = .ctx }}{{ $title_override = .title | default "" }}{{ end }}
 
 <div class="author-bios-section mt-12 pt-8">
   <h2 class="text-3xl font-bold mb-8">
-    {{ if $title_override }}
-    {{ $title_override }}
-    {{ else }}
-    About the Author{{ if gt (len $ctx.Params.author) 1 }}s{{ end }}
-    {{ end }}
+    {{ if $title_override }}{{ $title_override }}{{ else }}About the Author{{ if gt (len $ctx.Params.author) 1 }}s{{ end }}{{ end }}
   </h2>
   {{ with $ctx.Params.author }}
   {{ range $index, $authorName := . }}

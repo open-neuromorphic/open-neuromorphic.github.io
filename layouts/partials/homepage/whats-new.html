@@ -18,8 +18,8 @@
             <div class="flex items-center justify-between mb-2 w-full">
               <span class="date-badge text-xs">{{ .Date.Format "Jan 02, 2006" }}</span>
               {{ with .EventType }}
-              {{ $linkMap := dict "Workshops" "workshops" "Student Talks" "neuromorphic-computing/student-talks" "Hacking Hours" "neuromorphic-computing/software/hacking-hours" "Town Hall" "getting-involved/town-hall" }}
-              {{ $eventPageStr := index $linkMap . }}
+              {{ $eventPageStr := "" }}
+              {{ range site.Data.event_types.event_types }}{{ if eq .label $ }}{{ $eventPageStr = .section }}{{ end }}{{ end }}
               {{ if $eventPageStr }}
               {{ $p := site.GetPage $eventPageStr }}
               <a href="{{ $p.RelPermalink }}" class="event-type-tag-link">{{ . }}</a>

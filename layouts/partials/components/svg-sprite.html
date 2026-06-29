@@ -1,30 +1,21 @@
-{{/* layouts/partials/components/svg-sprite.html */}}
-{{/* Generates an SVG sprite sheet from a list of icons in data/used_icons.yml */}}
-
 {{ $spriteData := site.Data.used_icons.fontawesome_svgs }}
 {{ if $spriteData }}
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   {{ range $spriteData }}
   {{ $iconStyle := .style }}
   {{ $iconName := .name }}
-  {{ $iconPath := printf "/plugins/font-awesome/svgs/%s/%s.svg" $iconStyle $iconName }} {{/* Path relative to static dir */}}
-  {{ $iconStaticPath := printf "static%s" $iconPath }} {{/* Path for readFile */}}
+  {{ $iconPath := printf "/plugins/font-awesome/svgs/%s/%s.svg" $iconStyle $iconName }}
+  {{ $iconStaticPath := printf "static%s" $iconPath }}
 
   {{ if fileExists $iconStaticPath }}
   {{ $svgContent := readFile $iconStaticPath }}
-  {{/* Extract the path data from the full SVG file.
-  We are interested in the <path> elements primarily.
-  A simple regex to grab everything between <svg> and </svg> tags,
-  then we'll get the viewBox from the original <svg> tag.
-    */}}
-    {{ $viewBoxMatch := $svgContent | findRE `viewBox="([^"]*)"` }}
-    {{ $viewBox := "" }}
-    {{ if $viewBoxMatch }}{{ $viewBox = index $viewBoxMatch 0 }}{{ end }}
+  {{ $viewBoxMatch := $svgContent | findRE `viewBox="([^"]*)"` }}
+  {{ $viewBox := "" }}{{ if $viewBoxMatch }}{{ $viewBox = index $viewBoxMatch 0 }}{{ end }}
 
-    {{ $pathsMatch := $svgContent | findRE `<svg[^>]*>(.*)</svg>` }}
-  {{ $paths := "" }}
-  {{ if $pathsMatch }}{{ $paths = index $pathsMatch 0 | replaceRE `<svg[^>]*>(.*)</svg>` "$1" }}{{ end }}
-
+  {{/* Use findRE with single-line flag (?s) to correctly capture multiline inner content */}}
+  {{ $pathsMatch := $svgContent | findRE "(?s)<svg[^>]*>(.*?)</svg>" }}
+{{ $paths := "" }}
+{{ if $pathsMatch }}{{ $paths = index $pathsMatch 0 | replaceRE "(?s)<svg[^>]*>(.*?)</svg>" "$1" }}{{ end }}
 
 {{ if $paths }}
 <symbol id="icon-{{ $iconStyle }}-{{ $iconName }}" {{ $viewBox | safeHTMLAttr }}>

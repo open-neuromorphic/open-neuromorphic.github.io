@@ -1,9 +1,11 @@
+{{/* INPUT CONTRACT
+name        (string) required
+role        (string) optional
+description (string) optional
+image       (string) optional
+social      (slice)  optional
+*/}}
 {{ $params := . }}
-{{ if reflect.IsMap . }}
-{{ if .person_data }}
-{{ $params = .person_data }}
-{{ end }}
-{{ end }}
 
 {{ $contrib := partial "helpers/resolve-contributor.html" $params.name }}
 {{ $image_url := "" }}
