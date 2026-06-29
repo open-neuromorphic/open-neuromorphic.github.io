@@ -56,18 +56,21 @@
             {{ $img_alt := $mostRecentPastHH.Title }}
             {{ $img_resource := "" }}
 
-            {{ with $mostRecentPastHH.Params.image }}
-              {{ with $mostRecentPastHH.Resources.GetMatch . }}{{ $img_resource = . }}{{ end }}
+            {{/* 1. Prioritize automatically generated OG image for previews */}}
+            {{ if $mostRecentPastHH.File }}
+              {{ $page_slug := path.Base $mostRecentPastHH.File.Dir }}
+              {{ $og_image_name := printf "%s-og-16x9.jpg" $page_slug }}
+              {{ with $mostRecentPastHH.Resources.GetMatch $og_image_name }}{{ $img_resource = . }}{{ end }}
             {{ end }}
 
+            {{/* 2. Fallback to Front Matter image */}}
             {{ if not $img_resource }}
-              {{ if $mostRecentPastHH.File }}
-                {{ $page_slug := path.Base $mostRecentPastHH.File.Dir }}
-                {{ $og_image_name := printf "%s-og-16x9.jpg" $page_slug }}
-                {{ with $mostRecentPastHH.Resources.GetMatch $og_image_name }}{{ $img_resource = . }}{{ end }}
+              {{ with $mostRecentPastHH.Params.image }}
+                {{ with $mostRecentPastHH.Resources.GetMatch . }}{{ $img_resource = . }}{{ end }}
               {{ end }}
             {{ end }}
 
+            {{/* 3. Default fallback */}}
             {{ if not $img_resource }}
               {{ with resources.Get "images/hacking-hours-default-banner.png" }}{{ $img_resource = . }}{{ end }}
             {{ end }}
