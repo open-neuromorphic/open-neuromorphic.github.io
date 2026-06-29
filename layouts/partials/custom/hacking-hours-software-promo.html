@@ -3,7 +3,7 @@
 {{ $mostRecentPastHH := "" }}
 {{ if $sortedPastHH }}{{ $mostRecentPastHH = index $sortedPastHH 0 }}{{ end }}
 
-{{ $recurringEventData := site.Data.recurring_events.events }}
+{{ $recurringEventData := hugo.Data.recurring_events.events }}
 {{ $upcomingHackingHourDetails := "" }}
 {{ range $recurringEventData }}
   {{ if and (eq .id "hacking-hours") .active }}

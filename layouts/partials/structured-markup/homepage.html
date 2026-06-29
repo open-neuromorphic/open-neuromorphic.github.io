@@ -1,16 +1,16 @@
 {{ $socialLinks := slice }}
-{{ range site.Data.social.main }}
-{{ $socialLinks = $socialLinks | append .link }}
+{{ range hugo.Data.social.main }}
+  {{ $socialLinks = $socialLinks | append .link }}
 {{ end }}
 
 {{ $homepageLD := dict
-"@context" "https://schema.org"
-"@type" "Organization"
-"url" (site.BaseURL)
-"sameAs" $socialLinks
-"logo" ("ONM-logo.png" | absURL)
-"name" site.Title
-"description" site.Params.metadata.description
+  "@context" "https://schema.org"
+  "@type" "Organization"
+  "url" (site.BaseURL)
+  "sameAs" $socialLinks
+  "logo" ("ONM-logo.png" | absURL)
+  "name" site.Title
+  "description" site.Params.metadata.description
 }}
 
 {{ return $homepageLD }}

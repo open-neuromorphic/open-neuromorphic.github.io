@@ -1,4 +1,4 @@
-{{ $recurringEventData := site.Data.recurring_events.events }}
+{{ $recurringEventData := hugo.Data.recurring_events.events }}
 {{ $townHallEvent := "" }}
 {{ range $recurringEventData }}
   {{ if and (eq .id "town-hall") .active }}

@@ -6,7 +6,7 @@
     </p>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {{ range site.Data.homepage.involvement_pathways }}
+      {{ range hugo.Data.homepage.involvement_pathways }}
         <div>
           {{ partial "components/involvement-card.html" . }}
         </div>

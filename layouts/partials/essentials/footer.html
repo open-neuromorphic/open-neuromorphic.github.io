@@ -18,7 +18,7 @@
           A global community fostering education, research, and open-source collaboration in brain-inspired AI and hardware.
         </p>
         <ul class="social-icons flex justify-center md:justify-start space-x-3">
-          {{ range site.Data.social.main }}
+          {{ range hugo.Data.social.main }}
             <li>
               <a target="_blank" aria-label="{{ .name }}" rel="nofollow noopener" href="{{ .link | safeURL }}" class="bg-gray-700 hover:bg-primary dark:hover:bg-darkmode-primary text-white">
                 {{ $iconData := partial "helpers/parse-fa-class.html" .icon }}

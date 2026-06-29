@@ -2,7 +2,7 @@
 title: "Brian"
 type: neuromorphic-software
 description: Free, open-source simulator for SNNs, written in Python, focusing on ease of use and flexibility.
-logo: brian.jpg
+logo: brian.webp
 website: https://briansimulator.org/
 dependencies: 
 field_of_application: Neuroscience

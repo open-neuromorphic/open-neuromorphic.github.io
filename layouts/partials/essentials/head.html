@@ -67,13 +67,13 @@
 
 <style>
   :root {
-    --color-primary: {{ site.Data.theme.colors.default.theme_color.primary }};
-    --color-secondary: {{ site.Data.theme.colors.default.theme_color.secondary }};
-    --color-accent: {{ site.Data.theme.colors.default.theme_color.accent }};
+    --color-primary: {{ hugo.Data.theme.colors.default.theme_color.primary }};
+    --color-secondary: {{ hugo.Data.theme.colors.default.theme_color.secondary }};
+    --color-accent: {{ hugo.Data.theme.colors.default.theme_color.accent }};
   }
   .dark {
-    --color-primary: {{ site.Data.theme.colors.darkmode.theme_color.primary }};
-    --color-secondary: {{ site.Data.theme.colors.darkmode.theme_color.secondary }};
-    --color-accent: {{ site.Data.theme.colors.darkmode.theme_color.accent }};
+    --color-primary: {{ hugo.Data.theme.colors.darkmode.theme_color.primary }};
+    --color-secondary: {{ hugo.Data.theme.colors.darkmode.theme_color.secondary }};
+    --color-accent: {{ hugo.Data.theme.colors.darkmode.theme_color.accent }};
   }
 </style>

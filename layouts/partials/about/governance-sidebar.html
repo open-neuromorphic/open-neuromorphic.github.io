@@ -4,23 +4,23 @@
   <strong class="text-xl pl-3">Governance Guide</strong>
   <nav id="TableOfContents" class="mt-4">
     <ul>
-      {{ range site.Data.nav_sidebars.governance }}
-      {{ with site.GetPage .path }}
-      {{ $isActive := eq ($currentPage.RelPermalink | strings.TrimRight "/") (strings.TrimRight .RelPermalink "/") }}
-      <li class="{{ if $isActive }}active{{ end }}">
-        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-      </li>
-      {{ end }}
+      {{ range hugo.Data.nav_sidebars.governance }}
+        {{ with site.GetPage .path }}
+          {{ $isActive := eq ($currentPage.RelPermalink | strings.TrimRight "/") (strings.TrimRight .RelPermalink "/") }}
+          <li class="{{ if $isActive }}active{{ end }}">
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          </li>
+        {{ end }}
       {{ end }}
     </ul>
   </nav>
 </div>
 
 {{ if and .Params.showTableOfContents (ne .TableOfContents `<nav id="TableOfContents"></nav>`) }}
-<div class="sticky top-24 px-3 pt-5 pb-5 content-panel">
-  <strong class="text-xl pl-3">On This Page</strong>
-  <div id="tableOfContentContainer" class="mt-4">
-    {{ .TableOfContents }}
+  <div class="sticky top-24 px-3 pt-5 pb-5 content-panel">
+    <strong class="text-xl pl-3">On This Page</strong>
+    <div id="tableOfContentContainer" class="mt-4">
+      {{ .TableOfContents }}
+    </div>
   </div>
-</div>
 {{ end }}

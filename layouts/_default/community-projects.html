@@ -4,9 +4,9 @@
   {{ $projectsWithIssues := slice }}
   {{ $projectsWithOnlyCompleted := slice }}
 
-  {{ range site.Data.community_projects.projects }}
+  {{ range hugo.Data.community_projects.projects }}
     {{ $fetched := slice }}
-    {{ if .repo }}{{ $fetched = index site.Data.fetched_issues .repo | default slice }}{{ end }}
+    {{ if .repo }}{{ $fetched = index hugo.Data.fetched_issues .repo | default slice }}{{ end }}
     {{ $manual := .issues | default slice }}
     {{ $all_issues := $manual }}
     {{ range $fi := $fetched }}
@@ -49,9 +49,9 @@
           <div class="community-projects-list-view">
             {{ if $projectsWithIssues }}
               {{ $tagCounts := dict }}
-              {{ range site.Data.community_projects.projects }}
+              {{ range hugo.Data.community_projects.projects }}
                 {{ $fetched := slice }}
-                {{ if .repo }}{{ $fetched = index site.Data.fetched_issues .repo | default slice }}{{ end }}
+                {{ if .repo }}{{ $fetched = index hugo.Data.fetched_issues .repo | default slice }}{{ end }}
                 {{ $manual := .issues | default slice }}
                 {{ $all_issues := $manual }}
                 {{ range $fi := $fetched }}

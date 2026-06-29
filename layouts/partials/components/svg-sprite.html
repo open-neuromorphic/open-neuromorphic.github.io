@@ -1,34 +1,34 @@
-{{ $spriteData := site.Data.used_icons.fontawesome_svgs }}
+{{ $spriteData := hugo.Data.used_icons.fontawesome_svgs }}
 {{ if $spriteData }}
-<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-  {{ range $spriteData }}
-  {{ $iconStyle := .style }}
-  {{ $iconName := .name }}
-  {{ $iconPath := printf "/plugins/font-awesome/svgs/%s/%s.svg" $iconStyle $iconName }}
-  {{ $iconStaticPath := printf "static%s" $iconPath }}
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    {{ range $spriteData }}
+      {{ $iconStyle := .style }}
+      {{ $iconName := .name }}
+      {{ $iconPath := printf "/plugins/font-awesome/svgs/%s/%s.svg" $iconStyle $iconName }}
+      {{ $iconStaticPath := printf "static%s" $iconPath }}
 
-  {{ if fileExists $iconStaticPath }}
-  {{ $svgContent := readFile $iconStaticPath }}
-  {{ $viewBoxMatch := $svgContent | findRE `viewBox="([^"]*)"` }}
-  {{ $viewBox := "" }}{{ if $viewBoxMatch }}{{ $viewBox = index $viewBoxMatch 0 }}{{ end }}
+      {{ if fileExists $iconStaticPath }}
+        {{ $svgContent := readFile $iconStaticPath }}
+        {{ $viewBoxMatch := $svgContent | findRE `viewBox="([^"]*)"` }}
+        {{ $viewBox := "" }}{{ if $viewBoxMatch }}{{ $viewBox = index $viewBoxMatch 0 }}{{ end }}
 
-  {{/* Use findRE with single-line flag (?s) to correctly capture multiline inner content */}}
-  {{ $pathsMatch := $svgContent | findRE "(?s)<svg[^>]*>(.*?)</svg>" }}
-{{ $paths := "" }}
-{{ if $pathsMatch }}{{ $paths = index $pathsMatch 0 | replaceRE "(?s)<svg[^>]*>(.*?)</svg>" "$1" }}{{ end }}
+        {{/* Use findRE with single-line flag (?s) to correctly capture multiline inner content */}}
+        {{ $pathsMatch := $svgContent | findRE "(?s)<svg[^>]*>(.*?)</svg>" }}
+        {{ $paths := "" }}
+        {{ if $pathsMatch }}{{ $paths = index $pathsMatch 0 | replaceRE "(?s)<svg[^>]*>(.*?)</svg>" "$1" }}{{ end }}
 
-{{ if $paths }}
-<symbol id="icon-{{ $iconStyle }}-{{ $iconName }}" {{ $viewBox | safeHTMLAttr }}>
-  {{ $paths | safeHTML }}
-</symbol>
+        {{ if $paths }}
+          <symbol id="icon-{{ $iconStyle }}-{{ $iconName }}" {{ $viewBox | safeHTMLAttr }}>
+            {{ $paths | safeHTML }}
+          </symbol>
+        {{ else }}
+          {{ warnf "[SVG Sprite] Could not extract paths for icon: %s (%s)" $iconName $iconStaticPath }}
+        {{ end }}
+      {{ else }}
+        {{ warnf "[SVG Sprite] Icon file not found: %s" $iconStaticPath }}
+      {{ end }}
+    {{ end }}
+  </svg>
 {{ else }}
-{{ warnf "[SVG Sprite] Could not extract paths for icon: %s (%s)" $iconName $iconStaticPath }}
-{{ end }}
-{{ else }}
-{{ warnf "[SVG Sprite] Icon file not found: %s" $iconStaticPath }}
-{{ end }}
-{{ end }}
-</svg>
-{{ else }}
-{{ warnf "[SVG Sprite] No icon data found in data/used_icons.yml" }}
+  {{ warnf "[SVG Sprite] No icon data found in data/used_icons.yml" }}
 {{ end }}

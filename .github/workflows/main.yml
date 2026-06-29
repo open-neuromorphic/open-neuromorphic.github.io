@@ -11,9 +11,9 @@ permissions:
 
 env:
   HUGO_ENV: production
-  HUGO_VERSION: "0.147.7"
-  GO_VERSION: "1.25.x"
-  NODE_VERSION: "22.x"
+  HUGO_VERSION: "0.163.3" # Or latest
+  GO_VERSION: "1.26.x"
+  NODE_VERSION: "24.x"
 
 jobs:
   build:

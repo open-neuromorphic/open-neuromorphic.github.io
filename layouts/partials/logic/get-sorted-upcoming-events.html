@@ -23,7 +23,7 @@
   {{ end }}
 {{ end }}
 
-{{ $recurringEventData := site.Data.recurring_events.events }}
+{{ $recurringEventData := hugo.Data.recurring_events.events }}
 {{ range $recurringEventData }}
   {{ if .active }}
     {{ $nextOccurrenceDate := partial "logic/get-next-occurrence-date.html" . }}

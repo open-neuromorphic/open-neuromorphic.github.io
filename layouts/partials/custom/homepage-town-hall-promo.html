@@ -1,8 +1,8 @@
-{{ $past_events := sort site.Data.town_halls.past_events "date" "desc" }}
+{{ $past_events := sort hugo.Data.town_halls.past_events "date" "desc" }}
 {{ $latest_recording := "" }}
 {{ if $past_events }}{{ $latest_recording = index $past_events 0 }}{{ end }}
 
-{{ $recurringEventData := site.Data.recurring_events.events }}
+{{ $recurringEventData := hugo.Data.recurring_events.events }}
 {{ $upcoming_details := "" }}
 {{ range $recurringEventData }}
   {{ if and (eq .id "town-hall") .active }}

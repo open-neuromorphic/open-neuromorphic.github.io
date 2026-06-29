@@ -1,4 +1,4 @@
-{{- $supporters := site.Data.supporters.foundational -}}
+{{- $supporters := hugo.Data.supporters.foundational -}}
 
 {{- if $supporters -}}
   {{- /* Pre-calculation of contributions for bubbles */ -}}
@@ -77,8 +77,13 @@
 
                     {{- if $logo_resource -}}
                       <a href="{{ $page.RelPermalink }}" title="{{ $display_name }}" class="partner-logo-link px-6 py-2 flex-shrink-0" data-project-name="{{ $display_name }}" data-project-description="{{ $page.Description }}" {{ $data_attr }}>
-                        {{- $logo_img := $logo_resource.Fit "150x50 Lanczos" -}}
-                        <img src="{{ $logo_img.RelPermalink }}" alt="{{ $display_name }} logo" class="partner-logo h-10 w-auto max-w-[150px] object-contain {{ if $supporter.dark_logo_invert }}dark:invert{{ end }}">
+                        {{- $img_src := $logo_resource.RelPermalink -}}
+                        {{- /* Skip .Fit for SVGs to prevent rasterization or header mismatch panics */ -}}
+                        {{- if ne $logo_resource.MediaType.SubType "svg" -}}
+                          {{- $logo_img := $logo_resource.Fit "150x50 Lanczos" -}}
+                          {{- $img_src = $logo_img.RelPermalink -}}
+                        {{- end -}}
+                        <img src="{{ $img_src }}" alt="{{ $display_name }} logo" class="partner-logo h-10 w-auto max-w-[150px] object-contain {{ if $supporter.dark_logo_invert }}dark:invert{{ end }}">
                       </a>
                     {{- end -}}
                   {{- end -}}
