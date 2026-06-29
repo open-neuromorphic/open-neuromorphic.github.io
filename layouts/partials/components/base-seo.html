@@ -1,42 +1,40 @@
-{{ if or (eq site.BaseURL "/") (eq site.BaseURL "http://localhost:1313/") }}
-{{ else }}
-<base href="{{ .Permalink }}" />
-{{ end }}
-
 {{ $title := site.Title }}
 {{ if .Params.meta_title }}
-{{ $title = .Params.meta_title }}
-{{ else if .Params.title }}
-{{ $title = .Params.title }}
+  {{ $title = .Params.meta_title }}
+{{ else if and (eq .Type "neuromorphic-hardware") .Params.product }}
+  {{ $title = printf "A Look at %s - Neuromorphic Chip - %s" .Title site.Title }}
+{{ else if not .IsHome }}
+  {{ $title = printf "%s - %s" .Title site.Title }}
+{{ else }}
+  {{ $title = site.Params.homepageTitle | default site.Title }}
 {{ end }}
 
 <title>{{ $title }}</title>
 
 {{ if .Params.noindex }}
-<meta name="robots" content="noindex,nofollow" />
+  <meta name="robots" content="noindex,nofollow" />
 {{ end }}
 
-{{ with .Params.canonical }}
-<link rel="canonical" href="{{ . }}" itemprop="url" />
-{{ end }}
+{{/* Always emit canonical; use params.canonical override if present, else .Permalink */}}
+<link rel="canonical" href="{{ .Params.canonical | default .Permalink }}" itemprop="url" />
 
 {{ if .IsTranslated }}
-{{ range .AllTranslations }}
-<link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}" />
-{{ end }}
-<link rel="alternate" hreflang="x-default" href="{{ .Permalink }}" />
+  {{ range .AllTranslations }}
+    <link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}" />
+  {{ end }}
+  <link rel="alternate" hreflang="x-default" href="{{ .Permalink }}" />
 {{ end }}
 
 {{ if .Params.keywords }}
-<meta name="keywords" content="{{ delimit .Params.keywords `, ` }}" />
+  <meta name="keywords" content="{{ delimit .Params.keywords `, ` }}" />
 {{ else if site.Params.metadata.keywords }}
-<meta name="keywords" content="{{ delimit site.Params.metadata.keywords `, ` }}" />
+  <meta name="keywords" content="{{ delimit site.Params.metadata.keywords `, ` }}" />
 {{ end }}
 
 <meta name="description" content="{{ .Params.description | default site.Params.metadata.description }}" />
 
 {{ with site.Params.metadata.author }}
-<meta name="author" content="{{ . }}" />
+  <meta name="author" content="{{ . }}" />
 {{ end }}
 
 <meta property="og:type" content="website" />
@@ -53,8 +51,8 @@
 {{ $ogImageURL := partial "helpers/resolve-og-image.html" . }}
 
 {{ if $ogImageURL }}
-<meta property="og:image" content="{{ $ogImageURL }}">
-<meta name="twitter:image" content="{{ $ogImageURL }}">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+  <meta property="og:image" content="{{ $ogImageURL }}">
+  <meta name="twitter:image" content="{{ $ogImageURL }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
 {{ end }}

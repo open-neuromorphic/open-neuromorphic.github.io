@@ -6,15 +6,11 @@ image: "connectivism.png"
 draft: false
 type: "community-resources"
 video: "xVB7kn4_atU"
-
-# --- Resource Details ---
 resource_type: "YouTube Channel / Educational Resource"
 website: "https://www.youtube.com/@StephenDownes"
 author:
   - "Stephen Downes"
 is_supporter: false
-
-# --- Resource Log ---
 resource_log:
   - date: "2025-08-24"
     title: "Resource Added to Open Neuromorphic"

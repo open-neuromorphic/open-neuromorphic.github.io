@@ -18,21 +18,21 @@ slug = "faery"
 repo = "aestream/faery"
 description = "Event streaming multitool with an efficient Rust core."
 
-  [[projects.completed_issues]]
-  title = "PR #10"
-  url = "https://github.com/aestream/faery/pull/10"
+[[projects.completed_issues]]
+title = "PR #10"
+url = "https://github.com/aestream/faery/pull/10"
 
-  [[projects.completed_issues]]
-  title = "PR #15"
-  url = "https://github.com/aestream/faery/pull/15"
+[[projects.completed_issues]]
+title = "PR #15"
+url = "https://github.com/aestream/faery/pull/15"
 
-  [[projects.completed_issues]]
-  title = "PR #16"
-  url = "https://github.com/aestream/faery/pull/16"
+[[projects.completed_issues]]
+title = "PR #16"
+url = "https://github.com/aestream/faery/pull/16"
 
-  [[projects.completed_issues]]
-  title = "PR #22"
-  url = "https://github.com/aestream/faery/pull/22"
+[[projects.completed_issues]]
+title = "PR #22"
+url = "https://github.com/aestream/faery/pull/22"
 
 [[projects]]
 name = "GeNN"
@@ -54,41 +54,41 @@ slug = "neuromorphic-intermediate-representation"
 repo = "neuromorphs/NIR"
 description = "A neuromorphic continuous-time instruction set."
 
-  [[projects.completed_issues]]
-  title = "PR #76"
-  url = "https://github.com/neuromorphs/nir/pull/76"
+[[projects.completed_issues]]
+title = "PR #76"
+url = "https://github.com/neuromorphs/nir/pull/76"
 
-  [[projects.completed_issues]]
-  title = "PR #104"
-  url = "https://github.com/neuromorphs/nir/pull/104"
+[[projects.completed_issues]]
+title = "PR #104"
+url = "https://github.com/neuromorphs/nir/pull/104"
 
-  [[projects.completed_issues]]
-  title = "PR #122"
-  url = "https://github.com/neuromorphs/NIR/pull/122"
+[[projects.completed_issues]]
+title = "PR #122"
+url = "https://github.com/neuromorphs/NIR/pull/122"
 
-  [[projects.completed_issues]]
-  title = "PR #124"
-  url = "https://github.com/neuromorphs/NIR/pull/124"
+[[projects.completed_issues]]
+title = "PR #124"
+url = "https://github.com/neuromorphs/NIR/pull/124"
 
-  [[projects.completed_issues]]
-  title = "PR #128"
-  url = "https://github.com/neuromorphs/NIR/pull/128"
+[[projects.completed_issues]]
+title = "PR #128"
+url = "https://github.com/neuromorphs/NIR/pull/128"
 
-  [[projects.completed_issues]]
-  title = "PR #130"
-  url = "https://github.com/neuromorphs/NIR/pull/130"
+[[projects.completed_issues]]
+title = "PR #130"
+url = "https://github.com/neuromorphs/NIR/pull/130"
 
-  [[projects.completed_issues]]
-  title = "PR #143"
-  url = "https://github.com/neuromorphs/NIR/pull/143"
+[[projects.completed_issues]]
+title = "PR #143"
+url = "https://github.com/neuromorphs/NIR/pull/143"
 
-  [[projects.completed_issues]]
-  title = "PR #153"
-  url = "https://github.com/neuromorphs/NIR/pull/153"
+[[projects.completed_issues]]
+title = "PR #153"
+url = "https://github.com/neuromorphs/NIR/pull/153"
 
-  [[projects.completed_issues]]
-  title = "PR #156"
-  url = "https://github.com/neuromorphs/NIR/pull/156"
+[[projects.completed_issues]]
+title = "PR #156"
+url = "https://github.com/neuromorphs/NIR/pull/156"
 
 [[projects]]
 name = "NIRTorch"
@@ -96,39 +96,37 @@ slug = "nirtorch"
 repo = "neuromorphs/NIRTorch"
 description = "PyTorch-NIR integration library."
 
-  [[projects.completed_issues]]
-  title = "PR #28"
-  url = "https://github.com/neuromorphs/nirtorch/pull/28"
+[[projects.completed_issues]]
+title = "PR #28"
+url = "https://github.com/neuromorphs/nirtorch/pull/28"
 
-  [[projects.completed_issues]]
-  title = "PR #33"
-  url = "https://github.com/neuromorphs/nirtorch/pull/33"
+[[projects.completed_issues]]
+title = "PR #33"
+url = "https://github.com/neuromorphs/nirtorch/pull/33"
 
-  [[projects.completed_issues]]
-  title = "PR #34"
-  url = "https://github.com/neuromorphs/NIRTorch/pull/34"
+[[projects.completed_issues]]
+title = "PR #34"
+url = "https://github.com/neuromorphs/NIRTorch/pull/34"
 
-  [[projects.completed_issues]]
-  title = "PR #36"
-  url = "https://github.com/neuromorphs/NIRTorch/pull/36"
+[[projects.completed_issues]]
+title = "PR #36"
+url = "https://github.com/neuromorphs/NIRTorch/pull/36"
 
-  [[projects.completed_issues]]
-  title = "PR #39"
-  url = "https://github.com/neuromorphs/NIRTorch/pull/39"
+[[projects.completed_issues]]
+title = "PR #39"
+url = "https://github.com/neuromorphs/NIRTorch/pull/39"
 
-  [[projects.completed_issues]]
-  title = "PR #40"
-  url = "https://github.com/neuromorphs/NIRTorch/pull/40"
+[[projects.completed_issues]]
+title = "PR #40"
+url = "https://github.com/neuromorphs/NIRTorch/pull/40"
 
-  [[projects.completed_issues]]
-  title = "PR #41"
-  url = "https://github.com/neuromorphs/NIRTorch/pull/41"
+[[projects.completed_issues]]
+title = "PR #41"
+url = "https://github.com/neuromorphs/NIRTorch/pull/41"
 
 [[projects]]
 name = "NIRViz"
-slug = ""
 description = "NIR visualization for Python and CLI."
-issues = [ ]
 completed_issues = [ ]
 
 [[projects]]
@@ -137,23 +135,22 @@ slug = "norse"
 repo = "norse/norse"
 description = "A functional spiking neural network simulator for deep learning."
 
-  [[projects.completed_issues]]
-  title = "PR #409"
-  url = "https://github.com/norse/norse/pull/409"
+[[projects.completed_issues]]
+title = "PR #409"
+url = "https://github.com/norse/norse/pull/409"
 
-  [[projects.completed_issues]]
-  title = "PR #422"
-  url = "https://github.com/norse/norse/pull/422"
+[[projects.completed_issues]]
+title = "PR #422"
+url = "https://github.com/norse/norse/pull/422"
 
 [[projects]]
 name = "ONM Website"
-slug = ""
 repo = "open-neuromorphic/open-neuromorphic.github.io"
 description = "The ONM community website."
 
-  [[projects.completed_issues]]
-  title = "PR #169"
-  url = "https://github.com/open-neuromorphic/open-neuromorphic.github.io/pull/169"
+[[projects.completed_issues]]
+title = "PR #169"
+url = "https://github.com/open-neuromorphic/open-neuromorphic.github.io/pull/169"
 
 [[projects]]
 name = "snnTorch"
@@ -169,14 +166,14 @@ repo = "neuromorphs/tonic"
 description = "A PyTorch-like library for downloading and manipulating neuromorphic datasets."
 completed_issues = [ ]
 
-  [[projects.issues]]
-  title = "Find new maintainer: Contact Gregor Lenz"
-  url = "https://open-neuromorphic.org/contributors/gregor-lenz/"
-  tags = [ ]
+[[projects.issues]]
+title = "Find new maintainer: Contact Gregor Lenz"
+url = "https://open-neuromorphic.org/contributors/gregor-lenz/"
+tags = [ ]
 
 [[projects]]
 name = "Neuromorphic Drivers"
 slug = "neuromorphic-drivers"
-repo = "https://github.com/neuromorphicsystems/neuromorphic-drivers"
+repo = "neuromorphicsystems/neuromorphic-drivers"
 description = "Python and Rust libraries to interact with event cameras in real-time."
 completed_issues = [ ]

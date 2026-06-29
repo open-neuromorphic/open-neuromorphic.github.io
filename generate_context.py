@@ -44,6 +44,18 @@ LAYOUT_EXTENSIONS = {
 
 SCRIPTING_EXTENSIONS = {".py", ".sh"}
 
+SAMPLING_DIRS = [
+    "content/neuromorphic-computing/hardware",
+    "content/neuromorphic-computing/software/snn-frameworks",
+    "content/neuromorphic-computing/software/data-tools",
+    "content/contributors",
+    "content/neuromorphic-computing/student-talks"
+]
+
+SAMPLED_DATA_FILES = {
+    "data/town_halls.toml": 3
+}
+
 def get_language(ext: str) -> str:
     mapping = {
         "py": "python",
@@ -94,6 +106,20 @@ def clean_toml_content(content: str) -> str:
     lines = content.splitlines()
     cleaned = [line for line in lines if not re.match(r'^\s*#{10,}', line)]
     return "\n".join(cleaned)
+
+def sample_toml_array(content: str, max_entries: int) -> str:
+    """A simple hacky parser to keep the first `max_entries` blocks."""
+    lines = content.splitlines()
+    out = []
+    blocks = 0
+    for line in lines:
+        if line.strip().startswith("[["):
+            blocks += 1
+            if blocks > max_entries:
+                out.append("\n# ... (remaining entries elided to save context space) ...")
+                break
+        out.append(line)
+    return "\n".join(out)
 
 def build_git_history_section() -> str:
     lines = [
@@ -180,14 +206,6 @@ def gather_project_data(root_dir: str, scope: str, since: str = None, frontmatte
             if ext not in LAYOUT_EXTENSIONS and ext not in SCRIPTING_EXTENSIONS:
                 continue
 
-            SAMPLING_DIRS = [
-                "content/neuromorphic-computing/hardware",
-                "content/neuromorphic-computing/software/snn-frameworks",
-                "content/neuromorphic-computing/software/data-tools",
-                "content/contributors",
-                "content/neuromorphic-computing/student-talks"
-            ]
-
             is_sampled_dir = False
             for s_dir in SAMPLING_DIRS:
                 if rel_path.startswith(s_dir + "/") and rel_path != s_dir + "/_index.md" and ext == ".md":
@@ -211,6 +229,8 @@ def gather_project_data(root_dir: str, scope: str, since: str = None, frontmatte
                     content = extract_frontmatter_only(content)
                 if ext == ".toml":
                     content = clean_toml_content(content)
+                    if rel_path in SAMPLED_DATA_FILES:
+                        content = sample_toml_array(content, SAMPLED_DATA_FILES[rel_path])
 
                 lang = get_language(ext)
                 bundled_blocks.extend([f"### `{rel_path}`", f"```{lang}", content, "```", ""])

@@ -1,4 +1,4 @@
-{{ $context := .Context }}
+{{ $ctx := .Context }}
 {{ $class := .Class }}
 
 <nav aria-label="Breadcrumb" class="{{ $class }} md:inline-flex sm:hidden">
@@ -10,12 +10,12 @@
     </li>
 
     {{ $pages := slice }}
-    {{ if or (eq $context.Section "workshops") (eq $context.Section "contributors") }}
+    {{ if or (eq $ctx.Section "workshops") (eq $ctx.Section "contributors") }}
       {{ $ncPage := site.GetPage "neuromorphic-computing" }}
       {{ $pages = $pages | append (dict "Title" ($ncPage.Title | default "Neuromorphic Computing") "Permalink" $ncPage.RelPermalink) }}
     {{ end }}
 
-    {{ range $context.Ancestors.Reverse }}
+    {{ range $ctx.Ancestors.Reverse }}
       {{ if and (not .IsHome) (ne .Title "Pages") (ne .Title "") }}
         {{ $pages = $pages | append . }}
       {{ end }}
@@ -32,7 +32,7 @@
 
     <li class="text-gray-400 dark:text-gray-500" aria-hidden="true">/</li>
     <li>
-      <span class="text-text dark:text-darkmode-text font-semibold">{{ $context.Title }}</span>
+      <span class="text-text dark:text-darkmode-text font-semibold">{{ $ctx.Title }}</span>
     </li>
   </ol>
 </nav>

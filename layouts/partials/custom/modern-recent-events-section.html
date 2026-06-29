@@ -1,91 +1,104 @@
+{{/* INPUT CONTRACT
+section_title    (string) required
+section_subtitle (string) optional
+events_list      (slice)  required
+view_all_link    (string) required
+view_all_text    (string) required
+page_context     (Page)   required
+*/}}
 {{ $section_title := .section_title }}
 {{ $section_subtitle := .section_subtitle | default "" }}
 {{ $events_list := .events_list }}
 {{ $view_all_link := .view_all_link }}
 {{ $view_all_text := .view_all_text }}
-{{ $page_context := .page_context }}
+{{ $ctx := .page_context }}
 
 {{ $featured_event := "" }}
 {{ $other_recent_events := slice }}
 
 {{ if $events_list }}
-{{ if gt (len $events_list) 0 }}{{ $featured_event = index $events_list 0 }}{{ end }}
-{{ if gt (len $events_list) 1 }}{{ $other_recent_events = after 1 $events_list | first 3 }}{{ end }}
+  {{ if gt (len $events_list) 0 }}{{ $featured_event = index $events_list 0 }}{{ end }}
+  {{ if gt (len $events_list) 1 }}{{ $other_recent_events = after 1 $events_list | first 3 }}{{ end }}
 {{ end }}
+
+{{- $resolved_view_all_link := $view_all_link -}}
+{{- with site.GetPage (strings.TrimPrefix "/" (strings.TrimSuffix "/" $view_all_link)) -}}
+  {{- $resolved_view_all_link = .RelPermalink -}}
+{{- end -}}
 
 <div class="mb-16">
   <h3 class="section-title text-3xl font-semibold mb-3">{{ $section_title }}</h3>
   {{ if $section_subtitle }}
-  <p class="section-subtitle text-lg text-gray-600 dark:text-gray-400 mb-8 mx-auto">{{ $section_subtitle }}</p>
+    <p class="section-subtitle text-lg text-gray-600 dark:text-gray-400 mb-8 mx-auto">{{ $section_subtitle }}</p>
   {{ end }}
 
   {{ if $featured_event }}
-  <div class="bg-theme-light dark:bg-darkmode-theme-light p-4 md:p-6 rounded-lg shadow-lg">
-    <div class="flex flex-col lg:flex-row lg:space-x-6">
-      <div class="lg:w-2/3 mb-6 lg:mb-0">
-        <h4 class="text-lg font-semibold mb-4 text-gray-700 dark:text-gray-300">Most Recent:</h4>
-        <div class="featured-recent-event-item flex flex-col md:flex-row md:space-x-4">
+    <div class="bg-theme-light dark:bg-darkmode-theme-light p-4 md:p-6 rounded-lg shadow-lg">
+      <div class="flex flex-col lg:flex-row lg:space-x-6">
+        <div class="lg:w-2/3 mb-6 lg:mb-0">
+          <h4 class="text-lg font-semibold mb-4 text-gray-700 dark:text-gray-300">Most Recent:</h4>
+          <div class="featured-recent-event-item flex flex-col md:flex-row md:space-x-4">
 
-          {{ $thumb := partial "helpers/resolve-thumbnail.html" $featured_event }}
+            {{ $thumb := partial "helpers/resolve-thumbnail.html" $featured_event }}
 
-          <div class="flex-shrink-0 w-full md:w-[150px] mb-4 md:mb-0 text-center md:text-left">
-            <a href="{{ $featured_event.RelPermalink }}" class="relative inline-block group">
-              {{ if $thumb.Resource }}
-              {{ $processed := $thumb.Resource.Fill "150x84 Lanczos" }}
-              <img src="{{ $processed.RelPermalink }}" alt="{{ $thumb.Alt }}" class="w-[150px] h-[84px] rounded object-cover">
-              {{ else if $thumb.URL }}
-              <img src="{{ $thumb.URL }}" alt="{{ $thumb.Alt }}" class="w-[150px] h-[84px] rounded object-cover">
-              {{ end }}
-              {{ if $featured_event.Params.video }}
-              {{ partial "components/video-play-overlay.html" (dict "size_class" "w-10 h-10" "icon_size_class" "w-6 h-6" "rounding_class" "rounded") }}
-              {{ end }}
-            </a>
-          </div>
-
-          <div class="flex-grow text-center md:text-left">
-            <h5 class="text-xl font-semibold mb-1">
-              <a href="{{ $featured_event.RelPermalink }}" class="text-primary dark:text-darkmode-primary hover:underline">
-                {{ $featured_event.Title }}
+            <div class="flex-shrink-0 w-full md:w-[150px] mb-4 md:mb-0 text-center md:text-left">
+              <a href="{{ $featured_event.RelPermalink }}" class="relative inline-block group">
+                {{ if $thumb.Resource }}
+                  {{ $processed := $thumb.Resource.Fill "150x84 Lanczos" }}
+                  <img src="{{ $processed.RelPermalink }}" alt="{{ $thumb.Alt }}" class="w-[150px] h-[84px] rounded object-cover">
+                {{ else if $thumb.URL }}
+                  <img src="{{ $thumb.URL }}" alt="{{ $thumb.Alt }}" class="w-[150px] h-[84px] rounded object-cover">
+                {{ end }}
+                {{ if $featured_event.Params.video }}
+                  {{ partial "components/video-play-overlay.html" (dict "size_class" "w-10 h-10" "icon_size_class" "w-6 h-6" "rounding_class" "rounded") }}
+                {{ end }}
               </a>
-            </h5>
-            <p class="text-xs text-gray-500 dark:text-gray-400 mb-2">
-              {{ partial "icon.html" (dict "style" "regular" "name" "calendar" "class" "mr-1") }}{{ $featured_event.Date.Format "January 2, 2006" }}
-              {{ if $featured_event.Params.author }}
-              <span class="mx-1">|</span> {{ partial "icon.html" (dict "style" "regular" "name" "circle-user" "class" "mr-1") }}{{ partial "components/author-links.html" $featured_event }}
-              {{ end }}
-            </p>
-            <p class="text-sm text-text dark:text-darkmode-text mb-3">
-              {{ $featured_event.Description | truncate 110 }}
-            </p>
-            <div class="mt-4 flex flex-wrap gap-2 items-center justify-center md:justify-start">
-              <a href="{{ $featured_event.RelPermalink }}" class="btn btn-sm btn-outline-primary">Details</a>
-              <a href="{{ $view_all_link | relLangURL }}" class="btn btn-sm btn-new-primary">{{ $view_all_text }}</a>
+            </div>
+
+            <div class="flex-grow text-center md:text-left">
+              <h5 class="text-xl font-semibold mb-1">
+                <a href="{{ $featured_event.RelPermalink }}" class="text-primary dark:text-darkmode-primary hover:underline">
+                  {{ $featured_event.Title }}
+                </a>
+              </h5>
+              <p class="text-xs text-gray-500 dark:text-gray-400 mb-2">
+                {{ partial "icon.html" (dict "style" "regular" "name" "calendar" "class" "mr-1") }}{{ $featured_event.Date.Format "January 2, 2006" }}
+                {{ if $featured_event.Params.author }}
+                  <span class="mx-1">|</span> {{ partial "icon.html" (dict "style" "regular" "name" "circle-user" "class" "mr-1") }}{{ partial "components/author-links.html" $featured_event }}
+                {{ end }}
+              </p>
+              <p class="text-sm text-text dark:text-darkmode-text mb-3">
+                {{ $featured_event.Description | truncate 110 }}
+              </p>
+              <div class="mt-4 flex flex-wrap gap-2 items-center justify-center md:justify-start">
+                <a href="{{ $featured_event.RelPermalink }}" class="btn btn-sm btn-outline-primary">Details</a>
+                <a href="{{ $resolved_view_all_link }}" class="btn btn-sm btn-new-primary">{{ $view_all_text }}</a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {{ if $other_recent_events }}
-      <div class="lg:w-1/3 lg:pl-6 lg:border-l lg:border-gray-200 dark:lg:border-gray-700">
-        <h4 class="text-lg font-semibold mb-3 text-gray-700 dark:text-gray-300 text-center lg:text-left">Also in {{ $section_title }}:</h4>
-        <ul class="space-y-2">
-          {{ range $other_event := $other_recent_events }}
-          <li class="border-b border-gray-200 dark:border-gray-700 pb-2 last:border-b-0 last:pb-0">
-            <a href="{{ $other_event.RelPermalink }}" class="text-primary dark:text-darkmode-primary hover:underline text-sm font-medium block leading-tight">
-              {{ $other_event.Title | truncate 60 }}
-            </a>
-            <p class="text-xs text-gray-500 dark:text-gray-400">{{ $other_event.Date.Format "Jan 2, 2006" }}</p>
-          </li>
-          {{ end }}
-        </ul>
+        {{ if $other_recent_events }}
+          <div class="lg:w-1/3 lg:pl-6 lg:border-l lg:border-gray-200 dark:lg:border-gray-700">
+            <h4 class="text-lg font-semibold mb-3 text-gray-700 dark:text-gray-300 text-center lg:text-left">Also in {{ $section_title }}:</h4>
+            <ul class="space-y-2">
+              {{ range $other_event := $other_recent_events }}
+                <li class="border-b border-gray-200 dark:border-gray-700 pb-2 last:border-b-0 last:pb-0">
+                  <a href="{{ $other_event.RelPermalink }}" class="text-primary dark:text-darkmode-primary hover:underline text-sm font-medium block leading-tight">
+                    {{ $other_event.Title | truncate 60 }}
+                  </a>
+                  <p class="text-xs text-gray-500 dark:text-gray-400">{{ $other_event.Date.Format "Jan 2, 2006" }}</p>
+                </li>
+              {{ end }}
+            </ul>
+          </div>
+        {{ end }}
       </div>
-      {{ end }}
     </div>
-  </div>
   {{ else }}
-  <div class="bg-theme-light dark:bg-darkmode-theme-light p-6 rounded-lg shadow-md text-center">
-    <p class="text-gray-600 dark:text-gray-400 mb-4">No recent events to display for this category.</p>
-    <a href="{{ $view_all_link | relLangURL }}" class="btn btn-new-primary">{{ $view_all_text }}</a>
-  </div>
+    <div class="bg-theme-light dark:bg-darkmode-theme-light p-6 rounded-lg shadow-md text-center">
+      <p class="text-gray-600 dark:text-gray-400 mb-4">No recent events to display for this category.</p>
+      <a href="{{ $resolved_view_all_link }}" class="btn btn-new-primary">{{ $view_all_text }}</a>
+    </div>
   {{ end }}
 </div>

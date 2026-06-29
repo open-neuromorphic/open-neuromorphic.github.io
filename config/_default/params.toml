@@ -14,7 +14,6 @@ contact_form_action = "#"
 google_tag_manager = ""
 google_adsense = ""
 custom_script = ""
-copyright = "© 2022 - 2025 Open Neuromorphic"
 homepageTitle = "Open Neuromorphic is a global community fostering education, research, and open-source collaboration in brain-inspired AI and hardware. "
 defaultOgImage = "images/og-image.png"
 
@@ -26,7 +25,6 @@ link = "https://discord.gg/hUygPUdD8E"
 
 [search]
 enable = true
-primary_color = "#667eea"
 include_sections = ["blog", "workshops", "neuromorphic-computing/hardware", "neuromorphic-computing/software", "contributors", "getting-involved", "neuromorphic-computing/initiatives", "volunteer-opportunities"]
 show_image = false
 show_description = true

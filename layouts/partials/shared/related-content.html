@@ -1,10 +1,13 @@
-{{ $page_context := . }}
+{{/* INPUT CONTRACT
+. (Page) required — the page context to find related content for
+*/}}
+{{ $ctx := . }}
 {{ $related_items := slice }}
 
-{{ $current_type := $page_context.Type }}
+{{ $current_type := $ctx.Type }}
 {{ $current_slug := "" }}
-{{ if $page_context.File }}
-  {{ $current_slug = path.Base $page_context.File.Dir }}
+{{ if $ctx.File }}
+  {{ $current_slug = path.Base $ctx.File.Dir }}
 {{ end }}
 
 {{/* Part 1: Find INCOMING links from other content (blog, events, etc.) */}}
@@ -25,11 +28,11 @@
 {{/* Part 2: Find OUTGOING links to other hardware/software */}}
 
 {{/* Find software this page links to */}}
-{{ with .Params.software_tags }}
+{{ with $ctx.Params.software_tags }}
   {{ $software_slugs_to_find := . }}
   {{ $all_software_pages := where site.RegularPages "Type" "neuromorphic-software" }}
   {{ range $software_page := $all_software_pages }}
-    {{ if ne $software_page.Permalink $page_context.Permalink }}
+    {{ if ne $software_page.Permalink $ctx.Permalink }}
       {{ $software_slug := "" }}
       {{ if $software_page.File }}{{ $software_slug = path.Base $software_page.File.Dir }}{{ end }}
       {{ if and (ne $software_slug "") (in $software_slugs_to_find $software_slug) }}
@@ -40,11 +43,11 @@
 {{ end }}
 
 {{/* Find hardware this page links to */}}
-{{ with .Params.hardware_tags }}
+{{ with $ctx.Params.hardware_tags }}
   {{ $hardware_slugs_to_find := . }}
   {{ $all_hardware_pages := where site.RegularPages "Type" "neuromorphic-hardware" }}
   {{ range $hardware_page := $all_hardware_pages }}
-    {{ if ne $hardware_page.Permalink $page_context.Permalink }}
+    {{ if ne $hardware_page.Permalink $ctx.Permalink }}
       {{ $hardware_slug := "" }}
       {{ if $hardware_page.File }}{{ $hardware_slug = path.Base $hardware_page.File.Dir }}{{ end }}
       {{ if and (ne $hardware_slug "") (in $hardware_slugs_to_find $hardware_slug) }}

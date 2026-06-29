@@ -1,5 +1,5 @@
 # hugo.toml — Build configuration only. Site params live in config/_default/params.toml.
-baseURL = "https://onm-dev.visioninit.dev/"
+baseURL = "https://open-neuromorphic.org/"
 title = "Open Neuromorphic"
 timeZone = "America/New_York"
 pagerSize = 12
@@ -59,7 +59,6 @@ maxAge = "720h"
 [markup]
 [markup.goldmark.renderer]
 unsafe = true
-hardWraps = true
 
 [markup.highlight]
 style = 'github-dark'
