@@ -1,0 +1,34 @@
+{{ $people := .people }}
+{{ $role_default := .role_default | default "" }}
+
+{{ if $people }}
+<div class="my-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+  {{ range $people }}
+  {{ $contrib := partial "helpers/resolve-contributor.html" .name }}
+  {{ $contributorPage := "" }}
+  {{ if .contributor_slug }}
+  {{ $contributorPage = site.GetPage (printf "contributors/%s" .contributor_slug) }}
+  {{ else }}
+  {{ $contributorPage = $contrib.Page }}
+  {{ end }}
+
+  {{ if $contributorPage }}
+  {{ partial "components/author-card.html" (dict "ctx" $contributorPage "variant" "compact" "role_override" (.role | default $role_default) "hide_contributions_info" true) }}
+  {{ else }}
+  <div class="author-card-compact">
+    <div class="mx-auto mb-2 rounded-full object-cover bg-gray-200 dark:bg-darkmode-theme-dark flex items-center justify-center" style="width: 100px; height: 100px;">
+      {{ partial "icon.html" (dict "style" "solid" "name" "user" "class" "text-3xl text-gray-400 dark:text-gray-500") }}
+    </div>
+    <h4 class="mb-1 text-lg font-semibold">{{ .name }}</h4>
+    {{ $display_role := .role | default $role_default }}
+    {{ if $display_role }}
+    <p class="role-compact text-sm text-text dark:text-darkmode-light mt-1">{{ $display_role }}</p>
+    {{ end }}
+    <p class="text-xs text-red-500 mt-1 italic">(Contributor profile not found)</p>
+  </div>
+  {{ end }}
+  {{ end }}
+</div>
+{{ else }}
+<p class="text-center italic text-gray-600 dark:text-gray-400">Information will be displayed here.</p>
+{{ end }}

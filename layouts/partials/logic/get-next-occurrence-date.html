@@ -1,0 +1,16 @@
+{{ $event := . }}
+{{ $now := now }}
+{{ $daysMap := dict "Sunday" 0 "Monday" 1 "Tuesday" 2 "Wednesday" 3 "Thursday" 4 "Friday" 5 "Saturday" 6 }}
+{{ $targetDayKey := $event.day_of_week | default "Monday" }}
+{{ $targetDayIndex := index $daysMap $targetDayKey | default 1 }}
+{{ $currentDayIndex := int $now.Weekday }}
+{{ $daysToAdd := sub $targetDayIndex $currentDayIndex }}
+{{ if lt $daysToAdd 0 }}{{ $daysToAdd = add $daysToAdd 7 }}{{ end }}
+{{ if eq $daysToAdd 0 }}
+  {{ $eventStartHour := int (substr $event.start_time 0 2) }}
+  {{ $eventStartMinute := int (substr $event.start_time 3 2) }}
+  {{ if or (gt $now.Hour $eventStartHour) (and (eq $now.Hour $eventStartHour) (ge $now.Minute $eventStartMinute)) }}
+    {{ $daysToAdd = 7 }}
+  {{ end }}
+{{ end }}
+{{ return ($now.AddDate 0 0 (int $daysToAdd)) }}

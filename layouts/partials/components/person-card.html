@@ -1,0 +1,55 @@
+{{/* INPUT CONTRACT
+name        (string) required
+role        (string) optional
+description (string) optional
+image       (string) optional
+social      (slice)  optional
+*/}}
+{{ $params := . }}
+
+{{ $contrib := partial "helpers/resolve-contributor.html" $params.name }}
+{{ $image_url := "" }}
+
+{{ if $contrib.ImageResource }}
+{{ $image_url = ($contrib.ImageResource.Fill "144x144").RelPermalink }}
+{{ else if $params.image }}
+{{ $image_url = $params.image | absURL }}
+{{ end }}
+
+<div class="mb-8 p-6 content-panel rounded-lg shadow-lg flex flex-col md:flex-row items-start text-center md:text-left">
+  <div class="md:w-1/4 mb-4 md:mb-0 md:mr-6 flex-shrink-0 mx-auto md:mx-0">
+    {{ if $image_url }}
+    <img src="{{ $image_url }}" alt="{{ $params.name }}" class="w-32 h-32 md:w-36 md:h-36 object-cover rounded-full shadow-md mx-auto">
+    {{ else }}
+    <div class="w-32 h-32 md:w-36 md:h-36 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center mx-auto">
+      <span class="text-xs text-gray-500 dark:text-gray-400 text-center">No image</span>
+    </div>
+    {{ end }}
+  </div>
+
+  <div class="md:w-3/4">
+    <h4 class="text-2xl font-semibold mb-1">{{ $params.name }}</h4>
+    {{ with $params.role }}<p class="text-primary dark:text-darkmode-primary font-medium mb-2">{{ . }}</p>{{ end }}
+
+    {{ $desc := $params.description }}
+    {{ if $contrib.Page }}{{ $desc = $contrib.Page.Content | safeHTML }}{{ else }}{{ $desc = $desc | markdownify }}{{ end }}
+
+    <div class="text-sm text-text dark:text-darkmode-text prose prose-sm dark:prose-invert max-w-none mb-3">
+      {{ $desc }}
+    </div>
+
+    {{ $socials := $params.social }}
+    {{ if $contrib.Page }}{{ $socials = $contrib.Page.Params.social }}{{ end }}
+    {{ if $socials }}
+    <ul class="social-icons flex justify-center md:justify-start space-x-2 mt-3">
+      {{ range $socials }}
+      <li>
+        <a href="{{ .link | safeURL }}" target="_blank" rel="noopener noreferrer" aria-label="{{ .name | default .title }}" class="text-xl">
+          <i class="{{ .icon }}"></i>
+        </a>
+      </li>
+      {{ end }}
+    </ul>
+    {{ end }}
+  </div>
+</div>

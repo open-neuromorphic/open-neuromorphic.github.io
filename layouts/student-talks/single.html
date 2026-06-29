@@ -1,5 +1,3 @@
 {{ define "main" }}
-  {{ .Scratch.Set "relatedSection" "student-talks" }}
-  {{ .Scratch.Set "sidebarContentPartial" "student-talks-sidebar.html" }}
-  {{ partial "event-single-layout.html" . }}
+{{ partial "event-single-layout.html" (dict "context" . "relatedSection" "student-talks" "sidebar" "student-talks-sidebar.html") }}
 {{ end }}

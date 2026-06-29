@@ -1,4 +1,4 @@
-{{- $.Scratch.Add "index" slice -}}
+{{- $index := slice -}}
 {{- $searchableSections := site.Params.search.include_sections | default (slice "blog") -}}
 {{- range where site.Pages "Kind" "in" (slice "page" "section" "home") -}}
 {{- $page := . -}}
@@ -18,7 +18,7 @@
 {{- $pathSegments := split (strings.TrimSuffix "/" .RelPermalink) "/" -}}
 {{- $priority := len $pathSegments -}}
 {{- if .IsHome }}{{ $priority = 0 }}{{ end -}}
-{{- $.Scratch.Add "index" (dict
+{{- $index = $index | append (dict
 "title" .Title
 "description" .Description
 "permalink" .RelPermalink
@@ -31,4 +31,4 @@
 {{- end -}}
 {{- end -}}
 {{- end -}}
-{{- $.Scratch.Get "index" | jsonify -}}
+{{- $index | jsonify -}}

@@ -5,15 +5,11 @@ description: "A comprehensive guide to creating and nurturing communities of con
 image: "open-source-way.png"
 draft: false
 type: "community-resources"
-
-# --- Resource Details ---
 resource_type: "Community Guidebook"
 website: "https://www.theopensourceway.org/"
 author:
   - "The Open Source Way Community"
 is_supporter: false
-
-# --- Resource Log ---
 resource_log:
   - date: "2025-08-24"
     title: "Resource Added to Open Neuromorphic"

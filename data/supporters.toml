@@ -1,24 +1,3 @@
-# Supporters of Open Neuromorphic
-# This file manages the list of projects and organizations that support our mission,
-# organized into tiers: Platinum, Gold, and Foundational.
-
-# [[platinum]]
-# name = "Platinum Supporter"
-# logo = "logo.png" # Path within the supporter's content bundle or static/images
-# page_path = "path/to/supporter/page/" # Optional link to a page on this site
-# website = "https://supporter.com" # External website link for the card
-# dark_logo_invert = false
-
-# [[gold]]
-# name = "Gold Supporter"
-# logo = "logo.png"
-# page_path = "path/to/supporter/page/"
-# website = "https://supporter.com"
-# dark_logo_invert = false
-
-
-# The Foundational Collaboration Network consists of open-source projects that
-# are integral to the neuromorphic ecosystem.
 [[foundational]]
 name = "AEStream"
 logo = "aestream.png"
@@ -39,13 +18,13 @@ dark_logo_invert = false
 
 [[foundational]]
 name = "Faery"
-logo = "faery.png" # No official logo found
+logo = "faery.png"
 page_path = "neuromorphic-computing/software/data-tools/faery/"
 dark_logo_invert = false
 
 [[foundational]]
 name = "GeNN"
-logo = "genn.png" # No logo provided in the software page
+logo = "genn.png"
 page_path = "neuromorphic-computing/software/snn-frameworks/genn/"
 dark_logo_invert = true
 
@@ -67,10 +46,3 @@ name = "Neuromorphic Drivers"
 logo = "neuromorphic-drivers.png"
 page_path = "neuromorphic-computing/software/data-tools/neuromorphic-drivers/"
 dark_logo_invert = true
-
-
-#[[foundational]]
-#name = "Sottosoglia Podcast"
-#logo = "sottosoglia-logo.png"
-#page_path = "neuromorphic-computing/community-resources/sottosoglia-podcast/"
-#dark_logo_invert = false

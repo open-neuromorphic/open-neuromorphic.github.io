@@ -8,23 +8,16 @@
 {{ $class:= .Get `class` }}
 {{ $poster:= .Get `poster` }}
 
-
-<!-- checking cdn -->
+{{ $finalVideoPath := "" }}
 {{ if hasPrefix $videoPath "http" }}
-  {{ .Scratch.Set "video_path" $videoPath }}
-
-  <!-- checking assets -->
+  {{ $finalVideoPath = $videoPath }}
 {{ else if fileExists (add `assets/` $videoPath) }}
-  {{ .Scratch.Set "video_path" (resources.Get $videoPath).RelPermalink }}
-
-  <!-- checking content/static -->
+  {{ $finalVideoPath = (resources.Get $videoPath).RelPermalink }}
 {{ else }}
-  {{ .Scratch.Set "video_path" (print "/" $videoPath) }}
+  {{ $finalVideoPath = print "/" $videoPath }}
 {{ end }}
 
-{{ $videoPath = .Scratch.Get "video_path" }}
-
-{{ if $videoPath }}
+{{ if $finalVideoPath }}
   <video
     {{ with $width }}width="{{ . }}"{{ end }}
     {{ with $height }}height="{{ . }}"{{ end }}
@@ -35,7 +28,7 @@
     {{ with $poster }}poster="{{ . }}"{{ end }}
     class="{{ $class }}"
     style="max-width:100%">
-    <source src="{{ $videoPath }}" type="video/mp4" />
+    <source src="{{ $finalVideoPath }}" type="video/mp4" />
     Your browser does not support the video tag.
   </video>
 {{ end }}

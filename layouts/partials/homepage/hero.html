@@ -7,8 +7,8 @@
       {{ site.Params.homepageTitle }}
     </p>
     <div class="space-x-4">
-      <a href="{{ "neuromorphic-computing/" | relLangURL }}" class="btn btn-primary text-lg">Explore Resources</a>
-      <a href="{{ "getting-involved/" | relLangURL }}" class="btn btn-outline-primary text-lg">Get Involved</a>
+      <a href="{{ with site.GetPage "neuromorphic-computing" }}{{ .RelPermalink }}{{ end }}" class="btn btn-primary text-lg">Explore Resources</a>
+      <a href="{{ with site.GetPage "getting-involved" }}{{ .RelPermalink }}{{ end }}" class="btn btn-outline-primary text-lg">Get Involved</a>
     </div>
   </div>
 </section>

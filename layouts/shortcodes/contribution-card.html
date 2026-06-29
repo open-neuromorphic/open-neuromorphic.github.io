@@ -23,8 +23,12 @@
       {{ partial "icon.html" (dict "style" "solid" "name" "arrow-right" "class" "transform transition-transform duration-200 group-hover:translate-x-1") }}
     </span>
 
+    {{ $href := $link }}
+    {{ if not (findRE "^http" $link) }}
+      {{ with site.GetPage $link }}{{ $href = .RelPermalink }}{{ end }}
+    {{ end }}
     {{/* The link is an overlay, so its content is not directly styled as a link */}}
-    <a href="{{ $link | relLangURL }}" class="absolute inset-0 z-10" aria-label="Learn more about {{ $title }}">
+    <a href="{{ $href }}" class="absolute inset-0 z-10" aria-label="Learn more about {{ $title }}">
       <span class="sr-only">Learn more about {{ $title }}</span>
     </a>
   </div>

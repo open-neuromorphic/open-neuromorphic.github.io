@@ -6,16 +6,12 @@ image: "sottosoglia-logo.png"
 draft: false
 type: "community-resources"
 video: "j6nGd5APAXE"
-
-# --- Resource Details ---
 resource_type: "Podcast" 
 website: "https://www.youtube.com/@Sottosoglia"
 author:
   - "Giulia D'Angelo"
   - "Fabrizio Ottati"
 is_supporter: false
-
-# --- Resource Log ---
 resource_log:
   - date: "2025-08-02"
     title: "Resource Added to Open Neuromorphic"

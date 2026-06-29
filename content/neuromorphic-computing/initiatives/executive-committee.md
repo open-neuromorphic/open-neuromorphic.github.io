@@ -40,7 +40,7 @@ executive_committee:
 
 The individuals below form the current Executive Committee for Open Neuromorphic, elected on **February 8th, 2026**. This committee is responsible for the operational and strategic guidance of ONM, as outlined in our charter.
 
-{{< display_executive_committee >}}
+{{< display-executive-committee >}}
 
 The Executive Committee's roles, responsibilities, and the community's governance structure are detailed in the **[Open Neuromorphic Organisational Charter](/about/governance/organisational-charter/)**.
 This charter was formally adopted by the committee following their election.

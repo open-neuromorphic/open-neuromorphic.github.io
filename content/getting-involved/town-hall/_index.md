@@ -25,4 +25,4 @@ The Town Hall is held every week at the following time:
 
 Everyone is welcome to join, listen in, and participate. We look forward to seeing you there!
 
-{{< town_hall_log >}}
+{{< town-hall-log >}}

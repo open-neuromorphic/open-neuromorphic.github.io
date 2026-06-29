@@ -1,0 +1,39 @@
+[[redirects]]
+path = "/tags/*"
+target = "https://open-neuromorphic.org"
+[[redirects]]
+path = "/resources/"
+target = "https://open-neuromorphic.org"
+[[redirects]]
+path = "/opportunities/"
+target = "https://open-neuromorphic.org"
+[[redirects]]
+path = "/workshops/innatera/"
+target = "https://open-neuromorphic.org/workshops/talamo-george-innatera/"
+[[redirects]]
+path = "/page/2/"
+target = "https://open-neuromorphic.org"
+[[redirects]]
+path = "/events/"
+target = "https://open-neuromorphic.org/workshops"
+[[redirects]]
+path = "/p/snn-library-benchmarks/"
+target = "https://open-neuromorphic.org/blog/spiking-neural-network-framework-benchmarking/"
+[[redirects]]
+path = "/p/spiking-neurons-a-digital-hardware-implementation/"
+target = "https://open-neuromorphic.org/blog/spiking-neurons-digital-hardware-implementation/"
+[[redirects]]
+path = "/p/efficient-compression-for-event-based-data/"
+target = "https://open-neuromorphic.org/blog/efficient-compression-event-based-data-neuromorphic-applications/"
+[[redirects]]
+path = "/p/bits-of-chips-truenorth/"
+target = "https://open-neuromorphic.org/blog/truenorth-deep-dive-ibm-neuromorphic-chip-design/"
+[[redirects]]
+path = "/p/open-neuromorphic/"
+target = "https://open-neuromorphic.org"
+[[redirects]]
+path = "/p/digital-neuromorphic-hardware-read-list/"
+target = "https://open-neuromorphic.org/blog/digital-neuromorphic-hardware-read-list/"
+[[redirects]]
+path = "/p/digital-neuromophic-hardware-read-list/"
+target = "https://open-neuromorphic.org/blog/digital-neuromorphic-hardware-read-list/"

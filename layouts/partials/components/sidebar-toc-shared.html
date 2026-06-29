@@ -1,46 +1,46 @@
 {{ if gt (len .TableOfContents) 80 }}
-<aside class="lg:col-4 hidden lg:block">
-  <div class="mb-6">
+  <aside class="lg:col-4 hidden lg:block">
+    <div class="mb-6">
       {{ partial "components/og-preview.html" . }}
-  </div>
-  <div class="sticky top-24 space-y-6">
-    {{/* Table of Contents Section */}}
-    <div class="px-3 pt-5 pb-5 content-panel">
-      <div class="pb-3">
-        <strong class="text-xl">Table of Contents</strong>
-      </div>
-      <div id="tableOfContentContainer" class="max-h-[calc(100vh-28rem)] overflow-y-auto">
-        {{ .TableOfContents }}
-      </div>
+    </div>
+    <div class="sticky top-24 space-y-6">
+      {{/* Table of Contents Section */}}
+      <div class="px-3 pt-5 pb-5 content-panel">
+        <div class="pb-3">
+          <strong class="text-xl">Table of Contents</strong>
+        </div>
+        <div id="tableOfContentContainer" class="max-h-[calc(100vh-28rem)] overflow-y-auto">
+          {{ .TableOfContents }}
+        </div>
 
-      {{/* --- START: New 'Next Article' Logic --- */}}
-      {{ if eq .Type "neuromorphic-hardware" }}
-        {{ $all_hardware := where site.RegularPages "Type" "neuromorphic-hardware" }}
-        {{ $grouped_by_year := $all_hardware.GroupByParam "product.release_year" }}
-        {{ $sorted_groups := sort $grouped_by_year "Key" "desc" }}
+        {{/* START: New 'Next Article' Logic */}}
+        {{ if eq .Type "neuromorphic-hardware" }}
+          {{ $all_hardware := where site.RegularPages "Type" "neuromorphic-hardware" }}
+          {{ $grouped_by_year := $all_hardware.GroupByParam "product.release_year" }}
+          {{ $sorted_groups := sort $grouped_by_year "Key" "desc" }}
 
-        {{ $sorted_hardware := slice }}
-        {{ range $sorted_groups }}
-          {{ $pages_in_year := sort .Pages "Title" "asc" }}
-          {{ $sorted_hardware = $sorted_hardware | append $pages_in_year }}
-        {{ end }}
+          {{ $sorted_hardware := slice }}
+          {{ range $sorted_groups }}
+            {{ $pages_in_year := sort .Pages "Title" "asc" }}
+            {{ $sorted_hardware = $sorted_hardware | append $pages_in_year }}
+          {{ end }}
 
-        {{ $currentPageIndex := -1 }}
-        {{ range $index, $page := $sorted_hardware }}
-          {{ if eq $page.Permalink $.Permalink }}
-            {{ $currentPageIndex = $index }}
+          {{ $currentPageIndex := -1 }}
+          {{ range $index, $page := $sorted_hardware }}
+            {{ if eq $page.Permalink $.Permalink }}
+              {{ $currentPageIndex = $index }}
+            {{ end }}
+          {{ end }}
+
+          {{ if and (ne $currentPageIndex -1) (lt $currentPageIndex (sub (len $sorted_hardware) 1)) }}
+            {{ $nextPageIndex := add $currentPageIndex 1 }}
+            {{ $next_page := index $sorted_hardware $nextPageIndex }}
+            {{ partial "components/next-article-card.html" $next_page }}
           {{ end }}
         {{ end }}
+        {{/* END: New 'Next Article' Logic */}}
 
-        {{ if and (ne $currentPageIndex -1) (lt $currentPageIndex (sub (len $sorted_hardware) 1)) }}
-          {{ $nextPageIndex := add $currentPageIndex 1 }}
-          {{ $next_page := index $sorted_hardware $nextPageIndex }}
-          {{ partial "components/next-article-card.html" $next_page }}
-        {{ end }}
-      {{ end }}
-      {{/* --- END: New 'Next Article' Logic --- */}}
-      
+      </div>
     </div>
-  </div>
-</aside>
+  </aside>
 {{ end }}

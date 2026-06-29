@@ -1,21 +1,6 @@
 {{ define "main" }}
   <script type="text/javascript">
-    const redirectRules = [
-      { path: '/tags/*', target: 'https://open-neuromorphic.org' },
-      { path: '/resources/', target: 'https://open-neuromorphic.org' },
-      { path: '/opportunities/', target: 'https://open-neuromorphic.org' },
-      { path: '/workshops/innatera/', target: 'https://open-neuromorphic.org/workshops/talamo-george-innatera/' },
-      { path: '/page/2/', target: 'https://open-neuromorphic.org' },
-      { path: '/events/', target: 'https://open-neuromorphic.org/workshops' },
-      { path: '/p/snn-library-benchmarks/', target: 'https://open-neuromorphic.org/blog/spiking-neural-network-framework-benchmarking/' },
-      { path: '/p/spiking-neurons-a-digital-hardware-implementation/', target: 'https://open-neuromorphic.org/blog/spiking-neurons-digital-hardware-implementation/' },
-      { path: '/p/efficient-compression-for-event-based-data/', target: 'https://open-neuromorphic.org/blog/efficient-compression-event-based-data-neuromorphic-applications/' },
-      { path: '/p/bits-of-chips-truenorth/', target: 'https://open-neuromorphic.org/blog/truenorth-deep-dive-ibm-neuromorphic-chip-design/' },
-      { path: '/p/open-neuromorphic/', target: 'https://open-neuromorphic.org' },
-      { path: '/p/digital-neuromorphic-hardware-read-list/', target: 'https://open-neuromorphic.org/blog/digital-neuromorphic-hardware-read-list/' },
-      { path: '/p/digital-neuromophic-hardware-read-list/', target: 'https://open-neuromorphic.org/blog/digital-neuromorphic-hardware-read-list/' }
-    ];
-
+    const redirectRules = {{ hugo.Data.redirects.redirects | jsonify | safeJS }};
     const currentPath = window.location.pathname;
     function wildcardMatch(pattern, str) {
       const regex = new RegExp('^' + pattern.split('*').map(s => s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')).join('.*') + '$');
@@ -24,7 +9,7 @@
     for (const rule of redirectRules) {
       if (wildcardMatch(rule.path, currentPath)) {
         window.location.href = rule.target;
-        break; // Stop after the first match
+        break;
       }
     }
   </script>
@@ -32,22 +17,12 @@
     <div class="container">
       <div class="row justify-center">
         <div class="sm:col-10 md:col-8 lg:col-6">
-          <span
-            class="text-[8rem] block font-bold text-dark dark:text-darkmode-dark">
-            404
-          </span>
+          <span class="text-[8rem] block font-bold text-dark dark:text-darkmode-dark">404</span>
           <h1 class="h2 mb-4">Page not found</h1>
           <div class="content">
-            <p>
-              The page you are looking for might have been removed, had its name
-              changed, or is temporarily unavailable.
-            </p>
+            <p>The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
           </div>
-          <a
-            href="{{ site.BaseURL | relLangURL }}"
-            class="btn btn-primary mt-8">
-            Back to home
-          </a>
+          <a href="{{ site.BaseURL }}" class="btn btn-primary mt-8">Back to home</a>
         </div>
       </div>
     </div>

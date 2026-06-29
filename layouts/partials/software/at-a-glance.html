@@ -13,7 +13,6 @@
 
   <h2 class="text-2xl font-bold text-center mb-4">{{ $page.Title }}</h2>
 
-  {{/* --- Button Section --- */}}
   <div class="grid grid-cols-2 gap-2 mb-4">
     <a href="{{ .website }}" target="_blank" rel="noopener" class="btn btn-new-primary has-inline-icon !text-sm !py-2 !px-4 flex items-center justify-center">
       Website {{ partial "icon.html" (dict "style" "solid" "name" "arrow-up-right-from-square" "class" "ml-1.5") }}
@@ -23,8 +22,7 @@
     </a>
   </div>
 
-  {{/* --- MOVED: Resource counts are now here --- */}}
-  {{ partial "custom/software_resource_counts.html" (dict "page" $page "is_single" true) }}
+  {{ partial "custom/software-resource-counts.html" (dict "page" $page "is_single" true) }}
 
   <div class="flex justify-center items-center space-x-2 mb-4">
     {{ $repo_path := "" }}
@@ -48,11 +46,9 @@
     {{ end }}
   </div>
 
-  {{/* --- Details List --- */}}
   <div class="border-t border-border dark:border-darkmode-border pt-4">
     <dl class="text-sm text-text dark:text-darkmode-text space-y-2">
 
-      {{/* Maintainer(s) Row */}}
       {{ with .maintainer }}
       <div class="flex justify-between items-start">
         <dt class="font-semibold pt-2 shrink-0 pr-2">Maintainer(s):</dt>
@@ -63,17 +59,11 @@
           <div class="flex items-center justify-end">
             <div class="flex-shrink-0 flex -space-x-3">
               {{ range $maintainerList }}
-              {{ $maintainerName := . }}
-              {{ $nameForProcessing := $maintainerName | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" }}
-              {{ $contributorSlug := $nameForProcessing | anchorize }}
-              {{ $contributorPage := $page.Site.GetPage (printf "contributors/%s" $contributorSlug) }}
-              {{ if and $contributorPage $contributorPage.Params.image }}
-              {{ with $contributorPage.Resources.GetMatch $contributorPage.Params.image }}
-              {{ $thumb := .Fill "32x32 Lanczos" }}
-              <img src="{{ $thumb.RelPermalink }}" alt="{{ $maintainerName }}" title="{{ $maintainerName }}" class="w-8 h-8 rounded-full object-cover border-2 border-white dark:border-darkmode-theme-light">
-              {{ end }}
+              {{ $contrib := partial "helpers/resolve-contributor.html" . }}
+              {{ if $contrib.ImageResource }}
+              <img src="{{ ($contrib.ImageResource.Fill "32x32 Lanczos").RelPermalink }}" alt="{{ . }}" title="{{ . }}" class="w-8 h-8 rounded-full object-cover border-2 border-white dark:border-darkmode-theme-light">
               {{ else }}
-              <div class="w-8 h-8 rounded-full bg-gray-200 dark:bg-darkmode-theme-dark flex items-center justify-center text-gray-400 border-2 border-white dark:border-darkmode-theme-light" title="{{ $maintainerName }}">
+              <div class="w-8 h-8 rounded-full bg-gray-200 dark:bg-darkmode-theme-dark flex items-center justify-center text-gray-400 border-2 border-white dark:border-darkmode-theme-light" title="{{ . }}">
                 {{ partial "icon.html" (dict "style" "solid" "name" "user" "class" "text-base") }}
               </div>
               {{ end }}
@@ -81,16 +71,14 @@
             </div>
             <div class="ml-2 text-left">
               {{ range $i, $name := $maintainerList }}
-              {{ $nameForProcessing := . | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" }}
-              {{ $contributorSlug := $nameForProcessing | anchorize }}
-              {{ $contributorPage := $page.Site.GetPage (printf "contributors/%s" $contributorSlug) }}
+              {{ $contrib := partial "helpers/resolve-contributor.html" . }}
               <span class="block">
-                        {{ if $contributorPage }}
-                          <a href="{{ $contributorPage.RelPermalink }}" class="text-primary dark:text-darkmode-primary hover:underline">{{ . }}</a>
-                        {{ else }}
-                          {{ . }}
-                        {{ end }}
-                      </span>
+                {{ if $contrib.Page }}
+                  <a href="{{ $contrib.Page.RelPermalink }}" class="text-primary dark:text-darkmode-primary hover:underline">{{ . }}</a>
+                {{ else }}
+                  {{ . }}
+                {{ end }}
+              </span>
               {{ end }}
             </div>
           </div>
@@ -98,7 +86,6 @@
       </div>
       {{ end }}
 
-      {{/* Other Details Rows */}}
       <div class="flex justify-between items-start">
         <dt class="font-semibold shrink-0 pr-2">Language:</dt>
         <dd class="text-right">{{ .language | default "N/A" }}</dd>
@@ -128,12 +115,8 @@
   </div>
 
   <div class="border-t border-border dark:border-darkmode-border pt-4 mt-4 flex flex-wrap gap-2 justify-center">
-    {{ if .supports_NIR }}
-    <span class="support-badge">NIR Support</span>
-    {{ end }}
-    {{ if .supports_hardware }}
-    <span class="support-badge">Hardware Support</span>
-    {{ end }}
+    {{ if .supports_NIR }}<span class="support-badge">NIR Support</span>{{ end }}
+    {{ if .supports_hardware }}<span class="support-badge">Hardware Support</span>{{ end }}
   </div>
 </div>
 {{ end }}

@@ -1,39 +1,38 @@
-{{ $context := .Context }}
+{{ $ctx := .Context }}
 {{ $class := .Class }}
-{{ $base := site.BaseURL }}
 
 <nav aria-label="Breadcrumb" class="{{ $class }} md:inline-flex sm:hidden">
   <ol class="flex flex-wrap items-center capitalize text-sm space-x-2">
     <li>
-      <a href="{{ $base | relLangURL }}" aria-label="Home" title="Home" class="text-gray-600 dark:text-gray-300 flex items-center justify-center w-7 h-7 bg-gray-100 dark:bg-darkmode-theme-dark rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+      <a href="{{ site.Home.RelPermalink }}" aria-label="Home" title="Home" class="text-gray-600 dark:text-gray-300 flex items-center justify-center w-7 h-7 bg-gray-100 dark:bg-darkmode-theme-dark rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
         {{ partial "icon.html" (dict "style" "solid" "name" "house" "class" "h-4 w-4") }}
       </a>
     </li>
 
     {{ $pages := slice }}
-    {{ if or (eq $context.Section "workshops") (eq $context.Section "contributors") }}
-    {{ $ncPage := site.GetPage "neuromorphic-computing" }}
-    {{ $pages = $pages | append (dict "Title" ($ncPage.Title | default "Neuromorphic Computing") "Permalink" (($ncPage.RelPermalink | default "/neuromorphic-computing/") | relLangURL)) }}
+    {{ if or (eq $ctx.Section "workshops") (eq $ctx.Section "contributors") }}
+      {{ $ncPage := site.GetPage "neuromorphic-computing" }}
+      {{ $pages = $pages | append (dict "Title" ($ncPage.Title | default "Neuromorphic Computing") "Permalink" $ncPage.RelPermalink) }}
     {{ end }}
 
-    {{ range $context.Ancestors.Reverse }}
-    {{ if and (not .IsHome) (ne .Title "Pages") (ne .Title "") }}
-    {{ $pages = $pages | append . }}
-    {{ end }}
+    {{ range $ctx.Ancestors.Reverse }}
+      {{ if and (not .IsHome) (ne .Title "Pages") (ne .Title "") }}
+        {{ $pages = $pages | append . }}
+      {{ end }}
     {{ end }}
 
     {{ range $pages }}
-    <li class="text-gray-400 dark:text-gray-500" aria-hidden="true">/</li>
-    <li>
-      <a class="breadcrumb-link-parent text-indigo-600 dark:text-indigo-400" href="{{ .Permalink }}">
-        <span class="breadcrumb-link-text">{{ .Title }}</span>
-      </a>
-    </li>
+      <li class="text-gray-400 dark:text-gray-500" aria-hidden="true">/</li>
+      <li>
+        <a class="breadcrumb-link-parent text-indigo-600 dark:text-indigo-400" href="{{ .Permalink }}">
+          <span class="breadcrumb-link-text">{{ .Title }}</span>
+        </a>
+      </li>
     {{ end }}
 
     <li class="text-gray-400 dark:text-gray-500" aria-hidden="true">/</li>
     <li>
-      <span class="text-text dark:text-darkmode-text font-semibold">{{ $context.Title }}</span>
+      <span class="text-text dark:text-darkmode-text font-semibold">{{ $ctx.Title }}</span>
     </li>
   </ol>
 </nav>

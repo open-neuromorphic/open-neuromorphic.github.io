@@ -55,19 +55,19 @@ Our vision is to be the central, community-driven hub for anyone interested in n
 
 As Open Neuromorphic has grown, so has the need for a structure to support our community and guide our initiatives. In 2025, we established our first **Executive Committee** to provide leadership, coordinate activities, and ensure the sustainable growth of ONM. This step formalizes our commitment to transparency and community empowerment, as outlined in our [Organisational Charter](charter/).
 
-{{< display_executive_committee >}}
+{{< display-executive-committee >}}
 
 ## Voting Members
 
 The Open Neuromorphic community is steered by our dedicated voting members. These individuals have demonstrated a sustained commitment to open science and actively participate in our governance, peer review, and community initiatives.
 
-{{< display_voting_members >}}
+{{< display-voting-members >}}
 
 ## Our Founders
 
 Open Neuromorphic was brought to life through the vision and dedication of its founders. Their initial efforts and passion for open source collaboration laid the groundwork for the thriving community we are today. We are immensely grateful for their pioneering spirit.
 
-{{< display_founders >}}
+{{< display-founders >}}
 
 
 ## What We Offer

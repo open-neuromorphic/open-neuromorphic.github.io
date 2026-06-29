@@ -1,26 +1,8 @@
 <meta charset="utf-8" />
-{{ $title := "" }}
-{{ if .IsHome }}
-{{ $title = printf "%s" .Site.Params.homepageTitle }}
-{{ else }}
-{{ $type := .Type }}
-{{ $product := .Params.product }}
-
-{{ if (and (eq $type "neuromorphic-hardware") $product) }}
-{{ $title = printf "A Look at %s - %s - %s" .Page.Title "Neuromorphic Chip" .Site.Title}}
-{{ else }}
-{{ $title = printf "%s - %s" .Page.Title .Site.Title }}
-{{ end }}
-{{ end }}
-
-
-<title>{{ $title }}</title>
 
 <meta
   name="viewport"
   content="width=device-width, initial-scale=1, maximum-scale=5" />
-
-<link rel="canonical" href="{{ .Permalink }}" />
 
 {{- /* RSS Discovery Links - Single Best Feed Strategy */ -}}
 {{- $feed := "" -}}
@@ -29,34 +11,34 @@
 
 {{- /* Determine the page that provides the feed (either the section page or the home page) */ -}}
 {{- if .IsPage -}}
-{{- $feedProviderPage = .Parent -}}
+  {{- $feedProviderPage = .Parent -}}
 {{- else if .IsSection -}}
-{{- $feedProviderPage = . -}}
+  {{- $feedProviderPage = . -}}
 {{- else if .IsHome -}}
-{{- $feedProviderPage = . -}}
+  {{- $feedProviderPage = . -}}
 {{- end -}}
 
 {{- /* Check if the identified provider page has an RSS feed and it's not the homepage (unless we are on the homepage) */ -}}
 {{- if and $feedProviderPage ($feedProviderPage.OutputFormats.Get "rss") -}}
-{{- $homeFeedPermalink := (site.Home.OutputFormats.Get "rss").Permalink -}}
-{{- $specificFeed := $feedProviderPage.OutputFormats.Get "rss" -}}
-{{- if or (ne $specificFeed.Permalink $homeFeedPermalink) .IsHome -}}
-{{- $feed = $specificFeed -}}
-{{- $feedTitle = printf "%s | %s" $feedProviderPage.Title site.Title -}}
-{{- end -}}
+  {{- $homeFeedPermalink := (site.Home.OutputFormats.Get "rss").Permalink -}}
+  {{- $specificFeed := $feedProviderPage.OutputFormats.Get "rss" -}}
+  {{- if or (ne $specificFeed.Permalink $homeFeedPermalink) .IsHome -}}
+    {{- $feed = $specificFeed -}}
+    {{- $feedTitle = printf "%s | %s" $feedProviderPage.Title site.Title -}}
+  {{- end -}}
 {{- end -}}
 
 {{- /* Fallback to the homepage feed if no specific feed was found */ -}}
 {{- if not $feed -}}
-{{- with site.Home.OutputFormats.Get "rss" -}}
-{{- $feed = . -}}
-{{- $feedTitle = printf "%s | RSS Feed" site.Title -}}
-{{- end -}}
+  {{- with site.Home.OutputFormats.Get "rss" -}}
+    {{- $feed = . -}}
+    {{- $feedTitle = printf "%s | RSS Feed" site.Title -}}
+  {{- end -}}
 {{- end -}}
 
 {{- /* Render the single link tag */ -}}
 {{- with $feed -}}
-<link rel="alternate" type="application/rss+xml" title="{{ $feedTitle }}" href="{{ .Permalink }}">
+  <link rel="alternate" type="application/rss+xml" title="{{ $feedTitle }}" href="{{ .Permalink }}">
 {{- end -}}
 
 
@@ -69,16 +51,29 @@
 {{ partial "components/base-seo.html" . }}
 
 {{ if hugo.IsProduction }}
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-WLX91Y92H4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WLX91Y92H4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  gtag('config', 'G-WLX91Y92H4');
-</script>
+    gtag('config', 'G-WLX91Y92H4');
+  </script>
 {{ end }}
 
 {{ if .Params.math }}
-{{ partial "helpers/katex.html" . }}
+  {{ partial "helpers/katex.html" . }}
 {{ end }}
+
+<style>
+  :root {
+    --color-primary: {{ hugo.Data.theme.colors.default.theme_color.primary }};
+    --color-secondary: {{ hugo.Data.theme.colors.default.theme_color.secondary }};
+    --color-accent: {{ hugo.Data.theme.colors.default.theme_color.accent }};
+  }
+  .dark {
+    --color-primary: {{ hugo.Data.theme.colors.darkmode.theme_color.primary }};
+    --color-secondary: {{ hugo.Data.theme.colors.darkmode.theme_color.secondary }};
+    --color-accent: {{ hugo.Data.theme.colors.darkmode.theme_color.accent }};
+  }
+</style>

@@ -44,9 +44,8 @@
 {{ $authorsLD := slice }}
 {{ range $maintainerList }}
 {{ $authorName := . }}
-{{ $nameForProcessing := $authorName | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" }}
-{{ $contributorSlug := $nameForProcessing | anchorize }}
-{{ $contributorPage := site.GetPage (printf "contributors/%s" $contributorSlug) }}
+{{ $contrib := partial "helpers/resolve-contributor.html" $authorName }}
+{{ $contributorPage := $contrib.Page }}
 
 {{ $personDict := dict "@type" "Person" "name" $authorName }}
 {{ if $contributorPage }}

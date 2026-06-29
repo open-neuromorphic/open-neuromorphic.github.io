@@ -1,51 +1,10 @@
-<div class="pb-4">
-  {{ partial "components/og-preview.html" . }}
-</div>
-<div class="px-7 pt-7 content-panel">
-  <h3 class="pb-5 pt-5 text-xl">Next Hacking Hour</h3>
-
-  {{ $now := now }}
-  {{ $yesterday := $now.AddDate 0 0 -1 }}
-  {{ $upcoming_talks := slice }}
-  {{ range where (where .Site.RegularPages "Type" "hacking-hours") ".Params.upcoming" true }}
-  {{ if ge .Date.Unix $yesterday.Unix }}
-  {{ $upcoming_talks = $upcoming_talks | append . }}
-  {{ end }}
-  {{ end }}
-
-  {{ if gt (len $upcoming_talks) 0 }}
-  {{ range sort $upcoming_talks ".Date" | first 1 }}
-  <div class="mb-4">
-    <a href="{{ .Permalink }}" class="block font-semibold hover:text-primary dark:hover:text-darkmode-primary">{{ .Title }}</a>
-    <div class="text-sm text-gray-600 dark:text-gray-400 mt-1">
-      {{ if .Params.author }}
-      <div class="flex items-center">
-        {{ partial "icon.html" (dict "style" "regular" "name" "circle-user" "class" "mr-2") }}
-        <span>{{ delimit .Params.author ", " }}</span>
-      </div>
-      {{ end }}
-      <div class="flex items-center mt-1">
-        {{ partial "icon.html" (dict "style" "regular" "name" "calendar" "class" "mr-2") }}
-        <span>{{ .Date.Format "January 2, 2006" }}</span>
-      </div>
-      <div class="flex items-center mt-1">
-        {{ partial "icon.html" (dict "style" "regular" "name" "clock" "class" "mr-2") }}
-        <span>{{ .Params.start_time }} - {{ .Params.end_time}} {{ .Params.time_zone }}</span>
-      </div>
-    </div>
-  </div>
-  {{ end }}
-  {{ else }}
-  <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
-    No Hacking Hours are currently scheduled. Check back soon for new events!
-  </p>
-  <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
-    In the meantime, join our Discord to connect with the community and see what others are working on.
-  </p>
-  {{ end }}
-
-  <div class="text-right pb-5 pt-5">
-    {{ $hacking_hours_page := site.GetPage "/neuromorphic-computing/software/hacking-hours" }}
-    <a href="{{ $hacking_hours_page.RelPermalink }}" class="btn btn-new-primary btn-sm">View Schedule</a>
-  </div>
-</div>
+{{ partial "components/event-sidebar.html" (dict
+"context" .
+"title" "Next Hacking Hour"
+"type" "hacking-hours"
+"limit" 1
+"empty_msg_1" "No Hacking Hours are currently scheduled. Check back soon for new events!"
+"empty_msg_2" "In the meantime, join our Discord to connect with the community and see what others are working on."
+"cta_link" (site.GetPage "/neuromorphic-computing/software/hacking-hours").RelPermalink
+"cta_text" "View Schedule"
+) }}

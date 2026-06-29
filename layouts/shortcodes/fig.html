@@ -1,185 +1,30 @@
-<!-- layouts/shortcodes/fig.html -->
-<!-- get value from params -->
-{{ $imagePath:= .Get "src" }}
-{{ $caption:= .Get "caption" }}
-{{ $position:= .Get "position" | default "center" }}
-{{ $class:= .Get "class" | default "m-0 p-4 bg-white rounded" }}
-{{ $height:= replace (replace (.Get "height") "px" "") "x" "" }}
-{{ $width:= replace (replace (.Get "width") "px" "") "x" "" }}
-{{ $alt:= .Get "alt" }}
-{{ $title:= .Get "title" }}
-{{ $command:= .Get "command" | humanize }}
-{{ $option:= .Get "option" }}
-{{ $webp:= .Get "webp" | default true }}
-
-{{/* --- NEW LOGIC: Determine the final alt text --- */}}
-{{ $finalAlt := "" }}
-{{ if $alt }}
-{{ $finalAlt = $alt }}
-{{ else if $caption }}
-{{ $finalAlt = $caption | plainify }}
+{{ $width := replace (replace (.Get "width") "px" "") "x" "" }}
+{{ $height := replace (replace (.Get "height") "px" "") "x" "" }}
+{{ $size := "" }}
+{{ if or $width $height }}
+  {{ $size = printf "%sx%s" $width $height }}
 {{ end }}
+{{ $alt := .Get "alt" | default (.Get "caption" | plainify) }}
+{{ partial "image" (dict
+  "Src"     (.Get "src")
+  "Alt"     $alt
+  "Caption" (.Get "caption")
+  "Context" .Page
+  "Command" (.Get "command" | humanize)
+  "Size"    $size
+  "Class"   (.Get "class" | default "m-0 p-4 bg-white rounded")
+  "Position" (.Get "position")
+  "Option"  (.Get "option")
+  "Webp"    (.Get "webp")
+  ) }}
 
-
-<!-- image position -->
-{{ if eq $position `center` }}
-{{ .Scratch.Set "position" "img-center" }}
-{{ else if eq $position `left` }}
-{{ .Scratch.Set "position" "img-left" }}
-{{ else if eq $position `right` }}
-{{ .Scratch.Set "position" "img-right" }}
-{{ else if eq $position `float-left` }}
-{{ .Scratch.Set "position" "img-float-left" }}
-{{ else if eq $position `float-right` }}
-{{ .Scratch.Set "position" "img-float-right" }}
+{{ if not (.Page.Store.Get "hasLightbox") }}
+  {{ .Page.Store.Set "hasLightbox" true }}
+  <script>
+    window.addEventListener("load", (e) => {
+      if (typeof GLightbox !== 'undefined') {
+        const lightbox = GLightbox();
+      }
+    });
+  </script>
 {{ end }}
-
-
-<!-- check cdn image -->
-{{ if or (hasPrefix $imagePath "http") (fileExists (add `static/` $imagePath)) }}
-<!-- cdn image figure -->
-{{ if $caption }}
-<figure
-  class="{{ .Scratch.Get `position` }}"
-  role="group"
-  aria-describedby="caption-{{ $caption | markdownify }}">
-  <img
-    title="{{ $title }}"
-    loading="lazy"
-    decoding="async"
-    src="{{ $imagePath | absURL }}"
-    alt="{{ $finalAlt }}"
-    class="img {{ $class }}"
-    width="{{ $width }}"
-    height="{{ $height }}" />
-  <figcaption id="caption-{{ $caption | markdownify }}">
-    {{ $caption | markdownify }}
-  </figcaption>
-</figure>
-{{ else }}
-<!-- cdn image tag -->
-<img
-  title="{{ $title }}"
-  loading="lazy"
-  decoding="async"
-  src="{{ $imagePath | absURL }}"
-  alt="{{ $finalAlt }}"
-  class="img {{ $class }} {{ .Scratch.Get `position` }}"
-  width="{{ $width }}"
-  height="{{ $height }}" />
-{{ end }}
-<!-- /cdn image -->
-{{ else }}
-<!-- content and assets image path variable -->
-{{ $contentImage:= .Page.Resources.GetMatch (printf "*%s*" $imagePath) }}
-{{ $assetImage:= fileExists (add `assets/` $imagePath) }}
-
-
-<!-- check image existence -->
-{{ if or $contentImage $assetImage }}
-<!-- content or assets folder detection -->
-{{ if $contentImage }}
-{{ .Scratch.Set "image-exists" $contentImage }}
-{{ else if $assetImage }}
-{{ .Scratch.Set "image-exists" (resources.Get $imagePath) }}
-{{ end }}
-
-{{ $image:= .Scratch.Get "image-exists" }}
-
-
-<!-- image extension -->
-{{ $imageExt := path.Ext $image }}
-
-
-<!-- image height, width -->
-{{ .Scratch.Set "image-height" "" }}
-{{ .Scratch.Set "image-width" "" }}
-{{ if not (or $height $width) }}
-{{ .Scratch.Set "image-height" $image.Height }}
-{{ .Scratch.Set "image-width" $image.Width }}
-{{ end }}
-{{ $imageHeight:= .Scratch.Get "image-height" }}
-{{ $imageWidth:= .Scratch.Get "image-width" }}
-{{ .Scratch.Set `caption-name` (replaceRE `[^-a-zA-Z0-9]` `` (replace $caption ` ` `-`)) }}
-
-
-<!-- checking gif/svg image -->
-{{ if or (eq $imageExt `.gif`) (eq $imageExt `.svg`) }}
-{{ .Scratch.Set `image` $image.RelPermalink }}
-{{ .Scratch.Set `image-height` $height }}
-{{ .Scratch.Set `image-width`  $width }}
-{{ else }}
-<!-- image processing -->
-{{ $options:= add (add (add (add (string ($width | default $imageWidth)) "x") (string ($height | default $imageHeight))) " webp ") (string $option) }}
-
-{{ if eq $webp "false" }}
-<!-- if webp false -->
-{{ $options = add (add (add (add (string ($width | default $imageWidth)) "x") (string ($height | default $imageHeight))) " ") (string $option) }}
-{{ end }}
-
-
-<!-- end -->
-
-<!-- image Fit -->
-{{ if eq $command `Fit` }}
-{{ .Scratch.Set `newimage`  ($image.Fit $options) }}
-{{ .Scratch.Set `fallback` ($image.Fit (replace $options `webp` ``)).RelPermalink }}
-<!-- image Fill -->
-{{ else if eq $command `Fill` }}
-{{ .Scratch.Set `newimage`  ($image.Fill $options) }}
-{{ .Scratch.Set `fallback` ($image.Fill (replace $options `webp` ``)).RelPermalink }}
-<!-- image Resize -->
-{{ else }}
-{{ .Scratch.Set `newimage`  ($image.Resize $options) }}
-{{ .Scratch.Set `fallback` ($image.Resize (replace $options `webp` ``)).RelPermalink }}
-{{ end }}
-{{ .Scratch.Set `image` (.Scratch.Get `newimage`).RelPermalink }}
-{{ .Scratch.Set `image-height` (.Scratch.Get `newimage`).Height }}
-{{ .Scratch.Set `image-width`  (.Scratch.Get `newimage`).Width }}
-
-{{ end }}
-<!-- /checking gif/svg image -->
-
-<!-- image figure -->
-{{ if $caption }}
-<figure
-  class="{{ .Scratch.Get `position` }}"
-  role="group"
-  aria-describedby="caption-{{ $caption | markdownify }}">
-  <img
-    title="{{ $title }}"
-    loading="lazy"
-    decoding="async"
-    class="img {{ $class }}"
-    width="{{ .Scratch.Get `image-width` }}"
-    height="{{ .Scratch.Get `image-height` }}"
-    src="{{ .Scratch.Get `image` }}"
-    alt="{{ $finalAlt }}"
-    onerror="this.onerror='null';this.src='{{ .Scratch.Get `fallback` }}'" />
-  <figcaption id="caption-{{ $caption | markdownify }}" class="caption-{{ .Scratch.Get `caption-name` }}">
-    {{ $caption | markdownify }}
-  </figcaption>
-</figure>
-{{ else }}
-<!-- image tag -->
-<img
-  title="{{ $title }}"
-  loading="lazy"
-  decoding="async"
-  class="img {{ $class }} {{ .Scratch.Get `position` }}"
-  width="{{ .Scratch.Get `image-width` }}"
-  height="{{ .Scratch.Get `image-height` }}"
-  src="{{ .Scratch.Get `image` }}"
-  alt="{{ $finalAlt }}"
-  onerror="this.onerror='null';this.src='{{ .Scratch.Get `fallback` }}'" />
-{{ end }}
-
-{{ else }}
-<!-- image not found -->
-<strong style="color:red; margin-bottom:15px; display:inline-block;"
->{{ site.BaseURL }}{{ $imagePath }} does not exist</strong
->
-{{ end }}
-<!-- /check image existence -->
-{{ end }}
-<!-- /check cdn image -->

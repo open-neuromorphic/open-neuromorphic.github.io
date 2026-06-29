@@ -18,7 +18,11 @@
     Learn More {{ partial "icon.html" (dict "style" "solid" "name" "arrow-right" "class" "transform transition-transform duration-200 group-hover:translate-x-1") }}
   </span>
 
-  <a href="{{ $link | relLangURL }}" {{ if findRE `^http` $link }}target="_blank" rel="noopener"{{ end }} class="absolute inset-0 z-10" aria-label="Learn more about {{ $title }}">
+  {{ $href := $link }}
+  {{ if not (findRE "^http" $link) }}
+    {{ with site.GetPage $link }}{{ $href = .RelPermalink }}{{ end }}
+  {{ end }}
+  <a href="{{ $href }}" {{ if findRE `^http` $link }}target="_blank" rel="noopener"{{ end }} class="absolute inset-0 z-10" aria-label="Learn more about {{ $title }}">
     <span class="sr-only">Learn more about {{ $title }}</span>
   </a>
 </div>

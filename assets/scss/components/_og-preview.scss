@@ -4,12 +4,12 @@
 
 .og-preview-container {
   @apply relative w-full rounded-lg overflow-hidden transition-all duration-300 ease-in-out;
-  box-shadow: 0 4px 12px rgba(0,0,0, 0.2), 0 0 0 1px theme('colors.border'), 0 0 15px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 12px rgba(0,0,0, 0.2), 0 0 0 1px theme('colors.border'), 0 0 15px color-mix(in srgb, var(--color-primary) 30%, transparent);
   aspect-ratio: 1.91 / 1;
 
   &:hover {
     @apply lg:scale-110;
-    box-shadow: 0 6px 20px rgba(0,0,0, 0.15), 0 0 0 1px var(--color-primary), 0 0 25px rgba(102, 126, 234, 0.5);
+    box-shadow: 0 6px 20px rgba(0,0,0, 0.15), 0 0 0 1px var(--color-primary), 0 0 25px color-mix(in srgb, var(--color-primary) 50%, transparent);
 
     .social-share-overlay {
       @apply opacity-100;
@@ -23,7 +23,7 @@
 .dark .og-preview-container {
   box-shadow: 0 4px 12px rgba(0,0,0, 0.4), 0 0 0 1px theme('colors.darkmode.border'), 0 0 20px rgba(188, 251, 255, 0.4);
   &:hover {
-    box-shadow: 0 6px 25px rgba(0,0,0, 0.3), 0 0 0 1px theme('colors.darkmode.primary'), 0 0 30px rgba(188, 251, 255, 0.6);
+    box-shadow: 0 6px 25px rgba(0,0,0, 0.3), 0 0 0 1px var(--color-primary), 0 0 30px rgba(188, 251, 255, 0.6);
   }
 }
 
@@ -65,7 +65,7 @@
 }
 
 .dark .social-icon:hover {
-  background: var(--color-darkmode-primary);
+  background: var(--color-primary);
 }
 
 .sharing-runner {

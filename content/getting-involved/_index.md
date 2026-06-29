@@ -6,7 +6,7 @@ image: "images/getting-involved/getting-involved-og.jpg"
 
 Welcome to the Open Neuromorphic community! We thrive on collaboration and welcome contributions from everyone, regardless of background or expertise. Below are the primary ways you can join our mission to advance the field of neuromorphic computing. Find the path that best suits your interests and skills.
 
-{{< pathway_card
+{{< pathway-card
 title="Share Your Knowledge"
 description="Educate and inspire the community by sharing your work. We provide a platform for you to present research, lead workshops, or publish articles. Our team helps with logistics and promotion, making it easy to contribute."
 cta_text="Propose a Talk or Submit your Work"
@@ -17,7 +17,7 @@ layout_class=""
 explore_links="ONM Workshops|/workshops/;Student Talks|/neuromorphic-computing/student-talks/;Write for Our Blog|/getting-involved/write-a-blog-post/;Submit Your Research (ONR)|/neuromorphic-computing/research/"
 >}}
 
-{{< pathway_card
+{{< pathway-card
 title="Collaborate on Projects"
 description="Get hands-on by contributing to community-driven projects. You can join an existing initiative, participate in live coding sessions, or take on a specific volunteer role to help us improve our resources and platforms."
 cta_text="See Volunteer Roles"
@@ -28,7 +28,7 @@ layout_class="reverse"
 explore_links="Key Challenges Mission Board|/getting-involved/solving-neuromorphic-computings-key-challenges/;Join an Initiative|/neuromorphic-computing/initiatives/;Attend Hacking Hours|/neuromorphic-computing/software/hacking-hours/;Contribute on GitHub|https://github.com/open-neuromorphic"
 >}}
 
-{{< pathway_card
+{{< pathway-card
 title="Support Our Mission"
 description="Help sustain and grow our community. We partner with organizations and projects that align with our open-source vision. Explore how your organization can become a supporter and contribute to the future of neuromorphic technology."
 cta_text="Become a Supporter"

@@ -4,20 +4,20 @@
 
 {{ $final_href := "" }}
 {{ if strings.HasPrefix $href "http" }}
-{{ $final_href = $href }}
+  {{ $final_href = $href }}
 {{ else if strings.HasPrefix $href "./" }}
-{{ with $page.GetPage (strings.TrimPrefix "./" $href) }}
-{{ $final_href = .RelPermalink }}
-{{ end }}
+  {{ with $page.GetPage (strings.TrimPrefix "./" $href) }}
+    {{ $final_href = .RelPermalink }}
+  {{ end }}
 {{ else }}
-{{ with site.GetPage $href }}
-{{ $final_href = .RelPermalink }}
-{{ end }}
+  {{ with site.GetPage $href }}
+    {{ $final_href = .RelPermalink }}
+  {{ end }}
 {{ end }}
 
 {{ if not $final_href }}
-{{ warnf "link_card on page %q could not resolve href %q. Falling back to raw href." $page.File.Path $href }}
-{{ $final_href = $href | relLangURL }}
+  {{ warnf "link_card on page %q could not resolve href %q. Falling back to raw href." $page.File.Path $href }}
+  {{ $final_href = $href }}
 {{ end }}
 
 <div class="link-card group relative">

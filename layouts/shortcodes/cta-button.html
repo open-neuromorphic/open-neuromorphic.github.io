@@ -6,15 +6,17 @@
 {{- /* Determine the target attribute. Default to _blank for external links. */ -}}
 {{- $target := "" -}}
 {{- if .Get "target" -}}
-    {{- $target = .Get "target" -}}
+  {{- $target = .Get "target" -}}
 {{- else if $is_external -}}
-    {{- $target = "_blank" -}}
+  {{- $target = "_blank" -}}
 {{- end -}}
 
-{{- /* Determine the final URL. Apply relLangURL only to internal links. */ -}}
+{{- /* Determine the final URL. Apply site.GetPage for internal links. */ -}}
 {{- $final_link := $link -}}
 {{- if not $is_external -}}
-    {{- $final_link = $link | relLangURL -}}
+  {{- with site.GetPage $link -}}
+    {{- $final_link = .RelPermalink -}}
+  {{- end -}}
 {{- end -}}
 
 <div class="my-6 text-center">

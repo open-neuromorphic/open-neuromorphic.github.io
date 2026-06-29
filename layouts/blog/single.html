@@ -17,16 +17,16 @@
         </div>
         {{ partial "components/share-cta.html" . }}
 
-        {{ partial "components/author-bios.html" . }}
+        {{ partial "components/author-bios.html" (dict "ctx" .) }}
 
         <div class="mt-16">
           {{ partial "components/content-contribute-cta.html" (dict
-            "page_context" .
-            "icon" "solid pen-to-square"
-            "title" "Have an idea? <span class=\"gradient-text\">Share your voice.</span>"
-            "description" "Open Neuromorphic is a community-driven platform. We invite you to share your research, tutorials, or insights by writing a blog post."
-            "link" "/getting-involved/write-a-blog-post/"
-            "link_text" "Write for Our Blog"
+          "page_context" .
+          "icon" "solid pen-to-square"
+          "title" "Have an idea? <span class=\"gradient-text\">Share your voice.</span>"
+          "description" "Open Neuromorphic is a community-driven platform. We invite you to share your research, tutorials, or insights by writing a blog post."
+          "link" "/getting-involved/write-a-blog-post/"
+          "link_text" "Write for Our Blog"
           ) }}
         </div>
 
@@ -39,16 +39,16 @@
     site.RegularPages ".Title" "!=" .Title) | union (site.RegularPages.Related . ) }}
     {{ $related = $related | shuffle | first 3 }}
     {{ with $related }}
-      <div class="section pb-0">
-        <h2 class="h3 mb-6 text-center">Related Posts</h2>
-        <div class="row">
-          {{ range . }}
-            <div class="lg:col-4">
-              {{ partial "components/blog-card" . }}
-            </div>
-          {{ end }}
+    <div class="section pb-0">
+      <h2 class="h3 mb-6 text-center">Related Posts</h2>
+      <div class="row">
+        {{ range . }}
+        <div class="lg:col-4">
+          {{ partial "components/blog-card" . }}
         </div>
+        {{ end }}
       </div>
+    </div>
     {{ end }}
   </div>
 </section>

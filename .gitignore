@@ -25,3 +25,4 @@ content/**/*-og-*.jpg
 static/images/og-image-*.jpg
 tmp/og-cache-manifest.json
 /data/github_stars.json
+/ai_context.md

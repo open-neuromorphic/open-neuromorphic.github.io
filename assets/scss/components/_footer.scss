@@ -18,7 +18,7 @@
 
 .footer-link {
   @apply text-gray-300 hover:text-white hover:underline transition-colors duration-200;
-  text-decoration-color: var(--color-primary-new);
+  text-decoration-color: var(--color-primary);
   text-underline-offset: 3px;
 }
 

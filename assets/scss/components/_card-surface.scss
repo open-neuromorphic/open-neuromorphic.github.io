@@ -1,10 +1,11 @@
+/* assets/scss/components/_card-surface.scss */
 .card-surface {
-  @apply bg-theme-light dark:bg-darkmode-theme-light rounded-xl shadow-md transition-all duration-300;
+  @apply bg-theme-light dark:bg-darkmode-theme-light border border-border dark:border-darkmode-border rounded-xl shadow-md transition-all duration-300;
 }
 
 .card-surface-interactive {
   @apply card-surface;
   &:hover {
-    @apply shadow-lg -translate-y-1;
+    @apply shadow-lg border-primary/50 dark:border-darkmode-primary/50 -translate-y-1;
   }
 }

@@ -2,53 +2,20 @@
 <h3 class="text-2xl font-bold mb-6 text-center lg:text-left text-text dark:text-darkmode-text">Recent Event</h3>
 <div class="event-card-simple bg-white dark:bg-darkmode-theme-light rounded-xl p-4 shadow-md hover:shadow-lg transition-all duration-300 ease-in-out mb-8">
 
-  {{ $img_resource := "" }}
-  {{ $img_alt := .Title }}
+  {{ $thumb := partial "helpers/resolve-thumbnail.html" . }}
 
-  {{ with .Params.image }}
-  {{ $image_param := . }}
-  {{ with $.Resources.GetMatch $image_param }}
-  {{ $img_resource = . }}
-  {{ else }}
-  {{ $asset_path := strings.TrimPrefix "/" $image_param }}
-  {{ with resources.Get $asset_path }}
-  {{ $img_resource = . }}
-  {{ else }}
-  {{ if fileExists (printf "static/%s" $asset_path) }}
-  {{ with resources.Get $asset_path }}
-  {{ $img_resource = . }}
-  {{ end }}
-  {{ end }}
-  {{ end }}
-  {{ end }}
-  {{ end }}
-
-  {{ if not $img_resource }}
-  {{ if .File }}
-  {{ $page_slug := path.Base .File.Dir }}
-  {{ $og_image_name := printf "%s-og-16x9.jpg" $page_slug }}
-  {{ with .Resources.GetMatch $og_image_name }}
-  {{ $img_resource = . }}
-  {{ end }}
-  {{ end }}
-  {{ end }}
-
-  {{ if not $img_resource }}
-  {{ with resources.Get "images/workshop-thumbnail-default.png" }}
-  {{ $img_resource = . }}
-  {{ $img_alt = "Default Open Neuromorphic Event Thumbnail" }}
-  {{ end }}
-  {{ end }}
-
-  {{ if $img_resource }}
-  {{ $processed_img := $img_resource.Fit "504x280 Lanczos" }}
   <a href="{{ .Permalink }}" class="block mb-4 relative group">
-    <img src="{{ $processed_img.RelPermalink }}" alt="{{ $img_alt }}" class="w-full rounded object-cover">
+    {{ if $thumb.Resource }}
+    {{ $processed_img := $thumb.Resource.Fit "504x280 Lanczos" }}
+    <img src="{{ $processed_img.RelPermalink }}" alt="{{ $thumb.Alt }}" class="w-full rounded object-cover">
+    {{ else if $thumb.URL }}
+    <img src="{{ $thumb.URL }}" alt="{{ $thumb.Alt }}" class="w-full rounded object-cover">
+    {{ end }}
+
     {{ if .Params.video }}
     {{ partial "components/video-play-overlay.html" (dict "rounding_class" "rounded") }}
     {{ end }}
   </a>
-  {{ end }}
 
   <div>
     <span class="date-badge mb-1 inline-block text-xs">{{ .Date.Format "Jan 02, 2006" }}</span>

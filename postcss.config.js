@@ -20,42 +20,30 @@ const purgecssOptions = {
     'bubble-separator',
     'bubble-contributions',
     'is-highlighted',
-    // --- ADDITIONS START HERE ---
-    // Safelist all button classes (e.g., btn-outline-primary) and their variants (dark, hover)
-    // to prevent their complex SCSS-defined states from being purged.
+
+    // btn-* — defined in _buttons.scss with complex SCSS nesting; not detectable from hugo_stats.json
     /^btn-/,
-    // Safelist classes that are dynamically added by JavaScript for the active filter tags.
-    // PurgeCSS cannot find these by scanning the source files.
+
+    // mission-board-filters.js dynamically adds these classes for active filter state
     'bg-indigo-600',
     'text-white',
-    // Note: dark: and hover: variants of the above classes are typically kept
-    // by PurgeCSS if the base class is safelisted, but we add the regexes below
-    // to be absolutely certain.
     /^dark:bg-indigo-/,
     /^hover:bg-indigo-/,
     /^dark:hover:bg-indigo-/,
   ],
 };
 
-// Require plugins at the top
 const tailwindcss = require('tailwindcss');
 const autoprefixer = require('autoprefixer');
 const postcssPurgecss = require('@fullhuman/postcss-purgecss');
 
-// Base plugins (e.g., TailwindCSS)
 const plugins = [
-  tailwindcss, // Pass the plugin itself
+  tailwindcss,
 ];
 
-// Add plugins conditionally for production
 if (process.env.HUGO_ENVIRONMENT === "production") {
-  plugins.push(postcssPurgecss(purgecssOptions)); // Call with options
-  plugins.push(autoprefixer); // Pass the plugin itself (uses default options or browserslist)
-} else {
-  // For development, you might still want autoprefixer.
-  // If you had it in your previous "production-only" block and want it for dev too:
-  // plugins.push(autoprefixer);
-  // If not, this block can be empty or removed.
+  plugins.push(postcssPurgecss(purgecssOptions));
+  plugins.push(autoprefixer);
 }
 
 module.exports = {

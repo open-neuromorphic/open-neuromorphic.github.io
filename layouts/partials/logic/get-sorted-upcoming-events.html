@@ -1,0 +1,55 @@
+{{ $allUpcomingEvents := slice }}
+{{ $now := now }}
+{{ $yesterdayStr := ($now.AddDate 0 0 -1).Format "20060102" }}
+{{ $daysMap := dict "Sunday" 0 "Monday" 1 "Tuesday" 2 "Wednesday" 3 "Thursday" 4 "Friday" 5 "Saturday" 6 }}
+
+{{ $fmUpcomingEvents := where site.RegularPages "Params.upcoming" true }}
+{{ range $fmUpcomingEvents }}
+  {{ $eventDateStr := .Date.Format "20060102" }}
+  {{ if ge $eventDateStr $yesterdayStr }}
+    {{ $allUpcomingEvents = $allUpcomingEvents | append (dict
+      "Title" .Title
+      "Description" .Description
+      "Date" .Date
+      "StartTime" .Params.start_time
+      "EndTime" .Params.end_time
+      "TimeZone" .Params.time_zone
+      "Permalink" .RelPermalink
+      "IsRecurring" false
+      "Authors" .Params.author
+      "Image" .Params.image
+      "EventType" (.Type | humanize | title)
+      )}}
+  {{ end }}
+{{ end }}
+
+{{ $recurringEventData := hugo.Data.recurring_events.events }}
+{{ range $recurringEventData }}
+  {{ if .active }}
+    {{ $nextOccurrenceDate := partial "logic/get-next-occurrence-date.html" . }}
+
+    {{ $detailsPage := "" }}
+    {{ with .details_page_link }}
+      {{ $pagePath := strings.TrimSuffix "/" . | strings.TrimPrefix "/" }}
+      {{ $detailsPage = site.GetPage $pagePath }}
+    {{ end }}
+
+    {{ $allUpcomingEvents = $allUpcomingEvents | append (dict
+      "Title" .title
+      "Description" .description
+      "Date" $nextOccurrenceDate
+      "StartTime" .start_time
+      "EndTime" .end_time
+      "TimeZone" .time_zone
+      "Permalink" (cond (ne $detailsPage nil) $detailsPage.RelPermalink "")
+      "IsRecurring" true
+      "Host" .host
+      "LocationName" .location_name
+      "LocationURL" .location_url
+      "Image" .image
+      "EventType" (.id | humanize | title)
+      )}}
+  {{ end }}
+{{ end }}
+{{ $sortedAllUpcomingEvents := sort $allUpcomingEvents "Date" "asc" }}
+{{ return $sortedAllUpcomingEvents }}

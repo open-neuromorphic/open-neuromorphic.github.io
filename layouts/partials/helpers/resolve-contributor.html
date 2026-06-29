@@ -1,0 +1,16 @@
+{{/*
+INPUT:  name (string) — contributor display name, e.g. "Gregor Lenz"
+OUTPUT: dict with keys:
+Page          (Page | nil)     — contributor Hugo page if found
+Name          (string)         — contributor display name
+Slug          (string)         — contributor slug
+ImageResource (Resource | nil) — page-bundle image resource if found
+*/}}
+{{ $name := . }}
+{{ $slug := $name | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" | replaceRE "é" "e" | replaceRE "É" "E" | replaceRE "á" "a" | replaceRE "Á" "A" | replaceRE "í" "i" | replaceRE "Í" "I" | replaceRE "ó" "o" | replaceRE "Ó" "O" | replaceRE "ú" "u" | replaceRE "Ú" "U" | anchorize }}
+{{ $page := site.GetPage (printf "contributors/%s" $slug) }}
+{{ $image := "" }}
+{{ if and $page $page.Params.image }}
+{{ with $page.Resources.GetMatch $page.Params.image }}{{ $image = . }}{{ end }}
+{{ end }}
+{{ return (dict "Page" $page "Name" $name "Slug" $slug "ImageResource" $image) }}

@@ -1,82 +1,70 @@
-{{- /* layouts/partials/structured-markup/event.html */ -}}
 {{ $page_context := . }}
 {{ $schemaToReturn := dict }}
 
-{{- /* --- Reusable Logic: Image and Author processing --- */ -}}
-{{- $imageUrls := slice -}}
-{{- if .File -}}
-  {{- $pageSlug := path.Base .File.Dir -}}
-  {{- $suffixes := slice "16x9" "4x3" "1x1" -}}
-  {{- range $suffixes -}}
-    {{- $ogImageName := printf "%s-og-%s.jpg" $pageSlug . -}}
-    {{- with $page_context.Resources.GetMatch $ogImageName -}}
-      {{- $imageUrls = $imageUrls | append .Permalink -}}
-    {{- end -}}
-  {{- end -}}
-{{- end -}}
-{{- if not $imageUrls -}}
-  {{- with $page_context.Params.image -}}
-    {{- $fmImage := . -}}
-    {{- with $page_context.Resources.GetMatch $fmImage -}}
-      {{- $imageUrls = slice .Permalink -}}
-    {{- else -}}
-      {{- $imageUrls = slice ($fmImage | absLangURL) -}}
-    {{- end -}}
-  {{- end -}}
-{{- end -}}
-{{- if not $imageUrls -}}{{- with site.Params.metadata.image -}}{{- $imageUrls = slice (. | absLangURL) -}}{{- end -}}{{- end -}}
+{{ $imageUrls := slice }}
+{{ if .File }}
+{{ $pageSlug := path.Base .File.Dir }}
+{{ $suffixes := slice "16x9" "4x3" "1x1" }}
+{{ range $suffixes }}
+{{ $ogImageName := printf "%s-og-%s.jpg" $pageSlug . }}
+{{ with $page_context.Resources.GetMatch $ogImageName }}
+{{ $imageUrls = $imageUrls | append .Permalink }}
+{{ end }}
+{{ end }}
+{{ end }}
+{{ if not $imageUrls }}
+{{ with $page_context.Params.image }}
+{{ $fmImage := . }}
+{{ with $page_context.Resources.GetMatch $fmImage }}
+{{ $imageUrls = slice .Permalink }}
+{{ else }}
+{{ $imageUrls = slice ($fmImage | absURL) }}
+{{ end }}
+{{ end }}
+{{ end }}
+{{ if not $imageUrls }}{{ with site.Params.metadata.image }}{{ $imageUrls = slice (. | absURL) }}{{ end }}{{ end }}
 
-{{- $authorsLD := slice -}}
-{{- if $page_context.Params.author -}}
-  {{- $authorList := slice -}}
-  {{- with $page_context.Params.author -}}{{- if reflect.IsSlice . -}}{{- $authorList = . -}}{{- else -}}{{- $authorList = slice . -}}{{- end -}}{{- end -}}
-  {{- range $authorList -}}
-    {{- $authorName := . -}}
-    {{- $nameForProcessing := $authorName | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" -}}
-    {{- $contributorSlug := $nameForProcessing | anchorize -}}
-    {{- $contributorPage := site.GetPage (printf "contributors/%s" $contributorSlug) -}}
-    {{- $personDict := dict "@type" "Person" "name" $authorName -}}
-    {{- if $contributorPage -}}{{- $personDict = merge $personDict (dict "url" ($contributorPage.Permalink | absLangURL)) -}}{{- end -}}
-    {{- $authorsLD = $authorsLD | append $personDict -}}
-  {{- end -}}
-{{- end -}}
+{{ $authorsLD := slice }}
+{{ if $page_context.Params.author }}
+{{ $authorList := slice }}
+{{ with $page_context.Params.author }}{{ if reflect.IsSlice . }}{{ $authorList = . }}{{ else }}{{ $authorList = slice . }}{{ end }}{{ end }}
+{{ range $authorList }}
+{{ $authorName := . }}
+{{ $contrib := partial "helpers/resolve-contributor.html" $authorName }}
+{{ $contributorPage := $contrib.Page }}
+{{ $personDict := dict "@type" "Person" "name" $authorName }}
+{{ if $contributorPage }}{{ $personDict = merge $personDict (dict "url" ($contributorPage.Permalink | absURL)) }}{{ end }}
+{{ $authorsLD = $authorsLD | append $personDict }}
+{{ end }}
+{{ end }}
 
-{{- /* --- Conditional Schema Generation --- */ -}}
-{{- if .Params.video -}}
-  {{- /* This is a past event with a video. Use VideoObject schema. */ -}}
-  {{- $videoLD := dict
-    "@context" "https://schema.org"
-    "@type" "VideoObject"
-    "name" $page_context.Title
-    "description" $page_context.Description
-    "thumbnailUrl" $imageUrls
-    "uploadDate" ($page_context.Date.Format "2006-01-02T15:04:05Z07:00")
-    "embedUrl" (printf "https://www.youtube.com/embed/%s" .Params.video)
-    "publisher" (dict "@type" "Organization" "name" "Open Neuromorphic" "logo" (dict "@type" "ImageObject" "url" (absURL "ONM-logo.png")))
-  -}}
-  {{- if gt (len $authorsLD) 0 -}}
-    {{- $videoLD = merge $videoLD (dict "author" $authorsLD) -}}
-  {{- end -}}
-  {{- $schemaToReturn = $videoLD -}}
+{{ if .Params.video }}
+{{ $videoLD := dict
+"@context" "https://schema.org"
+"@type" "VideoObject"
+"name" $page_context.Title
+"description" $page_context.Description
+"thumbnailUrl" $imageUrls
+"uploadDate" ($page_context.Date.Format "2006-01-02T15:04:05Z07:00")
+"embedUrl" (printf "https://www.youtube.com/embed/%s" .Params.video)
+"publisher" (dict "@type" "Organization" "name" "Open Neuromorphic" "logo" (dict "@type" "ImageObject" "url" ("ONM-logo.png" | absURL)))
+}}
+{{ if gt (len $authorsLD) 0 }}{{ $videoLD = merge $videoLD (dict "author" $authorsLD) }}{{ end }}
+{{ $schemaToReturn = $videoLD }}
 
-{{- else -}}
-  {{- /* This is an upcoming event or past event without video. Use Article schema. */ -}}
-  {{- $articleLD := dict
-    "@context" "https://schema.org"
-    "@type" "Article"
-    "headline" $page_context.Title
-    "image" $imageUrls
-    "datePublished" ($page_context.Date.Format "2006-01-02T15:04:05Z07:00")
-    "description" $page_context.Description
-    "publisher" (dict "@type" "Organization" "name" "Open Neuromorphic" "logo" (dict "@type" "ImageObject" "url" (absURL "ONM-logo.png")))
-  -}}
-  {{- if $page_context.Lastmod -}}
-    {{- $articleLD = merge $articleLD (dict "dateModified" ($page_context.Lastmod.Format "2006-01-02T15:04:05Z07:00")) -}}
-  {{- end -}}
-  {{- if gt (len $authorsLD) 0 -}}
-    {{- $articleLD = merge $articleLD (dict "author" $authorsLD) -}}
-  {{- end -}}
-  {{- $schemaToReturn = $articleLD -}}
-{{- end -}}
+{{ else }}
+{{ $articleLD := dict
+"@context" "https://schema.org"
+"@type" "Article"
+"headline" $page_context.Title
+"image" $imageUrls
+"datePublished" ($page_context.Date.Format "2006-01-02T15:04:05Z07:00")
+"description" $page_context.Description
+"publisher" (dict "@type" "Organization" "name" "Open Neuromorphic" "logo" (dict "@type" "ImageObject" "url" ("ONM-logo.png" | absURL)))
+}}
+{{ if $page_context.Lastmod }}{{ $articleLD = merge $articleLD (dict "dateModified" ($page_context.Lastmod.Format "2006-01-02T15:04:05Z07:00")) }}{{ end }}
+{{ if gt (len $authorsLD) 0 }}{{ $articleLD = merge $articleLD (dict "author" $authorsLD) }}{{ end }}
+{{ $schemaToReturn = $articleLD }}
+{{ end }}
 
-{{- return $schemaToReturn -}}
+{{ return $schemaToReturn }}

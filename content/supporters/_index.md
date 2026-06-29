@@ -5,11 +5,11 @@ description: "Meet the open-source projects and organizations that form our coll
 
 Open Neuromorphic is built on a foundation of open collaboration. We are proud to partner with a growing network of open-source projects, academic labs, and organizations that share our vision for a more accessible, reproducible, and competitive neuromorphic ecosystem.
 
-{{< display_supporter_tier tier="platinum" >}}
+{{< display-supporter-tier tier="platinum" >}}
 
-{{< display_supporter_tier tier="gold" >}}
+{{< display-supporter-tier tier="gold" >}}
 
-{{< display_supporter_tier tier="foundational" >}}
+{{< display-supporter-tier tier="foundational" >}}
 
 {{< details summary="Becoming A Foundational Supporter: The Collaboration Network"  >}}
 

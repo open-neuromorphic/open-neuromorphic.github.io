@@ -1,0 +1,19 @@
+[[event_types]]
+id = "workshops"
+label = "Workshops"
+section = "workshops"
+
+[[event_types]]
+id = "student-talks"
+label = "Student Talks"
+section = "neuromorphic-computing/student-talks"
+
+[[event_types]]
+id = "hacking-hours"
+label = "Hacking Hours"
+section = "neuromorphic-computing/software/hacking-hours"
+
+[[event_types]]
+id = "town-hall"
+label = "Town Hall"
+section = "getting-involved/town-hall"

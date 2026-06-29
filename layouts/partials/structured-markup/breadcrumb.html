@@ -9,7 +9,7 @@
 
 {{ if or (eq $page_context.Section "workshops") (eq $page_context.Section "contributors") }}
   {{ $ncPage := site.GetPage "neuromorphic-computing" }}
-  {{ $breadcrumbItemsForLD = $breadcrumbItemsForLD | append (dict "name" ($ncPage.Title | default "Neuromorphic Computing") "url" (("/neuromorphic-computing/" | relLangURL) | absLangURL) "position" $positionLD) }}
+  {{ $breadcrumbItemsForLD = $breadcrumbItemsForLD | append (dict "name" ($ncPage.Title | default "Neuromorphic Computing") "url" ($ncPage.Permalink | absLangURL) "position" $positionLD) }}
   {{ $positionLD = add $positionLD 1 }}
 {{ end }}
 
@@ -30,6 +30,6 @@
     {{ with .url }}{{ $listItem = merge $listItem (dict "item" (. | absLangURL)) }}{{ end }}
     {{ $itemListElements = $itemListElements | append $listItem }}
   {{ end }}
-  
+
   {{ return (dict "@context" "https://schema.org" "@type" "BreadcrumbList" "itemListElement" $itemListElements) }}
 {{ end }}

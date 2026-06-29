@@ -1,3 +1,6 @@
+{{/* INPUT CONTRACT
+. (Page) required — the page context for generating the OG preview
+*/}}
 {{ $page := . }}
 {{ $ogImagesForModal := slice }}
 {{ $ogImageDisplayURL := "" }}
@@ -11,14 +14,10 @@
 
 {{ if $pageSlug }}
   {{ $isUpcomingEvent := and .Params.upcoming (in (slice "workshops" "student-talks" "hacking-hours") .Type) }}
-
   {{ $suffixes := dict }}
-  {{ if $isUpcomingEvent }}
-    {{ $suffixes = merge $suffixes (dict "Event Announcement (Portrait)" "portrait") }}
-  {{ end }}
+  {{ if $isUpcomingEvent }}{{ $suffixes = merge $suffixes (dict "Event Announcement (Portrait)" "portrait") }}{{ end }}
   {{ $standardSuffixes := dict "16:9 Aspect Ratio" "16x9" "4:3 Aspect Ratio" "4x3" "1:1 Square" "1x1" }}
   {{ $suffixes = merge $suffixes $standardSuffixes }}
-
 
   {{ range $label, $suffix := $suffixes }}
     {{ $ogImageName := "" }}
@@ -51,54 +50,43 @@
 {{ end }}
 
 {{ if not $ogImageDisplayURL }}
-  {{ with $page.Params.image }}
-    {{ $fmImageRes := $page.Resources.GetMatch . }}
-    {{ if $fmImageRes }}
-      {{ $ogImageDisplayURL = ($fmImageRes.Fill "1200x630").RelPermalink }}
-    {{ else }}
-      {{ $ogImageDisplayURL = . | relURL }}
-    {{ end }}
-  {{ else }}
-    {{ with site.Params.metadata.image }}
-      {{ $ogImageDisplayURL = . | relURL }}
-    {{ end }}
-  {{ end }}
+  {{ $ogImageDisplayURL = partial "helpers/resolve-og-image.html" . }}
 {{ end }}
 
 {{ $ogAssetsJson := $ogImagesForModal | jsonify }}
 
 {{ if $ogImageDisplayURL }}
-<div class="og-preview-wrapper">
-  <div class="og-preview-container">
-    <img src="{{ $ogImageDisplayURL }}" alt="Social share preview for {{ .Title }}" class="og-preview-image-tag" />
+  <div class="og-preview-wrapper">
+    <div class="og-preview-container">
+      <img src="{{ $ogImageDisplayURL }}" alt="Social share preview for {{ .Title }}" class="og-preview-image-tag" />
 
-    <div class="image-dark-overlay"></div>
-    <div class="social-share-overlay">
-      <div class="social-icons-container">
-        <a href="https://twitter.com/intent/tweet/?text={{ .Title | urlquery }}&url={{ .Permalink | absURL }}" target="_blank" rel="noopener" class="social-icon" title="Share on X/Twitter">
-          {{ partial "icon.html" (dict "style" "brands" "name" "x-twitter") }}
-        </a>
-        <a href="https://www.facebook.com/sharer/sharer.php?u={{ .Permalink | absURL }}" target="_blank" rel="noopener" class="social-icon" title="Share on Facebook">
-          {{ partial "icon.html" (dict "style" "brands" "name" "facebook") }}
-        </a>
-        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ .Permalink | absURL }}&title={{ .Title | urlquery }}" target="_blank" rel="noopener" class="social-icon" title="Share on LinkedIn">
-          {{ partial "icon.html" (dict "style" "brands" "name" "linkedin") }}
-        </a>
-        {{ if gt (len $ogImagesForModal) 0 }}
-        <a href="#" data-og-assets="{{ $ogAssetsJson | safeJS }}" class="social-icon" title="View Social Assets">
-          {{ partial "icon.html" (dict "style" "regular" "name" "images") }}
-        </a>
-        {{ end }}
+      <div class="image-dark-overlay"></div>
+      <div class="social-share-overlay">
+        <div class="social-icons-container">
+          <a href="https://twitter.com/intent/tweet/?text={{ .Title | urlquery }}&url={{ .Permalink | absURL }}" target="_blank" rel="noopener" class="social-icon" title="Share on X/Twitter">
+            {{ partial "icon.html" (dict "style" "brands" "name" "x-twitter") }}
+          </a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u={{ .Permalink | absURL }}" target="_blank" rel="noopener" class="social-icon" title="Share on Facebook">
+            {{ partial "icon.html" (dict "style" "brands" "name" "facebook") }}
+          </a>
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ .Permalink | absURL }}&title={{ .Title | urlquery }}" target="_blank" rel="noopener" class="social-icon" title="Share on LinkedIn">
+            {{ partial "icon.html" (dict "style" "brands" "name" "linkedin") }}
+          </a>
+          {{ if gt (len $ogImagesForModal) 0 }}
+            <a href="#" data-og-assets="{{ $ogAssetsJson | safeJS }}" class="social-icon" title="View Social Assets">
+              {{ partial "icon.html" (dict "style" "regular" "name" "images") }}
+            </a>
+          {{ end }}
+        </div>
       </div>
-    </div>
-    <div class="sharing-runner">
-      <span>Share this post</span>
-      <div class="runner-icons">
-        {{ partial "icon.html" (dict "style" "brands" "name" "x-twitter") }}
-        {{ partial "icon.html" (dict "style" "brands" "name" "facebook") }}
-        {{ partial "icon.html" (dict "style" "brands" "name" "linkedin") }}
+      <div class="sharing-runner">
+        <span>Share this post</span>
+        <div class="runner-icons">
+          {{ partial "icon.html" (dict "style" "brands" "name" "x-twitter") }}
+          {{ partial "icon.html" (dict "style" "brands" "name" "facebook") }}
+          {{ partial "icon.html" (dict "style" "brands" "name" "linkedin") }}
+        </div>
       </div>
     </div>
   </div>
-</div>
 {{ end }}
