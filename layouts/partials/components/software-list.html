@@ -1,10 +1,8 @@
-{{/* layouts/partials/components/software-list.html */}}
 <div class="mb-4">
   <ul class="list-none p-0">
     {{ $mainSoftwarePage := site.GetPage "neuromorphic-computing/software" }}
     {{ $isMainSoftwarePage := eq . $mainSoftwarePage }}
 
-    {{/* Correctly filter pages based on the current context */}}
     {{ $pagesToList := slice }}
     {{ if $isMainSoftwarePage }}
     {{ $pagesToList = where site.RegularPages "Type" "neuromorphic-software" }}
@@ -12,7 +10,6 @@
     {{ $pagesToList = .Pages }}
     {{ end }}
 
-    {{/* Augment the correctly filtered pages with star count for sorting */}}
     {{ $pagesWithStars := slice }}
     {{ range $pagesToList }}
     {{ $is_github := false }}
@@ -71,28 +68,22 @@
 
       <p class="mb-4 text-text dark:text-darkmode-text">{{ $page.Params.description }}</p>
 
-      {{ partial "custom/software_resource_counts.html" (dict "page" $page "is_single" false) }}
+      {{ partial "custom/software-resource-counts.html" (dict "page" $page "is_single" false) }}
 
       <div class="border-t border-border dark:border-darkmode-border pt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
 
         <div class="flex items-center gap-3">
           {{ with $page.Params.maintainer }}
           {{ $maintainerList := . }}
-          {{ if not (reflect.IsSlice .) }}{{ $maintainerList = slice . }}{{ end }} {{/* Unify to a slice */}}
+          {{ if not (reflect.IsSlice .) }}{{ $maintainerList = slice . }}{{ end }}
 
           <div class="flex -space-x-3">
             {{ range $maintainerList }}
-            {{ $maintainerName := . }}
-            {{ $nameForProcessing := $maintainerName | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" }}
-            {{ $contributorSlug := $nameForProcessing | anchorize }}
-            {{ $contributorPage := $page.Site.GetPage (printf "contributors/%s" $contributorSlug) }}
-            {{ if and $contributorPage $contributorPage.Params.image }}
-            {{ with $contributorPage.Resources.GetMatch $contributorPage.Params.image }}
-            {{ $thumb := .Fill "40x40 Lanczos" }}
-            <img src="{{ $thumb.RelPermalink }}" alt="{{ $maintainerName }}" title="{{ $maintainerName }}" class="w-10 h-10 rounded-full object-cover border-2 border-white dark:border-gray-800">
-            {{ end }}
+            {{ $contrib := partial "helpers/resolve-contributor.html" . }}
+            {{ if $contrib.ImageResource }}
+            <img src="{{ ($contrib.ImageResource.Fill "40x40 Lanczos").RelPermalink }}" alt="{{ . }}" title="{{ . }}" class="w-10 h-10 rounded-full object-cover border-2 border-white dark:border-gray-800">
             {{ else }}
-            <div class="w-10 h-10 rounded-full bg-gray-200 dark:bg-darkmode-theme-dark flex items-center justify-center text-gray-400 border-2 border-white dark:border-gray-800" title="{{ $maintainerName }}">
+            <div class="w-10 h-10 rounded-full bg-gray-200 dark:bg-darkmode-theme-dark flex items-center justify-center text-gray-400 border-2 border-white dark:border-gray-800" title="{{ . }}">
               {{ partial "icon.html" (dict "style" "solid" "name" "user" "class" "text-lg") }}
             </div>
             {{ end }}
@@ -103,11 +94,9 @@
             <p class="font-semibold text-primary dark:text-darkmode-primary">
               {{ $links := slice }}
               {{ range $maintainerList }}
-              {{ $nameForProcessing := . | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" }}
-              {{ $contributorSlug := $nameForProcessing | anchorize }}
-              {{ $contributorPage := $page.Site.GetPage (printf "contributors/%s" $contributorSlug) }}
-              {{ if $contributorPage }}
-              {{ $links = $links | append (printf `<a href="%s">%s</a>` $contributorPage.RelPermalink .) }}
+              {{ $contrib := partial "helpers/resolve-contributor.html" . }}
+              {{ if $contrib.Page }}
+              {{ $links = $links | append (printf `<a href="%s">%s</a>` $contrib.Page.RelPermalink .) }}
               {{ else }}
               {{ $links = $links | append (printf `<span>%s</span>` .) }}
               {{ end }}

@@ -1,5 +1,5 @@
 {{ $allPastHH := where site.RegularPages "Type" "hacking-hours" }}
-{{ $sortedPastHH := partial "logic/get_past_events.html" $allPastHH }}
+{{ $sortedPastHH := partial "logic/get-past-events.html" $allPastHH }}
 {{ $mostRecentPastHH := "" }}
 {{ if $sortedPastHH }}{{ $mostRecentPastHH = index $sortedPastHH 0 }}{{ end }}
 
@@ -48,42 +48,30 @@
     <div class="past-event-promo flex-1 mb-6 md:mb-0 {{ if $upcomingHackingHourDetails }}md:border-r md:border-gray-300 dark:md:border-gray-600 md:pr-6{{ end }}">
       <h3 class="text-xl font-bold mb-3 text-text dark:text-darkmode-text">Latest Hacking Hour</h3>
       <div class="flex items-start space-x-4">
-        {{/* --- START: MODIFIED IMAGE LOGIC --- */}}
         {{ $img_path := "" }}
         {{ $img_alt := $mostRecentPastHH.Title }}
         {{ $img_resource := "" }}
 
-        {{/* 1. Check for `image` in front matter */}}
         {{ with $mostRecentPastHH.Params.image }}
-        {{ with $mostRecentPastHH.Resources.GetMatch . }}
-        {{ $img_resource = . }}
-        {{ end }}
+        {{ with $mostRecentPastHH.Resources.GetMatch . }}{{ $img_resource = . }}{{ end }}
         {{ end }}
 
-        {{/* 2. If not found, check for auto-generated OG image */}}
         {{ if not $img_resource }}
         {{ if $mostRecentPastHH.File }}
         {{ $page_slug := path.Base $mostRecentPastHH.File.Dir }}
         {{ $og_image_name := printf "%s-og-16x9.jpg" $page_slug }}
-        {{ with $mostRecentPastHH.Resources.GetMatch $og_image_name }}
-        {{ $img_resource = . }}
-        {{ end }}
+        {{ with $mostRecentPastHH.Resources.GetMatch $og_image_name }}{{ $img_resource = . }}{{ end }}
         {{ end }}
         {{ end }}
 
-        {{/* 3. Final fallback to the default banner */}}
         {{ if not $img_resource }}
-        {{ with resources.Get "images/hacking-hours-default-banner.png" }}
-        {{ $img_resource = . }}
-        {{ end }}
+        {{ with resources.Get "images/hacking-hours-default-banner.png" }}{{ $img_resource = . }}{{ end }}
         {{ end }}
 
-        {{/* Process and render the selected image */}}
         {{ if $img_resource }}
         {{ $img_path = ($img_resource.Fill "120x67 Lanczos").RelPermalink }}
         <img src="{{ $img_path }}" alt="{{ $img_alt }}" class="w-30 h-auto rounded object-cover flex-shrink-0" style="width: 120px; height:67px;">
         {{ end }}
-        {{/* --- END: MODIFIED IMAGE LOGIC --- */}}
         <div class="flex-grow">
           <h4 class="text-lg font-semibold leading-tight"><a href="{{ $mostRecentPastHH.RelPermalink }}" class="text-primary dark:text-darkmode-primary hover:underline">{{ $mostRecentPastHH.Title }}</a></h4>
           <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">{{ $mostRecentPastHH.Date.Format "January 2, 2006" }}</p>
@@ -126,7 +114,4 @@
 
   </div>
 </div>
-{{ else }}
-<!-- This fallback message is optional. If you prefer silence when no data, remove it. -->
-<!-- <p class="text-center my-8 text-gray-600 dark:text-gray-400">No Hacking Hours information currently available.</p> -->
 {{ end }}

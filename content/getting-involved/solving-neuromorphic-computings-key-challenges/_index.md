@@ -1,7 +1,7 @@
 ---
 title: "Solving Neuromorphic Computing's Key Challenges"
 description: "Join a community-led effort to solve key challenges in neuromorphic computing. This mission board highlights high-impact projects where your open-source contributions can accelerate the entire field."
-layout: "community_projects"
+layout: "community-projects"
 image: abstract-6099214_1920.jpg
 maintainers:
   - "jens-e-pedersen"

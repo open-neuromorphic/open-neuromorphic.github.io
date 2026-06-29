@@ -1,185 +1,200 @@
 #!/usr/bin/env python3
 
-import argparse
 import os
-import sys
-from pathlib import Path
-from datetime import datetime
-import fnmatch
+import re
+import argparse
+import subprocess
 
-# --- Configuration ---
-PROJECT_ROOT = Path(".").resolve()
-TMP_DIR = PROJECT_ROOT / "tmp"
-FULL_OUTPUT_FILE = TMP_DIR / "output_full.txt"
-LAYOUTS_OUTPUT_FILE = TMP_DIR / "output_layouts.txt"
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+OUTPUT_FILE = os.path.join(SCRIPT_DIR, "ai_context.md")
 
-EXCLUDED_DIRS = [
-    ".git", "node_modules", "tmp", "assets/images", "assets/plugins",
-    "static/plugins", "static/images", "static/assets", ".idea", ".vscode",
-    "public", "resources", "__pycache__", ".venv", "venv",
-]
+EXCLUDE_DIRS = {
+    ".git", "node_modules", "public", "resources", "tmp",
+    "__pycache__", ".idea", ".vscode", "venv", ".venv"
+}
 
-EXCLUDED_FILES_PATTERNS = [
+EXCLUDE_PATHS = {
+    "assets/images",
+    "assets/plugins",
+    "static/plugins",
+    "static/images",
+    "static/assets"
+}
+
+EXCLUDE_FILES = {
     ".DS_Store", "hugo_stats.json", ".hugo_build.lock",
-    str(FULL_OUTPUT_FILE.name), str(LAYOUTS_OUTPUT_FILE.name),
-    "*.pyc", "*~", "package-lock.json",
-]
+    "package-lock.json", "yarn.lock", "pnpm-lock.yaml",
+    "content_tagging_sheet.csv", "ai_context.md",
+    "LICENSE", "CODE_OF_CONDUCT.md", "CONTRIBUTING.md"
+}
 
-LIST_ONLY_PATTERNS = [
-    "LICENSE", "CONTRIBUTING.md", "CODE_OF_CONDUCT.md",
-]
+SOURCE_EXTENSIONS = {
+    ".html", ".md", ".toml", ".yaml", ".yml", ".json",
+    ".js", ".ts", ".scss", ".css", ".py", ".sh"
+}
 
-IMAGE_EXTENSIONS = {".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg", ".ico"}
+def get_language(ext: str) -> str:
+    mapping = {
+        "py": "python",
+        "js": "javascript",
+        "ts": "typescript",
+        "md": "markdown",
+        "yml": "yaml",
+        "sh": "bash"
+    }
+    cleaned_ext = ext.lower().strip(".")
+    return mapping.get(cleaned_ext, cleaned_ext)
 
-INCLUDE_PATTERNS = [
-    "*.html", "*.md", "*.toml", "*.json", "*.yaml", "*.yml", "*.scss",
-    "*.js", "*.py", "*.sh", ".gitignore", "Dockerfile", "README.md",
-    "go.mod", "go.sum", "package.json", "nginx.conf",
-    "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.svg", "*.ico",
-]
-
-# Paths where we WANT to add file path comments at the top (e.g. `{{/* path/to/file.html */}}` or `/* path.scss */`)
-# We exclude the 'content' directory from this to avoid breaking front matter.
-INCLUDE_PATH_HEADERS_DIRS = ["layouts", "assets", "archetypes"]
-
-# --- End Configuration ---
-
-def log(message):
-    print(f"[CONTEXT GEN] {message}", file=sys.stderr)
-
-def should_ignore(path: Path, root: Path) -> bool:
-    parts = path.relative_to(root).parts
-    for excluded_dir in EXCLUDED_DIRS:
-        norm_excluded = excluded_dir.replace('/', os.sep)
-        current_check_path = Path()
-        for part in parts[:-1]:
-            current_check_path = current_check_path / part
-            if str(current_check_path) == norm_excluded:
-                return True
-        if path.is_dir() and str(path.relative_to(root)) == norm_excluded:
-            return True
-
-    for pattern in EXCLUDED_FILES_PATTERNS:
-        if fnmatch.fnmatch(path.name, pattern):
-            return True
-    return False
-
-def should_include(filename: str) -> bool:
-    for pattern in INCLUDE_PATTERNS:
-        if fnmatch.fnmatch(filename.lower(), pattern.lower()):
-            return True
-    return False
-
-def is_list_only(filename: str) -> bool:
-    for pattern in LIST_ONLY_PATTERNS:
-        if fnmatch.fnmatch(filename, pattern):
-            return True
-    return False
-
-def get_comment_syntax(file_path: Path):
-    ext = file_path.suffix.lower()
-    if ext == ".html":
-        return "{{/* {} */}}\n"
-    elif ext in [".scss", ".css", ".js", ".ts"]:
-        return "/* {} */\n"
-    elif ext in [".sh", ".py", ".yaml", ".yml", ".toml"]:
-        return "# {}\n"
-    return ""
-
-def find_relevant_files(root: Path, mode: str = "full") -> list[Path]:
-    initial_candidates = set()
-    for current_dir_str, dir_names, file_names in os.walk(root, topdown=True):
-        current_path = Path(current_dir_str)
-        dir_names[:] = [d_name for d_name in dir_names if not should_ignore(current_path / d_name, root)]
-        for filename in file_names:
-            file_path = current_path / filename
-            if should_ignore(file_path, root): continue
-            if not should_include(filename): continue
-            initial_candidates.add(file_path.resolve())
-
-    final_list = list(initial_candidates)
-    final_list.sort()
-    return final_list
-
-def generate_header(mode: str) -> str:
-    common_instructions = """
-  **CRITICAL AI CODING REQUIREMENTS:**
-  1. **Token Efficiency:** DO NOT use decorative comment blocks (e.g., `// ---------`). Keep comments dense.
-  2. **File Headers:** For files in `layouts/`, `assets/`, and `archetypes/`, ADD a one-line comment at the top indicating the file path (e.g., `{{/* layouts/path/to/file.html */}}` or `/* assets/path/file.scss */`). DO NOT add these to `content/` markdown files (it breaks front matter).
-  3. **Commit Messages:** Provide commit message at end of response with **WHY** and **GOAL** of code changes
-  4. **Complete Files:** Always provide complete file content in responses — never truncated snippets or diffs
-
-**Instructions for AI:**
-1.  **Analyze Structure:** Understand the Hugo project layout (config, content, layouts, assets, static structure).
-2.  **Primary Goal:** Use this information to answer questions about the website's implementation, structure, features, styling, configuration, and potential areas for improvement or troubleshooting.
-3.  Provide Code with focus toward with minimal commenting
-4. If we are copying or moving files, provide the bash command to accomplish this
-5. We don't need to make backups of files before big edits - there is sufficient rollback capability in dev environment
-6. If a solution is found for a particularly difficult issue, suggest updates to these instructions (generate_context.py)
-7. If response contains a code block, it is best to keep newlines around  ```  for maximum compatibility
-8. Format code changes in a way that is most simple for an LLM (gemini, copilot) to integrate - this could be one single code block. It is not necessary to provide human instructions that highlight the specific lines being updated.
-9. indicate which file it is to be updated, outside of the file codeblock
-10. For internal links, always prefer `site.GetPage` and `.RelPermalink` over hardcoded paths with `relLangURL`. Hardcoded paths (`"/path/to/page/" | relLangURL`) can break in staging environments or sub-directory deployments. The robust method is `{{ $page := site.GetPage "path/to/page"; $page.RelPermalink }}`.
-"""
-    return f"""--- START OF PROJECT CONTEXT (Full Checkpoint) ---
-
-This file contains the content of key configuration, source code, layout, and content files for the project. Image files and some static documents are listed by path only. This serves as a full checkpoint.
-
-**Project Root:** {PROJECT_ROOT}
-**Generated on:** {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
-{common_instructions}
---- FILE CONTENTS START ---
-"""
-
-def generate_footer(mode: str) -> str:
-    return "\n--- END OF PROJECT CONTEXT ---"
-
-def generate_context(mode: str):
-    target_output_file = FULL_OUTPUT_FILE
-    try: TMP_DIR.mkdir(parents=True, exist_ok=True)
-    except OSError as e: sys.exit(1)
-
-    files_to_process = find_relevant_files(PROJECT_ROOT, mode=mode)
-    header = generate_header(mode)
-    footer = generate_footer(mode)
-
+def get_changed_files_since(git_ref: str) -> set:
     try:
-        with open(target_output_file, "w", encoding="utf-8") as outfile:
-            outfile.write(header + "\n")
-            for file_path in files_to_process:
-                relative_path = file_path.relative_to(PROJECT_ROOT)
-                file_extension = file_path.suffix.lower()
+        cmd = ["git", "diff", "--name-only", "@{yesterday}" if git_ref.lower() == "yesterday" else git_ref, "HEAD"]
+        res = subprocess.run(cmd, capture_output=True, text=True)
+        if res.returncode == 0:
+            return set(line.strip() for line in res.stdout.splitlines() if line.strip())
+    except Exception as e:
+        print(f"Warning: Failed to fetch diff for '--since {git_ref}': {e}")
+    return set()
 
-                if file_extension in IMAGE_EXTENSIONS:
-                    outfile.write(f"\n=== IMAGE FILE: {relative_path.as_posix()} ===\n")
-                elif is_list_only(file_path.name):
-                    outfile.write(f"\n=== FILE BY PATH: {relative_path.as_posix()} ===\n")
-                else:
-                    outfile.write(f"\n=== {relative_path.as_posix()} ===\n")
-                    try:
-                        content = file_path.read_text(encoding="utf-8", errors="ignore")
+def is_in_scope(rel_path: str, scope: str) -> bool:
+    if scope == "all":
+        return True
+    parts = rel_path.split("/")
+    root_dir = parts[0]
+    if scope == "layouts":
+        return root_dir in ("layouts", "archetypes")
+    elif scope == "content":
+        return root_dir == "content"
+    elif scope == "assets":
+        return root_dir in ("assets", "static")
+    elif scope == "config":
+        return root_dir in ("config", "data", "scripts") or rel_path in ("hugo.toml", "theme.toml", "package.json")
+    return True
 
-                        # Add path header if needed and it doesn't already have one
-                        should_add_header = any(str(relative_path).startswith(d) for d in INCLUDE_PATH_HEADERS_DIRS)
-                        comment_syntax = get_comment_syntax(relative_path)
+def generate_directory_map(root_dir: str) -> tuple[str, list]:
+    paths = []
+    for root, dirs, files in os.walk(root_dir):
+        new_dirs = []
+        for d in dirs:
+            full_dir = os.path.join(root, d)
+            rel_dir = os.path.relpath(full_dir, root_dir).replace("\\", "/")
+            if d in EXCLUDE_DIRS or any(rel_dir.startswith(ep) for ep in EXCLUDE_PATHS):
+                continue
+            new_dirs.append(d)
+        dirs[:] = new_dirs
 
-                        if should_add_header and comment_syntax:
-                            expected_header = comment_syntax.format(relative_path.as_posix())
-                            if not content.startswith(expected_header.strip()):
-                                outfile.write(expected_header)
+        for f in sorted(files):
+            if f in EXCLUDE_FILES:
+                continue
+            full_path = os.path.join(root, f)
+            rel_path = os.path.relpath(full_path, root_dir).replace("\\", "/")
+            paths.append(rel_path)
 
-                        outfile.write(content)
-                    except Exception as e:
-                        outfile.write(f"--- FAILED TO READ/DECODE {relative_path.as_posix()} ---")
-                    outfile.write("\n")
+    map_str = "## DIRECTORY MAP\n> *This is a structural map of the project. Some file contents may be omitted below to save space.* \n\n```text\n" + "\n".join(paths) + "\n```\n"
+    return map_str, paths
 
-            outfile.write(footer + "\n")
-    except IOError as e:
-        sys.exit(1)
+def build_git_history_section() -> str:
+    lines = [
+        "## RECENT ACTIVITY LOG (Git History)",
+        "> *The following are the most recent commits. Understanding the WHY and GOAL of these changes helps prevent regressions.*",
+        ""
+    ]
+    try:
+        fmt = "--pretty=format:---COMMIT---%n%cd | [%h] %s"
+        result = subprocess.run(
+            ["git", "log", "-n", "10", "--name-status", fmt, "--date=format:%Y-%m-%d %H:%M"],
+            capture_output=True, text=True, cwd=SCRIPT_DIR, check=True
+        )
+        if not result.stdout.strip():
+            lines.append("*No git history found.*")
+        else:
+            commits = result.stdout.strip().split("---COMMIT---")
+            for commit in commits:
+                commit = commit.strip()
+                if not commit: continue
+                parts = commit.split('\n')
+                lines.append(f"**{parts[0]}**")
+                files_modified = []
+                for body_line in parts[1:]:
+                    body_line = body_line.strip()
+                    if not body_line: continue
+                    if re.match(r'^[A-Z]\s+(.+)', body_line):
+                        files_modified.append(f"  - `{body_line}`")
+                if files_modified:
+                    lines.append("\n**Files Updated:**")
+                    lines.extend(files_modified)
+                lines.append("\n---")
+    except Exception as e:
+        lines.append(f"*(Could not read git history: {e})*")
+    return "\n".join(lines)
+
+def bundle_source_files(root_dir: str, scope: str, since: str = None) -> tuple[str, list]:
+    lines = ["## CODEBASE SOURCE FILES\n"]
+    bundled_paths = []
+    changed_files = get_changed_files_since(since) if since else None
+
+    for root, dirs, files in os.walk(root_dir):
+        new_dirs = []
+        for d in dirs:
+            full_dir = os.path.join(root, d)
+            rel_dir = os.path.relpath(full_dir, root_dir).replace("\\", "/")
+            if d not in EXCLUDE_DIRS and not any(rel_dir.startswith(ep) for ep in EXCLUDE_PATHS):
+                new_dirs.append(d)
+        dirs[:] = new_dirs
+
+        for f in sorted(files):
+            if f in EXCLUDE_FILES:
+                continue
+            full_path = os.path.join(root, f)
+            rel_path = os.path.relpath(full_path, root_dir).replace("\\", "/")
+            ext = os.path.splitext(f)[1].lower().strip()
+
+            if ext not in SOURCE_EXTENSIONS or not is_in_scope(rel_path, scope):
+                continue
+            if changed_files is not None and rel_path not in changed_files:
+                continue
+
+            try:
+                with open(full_path, "r", encoding="utf-8", errors="replace") as file:
+                    content = file.read().strip()
+                if not content:
+                    continue
+                lang = get_language(ext)
+                lines.extend([f"### `{rel_path}`", f"```{lang}", content, "```", ""])
+                bundled_paths.append(rel_path)
+            except Exception:
+                pass
+
+    if not bundled_paths:
+        lines.append("> *No files matched the current scope and filter parameters.*")
+    return "\n".join(lines), bundled_paths
 
 def main():
-    argparse.ArgumentParser(description="Generate context file.").parse_args()
-    generate_context("full")
+    parser = argparse.ArgumentParser(description="Generate an economical AI context file for the ONM Hugo project.")
+    parser.add_argument("--scope", choices=["all", "layouts", "content", "assets", "config"], default="all")
+    parser.add_argument("--since", help="Only bundle files modified since a commit SHA or 'yesterday'.")
+    parser.add_argument("--with-git-history", action="store_true", help="Include the last 10 git commits in the prompt.")
+    args = parser.parse_args()
+
+    ai_directive = """# SYSTEM PROMPT & CONTEXT
+
+**CRITICAL AI CODING REQUIREMENTS:**
+1. **Token Efficiency:** DO NOT use decorative comment blocks (e.g., `// ---------`). Keep code dense.
+2. **Complete Files:** Always provide complete file content in responses — never truncated snippets or diffs.
+3. **Commit Messages:** Provide a commit message at the end of your response with the **WHY** and **GOAL** of code changes.
+4. **Markdown Formatting:** Format code changes in a way that is easy to copy/paste (single code blocks with the filename indicated right above it).
+5. **Hugo Specific Links:** For internal links, always prefer `site.GetPage` and `.RelPermalink` over hardcoded paths with `relLangURL`. Hardcoded paths (`"/path/to/page/" | relLangURL`) break in sub-directory deployments. The robust method is `{{ $page := site.GetPage "path/to/page"; $page.RelPermalink }}`.
+"""
+    print("🔍 Generating directory map...")
+    dir_map_str, dir_paths = generate_directory_map(SCRIPT_DIR)
+    git_history_str = build_git_history_section() + "\n" if args.with_git_history else ""
+    print(f"📦 Bundling source files (Scope: {args.scope})...")
+    bundle_str, bundle_paths = bundle_source_files(SCRIPT_DIR, args.scope, args.since)
+
+    output = "\n".join([ai_directive, dir_map_str, git_history_str, bundle_str])
+    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+        f.write(output)
+
+    print(f"\n✅ Context generation complete! ({len(bundle_paths)} files bundled)")
 
 if __name__ == "__main__":
     main()

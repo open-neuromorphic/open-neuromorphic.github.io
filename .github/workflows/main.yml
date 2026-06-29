@@ -46,6 +46,19 @@ jobs:
       - name: Install npm dependencies
         run: npm ci
 
+      - name: Enforce Coding Standards
+        run: |
+          echo "Checking for decorative comments..."
+          if grep -r -E "\{\{/\* ---" layouts/ content/ ; then
+            echo "Error: Decorative comments found. Please remove them."
+            exit 1
+          fi
+          echo "Checking for hardcoded relLangURL..."
+          if grep -r -E "relLangURL" layouts/ ; then
+            echo "Warning: Hardcoded relLangURL found. Prefer site.GetPage ... .RelPermalink."
+          fi
+        continue-on-error: true
+
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
@@ -105,10 +118,6 @@ jobs:
           echo "Header set X-Robots-Tag \"noindex, nofollow\"" >> public/.htaccess
           echo "User-agent: *" > public/robots.txt
           echo "Disallow: /" >> public/robots.txt
-          echo "--- .htaccess final content ---"
-          cat public/.htaccess
-          echo "--- robots.txt content ---"
-          cat public/robots.txt
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

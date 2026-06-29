@@ -1,6 +1,6 @@
-{{ $sortedAllUpcomingEvents := partial "logic/get_sorted_upcoming_events.html" . }}
+{{ $sortedAllUpcomingEvents := partial "logic/get-sorted-upcoming-events.html" . }}
 {{ $all_events := where site.RegularPages "Type" "in" (slice "workshops" "student-talks" "hacking-hours") }}
-{{ $sorted_past_events := partial "logic/get_past_events.html" $all_events }}
+{{ $sorted_past_events := partial "logic/get-past-events.html" $all_events }}
 {{ $most_recent_past_event := cond (gt (len $sorted_past_events) 0) (index $sorted_past_events 0) "" }}
 
 <section class="mt-8 mb-14">
@@ -18,15 +18,11 @@
             <div class="flex items-center justify-between mb-2 w-full">
               <span class="date-badge text-xs">{{ .Date.Format "Jan 02, 2006" }}</span>
               {{ with .EventType }}
-              {{ $linkMap := dict
-              "Workshops" "/workshops/"
-              "Student Talks" "/neuromorphic-computing/student-talks/"
-              "Hacking Hours" "/neuromorphic-computing/software/hacking-hours/"
-              "Town Hall" "/getting-involved/town-hall/"
-              }}
-              {{ $eventLink := index $linkMap . }}
-              {{ if $eventLink }}
-              <a href="{{ $eventLink | relLangURL }}" class="event-type-tag-link">{{ . }}</a>
+              {{ $linkMap := dict "Workshops" "workshops" "Student Talks" "neuromorphic-computing/student-talks" "Hacking Hours" "neuromorphic-computing/software/hacking-hours" "Town Hall" "getting-involved/town-hall" }}
+              {{ $eventPageStr := index $linkMap . }}
+              {{ if $eventPageStr }}
+              {{ $p := site.GetPage $eventPageStr }}
+              <a href="{{ $p.RelPermalink }}" class="event-type-tag-link">{{ . }}</a>
               {{ else }}
               <span class="event-type-tag-link cursor-default">{{ . }}</span>
               {{ end }}
@@ -35,16 +31,18 @@
             <h4 class="text-lg font-semibold mb-1 flex-grow">
               <a href="{{ .Permalink }}" class="text-text dark:text-darkmode-dark hover:text-primary dark:hover:text-darkmode-primary">{{ .Title }}</a>
             </h4>
-            <p class="text-xs text-gray-600 dark:text-gray-400 mb-2">
-              {{ .Description | truncate 80 }}
-            </p>
+            <p class="text-xs text-gray-600 dark:text-gray-400 mb-2">{{ .Description | truncate 80 }}</p>
             <p class="text-xs text-gray-500 dark:text-gray-300">
               {{ partial "icon.html" (dict "style" "regular" "name" "clock" "class" "mr-1") }} {{ .StartTime }} - {{ .EndTime }} {{ .TimeZone }}
               {{ if .IsRecurring }}
               <br/>{{ partial "icon.html" (dict "style" "solid" "name" "location-dot" "class" "mr-1") }} <a href="{{ .LocationURL }}" target="_blank" class="hover:underline">{{ .LocationName }}</a> (Recurring)
               {{ else if .Authors }}
               <br/>{{ partial "icon.html" (dict "style" "regular" "name" "circle-user" "class" "mr-1") }}
-              {{ $numAuthors := len .Authors }}{{ range $i, $authorName := .Authors }}{{ $nameForProcessing := $authorName | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" }}{{ $contributor_slug := $nameForProcessing | anchorize }}{{ $contributor_page := site.GetPage (printf "contributors/%s" $contributor_slug) }}{{ if $contributor_page }}<a href="{{ $contributor_page.RelPermalink }}">{{ $authorName }}</a>{{ else }}{{ $authorName }}{{ end }}{{ if lt $i (sub $numAuthors 1) }}, {{ end }}{{ end }}
+              {{ $numAuthors := len .Authors }}
+              {{ range $i, $authorName := .Authors }}
+              {{ $contrib := partial "helpers/resolve-contributor.html" $authorName }}
+              {{ if $contrib.Page }}<a href="{{ $contrib.Page.RelPermalink }}">{{ $authorName }}</a>{{ else }}{{ $authorName }}{{ end }}{{ if lt $i (sub $numAuthors 1) }}, {{ end }}
+              {{ end }}
               {{ end }}
             </p>
             <a href="{{ .Permalink }}" class="font-semibold text-xs text-primary dark:text-darkmode-primary hover:underline block mt-auto pt-2 self-start">

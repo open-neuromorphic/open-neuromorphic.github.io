@@ -1,67 +1,56 @@
 {{ $ctx := . }}
 {{ $title_override := "" }}
 {{ if reflect.IsMap . }}
-  {{ $ctx = .context }}
-  {{ $title_override = .title }}
+{{ $ctx = .Context | default .context | default . }}
+{{ $title_override = .title | default "" }}
 {{ end }}
 
 <div class="author-bios-section mt-12 pt-8">
   <h2 class="text-3xl font-bold mb-8">
     {{ if $title_override }}
-      {{ $title_override }}
+    {{ $title_override }}
     {{ else }}
-      About the Author{{ if gt (len $ctx.Params.author) 1 }}s{{ end }}
+    About the Author{{ if gt (len $ctx.Params.author) 1 }}s{{ end }}
     {{ end }}
   </h2>
   {{ with $ctx.Params.author }}
-  {{ $authors := . }}
-  {{ range $index, $authorName := $authors }}
+  {{ range $index, $authorName := . }}
   {{ $isFirstAuthor := eq $index 0 }}
-  {{ $nameForSlug := $authorName | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" }}
-  {{ $contributorSlug := $nameForSlug | anchorize }}
-  {{ $contributorPage := site.GetPage (printf "contributors/%s" $contributorSlug) }}
+  {{ $contrib := partial "helpers/resolve-contributor.html" $authorName }}
 
-  <div class="author-bio-item mb-8 flex flex-col {{ if $isFirstAuthor }}md:flex-row{{ else }}md:flex-row{{ end }} items-start gap-6">
-    {{ if $contributorPage }}
-    {{ with $contributorPage.Params.image }}
-    <div class="flex-shrink-0 text-center">
-      <a href="{{ $contributorPage.RelPermalink }}">
-        {{ partial "image" (dict "Src" . "Context" $contributorPage "Alt" $contributorPage.Title "Class" (printf "rounded-full object-cover shadow-md mx-auto %s" (cond $isFirstAuthor "w-32 h-32" "w-24 h-24")) "Size" (cond $isFirstAuthor "128x128" "96x96") "Command" "Fill") }}
+  <div class="author-bio-item mb-8 flex flex-col md:flex-row items-start gap-6">
+    <div class="flex-shrink-0 text-center mx-auto md:mx-0">
+      {{ if $contrib.ImageResource }}
+      <a href="{{ $contrib.Page.RelPermalink }}">
+        <img src="{{ ($contrib.ImageResource.Fill (cond $isFirstAuthor "128x128" "96x96")).RelPermalink }}" alt="{{ $contrib.Page.Title }}" class="rounded-full object-cover shadow-md mx-auto {{ cond $isFirstAuthor "w-32 h-32" "w-24 h-24" }}">
       </a>
+      {{ else }}
+      <div class="{{ cond $isFirstAuthor "w-32 h-32" "w-24 h-24" }} bg-gray-200 dark:bg-darkmode-theme-dark rounded-full flex items-center justify-center mx-auto">
+      {{ partial "icon.html" (dict "style" "solid" "name" "user" "class" "text-4xl text-gray-400") }}
     </div>
-    {{ else }}
-    <div class="flex-shrink-0 {{ cond $isFirstAuthor "w-32 h-32" "w-24 h-24" }} bg-gray-200 dark:bg-darkmode-theme-dark rounded-full flex items-center justify-center mx-auto">
-    {{ partial "icon.html" (dict "style" "solid" "name" "user" "class" "text-4xl text-gray-400") }}
+    {{ end }}
   </div>
-  {{ end }}
-  <div class="flex-grow text-center {{ if $isFirstAuthor }}md:text-left{{ else }}md:text-left{{ end }}">
+  <div class="flex-grow text-center md:text-left">
     <h3 class="text-2xl font-semibold mb-1">
-      <a href="{{ $contributorPage.RelPermalink }}" class="text-dark dark:text-darkmode-dark hover:text-primary dark:hover:text-darkmode-primary">{{ $authorName }}</a>
+      {{ if $contrib.Page }}
+      <a href="{{ $contrib.Page.RelPermalink }}" class="text-dark dark:text-darkmode-dark hover:text-primary dark:hover:text-darkmode-primary">{{ $authorName }}</a>
+      {{ else }}
+      {{ $authorName }}
+      {{ end }}
     </h3>
-    <div class="prose prose-sm dark:prose-invert max-w-none text-text dark:text-darkmode-text">
-      {{ $contributorPage.Description | plainify }}
-    </div>
-    {{ with $contributorPage.Params.social }}
-    <ul class="contributor-socials flex justify-center {{ if $isFirstAuthor }}md:justify-start{{ else }}md:justify-start{{ end }} space-x-3 mt-4">
+    {{ if $contrib.Page }}
+    <div class="prose prose-sm dark:prose-invert max-w-none text-text dark:text-darkmode-text">{{ $contrib.Page.Description | plainify }}</div>
+    {{ with $contrib.Page.Params.social }}
+    <ul class="contributor-socials flex justify-center md:justify-start space-x-3 mt-4">
       {{ range . }}
-      <li>
-        <a href="{{ .link | safeURL }}" target="_blank" rel="noopener noreferrer" aria-label="{{ .title }}" class="text-xl">
-          {{ $iconData := partial "helpers/parse-fa-class.html" .icon }}{{ partial "icon.html" (dict "style" $iconData.style "name" $iconData.name "class" "") }}
-        </a>
-      </li>
+      <li><a href="{{ .link | safeURL }}" target="_blank" rel="noopener noreferrer" class="text-xl">{{ $iconData := partial "helpers/parse-fa-class.html" .icon }}{{ partial "icon.html" (dict "style" $iconData.style "name" $iconData.name) }}</a></li>
       {{ end }}
     </ul>
     {{ end }}
-  </div>
-  {{ else }}
-  <div class="w-24 h-24 bg-gray-200 dark:bg-darkmode-theme-dark rounded-full flex items-center justify-center mx-auto md:mx-0 flex-shrink-0">
-    {{ partial "icon.html" (dict "style" "solid" "name" "user" "class" "text-4xl text-gray-400") }}
-  </div>
-  <div class="flex-grow text-center md:text-left">
-    <h3 class="text-2xl font-semibold mb-1">{{ $authorName }}</h3>
+    {{ else }}
     <p class="text-sm text-gray-500 italic">Contributor profile not found.</p>
+    {{ end }}
   </div>
-  {{ end }}
 </div>
 {{ end }}
 {{ end }}

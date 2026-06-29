@@ -1,10 +1,10 @@
 const { join, dirname, basename, sep } = require('path');
-const { readdir, readFile, stat, mkdir, writeFile } = require('fs/promises');
+const { readFile, mkdir, writeFile } = require('fs/promises');
 const mimeTypes = require('mime-types');
 const crypto = require('crypto');
 const matter = require('gray-matter');
+const { pathExists, findMarkdownFiles } = require('./lib/utils');
 
-// --- Configuration ---
 const PROJECT_ROOT = process.cwd();
 const CONTENT_ROOT_DIR = join(PROJECT_ROOT, 'content');
 const STATIC_DIR = join(PROJECT_ROOT, 'static');
@@ -26,15 +26,6 @@ const SIZES = [
 ];
 const EVENT_SIZE = { width: 1280, height: 1600, suffix: 'portrait' };
 
-// --- Helper Functions ---
-async function pathExists(path) {
-  try { await stat(path); return true; } catch { return false; }
-}
-
-async function isDirectory(path) {
-  try { return (await stat(path)).isDirectory(); } catch { return false; }
-}
-
 async function ensureDir(dirPath) {
   try { await mkdir(dirPath, { recursive: true }); }
   catch (err) { if (err.code !== 'EEXIST') throw err; }
@@ -54,35 +45,13 @@ function slugify(text) {
     .replace(/-+$/, '');
 }
 
-async function findMarkdownFiles(dir) {
-  let entries;
-  try { entries = await readdir(dir); } catch (err) { console.warn(`Could not read directory ${dir}: ${err.message}`); return []; }
-  const markdownFiles = [];
-  for (const entry of entries) {
-    const fullPath = join(dir, entry);
-    if (await isDirectory(fullPath)) {
-      markdownFiles.push(...await findMarkdownFiles(fullPath));
-    } else if (entry === 'index.md' || entry === '_index.md') {
-      markdownFiles.push(fullPath);
-    }
-  }
-  return markdownFiles;
-}
-
 function parseFrontMatter(content) {
-  try {
-    return matter(content).data || {};
-  } catch(e) {
-    return {};
-  }
+  try { return matter(content).data || {}; } catch(e) { return {}; }
 }
 
 async function getImageDataUri(filePath) {
   try {
-    if (!filePath || !(await pathExists(filePath))) {
-      console.warn(`⚠️ Image file not found at ${filePath}`);
-      return null;
-    }
+    if (!filePath || !(await pathExists(filePath))) return null;
     const buffer = await readFile(filePath);
     return `data:${mimeTypes.lookup(filePath) || 'image/png'};base64,${buffer.toString('base64')}`;
   } catch (err) {
@@ -96,18 +65,14 @@ async function getContributorImagePath(authorName) {
   const slug = slugify(authorName);
   const contributorDir = join(CONTENT_ROOT_DIR, 'contributors', slug);
   const mdPath = join(contributorDir, 'index.md');
-
   if (await pathExists(mdPath)) {
     const content = await readFile(mdPath, 'utf8');
     const fm = parseFrontMatter(content);
-    if (fm.image) {
-      return join(contributorDir, fm.image);
-    }
+    if (fm.image) return join(contributorDir, fm.image);
   }
   return null;
 }
 
-// --- Main Script ---
 async function collectData() {
   console.log('📊 Collecting OG image data and calculating hashes...');
   await ensureDir(TMP_DIR);
@@ -122,122 +87,71 @@ async function collectData() {
   const absoluteLogoPath = join(ASSETS_DIR, LOGO_PATH_IN_ASSETS);
   const logoDataUri = await getImageDataUri(absoluteLogoPath);
   if (!logoDataUri) {
-    console.error(`❌ Critical: Could not load logo from ${absoluteLogoPath}. Cannot proceed.`);
+    console.error(`❌ Critical: Could not load logo from ${absoluteLogoPath}.`);
     process.exit(1);
   }
-
-  const absoluteBackgroundPath = join(ASSETS_DIR, BACKGROUND_IMAGE_PATH_IN_ASSETS);
-  const backgroundDataUri = await getImageDataUri(absoluteBackgroundPath);
 
   const outputData = {
     globalHash,
     logoDataUri,
-    backgroundDataUri: backgroundDataUri || '',
+    backgroundDataUri: await getImageDataUri(join(ASSETS_DIR, BACKGROUND_IMAGE_PATH_IN_ASSETS)) || '',
     pages: [],
   };
 
-  const homepageContentHash = createHash(HOMEPAGE_TITLE + HOMEPAGE_DESCRIPTION);
-  const homepageFinalHash = createHash(homepageContentHash + globalHash);
   const homepageOgDir = join(STATIC_DIR, 'images');
   await ensureDir(homepageOgDir);
-
-  const homepageOutputs = SIZES.map(size => ({
-    path: join(homepageOgDir, `og-image-${size.suffix}.${OUTPUT_FORMAT}`),
-    width: size.width,
-    height: size.height,
-    template: 'default'
-  }));
-
   outputData.pages.push({
     title: HOMEPAGE_TITLE,
     description: HOMEPAGE_DESCRIPTION,
-    outputs: homepageOutputs,
-    finalHash: homepageFinalHash
+    outputs: SIZES.map(s => ({ path: join(homepageOgDir, `og-image-${s.suffix}.${OUTPUT_FORMAT}`), width: s.width, height: s.height, template: 'default' })),
+    finalHash: createHash(createHash(HOMEPAGE_TITLE + HOMEPAGE_DESCRIPTION) + globalHash)
   });
 
   const markdownFiles = await findMarkdownFiles(CONTENT_ROOT_DIR);
   for (const mdFile of markdownFiles) {
     const pageDirectory = dirname(mdFile);
     try {
-      const mdContent = await readFile(mdFile, 'utf8');
-      const fm = parseFrontMatter(mdContent);
-      const { title, description, draft, exclude_sitemap, upcoming, author, date, start_time, end_time, time_zone } = fm;
+      const fm = parseFrontMatter(await readFile(mdFile, 'utf8'));
+      if (fm.draft || fm.exclude_sitemap || !fm.title || !fm.description) continue;
 
-      if (draft || exclude_sitemap || !title || !description) {
-        continue;
-      }
-
-      const relativePath = join(dirname(mdFile), basename(mdFile)).replace(CONTENT_ROOT_DIR + sep, '');
-      const pathParts = relativePath.split(sep);
-      const section = pathParts.length > 1 ? pathParts[0] : '';
-      const isSinglePage = basename(mdFile) === 'index.md';
-
-      let contentType = fm.type || section;
+      const pathParts = join(dirname(mdFile), basename(mdFile)).replace(CONTENT_ROOT_DIR + sep, '').split(sep);
+      let contentType = fm.type || (pathParts.length > 1 ? pathParts[0] : '');
       if (pathParts.includes('hacking-hours')) contentType = 'hacking-hours';
       if (pathParts.includes('student-talks')) contentType = 'student-talks';
 
-      const isEventCategory = ['workshops', 'student-talks', 'hacking-hours'].includes(contentType);
-      const isSingleEventPage = isEventCategory && isSinglePage;
-
-      let pageOutputs = SIZES.map(size => ({
-        path: join(pageDirectory, `${basename(pageDirectory)}-og-${size.suffix}.${OUTPUT_FORMAT}`),
-        width: size.width,
-        height: size.height,
-        template: 'default'
-      }));
-
-      let contentToHash = title + description;
-      let pageData = { title, description, outputs: pageOutputs };
+      const isSingleEventPage = ['workshops', 'student-talks', 'hacking-hours'].includes(contentType) && basename(mdFile) === 'index.md';
+      let pageOutputs = SIZES.map(s => ({ path: join(pageDirectory, `${basename(pageDirectory)}-og-${s.suffix}.${OUTPUT_FORMAT}`), width: s.width, height: s.height, template: 'default' }));
+      let pageData = { title: fm.title, description: fm.description, outputs: pageOutputs };
+      let contentToHash = fm.title + fm.description;
 
       if (isSingleEventPage) {
-        const og16x9Output = pageOutputs.find(o => o.path.endsWith('-og-16x9.jpg'));
-        if (og16x9Output) {
-          og16x9Output.template = 'youtube';
-          og16x9Output.width = 1280;
-          og16x9Output.height = 720;
-        }
+        const og16x9 = pageOutputs.find(o => o.path.endsWith('-og-16x9.jpg'));
+        if (og16x9) { og16x9.template = 'youtube'; og16x9.width = 1280; og16x9.height = 720; }
 
-        const isUpcomingEvent = upcoming === true;
-        pageData.eventDate = new Date(date).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-        pageData.eventTime = isUpcomingEvent ? `${start_time} - ${end_time} ${time_zone}` : '';
+        pageData.eventDate = fm.upcoming ? new Date(fm.date).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : '';
+        pageData.eventTime = fm.upcoming ? `${fm.start_time} - ${fm.end_time} ${fm.time_zone}` : '';
+        pageData.speakers = [];
 
-        let speakers = [];
-        if (author && Array.isArray(author)) {
-          for (const name of author) {
+        if (Array.isArray(fm.author)) {
+          for (const name of fm.author) {
             const imgPath = await getContributorImagePath(name);
-            const dataUri = imgPath ? await getImageDataUri(imgPath) : null;
-            speakers.push({ name: name, imageUri: dataUri });
+            pageData.speakers.push({ name, imageUri: imgPath ? await getImageDataUri(imgPath) : null });
           }
         }
-        pageData.speakers = speakers;
-
-        if (isUpcomingEvent) {
-          pageOutputs.push({
-            path: join(pageDirectory, `${basename(pageDirectory)}-og-${EVENT_SIZE.suffix}.${OUTPUT_FORMAT}`),
-            width: EVENT_SIZE.width,
-            height: EVENT_SIZE.height,
-            template: 'event'
-          });
+        if (fm.upcoming) {
+          pageOutputs.push({ path: join(pageDirectory, `${basename(pageDirectory)}-og-${EVENT_SIZE.suffix}.${OUTPUT_FORMAT}`), width: EVENT_SIZE.width, height: EVENT_SIZE.height, template: 'event' });
         }
-
-        contentToHash += pageData.eventDate + pageData.eventTime + JSON.stringify(speakers);
+        contentToHash += pageData.eventDate + pageData.eventTime + JSON.stringify(pageData.speakers);
       }
-
-      const finalHash = createHash(contentToHash + globalHash);
-      pageData.finalHash = finalHash;
-
+      pageData.finalHash = createHash(contentToHash + globalHash);
       outputData.pages.push(pageData);
-
     } catch (err) {
       console.error(`❌ Error processing ${mdFile}: ${err.message}`);
     }
   }
 
   await writeFile(OUTPUT_JSON_PATH, JSON.stringify(outputData, null, 2));
-  console.log(`✅ Data for ${outputData.pages.length} pages collected and saved to ${OUTPUT_JSON_PATH}.`);
+  console.log(`✅ Data for ${outputData.pages.length} pages collected.`);
 }
 
-collectData().catch(err => {
-  console.error("🔥 Uncaught error during data collection:", err);
-  process.exit(1);
-});
+collectData().catch(err => { console.error("🔥 Error:", err); process.exit(1); });

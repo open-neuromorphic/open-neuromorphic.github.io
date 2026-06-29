@@ -1,7 +1,12 @@
-{{/* layouts/partials/components/event-card.html */}}
-{{ $ctx := .Context | default .context | default . }}
-{{ $variant := .variant | default "grid" }}
-{{ $image_size := .image_size | default "500x" }}
+{{ $ctx := . }}
+{{ $variant := "grid" }}
+{{ $image_size := "500x" }}
+
+{{ if reflect.IsMap . }}
+{{ $ctx = .Context | default .context | default . }}
+{{ $variant = .variant | default "grid" }}
+{{ $image_size = .image_size | default "500x" }}
+{{ end }}
 
 {{ $thumb := partial "helpers/resolve-thumbnail.html" $ctx }}
 {{ $video_id := $ctx.Params.video }}
