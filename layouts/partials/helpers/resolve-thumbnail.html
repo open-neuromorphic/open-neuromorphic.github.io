@@ -1,0 +1,42 @@
+{{- $page := . -}}
+{{- $img_resource := "" -}}
+{{- $img_url := "" -}}
+{{- $img_alt := $page.Title -}}
+
+{{- /* 1. Check for `image` in front matter */ -}}
+{{- with $page.Params.image -}}
+{{- $image_param := . -}}
+{{- with $page.Resources.GetMatch $image_param -}}
+{{- $img_resource = . -}}
+{{- else -}}
+{{- $asset_or_static_path := strings.TrimPrefix "/" $image_param -}}
+{{- with resources.Get $asset_or_static_path -}}
+{{- $img_resource = . -}}
+{{- else -}}
+{{- if fileExists (printf "static/%s" $asset_or_static_path) -}}
+{{- $img_url = relURL $asset_or_static_path -}}
+{{- end -}}
+{{- end -}}
+{{- end -}}
+{{- end -}}
+
+{{- /* 2. If not found, check for auto-generated OG image */ -}}
+{{- if and (not $img_resource) (not $img_url) -}}
+{{- if $page.File -}}
+{{- $page_slug := path.Base $page.File.Dir -}}
+{{- $og_image_name := printf "%s-og-16x9.jpg" $page_slug -}}
+{{- with $page.Resources.GetMatch $og_image_name -}}
+{{- $img_resource = . -}}
+{{- end -}}
+{{- end -}}
+{{- end -}}
+
+{{- /* 3. Final fallback to the default placeholder */ -}}
+{{- if and (not $img_resource) (not $img_url) -}}
+{{- with resources.Get "images/workshop-thumbnail-default.png" -}}
+{{- $img_resource = . -}}
+{{- $img_alt = "Default Open Neuromorphic Event Thumbnail" -}}
+{{- end -}}
+{{- end -}}
+
+{{- return (dict "Resource" $img_resource "URL" $img_url "Alt" $img_alt) -}}

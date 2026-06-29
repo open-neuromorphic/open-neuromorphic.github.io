@@ -1,21 +1,9 @@
-{{ $ctx := .Context }}
+{{/* layouts/partials/components/event-card.html */}}
+{{ $ctx := .Context | default .context | default . }}
 {{ $variant := .variant | default "grid" }}
 {{ $image_size := .image_size | default "500x" }}
-{{ $default_image_path := .default_image_path | default "images/workshop-thumbnail-default.png" }}
 
-{{ $image_param := $ctx.Params.image }}
-
-{{/* Fallback: Check for generated OG image in bundle if explicit image is missing */}}
-{{ if not $image_param }}
-{{ if $ctx.File }}
-{{ $pageSlug := path.Base $ctx.File.Dir }}
-{{ $ogImageName := printf "%s-og-16x9.jpg" $pageSlug }}
-{{ with $ctx.Resources.GetMatch $ogImageName }}
-{{ $image_param = .Name }}
-{{ end }}
-{{ end }}
-{{ end }}
-
+{{ $thumb := partial "helpers/resolve-thumbnail.html" $ctx }}
 {{ $video_id := $ctx.Params.video }}
 
 {{ $base_class := "event-card" }}
@@ -24,21 +12,18 @@
 <div class="{{ $base_class }} {{ $variant_class }} {{ if eq $variant "wide" }}row{{ end }}">
 {{/* Media Column */}}
 <div class="{{ if eq $variant "wide" }}lg:col-4 md:col-12{{ end }} {{ $base_class }}__media-container">
-
 {{ if and (eq $variant "featured") $video_id }}
 <div class="mb-4 rounded">
   {{ partial "youtube-lite.html" (dict "Id" $video_id) }}
 </div>
-{{ else if $image_param }}
-<a href="{{ $ctx.RelPermalink }}" class="{{ $base_class }}__image-link relative block group">
-  {{ partial "image" (dict "Src" $image_param "Context" $ctx "Alt" $ctx.Title "Class" (printf "%s__image" $base_class) "Size" $image_size) }}
-  {{ if $video_id }}
-  {{ partial "components/video-play-overlay.html" (dict "rounding_class" "rounded") }}
-  {{ end }}
-</a>
 {{ else }}
 <a href="{{ $ctx.RelPermalink }}" class="{{ $base_class }}__image-link relative block group">
-  {{ partial "image" (dict "Src" $default_image_path "Alt" $ctx.Title "Class" (printf "%s__image %s__image--default" $base_class $base_class) "Size" $image_size) }}
+  {{ if $thumb.Resource }}
+  {{ $processed := $thumb.Resource.Resize (printf "%s Lanczos" $image_size) }}
+  <img src="{{ $processed.RelPermalink }}" alt="{{ $thumb.Alt }}" class="{{ $base_class }}__image w-full object-cover rounded">
+  {{ else if $thumb.URL }}
+  <img src="{{ $thumb.URL }}" alt="{{ $thumb.Alt }}" class="{{ $base_class }}__image w-full object-cover rounded">
+  {{ end }}
   {{ if $video_id }}
   {{ partial "components/video-play-overlay.html" (dict "rounding_class" "rounded") }}
   {{ end }}

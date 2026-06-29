@@ -1,0 +1,2 @@
+{{ $sorted_founders := sort (.Page.Params.founders | default slice) "member_id" "asc" }}
+{{ partial "components/person-grid.html" (dict "people" $sorted_founders "role_default" "Founder") }}

@@ -15,4 +15,4 @@ These sessions are more focused than our general community calls, aiming to prod
 
 A core goal of Hacking Hours is to improve the neuromorphic software ecosystem. Below is a preview of open-source projects that are actively looking for contributors. This is a great way to get involved and make a real impact on the tools we all use.
 
-{{< community_projects_mini_board >}}
+{{< community-projects-mini-board >}}
