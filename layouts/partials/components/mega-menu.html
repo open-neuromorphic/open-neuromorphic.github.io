@@ -2,21 +2,25 @@
   <div class="container mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-4">
       {{ range .Children.ByWeight }}
-      <a href="{{ .URL | relLangURL }}" class="mega-menu-item">
-        <div class="flex items-start">
-          {{ with .Params.icon }}
-          {{ $iconData := partial "helpers/parse-fa-class.html" . }}{{ partial "icon.html" (dict "style" $iconData.style "name" $iconData.name "class" "text-2xl text-primary dark:text-darkmode-primary mr-4 mt-1 flex-shrink-0") }}
-          {{ end }}
-          <div>
-            <span class="font-semibold text-lg text-dark dark:text-darkmode-dark leading-tight">{{ .Name }}</span>
-            {{ with .Params.description }}
-            <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
-              {{ . }}
-            </p>
+        {{ $href := .URL }}
+        {{ if not (findRE "^http" $href) }}
+          {{ with site.GetPage $href }}{{ $href = .RelPermalink }}{{ end }}
+        {{ end }}
+        <a href="{{ $href }}" class="mega-menu-item">
+          <div class="flex items-start">
+            {{ with .Params.icon }}
+              {{ $iconData := partial "helpers/parse-fa-class.html" . }}{{ partial "icon.html" (dict "style" $iconData.style "name" $iconData.name "class" "text-2xl text-primary dark:text-darkmode-primary mr-4 mt-1 flex-shrink-0") }}
             {{ end }}
+            <div>
+              <span class="font-semibold text-lg text-dark dark:text-darkmode-dark leading-tight">{{ .Name }}</span>
+              {{ with .Params.description }}
+                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                  {{ . }}
+                </p>
+              {{ end }}
+            </div>
           </div>
-        </div>
-      </a>
+        </a>
       {{ end }}
     </div>
   </div>

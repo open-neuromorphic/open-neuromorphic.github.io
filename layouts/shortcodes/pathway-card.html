@@ -16,7 +16,7 @@
   {{ with site.GetPage $cta_link_path }}
     {{ $final_cta_link = .RelPermalink }}
   {{ else }}
-    {{ $final_cta_link = $cta_link_path | relLangURL }}
+    {{ $final_cta_link = $cta_link_path }}
   {{ end }}
 {{ end }}
 
@@ -36,7 +36,7 @@
         {{ with site.GetPage $link_path }}
           {{ $final_url = .RelPermalink }}
         {{ else }}
-          {{ $final_url = $link_path | relLangURL }}
+          {{ $final_url = $link_path }}
         {{ end }}
       {{ end }}
       {{ $explore_links = $explore_links | append (dict "title" $link_title "url" $final_url "is_external" $is_external) }}
