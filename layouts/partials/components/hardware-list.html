@@ -1,0 +1,29 @@
+{{ $all_hardware := where site.RegularPages "Type" "neuromorphic-hardware" }}
+{{ $groups := dict }}
+{{ range $all_hardware }}
+{{ if and .Params.product .Params.product.release_year }}
+{{ $year := printf "%v" .Params.product.release_year }}
+{{ $list := index $groups $year | default slice }}
+{{ $list = $list | append . }}
+{{ $groups = merge $groups (dict $year $list) }}
+{{ end }}
+{{ end }}
+
+{{ $years := slice }}
+{{ range $k, $v := $groups }}{{ $years = $years | append $k }}{{ end }}
+{{ $sorted_years := sort $years "value" "desc" }}
+
+<ul class="list-none p-0">
+  {{ range $year := $sorted_years }}
+  {{ $pages := index $groups $year }}
+  <li class="year-section mb-12">
+    <h2 class="text-3xl font-bold mb-6 pb-2 border-b border-border dark:border-darkmode-border text-center lg:text-left">{{ $year }}</h2>
+    <ul class="space-y-6 list-none p-0">
+      {{ $sorted_pages_in_year := sort $pages ".Params.product.release_date" "desc" }}
+      {{ range $sorted_pages_in_year }}
+      <li>{{ partial "components/hardware-card-wide.html" . }}</li>
+      {{ end }}
+    </ul>
+  </li>
+  {{ end }}
+</ul>

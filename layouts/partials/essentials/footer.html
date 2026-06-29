@@ -20,7 +20,7 @@
         <ul class="social-icons flex justify-center md:justify-start space-x-3">
           {{ range site.Data.social.main }}
           <li>
-            <a target="_blank" aria-label="{{ .name }}" rel="nofollow noopener" href="{{ .link | safeURL }}" class="bg-gray-700 hover:bg-[var(--color-primary-new)] text-white">
+            <a target="_blank" aria-label="{{ .name }}" rel="nofollow noopener" href="{{ .link | safeURL }}" class="bg-gray-700 hover:bg-primary dark:hover:bg-darkmode-primary text-white">
               {{ $iconData := partial "helpers/parse-fa-class.html" .icon }}
               {{ partial "icon.html" (dict "style" $iconData.style "name" $iconData.name) }}
             </a>

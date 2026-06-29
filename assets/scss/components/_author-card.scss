@@ -1,26 +1,25 @@
 .author-card {
-  // ... (any existing .author-card styles) ...
 
-  &__image-wrapper { 
+  &__image-wrapper {
     @apply mx-auto;
   }
 
   &__image {
     @apply rounded-full object-cover;
-    
+
     &--default {
-     @apply mb-6;
-     width: 120px;
-     height: 120px;
+      @apply mb-6;
+      width: 120px;
+      height: 120px;
     }
 
     &--compact {
-     @apply mb-2;
-     width: 100px; 
-     height: 100px;
+      @apply mb-2;
+      width: 100px;
+      height: 100px;
     }
   }
-  
+
   &__image-placeholder {
     @apply bg-gray-200 dark:bg-darkmode-theme-dark flex items-center justify-center;
     i {
@@ -29,40 +28,36 @@
   }
 
   &__title {
-    // Base title styles, adjust if needed
     &--compact {
-      // Compact title specific styles
     }
     &--default {
-      @apply mb-3; // Default title margin
+      @apply mb-3;
     }
   }
 
   &__role {
-    // Base role styles
     &--compact {
       @apply text-sm text-text dark:text-darkmode-text mt-1;
     }
   }
 
   &__description {
-    @apply mb-4; // For the non-compact summary
+    @apply mb-4;
   }
 
   &__social-icons {
-    // Styles for social icons if not compact
   }
 
   &__initiatives-container {
-    @apply my-2 ; // Margin top/bottom, align text left
+    @apply my-2 ;
   }
 
   &__initiatives-heading {
-    @apply text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1; // Small, slightly muted heading
+    @apply text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1;
   }
 
   &__initiatives-list {
-    @apply list-none p-0 m-0 space-y-0.5; // Reset list styles, add small space between items
+    @apply list-none p-0 m-0 space-y-0.5;
   }
 
   &__initiative-item {
@@ -72,12 +67,11 @@
   }
 
   &__badges-container {
-    @apply flex flex-wrap justify-center gap-1.5 my-2; // Manages layout of badges
+    @apply flex flex-wrap justify-center gap-1.5 my-2;
   }
 
   &__badge {
     @apply inline-block bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200 text-xs font-medium px-2 py-0.5 rounded-md;
-    // Badge styling: colors, padding, rounding. Adjusted to be a bit more distinct.
   }
 
   &__no-contributions-message {
@@ -86,9 +80,5 @@
 }
 
 .author-card-compact {
-  @apply bg-theme-light dark:bg-darkmode-theme-light rounded-lg p-4 text-center shadow;
-  @apply flex flex-col justify-start items-center h-full;
-
-  // Specific overrides for compact card title if general title styles conflict
-  // .author-card__title--compact can be used here or within the main .author-card block
+  @apply bg-theme-light dark:bg-darkmode-theme-light rounded-lg p-4 text-center shadow flex flex-col justify-start items-center h-full;
 }

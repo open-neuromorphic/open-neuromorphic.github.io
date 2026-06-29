@@ -1,20 +1,11 @@
 // assets/scss/_typography-custom.scss
-// assets/scss/_typography-custom.scss
 
-// Define link colors as variables
-$link-color: var(--color-primary-new);
-$link-hover-color: var(--color-secondary-new);
-$link-underline-color: color-mix(in srgb, var(--color-primary-new) 40%, transparent);
-$link-underline-hover-color: var(--color-secondary-new);
-
-$dark-link-color: var(--color-darkmode-primary);
-$dark-link-hover-color: #ffffff;
-$dark-link-underline-color: color-mix(in srgb, var(--color-darkmode-primary) 50%, transparent);
-$dark-link-underline-hover-color: #ffffff;
+$link-underline-color: color-mix(in srgb, var(--color-primary) 40%, transparent);
+$link-underline-hover-color: var(--color-secondary);
 
 // Gradient text class
 .gradient-text {
-  background: linear-gradient(135deg, var(--color-primary-new) 0%, var(--color-secondary-new) 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -27,12 +18,7 @@ $dark-link-underline-hover-color: #ffffff;
 }
 .navbar-nav .nav-link:hover,
 .navbar-nav .nav-link.active {
-  color: var(--color-primary-new);
-}
-
-// Ensure the logo text picks up the gradient if it's text-based
-.navbar-brand.gradient-text {
-  // Gradient is applied by the class itself.
+  color: theme('colors.primary');
 }
 
 h1.homepage {
@@ -64,8 +50,8 @@ nav#TableOfContents {
   }
 
   li.active > a {
-    background-color: rgba(102, 126, 234, 0.1); // Tint of primary color
-    border-left-color: var(--color-primary-new);
+    background-color: color-mix(in srgb, var(--color-primary) 10%, transparent);
+    border-left-color: var(--color-primary);
   }
 
   ul ul, ol ol {
@@ -78,7 +64,6 @@ nav#TableOfContents {
 .dark {
   nav#TableOfContents {
     a {
-
       &:hover {
         background-color: rgba(255, 255, 255, 0.05);
         border-left-color: theme('colors.darkmode.border');
@@ -86,13 +71,17 @@ nav#TableOfContents {
     }
 
     li.active > a {
-      background-color: rgba(188, 251, 255, 0.1); // Tint of dark primary
-      border-left-color: theme('colors.darkmode.primary');
+      color: var(--color-primary) !important;
+      font-weight: 600 !important;
     }
 
     ul ul, ol ol {
       border-left-color: theme('colors.darkmode.border');
     }
+  }
+
+  .author-card-compact h4 a {
+    color: var(--color-primary) !important;
   }
 }
 
@@ -116,7 +105,6 @@ figcaption {
     margin-bottom: 10px;
   }
 }
-
 
 //Links
 a {
@@ -144,13 +132,6 @@ section a.social-link-container .social-link-text,
   &:hover {
     text-decoration-color: $link-underline-hover-color !important;
   }
-
-  .dark & {
-    text-decoration-color: $dark-link-underline-color !important;
-    &:hover {
-      text-decoration-color: $dark-link-underline-hover-color !important;
-    }
-  }
 }
 
 // Container for hardware card link, which contains the h3 we want styled
@@ -177,19 +158,8 @@ h1 a, h2 a, h3 a, h4 a, h5 a {
     color: #ffffff !important;
   }
 
-  nav#TableOfContents {
-    li.active a {
-      color: #bcfbff !important;
-      font-weight: 600 !important;
-    }
-  }
-
   .social-icons a {
     color: #000 !important;
-  }
-
-  .author-card-compact h4 a {
-    color: #bcfbff !important;
   }
 
   .role-compact {
@@ -199,7 +169,7 @@ h1 a, h2 a, h3 a, h4 a, h5 a {
 
 // Style for the date badge within an event card context
 .event-card .date-badge {
-  background-color: var(--color-primary-new);
+  background-color: theme('colors.primary');
   @apply text-white py-2 px-4 rounded-md text-sm font-semibold inline-block;
 }
 
@@ -218,26 +188,23 @@ a.breadcrumb-link-parent {
 }
 
 .image-attribution-caption {
-  // Positioning for the container div
   @apply text-right text-xs italic -mt-8 mb-4 pr-2 relative z-10;
 
   .attribution-backdrop {
-    // Styling for the text's background
     @apply inline-block px-2 py-1 rounded-md;
-    background-color: rgba(0, 0, 0, 0.6); // Semi-transparent black
-    backdrop-filter: blur(2px); // Optional: adds a nice blur effect on supported browsers
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(2px);
     color: white;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); // Adds a subtle shadow for pop
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 
-    // Link styling within the backdrop
     a {
-      color: #bcfbff !important; // Bright, readable link color
+      color: theme('colors.primary') !important;
       text-decoration: underline !important;
       text-underline-offset: 2px;
       transition: color 0.2s;
 
       &:hover {
-        color: #ffffff !important; // Brighten on hover
+        color: #ffffff !important;
       }
     }
   }

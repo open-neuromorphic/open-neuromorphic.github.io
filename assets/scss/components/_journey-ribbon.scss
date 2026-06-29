@@ -1,77 +1,61 @@
 .journey-ribbon-card {
   @apply bg-white dark:bg-darkmode-theme-light rounded-xl shadow-lg mb-10 flex flex-col items-center;
-  padding: 1.5rem; /* Default padding */
+  padding: 1.5rem;
 }
 
-@media (min-width: 768px) { /* md breakpoint */
+@media (min-width: 768px) {
   .journey-ribbon-card {
     @apply flex-row items-start;
-    padding: 2rem; /* Larger padding for wider screens */
+    padding: 2rem;
   }
   .journey-ribbon-card.reverse {
     @apply flex-row-reverse;
   }
   .journey-ribbon-card.reverse .journey-ribbon-image-container {
-    @apply mr-0 ml-8; // Adjusted margin forrtl
+    @apply mr-0 ml-8;
   }
 }
 
 .journey-ribbon-image-container {
   @apply flex-shrink-0 w-full mb-6;
-  max-width: 250px; /* Max width for the image on mobile */
+  max-width: 250px;
 }
 
-@media (min-width: 768px) { /* md breakpoint */
+@media (min-width: 768px) {
   .journey-ribbon-image-container {
-    width: 250px; /* Fixed width for image on larger screens */
-    @apply mr-8 mb-0; // margin-right and reset bottom margin
+    width: 250px;
+    @apply mr-8 mb-0;
   }
 }
 
 .journey-ribbon-image {
   @apply w-full h-auto rounded-lg object-cover;
-  max-height: 250px; /* Max height for the image itself */
+  max-height: 250px;
 }
 
 .journey-ribbon-content {
   @apply flex-grow text-center;
 }
-@media (min-width: 768px) { /* md breakpoint */
+@media (min-width: 768px) {
   .journey-ribbon-content {
     @apply text-left;
   }
 }
 
 .journey-ribbon-contributor {
-  @apply text-sm mb-1 italic;
-  color: var(--color-text-muted-new); // Using new var from mockup
-}
-.dark .journey-ribbon-contributor {
-   @apply text-gray-400; // Example dark mode color
+  @apply text-sm mb-1 italic text-gray-600 dark:text-gray-400;
 }
 
 .journey-ribbon-title {
-  @apply text-2xl md:text-3xl font-bold mb-3; // Adjusted size slightly
-  color: var(--color-text-new); // Using new var from mockup
-}
-.dark .journey-ribbon-title {
-  @apply text-darkmode-text;
+  @apply text-2xl md:text-3xl font-bold mb-3 text-dark dark:text-darkmode-dark;
 }
 
 .journey-ribbon-description {
-  @apply text-base mb-6;
-  color: var(--color-text-muted-new); // Using new var from mockup
-}
-.dark .journey-ribbon-description {
-   @apply text-gray-400; // Example dark mode color
+  @apply text-base mb-6 text-gray-600 dark:text-gray-400;
 }
 
 .journey-ribbon-links-title {
-  @apply text-lg font-semibold mt-4 mb-2;
-  color: var(--color-text-new);
-}
-.dark .journey-ribbon-links-title {
-  @apply text-darkmode-light;
+  @apply text-lg font-semibold mt-4 mb-2 text-dark dark:text-darkmode-light;
 }
 
 .journey-ribbon-links ul {
@@ -81,14 +65,10 @@
   @apply mb-1;
 }
 .journey-ribbon-links a {
-  color: var(--color-secondary-new); // Using new var from mockup
-  @apply font-medium no-underline; // remove default Hugo link underline for these
+  @apply font-medium no-underline text-secondary dark:text-darkmode-accent;
 }
 .journey-ribbon-links a:hover {
   @apply underline;
-}
-.dark .journey-ribbon-links a {
-  color: var(--color-accent-new); // Example dark mode link color, adjust as needed
 }
 
 .journey-ribbon-cta {

@@ -49,7 +49,7 @@
 
 .event-type-tag-link {
   @apply inline-block font-semibold no-underline rounded-full text-xs transition-transform transform;
-  background: linear-gradient(135deg, var(--color-primary-new) 0%, var(--color-secondary-new) 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
   color: white !important;
   padding: 0.125rem 0.625rem !important;
 
@@ -58,7 +58,7 @@
   }
 
   .dark & {
-    background: linear-gradient(135deg, theme('colors.darkmode.primary') 0%, color-mix(in srgb, theme('colors.darkmode.primary') 80%, black) 100%);
+    background: linear-gradient(135deg, var(--color-primary) 0%, color-mix(in srgb, var(--color-primary) 80%, black) 100%);
     color: theme('colors.darkmode.text') !important;
   }
 }

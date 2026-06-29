@@ -1,15 +1,15 @@
 .info-card {
-  @apply bg-blue-100 dark:bg-darkmode-theme-light p-4 rounded-lg block; // 'block' if used on <a>
+  @apply bg-primary/10 dark:bg-darkmode-theme-light p-4 rounded-lg block;
 }
-.info-card-interactive { // For the one with hover effect
+.info-card-interactive {
   @apply info-card transition-transform transform hover:scale-105;
 }
 .info-card-title {
   @apply text-xl font-semibold mb-2;
 }
-.info-card-title-large { // For the NC section titles
+.info-card-title-large {
   @apply text-2xl font-bold;
 }
-.info-card-inner-panel { // For the nested dark/light box
-    @apply dark:bg-black bg-theme-light p-4 rounded-lg;
+.info-card-inner-panel {
+  @apply dark:bg-black bg-theme-light p-4 rounded-lg;
 }

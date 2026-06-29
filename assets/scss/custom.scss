@@ -1,13 +1,13 @@
 :root {
-  --color-primary-new: #667eea;
-  --color-secondary-new: #764ba2;
-  --color-accent-new: #f093fb;
-  --color-text-new: #1f2937;
-  --color-text-muted-new: #4b5563;
-  --color-background-new: #f9fafb;
-  --color-card-bg-new: #ffffff;
-  --shadow-lg-new: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --shadow-md-new: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --color-primary: #667eea;
+  --color-secondary: #764ba2;
+  --color-accent: #f093fb;
+}
+
+.dark {
+  --color-primary: #8c9eff;
+  --color-secondary: #9e70c4;
+  --color-accent: #f4b3fc;
 }
 
 // Hero section background with fading checkerboard

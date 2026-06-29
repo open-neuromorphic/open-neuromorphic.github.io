@@ -1,5 +1,6 @@
 ---
-title: "Hardware Name - Manufacturer" # Hardware Title: Clear, include manufacturer (50-60 chars). E.g., "Loihi 2 - Intel"
+title: "{{ replace .Name "-" " " | title }}" # Hardware Title: Clear, include manufacturer (50-60 chars). E.g., "Loihi 2 - Intel"
+product_name: "{{ replace .Name "-" " " | title }}" # Short name used in card/spec-table headers, e.g. "Akida". Distinct from `title`, which includes the manufacturer.
 # Meta Description (SEO): 120-160 characters.
 # For someone searching for this hardware, what is its primary application (e.g., 'real-time AI') and its most standout feature (e.g., 'on-chip learning')?
 # What question does this hardware answer for a researcher or developer?
@@ -24,6 +25,7 @@ product:
   announced_date: "YYYY-MM-DD"
   applications: "Primary applications (e.g., Research, Edge AI, Robotics, Smart Sensing)"
   chip_type: "Digital / Mixed-signal / Analog"
+  interfaces: "I/O interfaces (e.g., UART, AER, SPI, I2C)"
   neurons: "Number or Approx. (e.g., 1 million, 128k)"
   synapses: "Number or Approx. (e.g., 120 million max, 256 million)"
   weight_bits: "e.g., 8-bit, 1-4 bit configurable"
