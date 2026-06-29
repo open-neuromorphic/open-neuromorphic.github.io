@@ -1,20 +1,3 @@
-{{/*
-OUTPUT SCHEMA (slice of dicts):
-Title       string
-Description string
-Date        time.Time   — next occurrence for recurring; page.Date for frontmatter events
-StartTime   string      — "HH:MM"
-EndTime     string      — "HH:MM"
-TimeZone    string
-Permalink   string
-IsRecurring bool
-Authors     []string    — nil for recurring events, use Host instead
-Host        string      — nil for frontmatter events
-LocationName string     — nil for frontmatter events
-LocationURL  string     — nil for frontmatter events
-Image       string
-EventType   string      — human-readable type label
-*/}}
 {{ $allUpcomingEvents := slice }}
 {{ $now := now }}
 {{ $yesterdayStr := ($now.AddDate 0 0 -1).Format "20060102" }}
@@ -22,65 +5,51 @@ EventType   string      — human-readable type label
 
 {{ $fmUpcomingEvents := where site.RegularPages "Params.upcoming" true }}
 {{ range $fmUpcomingEvents }}
-{{ $eventDateStr := .Date.Format "20060102" }}
-{{ if ge $eventDateStr $yesterdayStr }}
-{{ $allUpcomingEvents = $allUpcomingEvents | append (dict
-"Title" .Title
-"Description" .Description
-"Date" .Date
-"StartTime" .Params.start_time
-"EndTime" .Params.end_time
-"TimeZone" .Params.time_zone
-"Permalink" .RelPermalink
-"IsRecurring" false
-"Authors" .Params.author
-"Image" .Params.image
-"EventType" (.Type | humanize | title)
-)}}
-{{ end }}
+  {{ $eventDateStr := .Date.Format "20060102" }}
+  {{ if ge $eventDateStr $yesterdayStr }}
+    {{ $allUpcomingEvents = $allUpcomingEvents | append (dict
+      "Title" .Title
+      "Description" .Description
+      "Date" .Date
+      "StartTime" .Params.start_time
+      "EndTime" .Params.end_time
+      "TimeZone" .Params.time_zone
+      "Permalink" .RelPermalink
+      "IsRecurring" false
+      "Authors" .Params.author
+      "Image" .Params.image
+      "EventType" (.Type | humanize | title)
+      )}}
+  {{ end }}
 {{ end }}
 
 {{ $recurringEventData := site.Data.recurring_events.events }}
 {{ range $recurringEventData }}
-{{ if .active }}
-{{ $targetDayKey := .day_of_week | default "Monday" }}
-{{ $targetDayIndex := index $daysMap $targetDayKey | default 1 }}
-{{ $currentDayIndex := int $now.Weekday }}
-{{ $daysToAdd := sub $targetDayIndex $currentDayIndex }}
-{{ if lt $daysToAdd 0 }}{{ $daysToAdd = add $daysToAdd 7 }}{{ end }}
-{{ if eq $daysToAdd 0 }}
-{{ $eventStartHour := int (substr .start_time 0 2) }}
-{{ $eventStartMinute := int (substr .start_time 3 2) }}
-{{ $nowHour := $now.Hour }}
-{{ $nowMinute := $now.Minute }}
-{{ if or (gt $nowHour $eventStartHour) (and (eq $nowHour $eventStartHour) (ge $nowMinute $eventStartMinute)) }}
-{{ $daysToAdd = 7 }}
-{{ end }}
-{{ end }}
-{{ $nextOccurrenceDate := $now.AddDate 0 0 (int $daysToAdd) }}
+  {{ if .active }}
+    {{ $nextOccurrenceDate := partial "logic/get-next-occurrence-date.html" . }}
 
-{{ $detailsPage := "" }}
-{{ with .details_page_link }}
-{{ $pagePath := strings.TrimSuffix "/" . | strings.TrimPrefix "/" }}
-{{ $detailsPage = site.GetPage $pagePath }}
-{{ end }}
+    {{ $detailsPage := "" }}
+    {{ with .details_page_link }}
+      {{ $pagePath := strings.TrimSuffix "/" . | strings.TrimPrefix "/" }}
+      {{ $detailsPage = site.GetPage $pagePath }}
+    {{ end }}
 
-{{ $allUpcomingEvents = $allUpcomingEvents | append (dict
-"Title" .title
-"Description" .description
-"Date" $nextOccurrenceDate
-"StartTime" .start_time
-"EndTime" .end_time
-"TimeZone" .time_zone
-"Permalink" (cond (ne $detailsPage nil) $detailsPage.RelPermalink (.details_page_link | relLangURL))
-"IsRecurring" true
-"Host" .host
-"LocationName" .location_name
-"LocationURL" .location_url
-"Image" .image
-"EventType" (.id | humanize | title)
-)}}
-{{ end }}
+    {{ $allUpcomingEvents = $allUpcomingEvents | append (dict
+      "Title" .title
+      "Description" .description
+      "Date" $nextOccurrenceDate
+      "StartTime" .start_time
+      "EndTime" .end_time
+      "TimeZone" .time_zone
+      "Permalink" (cond (ne $detailsPage nil) $detailsPage.RelPermalink "")
+      "IsRecurring" true
+      "Host" .host
+      "LocationName" .location_name
+      "LocationURL" .location_url
+      "Image" .image
+      "EventType" (.id | humanize | title)
+      )}}
+  {{ end }}
 {{ end }}
 {{ $sortedAllUpcomingEvents := sort $allUpcomingEvents "Date" "asc" }}
 {{ return $sortedAllUpcomingEvents }}

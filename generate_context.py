@@ -38,7 +38,8 @@ EXCLUDE_EXTENSIONS = {
 
 LAYOUT_EXTENSIONS = {
     ".html", ".md", ".toml", ".yaml", ".yml",
-    ".json", ".js", ".ts", ".scss", ".css"
+    ".json", ".js", ".ts", ".scss", ".css",
+    ".xml", ".mod", ".template"
 }
 
 SCRIPTING_EXTENSIONS = {".py", ".sh"}
@@ -134,6 +135,7 @@ def gather_project_data(root_dir: str, scope: str, since: str = None, frontmatte
     map_paths = []
     bundled_blocks = []
     bundled_count = 0
+    sampling_counts = {}
 
     for root, dirs, files in os.walk(root_dir):
         # Filter directories
@@ -165,11 +167,37 @@ def gather_project_data(root_dir: str, scope: str, since: str = None, frontmatte
             if not is_in_scope(rel_path, scope):
                 continue
 
-            # Restrict scripting extensions to the scripts directory
-            if ext in SCRIPTING_EXTENSIONS and not rel_path.startswith("scripts/"):
+            # Exclude non-Hugo blog research bundles but keep them in map_paths
+            if rel_path.startswith("content/blog/") and ext in {".json", ".csv", ".ipynb", ".py", ".sh", ".txt"}:
+                continue
+            if rel_path.startswith("content/blog/") and f == "Dockerfile":
+                continue
+
+            # Restrict scripting extensions to the scripts directory and self
+            if ext in SCRIPTING_EXTENSIONS and not (rel_path.startswith("scripts/") or rel_path == "generate_context.py"):
                 continue
             # Ensure the file is either a layout file or an allowed script
             if ext not in LAYOUT_EXTENSIONS and ext not in SCRIPTING_EXTENSIONS:
+                continue
+
+            SAMPLING_DIRS = [
+                "content/neuromorphic-computing/hardware",
+                "content/neuromorphic-computing/software/snn-frameworks",
+                "content/neuromorphic-computing/software/data-tools",
+                "content/contributors",
+                "content/neuromorphic-computing/student-talks"
+            ]
+
+            is_sampled_dir = False
+            for s_dir in SAMPLING_DIRS:
+                if rel_path.startswith(s_dir + "/") and rel_path != s_dir + "/_index.md" and ext == ".md":
+                    is_sampled_dir = True
+                    sampling_counts[s_dir] = sampling_counts.get(s_dir, 0) + 1
+                    if sampling_counts[s_dir] > 3:
+                        bundled_blocks.extend([f"### `{rel_path}`", "```markdown", "> *Content elided (schema matches archetype to save tokens)*", "```", ""])
+                        break
+            if is_sampled_dir and sampling_counts.get(s_dir, 0) > 3:
+                bundled_count += 1
                 continue
 
             try:
@@ -217,7 +245,7 @@ RULES:
 2. Always output complete file content — no truncated snippets or diffs.
 3. End every response with a commit message stating WHY and GOAL.
 4. One code block per file, filename as header immediately above.
-5. Internal links: `{{ $p := site.GetPage "path"; $p.RelPermalink }}` — never `relLangURL` with hardcoded paths (breaks subdirectory deploys).
+5. Internal links: `{{ with site.GetPage "path" }}{{ .RelPermalink }}{{ end }}` — never `relLangURL` with hardcoded paths (breaks subdirectory deploys).
 """
 
     print(f"🔍 Crawling project directory and generating datasets (Scope: {args.scope})...")
