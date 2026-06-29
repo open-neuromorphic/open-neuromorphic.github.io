@@ -1,0 +1,10 @@
+.card-surface {
+  @apply bg-theme-light dark:bg-darkmode-theme-light rounded-xl shadow-md transition-all duration-300;
+}
+
+.card-surface-interactive {
+  @apply card-surface;
+  &:hover {
+    @apply shadow-lg -translate-y-1;
+  }
+}

@@ -1,12 +1,9 @@
 .news-card {
-  @apply bg-white dark:bg-darkmode-theme-light rounded-xl p-6 shadow-md transition-all duration-300 ease-in-out;
-  border-left: 4px solid var(--color-accent-new); // using the new pink color
-}
-.news-card:hover {
-  @apply shadow-lg;
+  @apply card-surface-interactive p-6;
+  border-left: 4px solid theme('colors.accent');
 }
 .news-card h4 a:hover {
-  color: var(--color-primary-new); // hover color for news card title
+  @apply text-primary dark:text-darkmode-primary;
 }
 .news-card .news-meta {
   @apply text-xs text-gray-500 dark:text-gray-400 mb-2;

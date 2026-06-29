@@ -1,15 +1,4 @@
-// This class is on the <a> wrapper of the card.
 .hardware-card-wide-link {
-  // Remove the default text-decoration from the entire card link.
+  @apply card-surface-interactive p-4;
   text-decoration: none !important;
-  
-  // Apply a subtle transition to the card for transform and shadow changes.
-  @apply transition-all duration-300 ease-in-out;
-  
-  // On hover, lift the card slightly and increase its shadow for a modern feel.
-  &:hover {
-    @apply transform shadow-lg;
-  }
-
-  // The h3 title inside will be styled automatically by the rules in _typography-custom.scss
 }

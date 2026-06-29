@@ -5,6 +5,7 @@ date: {{ .Date }}
 # What is the single most valuable takeaway for the reader? What problem does this post solve or what question does it answer?
 # Frame it as a promise of value to entice users to click.
 description: "A concise and compelling summary of this blog post, highlighting its key insights and value to the reader."
+tags: [] # e.g. ["research", "hardware", "snn"]. Used for the tags taxonomy/listing pages.
 image: "your-banner-image.png" # Essential for social sharing (OG Image). Recommended: 1200x630px. Place in this post's folder.
 # Optional: Give credit for the banner image. This helps with copyright and shows good practice.
 # image_attribution:

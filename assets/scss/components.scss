@@ -3,7 +3,6 @@ main {
   @apply mb-8;
 }
 
-// section style
 .section {
   @apply py-24 xl:py-28;
   &-sm {
@@ -11,12 +10,10 @@ main {
   }
 }
 
-// container
 .container {
   @apply mx-auto px-4 2xl:max-w-[1320px];
 }
 
-// form style
 .form-input {
   @apply bg-theme-light text-dark placeholder:text-light focus:border-primary dark:border-darkmode-border dark:bg-darkmode-theme-light dark:text-darkmode-light w-full rounded border-transparent px-6 py-4 focus:ring-transparent;
 }
@@ -25,7 +22,6 @@ main {
   @apply font-secondary text-dark dark:text-darkmode-light mb-4 block text-xl font-normal;
 }
 
-// social icons
 .social-icons {
   @apply space-x-4;
   li {
@@ -39,59 +35,36 @@ main {
   }
 }
 
-// content style
 .content {
   @apply prose max-w-none;
   @apply prose-headings:mb-[.6em] prose-headings:mt-[.6em];
-  // Re-map prose heading sizes for better hierarchy within content
   @apply prose-h1:text-h2-sm md:prose-h1:text-h2;
-  // Markdown '#' will be like a global H2
   @apply prose-h2:text-h3-sm md:prose-h2:text-h3;
-  // Markdown '##' will be like a global H3
   @apply prose-h3:text-h4;
-  // Markdown '###' will be like a global H4
   @apply prose-h4:text-h5;
-  // Markdown '#####' will be like a global H5
   @apply prose-h5:text-h6;
-  // Markdown '#####' will be like a global H6
   @apply prose-h6:text-base prose-h6:font-semibold;
-  // Markdown '######' will be base size, bold
 
   @apply prose-img:max-w-full prose-img:rounded;
   @apply prose-hr:border-border prose-hr:dark:border-darkmode-border;
   @apply prose-p:text-base prose-p:text-text prose-p:dark:text-darkmode-text;
 
   blockquote {
-    @apply bg-white dark:bg-darkmode-theme-light rounded-xl p-6 shadow-md transition-all duration-300 ease-in-out not-italic;
-    @apply font-primary text-xl text-dark dark:text-darkmode-light;
-    // Text styling for blockquote
-    border-left: 4px solid var(--color-accent-new); // Pink left border like news-card
-    border-top: none; // Remove other prose borders
+    @apply card-surface-interactive p-6 not-italic font-primary text-xl text-dark dark:text-darkmode-light;
+    border-left: 4px solid var(--color-accent);
+    border-top: none;
     border-right: none;
     border-bottom: none;
 
-    // Remove default prose quotation marks
     &::before, &::after {
       content: "" !important;
     }
-
-    // Ensure p inside blockquote has no extra margin (already handled by base.scss)
-    // Font size/color for p inside blockquote will be inherited from the blockquote's text-xl and text colors.
-
-    &:hover {
-      @apply shadow-lg;
-      // Hover effect like news-card
-    }
   }
 
-  // Correctly closing the blockquote style here
-
-  // Custom list indentation. Overrides prose defaults.
   ul, ol {
     @apply pl-3;
   }
 
-  // Added styles for nested lists
   ul ul,
   ul ol,
   ol ul,
@@ -110,13 +83,11 @@ main {
   @apply prose-a:underline hover:prose-a:text-primary hover:prose-a:dark:text-darkmode-primary;
   @apply prose-li:text-text prose-li:dark:text-darkmode-text;
 
-  // -- NEW MODERN TABLE STYLES --
   table {
     @apply w-full table-auto text-left shadow-md rounded-xl my-8 overflow-hidden;
     border-collapse: separate;
     border-spacing: 0;
 
-    // Remove the default prose border-around-table effect.
     &:before {
       content: none !important;
     }
@@ -132,7 +103,6 @@ main {
       @apply bg-white dark:bg-darkmode-theme-light divide-y divide-gray-200 dark:divide-gray-800;
 
       tr {
-        // Remove default borders from rows, as we use tbody's divide utility
         @apply border-b-0;
         &:nth-of-type(even) {
           @apply bg-gray-50 dark:bg-darkmode-theme-dark/50;

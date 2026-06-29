@@ -1,6 +1,4 @@
-// assets/scss/buttons.scss
-
-// Base .btn style - Added 'no-underline' to prevent link styling
+// Base .btn style
 .btn {
   @apply inline-block rounded border border-transparent px-5 py-2 font-semibold capitalize transition no-underline;
 }
@@ -10,12 +8,10 @@
   @apply rounded-sm px-4 py-1.5 text-sm;
 }
 
-// ----- Project-specific & Updated Theme Button Styles -----
-
-// Project's main primary button (gradient) - e.g., for "Join Discord"
+// Project's main primary button (gradient)
 .btn-new-primary {
   @apply text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 ease-in-out inline-block text-center;
-  background: linear-gradient(135deg, var(--color-primary-new) 0%, var(--color-secondary-new) 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   &:hover {
     @apply transform -translate-y-px;
@@ -23,43 +19,31 @@
   }
 }
 
-// Project's main outline button (uses new theme colors) - e.g., for hero section "Get Involved"
+// Project's main outline button (uses CSS vars for dynamic theme switching)
 .btn-new-outline {
   @apply border-2 font-semibold py-3 px-6 rounded-lg ease-in-out duration-300 inline-block text-center;
   transition-property: background-color, border-color, transform;
-  color: var(--color-primary-new);
-  border-color: var(--color-primary-new);
+  color: var(--color-primary);
+  border-color: var(--color-primary);
   background-color: transparent;
   &:hover {
-    background-color: var(--color-primary-new);
-    @apply text-white;
+    background-color: var(--color-primary);
+    @apply text-white dark:text-darkmode-theme-dark;
   }
 }
 
-// Dark mode override for the outline button
-.dark .btn-new-outline {
-  color: theme('colors.darkmode.primary');
-  border-color: theme('colors.darkmode.primary');
-  &:hover {
-    background-color: theme('colors.darkmode.primary');
-    color: theme('colors.darkmode.theme-dark');
-  }
-}
-
-// Standard .btn-primary (redefined as a solid fill button using new theme colors)
-// Used in 404.html ("Back to home")
+// Standard .btn-primary (redefined as a solid fill button)
 .btn-primary {
   @apply text-white border;
-  background-color: var(--color-primary-new);
-  border-color: var(--color-primary-new);
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
   &:hover {
-    background-color: color-mix(in srgb, var(--color-primary-new) 85%, black);
-    border-color: color-mix(in srgb, var(--color-primary-new) 85%, black);
+    background-color: color-mix(in srgb, var(--color-primary) 85%, black);
+    border-color: color-mix(in srgb, var(--color-primary) 85%, black);
   }
 }
 
-// Standard .btn-outline-primary (redefined to match .btn-new-outline for consistency)
-// Used by some components like event-card's "Learn More".
+// Standard .btn-outline-primary
 .btn-outline-primary {
   @extend .btn-new-outline;
 }
@@ -69,7 +53,7 @@
   @apply inline-block text-xs p-1 py-0 ml-2;
 }
 
-// General button style within sections (removes default link underline)
+// General button style within sections
 section .btn {
   text-decoration-line: none !important;
 }

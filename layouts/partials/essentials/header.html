@@ -1,13 +1,11 @@
 <header class="py-4 bg-white dark:bg-darkmode-theme-light shadow-sm sticky top-0 z-30">
   <nav class="navbar container">
-    <!-- logo -->
     <div class="order-0">
       <a class="navbar-brand block text-2xl font-bold gradient-text" href="{{ site.BaseURL | relLangURL }}">
         {{ site.Params.logo_text | default site.Title }}
       </a>
     </div>
 
-    <!-- hamburger toggler -->
     <button id="nav-toggler" class="lg:hidden order-3 cursor-pointer flex items-center text-dark dark:text-white" aria-label="Open Mobile Menu">
       <svg class="h-6 fill-current" viewBox="0 0 20 20">
         <title>Menu Open</title>
@@ -15,7 +13,6 @@
       </svg>
     </button>
 
-    <!-- Desktop Menu -->
     <ul id="nav-menu" class="navbar-nav hidden lg:flex order-1 w-auto lg:space-x-2 xl:space-x-8">
       {{ $currentPage := . }}
       {{ range site.Menus.main }}
@@ -24,7 +21,7 @@
       {{ $active := eq $menuURL $pageURL }}
       {{ if .HasChildren }}
       <li class="nav-item nav-dropdown group {{ if ne .Identifier "explore-resources" }}relative{{ end }}">
-      <span class="nav-link {{ range .Children }}{{ if eq (.URL | absLangURL) $pageURL }}active{{ end }}{{ end }} inline-flex items-center text-gray-700 dark:text-darkmode-light px-3 py-2 hover:text-[var(--color-primary-new)] dark:hover:text-[var(--color-primary-new)]">
+      <span class="nav-link {{ range .Children }}{{ if eq (.URL | absLangURL) $pageURL }}active{{ end }}{{ end }} inline-flex items-center text-gray-700 dark:text-darkmode-light px-3 py-2 hover:text-primary dark:hover:text-darkmode-primary">
               {{ .Name }}
               <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
             </span>
@@ -34,7 +31,7 @@
       <ul class="nav-dropdown-list lg:group-hover:visible lg:group-hover:opacity-100">
         {{ range .Children.ByWeight }}
         <li class="nav-dropdown-item">
-          <a class="nav-dropdown-link {{ if eq (.URL | absLangURL) $pageURL }}active{{ end }} text-gray-700 dark:text-darkmode-light hover:text-[var(--color-primary-new)] dark:hover:text-[var(--color-primary-new)]"
+          <a class="nav-dropdown-link {{ if eq (.URL | absLangURL) $pageURL }}active{{ end }} text-gray-700 dark:text-darkmode-light hover:text-primary dark:hover:text-darkmode-primary"
              {{ if findRE `^http` .URL }}target="_blank" rel="noopener"{{ end }}
              href="{{ if findRE `^#` .URL }}{{ if not $.IsHome }}{{ site.BaseURL | relLangURL }}{{ end }}{{ .URL }}{{ else }}{{ .URL | relLangURL }}{{ end }}">
             {{ .Name }}
@@ -46,7 +43,7 @@
       </li>
       {{ else }}
       <li class="nav-item">
-        <a class="nav-link {{ if $active }}active{{ end }} text-gray-700 dark:text-darkmode-light px-3 py-2 hover:text-[var(--color-primary-new)] dark:hover:text-[var(--color-primary-new)]"
+        <a class="nav-link {{ if $active }}active{{ end }} text-gray-700 dark:text-darkmode-light px-3 py-2 hover:text-primary dark:hover:text-darkmode-primary"
            {{ if findRE `^http` .URL }}target="_blank" rel="noopener"{{ end }}
            href="{{ if findRE `^#` .URL }}{{ if not $.IsHome }}{{ site.BaseURL | relLangURL }}{{ end }}{{ .URL }}{{ else }}{{ .URL | relLangURL }}{{ end }}">
           {{ .Name }}
@@ -64,7 +61,6 @@
       {{ end }}{{ end }}
       {{ partial "components/theme-switcher" (dict "Class" "mr-5") }}
 
-      <!-- navigation btn -->
       {{ with site.Params.navigation_button }}
       {{ if .enable }}
       {{ $is_external := findRE `^http` .link }}
@@ -85,7 +81,6 @@
   </nav>
 </header>
 
-<!-- Mobile Navigation Panel -->
 <div id="mobile-nav-overlay" class="mobile-nav-overlay lg:hidden"></div>
 <div id="mobile-nav-panel" class="mobile-nav-panel lg:hidden">
   <div class="nav-header">

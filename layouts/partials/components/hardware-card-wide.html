@@ -1,9 +1,8 @@
 {{ $item := . }}
 
-<a href="{{ $item.RelPermalink }}" class="hardware-card-wide-link block p-4 rounded-lg bg-theme-light dark:bg-darkmode-theme-light shadow-md">
+<a href="{{ $item.RelPermalink }}" class="hardware-card-wide-link block">
   <div class="flex flex-col sm:flex-row items-start gap-5">
 
-    {{/* Image Column */}}
     <div class="flex-shrink-0 w-full sm:w-32 md:w-40 text-center">
       {{ $image_res := "" }}
       {{ with $item.Params.image }}
@@ -20,13 +19,11 @@
       {{ end }}
     </div>
 
-    {{/* Content Column */}}
     <div class="flex-grow">
       <h3 class="text-xl text-left font-bold text-dark dark:text-darkmode-dark mb-1">
         {{ $item.Title }}
       </h3>
 
-      {{/* Badges */}}
       <div class="flex flex-wrap gap-1.5 mb-3 text-xs">
         {{ with $item.Params.product }}
         {{ if .chip_type }}<span class="support-badge">{{ .chip_type }}</span>{{ end }}
