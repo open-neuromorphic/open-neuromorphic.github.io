@@ -18,12 +18,8 @@
     <br/>{{ partial "icon.html" (dict "style" "regular" "name" "circle-user" "class" "mr-1") }}
     {{ $numAuthors := len .Authors }}
     {{ range $i, $authorName := .Authors }}
-    {{ $nameForProcessing := $authorName | replaceRE "[.]" "" }}
-    {{ $nameForProcessing = $nameForProcessing | replaceRE "ć" "c" | replaceRE "Ć" "C" }}
-    {{ $contributor_slug := $nameForProcessing | anchorize }}
-    {{ $contributor_page_path := printf "contributors/%s" $contributor_slug }}
-    {{ $contributor_page := site.GetPage $contributor_page_path }}
-    {{ if $contributor_page }}<a href="{{ $contributor_page.RelPermalink }}">{{ $authorName }}</a>{{ else }}{{ $authorName }}{{ end }}{{ if lt $i (sub $numAuthors 1) }}, {{ end }}
+    {{ $contrib := partial "helpers/resolve-contributor.html" $authorName }}
+    {{ if $contrib.Page }}<a href="{{ $contrib.Page.RelPermalink }}">{{ $authorName }}</a>{{ else }}{{ $authorName }}{{ end }}{{ if lt $i (sub $numAuthors 1) }}, {{ end }}
     {{ end }}
     {{ end }}
   </p>

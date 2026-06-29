@@ -21,11 +21,8 @@
             {{ $page_context := $.Page }}
             {{ $numParticipants := len . }}
             {{ range $index, $participantName := . }}
-            {{ $nameForProcessing := $participantName | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" }}
-            {{ $contributor_slug := $nameForProcessing | anchorize }}
-            {{ $contributor_page_path := printf "contributors/%s" $contributor_slug }}
-            {{ $contributor_page := site.GetPage $contributor_page_path }}
-            {{ if $contributor_page }}<a href="{{ $contributor_page.RelPermalink }}" class="styled-link">{{ $participantName }}</a>{{ else }}{{ $participantName }}{{ end }}{{ if lt $index (sub $numParticipants 1) }}, {{ end }}
+            {{ $contrib := partial "helpers/resolve-contributor.html" $participantName }}
+            {{ if $contrib.Page }}<a href="{{ $contrib.Page.RelPermalink }}" class="styled-link">{{ $participantName }}</a>{{ else }}{{ $participantName }}{{ end }}{{ if lt $index (sub $numParticipants 1) }}, {{ end }}
             {{ end }}
           </p>
           {{ end }}

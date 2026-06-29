@@ -19,9 +19,8 @@
       {{/* Author Photos Section */}}
       <div class="flex flex-shrink-0 in mr-3">
         {{ range . }}
-        {{ $nameForProcessing := . | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" | replaceRE "é" "e" | replaceRE "É" "E" | replaceRE "á" "a" | replaceRE "Á" "A" | replaceRE "í" "i" | replaceRE "Í" "I" | replaceRE "ó" "o" | replaceRE "Ó" "O" | replaceRE "ú" "u" | replaceRE "Ú" "U" }}
-        {{ $contributorSlug := $nameForProcessing | anchorize }}
-        {{ $contributorPage := site.GetPage (printf "contributors/%s" $contributorSlug) }}
+        {{ $contrib := partial "helpers/resolve-contributor.html" . }}
+        {{ $contributorPage := $contrib.Page }}
 
         {{ if and $contributorPage $contributorPage.Params.image }}
         {{ with $contributorPage.Resources.GetMatch $contributorPage.Params.image }}

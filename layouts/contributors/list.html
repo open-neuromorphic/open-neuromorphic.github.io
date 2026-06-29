@@ -33,7 +33,8 @@
     {{- $year := string $yearBlock.year -}}
     {{- if $yearBlock.names -}}
     {{- range $name := $yearBlock.names -}}
-    {{- $slug := $name | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" | anchorize -}}
+    {{- $contrib := partial "helpers/resolve-contributor.html" $name -}}
+    {{- $slug := $contrib.Slug -}}
     {{- $contribObj := dict "Page" $page "Year" $year "Role" "Contributor" -}}
 
     {{- $currentMap := $.Scratch.Get "contributorMap" -}}
@@ -43,7 +44,8 @@
     {{- end -}}
     {{- if $yearBlock.roles -}}
     {{- range $r := $yearBlock.roles -}}
-    {{- $slug := $r.name | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" | anchorize -}}
+    {{- $contrib := partial "helpers/resolve-contributor.html" $r.name -}}
+    {{- $slug := $contrib.Slug -}}
     {{- $contribObj := dict "Page" $page "Year" $year "Role" $r.role -}}
 
     {{- $currentMap := $.Scratch.Get "contributorMap" -}}
@@ -81,7 +83,8 @@
     {{- if $page.Params.author -}}
     {{- $authors := cond (reflect.IsSlice $page.Params.author) $page.Params.author (slice $page.Params.author) -}}
     {{- range $authorName := $authors -}}
-    {{- $slug := $authorName | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" | anchorize -}}
+    {{- $contrib := partial "helpers/resolve-contributor.html" $authorName -}}
+    {{- $slug := $contrib.Slug -}}
     {{- $contribObj := dict "Page" $page "Year" $year "Role" "Author" -}}
     {{- $currentMap := $.Scratch.Get "contributorMap" -}}
     {{- $existing := index $currentMap $slug | default slice -}}
@@ -99,7 +102,8 @@
     {{/* 2. Production Credits */}}
     {{- if $page.Params.production_credits -}}
     {{- range $credit := $page.Params.production_credits -}}
-    {{- $slug := $credit.name | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" | anchorize -}}
+    {{- $contrib := partial "helpers/resolve-contributor.html" $credit.name -}}
+    {{- $slug := $contrib.Slug -}}
     {{- $contribObj := dict "Page" $page "Year" $year "Role" $credit.role -}}
     {{- $currentMap := $.Scratch.Get "contributorMap" -}}
     {{- $existing := index $currentMap $slug | default slice -}}
@@ -139,8 +143,8 @@
       {{- $allContributorProfiles := where site.RegularPages "Section" "contributors" -}}
 
       {{- range $profile := $allContributorProfiles -}}
-      {{- $nameForProcessing := $profile.Title | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" -}}
-      {{- $slug := $nameForProcessing | anchorize -}}
+      {{- $contrib := partial "helpers/resolve-contributor.html" $profile.Title -}}
+      {{- $slug := $contrib.Slug -}}
 
       {{- $allContributions := index $contributorMap $slug -}}
       {{- if $allContributions -}}

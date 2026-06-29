@@ -4,12 +4,12 @@
 {{ if $people }}
 <div class="my-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
   {{ range $people }}
-  {{ $name_for_slug := .name | replaceRE "[.]" "" | replaceRE "ć" "c" | replaceRE "Ć" "C" }}
-  {{ $contributor_slug := .contributor_slug | default ($name_for_slug | urlize) }}
-
+  {{ $contrib := partial "helpers/resolve-contributor.html" .name }}
   {{ $contributorPage := "" }}
-  {{ if $contributor_slug }}
-  {{ $contributorPage = site.GetPage (printf "contributors/%s" $contributor_slug) }}
+  {{ if .contributor_slug }}
+  {{ $contributorPage = site.GetPage (printf "contributors/%s" .contributor_slug) }}
+  {{ else }}
+  {{ $contributorPage = $contrib.Page }}
   {{ end }}
 
   {{ if $contributorPage }}

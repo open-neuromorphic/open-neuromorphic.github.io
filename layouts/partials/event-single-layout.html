@@ -1,6 +1,6 @@
-{{ $page_context := . }}
-{{ $related_section_name := .Scratch.Get "relatedSection" }}
-{{ $sidebar_content_partial := .Scratch.Get "sidebarContentPartial" }}
+{{ $page_context := .context }}
+{{ $related_section_name := .relatedSection }}
+{{ $sidebar_content_partial := .sidebar }}
 
 {{ partial "page-header" $page_context }}
 <section class="section pt-6">
@@ -8,37 +8,18 @@
     <article class="row justify-center">
       <div class="lg:col-8 mb-7">
         <div class="mb-4">
-          {{ $image_to_render := "" }}
-          {{ $image_found := false }}
-
-
-          {{ with $page_context.Params.image }}
-          {{ $image_to_render = . }}
-          {{ $image_found = true }}
+          {{ $thumb := partial "helpers/resolve-thumbnail.html" $page_context }}
+          {{ $src := "" }}
+          {{ if $thumb.Resource }}
+          {{ $src = $thumb.Resource.Name }}
+          {{ else }}
+          {{ $src = $thumb.URL }}
           {{ end }}
-
-
-          {{ if not $image_found }}
-          {{ if .File }}
-          {{ $pageSlug := path.Base .File.Dir }}
-          {{ $ogImageName := printf "%s-og-16x9.jpg" $pageSlug }}
-          {{ with .Resources.GetMatch $ogImageName }}
-          {{ $image_to_render = .Name }}
-          {{ $image_found = true }}
-          {{ end }}
-          {{ end }}
-          {{ end }}
-
-
-          {{ if not $image_found }}
-          {{ $image_to_render = "images/workshop-thumbnail-default.png" }}
-          {{ end }}
-
 
           {{ if $page_context.Params.video }}
           {{ partial "youtube-lite.html" (dict "Id" $page_context.Params.video ) }}
           {{ else }}
-          {{ partial "image" (dict "Src" $image_to_render "Context" $page_context "Alt" $page_context.Title "Class" "w-full rounded") }}
+          {{ partial "image" (dict "Src" $src "Context" $page_context "Alt" $thumb.Alt "Class" "w-full rounded") }}
           {{ end }}
         </div>
         {{ partial "components/metadata-bar.html" (dict "context" $page_context "type" "event") }}
@@ -49,13 +30,13 @@
 
         {{/* --- Moved: About the Speaker --- */}}
         {{ $title := "About the Speaker" }}
-        {{ with .Params.author }}
+        {{ with $page_context.Params.author }}
         {{ if gt (len .) 1 }}
         {{ $title = "About the Speakers" }}
         {{ end }}
         {{ end }}
 
-        {{ partial "components/author-bios.html" (dict "context" . "title" $title) }}
+        {{ partial "components/author-bios.html" (dict "context" $page_context "title" $title) }}
 
         {{/* --- Production Credits --- */}}
         {{ partial "components/production-credits.html" $page_context }}
@@ -68,7 +49,7 @@
 
       <div class="lg:col-12 mt-16">
         {{ partial "components/content-contribute-cta.html" (dict
-        "page_context" .
+        "page_context" $page_context
         "icon" "solid chalkboard-user"
         "title" "Inspired? <span class=\"gradient-text\">Share your work.</span>"
         "description" "Share your expertise with the community by speaking at a workshop, student talk, or hacking hour. It's a great way to get feedback and help others learn."
