@@ -46,8 +46,8 @@ jobs:
       - name: Install npm dependencies
         run: |
           npm ci
-          # Clear potentially corrupted global cache and force fresh Chrome installation for Puppeteer
-          rm -rf ~/.cache/puppeteer
+          # Clear the corrupted LOCAL project cache (created by .puppeteerrc.cjs) before forcing a fresh install
+          rm -rf .cache/puppeteer
           npx puppeteer browsers install chrome
 
       - name: Enforce Coding Standards
