@@ -53,7 +53,7 @@ description = "A community-driven peer review program for open and reproducible 
 [[main]]
 parent = "explore-resources"
 name = "Hacking Hours"
-url = "/neuromorphic-computing/software/hacking-hours/"
+url = "/neuromorphic-computing/hacking-hours/"
 weight = 6
 [main.params]
 icon = "fas fa-terminal"
@@ -177,7 +177,7 @@ url = "/neuromorphic-computing/student-talks/"
 weight = 3
 [[footer_community]]
 name = "Hacking Hours"
-url = "/neuromorphic-computing/software/hacking-hours/"
+url = "/neuromorphic-computing/hacking-hours/"
 weight = 4
 [[footer_community]]
 name = "Contributors"

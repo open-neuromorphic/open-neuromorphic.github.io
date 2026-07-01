@@ -1,0 +1,16 @@
+{
+  "snn-framework": {
+    "title": "SNN Frameworks",
+    "order": 1,
+    "page_intro": "Explore essential Spiking Neural Network (SNN) frameworks tailored for the advancement of neuromorphic software development. This guide helps researchers and developers navigate and choose frameworks that align with their objectives in neuromorphic computing.",
+    "meta_description": "Compare open-source Spiking Neural Network (SNN) frameworks for neuromorphic computing, including hardware support and NIR compatibility.",
+    "icon": "fas fa-brain"
+  },
+  "data-tool": {
+    "title": "Data Tools",
+    "order": 2,
+    "page_intro": "Explore a comprehensive collection of essential data tools designed for the development of neuromorphic software, for managing and transforming neuromorphic (event-based) datasets.",
+    "meta_description": "Discover data tools and libraries for reading, converting, and processing event-based and neuromorphic datasets.",
+    "icon": "fas fa-database"
+  }
+}

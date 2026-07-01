@@ -1,21 +1,19 @@
 ---
-title: "{{ replace .Name "-" " " | title }}" # Hardware Title: Clear, include manufacturer (50-60 chars). E.g., "Loihi 2 - Intel"
-product_name: "{{ replace .Name "-" " " | title }}" # Short name used in card/spec-table headers, e.g. "Akida". Distinct from `title`, which includes the manufacturer.
-# Meta Description (SEO): 120-160 characters.
-# For someone searching for this hardware, what is its primary application (e.g., 'real-time AI') and its most standout feature (e.g., 'on-chip learning')?
-# What question does this hardware answer for a researcher or developer?
+title: "{{ replace .Name "-" " " | title }}"
+product_name: "{{ replace .Name "-" " " | title }}"
 description: "Explore [Hardware Name] by [Manufacturer], a neuromorphic chip designed for [key application like 'real-time AI processing' or 'low-power edge computing'] featuring [unique characteristic like 'on-chip learning']."
-image: "hardware-image.png" # Main image for the hardware. Place in this folder. Used for card and OG image.
+image: "hardware-image.png"
 draft: true
-active_product: true # Set to false if the product is End-of-Life or retired
-type: "neuromorphic-hardware" # Do not change
+active_product: true
+type: "neuromorphic-hardware"
+category: "uncategorized" # Scaffold field for future hardware taxonomy. Must match a key in data/taxonomies/hardware-categories.json.
 
 organization:
-  group_name: "Optional Research Group Name" # e.g., Brains in Silicon
-  org_logo: "manufacturer-logo.png" # Manufacturer/Org logo.
-  org_name: "Manufacturer/Organization Name" # e.g., Intel, Stanford
+  group_name: "Optional Research Group Name"
+  org_logo: "manufacturer-logo.png"
+  org_name: "Manufacturer/Organization Name"
   org_website: "https://manufacturer.com"
-  product_page_link: "https://manufacturer.com/product-page" # Direct link to official product page
+  product_page_link: "https://manufacturer.com/product-page"
   social_media_links:
     linkedin: "https://linkedin.com/company/manufacturer"
     twitter: "https://twitter.com/manufacturer_handle"
@@ -30,7 +28,7 @@ product:
   synapses: "Number or Approx. (e.g., 120 million max, 256 million)"
   weight_bits: "e.g., 8-bit, 1-4 bit configurable"
   activation_bits: "e.g., 1-bit (spikes), 16-bit (neuron state)"
-  on_chip_learning: true # or false
+  on_chip_learning: true
   power: "~X mW / W (typical or range)"
   release_year: YYYY
   release_date: "YYYY-MM-DD"
@@ -50,3 +48,4 @@ Describe the chip architecture, including number of cores, neuron types, synapse
 
 ## Software and Tools
 What software development kits (SDKs), frameworks, or tools are used to program or interface with this hardware?
+
