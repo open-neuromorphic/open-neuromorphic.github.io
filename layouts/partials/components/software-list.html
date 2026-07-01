@@ -2,34 +2,15 @@
 {{ $allSoftware := where site.RegularPages "Type" "neuromorphic-software" }}
 
 <div class="mb-4">
-  {{ if $isMainSoftwarePage }}
-    <!-- MAIN PAGE: Group all software by category data file -->
-    {{ $categories := index site.Data.taxonomies "software-categories" }}
-    {{ $catSlice := slice }}
-    {{ range $k, $v := $categories }}{{ $catSlice = $catSlice | append (merge $v (dict "slug" $k)) }}{{ end }}
-    {{ $catSlice = sort $catSlice "order" }}
-
-    {{ range $cat := $catSlice }}
-      {{ $items := where $allSoftware ".Params.category" .slug }}
-      {{ if $items }}
-        <section class="mb-12">
-          <h2 class="text-3xl font-bold mb-2 pb-2 border-b border-border dark:border-darkmode-border">
-            <a href="{{ (site.GetPage (printf "neuromorphic-computing/software/%s" .landing_path)).RelPermalink }}">{{ .title }}</a>
-          </h2>
-          <p class="text-text dark:text-darkmode-text mb-6">{{ .page_intro }}</p>
-          <ul class="list-none p-0">
-            {{ partial "custom/render-software-items.html" (dict "items" $items "context" $) }}
-          </ul>
-        </section>
-      {{ end }}
-    {{ end }}
-
-  {{ else }}
-    <!-- LANDING PAGE: Pull items strictly matching this folder's assigned category ID -->
-    {{ $myCategory := .Params.category_id }}
-    {{ $items := where $allSoftware ".Params.category" $myCategory }}
-    <ul class="list-none p-0">
+  <ul class="list-none p-0">
+    {{ if $isMainSoftwarePage }}
+      <!-- MAIN PAGE: Render everything in one unified list -->
+      {{ partial "custom/render-software-items.html" (dict "items" $allSoftware "context" $) }}
+    {{ else }}
+      <!-- LANDING PAGE: Pull items strictly matching this folder's assigned category ID -->
+      {{ $myCategory := .Params.category_id }}
+      {{ $items := where $allSoftware ".Params.category" $myCategory }}
       {{ partial "custom/render-software-items.html" (dict "items" $items "context" .) }}
-    </ul>
-  {{ end }}
+    {{ end }}
+  </ul>
 </div>
