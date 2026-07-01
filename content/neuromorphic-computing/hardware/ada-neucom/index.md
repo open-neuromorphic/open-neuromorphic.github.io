@@ -1,38 +1,44 @@
 ---
-title: "ADA - Neucom"
-description: "Neucom's ADA is a programmable neuromorphic processor for event-based vision preprocessing, using interval-coded computation to process DVS streams at sub-milliwatt power with sub-millisecond latency."
-image: "ada.png"
+title: ADA - Neucom
+description: >-
+  Neucom's ADA is a programmable neuromorphic processor for event-based vision
+  preprocessing, using interval-coded computation to process DVS streams at
+  sub-milliwatt power with sub-millisecond latency.
+image: ada.png
 active_product: true
-type: "neuromorphic-hardware"
-
+type: neuromorphic-hardware
 organization:
   group_name: null
-  org_logo: "neucom.png"
-  org_name: "Neucom"
-  org_website: "https://www.neucom.ai"
-  product_page_link: "https://www.neucom.ai"
+  org_logo: neucom.png
+  org_name: Neucom
+  org_website: 'https://www.neucom.ai'
+  product_page_link: 'https://www.neucom.ai'
   social_media_links:
-    linkedin: "https://www.linkedin.com/company/neucom-dk"
+    linkedin: 'https://www.linkedin.com/company/neucom-dk'
     twitter: null
     wikipedia: null
-
 product:
-  announced_date: "2025-11-01"
-  applications: "Event-based Vision, Robotics, Automotive, AR/VR, Industrial IoT"
-  chip_type: "Digital"
+  announced_date: '2025-11-01'
+  applications: 'Event-based Vision, Robotics, Automotive, AR/VR, Industrial IoT'
+  chip_type: Digital
   synapses: 256k
   neurons: 32k
   on_chip_learning: false
-  interfaces: UART, AER, SPI
-
-  power: "Sub-milliwatt"
+  interfaces: 'UART, AER, SPI'
+  power: Sub-milliwatt
   release_year: 2026
-  software: "Axon SDK"
+  software: Axon SDK
   status:
     announced: true
     released: false
     retired: false
-summary: "ADA (Asynchronous Dataflow Architecture) is a reconfigurable neuromorphic processor designed to preprocess event streams from dynamic vision sensors. It uses interval-coded neural computation to handle sparse, asynchronous data natively, targeting the preprocessing bottleneck in event-based perception systems."
+summary: >-
+  ADA (Asynchronous Dataflow Architecture) is a reconfigurable neuromorphic
+  processor designed to preprocess event streams from dynamic vision sensors. It
+  uses interval-coded neural computation to handle sparse, asynchronous data
+  natively, targeting the preprocessing bottleneck in event-based perception
+  systems.
+category: uncategorized
 ---
 
 ## Overview

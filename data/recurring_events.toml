@@ -14,7 +14,7 @@ end_time = "18:00"     # 24-hour format HH:MM
 time_zone = "CEST"      # Or "CEST" as appropriate. Be mindful of DST.
 location_name = "Open Neuromorphic Discord"
 location_url = "https://discord.gg/hUygPUdD8E"
-details_page_link = "/neuromorphic-computing/software/hacking-hours/" # Link to the main Hacking Hours page
+details_page_link = "/neuromorphic-computing/hacking-hours/" # Link to the main Hacking Hours page
 active = false      # DEACTIVATED: This event will no longer appear as recurring
 image = "/images/hacking-hours-default-banner.png" # Optional default image
 

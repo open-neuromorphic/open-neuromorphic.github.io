@@ -1,0 +1,9 @@
+{
+  "uncategorized": {
+    "title": "All Hardware",
+    "order": 1,
+    "page_intro": "A comprehensive overview of neuromorphic hardware, from pioneering past projects to the latest commercial and research chips.",
+    "meta_description": "Explore cutting-edge neuromorphic chips and architectures, from research prototypes to commercial hardware.",
+    "icon": "fas fa-microchip"
+  }
+}

@@ -1,6 +1,6 @@
 ---
 active_product: true
-description: "Learn about Heidelberg University's neuromorphic hardware: BrainScaleS-1"
+description: 'Learn about Heidelberg University''s neuromorphic hardware: BrainScaleS-1'
 type: neuromorphic-hardware
 image: brainscales-1_2016.jpg
 organization:
@@ -8,14 +8,16 @@ organization:
   org_logo: heidelberg.jpg
   org_name: Heidelberg University
   org_website: null
-  product_page_link: https://wiki.ebrains.eu/bin/view/Collabs/neuromorphic/BrainScaleS/
+  product_page_link: 'https://wiki.ebrains.eu/bin/view/Collabs/neuromorphic/BrainScaleS/'
   social_media_links:
-    linkedin: https://www.linkedin.com/company/ebrains-eu/
-    twitter: https://twitter.com/ebrains_eu
+    linkedin: 'https://www.linkedin.com/company/ebrains-eu/'
+    twitter: 'https://twitter.com/ebrains_eu'
     wikipedia: null
 product:
-  announced_date: 2016-03-16
-  applications: Neuroscientific research into Learning and developmental processes, energy-efficient spiking neural networks
+  announced_date: 2016-03-16T00:00:00.000Z
+  applications: >-
+    Neuroscientific research into Learning and developmental processes,
+    energy-efficient spiking neural networks
   chip_type: Mixed-signal
   neurons: 196608
   synapses: 43253760
@@ -24,18 +26,20 @@ product:
   on_chip_learning: true
   power: ~600 W
   release_year: 2016
-  release_date: 2016-03-16
-  software: PyNN.brainscales, BrainScaleS-1 OS
+  release_date: 2016-03-16T00:00:00.000Z
+  software: 'PyNN.brainscales, BrainScaleS-1 OS'
   status:
     announced: true
     released: true
     retired: false
 product_name: BrainScaleS-1
-summary: The BrainScaleS-1 is an accelerated spiking neuromorphic system integrating
+summary: >-
+  The BrainScaleS-1 is an accelerated spiking neuromorphic system integrating
   200k adaptive exponential integrate-and-fire neurons, 43M plastic synapses,
   and event routing on a silicon wafer substrate. It enables fast emulation of
   complex neural dynamics and exploration of STDP-type synaptic plasticity.
 title: BrainScaleS-1 — Heidelberg University
+category: uncategorized
 ---
 
 The BrainScaleS-1 accelerated neuromorphic system is an wafer-scale integrated circuit architecture for emulating biologically-inspired spiking neural networks.

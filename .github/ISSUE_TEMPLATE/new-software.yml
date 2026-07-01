@@ -16,6 +16,17 @@ body:
     validations:
       required: true
 
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      description: Which part of the Software Guide does this belong in? # Keep in sync with data/taxonomies/software-categories.json
+      options:
+        - SNN Framework
+        - Data Tool
+    validations:
+      required: true
+
   - type: textarea
     id: description
     attributes:

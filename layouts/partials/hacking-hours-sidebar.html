@@ -1,10 +1,10 @@
 {{ partial "components/event-sidebar.html" (dict
-"context" .
-"title" "Next Hacking Hour"
-"type" "hacking-hours"
-"limit" 1
-"empty_msg_1" "No Hacking Hours are currently scheduled. Check back soon for new events!"
-"empty_msg_2" "In the meantime, join our Discord to connect with the community and see what others are working on."
-"cta_link" (site.GetPage "/neuromorphic-computing/software/hacking-hours").RelPermalink
-"cta_text" "View Schedule"
-) }}
+  "context" .
+  "title" "Next Hacking Hour"
+  "type" "hacking-hours"
+  "limit" 1
+  "empty_msg_1" "No Hacking Hours are currently scheduled. Check back soon for new events!"
+  "empty_msg_2" "In the meantime, join our Discord to connect with the community and see what others are working on."
+  "cta_link" (site.GetPage "/neuromorphic-computing/hacking-hours").RelPermalink
+  "cta_text" "View Schedule"
+  ) }}

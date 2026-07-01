@@ -1,20 +1,20 @@
 ---
 active_product: true
-description: "Learn about Innatera's neuromorphic hardware: Spiking Neural Processor T1"
+description: 'Learn about Innatera''s neuromorphic hardware: Spiking Neural Processor T1'
 type: neuromorphic-hardware
 image: snp.png
 organization:
   group_name: null
   org_logo: innatera.png
   org_name: Innatera
-  org_website: https://www.innatera.com/
-  product_page_link: https://innatera.com/products/spiking-neural-processor-t1
+  org_website: 'https://www.innatera.com/'
+  product_page_link: 'https://innatera.com/products/spiking-neural-processor-t1'
   social_media_links:
-    linkedin: https://www.linkedin.com/company/innatera/
+    linkedin: 'https://www.linkedin.com/company/innatera/'
     twitter: null
     wikipedia: null
 product:
-  applications: Smart-sensing, wearables, IoT
+  applications: 'Smart-sensing, wearables, IoT'
   chip_type: Mixed-signal
   neurons: ~500
   synapses: ~60000
@@ -23,17 +23,23 @@ product:
   on_chip_learning: false
   power: ~1 mW
   release_year: 2024
-  release_date: 2024-01-10
+  release_date: 2024-01-10T00:00:00.000Z
   software: Talamo
-  interfaces: QSPI, I2C, UART, JTAG, GPIO, front end ADC
-  package: 2.16mm x 3mm, 35-pin WLCSP package
+  interfaces: 'QSPI, I2C, UART, JTAG, GPIO, front end ADC'
+  package: '2.16mm x 3mm, 35-pin WLCSP package'
   status:
     announced: true
     released: true
     retired: false
 product_name: Spiking Neural Processor T1
-summary: The Spiking Neural Processor T1 is Innatera's ultra-low-power neuromorphic microcontroller SoC for real-time intelligence close to the sensor. It integrates a spiking neural network accelerator, a convolutional neural network accelerator and a RISCV core. T1 targets applications in battery-powered, power-limited and latency-critical devices.
+summary: >-
+  The Spiking Neural Processor T1 is Innatera's ultra-low-power neuromorphic
+  microcontroller SoC for real-time intelligence close to the sensor. It
+  integrates a spiking neural network accelerator, a convolutional neural
+  network accelerator and a RISCV core. T1 targets applications in
+  battery-powered, power-limited and latency-critical devices.
 title: Spiking Neural Processor T1 by Innatera
+category: uncategorized
 ---
 
 ## Overview

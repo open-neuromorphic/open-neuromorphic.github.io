@@ -1,20 +1,20 @@
 ---
 active_product: false
-description: "Learn about Tsinghua University's neuromorphic hardware: Tianjic"
+description: 'Learn about Tsinghua University''s neuromorphic hardware: Tianjic'
 type: neuromorphic-hardware
 image: tianjic.jpg
 organization:
   group_name: null
   org_logo: tsinghua.png
   org_name: Tsinghua University
-  org_website: https://www.tsinghua.edu.cn/en/index.htm
+  org_website: 'https://www.tsinghua.edu.cn/en/index.htm'
   product_page_link: null
   social_media_links:
-    linkedin: https://www.linkedin.com/school/tsinghua-university/
+    linkedin: 'https://www.linkedin.com/school/tsinghua-university/'
     twitter: null
-    wikipedia: https://en.wikipedia.org/wiki/Tsinghua_University
+    wikipedia: 'https://en.wikipedia.org/wiki/Tsinghua_University'
 product:
-  announced_date: 2019-08-01
+  announced_date: 2019-08-01T00:00:00.000Z
   applications: ANN/SNN acceleration
   chip_type: Digital
   neurons: 40k
@@ -23,7 +23,7 @@ product:
   activation_bits: null
   on_chip_learning: false
   power: ~1 W
-  release_date: 2020-02-13
+  release_date: 2020-02-13T00:00:00.000Z
   release_year: 2020
   software: Custom
   status:
@@ -31,10 +31,12 @@ product:
     released: true
     retired: false
 product_name: Tianjic
-summary: Tianjic supports both spiking and non-spiking models. Its motivation is to
-  enable hybrid networks that blend biological plausibility from neuroscience with
-  predictive accuracy from deep learning.
+summary: >-
+  Tianjic supports both spiking and non-spiking models. Its motivation is to
+  enable hybrid networks that blend biological plausibility from neuroscience
+  with predictive accuracy from deep learning.
 title: Tianjic - Tsinghua University
+category: uncategorized
 ---
 
 Tianjic is a unified neural network chip architecture proposed in 2019 that aims to efficiently support both spiking neural networks (SNNs) from the neuromorphic computing field and artificial neural networks (ANNs) commonly used in deep learning. It was unveiled by a team of researchers from Tsinghua University in Beijing, led by Professor Luping Shi.

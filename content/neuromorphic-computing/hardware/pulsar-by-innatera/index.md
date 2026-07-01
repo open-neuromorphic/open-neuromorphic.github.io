@@ -1,35 +1,43 @@
 ---
-title: "Pulsar - Innatera"
+title: Pulsar - Innatera
 active_product: true
-description: "Innatera's Pulsar is the first commercially available, brain-inspired microcontroller for sensing at the edge, offering real-time intelligence at microwatt power levels."
+description: >-
+  Innatera's Pulsar is the first commercially available, brain-inspired
+  microcontroller for sensing at the edge, offering real-time intelligence at
+  microwatt power levels.
 type: neuromorphic-hardware
-image: "pulsar.png"
+image: pulsar.png
 organization:
   group_name: null
-  org_logo: "innatera.png"
-  org_name: "Innatera"
-  org_website: "https://www.innatera.com/"
-  product_page_link: "https://innatera.com/pulsar"
+  org_logo: innatera.png
+  org_name: Innatera
+  org_website: 'https://www.innatera.com/'
+  product_page_link: 'https://innatera.com/pulsar'
   social_media_links:
-    linkedin: "https://www.linkedin.com/company/innatera/"
+    linkedin: 'https://www.linkedin.com/company/innatera/'
 product:
-  announced_date: 2025-05-21
-  applications: "Wearables, Hearables, Smart Home, IoT, Industrial Monitoring"
-  chip_type: "Mixed-signal"
-  neurons: "N/A" # Specific numbers not on page
-  synapses: "N/A"
+  announced_date: 2025-05-21T00:00:00.000Z
+  applications: 'Wearables, Hearables, Smart Home, IoT, Industrial Monitoring'
+  chip_type: Mixed-signal
+  neurons: N/A
+  synapses: N/A
   weight_bits: null
   activation_bits: null
   on_chip_learning: false
-  power: "< 1mW (microwatt levels)"
+  power: < 1mW (microwatt levels)
   release_year: 2025
-  release_date: 2025-05-21
-  software: "Talamo SDK"
+  release_date: 2025-05-21T00:00:00.000Z
+  software: Talamo SDK
   status:
     announced: true
     released: true
     retired: false
-summary: "Pulsar is a brain-inspired neuromorphic microcontroller designed for ultra-low-power, real-time intelligence in edge devices. It combines a Spiking Neural Network (SNN) engine with a RISC-V MCU and CNN acceleration to enable smart sensing applications without cloud dependency."
+summary: >-
+  Pulsar is a brain-inspired neuromorphic microcontroller designed for
+  ultra-low-power, real-time intelligence in edge devices. It combines a Spiking
+  Neural Network (SNN) engine with a RISC-V MCU and CNN acceleration to enable
+  smart sensing applications without cloud dependency.
+category: uncategorized
 ---
 
 ## Overview

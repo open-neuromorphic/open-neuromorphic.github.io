@@ -1,6 +1,6 @@
 ---
 active_product: true
-description: "Learn about Charlotte Frenkel's neuromorphic hardware: ReckOn"
+description: 'Learn about Charlotte Frenkel''s neuromorphic hardware: ReckOn'
 type: neuromorphic-hardware
 image: reckon.png
 organization:
@@ -8,14 +8,14 @@ organization:
   org_logo: null
   org_name: Charlotte Frenkel
   org_website: null
-  product_page_link: https://github.com/ChFrenkel/ODIN/
+  product_page_link: 'https://github.com/ChFrenkel/ODIN/'
   social_media_links:
-    linkedin: https://www.linkedin.com/in/cfrenkel/
-    twitter: https://twitter.com/C_Frenkel/
+    linkedin: 'https://www.linkedin.com/in/cfrenkel/'
+    twitter: 'https://twitter.com/C_Frenkel/'
     wikipedia: null
 product:
-  announced_date: 2022-02-01
-  applications: Task-agnostic learning over second-long timescales at the extreme edge 
+  announced_date: 2022-02-01T00:00:00.000Z
+  applications: Task-agnostic learning over second-long timescales at the extreme edge
   chip_type: Digital
   neurons: 256
   synapses: 256
@@ -24,15 +24,28 @@ product:
   on_chip_learning: true
   power: 20µW - 150µW (from real-time to accelerated-time learning) at 0.5V
   release_year: 2022
-  release_date: 2022-02-01
+  release_date: 2022-02-01T00:00:00.000Z
   software: null
   status:
     announced: true
     released: true
     retired: false
 product_name: ReckOn
-summary: ReckOn demonstrates, for the first time, end-to-end on-chip learning over second-long timescales (no external memory accesses, no pre-training). It is based on a bio-inspired alternative to backpropagation through time (BPTT), the e-prop training algorithm, which has been modified to reduce the memory overhead required for training to only 0.8% of the equivalent inference-only design. This allows for a low-cost solution with a 0.45-mm² core area and a <50-µW power budget at 0.5V for real-time learning in 28-nm FDSOI CMOS, which is suitable for an always-on deployment at the extreme edge. Furthermore, similarly to the brain, ReckOn exploits the sensor-agnostic property of spike-based information. Combined with code-agnostic e-prop-based training, this leads to a task-agnostic learning chip that is demonstrated on vision, audition and navigation tasks. 
+summary: >-
+  ReckOn demonstrates, for the first time, end-to-end on-chip learning over
+  second-long timescales (no external memory accesses, no pre-training). It is
+  based on a bio-inspired alternative to backpropagation through time (BPTT),
+  the e-prop training algorithm, which has been modified to reduce the memory
+  overhead required for training to only 0.8% of the equivalent inference-only
+  design. This allows for a low-cost solution with a 0.45-mm² core area and a
+  <50-µW power budget at 0.5V for real-time learning in 28-nm FDSOI CMOS, which
+  is suitable for an always-on deployment at the extreme edge. Furthermore,
+  similarly to the brain, ReckOn exploits the sensor-agnostic property of
+  spike-based information. Combined with code-agnostic e-prop-based training,
+  this leads to a task-agnostic learning chip that is demonstrated on vision,
+  audition and navigation tasks.
 title: ReckOn - Charlotte Frenkel
+category: uncategorized
 ---
 
 ## Overview

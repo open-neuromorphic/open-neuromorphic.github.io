@@ -37,3 +37,12 @@ target = "https://open-neuromorphic.org/blog/digital-neuromorphic-hardware-read-
 [[redirects]]
 path = "/p/digital-neuromophic-hardware-read-list/"
 target = "https://open-neuromorphic.org/blog/digital-neuromorphic-hardware-read-list/"
+[[redirects]]
+path = "/neuromorphic-computing/software/hacking-hours/*"
+target = "https://open-neuromorphic.org/neuromorphic-computing/hacking-hours/:splat"
+[[redirects]]
+path = "/neuromorphic-computing/software/snn-frameworks/"
+target = "https://open-neuromorphic.org/neuromorphic-computing/software/#snn-framework"
+[[redirects]]
+path = "/neuromorphic-computing/software/data-tools/"
+target = "https://open-neuromorphic.org/neuromorphic-computing/software/#data-tool"

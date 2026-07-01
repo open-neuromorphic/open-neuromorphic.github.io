@@ -1,37 +1,47 @@
 ---
 active_product: true
-title: "TSP1 - Applied Brain Research"
-description: "Explore Time Series Processor 1 (TSP1) by Applied Brain Research, a brain-inspired time series processor chip designed for ultra-low power edge AI applications featuring state-space network processing for real-time speech recognition"
+title: TSP1 - Applied Brain Research
+description: >-
+  Explore Time Series Processor 1 (TSP1) by Applied Brain Research, a
+  brain-inspired time series processor chip designed for ultra-low power edge AI
+  applications featuring state-space network processing for real-time speech
+  recognition
 type: neuromorphic-hardware
 image: tsp1.png
 organization:
   group_name: null
   org_logo: abr.png
   org_name: Applied Brain Research
-  org_website: https://www.appliedbrainresearch.com/
-  product_page_link: https://www.appliedbrainresearch.com/state-space-accelerator
+  org_website: 'https://www.appliedbrainresearch.com/'
+  product_page_link: 'https://www.appliedbrainresearch.com/state-space-accelerator'
   social_media_links:
-    linkedin: https://www.linkedin.com/company/applied-brain-research/
-    twitter: https://x.com/abr_inc
+    linkedin: 'https://www.linkedin.com/company/applied-brain-research/'
+    twitter: 'https://x.com/abr_inc'
     wikipedia: null
 product:
-  applications: Edge AI, Voice Recognition, Biosignal Classification, Smart Home, Wearables, AR/VR, Industrial IoT, Smart Medical Devices
+  applications: >-
+    Edge AI, Voice Recognition, Biosignal Classification, Smart Home, Wearables,
+    AR/VR, Industrial IoT, Smart Medical Devices
   synapses: Up to 10M 8-bit/20M 4-bit parameters
-  weight_bits: "4-bit or 8-bit"
+  weight_bits: 4-bit or 8-bit
   on_chip_learning: false
-  power: <35mW (ASR), <35mw (TTS)
-  announce_date: 2025-09-01 
+  power: '<35mW (ASR), <35mw (TTS)'
+  announce_date: 2025-09-01T00:00:00.000Z
   release_year: 2025
-  release_date: "2025-09-21" # Placeholder
-  interfaces: I2C, SPI, I2S, PDM, GPIO, UART
-  package: 2.16mm x 3mm, 35-pin WLCSP package
+  release_date: '2025-09-21'
+  interfaces: 'I2C, SPI, I2S, PDM, GPIO, UART'
+  package: '2.16mm x 3mm, 35-pin WLCSP package'
   status:
-    announced: true 
+    announced: true
     released: false
     retired: false
 product_name: TSP1
-summary: The TSP1 is a time-series, brain-inspired chip designed for ultra-low power edge AI applications, delivering automatic speech recognition recognition at <35mW, supporting state-space network processing for real-time time-series inference.
-
+summary: >-
+  The TSP1 is a time-series, brain-inspired chip designed for ultra-low power
+  edge AI applications, delivering automatic speech recognition recognition at
+  <35mW, supporting state-space network processing for real-time time-series
+  inference.
+category: uncategorized
 ---
 
 
