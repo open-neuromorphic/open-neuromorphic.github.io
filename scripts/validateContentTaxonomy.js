@@ -14,6 +14,9 @@ async function validate() {
   let errors = 0;
 
   for (const file of files) {
+    // SKIP section landing pages. We only validate individual content items.
+    if (file.endsWith('_index.md')) continue;
+
     try {
       const content = await fs.readFile(file, 'utf8');
       const parsed = matter(content);
