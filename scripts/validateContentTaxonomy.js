@@ -1,3 +1,7 @@
+/* jshint node: true */
+/* jshint esversion: 8 */
+"use strict";
+
 require('dotenv').config();
 const fs = require('fs/promises');
 const path = require('path');
@@ -14,13 +18,17 @@ async function validate() {
   let errors = 0;
 
   for (const file of files) {
-    // SKIP section landing pages. We only validate individual content items.
-    if (file.endsWith('_index.md')) continue;
+    if (file.endsWith('_index.md')) {
+      continue;
+    }
 
     try {
       const content = await fs.readFile(file, 'utf8');
       const parsed = matter(content);
-      if (!parsed.data) continue;
+
+      if (!parsed.data) {
+        continue;
+      }
 
       const type = parsed.data.type;
       const cat = parsed.data.category;

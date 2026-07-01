@@ -1,48 +1,48 @@
 [[foundational]]
 name = "AEStream"
 logo = "aestream.png"
-page_path = "neuromorphic-computing/software/data-tools/aestream/"
+page_path = "neuromorphic-computing/software/aestream/"
 dark_logo_invert = false
 
 [[foundational]]
 name = "BindsNET"
 logo = "bindsnet.jpg"
-page_path = "neuromorphic-computing/software/snn-frameworks/bindsnet/"
+page_path = "neuromorphic-computing/software/bindsnet/"
 dark_logo_invert = false
 
 [[foundational]]
 name = "Brian"
 logo = "brian.jpg"
-page_path = "neuromorphic-computing/software/snn-frameworks/brian/"
+page_path = "neuromorphic-computing/software/brian/"
 dark_logo_invert = false
 
 [[foundational]]
 name = "Faery"
 logo = "faery.png"
-page_path = "neuromorphic-computing/software/data-tools/faery/"
+page_path = "neuromorphic-computing/software/faery/"
 dark_logo_invert = false
 
 [[foundational]]
 name = "GeNN"
 logo = "genn.png"
-page_path = "neuromorphic-computing/software/snn-frameworks/genn/"
+page_path = "neuromorphic-computing/software/genn/"
 dark_logo_invert = true
 
 [[foundational]]
 name = "Neuromorphic Intermediate Representation (NIR)"
 logo = "nir-logo.png"
-page_path = "neuromorphic-computing/software/data-tools/neuromorphic-intermediate-representation/"
+page_path = "neuromorphic-computing/software/neuromorphic-intermediate-representation/"
 dark_logo_invert = false
-hero_display = { name = "NIRTorch", page_path = "neuromorphic-computing/software/snn-frameworks/nirtorch/" }
+hero_display = { name = "NIRTorch", page_path = "neuromorphic-computing/software/nirtorch/" }
 
 [[foundational]]
 name = "snnTorch"
 logo = "snntorch.png"
-page_path = "neuromorphic-computing/software/snn-frameworks/snntorch/"
+page_path = "neuromorphic-computing/software/snntorch/"
 dark_logo_invert = false
 
 [[foundational]]
 name = "Neuromorphic Drivers"
 logo = "neuromorphic-drivers.png"
-page_path = "neuromorphic-computing/software/data-tools/neuromorphic-drivers/"
+page_path = "neuromorphic-computing/software/neuromorphic-drivers/"
 dark_logo_invert = true
