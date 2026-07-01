@@ -21,6 +21,18 @@
       {{ end }}
     {{ end }}
 
+    {{/* INJECT VIRTUAL CATEGORY PARENT FOR FLATTENED SOFTWARE TOOLS */}}
+    {{ if and $ctx.IsPage (eq $ctx.Type "neuromorphic-software") $ctx.Params.category }}
+      {{ $categories := index site.Data.taxonomies "software-categories" }}
+      {{ $catMeta := index $categories $ctx.Params.category }}
+      {{ if $catMeta }}
+        {{ $landingPage := site.GetPage (printf "neuromorphic-computing/software/%s" $catMeta.landing_path) }}
+        {{ if $landingPage }}
+          {{ $pages = $pages | append $landingPage }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+
     {{ range $pages }}
       <li class="text-gray-400 dark:text-gray-500" aria-hidden="true">/</li>
       <li>

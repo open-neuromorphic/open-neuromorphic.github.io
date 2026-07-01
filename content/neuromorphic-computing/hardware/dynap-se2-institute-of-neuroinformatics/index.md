@@ -1,39 +1,45 @@
 ---
 active_product: true
-description: "Learn about Institute of Neuroinformatics's neuromorphic hardware: DYNAP-SE2"
+description: 'Learn about Institute of Neuroinformatics''s neuromorphic hardware: DYNAP-SE2'
 type: neuromorphic-hardware
 image: dynap-se2.jpg
 organization:
-  group_name: Neuromorphic Cognitive Systems 
+  group_name: Neuromorphic Cognitive Systems
   org_logo: UZH.jpg
   org_name: Institute of Neuroinformatics
-  org_website: https://www.ini.uzh.ch/en.html
-  product_page_link: https://www.synsense.ai/products/neuromorphic-chip-dynap-se2/
+  org_website: 'https://www.ini.uzh.ch/en.html'
+  product_page_link: 'https://www.synsense.ai/products/neuromorphic-chip-dynap-se2/'
   social_media_links:
-    linkedin: https://www.linkedin.com/company/institute-of-neuroinformatics-uni-eth-zurich/
+    linkedin: >-
+      https://www.linkedin.com/company/institute-of-neuroinformatics-uni-eth-zurich/
     twitter: null
     wikipedia: null
 product:
-  announced_date: 2023-08-01
+  announced_date: 2023-08-01T00:00:00.000Z
   applications: Research
   chip_type: Mixed-signal
   neurons: 4096
-  synapses: 65K, maximum synapses per neuron are 256
+  synapses: '65K, maximum synapses per neuron are 256'
   weight_bits: 4+2
   activation_bits: analog
   on_chip_learning: false
   power: ~5 mW
   release_date: null
   release_year: 2023
-  software: Rockpool, Samna
+  software: 'Rockpool, Samna'
   status:
     announced: true
     released: limited availibility
     retired: false
-  
 product_name: DYNAP-SE2
-summary: "The DYNAP-SE2 is a configurable, mixed-signal neuromorphic chip featuring 1024 neurons, 65k plastic synapses, specialized dendrites, low-latency event routing, and multi-timescale adaptation dynamics. This enables real-time prototyping of biologically inspired spiking neural networks for ultra-low power edge processing."
+summary: >-
+  The DYNAP-SE2 is a configurable, mixed-signal neuromorphic chip featuring 1024
+  neurons, 65k plastic synapses, specialized dendrites, low-latency event
+  routing, and multi-timescale adaptation dynamics. This enables real-time
+  prototyping of biologically inspired spiking neural networks for ultra-low
+  power edge processing.
 title: DYNAP-SE2 - Institute of Neuroinformatics
+category: uncategorized
 ---
 
 The DYNAP-SE2 is a mixed-signal neuromorphic processor chip manufactured using 180nm CMOS technology. It occupies a 98mm² silicon area and contains 1024 leaky integrate-and-fire spiking neuron circuits, along with 64k reconfigurable synapses. The chip's architecture supports real-time emulation of neural and synaptic dynamics for processing event-based sensory data.

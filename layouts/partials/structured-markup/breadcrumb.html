@@ -20,6 +20,19 @@
   {{ end }}
 {{ end }}
 
+{{/* INJECT VIRTUAL CATEGORY PARENT FOR FLATTENED SOFTWARE TOOLS */}}
+{{ if and $page_context.IsPage (eq $page_context.Type "neuromorphic-software") $page_context.Params.category }}
+  {{ $categories := index site.Data.taxonomies "software-categories" }}
+  {{ $catMeta := index $categories $page_context.Params.category }}
+  {{ if $catMeta }}
+    {{ $landingPage := site.GetPage (printf "neuromorphic-computing/software/%s" $catMeta.landing_path) }}
+    {{ if $landingPage }}
+      {{ $breadcrumbItemsForLD = $breadcrumbItemsForLD | append (dict "name" $landingPage.Title "url" ($landingPage.RelPermalink | absLangURL) "position" $positionLD) }}
+      {{ $positionLD = add $positionLD 1 }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
 {{ if and (not .IsHome) (ne .Title "") }}
   {{ $breadcrumbItemsForLD = $breadcrumbItemsForLD | append (dict "name" $page_context.Title "position" $positionLD) }}
 {{ end }}

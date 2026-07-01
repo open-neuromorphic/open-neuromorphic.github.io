@@ -1,37 +1,45 @@
 ---
 active_product: true
-description: "Explore IBM's NorthPole, a neural inference architecture that eliminates off-chip memory by intertwining compute with memory on-chip for state-of-the-art energy efficiency."
+description: >-
+  Explore IBM's NorthPole, a neural inference architecture that eliminates
+  off-chip memory by intertwining compute with memory on-chip for
+  state-of-the-art energy efficiency.
 type: neuromorphic-hardware
 image: northpole.png
 organization:
-  group_name: "Brain-Inspired Computing Group"
+  group_name: Brain-Inspired Computing Group
   org_logo: ibm.jpg
   org_name: IBM
-  org_website: https://www.ibm.com/
-  product_page_link: https://research.ibm.com/blog/northpole-ibm-ai-chip
+  org_website: 'https://www.ibm.com/'
+  product_page_link: 'https://research.ibm.com/blog/northpole-ibm-ai-chip'
   social_media_links:
-    linkedin: https://www.linkedin.com/company/ibm/
-    wikipedia: https://en.wikipedia.org/wiki/IBM_NorthPole
+    linkedin: 'https://www.linkedin.com/company/ibm/'
+    wikipedia: 'https://en.wikipedia.org/wiki/IBM_NorthPole'
 product:
-  announced_date: "2023-10-20"
-  applications: "Neural inference, Image classification, Object detection"
-  chip_type: "Digital"
-  neurons: "256 cores"
-  synapses: "224 MB on-chip SRAM"
-  weight_bits: "8, 4, 2"
-  activation_bits: "8, 4, 2"
+  announced_date: '2023-10-20'
+  applications: 'Neural inference, Image classification, Object detection'
+  chip_type: Digital
+  neurons: 256 cores
+  synapses: 224 MB on-chip SRAM
+  weight_bits: '8, 4, 2'
+  activation_bits: '8, 4, 2'
   on_chip_learning: false
-  power: "~74 W"
+  power: ~74 W
   release_year: 2023
-  release_date: "2023-10-20"
-  software: "Custom end-to-end toolchain"
+  release_date: '2023-10-20'
+  software: Custom end-to-end toolchain
   status:
     announced: true
     released: true
     retired: false
 product_name: NorthPole
-summary: "NorthPole is a neural inference architecture that blurs the boundary between compute and memory by eliminating off-chip memory and intertwining compute with memory on-chip. It is a low-precision, massively parallel, and energy-efficient spatial computing architecture."
+summary: >-
+  NorthPole is a neural inference architecture that blurs the boundary between
+  compute and memory by eliminating off-chip memory and intertwining compute
+  with memory on-chip. It is a low-precision, massively parallel, and
+  energy-efficient spatial computing architecture.
 title: NorthPole - IBM
+category: uncategorized
 ---
 
 ## Overview

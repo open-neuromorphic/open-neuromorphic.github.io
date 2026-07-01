@@ -14,46 +14,37 @@ const WRITE = process.argv.includes('--write');
 
 async function run() {
   const actions = [];
-  const redirects = [];
 
-  // 1. Software Backfill & Move
+  // 1. Software Tools Flattening & URL Pinning
   for (const [folder, category] of Object.entries(CATEGORY_MAP)) {
     const dir = path.join(SOFTWARE_ROOT, folder);
     if (!(await pathExists(dir))) continue;
 
     const entries = await fs.readdir(dir, { withFileTypes: true });
     for (const entry of entries) {
-      if (!entry.isDirectory()) continue;
-      const slug = entry.name;
-      const src = path.join(dir, slug);
-      const dest = path.join(SOFTWARE_ROOT, slug);
-      const indexPath = path.join(src, 'index.md');
+      if (entry.isDirectory()) {
+        const slug = entry.name;
+        const src = path.join(dir, slug);
+        const dest = path.join(SOFTWARE_ROOT, slug);
+        const indexPath = path.join(src, 'index.md');
 
-      if (!(await pathExists(indexPath))) continue;
+        if (!(await pathExists(indexPath))) continue;
 
-      const raw = await fs.readFile(indexPath, 'utf8');
-      const parsed = matter(raw);
-      parsed.data.category = category;
+        const raw = await fs.readFile(indexPath, 'utf8');
+        const parsed = matter(raw);
 
-      actions.push({
-        type: 'move_software',
-        slug,
-        src,
-        dest,
-        indexPath,
-        content: matter.stringify(parsed.content, parsed.data)
-      });
+        parsed.data.category = category;
+        parsed.data.url = `/neuromorphic-computing/software/${folder}/${slug}/`;
 
-      redirects.push(`[[redirects]]\npath = "/neuromorphic-computing/software/${folder}/${slug}/"\ntarget = "https://open-neuromorphic.org/neuromorphic-computing/software/${slug}/"`);
-    }
-  }
-
-  // Check collisions
-  const seen = new Map();
-  for (const a of actions) {
-    if (a.type === 'move_software') {
-      if (seen.has(a.slug)) throw new Error(`Slug collision: "${a.slug}" exists in multiple source folders. Fix manually before migrating.`);
-      seen.set(a.slug, a.src);
+        actions.push({ type: 'move_software', slug, src, dest, indexPath, content: matter.stringify(parsed.content, parsed.data) });
+      } else if (entry.name === '_index.md') {
+        // It's the landing page! Inject the category_id so it can query its children
+        const indexPath = path.join(dir, '_index.md');
+        const raw = await fs.readFile(indexPath, 'utf8');
+        const parsed = matter(raw);
+        parsed.data.category_id = category;
+        actions.push({ type: 'update_file', indexPath, content: matter.stringify(parsed.content, parsed.data) });
+      }
     }
   }
 
@@ -70,61 +61,61 @@ async function run() {
 
       if (!parsed.data.category) {
         parsed.data.category = 'uncategorized';
-        actions.push({
-          type: 'update_hardware',
-          indexPath,
-          content: matter.stringify(parsed.content, parsed.data)
-        });
+        actions.push({ type: 'update_file', indexPath, content: matter.stringify(parsed.content, parsed.data) });
       }
     }
   }
 
-  console.log(`Planned Actions: ${actions.length}`);
-  actions.forEach(a => {
-    if (a.type === 'move_software') console.log(` Move & Update: ${path.relative(process.cwd(), a.src)} -> ${path.relative(process.cwd(), a.dest)}`);
-    if (a.type === 'update_hardware') console.log(` Update Hardware: ${path.relative(process.cwd(), a.indexPath)}`);
-  });
-
+  // 3. Hacking Hours URL Pinning (Extracting it entirely)
   if (await pathExists(HACKING_HOURS_SRC)) {
-    console.log(`Planned Hacking Hours Relocation: ${path.relative(process.cwd(), HACKING_HOURS_SRC)} -> ${path.relative(process.cwd(), HACKING_HOURS_DEST)}`);
+    const entries = await fs.readdir(HACKING_HOURS_SRC, { withFileTypes: true });
+    for (const entry of entries) {
+      if (entry.isDirectory()) {
+        const slug = entry.name;
+        const indexPath = path.join(HACKING_HOURS_SRC, slug, 'index.md');
+        if (await pathExists(indexPath)) {
+          const raw = await fs.readFile(indexPath, 'utf8');
+          const parsed = matter(raw);
+          parsed.data.url = `/neuromorphic-computing/software/hacking-hours/${slug}/`;
+          actions.push({ type: 'update_file', indexPath, content: matter.stringify(parsed.content, parsed.data) });
+        }
+      } else if (entry.name === '_index.md') {
+        const indexPath = path.join(HACKING_HOURS_SRC, '_index.md');
+        const raw = await fs.readFile(indexPath, 'utf8');
+        const parsed = matter(raw);
+        parsed.data.url = `/neuromorphic-computing/software/hacking-hours/`;
+        actions.push({ type: 'update_file', indexPath, content: matter.stringify(parsed.content, parsed.data) });
+      }
+    }
   }
 
   if (!WRITE) {
-    console.log('\nDry run only. Re-run with --write to apply.');
+    console.log(`Planned File Updates: ${actions.length}. Dry run only. Re-run with --write to apply.`);
     return;
   }
 
-  // Execute actions
+  // Execute writes first
   for (const a of actions) {
-    if (a.type === 'move_software') {
-      await fs.writeFile(a.indexPath, a.content);
-      await fs.rename(a.src, a.dest);
-    } else if (a.type === 'update_hardware') {
+    if (a.type === 'update_file' || a.type === 'move_software') {
       await fs.writeFile(a.indexPath, a.content);
     }
   }
 
-  // Move hacking hours
+  // Execute moves (WITH FIX FOR ENOTEMPTY)
+  for (const a of actions) {
+    if (a.type === 'move_software') {
+      await fs.rm(a.dest, { recursive: true, force: true });
+      await fs.rename(a.src, a.dest);
+    }
+  }
+
+  // Move hacking hours directory
   if (await pathExists(HACKING_HOURS_SRC)) {
+    await fs.rm(HACKING_HOURS_DEST, { recursive: true, force: true });
     await fs.rename(HACKING_HOURS_SRC, HACKING_HOURS_DEST);
   }
 
-  // Clean up _index.md files and old folders
-  for (const folder of Object.keys(CATEGORY_MAP)) {
-    const indexFile = path.join(SOFTWARE_ROOT, folder, '_index.md');
-    if (await pathExists(indexFile)) {
-      await fs.unlink(indexFile);
-    }
-    try { await fs.rmdir(path.join(SOFTWARE_ROOT, folder)); } catch(e) { console.log(`Notice: Could not remove directory ${folder} (might not be empty).`); }
-  }
-
-  // Write redirects output snippet
-  if (redirects.length > 0) {
-    await fs.writeFile(path.join(process.cwd(), 'data/redirects-generated.toml'), redirects.join('\n\n') + '\n');
-    console.log('Wrote data/redirects-generated.toml. Please manually review and merge this into data/redirects.toml.');
-  }
-
-  console.log('✅ Migration applied.');
+  console.log('✅ Migration applied. Tools flattened, URLs pinned, Landing Pages preserved.');
 }
 
 run().catch(e => { console.error(e); process.exit(1); });

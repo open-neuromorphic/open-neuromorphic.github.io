@@ -1,119 +1,35 @@
-{{ $categories := index site.Data.taxonomies "software-categories" }}
-{{ $catSlice := slice }}
-{{ range $k, $v := $categories }}
-  {{ $catSlice = $catSlice | append (merge $v (dict "slug" $k)) }}
-{{ end }}
-{{ $catSlice = sort $catSlice "order" }}
-
+{{ $isMainSoftwarePage := eq . (site.GetPage "neuromorphic-computing/software") }}
 {{ $allSoftware := where site.RegularPages "Type" "neuromorphic-software" }}
 
 <div class="mb-4">
-  {{ range $cat := $catSlice }}
-    {{ $slug := .slug }}
-    {{ $items := where $allSoftware ".Params.category" $slug }}
-    {{ if $items }}
-      <section id="{{ $slug }}" class="mb-12">
-        <h2 class="text-3xl font-bold mb-2 pb-2 border-b border-border dark:border-darkmode-border">{{ .title }}</h2>
-        <p class="text-text dark:text-darkmode-text mb-6">{{ .page_intro }}</p>
-        <ul class="list-none p-0">
-          {{ $pagesWithStars := slice }}
-          {{ range $items }}
-            {{ $repo_path := "" }}
-            {{ $is_github := false }}
-            {{ $is_gitlab := false }}
-            {{ with .Params.source_code }}
-              {{ if in . "github.com" }}
-                {{ $is_github = true }}
-                {{ $repo_path = replace . "https://github.com/" "" }}
-              {{ else if in . "gitlab.com" }}
-                {{ $is_gitlab = true }}
-                {{ $repo_path = replace . "https://gitlab.com/" "" }}
-              {{ end }}
-              {{ $repo_path = replace $repo_path ".git" "" }}
-            {{ end }}
+  {{ if $isMainSoftwarePage }}
+    <!-- MAIN PAGE: Group all software by category data file -->
+    {{ $categories := index site.Data.taxonomies "software-categories" }}
+    {{ $catSlice := slice }}
+    {{ range $k, $v := $categories }}{{ $catSlice = $catSlice | append (merge $v (dict "slug" $k)) }}{{ end }}
+    {{ $catSlice = sort $catSlice "order" }}
 
-            {{ $stars := 0 }}
-            {{ if isset .Params "stars" }}
-              {{ $stars = .Params.stars }}
-            {{ else if and $is_github (ne $repo_path "") hugo.Data.github_stars }}
-              {{ with index hugo.Data.github_stars $repo_path }}
-                {{ $stars = . }}
-              {{ end }}
-            {{ end }}
-
-            {{ $pagesWithStars = $pagesWithStars | append (dict "Page" . "Stars" $stars "RepoPath" $repo_path "IsGithub" $is_github "IsGitlab" $is_gitlab) }}
-          {{ end }}
-
-          {{ $sortedSoftwarePages := sort $pagesWithStars "Stars" "desc" }}
-
-          {{ range $sortedSoftwarePages }}
-            {{ $page := .Page }}
-            <li class="mb-6 content-panel p-6 shadow-lg rounded-lg">
-              <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mb-3">
-                <h3 class="text-xl font-bold">
-                  <a href="{{ $page.Permalink }}" class="text-dark dark:text-darkmode-dark hover:text-primary dark:hover:text-darkmode-primary">{{ $page.Title }}</a>
-                </h3>
-                <div class="flex items-center space-x-2 flex-shrink-0">
-                  {{ if .IsGithub }}
-                    <img class="h-5" src="https://img.shields.io/github/stars/{{ .RepoPath }}.svg?style=social" alt="GitHub Stars">
-                  {{ else if .IsGitlab }}
-                    <img class="h-5" src="https://img.shields.io/gitlab/stars/{{ .RepoPath }}.svg?style=social" alt="GitLab Stars">
-                  {{ end }}
-                </div>
-              </div>
-
-              <p class="mb-4 text-text dark:text-darkmode-text">{{ $page.Params.description }}</p>
-
-              {{ partial "custom/software-resource-counts.html" (dict "page" $page "is_single" false) }}
-
-              <div class="border-t border-border dark:border-darkmode-border pt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div class="flex items-center gap-3">
-                  {{ with $page.Params.maintainer }}
-                    {{ $maintainerList := . }}
-                    {{ if not (reflect.IsSlice .) }}{{ $maintainerList = slice . }}{{ end }}
-
-                    <div class="flex -space-x-3">
-                      {{ range $maintainerList }}
-                        {{ $contrib := partial "helpers/resolve-contributor.html" . }}
-                        {{ if $contrib.ImageResource }}
-                          <img src="{{ ($contrib.ImageResource.Fill "40x40 Lanczos").RelPermalink }}" alt="{{ . }}" title="{{ . }}" class="w-10 h-10 rounded-full object-cover border-2 border-white dark:border-gray-800">
-                        {{ else }}
-                          <div class="w-10 h-10 rounded-full bg-gray-200 dark:bg-darkmode-theme-dark flex items-center justify-center text-gray-400 border-2 border-white dark:border-gray-800" title="{{ . }}">
-                            {{ partial "icon.html" (dict "style" "solid" "name" "user" "class" "text-lg") }}
-                          </div>
-                        {{ end }}
-                      {{ end }}
-                    </div>
-                    <div>
-                      <p class="text-xs text-text dark:text-darkmode-text">Maintained by</p>
-                      <p class="font-semibold text-primary dark:text-darkmode-primary">
-                        {{ $links := slice }}
-                        {{ range $maintainerList }}
-                          {{ $contrib := partial "helpers/resolve-contributor.html" . }}
-                          {{ if $contrib.Page }}
-                            {{ $links = $links | append (printf `<a href="%s">%s</a>` $contrib.Page.RelPermalink .) }}
-                          {{ else }}
-                            {{ $links = $links | append (printf `<span>%s</span>` .) }}
-                          {{ end }}
-                        {{ end }}
-                        {{ delimit $links ", " | safeHTML }}
-                      </p>
-                    </div>
-                  {{ end }}
-                </div>
-
-                <div class="flex items-center gap-4">
-                  <div class="flex flex-wrap gap-2">
-                    {{ if $page.Params.supports_NIR }}<span class="support-badge">NIR Support</span>{{ end }}
-                    {{ if $page.Params.supports_hardware }}<span class="support-badge">Hardware Support</span>{{ end }}
-                  </div>
-                  <a href="{{ $page.Permalink }}" class="btn btn-new-outline btn-sm !py-2 !px-4 flex-shrink-0">View Details</a>
-                </div>
-              </div>
-            </li>
-          {{ end }}
-        </ul>
-      </section>
+    {{ range $cat := $catSlice }}
+      {{ $items := where $allSoftware ".Params.category" .slug }}
+      {{ if $items }}
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold mb-2 pb-2 border-b border-border dark:border-darkmode-border">
+            <a href="{{ (site.GetPage (printf "neuromorphic-computing/software/%s" .landing_path)).RelPermalink }}">{{ .title }}</a>
+          </h2>
+          <p class="text-text dark:text-darkmode-text mb-6">{{ .page_intro }}</p>
+          <ul class="list-none p-0">
+            {{ partial "custom/render-software-items.html" (dict "items" $items "context" $) }}
+          </ul>
+        </section>
+      {{ end }}
     {{ end }}
+
+  {{ else }}
+    <!-- LANDING PAGE: Pull items strictly matching this folder's assigned category ID -->
+    {{ $myCategory := .Params.category_id }}
+    {{ $items := where $allSoftware ".Params.category" $myCategory }}
+    <ul class="list-none p-0">
+      {{ partial "custom/render-software-items.html" (dict "items" $items "context" .) }}
+    </ul>
   {{ end }}
 </div>

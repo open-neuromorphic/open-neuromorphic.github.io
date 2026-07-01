@@ -1,6 +1,6 @@
 ---
 active_product: true
-description: "Learn about Charlotte Frenkel's neuromorphic hardware: ODIN"
+description: 'Learn about Charlotte Frenkel''s neuromorphic hardware: ODIN'
 type: neuromorphic-hardware
 image: odin.png
 organization:
@@ -8,13 +8,13 @@ organization:
   org_logo: null
   org_name: Charlotte Frenkel
   org_website: null
-  product_page_link: https://github.com/ChFrenkel/ODIN/
+  product_page_link: 'https://github.com/ChFrenkel/ODIN/'
   social_media_links:
-    linkedin: https://www.linkedin.com/in/cfrenkel/
-    twitter: https://twitter.com/C_Frenkel/
+    linkedin: 'https://www.linkedin.com/in/cfrenkel/'
+    twitter: 'https://twitter.com/C_Frenkel/'
     wikipedia: null
 product:
-  announced_date: 2019-01-01
+  announced_date: 2019-01-01T00:00:00.000Z
   applications: General-purpose experimentation platform for bio-inspired edge computing.
   chip_type: Digital
   neurons: 256
@@ -24,15 +24,24 @@ product:
   on_chip_learning: true
   power: 30µW - 1mW
   release_year: 2019
-  release_date: 2019-01-01
+  release_date: 2019-01-01T00:00:00.000Z
   software: null
   status:
     announced: true
     released: true
     retired: false
 product_name: ODIN
-summary: The ODIN 256-neuron 64k-synapse neuromorphic processor highlights how design constraints on the synapses can be released by offloading most synaptic computations at the neuron level. All synapses embed spike-driven synaptic plasticity (SDSP), while neurons are able to phenomenologically reproduce the 20 Izhikevich behaviors of cortical spiking neurons. At the time of publication, ODIN demonstrated the highest synaptic density, and the lowest energy per synaptic operation among digital designs. ODIN was fabricated in 28nm CMOS and can be prototyped in small FPGAs.
+summary: >-
+  The ODIN 256-neuron 64k-synapse neuromorphic processor highlights how design
+  constraints on the synapses can be released by offloading most synaptic
+  computations at the neuron level. All synapses embed spike-driven synaptic
+  plasticity (SDSP), while neurons are able to phenomenologically reproduce the
+  20 Izhikevich behaviors of cortical spiking neurons. At the time of
+  publication, ODIN demonstrated the highest synaptic density, and the lowest
+  energy per synaptic operation among digital designs. ODIN was fabricated in
+  28nm CMOS and can be prototyped in small FPGAs.
 title: Odin by Charlotte Frenkel
+category: uncategorized
 ---
 
 ## Overview

@@ -1,20 +1,21 @@
 ---
 active_product: true
-description: "Learn about TU Dresden's neuromorphic hardware: SpiNNaker2"
+description: 'Learn about TU Dresden''s neuromorphic hardware: SpiNNaker2'
 type: neuromorphic-hardware
 image: spinnaker.jpg
 organization:
   group_name: null
   org_logo: tu-dresden.png
   org_name: Technische Universität Dresden
-  org_website: https://tu-dresden.de/
-  product_page_link: https://tu-dresden.de/ing/elektrotechnik/die-fakultaet/aktuelles/news/spinnaker2-tu-dresden-university-of-manchester-und-globalfoundries-gelingt-durchbruch-bei-ki-cloud-systemen?set_language=en
+  org_website: 'https://tu-dresden.de/'
+  product_page_link: >-
+    https://tu-dresden.de/ing/elektrotechnik/die-fakultaet/aktuelles/news/spinnaker2-tu-dresden-university-of-manchester-und-globalfoundries-gelingt-durchbruch-bei-ki-cloud-systemen?set_language=en
   social_media_links:
     linkedin: null
     twitter: null
-    wikipedia: https://en.wikipedia.org/wiki/SpiNNaker
+    wikipedia: 'https://en.wikipedia.org/wiki/SpiNNaker'
 product:
-  announced_date: 2021-07-27
+  announced_date: 2021-07-27T00:00:00.000Z
   applications: Real-time simulation of SNN; DNN; Symbolic; HPC
   chip_type: Digital
   neurons: 152k
@@ -24,20 +25,22 @@ product:
   on_chip_learning: true
   power: ~2-5W
   release_year: 2021
-  release_date: 2021-07-27
-  software: PyNN, NEST
+  release_date: 2021-07-27T00:00:00.000Z
+  software: 'PyNN, NEST'
   status:
     announced: true
     released: true
     retired: false
 product_name: SpiNNaker2
-summary: The SpiNNaker2 chip houses 153 ARM cores with 19MB on-chip SRAM, 2GB DRAM,
-  and dedicated Machine Learning (e.g., MAC) and Neuromorphic (e.g., Exp/Log) 
-  accelerators. Manufactured in 22nm FDSOI, it employs Adaptive Body Biasing (ABB) 
-  in a Forward Body Bias (FBB) configuration, as well as DVFS for adaptive 
-  near-threshold operation down to 0.5V, enabling a 10x increase in neural 
+summary: >-
+  The SpiNNaker2 chip houses 153 ARM cores with 19MB on-chip SRAM, 2GB DRAM, and
+  dedicated Machine Learning (e.g., MAC) and Neuromorphic (e.g., Exp/Log)
+  accelerators. Manufactured in 22nm FDSOI, it employs Adaptive Body Biasing
+  (ABB) in a Forward Body Bias (FBB) configuration, as well as DVFS for adaptive
+  near-threshold operation down to 0.5V, enabling a 10x increase in neural
   simulation capacity per watt over SpiNNaker1.
 title: SpiNNaker 2 - University of Dresden
+category: uncategorized
 ---
 
 SpiNNaker2 is the successor of the SpiNNaker (Spiking Neural Network Architecture) system developed at the University of Manchester. In contrast to SpiNNaker1, SpiNNaker2 extends beyond being a pure neuromorphic computing platform simulating spiking neural networks, and also supports traditional and event-based Deep Neural Networks (DNNs). 

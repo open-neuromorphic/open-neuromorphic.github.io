@@ -1,38 +1,45 @@
 ---
 active_product: true
-description: "TEXEL is a mixed-signal neuromorphic research chip for on-chip learning and future BEOL memristive device integration."
+description: >-
+  TEXEL is a mixed-signal neuromorphic research chip for on-chip learning and
+  future BEOL memristive device integration.
 type: neuromorphic-hardware
 image: texel.png
 organization:
-  group_name: "Bio-Inspired Circuits and Systems Lab / CogniGron"
+  group_name: Bio-Inspired Circuits and Systems Lab / CogniGron
   org_logo: university-of-groningen.png
   org_name: University of Groningen
-  org_website: https://www.rug.nl/research/zernike/bio-inspired-circuits-and-systems/
+  org_website: 'https://www.rug.nl/research/zernike/bio-inspired-circuits-and-systems/'
   product_page_link: null
   social_media_links:
     linkedin: null
     twitter: null
     wikipedia: null
 product:
-  announced_date: "2025-07-11"
-  applications: "Neuromorphic research, on-chip learning, BEOL memristive device integration"
-  chip_type: "Mixed-signal"
+  announced_date: '2025-07-11'
+  applications: 'Neuromorphic research, on-chip learning, BEOL memristive device integration'
+  chip_type: Mixed-signal
   neurons: 180
   synapses: 10000
-  weight_bits: "Binary plastic weights"
-  activation_bits: "1-bit spikes, analog neuron state"
+  weight_bits: Binary plastic weights
+  activation_bits: '1-bit spikes, analog neuron state'
   on_chip_learning: true
-  power: "27.4 uW static CMOS; 25.9 pJ/spike NeuOp at 80 Hz"
+  power: 27.4 uW static CMOS; 25.9 pJ/spike NeuOp at 80 Hz
   release_year: 2025
-  release_date: "2025-07-11"
+  release_date: '2025-07-11'
   software: null
   status:
     announced: true
     released: true
     retired: false
 product_name: TEXEL
-summary: "TEXEL is a fabricated 180 nm mixed-signal spiking neural network processor for studying local on-chip learning and future integration of two- and three-terminal memristive devices. It serves as a research platform for hybrid CMOS-memristor neuromorphic systems."
+summary: >-
+  TEXEL is a fabricated 180 nm mixed-signal spiking neural network processor for
+  studying local on-chip learning and future integration of two- and
+  three-terminal memristive devices. It serves as a research platform for hybrid
+  CMOS-memristor neuromorphic systems.
 title: TEXEL - University of Groningen
+category: uncategorized
 ---
 
 ## Overview

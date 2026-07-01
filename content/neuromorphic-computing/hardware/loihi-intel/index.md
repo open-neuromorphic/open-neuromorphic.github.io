@@ -1,20 +1,20 @@
 ---
 active_product: false
-description: "Learn about Intel's neuromorphic hardware: Loihi 1"
+description: 'Learn about Intel''s neuromorphic hardware: Loihi 1'
 type: neuromorphic-hardware
 image: loihi-nahuku-board.jpg
 organization:
   group_name: null
   org_logo: intel.png
   org_name: Intel
-  org_website: https://www.intel.com/content/www/us/en/research/neuromorphic-computing.html
-  product_page_link: https://www.intel.com/content/www/us/en/research/neuromorphic-computing.html
+  org_website: 'https://www.intel.com/content/www/us/en/research/neuromorphic-computing.html'
+  product_page_link: 'https://www.intel.com/content/www/us/en/research/neuromorphic-computing.html'
   social_media_links:
-    linkedin: https://www.linkedin.com/company/intel-corporation/
-    twitter: https://twitter.com/intel
-    wikipedia: https://en.wikipedia.org/wiki/Cognitive_computer#Intel_Loihi_chip
+    linkedin: 'https://www.linkedin.com/company/intel-corporation/'
+    twitter: 'https://twitter.com/intel'
+    wikipedia: 'https://en.wikipedia.org/wiki/Cognitive_computer#Intel_Loihi_chip'
 product:
-  announced_date: 2018-12-01
+  announced_date: 2018-12-01T00:00:00.000Z
   applications: Research
   chip_type: Digital
   neurons: 128k
@@ -23,7 +23,7 @@ product:
   activation_bits: null
   on_chip_learning: true
   power: <1.5 W
-  release_date: 2018-12-01
+  release_date: 2018-12-01T00:00:00.000Z
   release_year: 2018
   software: nxSDK
   status:
@@ -31,9 +31,11 @@ product:
     released: true
     retired: true
 product_name: Loihi
-summary: Loihi 1 is Intel's advanced neuromorphic chip, designed to mimic brain-like
+summary: >-
+  Loihi 1 is Intel's advanced neuromorphic chip, designed to mimic brain-like
   processing, enabling efficient, adaptive machine learning applications.
 title: Loihi - Intel
+category: uncategorized
 ---
 
 Loihi is an experimental neuromorphic computer chip developed by Intel Labs as a research platform for spike-based neural networks and computational neuroscience. Formally announced in 2017, it represents a significant advancement in neuromorphic hardware capabilities compared to prior academic and industry prototypes. 

@@ -1,6 +1,6 @@
 ---
 active_product: true
-description: "Learn about Heidelberg University's neuromorphic hardware: Spikey"
+description: 'Learn about Heidelberg University''s neuromorphic hardware: Spikey'
 type: neuromorphic-hardware
 image: spikey_cut.jpg
 organization:
@@ -9,12 +9,12 @@ organization:
   org_name: Heidelberg University
   org_website: null
   social_media_links:
-    linkedin: https://www.linkedin.com/company/ebrains-eu/
-    twitter: https://twitter.com/ebrains_eu
+    linkedin: 'https://www.linkedin.com/company/ebrains-eu/'
+    twitter: 'https://twitter.com/ebrains_eu'
     wikipedia: null
 product:
-  announced_date: 2006-07-21
-  applications: Edge processing, robotics
+  announced_date: 2006-07-21T00:00:00.000Z
+  applications: 'Edge processing, robotics'
   chip_type: Mixed-signal
   neurons: 384
   synapses: 98k
@@ -23,17 +23,20 @@ product:
   on_chip_learning: true
   power: ~1 W
   release_year: 2006
-  release_date: 2006-07-21
+  release_date: 2006-07-21T00:00:00.000Z
   software: PyNN.spikey
   status:
     announced: true
     released: true
     retired: true
 product_name: Spikey
-summary: The Spikey chip is an accelerated spiking neuromorphic system integrating
-  384 integrate-and-fire neurons, 98k plastic synapses, and event routing.
-  It enables fast emulation of complex neural dynamics and exploration of STDP-type synaptic plasticity.
+summary: >-
+  The Spikey chip is an accelerated spiking neuromorphic system integrating 384
+  integrate-and-fire neurons, 98k plastic synapses, and event routing. It
+  enables fast emulation of complex neural dynamics and exploration of STDP-type
+  synaptic plasticity.
 title: Spikey — Heidelberg University
+category: uncategorized
 ---
 
 The Spikey accelerated neuromorphic system is an integrated circuit architecture for emulating biologically-inspired spiking neural networks.

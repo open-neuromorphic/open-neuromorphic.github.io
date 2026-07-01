@@ -5,14 +5,16 @@
   {{ $catSlice = $catSlice | append (merge $v (dict "slug" $k)) }}
 {{ end }}
 {{ $catSlice = sort $catSlice "order" }}
+
 <div class="mb-8">
   <div class="content-panel p-6">
     <ul class="space-y-4">
       {{ range $catSlice }}
         {{ $count := len (where $allSoftware ".Params.category" .slug) }}
+        {{ $landingPage := site.GetPage (printf "neuromorphic-computing/software/%s" .landing_path) }}
         <li>
           <a class="hover:text-primary dark:hover:text-darkmode-primary flex justify-between items-center"
-             href="{{ (site.GetPage "neuromorphic-computing/software").RelPermalink }}#{{ .slug }}"
+             href="{{ if $landingPage }}{{ $landingPage.RelPermalink }}{{ else }}#{{ end }}"
              style="min-width: 150px;">
             <span class="text-xl font-semibold">{{ .title }}</span>
             <span class="dark:bg-gray-500 dark:text-white bg-gray-300 font-bold text-black px-2 py-1 rounded-lg">{{ $count }}</span>
