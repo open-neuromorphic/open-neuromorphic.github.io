@@ -1,7 +1,6 @@
 ---
 title: "Vector Symbolic Algebras and Neural Computation"
 author:
-  - "Alexandre Marcireau"
   - "Michael Furlong"
 date: 2026-07-09
 start_time: "18:00"
