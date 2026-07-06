@@ -1,14 +1,41 @@
 ---
-title: "Tobias Fischer"
-description: "Senior Lecturer at QUT Centre for Robotics. Researches high-performing, bio-inspired computer vision algorithms for robotics and computational cognition."
-image: "tobias-fischer.jpeg" # To be replaced with "tobias-fischer.jpg" or similar
-social:
-  - icon: "fa-brands fa-linkedin"
-    link: "https://www.linkedin.com/in/tobiasrobotics/"
-    title: "linkedin"
-  - icon: "fa-solid fa-graduation-cap"
-    link: "https://scholar.google.com/citations?user=Jp637I8AAAAJ&hl=de"
-    title: "scholar"
+title: "Advances in Neuromorphic Visual Place Recognition"
+author: 
+- Tobias Fischer
+- Jason Eshraghian
+date: 2024-04-18
+description: "Discover how subsampling high-variance pixels in event streams enables 1000x faster visual place recognition for resource-constrained robotics."
 draft: false
+video: dTE6eDzwSJU
+upcoming: false
+image: advances-in-neuromorphic-visual-place-rec.png
+type: workshops
+software_tags: ["snntorch"]
+experience_tags: ["researcher", "practitioner", "advanced"]
+expertise_tags: ["computer-vision", "robotics", "algorithms-learning", "snn"]
+field_of_application_tags: ["automotive"]
+summary_points:
+- Event-based visual place recognition achieves high performance while demanding a fraction of conventional compute and storage.
+- Intelligently subsampling event pixels based on temporal variance creates a highly sparse, privacy-preserving signature for locations.
+- Modular spiking neural networks combined with sequence matching massively increase place recognition accuracy in large environments.
+- Adaptive sensor biasing merges fast refractory adjustments with slow threshold changes to optimize event streams during active robotic missions.
 ---
-Tobias conducts interdisciplinary research at the intersection of intelligent robotics, computer vision, and computational cognition. My main goal is to develop high-performing, bio-inspired computer vision algorithms that simultaneously examine animals/humans and robots’ perceptional capabilities. He is a Senior Lecturer (US: Associate Professor) and Chief Investigator in Queensland University of Technology’s Centre for Robotics. He is also a recipient of the prestigious Discovery Early Career Researcher Award (DECRA) by the Australian Research Council. He joined the Centre as an Associate Investigator and Research Fellow in January 2020. Previously, he was a postdoctoral researcher in the Personal Robotics Lab at Imperial College London. He received a PhD from Imperial College in January 2019. His thesis was awarded the UK Best Thesis in Robotics Award 2018 and the Eryl Cadwaladr Davies Award for the best thesis in Imperial’s EEE Department in 2017-2018. He previously received an M.Sc. degree (distinction) in Artificial Intelligence from The University of Edinburgh in 2014 and a B.Sc. degree in Computer Engineering from Ilmenau University of Technology, Germany, in 2013. His works have attracted two best poster awards, one best paper award, and he was the senior author of the winning submission to the Facebook Mapillary Place Recognition Challenge 2020.
+
+Tobias Fischer demonstrates how neuromorphic visual place recognition can solve complex localization tasks for resource-constrained robotics. Rather than relying on world-scale compute or dense image reconstructions, the approach captures the uniqueness of a location using an extraordinarily sparse subset of event-based pixels, proving that computational efficiency does not require sacrificing localization accuracy.
+
+## Key Takeaways
+- Event-based visual place recognition achieves high performance while demanding a fraction of conventional compute and storage.
+- Intelligently subsampling event pixels based on temporal variance creates a highly sparse, privacy-preserving signature for locations.
+- Modular spiking neural networks combined with sequence matching massively increase place recognition accuracy in large environments.
+- Adaptive sensor biasing merges fast refractory adjustments with slow threshold changes to optimize event streams during active robotic missions.
+
+## Workshop Format & Takeaways
+The workshop merges a theoretical breakdown of place recognition challenges with a practical, live coding session. Fischer actively steps through a Python implementation—loading an event stream, mapping it to traditional frames, and then radically stripping it down to track just 100 random pixels over time. The session visually proves that comparing the sum of absolute differences across these sparse signatures successfully matches reference and query traverses, bypassing heavy downstream networks entirely.
+
+## What This Means for Neuromorphic Computing
+This methodology validates that rethinking input representations at the sensor edge yields massive performance leaps independent of the downstream network architecture. By proving that extreme sparsity—monitoring just a few high-variance pixels—can reliably pinpoint a robot's location, it eliminates the need to reconstruct conventional frames from event data.
+
+Furthermore, processing only a fraction of the data inherently obfuscates faces and personal identifiers. The speaker noted that this privacy-conserving nature makes event-driven sparse sampling uniquely suited for commercial deployment in public spaces, sidestepping the regulatory hurdles faced by standard autonomous camera systems.
+
+## Resources
+- [Watch the Session](https://www.youtube.com/watch?v=dTE6eDzwSJU)
