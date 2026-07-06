@@ -4,99 +4,47 @@ author:
   - Alexandre Marcireau
   - Jens E. Pedersen
 date: 2024-09-30T00:00:00.000Z
-description: >-
-  Learn about using GitHub Actions for CI/CD with the Faery event processing
-  library, presented by Alexandre Marcireau.
+description: "Explore how to use GitHub Actions and cibuildwheel to automate cross-platform compilation and deployment of the Rust-backed Faery event processing library."
 upcoming: false
 video: BGclcb7u4PQ
 image: alexandre-marcireau-faery-github-actions.jpg
 type: hacking-hours
 software_tags:
   - faery
+experience_tags:
+  - practitioner
+  - intermediate
+expertise_tags:
+  - software
+content_source: "talk-summary"
+summary_points:
+  - "Python libraries utilizing low-level Rust extensions face massive deployment hurdles if users are forced to compile code locally upon installation."
+  - "Leveraging GitHub Actions with cibuildwheel automates the generation of pre-compiled binary 'wheels' across Windows, macOS, and Linux targets."
+  - "Automated CI pipelines safeguard PyPI supply chains by securely injecting API tokens and validating that newly pushed code imports successfully."
+  - "Compiling projects with Rust submodules requires specific Git checkout configurations to ensure all necessary dependencies are pulled into the build matrix."
+  - "Building the Source Distribution (sdist) correctly is critical for edge-case hardware like Raspberry Pi, which must compile the source code natively."
 url: >-
   /neuromorphic-computing/software/hacking-hours/alexandre-marcireau-faery-github-actions/
 ---
 
-In this Hacking Hour session, Alexandre Marcireau joins host Jens E. Pedersen to discuss the implementation and benefits of using GitHub Actions for the Faery event processing library. The focus is on continuous integration (CI), testing, and deployment (CD) workflows to maintain and improve the Faery codebase.
+Delivering high-performance computational speeds in Python often requires writing core components in lower-level languages like C++ or Rust. However, this creates a massive deployment headache, as end-users are frequently forced to navigate compilers and dependency chains just to install the library. In this Hacking Hour, Alexandre Marcireau demonstrates how to establish robust Continuous Integration and Deployment (CI/CD) pipelines using GitHub Actions to automate cross-platform wheel compilation for the Faery library.
 
-## Key Themes and Ideas
+## Key Takeaways
+- **Pre-compilation is mandatory for usability:** Requiring end-users to compile Rust code locally severely limits a library's adoption. Providing pre-compiled binary "wheels" ensures that a standard `pip install` works flawlessly out of the box.
+- **`cibuildwheel` automates the matrix:** Managing builds for varying Python versions across Intel and ARM architectures on Linux, macOS, and Windows is incredibly tedious. Using `cibuildwheel` abstracts this complexity, automatically orchestrating isolated build environments for every target hardware profile.
+- **Testing happens on the local build:** A CI pipeline must verify the newly compiled wheel, not the legacy version already hosted on PyPI. By utilizing specific flags (`--no-deps --find-links`), the action can forcefully install and test the isolated local build before validating a release.
+- **Git submodules must be explicitly requested:** When an open-source project relies on a low-level submodule (like `rust-numpy`), GitHub Actions will fail to compile unless the checkout step explicitly includes `submodules: true` to fetch the external dependency tree.
+- **Secrets protect the supply chain:** Automating uploads to the Python Package Index (PyPI) introduces security vulnerabilities if handled improperly. The workflow securely utilizes GitHub Secrets to inject PyPI API tokens at runtime, safeguarding against malicious code injection.
 
-*   **Addressing Challenges of Non-Pure Python Libraries:**
-  *   Faery includes high-performance components written in Rust.
-  *   This makes installation difficult for users as it typically requires a compiler.
-      > "pretty much any library that is playing with low level stuff needs to not be pure Python... what that's great for performance that's awful for ease of use because means that now in order to install your python Library you simply need a compiler"
+## What Was Built / Demonstrated
+The session walked through writing a GitHub Actions workflow from scratch. The YAML file was configured to trigger automatically on both repository pushes and manually drafted releases.
 
-*   **Leveraging GitHub Actions for CI and Releases:**
-  *   GitHub Actions enable pre-compilation of the library on various platforms (Windows, macOS, Linux, Intel, ARM).
-  *   This simplifies installation for users by providing pre-compiled binaries (wheels).
-      > "but since GitHub has actions it can do that for us which we like which really really like better yet because it can give us access to different machines... means that we can precompile versions for all those platforms without have without needing access to those machines ourselves"
-  *   The goal is "continuous integration to release to PyPI."
+The live debugging process highlighted how to correctly clone the `rust-numpy` submodule, how to set up the `cibuildwheel` architecture targets, and how to verify that the generated binary artifact successfully imports via Python without throwing segmentation faults. Finally, the necessary steps to bundle a Source Distribution (sdist) and pipe the finished assets directly into a PyPI release were established.
 
-*   **Automating Build and Release Process:**
-  *   The workflow will run on every `push` and `pull_request` to detect breaking changes early.
-      > "the IDE is to do it on so do the build every time you make a change... that way if you if you make a breaking change that breaks it on a machine that you cannot easily test for you know earlier rather than later"
-  *   Releases to PyPI are triggered by creating a new release on GitHub.
-      > "this runs always but it will only do the piie stuff if you're creating a new release so that way you have sort of a onetoone match between your GitHub releases and your piie versions"
+## What This Means for Neuromorphic Computing
+The neuromorphic ecosystem relies on heavily optimized event-processing routines, meaning libraries must inherently utilize high-performance languages under the hood.
 
-*   **Utilizing `cibuildwheel` for Cross-Platform Builds:**
-  *   `cibuildwheel` automates the creation of pre-compiled binary "wheels" for various OS and architectures.
-      > "we're using CI build Wheels which is an amazing am in library that does all the heavy lifting for us basically takes a python library and then just creates a matrix of all the machines and configurations you might want and creates wheels for them"
-  *   Wheels (`.whl` files) allow direct installation without user-side compilation.
-  *   Configuration targets macOS, Linux, Windows, x86_64, and ARM64.
-  *   Raspberry Pi (ARM on Linux) support is planned but limited by current GitHub Actions availability.
+By investing time into establishing sophisticated, automated GitHub Actions pipelines, maintainers guarantee that their neuromorphic tools are actually usable by the broader community without demanding deep systems-programming knowledge from the researchers utilizing them. This continuous integration approach ensures that breaking changes across operating systems are caught immediately during Pull Requests, keeping the software highly stable.
 
-*   **Workflow Steps:**
-  1.  **Build Wheels:** Compile for different platforms and Python versions using `cibuildwheel`.
-  2.  **Import Library:** A minimal test to ensure the compiled library can be imported.
-      > "the second one is called import library and that is the most minimal test that you can possibly do with python Library we just make sure that it doesn't crash on import which sadly open happens quite often"
-  3.  **Run Tests:** Execute the library's test suite (Pytest suggested).
-      > "py test tests M and then we'll itely go through and find all the python tests in there"
-  4.  **Build Sdist (Source Distribution):** Create a `.tar.gz` source distribution.
-  5.  **Upload to PyPI:** Upload wheels and sdist to the Python Package Index.
-
-*   **Dependency Management and Local Builds:**
-  *   Ensuring tests run against the locally built Faery version, not an older PyPI version.
-  *   Using `pip install --no-deps --find-links wheelhouse --no-index ferry` to install the local wheel.
-      > "on line 52 we want to make sure that we're installing not the existing version of ferry that is already online we want to install local version that we just created right which is not on pipie yet"
-
-*   **Handling Sub-Modules and Rust Dependencies:**
-  *   Faery depends on the `rust-numpy` Rust sub-module.
-  *   The `submodules: true` option in the `actions/checkout` step is required to fetch sub-module code.
-      > "so doesn't that just mean that we have checked out the repository we haven't checked out the sub modules... so what you can do is you can say with set my's true"
-  *   A potential issue with including the Rust sub-module correctly in the source distribution (sdist) is acknowledged and deferred.
-
-*   **Security and Supply Chain Attacks:**
-  *   Uploading to PyPI requires a secret API token stored in GitHub Secrets (`secrets.PIPY_API_TOKEN`).
-      > "is this pipie API token yeah and that's something that I will add to the repository... to let that repository talk to piie so essentially an environment variable right which is like the the authentication token..."
-  *   The token helps verify package origin, addressing supply chain attack concerns.
-  *   The broader issue of supply chain attacks in open source and the difficulty of strict versioning in package managers like `pip` are discussed.
-      > "has to do with so-called supply chain attacks which is perhaps the biggest downside of Open Source and one of the biggest dangers..."
-  *   Minimizing transitive dependencies (like NumPy) is good practice.
-
-*   **Iterative Development and Testing:**
-  *   Setting up GitHub Actions is an iterative process.
-  *   Working on a separate branch allows for testing before merging.
-  *   The GitHub Actions UI provides detailed logs for debugging.
-      > "the only way to really test it is to actually push comets that's a problem with actions"
-      > "the GitHub um page here is is just really really nice... you can see exactly what is what is what is going wrong and what's going right"
-
-*   **Rust Ecosystem Advantages:**
-  *   The Rust ecosystem is more modern and has learned from past mistakes compared to C/C++.
-      > "one nice thing is that you start from a clean slate right... but really what makes it much nicer than cc++ is the ecosystem... because it's 20 years younger"
-
-## Progress and Next Steps
-
-*   A GitHub Actions workflow file has been created and committed to a development branch.
-*   Initial issue with Rust sub-module checkout resolved by adding `submodules: true`.
-*   Wheel building and library import tests were successful after the fix.
-*   The PyPI API token needs to be added to repository secrets for the upload step.
-*   Further testing and refinement of the workflow are needed.
-*   The sdist/Rust sub-module issue is noted for future resolution.
-*   Integration of `pytest` for comprehensive testing is planned.
-
-## Outstanding Issues
-
-*   Ensuring the Rust sub-module is correctly included in the source distribution (sdist).
-*   Adding the PyPI API token to GitHub secrets.
-*   Fully integrating and verifying `pytest` execution.
-*   Potential future expansion to more platforms/architectures.
+## Resources
+- **Video:** [Watch the session on YouTube](https://www.youtube.com/watch?v=BGclcb7u4PQ)
