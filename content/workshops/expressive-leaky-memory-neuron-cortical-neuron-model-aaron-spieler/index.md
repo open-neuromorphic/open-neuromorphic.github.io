@@ -5,7 +5,7 @@ author:
 - Gregor Lenz
 date: 2024-02-27
 draft: false
-upcoming: true
+upcoming: false
 video: q0shX-zCk4c
 image: elm-neuron-expressive-leaky-memory.png
 description: "See how the Expressive Leaky Memory (ELM) neuron leverages few memory states and nonlinear dendritic processing to solve long-horizon tasks efficiently."
