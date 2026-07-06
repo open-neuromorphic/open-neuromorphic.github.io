@@ -4,7 +4,7 @@ author:
   - "Sangyeob Kim"
   - Fabrizio Ottati
 date: 2024-05-04
-description: "Discover how C-Transformer routes workloads between ANN and SNN cores based on spike sparsity, reducing LLM energy consumption by over 30%."
+description: "The C-Transformer architecture dynamically routes language model workloads between ANN and SNN cores based on spike sparsity, reducing LLM energy by up to 72%."
 upcoming: false
 video: lEl9DPgBqvA
 image: c-dnnandc-transformer.png
@@ -23,10 +23,10 @@ summary_points:
 Sangyeob Kim from KAIST outlines the development of the C-DNN processor and its successor, the C-Transformer, demonstrating how mixing Artificial Neural Networks (ANNs) and Spiking Neural Networks (SNNs) drastically improves energy efficiency. The C-DNN architecture relies on a dynamic workload allocator that assigns data with high spike sparsity to SNN cores and denser data to CNN cores. Extending this technique to large language models, the C-Transformer architecture addresses the massive computational overhead of LLMs, drastically reducing energy consumption and making on-device deployment highly viable.
 
 ## Key Takeaways
-- **C-DNN architecture achieves hybrid processing, dynamically routing workloads to CNN or SNN cores based on spike sparsity.**
-- **The hybrid approach increases energy efficiency by 51.3% compared to previous state-of-the-art inference processors.**
-- **C-Transformer addresses LLMs, using homogeneous cores that dynamically switch between multiplication and accumulation modes.**
-- **It achieves 32% lower energy for models with twice the parameters, and 72.2% lower energy for equivalently sized models.**
+- C-DNN architecture achieves hybrid processing, dynamically routing workloads to CNN or SNN cores based on spike sparsity.
+- The hybrid approach increases energy efficiency by 51.3% compared to previous state-of-the-art inference processors.
+- C-Transformer addresses LLMs, using homogeneous cores that dynamically switch between multiplication and accumulation modes.
+- It achieves 32% lower energy for models with twice the parameters, and 72.2% lower energy for equivalently sized models.
 
 ## Workshop Format & Takeaways
 
