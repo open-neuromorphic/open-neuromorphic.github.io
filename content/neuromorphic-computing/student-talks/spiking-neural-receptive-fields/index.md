@@ -1,26 +1,17 @@
 ---
-title: "Spiking Neural Receptive Fields"
+title: "Spiking Neural Receptive Fields" 
 author:
-  - "Jens E. Pedersen"
-date: 2025-12-05
-start_time: "08:00"
-end_time: "09:15"
-time_zone: "EST"
-description: "Watch how applying continuous scale-space theory to Spiking Neural Networks (SNNs) creates covariant receptive fields that outperform conventional deep learning."
-upcoming: false
-# upcoming_url: "https://dtudk.zoom.us/j/68487370163"
-video: "YfCmJPR8P24"
-type: "student-talks"
+  - "Jens E. Pedersen" 
+date: 2025-12-05 
+start_time: "08:00" 
+end_time: "09:15"   
+time_zone: "EST"    
+description: "See how leaky integrators provide scale-space covariance for SNNs, boosting event-based tracking by 42% when initialized with spatio-temporal priors."
+upcoming: false 
+video: "YfCmJPR8P24"       
+type: "student-talks" 
 speaker_slides: "https://jepedersen.dk/posts/talks/202512_onm_nrf/"
-speaker_paper: "https://www.nature.com/articles/s41467-025-63493-0"
-content_source: "talk-summary"
-software_tags:
-  - "nir"
-summary_points:
-  - "Leaky integrators (LI) and Leaky Integrate-and-Fire (LIF) models inherently possess covariance properties, making them mathematically ideal for tracking spatio-temporal scaling."
-  - "By applying scale-space theory directly to neuromorphic primitives, spiking networks can reliably process geometric transformations like moving or scaling objects."
-  - "Initializing spiking networks with theoretical spatial and temporal priors drastically accelerates training convergence and improves final performance compared to random initialization."
-  - "On sparse, event-based regression tasks, these theoretically grounded SNNs significantly outperform conventional multi-frame artificial neural networks (ANNs)."
+speaker_paper: "https://www.nature.com/articles/s41467-025-63493-0" 
 production_credits:
   - name: "Justin Riddiough"
     role: "Technical Oversight"
@@ -32,27 +23,41 @@ production_credits:
     role: "Scheduling & Coordination"
   - name: "Marcos Ordonez"
     role: "Social Media Promotion"
+experience_tags:
+  - researcher
+  - advanced
+expertise_tags:
+  - snn
+  - computer-vision
+  - neuroscience
+content_source: "talk-summary"
+summary_points:
+  - "Visual processing systems must reliably detect objects regardless of spatial or temporal scaling (e.g., changes in speed or distance)."
+  - "Event-based cameras output sparse, logarithmic changes in luminance, requiring networks that naturally compute over continuous time."
+  - "Covariance guarantees that scaling a signal and then processing it yields the exact same representation as processing it and then scaling it."
+  - "Leaky Integrator (LI) and Leaky Integrate-and-Fire (LIF) models perfectly approximate the exponentially truncated kernels needed for temporal covariance."
+  - "Initializing SNNs with structured scale-space priors outperforms uniformly randomized weights by up to 42% in event-based regression tasks."
 ---
 
-Jens's published work, "Covariant spatio-temporal receptive fields for spiking neural networks” [2], addresses a fundamental challenge in neuromorphic computing: the lack of theoretical frameworks to guide efficient implementations. The work demonstrates that leaky integrator and leaky integrate-and-fire neuron models are provably covariant to a large class of geometric transformations, with two important implications: (1) we can build reliable and scalable neuromorphic computational pipelines and (2) we can solve spatio-temporal problems much more efficiently than conventional deep learning methods. The paper demonstrates a regression problem where spiking neural networks significantly outperform comparable non-neuromorphic networks, even when the latter have access to multiple frames. Additionally, by imbuing the network with spatio-temporal priors their performance improves by 42.4% for leaky integrators and 20.3% for leaky integrate-and-fire models. This work establishes a principled computational framework connecting scale-space theory, visual neuroscience, and neuromorphic engineering, paving the way for theoretically grounded event-based processing systems.
+Processing event-based camera data through traditional deep learning networks often involves flattening precise time-sparse signals into dense artificial frames, wiping out the temporal advantages of the hardware. To build networks that actually capitalize on this data, researchers require computational models that process signals continuously while remaining mathematically invariant to geometric transformations like speed and scale. In this talk, Jens E. Pedersen breaks down the mathematics connecting scale-space theory to neuromorphic spiking dynamics, proving that standard leaky integrate-and-fire models possess inherent scale-covariance when structured correctly.
 
 ## Key Takeaways
-- Leaky integrators (LI) and Leaky Integrate-and-Fire (LIF) models inherently possess covariance properties, making them mathematically ideal for tracking spatio-temporal scaling.
-- By applying scale-space theory directly to neuromorphic primitives, spiking networks can reliably process geometric transformations like moving or scaling objects.
-- Initializing spiking networks with theoretical spatial and temporal priors drastically accelerates training convergence and improves final performance compared to random initialization.
-- On sparse, event-based regression tasks, these theoretically grounded SNNs significantly outperform conventional multi-frame artificial neural networks (ANNs).
+- **The importance of scale covariance:** A biological or artificial visual system must reliably track a target regardless of the target's distance (spatial scaling) or the speed of its movement (temporal scaling).
+- **Leaky Integrators fit the math:** For a system to remain covariant across temporal dimensions while respecting causality (only accessing past signals), the optimal function is an exponentially truncated kernel. Simple Leaky Integrator (LI) neurons naturally perform this exact calculation.
+- **Initialization impacts convergence:** Uniformly random weight initialization forces a network's time constants to scatter inefficiently. Initializing weights based on logarithmic scale-space priors allows the network to naturally latch onto features across varying time scales.
+- **Massive gains over standard ANNs:** On sparse event-tracking tasks (where only 0.1% of pixels relate to the tracked object), conventional Artificial Neural Networks fail to maintain stable tracking, even when given multi-frame historical buffers.
+- **Strong performance boosts:** Imbuing spiking networks with these spatio-temporal mathematical priors resulted in regression performance improvements of 42.4% for Leaky Integrators and 20.3% for LIF models over randomized baselines.
 
 ## About the Research
-The study addresses a massive structural inefficiency in standard AI visual processing pipelines, moving away from frame-by-frame analysis toward continuous, event-driven perception inspired by biological systems (like the vision of a frog). At the core of the research is the mathematical concept of *covariance*—the guarantee that a system's representation of an object scales consistently whether the transformation happens in the physical world or internally inside the neural representation.
+This presentation outlines the findings published in *“Covariant spatio-temporal receptive fields for spiking neural networks”* (Nature Communications, 2025). The research introduces a principled approach to building spatial-temporal receptive fields by mathematically linking the discrete spiking primitives of neuromorphic chips with the continuous scaling theory historically studied in visual neuroscience.
 
-By mapping Gaussian spatial kernels and exponentially truncated temporal kernels directly to leaky integrators, the research proves that basic spiking primitives naturally compute covariant scale spaces. Consequently, when SNN parameters are seeded logarithmically—matching these mathematical priors—the models easily track transforming shapes under extreme sparsity (e.g., when signal events make up only 0.1% of the total camera output). Standard Deep Learning ANNs struggle massively with this sparsity, whereas the theoretically primed spiking networks achieve highly stable regression.
-
-> "If you don't remember what happened to a visual signal—if your classifier is purely invariant—you wouldn't be able to compare its trajectory across scales. Covariance allows the network to remember the exact transformation, which is crucial for interacting with moving entities in time."
+As noted in the session, the work explicitly challenges standard neuromorphic benchmark approaches. Attempting to benchmark these covariant properties on static, frame-converted datasets (like Neuromorphic MNIST) fundamentally misses the point, as static spatial shapes lack the active temporal transformation dynamics that event-based sensors and biological systems actually rely on.
 
 ## What This Means for Neuromorphic Computing
-This research helps solve the "black box" optimization problem that often plagues Spiking Neural Network development. Rather than relying purely on computationally expensive backpropagation to discover optimal time constants from scratch, engineers can use scale-space theory to initialize network parameters deterministically. Because these operations rely solely on native neuromorphic primitives (like Leaky Integrators), they can be compiled directly via the Neuromorphic Intermediate Representation (NIR) and deployed to extreme edge hardware for fast, low-power, mathematically guaranteed object tracking.
+By proving that foundational neuromorphic neuron models map directly onto ideal scale-space computations, this research provides the theoretical grounding necessary to move SNN design away from arbitrary deep learning heuristics.
+
+Instead of treating spiking models as inherently inferior artificial neural networks that require massive gradient optimization searches just to reach parity, engineers can deterministically initialize networks to target specific speeds and spatial structures. This provides a direct path toward deploying real-time, mathematically reliable event-based vision pipelines on resource-constrained neuromorphic edge devices.
 
 ## Resources
-- **Slides:** [2025 ONM NRF Talk](https://jepedersen.dk/posts/talks/202512_onm_nrf/)
-- **Paper:** [Covariant spatio-temporal receptive fields for spiking neural networks](https://www.nature.com/articles/s41467-025-63493-0) (Nature Communications)
-- **Reference:** Lindeberg, T. A computational theory of visual receptive fields. *Biol. Cybern.* (2013).
+- **Speaker Slides:** [Spiking Neural Receptive Fields](https://jepedersen.dk/posts/talks/202512_onm_nrf/)
+- **Speaker Paper:** [Covariant spatio-temporal receptive fields for spiking neural networks](https://www.nature.com/articles/s41467-025-63493-0)

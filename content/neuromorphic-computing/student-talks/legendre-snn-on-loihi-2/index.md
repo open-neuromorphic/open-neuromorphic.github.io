@@ -1,46 +1,44 @@
 ---
 title: "Legendre-SNN on Loihi-2"
 author:
-- "Ramashish Gaurav"
+  - "Ramashish Gaurav"
 date: 2024-12-20
-description: "Learn how the hybrid Legendre-SNN architecture leverages Loihi-2 Lakemont cores and Lava to outperform LSTM networks on time-series classification tasks."
+description: "See how deploying a Legendre Delay Network on Loihi-2’s Lakemont cores with quantized 32-bit operations outperforms LSTMs in time-series classification."
 upcoming: false
 video: GE2GefISrME
 image: poster.png
 type: "student-talks"
+experience_tags:
+  - researcher
+  - advanced
+expertise_tags:
+  - snn
+  - digital-hardware
+  - software
 content_source: "talk-summary"
-hardware_tags:
-  - "loihi-2"
-software_tags:
-  - "lava"
 summary_points:
-  - "The Legendre-SNN (LSNN) successfully integrates a continuous-valued, non-spiking Legendre Delay Network (LDN) with standard spiking hidden and output layers."
-  - "Loihi-2’s x86 Lakemont (LMT) microprocessors can be programmed via Lava to execute INT32-quantized non-spiking operations directly on-chip."
-  - "Deploying the LDN alongside discrete spiking components demonstrates a complete hybrid pipeline evaluated purely on neuromorphic hardware, bypassing traditional CPU-to-chip bottlenecks."
-  - "Across 15 univariate time-series datasets, the on-chip LSNN architecture routinely matches and occasionally outperforms standard deep learning benchmarks like LSTM-FCNs."
+  - "The Legendre-SNN uses a non-spiking Legendre Delay Network (LDN) reservoir to extract temporal features prior to rate encoding."
+  - "Evaluating the hybrid network on Loihi-2 required splitting tasks between non-spiking Lakemont (LMT) cores and standard NeuroCores."
+  - "Lakemont cores only support 32-bit integer operations, requiring precise continuous-value scaling and quantization of the LDN matrices."
+  - "State vectors extracted by the LDN must be duplicated into a two-neuron encoding system to capture both positive and negative scalar signs."
+  - "On physical Loihi-2 hardware, the energy-efficient Legendre-SNN outperformed established LSTM-FCN deep learning models on multiple time-series datasets."
 ---
-In his recent work [1], Ram designed the Legendre-SNN (LSNN), a simple - yet high performing SNN model (for univariate TSC) where he has used the Legendre Delay Network (LDN) [2] as a non-spiking reservoir (in fact, the LDN in LSNN is implemented with just basic matrix-operations). In a subsequent work (currently under review), he extended his LSNN to DeepLSNN that accounts for multivariate time-series signals too; upon experimenting with it, he found that DeepLSNN models outperform a popular (and complex) LSTM-Conv integrated model [3] on more than 30% of 101 TSC datasets. His latest work is on the evaluation of Legendre-SNN on the Loihi-2 chip [4] — on which this talk is focused at.
 
-Legendre-SNN is composed of a non-spiking LDN followed by one spiking hidden layer and an output layer. The Loihi-2 chip has got two On-chip computational resources: low-power x86 Lakemont (LMT) microprocessors (total 6) and NeuroCores (total 128). The LMT cores support only INT32-bit operations and NeuroCores support deployment of spiking networks. With minimal documentation to program the LMT cores, the challenge was -- how to deploy the Legendre-SNN in its entirety (and evaluate it) on a Loihi-2 chip. In this talk, Ram will present the technical specifics of implementing the non-spiking LDN on an LMT core (the spiking network post the LDN is deployed on NeuroCores). His work: “Legendre-SNN on Loihi-2” [4] adds to the scarce technical-documentation to program LMT cores and presents a pipeline to deploy an SNN model composed of non-spiking & spiking components -- entirely on Loihi-2.
+SNN architectures frequently incorporate non-spiking components to preprocess or hold state, but deploying these hybrid models natively to neuromorphic hardware presents distinct engineering challenges. In this session, Ramashish Gaurav details how to deploy a Legendre-SNN (LSNN) entirely on Intel’s Loihi-2 chip. By utilizing the chip's x86 Lakemont (LMT) microprocessors to run a non-spiking Legendre Delay Network (LDN) reservoir, and passing the rate-encoded results into spiking hidden layers running on the NeuroCores, the system proves capable of highly efficient time-series classification.
 
 ## Key Takeaways
-- The Legendre-SNN (LSNN) successfully integrates a continuous-valued, non-spiking Legendre Delay Network (LDN) with standard spiking hidden and output layers.
-- Loihi-2’s x86 Lakemont (LMT) microprocessors can be programmed via Lava to execute INT32-quantized non-spiking operations directly on-chip.
-- Deploying the LDN alongside discrete spiking components demonstrates a complete hybrid pipeline evaluated purely on neuromorphic hardware, bypassing traditional CPU-to-chip bottlenecks.
-- Across 15 univariate time-series datasets, the on-chip LSNN architecture routinely matches and occasionally outperforms standard deep learning benchmarks like LSTM-FCNs.
+- **Hybrid processing requires specific core mapping:** To deploy the network efficiently, the non-spiking LDN reservoir is mapped directly to Loihi-2's six low-power Lakemont x86 cores using custom C-based Lava processes.
+- **Handling integer constraints via quantization:** Because Lakemont cores only execute 32-bit integer operations, the continuous floating-point variables of the LDN (and the input data) must be scaled and strictly quantized before processing.
+- **Encoding positive and negative signals:** Because the continuous state vector can output positive and negative scalars, each scalar is duplicated into a two-neuron system—ensuring both polarities are properly rate-encoded into binary spikes.
+- **Bypassing explicit adapters:** By leveraging Lava's `receive_vec_dense` and `send_vec_dense` APIs within the customized C process models, the Lakemont cores can send binary spikes directly to the NeuroCores without requiring additional intermediary adapter processes.
+- **Competitive accuracy:** On physical Loihi-2 hardware, the LSNN achieved higher classification accuracy than a complex LSTM-FCN deep learning model across multiple univariate time-series datasets.
 
 ## About the Research
-The study tackles the notoriously difficult problem of running mixed continuous-discrete systems on strict neuromorphic hardware. While the spiking components of an SNN map cleanly to Loihi-2's NeuroCores, the state transition matrices underpinning the Legendre Delay Network require continuous values.
+This implementation builds on Gaurav’s paper, *“Legendre-SNN on Loihi-2: Evaluation and Insights”* (NeurIPS 2024), which demonstrates how to effectively deploy non-trainable LDN reservoirs connected to trainable spiking components.
 
-The research establishes a strict quantization methodology to map the floating-point LDN mathematics to the 32-bit integer limits of Loihi-2's Lakemont (LMT) cores. By programming custom C-based Process Models in the Lava framework, the continuous temporal features can be extracted on the LMT cores, rate-encoded into spikes, and fed instantly to the NeuroCores. Extensive validation metrics—including Victor-Purpura and Inter-Spike Interval distances—prove that the quantized on-chip representation remains nearly perfectly synchronized with ideal CPU-based floating-point models.
-
-> "When we talk about SNNs not outperforming ANNs or deep learning networks, slowly and gradually we are catching up. It was incredibly encouraging to see the LSNN on the Loihi-2 chip outright outperform the LSTM-FCN baseline on several datasets."
+The LDN essentially computes a high-fidelity continuous-time delay of the input signal using state transition equations. Because these state matrices are static, only the hidden and output spiking layers are trained off-chip using Lava's SLAYER algorithm. As noted in the session, comparing the continuous-valued LDN implemented on a standard CPU against the quantized version running on the Lakemont cores showed near-perfect spike synchrony, proving the viability of the integer scaling approach.
 
 ## What This Means for Neuromorphic Computing
-This implementation breaks the assumption that neuromorphic chips must exclusively run discrete, spike-only algorithms to be useful. By leveraging on-chip x86 companion cores for the non-spiking reservoir state, the work proves that hybrid AI models can be entirely un-tethered from a host CPU during inference. Furthermore, this provides the neuromorphic community with a rare, documented, and technically rigorous roadmap for utilizing Intel’s Lava library to build custom `C-Loihi` process models for arbitrary non-spiking mathematical operations.
+A significant barrier to utilizing cutting-edge neuromorphic hardware is the lack of technical documentation for custom edge cases—such as running arbitrary continuous logic alongside spiking workloads. This work serves as a practical blueprint for developers looking to utilize the auxiliary x86 microprocessor units present on neuromorphic chips like Loihi-2.
 
-## Resources
-- [1] Gaurav, R. et al., "Reservoir based spiking models for univariate Time Series Classification." *Frontiers in Computational Neuroscience* 17 (2023).
-- [2] Voelker, A.R., and Eliasmith, C. "Improving spiking dynamical networks: Accurate delays, higher-order synapses, and time cells." *Neural Computation* 30.3 (2018).
-- [3] Karim, F. et al., "LSTM fully convolutional networks for time series classification." *IEEE Access* 6 (2017).
-- [4] Gaurav, R. et al., "Legendre-SNN on Loihi-2: Evaluation and Insights." *NeurIPS 2024 MLNCP Workshop*.
+By successfully deploying both the stateful continuous components and the discrete spiking components on a single specialized device, this approach demonstrates that neuromorphic hardware can support complex, hybrid pipeline constraints while still preserving massive energy efficiency gains over standard GPU inference.
