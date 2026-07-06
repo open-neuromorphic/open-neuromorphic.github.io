@@ -3,37 +3,44 @@ title: "Learning Long Sequences in Spiking Neural Networks with Matei Stan"
 author:
   - "Matei Stan"
 date: 2025-07-27
-description: "Discover how combining State Space Models with Spiking Neural Networks and a novel Gated Spiking Unit beats Transformers on long-range sequence benchmarks."
+description: "Combining State Space Models with Spiking Neural Networks enables parallel GPU training and outperforms Transformers on long-sequence modeling tasks."
 upcoming: false
+upcoming_url: "https://teams.microsoft.com/l/meetup-join/19%3Ameeting_OTBkNTY5MjgtMjE3Ni00OTFmLWEwNzktN2QwZTU1NWIxNDc2%40thread.v2/0?context=%7B%22Tid%22%3A%22c152cb07-614e-4abb-818a-f035cfa91a77%22%2C%22Oid%22%3A%223f444780-d657-4917-993e-0f42adeff90e%22%7D"
 video: "RB11UYu7bFY"
 image: "banner.png"
 type: "student-talks"
 speaker_paper: "https://arxiv.org/abs/2401.00955"
 paper_license: "CC-BY-NC-SA"
-experience_tags: ["researcher", "advanced"]
-expertise_tags: ["snn", "machine-learning", "algorithms-learning"]
+hardware_tags:
+  - loihi
+experience_tags:
+  - researcher
+  - advanced
+expertise_tags:
+  - snn
+  - machine-learning
+  - algorithms-learning
+content_source: "talk-summary"
 summary_points:
-  - "State Space Models (SSMs) offer parallelizable training and iterative inference, making them an ideal match for Spiking Neural Networks."
-  - "SSM-based SNNs outperform standard Transformers on long-sequence tasks like the Long-Range Arena benchmark."
-  - "Binary activations in SNNs create a computational bottleneck due to saturating gradients."
-  - "The novel Gated Spiking Unit (GSU) bypasses this bottleneck using non-saturating gradients, maintaining high accuracy without dense MAC operations."
+  - "By combining State Space Models (SSMs) with Spiking Neural Networks (SNNs), researchers achieve parallelized GPU training while retaining sparse, iterative deployment on neuromorphic hardware."
+  - "SSM-based SNNs successfully outperformed standard Transformers on complex sequence tasks like the Long-Range Arena (LRA) Pathfinder challenge."
+  - "Traditional binary spikes introduce a saturating activation bottleneck that limits gradient flow and degrades model accuracy."
+  - "A novel Gated Spiking Unit bypasses this saturation by running a non-saturating gradient path in parallel with the ternary quantized feature mixing layer."
 ---
 
-Matei Stan’s research investigates the intersection of State Space Models (SSMs) and Spiking Neural Networks (SNNs) for long-range sequence modeling. By addressing the specific drawbacks of binary activations and saturating gradients, this approach scales neuromorphic solutions for complex, memory-intensive tasks while dramatically reducing energy consumption.
+Training Spiking Neural Networks (SNNs) at scale has historically been hamstrung by the need for iterative, sequential simulation, preventing the massive GPU parallelism that fueled the rise of Transformers. However, as standard deep learning models demand increasingly unsustainable energy footprints, the need for sparse, brain-inspired computation is critical. In this session, Matei Stan details an approach that merges the computational primitives of State Space Models (SSMs) with SNNs. By eliminating non-linearities between time steps, the recurrence in SSMs can be computed in parallel as a convolution during training, while still deploying as an energy-efficient, sparse network on neuromorphic hardware.
 
 ## Key Takeaways
-- State Space Models (SSMs) offer parallelizable training and iterative inference, making them an ideal match for Spiking Neural Networks.
-- SSM-based SNNs outperform standard Transformers on long-sequence tasks like the Long-Range Arena benchmark.
-- Binary activations in SNNs create a computational bottleneck due to saturating gradients.
-- The novel Gated Spiking Unit (GSU) bypasses this bottleneck using non-saturating gradients, maintaining high accuracy without dense MAC operations.
+- **SSMs bridge the training gap:** By structuring recurrent dynamics linearly, SSMs allow networks to process entire sequences simultaneously on GPUs during training, bypassing the vanishing gradient and time-intensive sequential bottlenecks of traditional SNNs.
+- **SNNs beat Transformers on long sequences:** On the Long-Range Arena (LRA) Pathfinder task—a highly complex visual sequence challenge spanning 16,000 tokens—standard Transformers completely failed to converge. In contrast, the quantized, SSM-based spiking model successfully achieved above-random accuracy while maintaining high sparsity.
+- **Binary spikes cause saturation bottlenecks:** A permanent limitation of standard spiking models is that binary spikes inherently saturate, capping accuracy limits even when utilizing ideal surrogate gradients.
+- **The Gated Spiking Unit restores gradient flow:** Inspired by Gated Linear Units (GLUs), a novel architecture runs a non-saturating identity gate in parallel with the quantized spiking output. This allows continuous gradients to flow backward through the network while still performing energy-efficient ternary additions in the forward pass.
 
 ## About the Research
-Based on the paper "Learning Long Sequences in Spiking Neural Networks," this session explores how SSMs share computational primitives with standard Leaky Integrate-and-Fire (LIF) neurons. Unlike traditional RNNs or SNNs, which require slow, iterative simulation during training, SSMs view recurrence as a convolution. This allows the entire operation to run in parallel on GPUs via Fast Fourier Transforms, drastically speeding up training times from days to hours.
-
-However, applying binary activations (spikes) introduces saturating gradients, effectively placing a hard ceiling on model accuracy even when using ideal surrogate gradients. To solve this, the research introduces a feature mixing layer called the Gated Spiking Unit (GSU). By running a non-saturating gradient route in parallel with ternary weights, the GSU enables deep, accurate learning without relying on energy-heavy multiply-accumulate (MAC) operations.
+This presentation expands on the findings published in *"Learning Long Sequences in Spiking Neural Networks"* (Scientific Reports, 2024). The research formally demonstrates that modern initialization schemes and structured memory states used in SSMs can be mapped directly to spiking architectures. As noted in the session, implementing the Gated Spiking Unit reduced operations to simple ternary accumulations in the feature mixing layer, effectively halving the baseline energy consumption while remaining within 1% of the baseline unquantized accuracy.
 
 ## What This Means for Neuromorphic Computing
-This work paves the way for deploying powerful SSM-based architectures—potentially reaching the scale of Large Language Models—on neuromorphic hardware. It proves that energy-efficient, long-range sequence modeling is possible without relying entirely on traditional transformer paradigms. Furthermore, the Gated Spiking Unit challenges strict assumptions about biological plausibility, showing that separating biological realism from mathematical efficiency can yield highly scalable, performant neuromorphic solutions.
+A persistent challenge in neuromorphic research has been the growing divergence between biologically plausible models and performance-oriented deep learning. By adapting SSMs into spiking architectures, the field gains a scalable path forward. It proves that energy-efficient spiking models no longer need to be restricted to toy datasets like sequential MNIST, but can actively compete with—and in some long-context scenarios, outperform—the current generation of Transformer architectures without sacrificing their deployment efficiency at the edge.
 
 ## Resources
-- **Paper**: [Learning Long Sequences in Spiking Neural Networks](https://arxiv.org/abs/2401.00955)
+- **Speaker Paper:** [Learning long sequences in spiking neural networks](https://arxiv.org/abs/2401.00955)

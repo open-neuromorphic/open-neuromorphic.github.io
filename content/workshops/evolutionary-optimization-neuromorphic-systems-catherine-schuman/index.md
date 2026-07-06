@@ -6,7 +6,7 @@ author:
   - Fabrizio Ottati
   - Jason Eshraghian
 date: 2023-03-21
-description: "Learn how the EONS framework applies evolutionary algorithms to co-design spiking neural network topologies and parameters for diverse neuromorphic hardware."
+description: "The EONS framework applies evolutionary algorithms to co-design spiking neural network topologies and parameters for diverse neuromorphic hardware."
 video: -g5XZDJPoO8
 image: evolutionary-optimization-for-neuromorphic-systems.png
 type: workshops
@@ -23,6 +23,7 @@ field_of_application_tags:
   - robotics
   - automotive
   - medicine
+content_source: "talk-summary"
 summary_points:
   - "The EONS framework dynamically evolves both the parameters and the topology (number of neurons/synapses) of spiking neural networks."
   - "EONS requires no a priori assumptions about network structure, frequently discovering highly recurrent, sparse, and non-layered topologies."

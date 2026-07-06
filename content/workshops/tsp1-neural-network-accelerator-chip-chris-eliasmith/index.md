@@ -7,7 +7,7 @@ date: 2025-11-11
 start_time: "8:00"
 end_time: "9:00"
 time_zone: "EST"
-description: "Discover how the TSP1 accelerator chip runs Legendre Memory Units (LMUs) to deliver state-of-the-art time-series inference at milliwatt power levels."
+description: "The TSP1 accelerator chip runs Legendre Memory Units (LMUs) to deliver state-of-the-art time-series inference at milliwatt power levels."
 upcoming: false
 video: "gk-ieigCkmM"
 aliases:
@@ -26,6 +26,7 @@ expertise_tags:
 field_of_application_tags:
   - consumer-electronics
   - automotive
+content_source: "talk-summary"
 summary_points:
   - "The TSP1 is an edge accelerator purpose-built to execute State Space Models (SSMs) and Legendre Memory Units (LMUs)."
   - "Modeled after hippocamal time cells, LMUs optimally compress temporal information into continuous dynamics using linear and non-linear layers."

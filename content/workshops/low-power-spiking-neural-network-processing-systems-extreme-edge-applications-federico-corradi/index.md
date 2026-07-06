@@ -1,11 +1,11 @@
 ---
 title: "Low-power Spiking Neural Network Processing Systems for Extreme-Edge Applications"
-author: 
-- "Federico Corradi"
-- Gregor Lenz
-- Fabrizio Ottati
+author:
+  - "Federico Corradi"
+  - Gregor Lenz
+  - Fabrizio Ottati
 date: 2023-06-08
-description: "Explore the Microbrain architecture's asynchronous processing and how Forward Propagation Through Time (FPTT) enables training 6.2-million-neuron SNNs."
+description: "The Microbrain architecture combines asynchronous processing and Forward Propagation Through Time (FPTT) to train 6.2-million-neuron SNNs."
 video: xiYUVzdwDIA
 image: low-power-snn-processing.png
 type: workshops
@@ -21,6 +21,7 @@ expertise_tags:
 field_of_application_tags:
   - medicine
   - iot
+content_source: "talk-summary"
 summary_points:
   - "The Microbrain chip utilizes a highly efficient, fully asynchronous architecture combining digital synthesis with custom analog delay cells."
   - "In biomedical trials (ECG feature extraction), the architecture operated at under 50 microwatts while maintaining sub-millisecond precision."

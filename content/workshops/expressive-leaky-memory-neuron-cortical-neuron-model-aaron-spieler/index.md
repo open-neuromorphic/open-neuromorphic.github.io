@@ -1,14 +1,14 @@
 ---
 title: "The ELM Neuron: An Expressive and Efficient Cortical Neuron Model Can Solve Long-Horizon Tasks"
-author: 
-- Aaron Spieler
-- Gregor Lenz
+author:
+  - Aaron Spieler
+  - Gregor Lenz
 date: 2024-02-27
 draft: false
 upcoming: false
 video: q0shX-zCk4c
 image: elm-neuron-expressive-leaky-memory.png
-description: "See how the Expressive Leaky Memory (ELM) neuron leverages few memory states and nonlinear dendritic processing to solve long-horizon tasks efficiently."
+description: "The Expressive Leaky Memory (ELM) neuron leverages few memory states and nonlinear dendritic processing to solve long-horizon tasks efficiently."
 type: workshops
 experience_tags:
   - researcher
@@ -17,6 +17,7 @@ expertise_tags:
   - neuroscience
   - snn
   - algorithms-learning
+content_source: "talk-summary"
 summary_points:
   - "The ELM neuron is a phenomenological model mimicking the sophisticated, nonlinear dendritic integration of biological cortical pyramidal neurons."
   - "It uses a vector of slowly decaying leaky memory states combined with a Multi-Layer Perceptron (MLP) for integration."
