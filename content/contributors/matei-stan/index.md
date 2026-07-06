@@ -3,47 +3,37 @@ title: "Learning Long Sequences in Spiking Neural Networks with Matei Stan"
 author:
   - "Matei Stan"
 date: 2025-07-27
-description: "Discover how combining State Space Models with Spiking Neural Networks and Gated Spiking Units outperforms Transformers on long-range sequence tasks."
+description: "Discover how combining State Space Models with Spiking Neural Networks and a novel Gated Spiking Unit beats Transformers on long-range sequence benchmarks."
 upcoming: false
 video: "RB11UYu7bFY"
 image: "banner.png"
 type: "student-talks"
 speaker_paper: "https://arxiv.org/abs/2401.00955"
 paper_license: "CC-BY-NC-SA"
-experience_tags:
-  - researcher
-  - advanced
-expertise_tags:
-  - snn
-  - machine-learning
-  - algorithms-learning
-content_source: "talk-summary"
+experience_tags: ["researcher", "advanced"]
+expertise_tags: ["snn", "machine-learning", "algorithms-learning"]
 summary_points:
-  - "Spiking Neural Networks (SNNs) traditionally rely on sequential iteration, creating training bottlenecks compared to parallelized models."
-  - "State Space Models (SSMs) remove non-linearities between time steps, allowing recurrence to be computed in parallel via Fast Fourier Transforms."
-  - "Applying binary spiking activations inside SSMs cuts energy usage but introduces a saturating bottleneck that degrades gradients."
-  - "The Gated Spiking Unit (GSU) routes gradients through a parallel, non-saturating gate, matching baseline SSM accuracy with fewer operations."
-  - "SSM-based SNNs successfully converge on the 16,000-token Path-X task, outperforming standard Transformers while remaining highly energy efficient."
+  - "State Space Models (SSMs) offer parallelizable training and iterative inference, making them an ideal match for Spiking Neural Networks."
+  - "SSM-based SNNs outperform standard Transformers on long-sequence tasks like the Long-Range Arena benchmark."
+  - "Binary activations in SNNs create a computational bottleneck due to saturating gradients."
+  - "The novel Gated Spiking Unit (GSU) bypasses this bottleneck using non-saturating gradients, maintaining high accuracy without dense MAC operations."
 ---
 
-While State-of-the-Art models like Transformers have revolutionized sequence modeling, their parameter counts and quadratic computational complexity demand an unsustainable amount of energy. Spiking Neural Networks (SNNs) offer a biologically plausible path to extreme energy efficiency, but their reliance on iterative sequential processing creates massive training bottlenecks that make them impractical for standard GPU parallelism. In this session, Matei Stan details how bridging SNNs with modern State Space Models (SSMs) can resolve these bottlenecks, allowing spiking networks to tackle long-range sequence modeling tasks that standard Transformers outright fail to complete.
+Matei Stan’s research investigates the intersection of State Space Models (SSMs) and Spiking Neural Networks (SNNs) for long-range sequence modeling. By addressing the specific drawbacks of binary activations and saturating gradients, this approach scales neuromorphic solutions for complex, memory-intensive tasks while dramatically reducing energy consumption.
 
 ## Key Takeaways
-- **Iterative processing is an SNN bottleneck:** SNNs traditionally require passing through non-linearities at every time step, preventing the parallelized computation that makes deep learning models fast to train on GPUs.
-- **SSMs enable parallelization:** By removing non-linearities between time steps, State Space Models allow sequence recurrence to be viewed as a convolution, which can be parallelized efficiently using Fast Fourier Transforms.
-- **Binarization causes gradient saturation:** Replacing dense matrix multiplications in SSMs with binary spiking activations cuts energy consumption, but creates a non-differentiable, saturating bottleneck that degrades the gradient signal during training.
-- **Gated Spiking Units (GSUs) solve the bottleneck:** A novel GSU routes gradients through a parallel, non-saturating identity gate while retaining ternary weights, restoring gradient flow and maintaining near-baseline accuracy.
-- **Spiking SSMs outperform Transformers on length:** On the 16,000-token Path-X benchmark, standard Transformers fail to converge entirely (50% random accuracy), while SSM-based spiking architectures reliably solve the binary classification task.
+- State Space Models (SSMs) offer parallelizable training and iterative inference, making them an ideal match for Spiking Neural Networks.
+- SSM-based SNNs outperform standard Transformers on long-sequence tasks like the Long-Range Arena benchmark.
+- Binary activations in SNNs create a computational bottleneck due to saturating gradients.
+- The novel Gated Spiking Unit (GSU) bypasses this bottleneck using non-saturating gradients, maintaining high accuracy without dense MAC operations.
 
 ## About the Research
-This presentation is grounded in the published work *“Learning Long Sequences in Spiking Neural Networks”* (Stan & Rhodes, 2024). The paper systematically investigates the intersection of modern SSMs and SNNs for long-range sequence modeling. By leveraging the Long-Range Arena benchmark, the research proves that replacing typical non-linearities with structured state-space approaches allows spiking models to beat traditional architectures.
+Based on the paper "Learning Long Sequences in Spiking Neural Networks," this session explores how SSMs share computational primitives with standard Leaky Integrate-and-Fire (LIF) neurons. Unlike traditional RNNs or SNNs, which require slow, iterative simulation during training, SSMs view recurrence as a convolution. This allows the entire operation to run in parallel on GPUs via Fast Fourier Transforms, drastically speeding up training times from days to hours.
 
-As discussed in the session, introducing the Gated Spiking Unit further challenges foundational assumptions in neuromorphic engineering about the strict role of binary activations. By splitting the route that gradients travel, the architecture achieves non-saturating properties without relying on standard multiply-accumulate (MAC) operations in the feature mixing layer.
+However, applying binary activations (spikes) introduces saturating gradients, effectively placing a hard ceiling on model accuracy even when using ideal surrogate gradients. To solve this, the research introduces a feature mixing layer called the Gated Spiking Unit (GSU). By running a non-saturating gradient route in parallel with ternary weights, the GSU enables deep, accurate learning without relying on energy-heavy multiply-accumulate (MAC) operations.
 
 ## What This Means for Neuromorphic Computing
-For years, a philosophical rift has existed between the performance-oriented deep learning community and the biologically constrained neuromorphic community. This work bridges that gap by demonstrating that SNNs no longer have to be restricted to toy tasks like sequential MNIST.
-
-By utilizing State Space Models, developers can train spiking networks efficiently on standard GPU clusters in a fraction of the time, while preserving the mathematical properties needed to deploy the resulting model efficiently on dedicated neuromorphic hardware. Reaching convergence on extreme long-range dependencies proves that energy-efficient spiking models can compete directly with—and in specific context, surpass—Transformer architectures.
+This work paves the way for deploying powerful SSM-based architectures—potentially reaching the scale of Large Language Models—on neuromorphic hardware. It proves that energy-efficient, long-range sequence modeling is possible without relying entirely on traditional transformer paradigms. Furthermore, the Gated Spiking Unit challenges strict assumptions about biological plausibility, showing that separating biological realism from mathematical efficiency can yield highly scalable, performant neuromorphic solutions.
 
 ## Resources
-- **Speaker Paper:** [Learning long sequences in spiking neural networks](https://arxiv.org/abs/2401.00955)
+- **Paper**: [Learning Long Sequences in Spiking Neural Networks](https://arxiv.org/abs/2401.00955)

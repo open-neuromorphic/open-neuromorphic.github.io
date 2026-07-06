@@ -1,42 +1,38 @@
 ---
 title: "Spyx Hackathon: Speeding up Neuromorphic Computing"
-author: 
+author:
   - Kade Heckel
 date: 2023-12-13
 video: gKNegntASLI
+type: hacking-hours
+software_tags: ["spyx"]
+experience_tags: ["practitioner", "intermediate"]
+expertise_tags: ["snn", "software", "machine-learning"]
 speaker_code: https://github.com/kmheckel/spyx
 image: workshop-thumbnail-default.png
-description: "The Spyx framework leverages JAX JIT compilation to fuse SNN training loops into a single GPU kernel, unlocking massive throughput speedups on temporal datasets."
-type: workshops
-software_tags: ["spyx"]
-hardware_tags: []
-experience_tags: ["researcher", "practitioner", "advanced"]
-expertise_tags: ["snn", "machine-learning", "software"]
-field_of_application_tags: ["education", "robotics"]
+description: "Learn how the Spyx framework uses JAX's JIT compilation and functional tracing to accelerate SNN training loops, achieving 100% GPU utilization."
+content_source: "talk-summary"
 summary_points:
-  - Spyx is a lightweight, JAX-based framework for SNNs that builds on DeepMind's Haiku.
-  - JAX's Just-In-Time (JIT) compilation allows the entire SNN training loop to be fused into a single GPU kernel.
-  - Fusing the computational graph eliminates CPU-GPU bottlenecks, enabling hundreds of epochs of training in seconds.
-  - Data compression along the temporal axis allows multi-gigabyte event datasets to fit securely within GPU VRAM.
+  - "Spyx is a JAX-based framework that compiles entire SNN training loops into singular, fused CUDA kernels."
+  - "By eliminating Python interpreter overhead, Spyx maintains 100% GPU utilization, dropping training times from hours to minutes."
+  - "Temporal data compression packs eight spikes into a single 8-bit integer, slashing VRAM consumption by 87.5%."
+  - "The framework integrates natively with other JAX-based tools, enabling rapid neuro-evolution and gradient-free optimization."
 ---
 
-Training Spiking Neural Networks (SNNs) over long time horizons using traditional PyTorch frameworks often results in massive performance bottlenecks, largely caused by continuous data-shuttling between the CPU and the GPU. This workshop introduces Spyx, a radically lightweight SNN framework built on top of DeepMind's Haiku and JAX. By exploiting JAX's functional programming paradigms and Just-In-Time (JIT) compilation, Spyx shifts the entire SNN training loop—data loading, forward pass, gradient calculation, and optimizer updates—directly onto the accelerator, achieving unprecedented training throughput.
+Training Spiking Neural Networks (SNNs) in Python historically suffers from extreme computational bottlenecks. Constantly bouncing between the Python interpreter and the GPU to update states at every micro-timestep severely limits training throughput. The Spyx framework solves this by leveraging JAX to Just-In-Time (JIT) compile the entire SNN training loop—including data loading and optimization—directly into a fused, high-performance CUDA kernel.
 
 ## Key Takeaways
-- **Spyx is a lightweight, JAX-based framework for SNNs that builds on DeepMind's Haiku.**
-- **JAX's Just-In-Time (JIT) compilation allows the entire SNN training loop to be fused into a single GPU kernel.**
-- **Fusing the computational graph eliminates CPU-GPU bottlenecks, enabling hundreds of epochs of training in seconds.**
-- **Data compression along the temporal axis allows multi-gigabyte event datasets to fit securely within GPU VRAM.**
+- **Spyx is a JAX-based framework that compiles entire SNN training loops into singular, fused CUDA kernels.**
+- **By eliminating Python interpreter overhead, Spyx maintains 100% GPU utilization, dropping training times from hours to minutes.**
+- **Temporal data compression packs eight spikes into a single 8-bit integer, slashing VRAM consumption by 87.5%.**
+- **The framework integrates natively with other JAX-based tools, enabling rapid neuro-evolution and gradient-free optimization.**
 
-## Workshop Format & Takeaways
-The session walks attendees through the architectural philosophy of Spyx and steps directly into a live coding demonstration. Unlike object-oriented frameworks, JAX enforces a functionally pure programming style. The workshop showcases how to define stateless spiking layers and wrap them in dynamic unrolls that JAX can safely parse.
+## What Was Built / Demonstrated
+In this session, Kade Heckel walked through the architecture and practical implementation of Spyx. The demonstration showcased how JAX’s functional purity allows `jax.lax.scan` to sequentially apply SNN recurrence over an entire dataset without ever returning to the CPU.
 
-A major focus of the session is maximizing VRAM efficiency and GPU utilization. The speaker noted that treating time-series event data conventionally chokes performance. Instead, the framework encourages packing eight binary spikes into a single 8-bit integer along the temporal axis. This allows a user to compress and cache an entire dataset, such as the Spiking Heidelberg Digits, directly into GPU memory.
-
-Through the use of JAX's `scan` control flow, the entire multi-epoch training and validation procedure is JIT-compiled into intermediate representation and lowered into a single, fused Cuda kernel. The results demonstrated during the session were staggering: training an SNN on the SHD dataset for 300 epochs took approximately 20 seconds on a consumer-grade laptop GPU, a task that traditionally spans hours due to interpreter overhead and host-to-device memory transfers.
+To overcome severe VRAM limitations when dealing with large temporal datasets, Heckel demonstrated a technique where the temporal axis is compressed, packing binary spikes into 8-bit integers prior to loading. The batch is then dynamically unpacked on the GPU during the forward pass. The results shown live were dramatic: training a 600,000-parameter SNN on the Spiking Heidelberg Digits dataset for 300 epochs took only 23 seconds on a standard laptop GPU, achieving 14 full dataset iterations per second.
 
 ## What This Means for Neuromorphic Computing
-Iteration speed is arguably the most critical variable in algorithmic research. When testing novel surrogate gradients, evolving hyperparameters, or applying gradient-free optimization to spiking control tasks (like those found in Brax or MuJoCo), waiting hours for a network to converge severely limits exploration. By shifting SNN development into the JAX ecosystem, Spyx eliminates the software overhead native to Python. It equips neuromorphic engineers with the same high-throughput, highly vectorized tooling utilized by Large Language Model researchers, vastly accelerating the search for optimal, deployable spike-based architectures.
+The neuromorphic community has struggled to scale SNN research due to the slow turnaround times of standard PyTorch training loops. By drastically accelerating training, Spyx allows researchers to rapidly prototype complex network topologies, perform large-scale hyperparameter sweeps, and execute evolutionary algorithms that were previously computationally unfeasible.
 
-## Resources
-- **Speaker Code:** [https://github.com/kmheckel/spyx](https://github.com/kmheckel/spyx)
+Furthermore, by writing entirely in Python but executing at the speed of bare-metal C, Spyx lowers the barrier to entry, ensuring that neuromorphic algorithm developers can fully exploit the massive parallel compute power of modern data-center GPUs.
