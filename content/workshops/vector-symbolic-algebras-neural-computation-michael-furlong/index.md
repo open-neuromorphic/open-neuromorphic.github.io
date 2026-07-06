@@ -5,7 +5,7 @@ author:
 date: 2026-07-09
 start_time: "18:00"
 end_time: "19:00"
-time_zone: "CET"
+time_zone: "CEST"
 description: "Join Dr. Michael Furlong to explore Vector Symbolic Algebras (VSAs), how they unify symbolic reasoning with connectionist models, and their computational benefits."
 upcoming: true
 video: ""
