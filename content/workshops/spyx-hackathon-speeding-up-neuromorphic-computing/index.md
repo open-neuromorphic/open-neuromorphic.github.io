@@ -7,7 +7,7 @@ video: gKNegntASLI
 software_tags: ["spyx", "snntorch", "norse", "nengo"]
 speaker_code: https://github.com/kmheckel/spyx
 image: workshop-thumbnail-default.png
-description: "Learn how to use Spyx, a JAX-based framework that leverages JIT compilation to train spiking neural networks entirely on the GPU in minutes."
+description: "Spyx is a JAX-based SNN framework that leverages JIT compilation to fuse training loops and execute entirely on the GPU, reducing training times to minutes."
 type: "workshops"
 experience_tags: ["practitioner", "researcher", "intermediate"]
 expertise_tags: ["snn", "software", "machine-learning"]

@@ -14,7 +14,7 @@ summary_points:
   - "Dataflow circuits enable out-of-order memory accesses and speculative execution, significantly increasing performance for code with irregular dependencies."
   - "A Petri-net-based mathematical model automatically optimizes buffer placement and sizing to maximize pipeline throughput and area efficiency."
   - "The open-source Dynamatic compiler systematically translates C/C++ code into high-performance, dynamically scheduled dataflow circuits."
-description: "Discover how dynamically scheduled dataflow circuits overcome static HLS limits, enabling out-of-order memory and speculative execution from C/C++ code."
+description: "Dynamically scheduled dataflow circuits overcome static high-level synthesis limits to enable out-of-order memory and speculative execution from C/C++ code."
 ---
 
 High-level synthesis (HLS) tools traditionally rely on static, centralized controllers that struggle to extract parallelism from general-purpose C/C++ code, particularly when facing irregular memory access patterns or variable loop bounds. By transitioning from statically scheduled pipelines to dynamically scheduled dataflow circuits, developers can achieve significantly higher throughput and enable advanced behaviors like out-of-order memory accesses directly from high-level code.

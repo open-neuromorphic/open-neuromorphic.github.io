@@ -22,7 +22,7 @@ summary_points:
   - "The initiative prioritizes an open library of behavioral virtual machines to decouple hardware exploration from physical chip dependencies."
   - "Creating standardized, open-source neuromorphic datasets is critical to replacing converted RGB data and enabling rigorous benchmarking."
   - "A compiler-first mentality ensures higher-level frameworks have a stable, standardized foundation for deploying large-scale models."
-description: "Explore the kickoff of Project Phasor, a community initiative building shared compilers, virtual machines, and open datasets for neuromorphic computing."
+description: "Project Phasor is a community initiative building shared compilers, behavioral virtual machines, and open datasets to scale neuromorphic computing workloads."
 ---
 
 Project Phasor was launched to address critical inefficiencies within the neuromorphic and NeuroAI ecosystem, targeting the disconnect between academic novelty and commercial sustainability. By organizing community efforts around shared compilation tools, virtual machines, and open datasets, the initiative aims to build the foundational infrastructure required to scale neuromorphic workloads out of Edge inference and into data center-scale training.

@@ -19,7 +19,7 @@ summary_points:
   - "The library applies transformations and augmentations directly to raw events, seamlessly converting them into image-like tensors for GPU processing."
   - "Parallel data loading and intermediate caching mechanisms ensure that data retrieval and transformation do not bottleneck GPU training speeds."
   - "Tonic supports multimodal datasets and integrates directly with the PyTorch ecosystem, accelerating event-based vision model development."
-description: "See how the Tonic library standardizes event-based data loading and transformation, providing a PyTorch-compatible pipeline to accelerate model training."
+description: "The Tonic library standardizes event-based data loading and transformation, providing a PyTorch-compatible pipeline that accelerates SNN model training."
 ---
 
 Unlike standard computer vision datasets with static image frames, neuromorphic systems generate dynamic, event-based streams that require specialized handling. Tonic bridges this tooling gap by providing a PyTorch-compatible interface designed specifically for event-based data, allowing researchers to load, transform, and batch neuromorphic datasets without building custom, slow data-loading pipelines from scratch.

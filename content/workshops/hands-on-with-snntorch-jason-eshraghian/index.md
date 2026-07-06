@@ -4,7 +4,7 @@ author:
   - Jason Eshraghian
   - Fabrizio Ottati
 date: 2023-03-02
-description: "This session demonstrates how to build, train, and quantize spiking neural networks utilizing snnTorch, surrogate gradients, and Tonic data loading pipelines."
+description: "snnTorch applies surrogate gradients to overcome the non-differentiability of spikes, enabling SNN training and quantization using standard PyTorch pipelines."
 video: aUjWRpisRRg
 image: hands-on-snntorch.png
 speaker_notebook: https://github.com/open-neuromorphic/hands--session-snntorch-230302
