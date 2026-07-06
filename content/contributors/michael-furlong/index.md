@@ -1,7 +1,7 @@
 ---
 title: "Michael Furlong"
 description: "Dr. Michael Furlong is a research officer at the National Research Council of Canada / University of Waterloo Collaboration Centre, focusing on probabilistic models of neural computation."
-image: "michael-furlong.jpg"
+image: "michael-furlong.png"
 social:
   - icon: "fab fa-linkedin"
     link: "https://www.linkedin.com/in/p-michael-furlong/"
