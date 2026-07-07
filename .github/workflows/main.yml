@@ -170,7 +170,7 @@ jobs:
           fi
 
           # 1. Identify which Markdown file the bot changed
-          CHANGED_FILE=$(git diff --name-only origin/main...HEAD | grep '^content/.*\.md$' | head -n 1)
+          CHANGED_FILE=$(git diff --name-only HEAD~1 HEAD | grep '^content/.*\.md$' | head -n 1)
           if [ -z "$CHANGED_FILE" ]; then
             echo "No content file changed. Skipping screenshot."
             exit 0
@@ -231,12 +231,12 @@ jobs:
 
           # 6. Find the open Pull Request on the main repository and post the comment
           echo "Debug: Looking for PR on head ${{ github.repository_owner }}:${GITHUB_REF_NAME}"
-          PR_URL=$(gh pr list --repo "$REPO_OWNER/$REPO_NAME" --head "${{ github.repository_owner }}:${GITHUB_REF_NAME}" --json url --jq '.[0].url')
+          PR_URL=$(gh pr list --repo "$REPO_OWNER/$REPO_NAME" --head "${{ github.repository_owner }}:${GITHUB_REF_NAME}" --json url --jq '.[0].url // empty')
 
           # Fallback 1: Try searching by branch name directly (without owner)
           if [ -z "$PR_URL" ]; then
             echo "Debug: Standard lookup empty. Trying head: ${GITHUB_REF_NAME}"
-            PR_URL=$(gh pr list --repo "$REPO_OWNER/$REPO_NAME" --head "${GITHUB_REF_NAME}" --json url --jq '.[0].url')
+            PR_URL=$(gh pr list --repo "$REPO_OWNER/$REPO_NAME" --head "${GITHUB_REF_NAME}" --json url --jq '.[0].url // empty')
           fi
 
           # Fallback 2: Find using the numerical issue ID parsed from the branch name
@@ -244,7 +244,7 @@ jobs:
             echo "Debug: Checking issue number fallback..."
             ISSUE_NUM=$(echo "$GITHUB_REF_NAME" | grep -oE '[0-9]+' | head -n 1)
             if [ -n "$ISSUE_NUM" ]; then
-              PR_URL=$(gh pr list --repo "$REPO_OWNER/$REPO_NAME" --json url,headRefName --jq ".[] | select(.headRefName | contains(\"$ISSUE_NUM\")) | .url" | head -n 1)
+              PR_URL=$(gh pr list --repo "$REPO_OWNER/$REPO_NAME" --json url,headRefName --jq ".[] | select(.headRefName | contains(\"$ISSUE_NUM\")) | .url // empty" | head -n 1)
             fi
           fi
 
