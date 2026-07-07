@@ -143,8 +143,6 @@ jobs:
     runs-on: ubuntu-24.04
     needs: deploy
     if: startsWith(github.ref_name, 'bot/')
-    permissions:
-      contents: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -167,9 +165,7 @@ jobs:
         run: |
           # --- SAFETY CHECK ---
           if [ -z "$GH_TOKEN" ]; then
-            echo "❌ ERROR: GH_TOKEN is empty!"
-            echo "Please go to 'bot-onm/open-neuromorphic.github.io' -> Settings -> Secrets and variables -> Actions."
-            echo "Ensure PAT_FOR_ISSUES is added under 'Repository secrets' (NOT Environment secrets)."
+            echo "❌ ERROR: GH_TOKEN is empty! The secret is missing or spelled incorrectly in bot-onm repository settings."
             exit 1
           fi
 
@@ -193,41 +189,33 @@ jobs:
             const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
             const page = await browser.newPage();
             await page.setViewport({width: 1280, height: 1024});
-            // Wait until network is idle to ensure images/CSS finish loading
             await page.goto(process.argv[2], {waitUntil: 'networkidle0', timeout: 60000});
             await page.screenshot({path: 'screenshot.png', fullPage: true});
             await browser.close();
           })();
           EOF
 
-          # Wait 10 seconds to ensure GitHub Pages cache is fully cleared, then snapshot
           sleep 10
           node screenshot.js "$FULL_URL"
 
-          # 4. Commit the screenshot to an orphaned storage branch so it has a public URL
+          # 4. Commit the screenshot to an orphaned storage branch
           git config --global user.name "ONM Bot"
           git config --global user.email "bot@open-neuromorphic.org"
 
-          # Move the screenshot out of the working tree temporarily
           mv screenshot.png /tmp/screenshot.png
-
-          # Clear changes from `npm install puppeteer` to prevent checkout conflicts
           git reset --hard HEAD
           git clean -fd
 
-          # CRITICAL: Wipe out the default Git authorization header injected by actions/checkout
-          # This forces Git to use the token we pass in the URL below.
-          git config --local --unset-all http.https://github.com/.extraheader || true
+          # Update the origin URL to explicitly use the PAT, bypassing the restricted default token
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
 
-          AUTH_REPO_URL="https://oauth2:${GH_TOKEN}@github.com/${{ github.repository }}.git"
-
-          # Attempt to checkout existing branch, or create an orphan if it doesn't exist yet
-          if git ls-remote --exit-code --heads "$AUTH_REPO_URL" pr-screenshots >/dev/null 2>&1; then
-            git fetch "$AUTH_REPO_URL" pr-screenshots:pr-screenshots
+          if git ls-remote --exit-code --heads origin pr-screenshots >/dev/null 2>&1; then
+            git fetch origin pr-screenshots:pr-screenshots
             git checkout pr-screenshots
           else
             git checkout --orphan pr-screenshots
-            git rm -rf .
+            # The -q flag silences the hundreds of 'rm' lines from the log
+            git rm -rf . -q
           fi
 
           mkdir -p assets
@@ -237,8 +225,7 @@ jobs:
           git add "assets/$IMG_NAME"
           git commit -m "Add automated screenshot for $GITHUB_REF_NAME"
 
-          # Push using the explicit token URL
-          git push "$AUTH_REPO_URL" HEAD:refs/heads/pr-screenshots
+          git push origin HEAD:refs/heads/pr-screenshots
 
           # 5. Formulate the Raw Image URL
           IMG_URL="https://raw.githubusercontent.com/${{ github.repository }}/pr-screenshots/main/assets/$IMG_NAME"
