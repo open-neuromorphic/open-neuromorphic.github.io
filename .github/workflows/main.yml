@@ -140,6 +140,8 @@ jobs:
     runs-on: ubuntu-24.04
     needs: deploy
     if: startsWith(github.ref_name, 'bot/')
+    permissions:
+      contents: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -203,9 +205,6 @@ jobs:
           mv screenshot.png /tmp/screenshot.png
           git reset --hard HEAD
           git clean -fd
-
-          # Embed the Classic PAT directly into the remote URL to bypass 403 issues
-          git remote set-url origin "https://${GH_TOKEN}@github.com/${{ github.repository }}.git"
 
           if git ls-remote --exit-code --heads origin pr-screenshots >/dev/null 2>&1; then
             git fetch origin pr-screenshots:pr-screenshots
