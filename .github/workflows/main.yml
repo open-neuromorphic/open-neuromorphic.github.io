@@ -46,8 +46,8 @@ jobs:
       - name: Install npm dependencies
         run: npm ci
 
-#      - name: Validate Taxonomy
-#        run: node scripts/validateContentTaxonomy.js
+      #      - name: Validate Taxonomy
+      #        run: node scripts/validateContentTaxonomy.js
 
       - name: Enforce Coding Standards
         run: |
@@ -181,7 +181,7 @@ jobs:
           cat << 'EOF' > screenshot.js
           const puppeteer = require('puppeteer');
           (async () => {
-            const browser = await puppeteer.launch();
+            const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
             const page = await browser.newPage();
             await page.setViewport({width: 1280, height: 1024});
             // Wait until network is idle to ensure images/CSS finish loading
