@@ -46,9 +46,6 @@ jobs:
       - name: Install npm dependencies
         run: npm ci
 
-      #      - name: Validate Taxonomy
-      #        run: node scripts/validateContentTaxonomy.js
-
       - name: Enforce Coding Standards
         run: |
           echo "Checking for decorative comments..."
@@ -137,19 +134,18 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-  # --- NEW: Automated PR Screenshot Job ---
+  # --- Automated PR Screenshot Job ---
   screenshot_pr:
     name: Generate PR Screenshot
     runs-on: ubuntu-24.04
     needs: deploy
     if: startsWith(github.ref_name, 'bot/')
-    permissions:
-      contents: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          persist-credentials: false # PREVENTS THE GITHUB-ACTIONS[BOT] 403 ERROR
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -167,7 +163,7 @@ jobs:
         run: |
           # --- SAFETY CHECK ---
           if [ -z "$GH_TOKEN" ]; then
-            echo "❌ ERROR: GH_TOKEN is empty! The secret is missing or spelled incorrectly in bot-onm repository settings."
+            echo "❌ ERROR: GH_TOKEN is empty! The secret is missing or spelled incorrectly."
             exit 1
           fi
 
@@ -208,6 +204,9 @@ jobs:
           git reset --hard HEAD
           git clean -fd
 
+          # Embed the Classic PAT directly into the remote URL to bypass 403 issues
+          git remote set-url origin "https://${GH_TOKEN}@github.com/${{ github.repository }}.git"
+
           if git ls-remote --exit-code --heads origin pr-screenshots >/dev/null 2>&1; then
             git fetch origin pr-screenshots:pr-screenshots
             git checkout pr-screenshots
@@ -230,17 +229,12 @@ jobs:
 
           # 6. Find the open Pull Request on the main repository and post the comment
           echo "Debug: Looking for PR on head ${{ github.repository_owner }}:${GITHUB_REF_NAME}"
+          
+          # We use // empty in jq so it returns a blank string instead of "null" if nothing is found
           PR_URL=$(gh pr list --repo "$REPO_OWNER/$REPO_NAME" --head "${{ github.repository_owner }}:${GITHUB_REF_NAME}" --json url --jq '.[0].url // empty')
 
-          # Fallback 1: Try searching by branch name directly (without owner)
           if [ -z "$PR_URL" ]; then
-            echo "Debug: Standard lookup empty. Trying head: ${GITHUB_REF_NAME}"
-            PR_URL=$(gh pr list --repo "$REPO_OWNER/$REPO_NAME" --head "${GITHUB_REF_NAME}" --json url --jq '.[0].url // empty')
-          fi
-
-          # Fallback 2: Find using the numerical issue ID parsed from the branch name
-          if [ -z "$PR_URL" ]; then
-            echo "Debug: Checking issue number fallback..."
+            echo "Debug: Exact match failed. Falling back to issue number matching..."
             ISSUE_NUM=$(echo "$GITHUB_REF_NAME" | grep -oE '[0-9]+' | head -n 1)
             if [ -n "$ISSUE_NUM" ]; then
               PR_URL=$(gh pr list --repo "$REPO_OWNER/$REPO_NAME" --json url,headRefName --jq ".[] | select(.headRefName | contains(\"$ISSUE_NUM\")) | .url // empty" | head -n 1)
@@ -254,5 +248,5 @@ jobs:
 
             ![$GITHUB_REF_NAME Preview]($IMG_URL)"
           else
-            echo "❌ ERROR: No open PR found for branch $GITHUB_REF_NAME or issue context."
+            echo "❌ ERROR: No open PR found for branch $GITHUB_REF_NAME."
           fi
