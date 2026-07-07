@@ -165,6 +165,14 @@ jobs:
           REPO_OWNER: open-neuromorphic
           REPO_NAME: open-neuromorphic.github.io
         run: |
+          # --- SAFETY CHECK ---
+          if [ -z "$GH_TOKEN" ]; then
+            echo "❌ ERROR: GH_TOKEN is empty!"
+            echo "Please go to 'bot-onm/open-neuromorphic.github.io' -> Settings -> Secrets and variables -> Actions."
+            echo "Ensure PAT_FOR_ISSUES is added under 'Repository secrets' (NOT Environment secrets)."
+            exit 1
+          fi
+
           # 1. Identify which Markdown file the bot changed
           CHANGED_FILE=$(git diff --name-only origin/main...HEAD | grep '^content/.*\.md$' | head -n 1)
           if [ -z "$CHANGED_FILE" ]; then
@@ -207,8 +215,11 @@ jobs:
           git reset --hard HEAD
           git clean -fd
 
-          # Inject PAT directly into the remote URL to completely bypass the default checkout token
-          AUTH_REPO_URL="https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
+          # CRITICAL: Wipe out the default Git authorization header injected by actions/checkout
+          # This forces Git to use the token we pass in the URL below.
+          git config --local --unset-all http.https://github.com/.extraheader || true
+
+          AUTH_REPO_URL="https://oauth2:${GH_TOKEN}@github.com/${{ github.repository }}.git"
 
           # Attempt to checkout existing branch, or create an orphan if it doesn't exist yet
           if git ls-remote --exit-code --heads "$AUTH_REPO_URL" pr-screenshots >/dev/null 2>&1; then
