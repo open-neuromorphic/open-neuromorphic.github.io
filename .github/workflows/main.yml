@@ -140,8 +140,6 @@ jobs:
     runs-on: ubuntu-24.04
     needs: deploy
     if: startsWith(github.ref_name, 'bot/')
-    permissions:
-      contents: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -206,6 +204,9 @@ jobs:
           git reset --hard HEAD
           git clean -fd
 
+          # Embed the Classic PAT directly into the remote URL to bypass 403 issues
+          git remote set-url origin "https://${GH_TOKEN}@github.com/${{ github.repository }}.git"
+
           if git ls-remote --exit-code --heads origin pr-screenshots >/dev/null 2>&1; then
             git fetch origin pr-screenshots:pr-screenshots
             git checkout pr-screenshots
@@ -228,7 +229,7 @@ jobs:
 
           # 6. Find the open Pull Request on the main repository and post the comment
           echo "Debug: Looking for PR on head ${{ github.repository_owner }}:${GITHUB_REF_NAME}"
-
+          
           # We use // empty in jq so it returns a blank string instead of "null" if nothing is found
           PR_URL=$(gh pr list --repo "$REPO_OWNER/$REPO_NAME" --head "${{ github.repository_owner }}:${GITHUB_REF_NAME}" --json url --jq '.[0].url // empty')
 
