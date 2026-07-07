@@ -199,18 +199,31 @@ jobs:
           git config --global user.name "ONM Bot"
           git config --global user.email "bot@open-neuromorphic.org"
 
-          git fetch origin pr-screenshots:pr-screenshots || git checkout --orphan pr-screenshots
-          git checkout pr-screenshots
-          git pull origin pr-screenshots --rebase || true
+          # Move the screenshot out of the working tree temporarily
+          mv screenshot.png /tmp/screenshot.png
+
+          # Clear changes from `npm install puppeteer` to prevent checkout conflicts
+          git reset --hard HEAD
+          git clean -fd
+
+          # Attempt to checkout existing branch, or create an orphan if it doesn't exist yet
+          if git ls-remote --exit-code --heads origin pr-screenshots >/dev/null 2>&1; then
+            git fetch origin pr-screenshots:pr-screenshots
+            git checkout pr-screenshots
+          else
+            git checkout --orphan pr-screenshots
+            git rm -rf .
+          fi
 
           mkdir -p assets
           IMG_NAME="${GITHUB_REF_NAME//\//-}-$(date +%s).png"
-          mv screenshot.png "assets/$IMG_NAME"
+          mv /tmp/screenshot.png "assets/$IMG_NAME"
+
           git add "assets/$IMG_NAME"
           git commit -m "Add automated screenshot for $GITHUB_REF_NAME"
 
           # Push the branch securely back to the staging repository
-          git push https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git pr-screenshots
+          git push https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git HEAD:refs/heads/pr-screenshots
 
           # 5. Formulate the Raw Image URL
           IMG_URL="https://raw.githubusercontent.com/${{ github.repository }}/pr-screenshots/main/assets/$IMG_NAME"
