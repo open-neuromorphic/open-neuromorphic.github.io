@@ -1,6 +1,6 @@
 ---
 title: "NIR: A unified instruction set for brain-inspired computing"
-author: 
+author:
   - Jens E. Pedersen
   - Bernhard Vogginger
   - Jason Eshraghian
@@ -9,42 +9,33 @@ date: 2024-02-05
 video: A96rInDg8zo
 speaker_code: "https://github.com/neuromorphs/nir"
 image: neuromorphic-intermediate-representation.png
-description: "We show how to use the Neuromorphic Intermediate Representation to migrate your spiking model onto neuromorphic hardware."
-software_tags: ["norse", "snntorch", "spyx", "neuromorphic-intermediate-representation", "nirtorch"]
+description: "See how the Neuromorphic Intermediate Representation (NIR) enables seamless SNN model deployment across Norse, SynSense Speck, and SpiNNaker2 hardware."
+software_tags: ["norse", "snntorch", "spyx", "neuromorphic-intermediate-representation", "nirtorch", "synapse"]
+hardware_tags: ["speck-synsense", "spinnaker-2-university-of-dresden", "loihi-intel", "xylo-synsense"]
+type: "workshops"
+experience_tags: ["practitioner", "researcher", "intermediate"]
+expertise_tags: ["software", "digital-hardware", "analog-hardware", "snn"]
+field_of_application_tags: ["education", "iot"]
+content_source: "talk-summary"
+summary_points:
+  - "NIR acts as a unified bridge, allowing spiking models trained in PyTorch-based libraries to deploy across diverse hardware backends."
+  - "Neuromorphic systems rely on continuous-time dynamical graphs, which NIR captures without forcing discrete time-step approximations."
+  - "Live demonstrations prove that a single model exported from Norse can run efficiently on both the Speck chip and SpiNNaker2."
 ---
 
-Have you wondered how to use neuromorphic hardware platforms?
+This workshop introduces the Neuromorphic Intermediate Representation (NIR), a crucial open-source standard designed to decouple neuromorphic algorithm development from specific hardware constraints. The session demonstrates how researchers can use NIR to port dynamic, spiking neural network models effortlessly between disparate software frameworks and neuromorphic edge hardware.
 
-Are you depressed by your power bill after you bought your >400W GPU rig?
+## Key Takeaways
+- **NIR acts as a unified bridge, allowing spiking models trained in PyTorch-based libraries to deploy across diverse hardware backends.**
+- **Neuromorphic systems rely on continuous-time dynamical graphs, which NIR captures without forcing discrete time-step approximations.**
+- **Live demonstrations prove that a single model exported from Norse can run efficiently on both the Speck chip and SpiNNaker2.**
 
-Then you came to the right place!
+## Workshop Format & Takeaways
+The session combined theoretical background on the "hardware lottery" with practical, live-code demonstrations. Presenters walked through training a basic convolutional spiking neural network on Neuromorphic MNIST using Norse, exporting that exact model into the NIR graph format, and deploying it live to two entirely different hardware architectures: the digital asynchronous SynSense Speck chip (using the Synabs library) and the SpiNNaker2 many-core system (using PySpiNNaker2).
 
-In this workshop, we will show you how to move models from your favourite framework directly to neuromorphic hardware with 1-2 lines of code!
-We will present the technology behind, the [Neuromorphic Intermediate Representation](/workshops/neuromorphic-intermediate-representation/), and demonstrate how we can use it to run a live spiking convnet on the [Speck](/neuromorphic-computing/hardware/speck-synsense/) chip.
+## What This Means for the Field
+The deep learning boom was largely fueled by interoperable frameworks (like ONNX) that allowed developers to train a model in PyTorch and deploy it on almost any accelerator. Neuromorphic computing has historically lacked this, forcing researchers to rewrite models from scratch for every new chip. NIR solves this fundamental ecosystem bottleneck. By providing a unified "instruction set" based on continuous-time dynamical systems, NIR allows the community to share models, benchmark fairly, and finally decouple software innovation from hardware availability.
 
-NIR is currently supported by [Intel Loihi](/neuromorphic-computing/hardware/loihi-intel/), [Speck](/neuromorphic-computing/hardware/speck-synsense/), [SpiNNaker2](/neuromorphic-computing/hardware/spinnaker-2-university-of-dresden/), [Xylo](/neuromorphic-computing/hardware/xylo-synsense/) and a host of simulators, including [Norse](/neuromorphic-computing/software/snn-frameworks/norse/), [snnTorch](/neuromorphic-computing/software/snn-frameworks/snntorch/), and [Spyx](/neuromorphic-computing/software/snn-frameworks/spyx/).
+> "It turns out that good research ideas win because they are compatible with what exists in terms of software and hardware. It's not because the idea is any better than any other idea."
 
-Join us on the 5th of February to get your own hands-on experience with NIR and neuromorphic hardware!
-
-All it requires is a computer and a bit of Python knowledge.
-
-**Agenda:**
-- 18:00 - 19:00: NIR introduction
-  - Motivation: coupling neuromorphic hardware and software
-  - Demonstrating NIR: from PyTorch to Speck
-  - Q&A 
-- 19:00 - 20:00: Workshop
-  - Hands-on experience with NIR via Jupyter Notebooks or custom models
-  - Q&A and collaborative discussions
-
-**Speakers:**
-- [Felix Bauer](https://github.com/bauerfe)
-    * Felix Bauer is a neuromorphic engineer working on cutting-edge algorithms and chips at [SynSense](https://www.synsense.ai/). He co-authored the [Neuromorphic Intermediate Representation](/workshops/neuromorphic-intermediate-representation/) and has published work on GPU-accelerated spiking neural networks via the [Sinabs](/neuromorphic-computing/software/snn-frameworks/sinabs/) simulator, neuromorphic control and brain-machine interfaces.
-- [Jason Eshraghian](https://ncg.ucsc.edu/jason-eshraghian-bio/)
-    * Json is an Assistant Professor with the Department of Electrical and Computer Engineering, University of California, Santa Cruz. Jason is researching neuromorphic computing, spiking neural networks, and memory circuits. He is the main developer of [snnTorch](/neuromorphic-computing/software/snn-frameworks/snntorch/) and co-authored the co-authored the [Neuromorphic Intermediate Representation](/workshops/neuromorphic-intermediate-representation/).
-- [Jens E. Pedersen](https://jepedersen.dk)
-    * Jens is a computer scientist studying his PhD in neuromorphic computing at the KTH Royal Institute of Technology. Jens co-authored the [Neuromorphic Intermediate Representation](/workshops/neuromorphic-intermediate-representation/), the [Norse](/neuromorphic-computing/software/snn-frameworks/norse/) spiking neural network simulator and the [AEStream](/neuromorphic-computing/software/data-tools/aestream/) event-based streaming library.
-- [Bernhard Vogginger](https://tu-dresden.de/ing/elektrotechnik/iee/hpsn)
-    * Bernhard Vogginger is a research associate at TU Dresden working on neuromorphic computing software and applications in the lab of Prof. Christian Mayr. He currently leads the software development for the SpiNNaker2 neuromorphic system and has co-authored the [Neuromorphic Intermediate Representation](/workshops/neuromorphic-intermediate-representation/). Further research interests include radar processing and sustainability of AI and data centers.
-
-**Note:** The event will be hosted virtually. Stay tuned for the video link and further updates.
+> "We wrote thousands of lines of code so you only have to write one... You take a model, export it to NIR, and if I want to import something in a hardware-facing library, I just go 'model from near'."

@@ -4,97 +4,48 @@ author:
   - Kade Heckel
   - Jens E. Pedersen
 date: 2024-10-15T00:00:00.000Z
-description: >-
-  Kade Heckel discusses optimizing GPU/TPU code using JAX and Pallas in this
-  Hacking Hour session.
+description: "Discover how optimizing recurrent SNN loops with JAX's scan operation yields a 5x speedup over unrolled functions without needing low-level Pallas code."
 upcoming: false
 video: pRqRYcjufjA
 image: kade-heckel-jax-pallas-optimization.jpg
 type: hacking-hours
 software_tags:
   - spyx
-url: >-
-  /neuromorphic-computing/software/hacking-hours/kade-heckel-jax-pallas-optimization/
+experience_tags:
+  - practitioner
+  - advanced
+expertise_tags:
+  - software
+  - snn
+  - machine-learning
+content_source: "talk-summary"
+summary_points:
+  - "JAX’s functional paradigm allows for entire end-to-end training loops, including data loading, to be efficiently Just-In-Time (JIT) compiled."
+  - "Using `jax.lax.scan` to handle recurrent SNN loops drastically reduces GPU kernel dispatch overhead, yielding roughly a 5x speedup over standard unrolling."
+  - "JAX's automatic XLA compilation often fuses simple element-wise surrogate gradient operations as efficiently as hand-written lower-level code."
+  - "Pallas provides hardware-aware memory mutability for custom TPU (Mosaic) and GPU (Triton) targets, but restricts compatibility with higher-level JAX bindings."
+  - "High-performance SNN inference is best achieved by batch-applying linear layers before running stateful neuron dynamics sequentially."
 ---
 
-In this Hacking Hour, Kade Heckel, creator of the JAX-based spiking neural network (SNN) library "Spyx," joins host Jens E. Pedersen. They explore techniques for optimizing SNN code for GPUs and TPUs using JAX and the Pallas library, covering practical approaches to accelerate neuromorphic and machine learning computations.
+In this Hacking Hour, Kade Heckel—creator of the JAX-based spiking neural network library "Spyx"—walks through live code optimizations for running SNN workloads efficiently on hardware accelerators. By diving into the differences between JAX's native functional tracing and the newer, lower-level Pallas kernel language, the session explores the real-world performance bottlenecks of training recurrent neuromorphic models and how standard compilation tricks can resolve them.
 
-## Key Themes and Ideas
+## Key Takeaways
+- **The power of functional JIT compilation:** JAX’s functional design enables highly efficient tracing. Compiling entire training loops (including optimizer updates and data loading) keeps computations entirely within high-bandwidth VRAM, drastically reducing CPU-to-GPU memory latency.
+- **Handling recurrence correctly is critical:** Naively unrolling Python `for` loops within a JIT-compiled function creates massive code sizes and triggers thousands of individual kernel dispatches. Utilizing `jax.lax.scan` translates the recurrence into efficient XLA-level loops, preserving local state and offering nearly a 5x speedup.
+- **JAX auto-fusion competes with hand-rolled code:** When comparing a manually written, hardware-specific Pallas kernel for the SuperSpike surrogate gradient against a natively JIT-compiled JAX function, performance was identical. JAX’s XLA compiler successfully fused the operations on its own.
+- **Pallas introduces memory mutability:** Unlike standard JAX's immutable functional approach, Pallas provides mutable references directly to high-bandwidth memory. It serves as a direct bridge to generating GPU code (via Triton) or TPU code (via Mosaic).
+- **Mixing abstractions causes breaks:** Because Pallas operates at a low hardware level, it frequently fails to comprehend higher-level JAX-specific auto-differentiation logic (such as custom Vector-Jacobian Products).
 
-*   **JAX's Functional Paradigm and Optimization:**
-  *   JAX's functional design is a major strength, enabling efficient tracing and Just-In-Time (JIT) compilation for significant speedups on accelerators.
-      > "the functional Paradigm allows for some really neat tracing capabilities so you can just in time compile or even ahead of time compile entire workflows and then you get pretty good speed ups and efficiencies when you're running it on GPU"
-  *   JIT compilation can encompass entire training loops (data loading, forward/backward passes, optimizer updates), leading to "pretty obscene speed Ups."
-  *   Significant speedup observed in data loading by fitting datasets entirely into VRAM and performing unpacking/shuffling within high-bandwidth GPU memory.
-      > "you can fit these data sets completely into vram... and then you can just unpack those batches of spikes as you're feeding it into the network... and then you can also Shuffle those rows all within the high bandwidth memory of the GPU and it's a whole lot faster than having to go out to the... CPU Ram"
-  *   JAX's JIT compilation sends kernels to the GPU in a "run ahead fashion," removing the Python interpreter from the critical path.
+## What Was Built / Demonstrated
+The session centered on live benchmarking the compilation steps involved in lowering a Python function to stable High-Level Optimizer (HLO) language. By extracting the SuperSpike surrogate gradient function, the demonstration stepped through:
+1. Generating the localized JAX expression (JAXpr).
+2. Forcing the XLA compiler to lower the graph and observing the fused kernel code output.
+3. Implementing the exact same math explicitly via the experimental Pallas API using block grids.
+4. Implementing a stateful Leaky Integrate-and-Fire (LIF) loop to compare the compilation output of an unrolled state loop versus a `scan`-based loop.
 
-*   **Spyx: A JAX-based SNN Library:**
-  *   Created by Kade Heckel for JAX-compatible SNNs, especially for neuroevolution with EvoJAX, aiming for seamless end-to-end integration.
-      > "I decided like hey it might be pretty useful to build a jack spaced snn Library"
-      > "the initial Focus was like yeah let's get an snn library that you can use end to end with this evolutionary strategy Library"
-  *   Built on DeepMind's Haiku, allowing use of Haiku layers.
-  *   A key advantage is writing straightforward Python code (similar to PyTorch) that achieves high performance (close to hand-rolled CUDA) upon JIT compilation.
-      > "you can write python code that's pretty straightforward or pretty similar to what you it right with torch... but then when it gets compile just in time compiled down you end up getting pretty similar efficiencies to like a spiking Chell or some type of like higher performance like C based solution"
+As discussed in the session, writing Python code with JAX can result in computational efficiencies practically identical to dedicated C-based implementations, making it an exceptional framework for rapid neuromorphic engineering.
 
-*   **JAX's Lowering Process and XLA:**
-  *   **Step 1:** Staging out a specialized JAX expression (JAXpr).
-  *   **Step 2:** Lowering JAXpr into Stable HLO (High-Level Optimizer), XLA's input language.
-  *   **Step 3:** XLA compiles HLO for the target architecture (GPU/TPU).
-  *   **Step 4:** Execution of compiled code.
-  *   The JAX JIT decorator automates this, caching code for speed. Manual stepping ( `make_jaxpr`, `lower`, `compile`) aids debugging.
-  *   JAX (via XLA) can automatically fuse multiple operations into a single kernel.
+## What This Means for Neuromorphic Computing
+For neuromorphic researchers working with dense network simulators, pushing data to the GPU fast enough remains a stubborn bottleneck. This session proves that researchers don't necessarily need to immediately drop down to complex kernel languages like Triton or CUDA to extract maximum performance from their accelerators.
 
-*   **Pallas: A Lower-Level Kernel Language:**
-  *   An experimental JAX extension for writing hardware-aware/specific kernels.
-  *   Provides a common interface to generate lower-level code for GPUs (via Triton) and TPUs (via Mosaic).
-  *   Involves mutable memory references, unlike JAX's immutable approach.
-      > "Alice you actually do get references... to areas of memory they give you references and then you actually overwrite those arrays... you actually are overwriting state"
-  *   Requires specifying hardware details like grid/block sizes.
-  *   Pallas kernels typically appear as a single custom operation in HLO, unlike JAX's fused operations.
-
-*   **Comparing JAX's Built-in Optimizations and Pallas:**
-  *   For simple element-wise operations (e.g., SuperSpike surrogate gradient), JAX's automatic kernel fusion is highly efficient.
-  *   Benchmarking showed a manually written Pallas kernel for SuperSpike performed similarly to the JAX JIT-compiled version.
-      > "the thing is you look at this and you see that oh the... Jack's just xoa the optimization process like it was able to fuse those kernels together anyways and all you had to do is write normal Python... you end up with the same performance"
-  *   The simplicity of the operation (element-wise, no complex memory access) likely contributes to JAX's effectiveness.
-  *   Pallas might be necessary for more complex scenarios, especially those involving recurrence or specific hardware features.
-
-*   **Handling Recurrence with `jax.lax.scan`:**
-  *   `scan` is the recommended way to handle loops/recurrence in a JIT-friendly manner.
-  *   It iteratively applies a function (loop body), managing state (carry) and input.
-  *   Avoids static unrolling of Python `for` loops in JIT-compiled functions, which can lead to massive code and slow compilation. `scan` translates to XLA-level loops.
-  *   Benchmarking showed a significant speedup (~5x) for a JIT-compiled `scan`-based recurrent function over an unrolled version.
-  *   The benefit comes from compiling the body function once and executing it within the XLA loop, avoiding sending many small kernels to the GPU.
-
-*   **Potential Use Cases for Pallas:**
-  *   **Targeting TPUs:** TPUs have distinct architectures (more sequential processing, data-dependent computation with masks, scalar prefetching) that Pallas (via Mosaic) can better leverage.
-  *   **Handling Structured Matrices/Sparsity:** For sparse SNN connection matrices, Pallas might enable more efficient computation by using knowledge of the matrix structure.
-  *   **Intelligent Data Loading/Unpacking:** Pallas could optimize unpacking sparse spike data and fuse it with the first layer's computation.
-  *   **Implementing Custom Low-Level Kernels:** If JAX's automatic fusion is insufficient, Pallas allows writing custom kernels within the JAX ecosystem.
-      > "Pallas like really comes in if you want to write like if you're using structured matrices or if you're using... if you want to Target TPU and use like some sparse computation features I think that's where you really need Palace"
-
-*   **Limitations of Pallas Composition:**
-  *   Directly using JAX's higher-level constructs (like custom Vector-Jacobian Products - VJPs - for surrogate gradients) within a Pallas kernel seems problematic.
-  *   Attempting to call a JAX function with a custom VJP (e.g., SuperSpike gradient) inside Pallas resulted in errors, suggesting Pallas may not understand these JAX-specific bindings.
-
-*   **Future Directions for Spyx and Optimization:**
-  *   Exploring TPU-aware SNN inference using Pallas.
-  *   Further investigating Pallas for optimizing data loading/unpacking.
-  *   Focusing on more parallelizable SNN algorithms (approximations, non-recurrent pre-training) might offer more substantial runtime improvements on GPUs than micro-optimizing recurrent kernels.
-
-## Important Facts and Data
-
-*   JAX's functional paradigm enables efficient tracing and JIT/AOT compilation.
-*   Spyx is a JAX-based SNN library leveraging Haiku.
-*   JAX lowers code via JAXpr -> Stable HLO -> compiled XLA code.
-*   Pallas translates to Triton (GPU) or Mosaic (TPU) for hardware-aware kernels, using mutable references.
-*   `jax.lax.scan` is crucial for efficient loops/recurrence, yielding ~5x speedup in benchmarks.
-*   JAX's automatic fusion matched Pallas performance for simple element-wise functions.
-*   Pallas is particularly useful for TPUs, structured sparsity, and custom data loading.
-*   Calling JAX functions with custom VJPs inside Pallas kernels is problematic.
-*   Optimizing SNNs for TPUs using Pallas is a key future direction.
-
-## Conclusion
-
-JAX is a powerful framework for SNN development, with its functional design enabling efficient JIT compilation and automatic kernel fusion. While Pallas offers lower-level control, essential for TPUs or complex sparsity, JAX's built-in optimizations are remarkably effective for many SNN computations, including recurrence via `scan`. The presented benchmarks highlight significant gains from JAX's JIT compilation alone, suggesting Pallas is a strategic choice for specific bottlenecks or hardware targets rather than a universal necessity. Optimizing SNNs for TPUs using Pallas is a key future direction.
+Instead, utilizing proper functional programming patterns—like executing linear matrix multiplications in bulk across the time dimension before iteratively processing stateful spiking dynamics via `scan`—extracts massive performance gains natively. Frameworks like Pallas should be reserved strictly for specialized architectural tasks, such as commanding TPUs to utilize structural sparsity masks or handling custom memory unpacking logic.

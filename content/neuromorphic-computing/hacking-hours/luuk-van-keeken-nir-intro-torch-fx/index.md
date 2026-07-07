@@ -4,9 +4,7 @@ author:
   - Luuk van Keeken
   - Jens E. Pedersen
 date: 2024-12-02T00:00:00.000Z
-description: >-
-  Luuk van Keeken introduces the Neuromorphic Intermediate Representation (NIR)
-  and demonstrates graph tracing using torch.fx.
+description: "Learn how extracting computational graphs with torch.fx allows the Neuromorphic Intermediate Representation (NIR) to bridge PyTorch models and SNN hardware."
 upcoming: false
 video: FIqxexNQX4k
 image: luuk-van-keeken-nir-intro-torch-fx.jpg
@@ -14,47 +12,42 @@ type: hacking-hours
 software_tags:
   - snntorch
   - norse
+experience_tags:
+  - researcher
+  - practitioner
+  - intermediate
+expertise_tags:
+  - software
+  - snn
+content_source: "talk-summary"
+summary_points:
+  - "The Neuromorphic Intermediate Representation (NIR) standardizes spiking neural network primitives, letting researchers translate models across fragmented hardware platforms."
+  - "Manual graph tracing in PyTorch previously required overwriting forward functions, causing failures when encountering non-module primitives like basic addition."
+  - "The torch.fx toolkit reliably captures both module and functional operation dependencies, generating clean, structured execution graphs automatically."
+  - "The nir.torch package leverages torch.fx to extract these execution graphs, acting as a universal translator base for SNN libraries like Norse and snnTorch."
+  - "Converting a model requires framework-specific mapping logic to align differing parametrization formats to NIR's strict mathematical primitives."
 url: >-
   /neuromorphic-computing/software/hacking-hours/luuk-van-keeken-nir-intro-torch-fx/
 ---
 
-Join Jens E. Pedersen for a Hacking Hour session with Luuk van Keeken. Luuk provides an insightful introduction to the Neuromorphic Intermediate Representation (NIR), discussing its goals and how it facilitates interoperability in the neuromorphic field. The session includes a practical demonstration of graph tracing techniques using `torch.fx` for PyTorch models.
+Because the neuromorphic ecosystem relies on fragmented, highly specific software libraries (like Norse, snnTorch, and Rockpool) and heavily restricted hardware (like Intel Loihi and SpiNNaker), moving a trained model from one environment to another is notoriously difficult. In this session, Luuk van Keeken and Jens E. Pedersen explore how the Neuromorphic Intermediate Representation (NIR) resolves this "all-to-all" translation problem, and demonstrate how utilizing `torch.fx` makes extracting graphs from PyTorch-based spiking models significantly more robust.
 
-## Key Themes Discussed
+## Key Takeaways
+- **NIR acts as a universal translator:** By providing a unified understanding of what constitutes a basic neuromorphic primitive (e.g., a Leaky Integrate-and-Fire neuron), NIR allows researchers to export a model from one framework and cleanly compile it for vastly different hardware targets.
+- **Manual PyTorch tracing is fragile:** Older methods of exporting PyTorch SNNs required manually replacing the `forward` functions of modules to record their edges. This approach frequently broke when a model utilized non-module Python operations, like standard mathematical addition or division.
+- **`torch.fx` captures functional dependencies:** The `torch.fx` toolkit solves the tracing problem by generating a structured computational graph that recognizes both object-oriented module calls and purely functional code execution, ensuring no operational steps are lost.
+- **Simplifying the graph via primitives:** When `torch.fx` captures a functional addition operation, NIR can streamline the output graph by simply merging the input arrows directly into the subsequent node, matching standard neuromorphic data flows.
+- **Translation still requires specific mapping:** While `nir.torch` effectively captures the graph shape, differing frameworks still parameterize neurons differently (e.g., varying assumptions about time steps). Individual framework mappers must carefully adjust parameters to align with NIR’s exact mathematical definitions.
 
-*   **Lowering the Barrier to Entry for Neuromorphic Computing:** A primary motivation behind NIR is to make accessing and working with neuromorphic hardware and software frameworks (like Spinnaker, Loihi) easier for researchers and developers. Existing tools can be technically challenging and require overcoming legal hurdles (e.g., NDAs).
-*   **The Need for a Unified Representation:** Different neuromorphic and spiking neural network (SNN) frameworks have their own ways of defining and implementing operations. A common intermediate representation like NIR allows for a more standardized way to represent models, facilitating translation between frameworks and hardware platforms.
-*   **Streamlining PyTorch Model Conversion to NIR:** A significant challenge is taking models built in popular frameworks like PyTorch and converting them into the NIR format. This involves understanding the computational graph of the PyTorch model and mapping its components to equivalent NIR primitives.
-*   **The Importance of Graph Tracing:** To convert a PyTorch model to NIR, it's necessary to trace the model's execution flow and identify the individual operations and their dependencies. This process is crucial for constructing the NIR graph.
-*   **Leveraging `torch.fx` for Improved Tracing:** The discussion highlights `torch.fx` as a more robust and efficient toolkit for tracing PyTorch graphs compared to previous manual methods. It provides a structured representation of the graph, including function calls and their inputs/outputs.
-*   **`nir.torch` as a Conversion Tool:** `nir.torch` is presented as a specific package within the NIR ecosystem designed to handle the translation of PyTorch models to NIR. It aims to be a reusable tool that different PyTorch-based neuromorphic frameworks can leverage.
+## What Was Built / Demonstrated
+The session centered on live-refactoring the `nir.torch` extraction pipeline. By replacing legacy tracing workarounds with a custom `torch.fx` Tracer class, the developers successfully captured the internal graph of a Norse PyTorch module.
 
-## Most Important Ideas and Facts
+The demonstration showed how the new tracer automatically identified the sequential module dependencies alongside bare functional calls (like addition). By providing a dictionary mapping Norse-specific modules (like `LIFBoxCell`) to NIR primitives, the extracted PyTorch graph was successfully parsed into a clean, hardware-agnostic intermediate representation without having to parse the messy internal dynamics of the leaky integrator itself.
 
-*   **NIR's Goal:** "to like we talked about lower the barrier of Entry" to neuromorphic computing.
-*   **Challenges with Existing Frameworks:** Accessing platforms like Spinnaker and Loihi is difficult due to technical complexity and requirements like NDAs.
-*   **Previous Tracing Method Issues:** The older, manual method of tracing involved replacing activation functions and manually tracking graph progression. This was "a bit of a mess" and struggled with PyTorch primitives like addition or division that weren't explicitly covered in custom modules.
-*   **`torch.fx` as a Solution:** `torch.fx` is an "amazing" toolkit for tracing that addresses the limitations of previous methods by providing a structured graph representation and handling non-module operations.
-*   **The Purpose of `nir.torch`:** It's a "helping hand" for translating Python/PyTorch models into NIR. It provides a way to extract the NIR graph from a PyTorch model.
-*   **How `nir.torch` Works:** It relies on a mapping function provided by the specific framework (e.g., SNNTorch, Norse) that tells `nir.torch` how to translate that framework's modules into NIR modules. This involves defining "what do the different modules mean" in terms of NIR primitives.
-*   **The Complexity of Mapping:** Even with a unified representation, mapping between frameworks is not trivial.
-    > "because the parameterization is different you have to do this magic to get the parameters to to line up".
-*   **Benefits of a Unified Representation:** It provides a "unified understanding of what you mean by a leaky integrated in fire" and avoids the "all to all" problem of needing to create separate translators for every pair of frameworks.
-*   **Enabling Benchmarking and Comparison:** A common representation allows for comparing models across different hardware platforms, helping to determine which hardware is more efficient for a given task.
-    > "imagine if you can make like a similar model and then try it in different devices or you can actually compare your results".
-*   **`torch.fx` Captures Functions, Not Just Modules:** A key advantage of `torch.fx` is its ability to trace function calls (like addition) in addition to module calls. This is important because non-module operations are fundamental parts of a computational graph.
-*   **Handling Non-Module Operations with `torch.fx`:** The tracer can identify function calls like addition, which in NIR can often be represented by merging input arrows into a subsequent node, simplifying the graph.
-    > "whenever you add like whenever you have two different arrows into a module you essentially add them together so this is pretty much the same thing which means in near I will then scratch this operation entirely and just merge the arrows into whatever output this desent to perfect".
-*   **`torch.fx` Provides Graph Structure:** The tracer provides a representation of the graph with nodes and their dependencies, making it easier to construct the NIR graph.
-    > "the node now knows what is than the next oh oop what is in the next node this is perfect".
-*   **Comparison to Previous Tracing (Manual Method):** The previous method involved replacing the `forward` function of modules and manually tracking outputs and edges, which was an "absolute mess" because it couldn't easily handle non-module function calls.
-*   **`torch.fx` is a More Robust Solution:** Moving to `torch.fx` is described as "way easier than what we did before" and a preferable approach.
+## What This Means for Neuromorphic Computing
+Without a common representation standard, bench-marking neuromorphic hardware is nearly impossible. If a researcher wants to compare the energy efficiency of SpiNNaker against Loihi, they traditionally have to completely rewrite their neural network from scratch using disparate, framework-specific APIs.
 
-## Key Takeaways and Implications
+By stabilizing the PyTorch-to-NIR extraction pipeline using `torch.fx`, researchers can author models in their preferred Python environment and instantly export a strict mathematical representation. This lowers the barrier to entry for neuromorphic deployment, allowing algorithms to be seamlessly shared, verified, and compared across the industry's varied edge devices.
 
-*   NIR is a crucial development for advancing neuromorphic computing by providing a necessary intermediate representation.
-*   Converting existing models from popular frameworks like PyTorch is a significant hurdle that `nir.torch` aims to address.
-*   `torch.fx` offers a powerful and effective way to trace PyTorch graphs, which is essential for this conversion process.
-*   While `nir.torch` and `torch.fx` streamline the process, the mapping between framework-specific modules and NIR primitives still requires framework-specific knowledge and implementation.
-*   The ability to trace both module and function calls with `torch.fx` simplifies the conversion of the computational graph.
-*   This work opens up possibilities for easier benchmarking, hardware exploration, and ultimately, wider adoption of neuromorphic technologies.
+## Resources
+- **Video:** [Watch the session on YouTube](https://www.youtube.com/watch?v=FIqxexNQX4k)

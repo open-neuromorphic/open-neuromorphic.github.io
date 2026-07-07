@@ -17,5 +17,6 @@ social:
 draft: false
 image: alexandre-marciraeu.png
 ---
-Alexandre Marcireau is a software developer and contributor in the neuromorphic computing space, known for his work on the Faery event processing library.
-https://www.westernsydney.edu.au/marcs/about/our_people/researchers/dr_alexandre_marcireau
+Alexandre Marcireau is a lecturer in neuromorphic systems at the University of Manchester. He specialises in event-based vision algorithms and embedded neuromorphic systems. He contributes to multiple open-source software projects, in particular neuromorphic-drivers and faery.
+
+https://scholar.google.com/citations?user=43KBWgoAAAAJ

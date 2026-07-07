@@ -1,24 +1,47 @@
 ---
 title: "Hybrid Learning for Event-based Visual Motion Detection and Tracking of Pedestrians"
 author:
-- "Cristian Axenie"
-- "Jens E. Pedersen"
+  - "Cristian Axenie"
+  - "Jens E. Pedersen"
 date: 2024-01-15
-description: "Revolutionize traffic safety with neuromorphic visual sensing. Explore award-winning solutions for pedestrian detection and tracking, emphasizing sustainability and city-level deployment. Join Dr. Cristian Axenie in this groundbreaking AI exploration"
+description: "A hybrid Spiking Neural Network and event-based Expectation Maximization pipeline deployed on the BrainChip Akida tracks pedestrians with a ~6W power footprint."
 image: visual-motion-tracking.png
 video: W9JTcTJ4eBU
 speaker_code: https://studio.edgeimpulse.com/public/265655/latest
 speaker_slides: SPICES_Lab_Hybrid_Learning_VisionZero_THN.pdf
+type: "workshops"
+software_tags: []
+experience_tags: ["researcher", "practitioner", "industry"]
+expertise_tags: ["computer-vision", "snn", "digital-hardware", "algorithms-learning", "robotics"]
+field_of_application_tags: ["automotive", "iot", "environmental"]
+content_source: "talk-summary"
+summary_points:
+  - "A dual-pipeline edge solution combines SNNs for detection and event-based Expectation Maximization for tracking."
+  - "The system uses Edge Impulse for rapid SNN deployment on the BrainChip Akida neural processor."
+  - "Achieves robust pedestrian and bicyclist tracking in day and night conditions using sparse event data."
+  - "Total system power draw is approximately 6 watts, allowing for scalable, city-level traffic safety infrastructure."
 ---
 
-The Vision Zero Program’s purpose is to reduce traffic-related fatalities and serious injuries while promoting equitable, safe, and healthy mobility for all. Ultimately, the challenge is to detect pedestrians during the day and especially at night in order to implement safety measures.
+The Vision Zero Program seeks to eliminate traffic-related fatalities and serious injuries while promoting equitable, safe mobility. In this session, Dr. Cristian Axenie breaks down a low-power, neuromorphic edge solution built to detect and track pedestrians and bicyclists day and night. Developed for the TinyML Vision Zero San Jose Competition, the project relies on asynchronous event-based cameras paired with a highly efficient hybrid processing pipeline.
 
-The current study introduces an award-winning low-power solution employing neuromorphic visual sensing and hybrid neuro-statistical processing developed by the Technische Hochschule Nürnberg team for the TinyML Vision Zero San Jose Competition. The solution proposes a novel neuromorphic edge fusion of spiking neural networks and event-based expectation maximization for the detection and tracking of pedestrians and bicyclists. 
+## Key Takeaways
+- **A dual-pipeline edge solution combines SNNs for detection and event-based Expectation Maximization for tracking.**
+- **The system uses Edge Impulse for rapid SNN deployment on the BrainChip Akida neural processor.**
+- **Achieves robust pedestrian and bicyclist tracking in day and night conditions using sparse event data.**
+- **Total system power draw is approximately 6 watts, allowing for scalable, city-level traffic safety infrastructure.**
 
-We provide a deployment-ready evaluation of the detection performance along with robustness, energy footprint, and weatherization while emphasizing the advantages of the neuro-statistical edge solution and its city-level scaling capabilities.
+## Workshop Format & Takeaways
+The presentation walks through a complete end-to-end deployment lifecycle for an urban monitoring system. It covers data acquisition using custom DVS sensors mounted on urban intersections in Germany, the model design using Edge Impulse to generate a quantized Spiking Neural Network (a modified MobileNet architecture), and the tracking mechanism utilizing an event-based Expectation Maximization algorithm.
 
-### Links from the talk
-* [Research group on Antifragility](https://www.antifragility.science/)
-* [Code on EdgeImpulse](https://studio.edgeimpulse.com/public/265655/latest)
-* [Slides](https://drive.google.com/file/d/1ftEtZ9SQ_4gIYwRWwU-ncnBJQO_zZwM_/view)
-* Paper: [OBELISC: Oscillator-Based Modelling and Control using Efficient Neural Learning for Intelligent Road Traffic Signal Calculation, Axenie et al.](https://2021.ecmlpkdd.org/wp-content/uploads/2021/07/sub_394.pdf)
+Crucially, the architecture distributes the workload hybrid-style: the detection model operates locally on the BrainChip Akida neural processor, while the continuous tracking algorithm executes via a Python flask server on a Raspberry Pi host. Finally, Axenie provided a deployment-ready hardware evaluation, detailing thermal resilience and robust tracking operations under 65°C oven stress tests while maintaining a stable, low 6-watt power footprint.
+
+## What This Means for Neuromorphic Computing
+This implementation bridges the gap between experimental neuromorphic concepts and deployable civic infrastructure. By running a Spiking Neural Network (for detection) concurrently with a statistical tracker (for continuity) on embedded edge hardware, it demonstrates that neuromorphic pipelines can already meet rigorous real-world constraints—operating reliably under extreme California heat and dark nighttime conditions where conventional frame-based systems often fail.
+
+The speaker noted that proving physical deployment metrics—like minimizing the energy footprint to a few watts—is critical for securing civic adoption. It highlights a viable path forward for integrating neuromorphic sensors into broad smart-city and traffic-control architectures. Most importantly, it proves that developers don't have to wait for "perfect" fully-spiking toolchains; combining the energy efficiency of a neuromorphic accelerator with the reliable logic of a standard embedded processor yields a highly effective, market-ready hybrid solution today.
+
+## Resources
+- [Research group on Antifragility](https://www.antifragility.science/)
+- [Code on EdgeImpulse](https://studio.edgeimpulse.com/public/265655/latest)
+- [Slides](https://drive.google.com/file/d/1ftEtZ9SQ_4gIYwRWwU-ncnBJQO_zZwM_/view)
+- Paper: [OBELISC: Oscillator-Based Modelling and Control using Efficient Neural Learning for Intelligent Road Traffic Signal Calculation, Axenie et al.](https://2021.ecmlpkdd.org/wp-content/uploads/2021/07/sub_394.pdf)
