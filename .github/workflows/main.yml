@@ -46,8 +46,8 @@ jobs:
       - name: Install npm dependencies
         run: npm ci
 
-      #      - name: Validate Taxonomy
-      #        run: node scripts/validateContentTaxonomy.js
+      - name: Validate Taxonomy
+        run: node scripts/validateContentTaxonomy.js
 
       - name: Enforce Coding Standards
         run: |
@@ -143,13 +143,12 @@ jobs:
     runs-on: ubuntu-24.04
     needs: deploy
     if: startsWith(github.ref_name, 'bot/')
-    permissions:
-      contents: write # Allows pushing the pr-screenshots branch back to the repo
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ secrets.PAT_FOR_ISSUES }} # Grants write-access to origin for the push step
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -223,7 +222,7 @@ jobs:
           git add "assets/$IMG_NAME"
           git commit -m "Add automated screenshot for $GITHUB_REF_NAME"
 
-          # Push the branch securely back to the staging repository (relying on job permissions)
+          # Push the branch securely back to the staging repository using the standard origin tracking
           git push origin HEAD:refs/heads/pr-screenshots
 
           # 5. Formulate the Raw Image URL
