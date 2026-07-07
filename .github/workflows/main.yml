@@ -214,7 +214,6 @@ jobs:
             git checkout pr-screenshots
           else
             git checkout --orphan pr-screenshots
-            # The -q flag silences the hundreds of 'rm' lines from the log
             git rm -rf . -q
           fi
 
@@ -231,7 +230,23 @@ jobs:
           IMG_URL="https://raw.githubusercontent.com/${{ github.repository }}/pr-screenshots/main/assets/$IMG_NAME"
 
           # 6. Find the open Pull Request on the main repository and post the comment
+          echo "Debug: Looking for PR on head ${{ github.repository_owner }}:${GITHUB_REF_NAME}"
           PR_URL=$(gh pr list --repo "$REPO_OWNER/$REPO_NAME" --head "${{ github.repository_owner }}:${GITHUB_REF_NAME}" --json url --jq '.[0].url')
+
+          # Fallback 1: Try searching by branch name directly (without owner)
+          if [ -z "$PR_URL" ]; then
+            echo "Debug: Standard lookup empty. Trying head: ${GITHUB_REF_NAME}"
+            PR_URL=$(gh pr list --repo "$REPO_OWNER/$REPO_NAME" --head "${GITHUB_REF_NAME}" --json url --jq '.[0].url')
+          fi
+
+          # Fallback 2: Find using the numerical issue ID parsed from the branch name
+          if [ -z "$PR_URL" ]; then
+            echo "Debug: Checking issue number fallback..."
+            ISSUE_NUM=$(echo "$GITHUB_REF_NAME" | grep -oE '[0-9]+' | head -n 1)
+            if [ -n "$ISSUE_NUM" ]; then
+              PR_URL=$(gh pr list --repo "$REPO_OWNER/$REPO_NAME" --json url,headRefName --jq ".[] | select(.headRefName | contains(\"$ISSUE_NUM\")) | .url" | head -n 1)
+            fi
+          fi
 
           if [ -n "$PR_URL" ]; then
             echo "Commenting on PR: $PR_URL"
@@ -240,5 +255,5 @@ jobs:
 
             ![$GITHUB_REF_NAME Preview]($IMG_URL)"
           else
-            echo "No open PR found for this branch."
+            echo "❌ ERROR: No open PR found for branch $GITHUB_REF_NAME or issue context."
           fi
