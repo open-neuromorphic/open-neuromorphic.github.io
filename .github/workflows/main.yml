@@ -136,3 +136,94 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  # --- NEW: Automated PR Screenshot Job ---
+  screenshot_pr:
+    name: Generate PR Screenshot
+    runs-on: ubuntu-24.04
+    needs: deploy
+    if: startsWith(github.ref_name, 'bot/')
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install Puppeteer
+        run: npm install puppeteer
+
+      - name: Capture and Post Screenshot
+        env:
+          GH_TOKEN: ${{ secrets.PAT_FOR_ISSUES }}
+          REPO_OWNER: open-neuromorphic
+          REPO_NAME: open-neuromorphic.github.io
+        run: |
+          # 1. Identify which Markdown file the bot changed
+          CHANGED_FILE=$(git diff --name-only origin/main...HEAD | grep '^content/.*\.md$' | head -n 1)
+          if [ -z "$CHANGED_FILE" ]; then
+            echo "No content file changed. Skipping screenshot."
+            exit 0
+          fi
+
+          # 2. Format the Hugo URL path
+          # Translates "content/software/snn-mlir/index.md" -> "software/snn-mlir/"
+          URL_PATH=$(echo "$CHANGED_FILE" | sed 's/^content\///' | sed 's/index\.md$//' | sed 's/\.md$/\//')
+          FULL_URL="https://${{ github.repository_owner }}.github.io/$(echo "${{ github.repository }}" | cut -d '/' -f 2)/${URL_PATH}"
+
+          echo "Taking screenshot of: $FULL_URL"
+
+          # 3. Create and run a temporary Puppeteer script
+          cat << 'EOF' > screenshot.js
+          const puppeteer = require('puppeteer');
+          (async () => {
+            const browser = await puppeteer.launch();
+            const page = await browser.newPage();
+            await page.setViewport({width: 1280, height: 1024});
+            // Wait until network is idle to ensure images/CSS finish loading
+            await page.goto(process.argv[2], {waitUntil: 'networkidle0', timeout: 60000});
+            await page.screenshot({path: 'screenshot.png', fullPage: true});
+            await browser.close();
+          })();
+          EOF
+
+          # Wait 10 seconds to ensure GitHub Pages cache is fully cleared, then snapshot
+          sleep 10
+          node screenshot.js "$FULL_URL"
+
+          # 4. Commit the screenshot to an orphaned storage branch so it has a public URL
+          git config --global user.name "ONM Bot"
+          git config --global user.email "bot@open-neuromorphic.org"
+
+          git fetch origin pr-screenshots:pr-screenshots || git checkout --orphan pr-screenshots
+          git checkout pr-screenshots
+          git pull origin pr-screenshots --rebase || true
+
+          mkdir -p assets
+          IMG_NAME="${GITHUB_REF_NAME//\//-}-$(date +%s).png"
+          mv screenshot.png "assets/$IMG_NAME"
+          git add "assets/$IMG_NAME"
+          git commit -m "Add automated screenshot for $GITHUB_REF_NAME"
+
+          # Push the branch securely back to the staging repository
+          git push https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git pr-screenshots
+
+          # 5. Formulate the Raw Image URL
+          IMG_URL="https://raw.githubusercontent.com/${{ github.repository }}/pr-screenshots/main/assets/$IMG_NAME"
+
+          # 6. Find the open Pull Request on the main repository and post the comment
+          PR_URL=$(gh pr list --repo "$REPO_OWNER/$REPO_NAME" --head "${{ github.repository_owner }}:${GITHUB_REF_NAME}" --json url --jq '.[0].url')
+
+          if [ -n "$PR_URL" ]; then
+            echo "Commenting on PR: $PR_URL"
+            gh pr comment "$PR_URL" --repo "$REPO_OWNER/$REPO_NAME" --body "### 📸 Staging Preview Snapshot
+            Because staging environments are overwritten by subsequent bot drafts, here is a permanent snapshot of how this page rendered when the draft was approved:
+
+            ![$GITHUB_REF_NAME Preview]($IMG_URL)"
+          else
+            echo "No open PR found for this branch."
+          fi
