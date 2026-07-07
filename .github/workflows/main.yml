@@ -143,6 +143,8 @@ jobs:
     runs-on: ubuntu-24.04
     needs: deploy
     if: startsWith(github.ref_name, 'bot/')
+    permissions:
+      contents: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -205,9 +207,6 @@ jobs:
           mv screenshot.png /tmp/screenshot.png
           git reset --hard HEAD
           git clean -fd
-
-          # Update the origin URL to explicitly use the PAT, bypassing the restricted default token
-          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
 
           if git ls-remote --exit-code --heads origin pr-screenshots >/dev/null 2>&1; then
             git fetch origin pr-screenshots:pr-screenshots
