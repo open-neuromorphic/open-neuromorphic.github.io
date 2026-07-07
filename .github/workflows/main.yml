@@ -46,9 +46,6 @@ jobs:
       - name: Install npm dependencies
         run: npm ci
 
-      #      - name: Validate Taxonomy
-      #        run: node scripts/validateContentTaxonomy.js
-
       - name: Enforce Coding Standards
         run: |
           echo "Checking for decorative comments..."
@@ -137,7 +134,7 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-  # --- NEW: Automated PR Screenshot Job ---
+  # --- Automated PR Screenshot Job ---
   screenshot_pr:
     name: Generate PR Screenshot
     runs-on: ubuntu-24.04
@@ -148,6 +145,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          persist-credentials: false # PREVENTS THE GITHUB-ACTIONS[BOT] 403 ERROR
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -163,15 +161,20 @@ jobs:
           REPO_OWNER: open-neuromorphic
           REPO_NAME: open-neuromorphic.github.io
         run: |
+          # --- SAFETY CHECK ---
+          if [ -z "$GH_TOKEN" ]; then
+            echo "❌ ERROR: GH_TOKEN is empty! The secret is missing or spelled incorrectly."
+            exit 1
+          fi
+
           # 1. Identify which Markdown file the bot changed
-          CHANGED_FILE=$(git diff --name-only origin/main...HEAD | grep '^content/.*\.md$' | head -n 1)
+          CHANGED_FILE=$(git diff --name-only HEAD~1 HEAD | grep '^content/.*\.md$' | head -n 1)
           if [ -z "$CHANGED_FILE" ]; then
             echo "No content file changed. Skipping screenshot."
             exit 0
           fi
 
           # 2. Format the Hugo URL path
-          # Translates "content/software/snn-mlir/index.md" -> "software/snn-mlir/"
           URL_PATH=$(echo "$CHANGED_FILE" | sed 's/^content\///' | sed 's/index\.md$//' | sed 's/\.md$/\//')
           FULL_URL="https://${{ github.repository_owner }}.github.io/$(echo "${{ github.repository }}" | cut -d '/' -f 2)/${URL_PATH}"
 
@@ -184,35 +187,32 @@ jobs:
             const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
             const page = await browser.newPage();
             await page.setViewport({width: 1280, height: 1024});
-            // Wait until network is idle to ensure images/CSS finish loading
             await page.goto(process.argv[2], {waitUntil: 'networkidle0', timeout: 60000});
             await page.screenshot({path: 'screenshot.png', fullPage: true});
             await browser.close();
           })();
           EOF
 
-          # Wait 10 seconds to ensure GitHub Pages cache is fully cleared, then snapshot
           sleep 10
           node screenshot.js "$FULL_URL"
 
-          # 4. Commit the screenshot to an orphaned storage branch so it has a public URL
+          # 4. Commit the screenshot to an orphaned storage branch
           git config --global user.name "ONM Bot"
           git config --global user.email "bot@open-neuromorphic.org"
 
-          # Move the screenshot out of the working tree temporarily
           mv screenshot.png /tmp/screenshot.png
-
-          # Clear changes from `npm install puppeteer` to prevent checkout conflicts
           git reset --hard HEAD
           git clean -fd
 
-          # Attempt to checkout existing branch, or create an orphan if it doesn't exist yet
+          # Embed the Classic PAT directly into the remote URL to bypass 403 issues
+          git remote set-url origin "https://${GH_TOKEN}@github.com/${{ github.repository }}.git"
+
           if git ls-remote --exit-code --heads origin pr-screenshots >/dev/null 2>&1; then
             git fetch origin pr-screenshots:pr-screenshots
             git checkout pr-screenshots
           else
             git checkout --orphan pr-screenshots
-            git rm -rf .
+            git rm -rf . -q
           fi
 
           mkdir -p assets
@@ -222,14 +222,24 @@ jobs:
           git add "assets/$IMG_NAME"
           git commit -m "Add automated screenshot for $GITHUB_REF_NAME"
 
-          # Push the branch securely back to the staging repository
-          git push https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git HEAD:refs/heads/pr-screenshots
+          git push origin HEAD:refs/heads/pr-screenshots
 
           # 5. Formulate the Raw Image URL
           IMG_URL="https://raw.githubusercontent.com/${{ github.repository }}/pr-screenshots/main/assets/$IMG_NAME"
 
           # 6. Find the open Pull Request on the main repository and post the comment
-          PR_URL=$(gh pr list --repo "$REPO_OWNER/$REPO_NAME" --head "${{ github.repository_owner }}:${GITHUB_REF_NAME}" --json url --jq '.[0].url')
+          echo "Debug: Looking for PR on head ${{ github.repository_owner }}:${GITHUB_REF_NAME}"
+
+          # We use // empty in jq so it returns a blank string instead of "null" if nothing is found
+          PR_URL=$(gh pr list --repo "$REPO_OWNER/$REPO_NAME" --head "${{ github.repository_owner }}:${GITHUB_REF_NAME}" --json url --jq '.[0].url // empty')
+
+          if [ -z "$PR_URL" ]; then
+            echo "Debug: Exact match failed. Falling back to issue number matching..."
+            ISSUE_NUM=$(echo "$GITHUB_REF_NAME" | grep -oE '[0-9]+' | head -n 1)
+            if [ -n "$ISSUE_NUM" ]; then
+              PR_URL=$(gh pr list --repo "$REPO_OWNER/$REPO_NAME" --json url,headRefName --jq ".[] | select(.headRefName | contains(\"$ISSUE_NUM\")) | .url // empty" | head -n 1)
+            fi
+          fi
 
           if [ -n "$PR_URL" ]; then
             echo "Commenting on PR: $PR_URL"
@@ -238,5 +248,5 @@ jobs:
 
             ![$GITHUB_REF_NAME Preview]($IMG_URL)"
           else
-            echo "No open PR found for this branch."
+            echo "❌ ERROR: No open PR found for branch $GITHUB_REF_NAME."
           fi
