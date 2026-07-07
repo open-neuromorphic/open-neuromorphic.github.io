@@ -143,6 +143,8 @@ jobs:
     runs-on: ubuntu-24.04
     needs: deploy
     if: startsWith(github.ref_name, 'bot/')
+    permissions:
+      contents: write # Allows pushing the pr-screenshots branch back to the repo
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -171,7 +173,6 @@ jobs:
           fi
 
           # 2. Format the Hugo URL path
-          # Translates "content/software/snn-mlir/index.md" -> "software/snn-mlir/"
           URL_PATH=$(echo "$CHANGED_FILE" | sed 's/^content\///' | sed 's/index\.md$//' | sed 's/\.md$/\//')
           FULL_URL="https://${{ github.repository_owner }}.github.io/$(echo "${{ github.repository }}" | cut -d '/' -f 2)/${URL_PATH}"
 
@@ -222,8 +223,8 @@ jobs:
           git add "assets/$IMG_NAME"
           git commit -m "Add automated screenshot for $GITHUB_REF_NAME"
 
-          # Push the branch securely back to the staging repository
-          git push https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git HEAD:refs/heads/pr-screenshots
+          # Push the branch securely back to the staging repository (relying on job permissions)
+          git push origin HEAD:refs/heads/pr-screenshots
 
           # 5. Formulate the Raw Image URL
           IMG_URL="https://raw.githubusercontent.com/${{ github.repository }}/pr-screenshots/main/assets/$IMG_NAME"
