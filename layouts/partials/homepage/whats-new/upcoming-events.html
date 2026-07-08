@@ -2,31 +2,72 @@
 <h3 class="text-2xl font-bold mb-6 text-center lg:text-left text-text dark:text-darkmode-text">Upcoming Events</h3>
 {{ if $sortedAllUpcomingEvents }}
   {{ range first 3 $sortedAllUpcomingEvents }}
-    <div class="event-card-simple bg-white dark:bg-darkmode-theme-light rounded-xl p-4 shadow-md hover:shadow-lg transition-all duration-300 ease-in-out mb-4">
-      <span class="date-badge mb-2 inline-block text-xs">{{ .Date.Format "Jan 02, 2006" }}</span>
-      <h4 class="text-lg font-semibold mb-1">
-        <a href="{{ .Permalink }}" class="text-text dark:text-darkmode-dark hover:text-primary dark:hover:text-darkmode-primary">{{ .Title }}</a>
+    <div class="event-card-simple bg-white dark:bg-darkmode-theme-light rounded-xl p-5 shadow-md hover:shadow-lg transition-all duration-300 ease-in-out mb-4 border border-border dark:border-darkmode-border flex flex-col w-full">
+
+      <div class="flex items-center justify-between mb-3 w-full">
+        <span class="date-badge text-xs">{{ .Date.Format "Jan 02, 2006" }}</span>
+      </div>
+
+      <h4 class="text-lg font-bold mb-2 leading-tight">
+        <a href="{{ .Permalink }}" class="text-dark dark:text-darkmode-dark hover:text-primary dark:hover:text-darkmode-primary">{{ .Title }}</a>
       </h4>
-      <p class="text-xs text-gray-600 dark:text-gray-400 mb-2">
-        {{ .Description | truncate 80 }}
+
+      <p class="text-sm text-gray-600 dark:text-gray-400 mb-5 flex-grow line-clamp-3">
+        {{ .Description }}
       </p>
-      <p class="text-xs text-gray-500 dark:text-gray-300">
-        {{ partial "icon.html" (dict "style" "regular" "name" "clock" "class" "mr-1") }}
-        <time class="event-local-time" data-start="{{ .RawStart.Format "2006-01-02T15:04:05Z07:00" }}" data-end="{{ .RawEnd.Format "2006-01-02T15:04:05Z07:00" }}">
-          {{- .StartTime }}{{ if ne .StartTime .EndTime }} - {{ .EndTime }}{{ end }} {{ .TimeZone -}}
-        </time>
+
+      <!-- Speaker Section -->
+      {{ if .IsRecurring }}
+        <div class="flex items-center gap-3 mb-4 mt-auto">
+          <div class="w-10 h-10 rounded-full bg-gray-100 dark:bg-darkmode-theme-dark border border-gray-200 dark:border-gray-700 flex items-center justify-center text-gray-500 flex-shrink-0 shadow-sm">
+            {{ partial "icon.html" (dict "style" "solid" "name" "users" "class" "text-lg") }}
+          </div>
+          <div class="text-sm font-bold text-dark dark:text-darkmode-dark leading-tight line-clamp-2">
+            {{ .Host }}
+          </div>
+        </div>
+      {{ else if .Authors }}
+        <div class="flex items-center gap-3 mb-4 mt-auto">
+          <div class="flex -space-x-3 flex-shrink-0">
+            {{ range .Authors }}
+              {{ $contrib := partial "helpers/resolve-contributor.html" . }}
+              {{ if $contrib.ImageResource }}
+                <img src="{{ ($contrib.ImageResource.Fill "40x40 Lanczos").RelPermalink }}" alt="{{ . }}" class="w-10 h-10 rounded-full object-cover border-2 border-white dark:border-darkmode-theme-light shadow-sm">
+              {{ else }}
+                <div class="w-10 h-10 rounded-full bg-gray-100 dark:bg-darkmode-theme-dark border-2 border-white dark:border-darkmode-theme-light flex items-center justify-center text-gray-500 shadow-sm">
+                  {{ partial "icon.html" (dict "style" "solid" "name" "user" "class" "text-sm") }}
+                </div>
+              {{ end }}
+            {{ end }}
+          </div>
+          <div class="text-sm font-bold text-dark dark:text-darkmode-dark leading-tight line-clamp-2">
+            {{ $numAuthors := len .Authors }}
+            {{ range $i, $authorName := .Authors }}
+              {{ $contrib := partial "helpers/resolve-contributor.html" $authorName }}
+              {{ if $contrib.Page }}<a href="{{ $contrib.Page.RelPermalink }}" class="hover:text-primary dark:hover:text-darkmode-primary transition-colors no-underline">{{ $authorName }}</a>{{ else }}{{ $authorName }}{{ end }}{{ if lt $i (sub $numAuthors 1) }}, {{ end }}
+            {{ end }}
+          </div>
+        </div>
+      {{ end }}
+
+      <!-- Time and Location Section -->
+      <div class="text-xs text-gray-600 dark:text-gray-400 space-y-1.5 mb-2">
+        <div class="flex items-center">
+          {{ partial "icon.html" (dict "style" "regular" "name" "clock" "class" "mr-2 w-3.5 h-3.5 flex-shrink-0") }}
+          <time class="event-local-time" data-start="{{ .RawStart.Format "2006-01-02T15:04:05Z07:00" }}" data-end="{{ .RawEnd.Format "2006-01-02T15:04:05Z07:00" }}">
+            {{- .StartTime }}{{ if ne .StartTime .EndTime }} - {{ .EndTime }}{{ end }} {{ .TimeZone -}}
+          </time>
+        </div>
         {{ if .IsRecurring }}
-          <br/>{{ partial "icon.html" (dict "style" "solid" "name" "location-dot" "class" "mr-1") }} <a href="{{ .LocationURL }}" target="_blank" class="hover:underline">{{ .LocationName }}</a> (Recurring)
-        {{ else if .Authors }}
-          <br/>{{ partial "icon.html" (dict "style" "regular" "name" "circle-user" "class" "mr-1") }}
-          {{ $numAuthors := len .Authors }}
-          {{ range $i, $authorName := .Authors }}
-            {{ $contrib := partial "helpers/resolve-contributor.html" $authorName }}
-            {{ if $contrib.Page }}<a href="{{ $contrib.Page.RelPermalink }}">{{ $authorName }}</a>{{ else }}{{ $authorName }}{{ end }}{{ if lt $i (sub $numAuthors 1) }}, {{ end }}
-          {{ end }}
+          <div class="flex items-center">
+            {{ partial "icon.html" (dict "style" "solid" "name" "location-dot" "class" "mr-2 w-3.5 h-3.5 flex-shrink-0") }}
+            <a href="{{ .LocationURL }}" target="_blank" class="hover:underline text-gray-600 dark:text-gray-400">{{ .LocationName }}</a> <span class="ml-1 italic opacity-75">(Recurring)</span>
+          </div>
         {{ end }}
-      </p>
-      <div class="mt-auto pt-2 flex justify-between items-center w-full">
+      </div>
+
+      <!-- Actions Section -->
+      <div class="mt-4 pt-3 border-t border-border dark:border-darkmode-border flex justify-between items-center w-full">
         <a href="{{ .Permalink }}" class="font-semibold text-xs text-primary dark:text-darkmode-primary hover:underline flex items-center whitespace-nowrap">
           View Details {{ partial "icon.html" (dict "style" "solid" "name" "arrow-right" "class" "ml-1") }}
         </a>

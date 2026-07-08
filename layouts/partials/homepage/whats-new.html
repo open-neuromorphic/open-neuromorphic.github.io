@@ -12,57 +12,196 @@
       <div class="upcoming-events-section mb-16">
         <h3 class="text-2xl font-bold mb-8 text-center text-text dark:text-darkmode-text">Upcoming Events</h3>
         <div class="row justify-center">
-          {{ range first 3 $sortedAllUpcomingEvents }}
-            <div class="md:col-6 lg:col-4 mb-8 flex">
-              <div class="event-card-simple bg-white dark:bg-darkmode-theme-light rounded-xl p-4 shadow-md hover:shadow-lg transition-all duration-300 ease-in-out h-full flex flex-col w-full">
-                <div class="flex items-center justify-between mb-2 w-full">
-                  <span class="date-badge text-xs">{{ .Date.Format "Jan 02, 2006" }}</span>
-                  {{ with .EventType }}
-                    {{ $eventPageStr := "" }}
-                    {{ range hugo.Data.event_types.event_types }}{{ if eq .label $ }}{{ $eventPageStr = .section }}{{ end }}{{ end }}
-                    {{ if $eventPageStr }}
-                      {{ $p := site.GetPage $eventPageStr }}
-                      <a href="{{ $p.RelPermalink }}" class="event-type-tag-link">{{ . }}</a>
-                    {{ else }}
-                      <span class="event-type-tag-link cursor-default">{{ . }}</span>
-                    {{ end }}
-                  {{ end }}
-                </div>
-                <h4 class="text-lg font-semibold mb-1 flex-grow">
-                  <a href="{{ .Permalink }}" class="text-text dark:text-darkmode-dark hover:text-primary dark:hover:text-darkmode-primary">{{ .Title }}</a>
-                </h4>
-                <p class="text-xs text-gray-600 dark:text-gray-400 mb-2">{{ .Description | truncate 80 }}</p>
-                <p class="text-xs text-gray-500 dark:text-gray-300">
-                  {{ partial "icon.html" (dict "style" "regular" "name" "clock" "class" "mr-1") }}
-                  <time class="event-local-time" data-start="{{ .RawStart.Format "2006-01-02T15:04:05Z07:00" }}" data-end="{{ .RawEnd.Format "2006-01-02T15:04:05Z07:00" }}">
-                    {{- .StartTime }}{{ if ne .StartTime .EndTime }} - {{ .EndTime }}{{ end }} {{ .TimeZone -}}
-                  </time>
-                  {{ if .IsRecurring }}
-                    <br/>{{ partial "icon.html" (dict "style" "solid" "name" "location-dot" "class" "mr-1") }} <a href="{{ .LocationURL }}" target="_blank" class="hover:underline">{{ .LocationName }}</a> (Recurring)
-                  {{ else if .Authors }}
-                    <br/>{{ partial "icon.html" (dict "style" "regular" "name" "circle-user" "class" "mr-1") }}
-                    {{ $numAuthors := len .Authors }}
-                    {{ range $i, $authorName := .Authors }}
-                      {{ $contrib := partial "helpers/resolve-contributor.html" $authorName }}
-                      {{ if $contrib.Page }}<a href="{{ $contrib.Page.RelPermalink }}">{{ $authorName }}</a>{{ else }}{{ $authorName }}{{ end }}{{ if lt $i (sub $numAuthors 1) }}, {{ end }}
-                    {{ end }}
-                  {{ end }}
-                </p>
 
-                <!-- NEW FLEX ROW FOR DETAILS + CALENDAR -->
-                <div class="mt-auto pt-2 flex justify-between items-center w-full">
-                  <a href="{{ .Permalink }}" class="font-semibold text-xs text-primary dark:text-darkmode-primary hover:underline flex items-center whitespace-nowrap">
-                    View Details {{ partial "icon.html" (dict "style" "solid" "name" "arrow-right" "class" "ml-1") }}
+          {{ $numUpcoming := len $sortedAllUpcomingEvents }}
+
+          {{ if eq $numUpcoming 1 }}
+            <!-- WIDE LAYOUT (1 EVENT) -->
+            {{ $event := index $sortedAllUpcomingEvents 0 }}
+            <div class="lg:col-8 md:col-10 mb-8 flex w-full">
+              <div class="event-card-simple bg-white dark:bg-darkmode-theme-light rounded-xl p-6 md:p-8 shadow-md hover:shadow-lg transition-all duration-300 ease-in-out h-full flex flex-col w-full border border-border dark:border-darkmode-border">
+
+                <div class="flex flex-col md:flex-row gap-6 md:gap-8 flex-grow">
+
+                  <!-- Content Left -->
+                  <div class="flex-grow flex flex-col justify-center md:w-2/3">
+                    <div class="flex items-center justify-between mb-4 w-full">
+                      <span class="date-badge text-sm">{{ $event.Date.Format "Jan 02, 2006" }}</span>
+                      {{ with $event.EventType }}
+                        {{ $eventPageStr := "" }}
+                        {{ range hugo.Data.event_types.event_types }}{{ if eq .label $ }}{{ $eventPageStr = .section }}{{ end }}{{ end }}
+                        {{ if $eventPageStr }}
+                          {{ $p := site.GetPage $eventPageStr }}
+                          <a href="{{ $p.RelPermalink }}" class="event-type-tag-link !text-sm">{{ . }}</a>
+                        {{ else }}
+                          <span class="event-type-tag-link !text-sm cursor-default">{{ . }}</span>
+                        {{ end }}
+                      {{ end }}
+                    </div>
+
+                    <h4 class="text-2xl md:text-3xl font-bold mb-3 leading-tight">
+                      <a href="{{ $event.Permalink }}" class="text-dark dark:text-darkmode-dark hover:text-primary dark:hover:text-darkmode-primary">{{ $event.Title }}</a>
+                    </h4>
+
+                    <p class="text-base text-gray-600 dark:text-gray-400 mb-6 flex-grow">
+                      {{ $event.Description }}
+                    </p>
+
+                    <!-- Time and Location Section -->
+                    <div class="text-sm font-medium text-gray-600 dark:text-gray-400 space-y-2 mb-2 mt-auto">
+                      <div class="flex items-center">
+                        {{ partial "icon.html" (dict "style" "regular" "name" "clock" "class" "mr-2 w-4 h-4 flex-shrink-0") }}
+                        <time class="event-local-time" data-start="{{ $event.RawStart.Format "2006-01-02T15:04:05Z07:00" }}" data-end="{{ $event.RawEnd.Format "2006-01-02T15:04:05Z07:00" }}">
+                          {{- $event.StartTime }}{{ if ne $event.StartTime $event.EndTime }} - {{ $event.EndTime }}{{ end }} {{ $event.TimeZone -}}
+                        </time>
+                      </div>
+                      {{ if $event.IsRecurring }}
+                        <div class="flex items-center">
+                          {{ partial "icon.html" (dict "style" "solid" "name" "location-dot" "class" "mr-2 w-4 h-4 flex-shrink-0") }}
+                          <a href="{{ $event.LocationURL }}" target="_blank" class="hover:underline text-gray-600 dark:text-gray-400">{{ $event.LocationName }}</a> <span class="ml-1 italic opacity-75">(Recurring)</span>
+                        </div>
+                      {{ end }}
+                    </div>
+                  </div>
+
+                  <!-- Speaker Right -->
+                  <div class="flex-shrink-0 flex flex-col items-center justify-center md:w-1/3 md:border-l border-border dark:border-darkmode-border md:pl-8 pt-6 md:pt-0 border-t md:border-t-0 mt-2 md:mt-0">
+                    {{ if $event.IsRecurring }}
+                      <div class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-gray-100 dark:bg-darkmode-theme-dark border-4 border-white dark:border-darkmode-theme-light flex items-center justify-center text-gray-500 shadow-md mb-4">
+                        {{ partial "icon.html" (dict "style" "solid" "name" "users" "class" "text-4xl") }}
+                      </div>
+                      <div class="text-xl md:text-2xl font-bold text-dark dark:text-darkmode-dark leading-tight text-center">
+                        {{ $event.Host }}
+                      </div>
+                    {{ else if $event.Authors }}
+                      <div class="flex flex-wrap justify-center gap-6">
+                        {{ range $event.Authors }}
+                          {{ $contrib := partial "helpers/resolve-contributor.html" . }}
+                          <div class="flex flex-col items-center text-center max-w-[140px]">
+                            {{ if $contrib.ImageResource }}
+                              <img src="{{ ($contrib.ImageResource.Fill "128x128 Lanczos").RelPermalink }}" alt="{{ . }}" class="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover border-4 border-white dark:border-darkmode-theme-light shadow-md mb-4">
+                            {{ else }}
+                              <div class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-gray-100 dark:bg-darkmode-theme-dark border-4 border-white dark:border-darkmode-theme-light flex items-center justify-center text-gray-500 shadow-md mb-4">
+                                {{ partial "icon.html" (dict "style" "solid" "name" "user" "class" "text-4xl") }}
+                              </div>
+                            {{ end }}
+                            <div class="text-xl font-bold text-dark dark:text-darkmode-dark leading-tight">
+                              {{ if $contrib.Page }}<a href="{{ $contrib.Page.RelPermalink }}" class="hover:text-primary dark:hover:text-darkmode-primary transition-colors no-underline">{{ . }}</a>{{ else }}{{ . }}{{ end }}
+                            </div>
+                          </div>
+                        {{ end }}
+                      </div>
+                    {{ end }}
+                  </div>
+                </div>
+
+                <!-- Actions Section -->
+                <div class="mt-6 md:mt-8 pt-4 border-t border-border dark:border-darkmode-border flex justify-between items-center w-full">
+                  <a href="{{ $event.Permalink }}" class="font-bold text-sm md:text-base text-primary dark:text-darkmode-primary hover:underline flex items-center whitespace-nowrap">
+                    View Details {{ partial "icon.html" (dict "style" "solid" "name" "arrow-right" "class" "ml-1.5") }}
                   </a>
 
-                  {{ $urls := partial "logic/get-calendar-urls.html" (dict "Title" .Title "Description" .Description "Permalink" .Permalink "Start" .RawStart "End" .RawEnd) }}
-                  {{ partial "components/add-to-calendar.html" (dict "urls" $urls "filename" (printf "%s.ics" (.Title | urlize)) "text_class" "text-xs") }}
+                  {{ $urls := partial "logic/get-calendar-urls.html" (dict "Title" $event.Title "Description" $event.Description "Permalink" $event.Permalink "Start" $event.RawStart "End" $event.RawEnd) }}
+                  {{ partial "components/add-to-calendar.html" (dict "urls" $urls "filename" (printf "%s.ics" ($event.Title | urlize)) "text_class" "text-sm md:text-base font-bold") }}
                 </div>
 
               </div>
             </div>
+
+          {{ else }}
+            <!-- STANDARD GRID LAYOUT (> 1 EVENT) -->
+            {{ range first 3 $sortedAllUpcomingEvents }}
+              <div class="md:col-6 lg:col-4 mb-8 flex">
+                <div class="event-card-simple bg-white dark:bg-darkmode-theme-light rounded-xl p-5 shadow-md hover:shadow-lg transition-all duration-300 ease-in-out h-full flex flex-col w-full border border-border dark:border-darkmode-border">
+
+                  <div class="flex items-center justify-between mb-3 w-full">
+                    <span class="date-badge text-xs">{{ .Date.Format "Jan 02, 2006" }}</span>
+                    {{ with .EventType }}
+                      {{ $eventPageStr := "" }}
+                      {{ range hugo.Data.event_types.event_types }}{{ if eq .label $ }}{{ $eventPageStr = .section }}{{ end }}{{ end }}
+                      {{ if $eventPageStr }}
+                        {{ $p := site.GetPage $eventPageStr }}
+                        <a href="{{ $p.RelPermalink }}" class="event-type-tag-link">{{ . }}</a>
+                      {{ else }}
+                        <span class="event-type-tag-link cursor-default">{{ . }}</span>
+                      {{ end }}
+                    {{ end }}
+                  </div>
+
+                  <h4 class="text-lg font-bold mb-2 leading-tight">
+                    <a href="{{ .Permalink }}" class="text-dark dark:text-darkmode-dark hover:text-primary dark:hover:text-darkmode-primary">{{ .Title }}</a>
+                  </h4>
+
+                  <p class="text-sm text-gray-600 dark:text-gray-400 mb-5 flex-grow line-clamp-3">
+                    {{ .Description }}
+                  </p>
+
+                  <!-- Speaker Section -->
+                  {{ if .IsRecurring }}
+                    <div class="flex items-center gap-3 mb-4 mt-auto">
+                      <div class="w-10 h-10 rounded-full bg-gray-100 dark:bg-darkmode-theme-dark border border-gray-200 dark:border-gray-700 flex items-center justify-center text-gray-500 flex-shrink-0 shadow-sm">
+                        {{ partial "icon.html" (dict "style" "solid" "name" "users" "class" "text-lg") }}
+                      </div>
+                      <div class="text-sm font-bold text-dark dark:text-darkmode-dark leading-tight line-clamp-2">
+                        {{ .Host }}
+                      </div>
+                    </div>
+                  {{ else if .Authors }}
+                    <div class="flex items-center gap-3 mb-4 mt-auto">
+                      <div class="flex -space-x-3 flex-shrink-0">
+                        {{ range .Authors }}
+                          {{ $contrib := partial "helpers/resolve-contributor.html" . }}
+                          {{ if $contrib.ImageResource }}
+                            <img src="{{ ($contrib.ImageResource.Fill "40x40 Lanczos").RelPermalink }}" alt="{{ . }}" class="w-10 h-10 rounded-full object-cover border-2 border-white dark:border-darkmode-theme-light shadow-sm">
+                          {{ else }}
+                            <div class="w-10 h-10 rounded-full bg-gray-100 dark:bg-darkmode-theme-dark border-2 border-white dark:border-darkmode-theme-light flex items-center justify-center text-gray-500 shadow-sm">
+                              {{ partial "icon.html" (dict "style" "solid" "name" "user" "class" "text-sm") }}
+                            </div>
+                          {{ end }}
+                        {{ end }}
+                      </div>
+                      <div class="text-sm font-bold text-dark dark:text-darkmode-dark leading-tight line-clamp-2">
+                        {{ $numAuthors := len .Authors }}
+                        {{ range $i, $authorName := .Authors }}
+                          {{ $contrib := partial "helpers/resolve-contributor.html" $authorName }}
+                          {{ if $contrib.Page }}<a href="{{ $contrib.Page.RelPermalink }}" class="hover:text-primary dark:hover:text-darkmode-primary transition-colors no-underline">{{ $authorName }}</a>{{ else }}{{ $authorName }}{{ end }}{{ if lt $i (sub $numAuthors 1) }}, {{ end }}
+                        {{ end }}
+                      </div>
+                    </div>
+                  {{ end }}
+
+                  <!-- Time and Location Section -->
+                  <div class="text-xs text-gray-600 dark:text-gray-400 space-y-1.5 mb-2">
+                    <div class="flex items-center">
+                      {{ partial "icon.html" (dict "style" "regular" "name" "clock" "class" "mr-2 w-3.5 h-3.5 flex-shrink-0") }}
+                      <time class="event-local-time" data-start="{{ .RawStart.Format "2006-01-02T15:04:05Z07:00" }}" data-end="{{ .RawEnd.Format "2006-01-02T15:04:05Z07:00" }}">
+                        {{- .StartTime }}{{ if ne .StartTime .EndTime }} - {{ .EndTime }}{{ end }} {{ .TimeZone -}}
+                      </time>
+                    </div>
+                    {{ if .IsRecurring }}
+                      <div class="flex items-center">
+                        {{ partial "icon.html" (dict "style" "solid" "name" "location-dot" "class" "mr-2 w-3.5 h-3.5 flex-shrink-0") }}
+                        <a href="{{ .LocationURL }}" target="_blank" class="hover:underline text-gray-600 dark:text-gray-400">{{ .LocationName }}</a> <span class="ml-1 italic opacity-75">(Recurring)</span>
+                      </div>
+                    {{ end }}
+                  </div>
+
+                  <!-- Actions Section -->
+                  <div class="mt-4 pt-3 border-t border-border dark:border-darkmode-border flex justify-between items-center w-full">
+                    <a href="{{ .Permalink }}" class="font-semibold text-xs text-primary dark:text-darkmode-primary hover:underline flex items-center whitespace-nowrap">
+                      View Details {{ partial "icon.html" (dict "style" "solid" "name" "arrow-right" "class" "ml-1") }}
+                    </a>
+
+                    {{ $urls := partial "logic/get-calendar-urls.html" (dict "Title" .Title "Description" .Description "Permalink" .Permalink "Start" .RawStart "End" .RawEnd) }}
+                    {{ partial "components/add-to-calendar.html" (dict "urls" $urls "filename" (printf "%s.ics" (.Title | urlize)) "text_class" "text-xs font-semibold") }}
+                  </div>
+
+                </div>
+              </div>
+            {{ end }}
           {{ end }}
         </div>
+
         {{ $workshopsPage := site.GetPage "workshops" }}
         {{ if and $workshopsPage (gt (len $sortedAllUpcomingEvents) 3) }}
           <div class="text-center mt-0">
