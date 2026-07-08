@@ -5,6 +5,12 @@
 {{- range $fmUpcomingEvents -}}
   {{- $times := partial "logic/get-event-times.html" . -}}
   {{- if $times.IsUpcoming -}}
+    {{- $location := .Params.upcoming_url | default "" -}}
+    {{- if and (not $location) .Params.video -}}
+      {{- $location = printf "https://www.youtube.com/watch?v=%s" .Params.video -}}
+    {{- end -}}
+    {{- if not $location -}}{{- $location = "https://www.youtube.com/@openneuromorphic" -}}{{- end -}}
+
     {{- $allUpcomingEvents = $allUpcomingEvents | append (dict
       "Title" .Title
       "Description" .Description
@@ -19,6 +25,7 @@
       "Authors" .Params.author
       "Image" .Params.image
       "EventType" (.Type | humanize | title)
+      "LocationURL" $location
       ) -}}
   {{- end -}}
 {{- end -}}

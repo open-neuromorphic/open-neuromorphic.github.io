@@ -2,7 +2,7 @@
 <h3 class="text-2xl font-bold mb-6 text-center lg:text-left text-text dark:text-darkmode-text">Upcoming Events</h3>
 {{ if $sortedAllUpcomingEvents }}
   {{ range first 3 $sortedAllUpcomingEvents }}
-    <div class="event-card-simple bg-white dark:bg-darkmode-theme-light rounded-xl p-5 shadow-md hover:shadow-lg transition-all duration-300 ease-in-out mb-4 border border-border dark:border-darkmode-border flex flex-col w-full">
+    <div class="event-card-simple bg-white dark:bg-darkmode-theme-light rounded-xl p-5 pb-4 shadow-md hover:shadow-lg transition-all duration-300 ease-in-out mb-4 border border-border dark:border-darkmode-border flex flex-col w-full">
 
       <div class="flex items-center justify-between mb-3 w-full">
         <span class="date-badge text-xs">{{ .Date.Format "Jan 2, 2006" }}</span>
@@ -72,7 +72,7 @@
           View Details {{ partial "icon.html" (dict "style" "solid" "name" "arrow-right" "class" "ml-1") }}
         </a>
 
-        {{ $urls := partial "logic/get-calendar-urls.html" (dict "Title" .Title "Description" .Description "Permalink" .Permalink "Start" .RawStart "End" .RawEnd) }}
+        {{ $urls := partial "logic/get-calendar-urls.html" (dict "Title" .Title "Description" .Description "Permalink" .Permalink "Start" .RawStart "End" .RawEnd "Location" .LocationURL) }}
         {{ partial "components/add-to-calendar.html" (dict "urls" $urls "filename" (printf "%s.ics" (.Title | urlize)) "text_class" "text-xs font-semibold") }}
       </div>
     </div>

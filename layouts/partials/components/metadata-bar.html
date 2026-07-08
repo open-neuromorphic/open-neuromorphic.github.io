@@ -89,12 +89,17 @@
         {{ end }}
 
         {{ if $is_upcoming }}
-          {{ $event_url := $ctx.Params.upcoming_url | default "https://www.youtube.com/@openneuromorphic" }}
-          {{ $urls := partial "logic/get-calendar-urls.html" (dict "Title" $ctx.Title "Description" $ctx.Description "Permalink" $ctx.Permalink "Start" $times.Start "End" $times.End) }}
+          {{ $event_url := $ctx.Params.upcoming_url | default "" }}
+          {{ if and (not $event_url) $ctx.Params.video }}
+            {{ $event_url = printf "https://www.youtube.com/watch?v=%s" $ctx.Params.video }}
+          {{ end }}
+          {{ if not $event_url }}{{ $event_url = "https://www.youtube.com/@openneuromorphic" }}{{ end }}
+
+          {{ $urls := partial "logic/get-calendar-urls.html" (dict "Title" $ctx.Title "Description" $ctx.Description "Permalink" $ctx.Permalink "Start" $times.Start "End" $times.End "Location" $event_url) }}
 
           <div class="flex items-center gap-4 {{ if $hasResources }}border-l border-border dark:border-darkmode-border pl-4 my-1{{ end }}">
             <a href="{{ $event_url }}" target="_blank" rel="noopener" class="font-semibold text-sm text-primary dark:text-darkmode-primary hover:underline flex items-center whitespace-nowrap">
-              Event Link
+              Event Link {{ partial "icon.html" (dict "style" "solid" "name" "arrow-right" "class" "ml-1.5") }}
             </a>
             {{ partial "components/add-to-calendar.html" (dict "urls" $urls "filename" (printf "%s.ics" $ctx.File.TranslationBaseName) "text_class" "text-sm") }}
           </div>
