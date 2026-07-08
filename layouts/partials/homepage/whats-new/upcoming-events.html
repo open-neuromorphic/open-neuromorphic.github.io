@@ -11,7 +11,10 @@
         {{ .Description | truncate 80 }}
       </p>
       <p class="text-xs text-gray-500 dark:text-gray-300">
-        {{ partial "icon.html" (dict "style" "regular" "name" "clock" "class" "mr-1") }} {{ .StartTime }} - {{ .EndTime }} {{ .TimeZone }}
+        {{ partial "icon.html" (dict "style" "regular" "name" "clock" "class" "mr-1") }}
+        <time class="event-local-time" data-start="{{ .RawStart.Format "2006-01-02T15:04:05Z07:00" }}" data-end="{{ .RawEnd.Format "2006-01-02T15:04:05Z07:00" }}">
+          {{- .StartTime }}{{ if ne .StartTime .EndTime }} - {{ .EndTime }}{{ end }} {{ .TimeZone -}}
+        </time>
         {{ if .IsRecurring }}
           <br/>{{ partial "icon.html" (dict "style" "solid" "name" "location-dot" "class" "mr-1") }} <a href="{{ .LocationURL }}" target="_blank" class="hover:underline">{{ .LocationName }}</a> (Recurring)
         {{ else if .Authors }}

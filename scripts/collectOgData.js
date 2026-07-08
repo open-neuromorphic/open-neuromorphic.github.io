@@ -128,8 +128,51 @@ async function collectData() {
         const og16x9 = pageOutputs.find(o => o.path.endsWith('-og-16x9.jpg'));
         if (og16x9) { og16x9.template = 'youtube'; og16x9.width = 1280; og16x9.height = 720; }
 
-        pageData.eventDate = fm.upcoming ? new Date(fm.date).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : '';
-        pageData.eventTime = fm.upcoming ? `${fm.start_time} - ${fm.end_time} ${fm.time_zone}` : '';
+        let isUpcoming = false;
+        let eventDateStr = '';
+        let eventTimeStr = '';
+
+        if (fm.start_datetime) {
+          const startDt = new Date(fm.start_datetime);
+          const endDt = fm.end_datetime ? new Date(fm.end_datetime) : startDt;
+          isUpcoming = endDt.getTime() > Date.now();
+
+          if (isUpcoming) {
+            eventDateStr = startDt.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+            // CHANGED: 12-hour format with AM/PM
+            const formatTime = (d) => d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+            const sTime = formatTime(startDt);
+            const eTime = formatTime(endDt);
+
+            let tz = fm.time_zone || "";
+            if (!tz) {
+              const match = fm.start_datetime.match(/([+-]\d{2}:\d{2}|Z)$/);
+              tz = match ? match[1].replace('Z', 'UTC') : '';
+            }
+
+            eventTimeStr = sTime === eTime ? `${sTime} ${tz}`.trim() : `${sTime} - ${eTime} ${tz}`.trim();
+          }
+        } else {
+          // Legacy string fallback format
+          const fallbackEnd = fm.date ? new Date(fm.date) : new Date();
+          if (fm.end_time) {
+            const [hours, minutes] = fm.end_time.split(':');
+            fallbackEnd.setHours(parseInt(hours, 10), parseInt(minutes, 10));
+          }
+          isUpcoming = fallbackEnd.getTime() > Date.now();
+
+          if (isUpcoming) {
+            eventDateStr = new Date(fm.date).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            const sTime = fm.start_time || "00:00";
+            const eTime = fm.end_time || sTime;
+            const tz = fm.time_zone || "";
+            eventTimeStr = sTime === eTime ? `${sTime} ${tz}`.trim() : `${sTime} - ${eTime} ${tz}`.trim();
+          }
+        }
+
+        pageData.eventDate = eventDateStr;
+        pageData.eventTime = eventTimeStr;
         pageData.speakers = [];
 
         if (Array.isArray(fm.author)) {
@@ -138,7 +181,7 @@ async function collectData() {
             pageData.speakers.push({ name, imageUri: imgPath ? await getImageDataUri(imgPath) : null });
           }
         }
-        if (fm.upcoming) {
+        if (isUpcoming) {
           pageOutputs.push({ path: join(pageDirectory, `${basename(pageDirectory)}-og-${EVENT_SIZE.suffix}.${OUTPUT_FORMAT}`), width: EVENT_SIZE.width, height: EVENT_SIZE.height, template: 'event' });
         }
         contentToHash += pageData.eventDate + pageData.eventTime + JSON.stringify(pageData.speakers);

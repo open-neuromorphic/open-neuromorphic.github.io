@@ -11,15 +11,15 @@
           {{ $thumb := partial "helpers/resolve-thumbnail.html" $page_context }}
           {{ $src := "" }}
           {{ if $thumb.Resource }}
-          {{ $src = $thumb.Resource.Name }}
+            {{ $src = $thumb.Resource.Name }}
           {{ else }}
-          {{ $src = $thumb.URL }}
+            {{ $src = $thumb.URL }}
           {{ end }}
 
           {{ if $page_context.Params.video }}
-          {{ partial "youtube-lite.html" (dict "Id" $page_context.Params.video ) }}
+            {{ partial "youtube-lite.html" (dict "Id" $page_context.Params.video ) }}
           {{ else }}
-          {{ partial "image" (dict "Src" $src "Context" $page_context "Alt" $thumb.Alt "Class" "w-full rounded") }}
+            {{ partial "image" (dict "Src" $src "Context" $page_context "Alt" $thumb.Alt "Class" "w-full rounded") }}
           {{ end }}
         </div>
         {{ partial "components/metadata-bar.html" (dict "context" $page_context "type" "event") }}
@@ -41,31 +41,39 @@
 
       <div class="lg:col-12 mt-16">
         {{ partial "components/content-contribute-cta.html" (dict
-        "page_context" $page_context
-        "icon" "solid chalkboard-user"
-        "title" "Inspired? <span class=\"gradient-text\">Share your work.</span>"
-        "description" "Share your expertise with the community by speaking at a workshop, student talk, or hacking hour. It's a great way to get feedback and help others learn."
-        "link" "/getting-involved/share-your-work/"
-        "link_text" "Learn How to Host"
-        ) }}
+          "page_context" $page_context
+          "icon" "solid chalkboard-user"
+          "title" "Inspired? <span class=\"gradient-text\">Share your work.</span>"
+          "description" "Share your expertise with the community by speaking at a workshop, student talk, or hacking hour. It's a great way to get feedback and help others learn."
+          "link" "/getting-involved/share-your-work/"
+          "link_text" "Learn How to Host"
+          ) }}
       </div>
     </article>
 
     {{ $related := (where site.RegularPages "Section" $related_section_name) }}
     {{ $related = (where $related ".Permalink" "!=" $page_context.Permalink) }}
-    {{ $filteredRelated := (where $related "Params.upcoming" "ne" true) }}
+
+    {{ $filteredRelated := slice }}
+    {{ range $related }}
+      {{ $times := partial "logic/get-event-times.html" . }}
+      {{ if not $times.IsUpcoming }}
+        {{ $filteredRelated = $filteredRelated | append . }}
+      {{ end }}
+    {{ end }}
+
     {{ $filteredRelated = $filteredRelated | shuffle | first 3 }}
     {{ with $filteredRelated }}
-    <div class="section pb-0">
-      <h2 class="h3 mb-4">Related {{ $related_section_name | humanize }}</h2>
-      <div class="row">
-        {{ range . }}
-        <div class="lg:col-4">
-          {{ partial "components/event-card.html" (dict "ctx" . "variant" "grid") }}
+      <div class="section pb-0">
+        <h2 class="h3 mb-4">Related {{ $related_section_name | humanize }}</h2>
+        <div class="row">
+          {{ range . }}
+            <div class="lg:col-4">
+              {{ partial "components/event-card.html" (dict "ctx" . "variant" "grid") }}
+            </div>
+          {{ end }}
         </div>
-        {{ end }}
       </div>
-    </div>
     {{ end }}
   </div>
 </section>

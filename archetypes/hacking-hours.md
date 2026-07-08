@@ -3,14 +3,13 @@ title: "Hacking Hours: {{ replace .Name "-" " " | title }}" # Title: Clear & con
 author:
   - "Speaker Name or Slug" # Match with a contributor profile title/slug.
 date: {{ .Date }} # Date of the event (YYYY-MM-DD).
-start_time: "18:00" # Event start time (24-hour format HH:MM).
-end_time: "19:30"   # Event end time (24-hour format HH:MM).
-time_zone: "CET"    # Timezone (e.g., CET, CEST, EST, PST).
+start_datetime: "YYYY-MM-DDT18:00:00+02:00" # Full ISO 8601 string including correct UTC offset.
+end_datetime: "YYYY-MM-DDT19:30:00+02:00"   # Full ISO 8601 string including correct UTC offset.
+time_zone: "CEST" # Display timezone (e.g., CET, CEST, EST, PST).
 # Meta Description (SEO) 120-160 characters:
 # What are the 2-3 most important skills or insights someone will gain from this session?
 # Why should someone invest their time to attend this event?
 description: "Join us for a hands-on hacking hours on [Topic] with [Speaker Name]. You will learn how to [Key Takeaway 1] and explore [Key Takeaway 2]."
-upcoming: true # Set to 'true' for future events. Change to 'false' after the event.
 video: ""      # After the event, add the YouTube video ID (e.g., "dQw4w9WgXcQ").
 image: "hacking-hours-banner.png" # Main banner image for social sharing (1200x630px). Place in this folder.
 type: "hacking-hours" # IMPORTANT: Do not change this line.

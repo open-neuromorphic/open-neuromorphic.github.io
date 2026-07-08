@@ -5,8 +5,11 @@
 {{- $typesToInclude := (slice "student-talks" "hacking-hours") -}}
 
 {{- range $pctx.RegularPages -}}
-  {{- if and .Date (not .Date.IsZero) (or (in $sectionsToInclude .Section) (in $typesToInclude .Type)) (ne .Params.upcoming true) -}}
-    {{- $pages = $pages | append . -}}
+  {{- if and .Date (not .Date.IsZero) (or (in $sectionsToInclude .Section) (in $typesToInclude .Type)) -}}
+    {{- $times := partial "logic/get-event-times.html" . -}}
+    {{- if not $times.IsUpcoming -}}
+      {{- $pages = $pages | append . -}}
+    {{- end -}}
   {{- end -}}
 {{- end -}}
 

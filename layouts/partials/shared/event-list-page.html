@@ -9,8 +9,11 @@ sidebar (string) required — the sidebar partial to use
 
 {{ $valid_past_events := slice }}
 {{ range $section_pages }}
-  {{ if and (ne .Params.upcoming true) .Date (not .Date.IsZero) }}
-    {{ $valid_past_events = $valid_past_events | append . }}
+  {{ if and .Date (not .Date.IsZero) }}
+    {{ $times := partial "logic/get-event-times.html" . }}
+    {{ if not $times.IsUpcoming }}
+      {{ $valid_past_events = $valid_past_events | append . }}
+    {{ end }}
   {{ end }}
 {{ end }}
 

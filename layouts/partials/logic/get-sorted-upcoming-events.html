@@ -1,46 +1,45 @@
-{{ $allUpcomingEvents := slice }}
-{{ $now := now }}
-{{ $yesterdayStr := ($now.AddDate 0 0 -1).Format "20060102" }}
-{{ $daysMap := dict "Sunday" 0 "Monday" 1 "Tuesday" 2 "Wednesday" 3 "Thursday" 4 "Friday" 5 "Saturday" 6 }}
+{{- $allUpcomingEvents := slice -}}
 
-{{ $fmUpcomingEvents := where site.RegularPages "Params.upcoming" true }}
-{{ range $fmUpcomingEvents }}
-  {{ $eventDateStr := .Date.Format "20060102" }}
-  {{ if ge $eventDateStr $yesterdayStr }}
-    {{ $allUpcomingEvents = $allUpcomingEvents | append (dict
+{{- $event_types := slice "workshops" "student-talks" "hacking-hours" -}}
+{{- $fmUpcomingEvents := where site.RegularPages "Type" "in" $event_types -}}
+{{- range $fmUpcomingEvents -}}
+  {{- $times := partial "logic/get-event-times.html" . -}}
+  {{- if $times.IsUpcoming -}}
+    {{- $allUpcomingEvents = $allUpcomingEvents | append (dict
       "Title" .Title
       "Description" .Description
-      "Date" .Date
-      "StartTime" .Params.start_time
-      "EndTime" .Params.end_time
-      "TimeZone" .Params.time_zone
+      "Date" $times.Start
+      "RawStart" $times.Start
+      "RawEnd" $times.End
+      "StartTime" ($times.Start.Format "3:04 PM")
+      "EndTime" ($times.End.Format "3:04 PM")
+      "TimeZone" $times.ZoneString
       "Permalink" .RelPermalink
       "IsRecurring" false
       "Authors" .Params.author
       "Image" .Params.image
       "EventType" (.Type | humanize | title)
-      )}}
-  {{ end }}
-{{ end }}
+      ) -}}
+  {{- end -}}
+{{- end -}}
 
-{{ $recurringEventData := hugo.Data.recurring_events.events }}
-{{ range $recurringEventData }}
-  {{ if .active }}
-    {{ $nextOccurrenceDate := partial "logic/get-next-occurrence-date.html" . }}
+{{- $recurringEventData := hugo.Data.recurring_events.events -}}
+{{- range $recurringEventData -}}
+  {{- if .active -}}
+    {{- $next := partial "logic/get-next-occurrence-date.html" . -}}
 
-    {{ $detailsPage := "" }}
-    {{ with .details_page_link }}
-      {{ $pagePath := strings.TrimSuffix "/" . | strings.TrimPrefix "/" }}
-      {{ $detailsPage = site.GetPage $pagePath }}
-    {{ end }}
+    {{- $detailsPage := "" -}}
+    {{- /* ... */ -}}
 
-    {{ $allUpcomingEvents = $allUpcomingEvents | append (dict
+    {{- $allUpcomingEvents = $allUpcomingEvents | append (dict
       "Title" .title
       "Description" .description
-      "Date" $nextOccurrenceDate
-      "StartTime" .start_time
-      "EndTime" .end_time
-      "TimeZone" .time_zone
+      "Date" $next.Start
+      "RawStart" $next.Start
+      "RawEnd" $next.End
+      "StartTime" ($next.Start.Format "3:04 PM")
+      "EndTime" ($next.End.Format "3:04 PM")
+      "TimeZone" $next.ZoneString
       "Permalink" (cond (ne $detailsPage nil) $detailsPage.RelPermalink "")
       "IsRecurring" true
       "Host" .host
@@ -48,8 +47,9 @@
       "LocationURL" .location_url
       "Image" .image
       "EventType" (.id | humanize | title)
-      )}}
-  {{ end }}
-{{ end }}
-{{ $sortedAllUpcomingEvents := sort $allUpcomingEvents "Date" "asc" }}
-{{ return $sortedAllUpcomingEvents }}
+      ) -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $sortedAllUpcomingEvents := sort $allUpcomingEvents "Date" "asc" -}}
+{{- return $sortedAllUpcomingEvents -}}

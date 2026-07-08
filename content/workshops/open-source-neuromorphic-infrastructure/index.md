@@ -12,7 +12,7 @@ author:
   - Marcel Stimberg
 date: 2025-07-30
 description: "Nine neuromorphic tool maintainers navigate open-source funding, standardize edge deployments, and successfully balance commercial scale with biological realism."
-upcoming: true
+upcoming: false
 video: "kZqVe3547r8"
 image: "tools.png"
 software_tags: ["neuromorphic-intermediate-representation", "bindsnet", "snntorch", "brian", "genn", "jaxsnn", "nengo", "norse", "rockpool", "tonic", "nest"]

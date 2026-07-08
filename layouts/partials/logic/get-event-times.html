@@ -1,0 +1,43 @@
+{{- /*
+  Normalizes event times into real, location-aware time.Time objects.
+  Supports the new ISO 8601 `start_datetime` fields, and falls back to parsing
+  the legacy `start_time` + `time_zone` strings.
+  Returns: dict (Start, End, IsUpcoming, ZoneString)
+*/ -}}
+{{- $start_dt := now -}}
+{{- $end_dt := now -}}
+{{- $is_upcoming := false -}}
+{{- $tz_display := "" -}}
+
+{{- if .Params.start_datetime -}}
+  {{- $start_dt = time .Params.start_datetime -}}
+  {{- $end_dt = time (.Params.end_datetime | default .Params.start_datetime) -}}
+
+  {{- /* Prioritize human-readable front matter (e.g. "CEST") over raw offsets */ -}}
+  {{- $tz_display = .Params.time_zone -}}
+  {{- if not $tz_display -}}
+    {{- $tz_display = $start_dt.Format "MST" -}}
+    {{- /* Strip out ugly numerical offsets like +0200 if they leak through */ -}}
+    {{- if findRE "^[-+]\\d{4}$" $tz_display -}}{{- $tz_display = "" -}}{{- end -}}
+  {{- end -}}
+{{- else -}}
+  {{- $start_time := .Params.start_time | default "00:00" -}}
+  {{- $end_time := .Params.end_time | default $start_time -}}
+  {{- $tz_display = .Params.time_zone | default "UTC" -}}
+
+  {{- /* Fallback mappings for legacy un-localized string tags */ -}}
+  {{- $loc := "UTC" -}}
+  {{- if or (eq $tz_display "CET") (eq $tz_display "CEST") -}}{{- $loc = "Europe/Berlin" -}}{{- end -}}
+  {{- if or (eq $tz_display "EST") (eq $tz_display "EDT") -}}{{- $loc = "America/New_York" -}}{{- end -}}
+
+  {{- $dateStr := "2006-01-02" -}}
+  {{- if and .Date (not .Date.IsZero) -}}{{- $dateStr = .Date.Format "2006-01-02" -}}{{- end -}}
+
+  {{- $start_dt = time (printf "%sT%s:00" $dateStr $start_time) $loc -}}
+  {{- $end_dt = time (printf "%sT%s:00" $dateStr $end_time) $loc -}}
+{{- end -}}
+
+{{- /* Compare actual event end time to server current time */ -}}
+{{- $is_upcoming = gt $end_dt.Unix now.Unix -}}
+
+{{- return (dict "Start" $start_dt "End" $end_dt "IsUpcoming" $is_upcoming "ZoneString" $tz_display) -}}

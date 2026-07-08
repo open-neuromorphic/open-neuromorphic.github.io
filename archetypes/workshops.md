@@ -3,11 +3,10 @@ title: "Workshop: {{ replace .Name "-" " " | title }}" # Workshop Title: Clear &
 author:
   - "Speaker Name or Slug" # Match with a contributor profile title/slug. Add more authors if needed.
 date: {{ .Date }} # Date of the workshop (YYYY-MM-DD).
-start_time: "18:00" # Event start time (24-hour format HH:MM).
-end_time: "19:30"   # Event end time (24-hour format HH:MM).
-time_zone: "CET"    # Timezone (e.g., CET, CEST, EST, PST).
+start_datetime: "YYYY-MM-DDT18:00:00+02:00" # Full ISO 8601 string including correct UTC offset.
+end_datetime: "YYYY-MM-DDT19:30:00+02:00"   # Full ISO 8601 string including correct UTC offset.
+time_zone: "CEST" # Display timezone (e.g., CET, CEST, EST, PST).
 description: "Join us for an insightful workshop on [Topic] by [Speaker Name]. Discover [Key Takeaway 1] and explore [Key Takeaway 2] in neuromorphic computing."
-upcoming: true # Set to 'true' for future events. Change to 'false' after the event.
 video: ""      # After the event, add the YouTube video ID (e.g., "dQw4w9WgXcQ").
 image: "workshop-banner.png" # Main banner image (1200x630px ideal for sharing). Place in this workshop's folder.
 type: "workshops" # IMPORTANT: Do not change this line for workshop events.
