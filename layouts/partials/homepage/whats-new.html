@@ -48,9 +48,17 @@
                     {{ end }}
                   {{ end }}
                 </p>
-                <a href="{{ .Permalink }}" class="font-semibold text-xs text-primary dark:text-darkmode-primary hover:underline block mt-auto pt-2 self-start">
-                  View Details {{ partial "icon.html" (dict "style" "solid" "name" "arrow-right" "class" "ml-1") }}
-                </a>
+
+                <!-- NEW FLEX ROW FOR DETAILS + CALENDAR -->
+                <div class="mt-auto pt-2 flex justify-between items-center w-full">
+                  <a href="{{ .Permalink }}" class="font-semibold text-xs text-primary dark:text-darkmode-primary hover:underline flex items-center whitespace-nowrap">
+                    View Details {{ partial "icon.html" (dict "style" "solid" "name" "arrow-right" "class" "ml-1") }}
+                  </a>
+
+                  {{ $urls := partial "logic/get-calendar-urls.html" (dict "Title" .Title "Description" .Description "Permalink" .Permalink "Start" .RawStart "End" .RawEnd) }}
+                  {{ partial "components/add-to-calendar.html" (dict "urls" $urls "filename" (printf "%s.ics" (.Title | urlize)) "text_class" "text-xs") }}
+                </div>
+
               </div>
             </div>
           {{ end }}

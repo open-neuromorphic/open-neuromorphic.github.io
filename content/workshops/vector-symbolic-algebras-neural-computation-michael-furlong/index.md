@@ -7,9 +7,14 @@ start_datetime: "2026-07-09T18:00:00+02:00"
 end_datetime: "2026-07-09T19:00:00+02:00"
 time_zone: "CEST"
 description: "Join Dr. Michael Furlong to explore Vector Symbolic Algebras (VSAs), how they unify symbolic reasoning with connectionist models, and their computational benefits."
-video: ""
+video: "tcXCnWeyoq0"
 image: "vsa-workshop-banner.png"
 type: "workshops"
+production_credits:
+   - name: "Alexandre Marcireau"
+     role: "Host"
+   - name: "Justin Riddiough"
+     role: "Event Operations"
 ---
 
 Vector Symbolic Algebras (VSAs) are a family of frameworks developed to unify symbolic reasoning and connectionist models. In this way, they provide a rigorous way to talk about neural computation. While VSAs may appear a niche interest at first blush, they have ties to other well-established models of computation.

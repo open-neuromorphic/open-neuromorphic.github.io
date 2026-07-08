@@ -22,6 +22,7 @@
             {{ partial "image" (dict "Src" $src "Context" $page_context "Alt" $thumb.Alt "Class" "w-full rounded") }}
           {{ end }}
         </div>
+
         {{ partial "components/metadata-bar.html" (dict "context" $page_context "type" "event") }}
 
         <div class="content">
