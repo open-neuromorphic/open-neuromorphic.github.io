@@ -1,12 +1,13 @@
 {{- /*
   Generates Google, Outlook, and ICS calendar URLs.
-  Expects dict: Title, Description, Permalink, Start (time.Time), End (time.Time), Location (string, optional)
+  Expects dict: Title, Description, Permalink, Start (time.Time), End (time.Time), Location (string, optional), OfficialGcal (string, optional)
 */ -}}
 {{- $start_utc_compact := .Start.UTC.Format "20060102T150405Z" -}}
 {{- $end_utc_compact := .End.UTC.Format "20060102T150405Z" -}}
 {{- $start_utc_iso := .Start.UTC.Format "2006-01-02T15:04:05Z" -}}
 {{- $end_utc_iso := .End.UTC.Format "2006-01-02T15:04:05Z" -}}
 {{- $location := .Location | default "" -}}
+{{- $official_gcal := .OfficialGcal | default "" -}}
 
 {{- $title := .Title | urlquery -}}
 {{- $descriptionText := printf "%s\n\nMore info: %s" .Description .Permalink -}}
@@ -17,6 +18,10 @@
 {{- $locationEncoded := $location | urlquery -}}
 
 {{- $googleUrl := printf "https://calendar.google.com/calendar/render?action=TEMPLATE&text=%s&dates=%s/%s&details=%s&location=%s" $title $start_utc_compact $end_utc_compact $descriptionEncoded $locationEncoded -}}
+{{- if $official_gcal -}}
+  {{- $googleUrl = $official_gcal -}}
+{{- end -}}
+
 {{- $outlookUrl := printf "https://outlook.live.com/calendar/0/deeplink/compose?path=/calendar/action/compose&rru=addevent&subject=%s&startdt=%s&enddt=%s&body=%s&location=%s" $title $start_utc_iso $end_utc_iso $descriptionEncoded $locationEncoded -}}
 
 {{- $safeDesc := .Description | plainify | replaceRE "(\r\n|\n)" " " -}}
