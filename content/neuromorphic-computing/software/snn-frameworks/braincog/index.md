@@ -21,7 +21,7 @@ draft: false
 ## Overview
 **BrainCog** is an open source spiking neural network engine created for Embodied AI and brain simulations. It provides essential and fundamental components to model biological and artificial intelligence.
 
-BrainCog has following neuron models available: IF, LIF, Izhikevich, H-H, aEIF, Multi-compartment. Its available learning rules are: STDP, Hebbian, R-STDP, STP, BCM, Backpropagatian. Its encoding strategies are: Rate, Temporal, Quantum Superposition, Population, Phase.
+BrainCog has following neuron models available: IF, LIF, Izhikevich, H-H, aEIF, Multi-compartment. Its available learning rules are: STDP, Hebbian, R-STDP, STP, BCM, Backpropagation. Its encoding strategies are: Rate, Temporal, Quantum Superposition, Population, Phase.
 
 Those basic components can be used to simulate different brain areas such as: Motor Cortex, Hippocampus, Basal Ganglia, Thalamus and more.
 
