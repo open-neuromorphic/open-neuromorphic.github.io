@@ -2,7 +2,7 @@
 title: "BrainCog"
 type: neuromorphic-software
 description: Open-source SNN engine with documentation in English and Chinese.
-logo: braincog.jpeg
+logo: braincog.png
 website: https://www.brain-cog.network/
 dependencies: 
 field_of_application: Machine Learning, Neuroscience, Hardware Interface
