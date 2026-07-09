@@ -1,44 +1,76 @@
+{{ $past_events := sort hugo.Data.town_halls.past_events "date" "desc" }}
+{{ $latest_recording := "" }}
+{{ if $past_events }}{{ $latest_recording = index $past_events 0 }}{{ end }}
+
 {{ $recurringEventData := hugo.Data.recurring_events.events }}
-{{ $townHallEvent := "" }}
+{{ $upcoming_details := "" }}
 {{ range $recurringEventData }}
   {{ if and (eq .id "town-hall") .active }}
-    {{ $townHallEvent = . }}
+    {{ $next := partial "logic/get-next-occurrence-date.html" . }}
+    {{ $p := site.GetPage .details_page_link }}
+    {{ $upcoming_details = dict
+      "Title" .title
+      "Date" $next.Start
+      "RawStart" $next.Start
+      "RawEnd" $next.End
+      "StartTime" ($next.Start.Format "3:04 PM")
+      "EndTime" ($next.End.Format "3:04 PM")
+      "TimeZone" $next.ZoneString
+      "Permalink" $p.RelPermalink
+      "Description" .description
+      "LocationName" .location_name
+      "LocationURL" .location_url
+    }}
   {{ end }}
 {{ end }}
 
-{{ if $townHallEvent }}
-  {{ $nextOccurrenceDate := partial "logic/get-next-occurrence-date.html" $townHallEvent }}
+<section class="section pt-0 pb-16">
+  <div class="container">
+    <div class="town-hall-promo bg-theme-light dark:bg-darkmode-theme-light p-6 rounded-lg shadow-lg">
+      <div class="promo-content-wrapper md:flex md:items-start md:space-x-6">
 
-  <h3 class="text-2xl font-bold mb-6 text-center lg:text-left text-text dark:text-darkmode-text">Weekly Town Hall</h3>
-  <div class="event-card-simple bg-white dark:bg-darkmode-theme-light rounded-xl p-4 shadow-md hover:shadow-lg transition-all duration-300 ease-in-out">
-    {{ with $townHallEvent.image }}
-      {{ $img_resource := resources.Get (strings.TrimPrefix "/" .) }}
-      {{ if $img_resource }}
-        {{ $processed_img := $img_resource.Fill "504x280 Lanczos" }}
-        <a href="{{ $p := site.GetPage $townHallEvent.details_page_link }}{{ $p.RelPermalink }}" class="block mb-4 relative group">
-          <img src="{{ $processed_img.RelPermalink }}" alt="Town Hall Promo" class="w-full rounded object-cover">
-        </a>
-      {{ end }}
-    {{ end }}
-    <div>
-      <span class="date-badge mb-1 inline-block text-xs">{{ $nextOccurrenceDate.Format "Mon, Jan 2, 2006" }}</span>
-      <h4 class="text-lg font-semibold mb-1 leading-tight">
-        <a href="{{ $p := site.GetPage $townHallEvent.details_page_link }}{{ $p.RelPermalink }}" class="text-text dark:text-darkmode-dark hover:text-[var(--color-primary)]">{{ $townHallEvent.title }}</a>
-      </h4>
-      <p class="text-xs text-gray-500 dark:text-gray-300">
-        {{ partial "icon.html" (dict "style" "regular" "name" "clock" "class" "mr-1") }} {{ $townHallEvent.start_time }} - {{ $townHallEvent.end_time }} {{ $townHallEvent.time_zone }}
-        <br/>{{ partial "icon.html" (dict "style" "solid" "name" "location-dot" "class" "mr-1") }} <a href="{{ $townHallEvent.location_url }}" target="_blank" class="hover:underline">{{ $townHallEvent.location_name }}</a> (Recurring)
-      </p>
-      <div class="prose prose-sm dark:prose-invert max-w-none mt-2">
-        {{ $townHallEvent.description | markdownify }}
+        {{ if $latest_recording }}
+          <div class="past-event-promo flex-1 mb-6 md:mb-0 {{ if $upcoming_details }}md:border-r md:border-gray-300 dark:md:border-gray-600 md:pr-6{{ end }}">
+            <h3 class="text-xl font-bold mb-3 text-text dark:text-darkmode-text">Latest Town Hall Recording</h3>
+            <div class="flex flex-col gap-3">
+              <div class="w-full rounded-lg overflow-hidden">
+                {{ partial "youtube-lite.html" (dict "Id" $latest_recording.youtube_id) }}
+              </div>
+              <div class="flex-grow">
+                <h4 class="text-lg font-semibold leading-tight">{{ $latest_recording.title }}</h4>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mb-2">{{ (time.AsTime $latest_recording.date).Format "January 2, 2006" }}</p>
+                {{ $townHallPage := site.GetPage "getting-involved/town-hall" }}
+                <a href="{{ $townHallPage.RelPermalink }}" class="font-semibold text-xs text-primary dark:text-darkmode-primary hover:underline block mt-2">
+                  View All Recordings {{ partial "icon.html" (dict "style" "solid" "name" "arrow-right" "class" "ml-1") }}
+                </a>
+              </div>
+            </div>
+          </div>
+        {{ end }}
+
+        {{ if $upcoming_details }}
+          <div class="upcoming-event-promo flex-1">
+            <h3 class="text-xl font-bold mb-3 text-text dark:text-darkmode-text">Next Session</h3>
+            <p class="text-md font-semibold text-primary dark:text-darkmode-primary flex items-baseline">
+              {{ partial "icon.html" (dict "style" "regular" "name" "calendar" "class" "mr-2") }}
+              {{ $upcoming_details.Date.Format "Monday, January 2, 2006" }}
+            </p>
+            <p class="text-sm text-gray-600 dark:text-gray-400 flex items-baseline">
+              {{ partial "icon.html" (dict "style" "regular" "name" "clock" "class" "mr-2") }}
+              <time class="event-local-time" data-start="{{ $upcoming_details.RawStart.Format "2006-01-02T15:04:05Z07:00" }}" data-end="{{ $upcoming_details.RawEnd.Format "2006-01-02T15:04:05Z07:00" }}">
+                {{ $upcoming_details.StartTime }}{{ if ne $upcoming_details.StartTime $upcoming_details.EndTime }} - {{ $upcoming_details.EndTime }}{{ end }} {{ $upcoming_details.TimeZone }}
+              </time>
+            </p>
+            <p class="text-sm text-gray-700 dark:text-gray-300 mt-2">{{ $upcoming_details.Description | markdownify | plainify | truncate 100 }}</p>
+            <div class="mt-4">
+              <a href="{{ $upcoming_details.LocationURL }}" target="_blank" class="btn btn-sm btn-new-primary">
+                {{ partial "icon.html" (dict "style" "brands" "name" "youtube" "class" "mr-2") }} Watch on YouTube
+              </a>
+            </div>
+          </div>
+        {{ end }}
+
       </div>
-      <a href="{{ $p := site.GetPage $townHallEvent.details_page_link }}{{ $p.RelPermalink }}" class="font-semibold text-xs text-[var(--color-primary)] hover:underline block mt-2">
-        View Past Recordings {{ partial "icon.html" (dict "style" "solid" "name" "arrow-right" "class" "ml-1") }}
-      </a>
     </div>
   </div>
-{{ else }}
-  <div class="event-card-simple bg-white dark:bg-darkmode-theme-light rounded-xl p-6 shadow-md">
-    <p class="text-gray-600 dark:text-gray-400">Our weekly Town Hall is on a break. Check back soon!</p>
-  </div>
-{{ end }}
+</section>

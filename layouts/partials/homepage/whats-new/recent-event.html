@@ -1,36 +1,36 @@
 {{ with . }}
-<h3 class="text-2xl font-bold mb-6 text-center lg:text-left text-text dark:text-darkmode-text">Recent Event</h3>
-<div class="event-card-simple bg-white dark:bg-darkmode-theme-light rounded-xl p-4 shadow-md hover:shadow-lg transition-all duration-300 ease-in-out mb-8">
+  <h3 class="text-2xl font-bold mb-6 text-center lg:text-left text-text dark:text-darkmode-text">Recent Event</h3>
+  <div class="event-card-simple bg-white dark:bg-darkmode-theme-light rounded-xl p-4 shadow-md hover:shadow-lg transition-all duration-300 ease-in-out mb-8">
 
-  {{ $thumb := partial "helpers/resolve-thumbnail.html" . }}
+    {{ $thumb := partial "helpers/resolve-thumbnail.html" . }}
 
-  <a href="{{ .Permalink }}" class="block mb-4 relative group">
-    {{ if $thumb.Resource }}
-    {{ $processed_img := $thumb.Resource.Fit "504x280 Lanczos" }}
-    <img src="{{ $processed_img.RelPermalink }}" alt="{{ $thumb.Alt }}" class="w-full rounded object-cover">
-    {{ else if $thumb.URL }}
-    <img src="{{ $thumb.URL }}" alt="{{ $thumb.Alt }}" class="w-full rounded object-cover">
-    {{ end }}
+    <a href="{{ .Permalink }}" class="block mb-4 relative group">
+      {{ if $thumb.Resource }}
+        {{ $processed_img := $thumb.Resource.Fit "504x280 Lanczos" }}
+        <img src="{{ $processed_img.RelPermalink }}" alt="{{ $thumb.Alt }}" class="w-full rounded object-cover">
+      {{ else if $thumb.URL }}
+        <img src="{{ $thumb.URL }}" alt="{{ $thumb.Alt }}" class="w-full rounded object-cover">
+      {{ end }}
 
-    {{ if .Params.video }}
-    {{ partial "components/video-play-overlay.html" (dict "rounding_class" "rounded") }}
-    {{ end }}
-  </a>
-
-  <div>
-    <span class="date-badge mb-1 inline-block text-xs">{{ .Date.Format "Jan 02, 2006" }}</span>
-    <h4 class="text-lg font-semibold mb-1 leading-tight">
-      <a href="{{ .Permalink }}" class="text-text dark:text-darkmode-dark hover:text-primary dark:hover:text-darkmode-primary">{{ .Title }}</a>
-    </h4>
-    {{ if .Params.author }}
-    <p class="text-xs text-gray-500 dark:text-gray-300">
-      {{ partial "icon.html" (dict "style" "regular" "name" "circle-user" "class" "mr-1") }}
-      {{ partial "components/author-links.html" . }}
-    </p>
-    {{ end }}
-    <a href="{{ .Permalink }}" class="font-semibold text-xs text-primary dark:text-darkmode-primary hover:underline block mt-2">
-      View Details {{ partial "icon.html" (dict "style" "solid" "name" "arrow-right" "class" "ml-1") }}
+      {{ if .Params.video }}
+        {{ partial "components/video-play-overlay.html" (dict "rounding_class" "rounded") }}
+      {{ end }}
     </a>
+
+    <div>
+      <span class="date-badge mb-1 inline-block text-xs">{{ .Date.Format "Jan 2, 2006" }}</span>
+      <h4 class="text-lg font-semibold mb-1 leading-tight">
+        <a href="{{ .Permalink }}" class="text-text dark:text-darkmode-dark hover:text-primary dark:hover:text-darkmode-primary">{{ .Title }}</a>
+      </h4>
+      {{ if .Params.author }}
+        <p class="text-xs text-gray-500 dark:text-gray-300">
+          {{ partial "icon.html" (dict "style" "regular" "name" "circle-user" "class" "mr-1") }}
+          {{ partial "components/author-links.html" . }}
+        </p>
+      {{ end }}
+      <a href="{{ .Permalink }}" class="font-semibold text-xs text-primary dark:text-darkmode-primary hover:underline block mt-2">
+        View Details {{ partial "icon.html" (dict "style" "solid" "name" "arrow-right" "class" "ml-1") }}
+      </a>
+    </div>
   </div>
-</div>
 {{ end }}

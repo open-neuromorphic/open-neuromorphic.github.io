@@ -1,13 +1,14 @@
-{{ $pages_to_filter := . }}
-{{ $valid_past_events := slice }}
-{{ $now := now }}
-{{ $yesterday := $now.AddDate 0 0 -1 }}
-{{ range $pages_to_filter }}
-{{ if and .Date (not .Date.IsZero) }}
-{{ if or (ne .Params.upcoming true) (lt .Date.Unix $yesterday.Unix) }}
-{{ $valid_past_events = $valid_past_events | append . }}
-{{ end }}
-{{ end }}
-{{ end }}
-{{ $sorted_past_events := sort $valid_past_events "Date" "desc" }}
-{{ return $sorted_past_events }}
+{{- $pages_to_filter := . -}}
+{{- $valid_past_events := slice -}}
+
+{{- range $pages_to_filter -}}
+  {{- if and .Date (not .Date.IsZero) -}}
+    {{- $times := partial "logic/get-event-times.html" . -}}
+    {{- if not $times.IsUpcoming -}}
+      {{- $valid_past_events = $valid_past_events | append . -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $sorted_past_events := sort $valid_past_events "Date" "desc" -}}
+{{- return $sorted_past_events -}}

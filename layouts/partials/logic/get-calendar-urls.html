@@ -1,0 +1,30 @@
+{{- /*
+  Generates Google, Outlook, and ICS calendar URLs.
+  Expects dict: Title, Description, Permalink, Start (time.Time), End (time.Time), Location (string, optional)
+*/ -}}
+{{- $start_utc_compact := .Start.UTC.Format "20060102T150405Z" -}}
+{{- $end_utc_compact := .End.UTC.Format "20060102T150405Z" -}}
+{{- $start_utc_iso := .Start.UTC.Format "2006-01-02T15:04:05Z" -}}
+{{- $end_utc_iso := .End.UTC.Format "2006-01-02T15:04:05Z" -}}
+{{- $location := .Location | default "" -}}
+
+{{- $title := .Title | urlquery -}}
+{{- $descriptionText := printf "%s\n\nMore info: %s" .Description .Permalink -}}
+{{- if $location -}}
+  {{- $descriptionText = printf "%s\n\nEvent Link: %s" $descriptionText $location -}}
+{{- end -}}
+{{- $descriptionEncoded := $descriptionText | urlquery -}}
+{{- $locationEncoded := $location | urlquery -}}
+
+{{- $googleUrl := printf "https://calendar.google.com/calendar/render?action=TEMPLATE&text=%s&dates=%s/%s&details=%s&location=%s" $title $start_utc_compact $end_utc_compact $descriptionEncoded $locationEncoded -}}
+{{- $outlookUrl := printf "https://outlook.live.com/calendar/0/deeplink/compose?path=/calendar/action/compose&rru=addevent&subject=%s&startdt=%s&enddt=%s&body=%s&location=%s" $title $start_utc_iso $end_utc_iso $descriptionEncoded $locationEncoded -}}
+
+{{- $safeDesc := .Description | plainify | replaceRE "(\r\n|\n)" " " -}}
+{{- if $location -}}
+  {{- $safeDesc = printf "%s\\n\\nEvent Link: %s" $safeDesc $location -}}
+{{- end -}}
+{{- $uid := .Title | urlize -}}
+{{- $icsStr := printf "BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//Open Neuromorphic//Event//EN\r\nBEGIN:VEVENT\r\nUID:%s@open-neuromorphic.org\r\nDTSTAMP:%s\r\nDTSTART:%s\r\nDTEND:%s\r\nSUMMARY:%s\r\nLOCATION:%s\r\nDESCRIPTION:%s\\n\\nMore info: %s\r\nURL:%s\r\nEND:VEVENT\r\nEND:VCALENDAR" $uid (now.UTC.Format "20060102T150405Z") $start_utc_compact $end_utc_compact .Title $location $safeDesc .Permalink .Permalink -}}
+{{- $icsDataUri := printf "data:text/calendar;charset=utf-8;base64,%s" ($icsStr | base64Encode) -}}
+
+{{- return dict "Google" $googleUrl "Outlook" $outlookUrl "ICS" $icsDataUri -}}

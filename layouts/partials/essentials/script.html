@@ -1,14 +1,14 @@
 {{- /* layouts/partials/essentials/script.html */ -}}
 {{ $scripts := slice }}
 {{ range site.Params.plugins.js }}
-{{ if findRE "^http" .link }}
-<script
-  src="{{ .link | relURL }}"
-  type="application/javascript"
-  {{ .attributes | safeHTMLAttr }}></script>
-{{ else }}
-{{ $scripts = $scripts | append (resources.Get .link) }}
-{{ end }}
+  {{ if findRE "^http" .link }}
+    <script
+      src="{{ .link | relURL }}"
+      type="application/javascript"
+      {{ .attributes | safeHTMLAttr }}></script>
+  {{ else }}
+    {{ $scripts = $scripts | append (resources.Get .link) }}
+  {{ end }}
 {{ end }}
 
 {{ $scripts = $scripts | append (resources.Get "js/nav.js") }}
@@ -16,21 +16,22 @@
 {{ $scripts = $scripts | append (resources.Get "js/copy-code.js") }}
 {{ $scripts = $scripts | append (resources.Get "js/og-image-modal.js") }}
 {{ $scripts = $scripts | append (resources.Get "js/mission-board-filters.js") }}
+{{ $scripts = $scripts | append (resources.Get "js/local-time.js") }} <!-- ADDED HERE -->
 
 {{ $concatenatedScripts := $scripts | resources.Concat "js/script.js" }}
 {{ if hugo.IsProduction }}
-{{ $concatenatedScripts = $concatenatedScripts | minify | fingerprint }}
+  {{ $concatenatedScripts = $concatenatedScripts | minify | fingerprint }}
 {{ end }}
 
 {{ $cookieScriptResource := resources.Get "plugins/cookie.js" }}
 {{ if $cookieScriptResource }}
-{{ $cookieScript := $cookieScriptResource }}
-{{ if hugo.IsProduction }}
-{{ $cookieScript = $cookieScript | minify | fingerprint }}
-{{ end }}
-<script crossorigin="anonymous" integrity="{{ $cookieScript.Data.Integrity }}" src="{{ $cookieScript.RelPermalink }}"></script>
+  {{ $cookieScript := $cookieScriptResource }}
+  {{ if hugo.IsProduction }}
+    {{ $cookieScript = $cookieScript | minify | fingerprint }}
+  {{ end }}
+  <script crossorigin="anonymous" integrity="{{ $cookieScript.Data.Integrity }}" src="{{ $cookieScript.RelPermalink }}"></script>
 {{ else }}
-{{ warnf "plugins/cookie.js not found in assets." }}
+  {{ warnf "plugins/cookie.js not found in assets." }}
 {{ end }}
 
 {{ partialCached "cookie-consent.html" . }}
