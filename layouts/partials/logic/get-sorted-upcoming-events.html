@@ -26,6 +26,7 @@
       "Image" .Params.image
       "EventType" (.Type | humanize | title)
       "LocationURL" $location
+      "OfficialGcal" .Params.official_gcal
       ) -}}
   {{- end -}}
 {{- end -}}
@@ -36,7 +37,9 @@
     {{- $next := partial "logic/get-next-occurrence-date.html" . -}}
 
     {{- $detailsPage := "" -}}
-    {{- /* ... */ -}}
+    {{- with site.GetPage .details_page_link -}}
+      {{- $detailsPage = . -}}
+    {{- end -}}
 
     {{- $allUpcomingEvents = $allUpcomingEvents | append (dict
       "Title" .title
@@ -47,13 +50,14 @@
       "StartTime" ($next.Start.Format "3:04 PM")
       "EndTime" ($next.End.Format "3:04 PM")
       "TimeZone" $next.ZoneString
-      "Permalink" (cond (ne $detailsPage nil) $detailsPage.RelPermalink "")
+      "Permalink" (cond (ne $detailsPage "") $detailsPage.RelPermalink "")
       "IsRecurring" true
       "Host" .host
       "LocationName" .location_name
       "LocationURL" .location_url
       "Image" .image
       "EventType" (.id | humanize | title)
+      "OfficialGcal" ""
       ) -}}
   {{- end -}}
 {{- end -}}

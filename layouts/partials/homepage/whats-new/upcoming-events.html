@@ -72,7 +72,7 @@
           View Details {{ partial "icon.html" (dict "style" "solid" "name" "arrow-right" "class" "ml-1") }}
         </a>
 
-        {{ $urls := partial "logic/get-calendar-urls.html" (dict "Title" .Title "Description" .Description "Permalink" .Permalink "Start" .RawStart "End" .RawEnd "Location" .LocationURL) }}
+        {{ $urls := partial "logic/get-calendar-urls.html" (dict "Title" .Title "Description" .Description "Permalink" .Permalink "Start" .RawStart "End" .RawEnd "Location" .LocationURL "OfficialGcal" .OfficialGcal) }}
         {{ partial "components/add-to-calendar.html" (dict "urls" $urls "filename" (printf "%s.ics" (.Title | urlize)) "text_class" "text-xs font-semibold") }}
       </div>
     </div>

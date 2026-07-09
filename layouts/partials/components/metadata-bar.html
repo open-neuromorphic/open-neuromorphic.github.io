@@ -95,7 +95,7 @@
           {{ end }}
           {{ if not $event_url }}{{ $event_url = "https://www.youtube.com/@openneuromorphic" }}{{ end }}
 
-          {{ $urls := partial "logic/get-calendar-urls.html" (dict "Title" $ctx.Title "Description" $ctx.Description "Permalink" $ctx.Permalink "Start" $times.Start "End" $times.End "Location" $event_url) }}
+          {{ $urls := partial "logic/get-calendar-urls.html" (dict "Title" $ctx.Title "Description" $ctx.Description "Permalink" $ctx.Permalink "Start" $times.Start "End" $times.End "Location" $event_url "OfficialGcal" $ctx.Params.official_gcal) }}
 
           <div class="flex items-center gap-4 {{ if $hasResources }}border-l border-border dark:border-darkmode-border pl-4 my-1{{ end }}">
             <a href="{{ $event_url }}" target="_blank" rel="noopener" class="font-semibold text-sm text-primary dark:text-darkmode-primary hover:underline flex items-center whitespace-nowrap">
