@@ -10,6 +10,7 @@ source_code: https://github.com/jurjsorinliviu/SNNtrainer3D
 pypi_id: 
 license: unknown
 supports_hardware: False
+category: snn-framework
 supports_NIR: False
 language: JavaScript
 maintainer: Sorin Liviu Jurj
