@@ -14,7 +14,7 @@ production_credits:
      role: "Event Operations"
 start_datetime: "2026-07-09T18:00:00+02:00"
 end_datetime: "2026-07-09T19:00:00+02:00"
-upcoming: true
+upcoming: false
 video: "tcXCnWeyoq0"
 official_gcal: "https://calendar.app.google/zMBePU46dhMsmSki9"
 discord_event_url: "https://discord.com/events/1044548629622439977/1524720594820661312"
