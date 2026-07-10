@@ -11,9 +11,13 @@ Open Neuromorphic is built on a foundation of open collaboration. We are proud t
 
 {{< display-supporter-tier tier="foundational" >}}
 
-{{< details summary="Becoming A Foundational Supporter: The Collaboration Network"  >}}
+{{< details summary="Becoming A Foundational Supporter: The Collaboration Network" open="true" >}}
 
-## Becoming A Foundational Supporter: The Collaboration Network
+## The Collaboration Network
+
+Following the landmark community panel, ["Open-Source Neuromorphic Research Infrastructure"]({{< ref "/workshops/open-source-neuromorphic-infrastructure/" >}}), leading maintainers highlighted the need to build a more unified, competitive, and accessible ecosystem. The Collaboration Network was born out of this shared purpose.
+
+Our goal is to create a shared space for the exchange of ideas, acting as an ambassador to help newcomers find their bearings and veterans discover new collaborators. Crucially, this network also serves as a supportive space to help open-source projects find permanent homes and ensure maintenance continuity between academic PIs, labs, and industry.
 
 We believe that by working together and promoting each other's work, we can elevate the entire field. Our open-source partners help us by linking back to Open Neuromorphic from their project websites, GitHub repositories, or documentation.
 
@@ -24,22 +28,36 @@ You can support our community by linking back to us. Here are examples you can u
 ### Text Link
 
 A simple text link is a great way to show support. We recommend linking to our main "Neuromorphic Computing" hub.
+
+**Markdown:**
+```markdown
+Part of the [Open Neuromorphic](https://open-neuromorphic.org/neuromorphic-computing/) community.
+```
+
+**HTML:**
+```html
 Part of the <a href="https://open-neuromorphic.org/neuromorphic-computing/" target="_blank" rel="noopener">Open Neuromorphic</a> community.
-code
-Code
-or
-Part of the Open Neuromorphic community.
-code
-Code
+```
+
 **Result:** Part of the [Open Neuromorphic](https://open-neuromorphic.org/neuromorphic-computing/) community.
 
 ### Community Badge
 
-You can also use our official collaboration badge.
-![alt text](https://img.shields.io/badge/Collaboration_Network-Open_Neuromorphic-blue)
-code
-Code
-**Result:**[![Neuromorphic Computing](https://img.shields.io/badge/Collaboration_Network-Open_Neuromorphic-blue)](https://open-neuromorphic.org/neuromorphic-computing/)
+You can also use our official collaboration badge to place on your project's repository.
+
+**Markdown:**
+```markdown
+[![Collaboration Network](https://img.shields.io/badge/Collaboration_Network-Open_Neuromorphic-blue)](https://open-neuromorphic.org/neuromorphic-computing/)
+```
+
+**HTML:**
+```html
+<a href="https://open-neuromorphic.org/neuromorphic-computing/" target="_blank" rel="noopener">
+  <img src="https://img.shields.io/badge/Collaboration_Network-Open_Neuromorphic-blue" alt="Open Neuromorphic Collaboration Network">
+</a>
+```
+
+**Result:** [![Collaboration Network](https://img.shields.io/badge/Collaboration_Network-Open_Neuromorphic-blue)](https://open-neuromorphic.org/neuromorphic-computing/)
 
 {{< /details >}}
 
