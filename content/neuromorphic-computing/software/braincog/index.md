@@ -13,6 +13,7 @@ supports_hardware: True
 supports_NIR: False
 language: Python
 maintainer: Brain-inspired Cognitive Intelligence Lab, Institute of Automation, Chinese Academy of Sciences
+category: snn-tool
 draft: false
 ---
 
