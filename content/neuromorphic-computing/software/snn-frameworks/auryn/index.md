@@ -16,7 +16,7 @@ supports_NIR: false
 language: C++
 maintainer: Friedemann Zenke
 draft: false
-category: snn-framework
+category: simulator
 url: /neuromorphic-computing/software/snn-frameworks/auryn/
 ---
 
