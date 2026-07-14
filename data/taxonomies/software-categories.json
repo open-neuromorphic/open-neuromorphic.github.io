@@ -14,5 +14,13 @@
     "page_intro": "Explore a comprehensive collection of essential data tools designed for the development of neuromorphic software, for managing and transforming neuromorphic (event-based) datasets.",
     "meta_description": "Discover data tools and libraries for reading, converting, and processing event-based and neuromorphic datasets.",
     "icon": "fas fa-database"
+  },
+  "simulator": {
+    "title": "Simulators",
+    "landing_path": "simulators",
+    "order": 3,
+    "page_intro": "Explore standalone simulation engines optimized for running spiking neural networks over extended periods. These frameworks focus on the dynamics, size, and structure of neural systems, often prioritizing execution speed and biological realism over gradient-based training.",
+    "meta_description": "Discover open-source SNN simulators for neuromorphic computing, including high-speed and biologically detailed simulation engines.",
+    "icon": "fas fa-server"
   }
 }

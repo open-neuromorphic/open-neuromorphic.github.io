@@ -26,6 +26,8 @@ fontawesome_svgs:
   - { style: solid, name: bullseye }
   - { style: solid, name: award }
   - { style: solid, name: download }
+  - { style: solid, name: server }
+  - { style: solid, name: database }
   - { style: brands, name: discord }
   - { style: brands, name: github }
   - { style: brands, name: twitter }
