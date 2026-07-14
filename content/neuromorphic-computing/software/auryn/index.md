@@ -17,6 +17,7 @@ language: C++
 maintainer: Friedemann Zenke
 draft: false
 category: simulator
+url: /neuromorphic-computing/software/simulators/auryn/
 ---
 
 ## Overview
