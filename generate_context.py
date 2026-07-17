@@ -6,7 +6,7 @@ import argparse
 import subprocess
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-OUTPUT_FILE = os.path.join(SCRIPT_DIR, "ai_context.md")
+OUTPUT_FILE = os.path.join(SCRIPT_DIR, "onm_website_hugo_code_bundle.md")
 
 EXCLUDE_DIRS = {
     ".git", "node_modules", "public", "resources", "tmp",
