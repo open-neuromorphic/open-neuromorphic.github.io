@@ -30,20 +30,21 @@ field_of_application_tags:
   - "robotics"
   - "space"
 summary_points:
-  - "By leveraging pseudo-orthogonality in high-dimensional spaces, VSAs translate geometric similarity into semantic similarity, enabling the superposition of concepts."
-  - "Unlike tensor products that exponentially increase dimensionality, VSA operations like circular convolution preserve vector dimensionality, drastically reducing memory costs."
-  - "Fractional binding induces positive definite kernels, allowing neural populations to estimate probabilities and seamlessly perform continuous-value reasoning."
-  - "Mapping continuous variables into VSA representations accelerates algorithms for Bayesian optimization, achieving state-of-the-art performance in complex robotics benchmarks."
+  - "By leveraging algebraic operations and the pseudo-orthogonality of random high-dimensional vectors, VSAs translate geometric similarity into semantic similarity, enabling analogy-based reasoning through vector dot-products."
+  - "VSA use operations, like circular convolutions, that are compressions of the tensor product, enabling algebraic operations while preserving vector dimensionality, bounding memory costs."
+  - "Fractional binding induces positive definite kernels between embedded data points, allowing neural populations to estimate probabilities and seamlessly perform continuous-value reasoning."
+  - "Employing representations constructed using VSAs can accelerate algorithms, like Bayesian optimization, or reduce memory requirements, achieving performance comparable to state-of-the-art algorithms, while decreasing computational time and memory requirements."
 ---
 
-Vector Symbolic Algebras (VSAs)—often referred to as Vector Symbolic Architectures—provide a rigorous mathematical formalism for understanding neural computation through high-dimensional vector spaces. By drawing structural connections between quantum probability, kernel mean embeddings, and connectionist models, this framework renders the complex, continuous dynamics of neural manifolds legible as discrete symbolic reasoning.
+Vector Symbolic Algebras (VSAs)—originally referred to as Vector Symbolic Architectures—provide a rigorous mathematical formalism for understanding neural computation through high-dimensional vector spaces. Structural connections between quantum probability, kernel mean embeddings, and connectionist models, suggests this framework can render the complex, continuous dynamics of neural manifolds legible as reasoning over symbolic, discrete, and continuous data.
 
 ## Key Takeaways
 
-- By leveraging pseudo-orthogonality in high-dimensional spaces, VSAs translate geometric similarity into semantic similarity, enabling the superposition of concepts.
-- Unlike tensor products that exponentially increase dimensionality, VSA operations like circular convolution preserve vector dimensionality, drastically reducing memory costs.
-- Fractional binding induces positive definite kernels, allowing neural populations to estimate probabilities and seamlessly perform continuous-value reasoning.
-- Mapping continuous variables into VSA representations accelerates algorithms for Bayesian optimization, achieving state-of-the-art performance in complex robotics benchmarks.
+- By leveraging algebraic operations and the pseudo-orthogonality of random high-dimensional vectors, VSAs translate geometric similarity into semantic similarity, enabling analogy-based reasoning through vector dot-products.
+- VSA use operations, like circular convolutions, that are compressions of the tensor product, enabling algebraic operations while preserving vector dimensionality, bounding memory costs.
+- Fractional binding induces positive definite kernels between embedded data points, allowing neural populations to estimate probabilities and seamlessly perform continuous-value reasoning.
+- Employing representations constructed using VSAs can accelerate algorithms, like Bayesian optimization, or reduce memory requirements, achieving performance comparable to state-of-the-art algorithms, while decreasing computational time and memory requirements.
+
 
 ## Workshop Format & Takeaways
 
