@@ -26,7 +26,7 @@ While not required for selection, we still recommend using tags like `good first
 #### Step 2: Add Persistent Links (Optional)
 If you have important links like a **sponsorship page**, an **onboarding guide**, or other resources you'd like to feature permanently on your project's card, please reach out to us.
 
--   **Contact Us:** Message an **Executive Committee member** on our [Discord server](https://discord.gg/aPFsSRA7Nf) or email us at [contact@open-neuromorphic.org](mailto:contact@open-neuromorphic.org).
+-   **Contact Us:** Message an **Executive Committee member** on our [Discord server](https://discord.gg/aPFsSRA7Nf) or email us at [openneuromorphic+contact@gmail.com](mailto:openneuromorphic+contact@gmail.com).
 -   **Provide Links:** Let us know the title and URL for each link you want to add. We will add them to the `data/community_projects.toml` file for you.
 
 This ensures your project not only gets help with specific tasks but also directs community members to your key resources.

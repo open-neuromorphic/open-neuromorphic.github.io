@@ -84,4 +84,4 @@ If you want to fund a solution to a specific problem, you can sponsor Open Neuro
 
 This ensures that contributions are effective, well-coordinated, and aligned with the ecosystem's needs.
 
-Unsure which path is right for you, or want to discuss a broader partnership? Please reach out to us at [contact@open-neuromorphic.org](mailto:contact@open-neuromorphic.org), and we can help guide you.
+Unsure which path is right for you, or want to discuss a broader partnership? Please reach out to us at [openneuromorphic+contact@gmail.com](mailto:openneuromorphic+contact@gmail.com), and we can help guide you.

@@ -5,7 +5,7 @@ description: "Help shape the future of open science in neuromorphic computing by
 draft: false
 role_type: "Community Peer Review"
 time_commitment: "Flexible / Per-submission"
-contact: "contact@open-neuromorphic.org"
+contact: "openneuromorphic+contact@gmail.com"
 ---
 
 ## Role Overview

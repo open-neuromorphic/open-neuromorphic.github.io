@@ -23,7 +23,7 @@ This is the easiest way to contribute. You write the content, and we'll handle t
 2.  **Gather your images** and other assets in a folder.
 3.  **Send it to us!**
     -   **Discord:** Send a message to **Jens E. Pedersen**, **Justin Riddiough**, or **Danny Rosen** on our [Discord server](https://discord.gg/hUygPUdD8E), or post in the `#proposals-contributions` channel.
-    -   **Email:** Send your post and assets to [contact@open-neuromorphic.org](mailto:contact@open-neuromorphic.org).
+    -   **Email:** Send your post and assets to [openneuromorphic+contact@gmail.com](mailto:openneuromorphic+contact@gmail.com).
 
 ### Method 2: The GitHub Way (Pull Request)
 

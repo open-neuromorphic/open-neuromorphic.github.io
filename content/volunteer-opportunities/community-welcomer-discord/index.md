@@ -5,7 +5,7 @@ description: "Be a friendly first point of contact for new members on our Discor
 draft: false
 role_type: "Community"
 time_commitment: "2-3 hours/week"
-contact: "contact@open-neuromorphic.org"
+contact: "openneuromorphic+contact@gmail.com"
 ---
 
 ## Role Overview
@@ -24,4 +24,4 @@ With over 2,000 members, our Discord server is the heart of our community. To en
 - A passion for helping others and fostering an inclusive environment.
 
 ## How to Apply
-If you're interested in becoming a Community Welcomer, please send us an email at **contact@open-neuromorphic.org** or send a direct message to one of the Executive Committee members on Discord.
+If you're interested in becoming a Community Welcomer, please send us an email at **openneuromorphic+contact@gmail.com** or send a direct message to one of the Executive Committee members on Discord.
