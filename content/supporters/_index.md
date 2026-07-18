@@ -11,6 +11,8 @@ Open Neuromorphic is built on a foundation of open collaboration. We are proud t
 
 {{< display-supporter-tier tier="foundational" >}}
 
+> *Special thanks to **UC Santa Cruz** and Jason Eshraghian for supporting Open Neuromorphic's live event infrastructure — their contribution keeps StreamYard running for our workshops, Student Talks, and community events.*
+
 {{< details summary="Becoming A Foundational Supporter: The Collaboration Network" open="true" >}}
 
 ## The Collaboration Network
@@ -84,4 +86,4 @@ If you want to fund a solution to a specific problem, you can sponsor Open Neuro
 
 This ensures that contributions are effective, well-coordinated, and aligned with the ecosystem's needs.
 
-Unsure which path is right for you, or want to discuss a broader partnership? Please reach out to us at [contact@open-neuromorphic.org](mailto:contact@open-neuromorphic.org), and we can help guide you.
+Unsure which path is right for you, or want to discuss a broader partnership? Please reach out to us at [openneuromorphic@gmail.com](mailto:openneuromorphic@gmail.com), and we can help guide you.

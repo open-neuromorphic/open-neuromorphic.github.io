@@ -12,7 +12,7 @@ dark_logo_invert = false
 
 [[foundational]]
 name = "Brian"
-logo = "brian.jpg"
+logo = "brian.webp"
 page_path = "neuromorphic-computing/software/brian/"
 dark_logo_invert = false
 
@@ -46,3 +46,9 @@ name = "Neuromorphic Drivers"
 logo = "neuromorphic-drivers.png"
 page_path = "neuromorphic-computing/software/neuromorphic-drivers/"
 dark_logo_invert = true
+
+[[foundational]]
+name = "UC Santa Cruz"
+logo = "images/ucsc.png"
+website = "https://www.ucsc.edu/"
+dark_logo_invert = false
