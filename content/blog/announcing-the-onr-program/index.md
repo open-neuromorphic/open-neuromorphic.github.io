@@ -75,7 +75,7 @@ Details available in the [Review Criteria]({{< ref "/neuromorphic-computing/rese
 - [Submit Your Work]({{< ref "/neuromorphic-computing/research/guide/submitter-guide" >}})
 - [Become a Reviewer]({{< ref "/neuromorphic-computing/research/guide/reviewer-guide" >}})
 - Join the `#onr-program` channel on our [Discord](https://discord.gg/SJaUrzgg)
-- Contact us at [contact@open-neuromorphic.org](mailto:contact@open-neuromorphic.org)
+- Contact us at [openneuromorphic+contact@gmail.com](mailto:openneuromorphic+contact@gmail.com)
 
 ## About ONR
 

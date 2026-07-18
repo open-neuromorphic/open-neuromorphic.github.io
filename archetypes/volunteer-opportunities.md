@@ -7,7 +7,7 @@ description: "Volunteer opportunity at Open Neuromorphic for a [Role Title] to h
 draft: true
 role_type: "Communications" # E.g., Communications, Development, Event Support, Initiative Support
 time_commitment: "2-4 hours/week" # E.g., "Project-based", "5 hours/month"
-contact: "contact@open-neuromorphic.org" # Email or link to Discord channel/user
+contact: "openneuromorphic+contact@gmail.com" # Email or link to Discord channel/user
 # Optional: Link this role to one or more specific initiatives using their page slugs.
 # Find slugs in content/neuromorphic-computing/initiatives/
 # e.g., ["social-media-engagement", "student-talks-initiative"]

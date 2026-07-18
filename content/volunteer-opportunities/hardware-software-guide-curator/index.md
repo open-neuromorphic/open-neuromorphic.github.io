@@ -5,7 +5,7 @@ description: "Become an authoritative voice in the neuromorphic community by cur
 draft: false
 role_type: "Content Curation & Domain Expertise"
 time_commitment: "3-5 hours/month"
-contact: "contact@open-neuromorphic.org"
+contact: "openneuromorphic+contact@gmail.com"
 initiative_tags: ["hardware-directory", "website-development"]
 ---
 
@@ -42,4 +42,4 @@ This is a **domain expert and content curation role**, not a software developmen
 
 ## How to Apply
 
-If you are interested in helping us maintain and grow these vital community resources, please email us at **contact@open-neuromorphic.org**. You can also suggest an update directly by opening an issue or pull request on our [website repository](https://github.com/open-neuromorphic/open-neuromorphic.github.io/issues).
+If you are interested in helping us maintain and grow these vital community resources, please email us at **openneuromorphic+contact@gmail.com**. You can also suggest an update directly by opening an issue or pull request on our [website repository](https://github.com/open-neuromorphic/open-neuromorphic.github.io/issues).

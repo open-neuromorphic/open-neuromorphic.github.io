@@ -100,4 +100,4 @@ We expect to provide decisions within one month of submission.
 
 ## Questions?
 
-Join the discussion in the `#onr-program` channel on our [Discord Server](https://discord.gg/hUygPUdD8E) or email us at [contact@open-neuromorphic.org](mailto:contact@open-neuromorphic.org).
+Join the discussion in the `#onr-program` channel on our [Discord Server](https://discord.gg/hUygPUdD8E) or email us at [openneuromorphic+contact@gmail.com](mailto:openneuromorphic+contact@gmail.com).

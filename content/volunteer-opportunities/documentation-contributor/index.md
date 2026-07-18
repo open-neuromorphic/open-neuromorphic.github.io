@@ -5,7 +5,7 @@ description: "Help us achieve documentation excellence by improving our guides, 
 draft: false
 role_type: "Documentation"
 time_commitment: "Flexible / Project-based"
-contact: "contact@open-neuromorphic.org"
+contact: "openneuromorphic+contact@gmail.com"
 initiative_tags: ["website-development"]
 ---
 

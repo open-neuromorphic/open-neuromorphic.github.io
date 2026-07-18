@@ -56,5 +56,5 @@ This is just the beginning. The formation of this network is a testament to what
 
 We invite everyone to:
 -   **Explore the founding members** on our [Supporters Page](/supporters/).
--   **Learn more about becoming a supporter** by contacting us at [contact@open-neuromorphic.org](mailto:contact@open-neuromorphic.org).
+-   **Learn more about becoming a supporter** by contacting us at [openneuromorphic+contact@gmail.com](mailto:openneuromorphic+contact@gmail.com).
 -   **Join the conversation** on our [Discord server](https://discord.gg/hUygPUdD8E) and help us build the future of neuromorphic computing.

@@ -5,7 +5,7 @@ description: "Volunteer as a Community Journalist at Open Neuromorphic to uncove
 draft: false
 role_type: "Content Creation"
 time_commitment: "Flexible (2-4 hours/week)"
-contact: "contact@open-neuromorphic.org"
+contact: "openneuromorphic+contact@gmail.com"
 initiative_tags:
   - "social-media-engagement"
   - "website-development"
