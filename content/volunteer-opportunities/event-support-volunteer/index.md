@@ -5,7 +5,7 @@ description: "Be a key part of our community events! Help us run Student Talks, 
 draft: false
 role_type: "Event Support"
 time_commitment: "1-2 hours per event"
-contact: "contact@open-neuromorphic.org"
+contact: "openneuromorphic+contact@gmail.com"
 initiative_tags: ["student-talks-initiative", "hacking-hours"]
 ---
 
@@ -24,4 +24,4 @@ Our live events are a cornerstone of community engagement and learning. We are l
 - Familiarity with Discord and live-streaming platforms is a plus, but we can provide guidance.
 
 ## How to Apply
-Interested in helping out with our next event? Please email us at **contact@open-neuromorphic.org** or reach out in the relevant channel (e.g., `#student-talks`) on our [Discord server](https://discord.gg/hUygPUdD8E).
+Interested in helping out with our next event? Please email us at **openneuromorphic+contact@gmail.com** or reach out in the relevant channel (e.g., `#student-talks`) on our [Discord server](https://discord.gg/hUygPUdD8E).

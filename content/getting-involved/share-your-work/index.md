@@ -51,7 +51,7 @@ Getting started is easy. If you have a topic you're passionate about, we want to
         -   For **Student Talks**, please post a message in the `#student-talks` channel.
         -   For all other events like **Workshops** or **Hacking Hours**, use the `#proposals-contributions` channel.
         -   Alternatively, you can send a direct message to an Executive Committee member (e.g., **Jens E. Pedersen**).
-    -   **Email:** Send your proposal directly to [contact@open-neuromorphic.org](mailto:contact@open-neuromorphic.org).
+    -   **Email:** Send your proposal directly to [openneuromorphic+contact@gmail.com](mailto:openneuromorphic+contact@gmail.com).
 
 3.  **Tell Us About Your Idea:** In your message, please include:
     -   A brief title and description of your proposed talk/workshop.

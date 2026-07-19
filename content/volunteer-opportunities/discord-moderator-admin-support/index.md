@@ -5,7 +5,7 @@ description: "Help us maintain a safe and productive environment on our Discord 
 draft: false
 role_type: "Community Management"
 time_commitment: "3-5 hours/week"
-contact: "contact@open-neuromorphic.org"
+contact: "openneuromorphic+contact@gmail.com"
 ---
 
 ## Role Overview
@@ -25,4 +25,4 @@ Our Discord server is the vibrant heart of the Open Neuromorphic community. To h
 - A proactive individual who can help us identify best practices for community management.
 
 ## How to Apply
-If you are interested in helping us build a better and safer community space, please email us at **contact@open-neuromorphic.org** with a brief note about your experience with Discord moderation or bot management.
+If you are interested in helping us build a better and safer community space, please email us at **openneuromorphic+contact@gmail.com** with a brief note about your experience with Discord moderation or bot management.

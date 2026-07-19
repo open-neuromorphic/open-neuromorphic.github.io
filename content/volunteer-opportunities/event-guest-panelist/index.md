@@ -5,7 +5,7 @@ description: "Share your expertise by joining our pool of potential guests and p
 draft: false
 role_type: "Expert Contribution"
 time_commitment: "Per-event basis"
-contact: "contact@open-neuromorphic.org"
+contact: "openneuromorphic+contact@gmail.com"
 initiative_tags: ["student-talks-initiative", "hacking-hours", "workshops"]
 ---
 
@@ -24,4 +24,4 @@ To enrich our community events, we are building a network of knowledgeable indiv
 -   No formal presentation is required; this role is about contributing to a conversation.
 
 ## How to Apply
-To be added to our pool of potential guests and panelists, please email us at **contact@open-neuromorphic.org**. Include a brief note about your areas of expertise or interest within the neuromorphic field.
+To be added to our pool of potential guests and panelists, please email us at **openneuromorphic+contact@gmail.com**. Include a brief note about your areas of expertise or interest within the neuromorphic field.

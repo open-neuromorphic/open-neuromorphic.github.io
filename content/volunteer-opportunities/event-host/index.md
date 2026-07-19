@@ -5,7 +5,7 @@ description: "Take the stage and help lead our community events. We're looking f
 draft: false
 role_type: "Event Support"
 time_commitment: "2-3 hours per event"
-contact: "contact@open-neuromorphic.org"
+contact: "openneuromorphic+contact@gmail.com"
 initiative_tags: ["student-talks-initiative", "hacking-hours", "workshops"]
 ---
 
@@ -26,4 +26,4 @@ Our live events are a cornerstone of community engagement and learning. To help 
 -   Familiarity with our event formats (Workshops, Student Talks, Hacking Hours) is a plus.
 
 ## How to Apply
-If you're interested in hosting or co-hosting an event, please email us at **contact@open-neuromorphic.org** or reach out in the relevant channel (e.g., `#student-talks`) on our [Discord server](https://discord.gg/hUygPUdD8E).
+If you're interested in hosting or co-hosting an event, please email us at **openneuromorphic+contact@gmail.com** or reach out in the relevant channel (e.g., `#student-talks`) on our [Discord server](https://discord.gg/hUygPUdD8E).

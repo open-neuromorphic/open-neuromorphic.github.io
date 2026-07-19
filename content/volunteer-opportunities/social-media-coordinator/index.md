@@ -5,7 +5,7 @@ description: "Volunteer as a Social Media Coordinator at Open Neuromorphic to he
 draft: false
 role_type: "Communications"
 time_commitment: "2-3 hours/week"
-contact: "contact@open-neuromorphic.org"
+contact: "openneuromorphic+contact@gmail.com"
 initiative_tags: ["social-media-engagement"]
 ---
 
@@ -25,4 +25,4 @@ As our Social Media Coordinator, you will play a key role in shaping Open Neurom
 - Proactive, creative, and reliable.
 
 ## How to Apply
-To express your interest, please email us at **contact@open-neuromorphic.org** with a brief note about why you're a good fit for this role.
+To express your interest, please email us at **openneuromorphic+contact@gmail.com** with a brief note about why you're a good fit for this role.
