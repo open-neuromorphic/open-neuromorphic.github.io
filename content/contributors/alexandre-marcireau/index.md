@@ -15,7 +15,7 @@ social:
     link: "https://scholar.google.com/citations?user=43KBWgoAAAAJ&hl=en"
     title: "scholar"
 draft: false
-image: alexandre-marciraeu.png
+image: alexandre-marcireau.png
 ---
 Alexandre Marcireau is a lecturer in neuromorphic systems at the University of Manchester. He specialises in event-based vision algorithms and embedded neuromorphic systems. He contributes to multiple open-source software projects, in particular neuromorphic-drivers and faery.
 
