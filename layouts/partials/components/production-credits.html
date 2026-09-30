@@ -1,31 +1,48 @@
-{{ with .Params.production_credits }}
-<div class="production-credits-section mt-12 pt-8">
-  <h3 class="text-2xl font-bold mb-6">Event Production & Support</h3>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-    {{ range . }}
-    {{ $contrib := partial "helpers/resolve-contributor.html" .name }}
-    <div class="flex items-center gap-3 p-3 rounded-lg bg-gray-50 dark:bg-darkmode-theme-light/30">
-      <div class="flex-shrink-0">
-        {{ if $contrib.ImageResource }}
-        <img src="{{ ($contrib.ImageResource.Fill "48x48 Lanczos").RelPermalink }}" alt="{{ .name }}" class="w-10 h-10 rounded-full object-cover">
-        {{ else }}
-        <div class="w-10 h-10 rounded-full bg-gray-200 dark:bg-darkmode-theme-dark flex items-center justify-center text-gray-400">
-          {{ partial "icon.html" (dict "style" "solid" "name" "user" "class" "text-sm") }}
+{{ $product := .Params.product_name }}
+{{ $image := .Params.image }}
+{{ with .Params.product }}
+  <div class="product-info mb-6 lg:grid grid-cols-1 grid-cols-3 gap-1">
+    <h2 class="text-2xl font-bold mb-4 col-span-3">{{ $product }} At A Glance</h2>
+    <div class="pb-4 lg:pb-0">
+      {{ with .release_year }}<div><strong>Release Year:</strong> {{ . }}</div>{{ end }}
+      {{ with .status }}
+        <div>
+          <strong>Status:</strong>
+          {{ if .retired }} End Of Life{{ else if .released }} Released{{ else if .announced }} Announced{{ end }}
         </div>
-        {{ end }}
-      </div>
-      <div>
-        <div class="font-semibold text-dark dark:text-darkmode-dark leading-tight">
-          {{ if $contrib.Page }}
-          <a href="{{ $contrib.Page.RelPermalink }}" class="hover:text-primary dark:hover:text-darkmode-primary transition-colors">{{ .name }}</a>
+      {{ end }}
+      {{ if .chip_type }}<div><strong>Chip Type:</strong> {{ .chip_type }}</div>{{ end }}
+      {{ if .interfaces }}<div><strong>Interface:</strong> {{ .interfaces }}</div>{{ end }}
+      {{ if .software }}
+        <div>
+          <strong>Software:</strong>
+          {{ if strings.HasPrefix .software "http" }}
+            <a href="{{ .software }}" target="_blank" rel="noopener" class="styled-link">Documentation / Driver</a>
           {{ else }}
-          {{ .name }}
+            {{ .software }}
           {{ end }}
         </div>
-        <div class="text-xs text-gray-600 dark:text-gray-400 font-medium">{{ .role }}</div>
-      </div>
+      {{ end }}
+      {{ if .applications }}<div><strong>Applications:</strong> {{ .applications }}</div>{{ end }}
     </div>
-    {{ end }}
+    <div class="pb-4 lg:pb-0">
+      {{ if .neurons }}<div><strong>Neurons:</strong> {{ .neurons }}</div>{{ end }}
+      {{ if .synapses }}<div><strong>Synapses:</strong> {{ .synapses }}</div>{{ end }}
+      {{ if .weight_bits }}<div><strong>Weight bits:</strong> {{ .weight_bits }}</div>{{ end }}
+      {{ if .activation_bits }}<div><strong>Activation bits:</strong> {{ .activation_bits }}</div>{{ end }}
+      {{ if .on_chip_learning }}<div><strong>On-Chip Learning:</strong> {{ .on_chip_learning }}</div>{{ end }}
+      {{ if .power }}<div><strong>Power:</strong> {{ .power }}</div>{{ end }}
+      {{ if .resolution }}<div><strong>Resolution:</strong> {{ .resolution }}</div>{{ end }}
+      {{ if .pixel_size }}<div><strong>Pixel Size:</strong> {{ .pixel_size }}</div>{{ end }}
+      {{ if .dynamic_range }}<div><strong>Dynamic Range:</strong> {{ .dynamic_range }}</div>{{ end }}
+      {{ if .latency }}<div><strong>Latency:</strong> {{ .latency }}</div>{{ end }}
+      {{ if .max_event_rate }}<div><strong>Max Event Rate:</strong> {{ .max_event_rate }}</div>{{ end }}
+      {{ if .min_illumination }}<div><strong>Illumination Range:</strong> {{ .min_illumination }}</div>{{ end }}
+    </div>
+    <div class="flex justify-center items-center">
+      {{ if $image }}
+        {{ partial "image" (dict "Src" $image "Context" $.Page "Alt" .Title "Class" "bg-white rounded" "Size" "x200" "Command" "Scale") }}
+      {{ end }}
+    </div>
   </div>
-</div>
 {{ end }}

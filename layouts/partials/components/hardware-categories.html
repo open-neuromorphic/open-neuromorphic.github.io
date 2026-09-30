@@ -1,0 +1,49 @@
+{{ $categories := index site.Data.taxonomies "hardware-categories" }}
+{{ $allHardware := where site.RegularPages "Type" "neuromorphic-hardware" }}
+{{ $currentPage := . }}
+{{ $isRootHardware := eq ($currentPage.RelPermalink | strings.TrimRight "/") ((site.GetPage "neuromorphic-computing/hardware").RelPermalink | strings.TrimRight "/") }}
+
+<div class="mb-8">
+  <div class="content-panel p-6">
+    <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-4">Hardware Categories</h3>
+    <ul class="space-y-3">
+      <li>
+        {{ $allUrl := (site.GetPage "neuromorphic-computing/hardware").RelPermalink }}
+        <a class="flex justify-between items-center transition-colors group {{ if $isRootHardware }}text-primary dark:text-darkmode-primary font-bold{{ else }}text-dark dark:text-darkmode-dark hover:text-primary dark:hover:text-darkmode-primary{{ end }}"
+           href="{{ $allUrl }}">
+          <span class="text-lg">All Hardware</span>
+          <span class="text-xs px-2.5 py-1 rounded-full font-bold transition-colors {{ if $isRootHardware }}bg-primary text-white dark:bg-darkmode-primary dark:text-dark{{ else }}bg-gray-200 dark:bg-darkmode-theme-dark text-gray-700 dark:text-gray-300 group-hover:bg-primary group-hover:text-white{{ end }}">
+            {{ len $allHardware }}
+          </span>
+        </a>
+      </li>
+
+      {{ range $k, $v := $categories }}
+        {{ if and (ne $k "uncategorized") $v.landing_path }}
+          {{ $landingPage := site.GetPage (printf "neuromorphic-computing/hardware/%s" $v.landing_path) }}
+          {{ $landingUrl := "" }}
+          {{ if $landingPage }}{{ $landingUrl = $landingPage.RelPermalink }}{{ end }}
+          {{ $isActive := or (eq $currentPage.Params.category_id $k) (and $landingUrl (eq ($currentPage.RelPermalink | strings.TrimRight "/") ($landingUrl | strings.TrimRight "/"))) }}
+
+          {{ $count := len (where $allHardware ".Params.category" $k) }}
+          {{ if eq $k "event-camera" }}
+            {{ $speck := where $allHardware ".File.Dir" "neuromorphic-computing/hardware/speck-synsense/" }}
+            {{ if and (gt (len $speck) 0) (ne (index $speck 0).Params.category "event-camera") }}
+              {{ $count = add $count 1 }}
+            {{ end }}
+          {{ end }}
+
+          <li>
+            <a class="flex justify-between items-center transition-colors group {{ if $isActive }}text-primary dark:text-darkmode-primary font-bold{{ else }}text-dark dark:text-darkmode-dark hover:text-primary dark:hover:text-darkmode-primary{{ end }}"
+               href="{{ if $landingUrl }}{{ $landingUrl }}{{ else }}#{{ end }}">
+              <span class="text-lg">{{ $v.title }}</span>
+              <span class="text-xs px-2.5 py-1 rounded-full font-bold transition-colors {{ if $isActive }}bg-primary text-white dark:bg-darkmode-primary dark:text-dark{{ else }}bg-gray-200 dark:bg-darkmode-theme-dark text-gray-700 dark:text-gray-300 group-hover:bg-primary group-hover:text-white{{ end }}">
+                {{ $count }}
+              </span>
+            </a>
+          </li>
+        {{ end }}
+      {{ end }}
+    </ul>
+  </div>
+</div>
