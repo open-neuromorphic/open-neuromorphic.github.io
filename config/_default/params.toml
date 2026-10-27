@@ -20,7 +20,7 @@ defaultOgImage = "images/og-image.png"
 [navigation_button]
 enable = true
 label = "Join Discord"
-label_sub = "(3100+ joined)"
+label_sub = "(3300+ joined)"
 link = "https://discord.gg/hUygPUdD8E"
 
 [search]
