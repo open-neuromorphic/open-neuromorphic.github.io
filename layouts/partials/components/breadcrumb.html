@@ -21,12 +21,22 @@
       {{ end }}
     {{ end }}
 
-    {{/* INJECT VIRTUAL CATEGORY PARENT FOR FLATTENED SOFTWARE TOOLS */}}
     {{ if and $ctx.IsPage (eq $ctx.Type "neuromorphic-software") $ctx.Params.category }}
       {{ $categories := index site.Data.taxonomies "software-categories" }}
       {{ $catMeta := index $categories $ctx.Params.category }}
       {{ if $catMeta }}
         {{ $landingPage := site.GetPage (printf "neuromorphic-computing/software/%s" $catMeta.landing_path) }}
+        {{ if $landingPage }}
+          {{ $pages = $pages | append $landingPage }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+
+    {{ if and $ctx.IsPage (eq $ctx.Type "neuromorphic-hardware") $ctx.Params.category }}
+      {{ $hwCategories := index site.Data.taxonomies "hardware-categories" }}
+      {{ $hwCatMeta := index $hwCategories $ctx.Params.category }}
+      {{ if and $hwCatMeta $hwCatMeta.landing_path }}
+        {{ $landingPage := site.GetPage (printf "neuromorphic-computing/hardware/%s" $hwCatMeta.landing_path) }}
         {{ if $landingPage }}
           {{ $pages = $pages | append $landingPage }}
         {{ end }}

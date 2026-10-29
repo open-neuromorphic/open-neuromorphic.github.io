@@ -5,5 +5,13 @@
     "page_intro": "A comprehensive overview of neuromorphic hardware, from pioneering past projects to the latest commercial and research chips.",
     "meta_description": "Explore cutting-edge neuromorphic chips and architectures, from research prototypes to commercial hardware.",
     "icon": "fas fa-microchip"
+  },
+  "event-camera": {
+    "title": "Event Cameras",
+    "landing_path": "event-cameras",
+    "order": 2,
+    "page_intro": "Event cameras are the most widespread type of neuromorphic vision sensor. Their pixels contain dedicated circuits to detect sudden changes in illuminance. Event cameras report these changes asynchronously as a stream of events containing timestamps, pixel coordinates, and brightness polarity.",
+    "meta_description": "Explore event-based neuromorphic vision sensors, temporal contrast sensors, and dynamic vision sensors.",
+    "icon": "fas fa-microchip"
   }
 }
