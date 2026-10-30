@@ -1,39 +1,42 @@
 ---
-title: "TENNLab FPGA"
-type: "neuromorphic-software"
-category: "fpga-implementation"
-description: "Spiking neural network processors implemented in HDL for FPGAs by the UTK TENNLab group, with a Python package to build, load, and run networks on FPGA boards."
-logo: ""
-website: ""
-dependencies: "TENNLab Neuromorphic Framework, Edalize, an EDA toolchain for the target board (e.g. AMD/Xilinx Vivado for Basys3)"
-field_of_application: "FPGA"
-source_code: "https://github.com/TENNLab-UTK/fpga"
-pypi_id: ""
-license: "MPL-2.0 (software), CERN-OHL-W-2.0 (HDL)"
+title: TENNLab FPGA
+type: neuromorphic-software
+description: >-
+  FPGA implementation of UTK TENNLab neuromorphic networks and processors, with
+  a Python package to generate HDL, load networks, and run them on FPGA boards.
+logo: null
+website: 'https://github.com/TENNLab-UTK/fpga'
+dependencies: 'TENNLab Neuromorphic Framework, Edalize'
+field_of_application: Neuromorphic Hardware
+source_code: 'https://github.com/TENNLab-UTK/fpga'
+license: MPL-2.0
 supports_hardware: true
-supports_NIR:
-language: "Python, SystemVerilog, Verilog"
+supports_NIR: false
+language: 'Python, SystemVerilog, Verilog'
 maintainer:
-  - "Keegan Dent"
-  - "Bryson Gullett"
+  - Keegan Dent
+  - Bryson Gullett
 draft: true
+category: fpga-implementation
 url: /neuromorphic-computing/software/fpga-implementations/tennlab-fpga/
 ---
 
 ## Overview
 
-TENNLab FPGA (repository name `fpga`, Python package `neuro_fpga`) is an FPGA implementation of the neuromorphic networks and processors defined by the TENNLab research group at the University of Tennessee, Knoxville (UTK). The repository contains SystemVerilog/Verilog sources for the neuroprocessor and a Python package that builds networks into HDL and communicates with the FPGA.
+TENNLab FPGA (repository `fpga`, Python package `neuro_fpga`) is a Field-Programmable Gate Array implementation of neuromorphic computing as defined by the TENNLab research group at the University of Tennessee, Knoxville (UTK). The repository contains SystemVerilog and Verilog sources for the neuroprocessor and a Python package for building networks and communicating with the FPGA.
 
-The project is designed for FPGAs from the ground up rather than adapting TENNLab's ASIC-oriented neuroprocessors. Networks are mapped onto the FPGA through the EDA toolchain, so the README notes that hardware-in-the-loop training is not a recommended use, and that switching networks requires either a new bitstream or hosting several networks in the fabric at once. It supports "directive" and "stream" spike processing, which trade off communication bandwidth differently.
+The README explains that TENNLab's existing HDL neuroprocessors are optimized for ASIC implementation, and describes this project as a ground-up FPGA implementation. A focus of the project is "directive" versus "stream" spike processing, which lets users choose a bandwidth usage paradigm.
 
-### Key features
-- Python API modeled on the TENNLab Framework API: load a network, apply spikes, run, and read outputs.
-- Command-line tools for generating HDL from a network (`nethdl`), testing UART communication with a board (`uart-loop`), and visualizing processor packets (`packet-vis`).
-- Board targets defined in a configuration file; the repository includes targets such as the Digilent Basys3.
-- HDL testbenches run with cocotb and Verilator.
+The README also lists drawbacks of this approach. Because networks are mapped onto the FPGA through the EDA toolchain, training is not a recommended application. Switching networks requires either writing a new bitstream or hosting several networks in the fabric at once.
+
+### Features
+- A Python API that the README describes as "extremely similar to the standard Framework API": load a network, apply spikes, run, and read outputs.
+- Command-line tools: `nethdl` (network HDL generator), `uart-loop` (UART loopback test with a board), and `packet-vis` (web-based visualization of processor packets).
+- FPGA targets defined in a configuration file; the README's examples use the Digilent Basys3 board.
+- HDL testbenches built with cocotb; the README states they currently run only with Verilator.
 
 ### Getting started
-The project requires Linux on x86-64 (tested on Ubuntu 22.04), the open TENNLab Neuromorphic Framework ([framework-open](https://github.com/TENNLab-UTK/framework-open)), and an EDA toolchain for the target board. It is installed from source with `pip install -e .` and is not published on PyPI.
+The README states that only Linux on x86-64 is supported and that the project has been tested on Ubuntu 22.04 LTS. It requires the open TENNLab Neuromorphic Framework ([framework-open](https://github.com/TENNLab-UTK/framework-open)) and an EDA toolchain for the target device (for example, AMD/Xilinx Vivado for the Basys3). The package is installed from source with `pip install -e .[test]` and is not published on PyPI.
 
 ### License
 Software in the repository is licensed under MPL-2.0. The hardware description sources in `fpga/rtl/` are licensed under CERN-OHL-W-2.0.
