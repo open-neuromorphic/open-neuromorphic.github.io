@@ -16,7 +16,7 @@ supports_hardware: false
 supports_NIR: true
 language: Python
 maintainer: Thomas Summe
-draft: true
+draft: false
 category: snn-framework
 url: /neuromorphic-computing/software/snn-frameworks/slax/
 ---
