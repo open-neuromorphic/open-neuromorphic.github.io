@@ -14,7 +14,7 @@ supports_hardware: false
 supports_NIR: false
 language: Python
 maintainer: Fernando M. Quintana
-draft: true
+draft: false
 category: simulator
 url: /neuromorphic-computing/software/simulators/arcana/
 ---
