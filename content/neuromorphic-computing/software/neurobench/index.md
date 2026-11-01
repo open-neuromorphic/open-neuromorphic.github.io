@@ -19,7 +19,7 @@ maintainer:
   - Noah Pacik-Nelson
   - Korneel Van den Berghe
   - Benedetto Leto
-draft: true
+draft: false
 category: benchmark
 url: /neuromorphic-computing/software/benchmarks/neurobench/
 ---
