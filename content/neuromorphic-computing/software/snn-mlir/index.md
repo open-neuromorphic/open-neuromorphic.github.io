@@ -15,7 +15,7 @@ supports_hardware: false
 supports_NIR: true
 language: 'Python, C++'
 maintainer: null
-draft: true
+draft: false
 category: compiler
 url: /neuromorphic-computing/software/compilers/snn-mlir/
 ---
