@@ -16,7 +16,7 @@ language: 'Python, SystemVerilog, Verilog'
 maintainer:
   - Keegan Dent
   - Bryson Gullett
-draft: true
+draft: false
 category: fpga-implementation
 url: /neuromorphic-computing/software/fpga-implementations/tennlab-fpga/
 ---
