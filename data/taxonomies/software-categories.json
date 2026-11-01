@@ -15,6 +15,14 @@
     "meta_description": "Discover data tools and libraries for reading, converting, and processing event-based and neuromorphic datasets.",
     "icon": "fas fa-database"
   },
+  "benchmark": {
+    "title": "Benchmarks",
+    "landing_path": "benchmarks",
+    "order": 5,
+    "page_intro": "Explore open-source benchmarks and evaluation harnesses for neuromorphic computing, which define tasks and metrics for comparing the accuracy and efficiency of neuromorphic algorithms and systems.",
+    "meta_description": "Open-source benchmarks and evaluation harnesses for comparing neuromorphic algorithms and systems on shared tasks and metrics.",
+    "icon": "fas fa-bullseye"
+  },
   "simulator": {
     "title": "Simulators",
     "landing_path": "simulators",
