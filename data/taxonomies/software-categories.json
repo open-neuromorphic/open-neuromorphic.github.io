@@ -7,6 +7,14 @@
     "meta_description": "Compare open-source Spiking Neural Network (SNN) frameworks for neuromorphic computing, including hardware support and NIR compatibility.",
     "icon": "fas fa-brain"
   },
+  "compiler": {
+    "title": "Compilers",
+    "landing_path": "compilers",
+    "order": 6,
+    "page_intro": "Explore open-source compilers and toolchains that translate trained spiking or conventional neural networks into code or configurations for simulators and neuromorphic targets.",
+    "meta_description": "Open-source compilers and toolchains that translate trained neural networks into deployable spiking networks for simulators and neuromorphic targets.",
+    "icon": "fas fa-code"
+  },
   "data-tool": {
     "title": "Data Tools",
     "landing_path": "data-tools",
