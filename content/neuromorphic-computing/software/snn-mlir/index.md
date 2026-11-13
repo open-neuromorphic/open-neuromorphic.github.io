@@ -4,7 +4,7 @@ type: neuromorphic-software
 description: >-
   MLIR dialect for spiking neural networks, with a Python package that converts
   NIR graphs to dialect IR and C sources for a reference CPU runtime.
-logo: null
+logo: snn-mlir.png
 website: 'https://snn-mlir.readthedocs.io/en/latest/'
 dependencies: 'NIR, NumPy, LLVM/MLIR'
 field_of_application: Neuromorphic Computing
@@ -14,7 +14,9 @@ license: Apache-2.0
 supports_hardware: false
 supports_NIR: true
 language: 'Python, C++'
-maintainer: null
+maintainer:
+  - Alejandro García Gener
+  - Álvaro Rollón de Pinedo
 draft: false
 category: compiler
 url: /neuromorphic-computing/software/compilers/snn-mlir/
@@ -24,7 +26,7 @@ url: /neuromorphic-computing/software/compilers/snn-mlir/
 
 SNN-MLIR is an out-of-tree [MLIR](https://mlir.llvm.org/) dialect for spiking neural networks that is compatible with the NIR standard. Its operations work with both float (`f32`) and quantized (`i8`/`i32`) types. A reference CPU lowering (`SNNToLinalg`) converts SNN operations into standard `linalg`/`arith` operations that MLIR-based backends can consume.
 
-A companion Python package, `snn-mlir`, reads NIR files and emits SNN dialect MLIR text together with the C sources of a reference CPU runtime. The project is described in an [arXiv paper](https://arxiv.org/abs/2606.09213).
+A companion Python package, `snn-mlir`, reads NIR files and emits SNN dialect MLIR text together with the C sources of a reference CPU runtime. The project is developed at INTERA-Group in Barcelona, Spain, and is described in an [arXiv paper](https://arxiv.org/abs/2606.09213).
 
 ### Features
 - Dense and convolutional synapse operations (`snn.linear`, `snn.conv1d`, `snn.conv2d`), pooling operations (`snn.sumpool2d`, `snn.avgpool2d`), a requantization operation (`snn.rescale`), spiking neuron operations (`snn.lif`, `snn.cubalif`) and leaky integrator operations (`snn.li`, `snn.cubali`).
