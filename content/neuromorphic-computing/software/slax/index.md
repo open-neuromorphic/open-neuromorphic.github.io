@@ -31,10 +31,10 @@ As of 2026-10-31, the README states that Slax "is now being rewritten with the N
 - Learning-rule modules named `OTTT`, `OTPE`, `rtrl`, `diag_rtrl` and `FPTT`.
 - Training wrappers named `train_online` and `train_offline`.
 - A leaky integrate-and-fire (`LIF`) neuron and surrogate derivative functions (fast sigmoid, arctangent, multi-Gaussian).
-- `to_nir` and `from_nir` functions for converting models to and from NIR. Import handles NIR affine, linear and LIF nodes. It has not been confirmed whether the PyPI release includes these functions.
+- `to_nir` and `from_nir` functions for converting models to and from NIR. Import handles NIR affine, linear and LIF nodes.
 
 ### Getting started
-The README describes the PyPI package as "an alpha-state release with linen" (`pip install slax`). PyPI lists only version 0.0.1, uploaded on 2024-03-20.
+The README describes the PyPI package as "an alpha-state release with linen" (`pip install slax`). PyPI lists only version 0.0.1, uploaded on 2024-03-20. It is the earlier Linen-based version and differs from the repository: it provides `DenseOSTL`, `DenseOTPE`, `OTTT`, `RTRL` and `FPTT`, but not `diag_rtrl` or the NIR conversion functions.
 
 ### Reference
 T. M. Summe and S. Joshi, "Slax: a composable JAX library for rapid and flexible prototyping of spiking neural networks", *Neuromorphic Computing and Engineering* 5, 014007 (2025), [doi:10.1088/2634-4386/ada9a8](https://doi.org/10.1088/2634-4386/ada9a8).
