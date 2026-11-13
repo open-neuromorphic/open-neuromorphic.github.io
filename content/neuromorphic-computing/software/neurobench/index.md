@@ -4,7 +4,7 @@ type: neuromorphic-software
 description: >-
   Python harness for running the NeuroBench algorithm benchmarks, with
   workload and static metrics for evaluating PyTorch and snnTorch models.
-logo: null
+logo: neurobench.png
 website: 'https://neurobench.ai'
 dependencies: 'PyTorch, snnTorch'
 field_of_application: Machine Learning
