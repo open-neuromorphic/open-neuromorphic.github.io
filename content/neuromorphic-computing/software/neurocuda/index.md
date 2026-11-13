@@ -4,7 +4,7 @@ type: neuromorphic-software
 description: >-
   Python compiler that converts trained PyTorch ANNs into spiking neural
   networks, with NIR export, GPU/CPU backends and a Loihi 2 simulator.
-logo: null
+logo: neurocuda.png
 website: 'https://quantaracore.in/neurocuda'
 dependencies: PyTorch
 field_of_application: Machine Learning
