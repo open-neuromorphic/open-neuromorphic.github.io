@@ -4,7 +4,7 @@ type: neuromorphic-software
 description: >-
   FPGA implementation of UTK TENNLab RISP spiking neural networks, with a
   Python package to generate HDL, load networks, and run them on FPGA boards.
-logo: null
+logo: tennlab-fpga.png
 website: 'https://github.com/TENNLab-UTK/fpga'
 dependencies: 'TENNLab Neuromorphic Framework, Edalize'
 field_of_application: Neuromorphic Hardware
