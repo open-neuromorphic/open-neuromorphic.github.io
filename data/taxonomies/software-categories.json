@@ -22,5 +22,13 @@
     "page_intro": "Explore standalone simulation engines optimized for running spiking neural networks over extended periods. These frameworks focus on the dynamics, size, and structure of neural systems, often prioritizing execution speed and biological realism over gradient-based training.",
     "meta_description": "Discover open-source SNN simulators for neuromorphic computing, including high-speed and biologically detailed simulation engines.",
     "icon": "fas fa-server"
+  },
+  "fpga-implementation": {
+    "title": "FPGA Implementations",
+    "landing_path": "fpga-implementations",
+    "order": 4,
+    "page_intro": "Explore open-source FPGA implementations of spiking neural networks and neuromorphic processors, together with the tooling used to build, load, and run them.",
+    "meta_description": "Open-source FPGA implementations of spiking neural networks and neuromorphic processors, with the tooling used to build, load, and run them.",
+    "icon": "fas fa-microchip"
   }
 }
