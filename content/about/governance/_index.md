@@ -1,6 +1,6 @@
 ---
 title: "ONM Governance & Fellowship"
-description: "The central hub for Open Neuromorphic's governance documents, including our organisational charter, fellowship program details, and initiative proposal process."
+description: "The central hub for Open Neuromorphic's governance documents, including our organisational charter, voting member details, and initiative proposal process."
 ---
 
 Welcome to the governance hub for Open Neuromorphic. As a community-driven organization, we are committed to transparency, collaboration, and clear processes that empower our members. This section contains the documents that define our structure, mission, and how you can get involved in shaping our future.
@@ -13,10 +13,6 @@ ONM governance operations occur and are officially kept by the secretary in the 
 <div class="space-y-4">
   {{< link-card title="Organisational Charter" href="./organisational-charter/" >}}
   Our foundational document, outlining ONM's mission, leadership structure, and decision-making processes.
-  {{< /link-card >}}
-
-  {{< link-card title="Fellowship Charter" href="./fellowship-charter/" >}}
-  Learn about the benefits, responsibilities, and pathway to becoming a recognized ONM Fellow.
   {{< /link-card >}}
 
   {{< link-card title="Code of Conduct" href="/code-of-conduct/" >}}
