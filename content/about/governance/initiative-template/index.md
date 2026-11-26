@@ -11,7 +11,7 @@ This page provides the official markdown template for proposing a new initiative
 ```markdown
 # Initiative Plan: [Initiative Title]
 
-**Accountable Fellow:** @<accountablefellow>
+**Accountable Voting Member:** @<votingmember>
 
 **Approver:** @<approver>
 **Status:** <TODO, IN PROGRESS, COMPLETE>
@@ -76,3 +76,4 @@ Include a hypothesis: _“We believe X will result in Y, and we’ll know we’v
 - [GitHub Issue](#)
 - [Discord Thread](#)
 - [Docs or Files](#)
+```
