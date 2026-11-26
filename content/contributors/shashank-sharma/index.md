@@ -3,7 +3,7 @@ title: "Shashank Sharma"
 description: "Shashank Sharma is a neuromorphic computing researcher in Tata Consultancy Research"
 image: "shashank.png"
 social:
-  - icon: "fa-solid fa-home"
+  - icon: "fa fa-home"
     link: "https://shashankgsharma.github.io/"
     title: "website"
 draft: false
