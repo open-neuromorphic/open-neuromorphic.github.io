@@ -10,7 +10,7 @@ social:
     link: "https://www.linkedin.com/in/riddiough/"
     title: "linkedin"
   - icon: "fa fa-house"
-    link: "https://visioninit.dev"
+    link: "https://riddiough.net"
     title: "website"
 draft: false
 ---
