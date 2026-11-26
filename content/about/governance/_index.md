@@ -1,5 +1,5 @@
 ---
-title: "ONM Governance & Fellowship"
+title: "ONM Governance"
 description: "The central hub for Open Neuromorphic's governance documents, including our organisational charter, voting member details, and initiative proposal process."
 ---
 

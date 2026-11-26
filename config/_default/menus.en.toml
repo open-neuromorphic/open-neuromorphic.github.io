@@ -134,7 +134,7 @@ weight = 6
 
 [[main]]
 parent = "About"
-name = "Governance & Fellowship"
+name = "Governance"
 url = "/about/governance/"
 weight = 7
 
