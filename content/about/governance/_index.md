@@ -1,5 +1,5 @@
 ---
-title: "ONM Governance & Fellowship"
+title: "ONM Governance"
 description: "The central hub for Open Neuromorphic's governance documents, including our organisational charter, voting member details, and initiative proposal process."
 ---
 
@@ -15,28 +15,28 @@ ONM governance operations occur and are officially kept by the secretary in the 
   Our foundational document, outlining ONM's mission, leadership structure, and decision-making processes.
   {{< /link-card >}}
 
-  {{< link-card title="Code of Conduct" href="/code-of-conduct/" >}}
-  The principles and expectations for respectful and constructive engagement within our community.
-  {{< /link-card >}}
+{{< link-card title="Code of Conduct" href="/code-of-conduct/" >}}
+The principles and expectations for respectful and constructive engagement within our community.
+{{< /link-card >}}
 
-  {{< link-card title="ONM's Principles for Open Resources" href="./open-definition/" >}}
-  The definition of an open resource, outlining requirements for sharing, modification, and licensing.
-  {{< /link-card >}}
+{{< link-card title="ONM's Principles for Open Resources" href="./open-definition/" >}}
+The definition of an open resource, outlining requirements for sharing, modification, and licensing.
+{{< /link-card >}}
 </div>
 
 <h2 class="h3 mt-12 mb-6">Proposing an Initiative</h2>
-<p class="mb-8">A key way to contribute and earn fellowship is by leading a community initiative. Use these resources to get started.</p>
+<p class="mb-8">A key way to contribute and become a voting member is by leading a community initiative. Use these resources to get started.</p>
 
 <div class="space-y-4">
   {{< link-card title="Submission Guide" href="./submission-instructions/" >}}
   A step-by-step guide on how to prepare and submit your initiative proposal for community review.
   {{< /link-card >}}
 
-  {{< link-card title="Proposal Template" href="./initiative-template/" >}}
-  The official template for structuring your initiative. Copy this to ensure your idea is presented clearly.
-  {{< /link-card >}}
+{{< link-card title="Proposal Template" href="./initiative-template/" >}}
+The official template for structuring your initiative. Copy this to ensure your idea is presented clearly.
+{{< /link-card >}}
 
-  {{< link-card title="View Current Initiatives" href="/neuromorphic-computing/initiatives/" >}}
-  Explore the active projects and collaborations currently being led by our community members.
-  {{< /link-card >}}
+{{< link-card title="View Current Initiatives" href="/neuromorphic-computing/initiatives/" >}}
+Explore the active projects and collaborations currently being led by our community members.
+{{< /link-card >}}
 </div>

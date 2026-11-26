@@ -37,7 +37,7 @@ As Secretary Chair of Open Neuromorphic, she focuses on community engagement, ed
 The 2026 General Assembly discussed moving away from a traditional hierarchy to better reflect the collaborative nature of open source. The new committee is tasked with exploring these changes and drafting updates to the Charter. This shift aims to distribute decision-making among leaders with specific domain expertise rather than concentrating it in a single title.
 
 ## A Note of Gratitude
-We extend our deepest gratitude to the outgoing Chair, **Jens E. Pedersen**, and Secretary, **Danny Rosen**. Their vision and tireless effort over the past year established the foundational charter, policies, and volunteer infrastructure that allow us to operate today. They remain valued members of our Fellowship.
+We extend our deepest gratitude to the outgoing Chair, **Jens E. Pedersen**, and Secretary, **Danny Rosen**. Their vision and tireless effort over the past year established the foundational charter, policies, and volunteer infrastructure that allow us to operate today. They remain valued members of our voting members.
 
 ## Looking Ahead: 2026 Priorities
 The new committee has already begun work on several key initiatives discussed during the transition:

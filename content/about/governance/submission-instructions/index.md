@@ -1,11 +1,10 @@
 ---
 title: "How to Submit an Initiative"
-description: "A step-by-step guide for proposing a new community initiative to Open Neuromorphic as part of the ONM Fellowship process."
+description: "A step-by-step guide for proposing a new community initiative to Open Neuromorphic"
 showTableOfContents: true
-aliases: ["/about/fellowship/submission-instructions/"]
 ---
 
-Proposing a new initiative is a highly encouraged path toward becoming an ONM Fellow. Follow these simple steps to submit your proposal.
+Proposing a new initiative is a highly encouraged path toward becoming an ONM Voting Member. Follow these simple steps to submit your proposal.
 
 ## 1. Draft Your Proposal
 Use the [Initiative Proposal Template](../initiative-template/) to structure your idea. This ensures all necessary details about the objective, problem statement, and scope are clearly defined.
